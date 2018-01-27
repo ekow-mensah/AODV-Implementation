@@ -1,0 +1,273 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:27:34 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module nullradio
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _nullradio_driver
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 	.area RSEG    (ABS,DATA)
+   0000                      17 	.org 0x0000
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (ABS,DATA)
+   0000                      22 	.org 0x0000
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable register banks
+                             25 ;--------------------------------------------------------
+                             26 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      27 	.ds 8
+                             28 ;--------------------------------------------------------
+                             29 ; internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG    (DATA)
+                             32 ;--------------------------------------------------------
+                             33 ; overlayable items in internal ram 
+                             34 ;--------------------------------------------------------
+                             35 	.area OSEG    (OVR,DATA)
+                             36 ;--------------------------------------------------------
+                             37 ; indirectly addressable internal ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area ISEG    (DATA)
+                             40 ;--------------------------------------------------------
+                             41 ; absolute internal ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area IABS    (ABS,DATA)
+                             44 	.area IABS    (ABS,DATA)
+                             45 ;--------------------------------------------------------
+                             46 ; bit data
+                             47 ;--------------------------------------------------------
+                             48 	.area BSEG    (BIT)
+                             49 ;--------------------------------------------------------
+                             50 ; paged external ram data
+                             51 ;--------------------------------------------------------
+                             52 	.area PSEG    (PAG,XDATA)
+                             53 ;--------------------------------------------------------
+                             54 ; external ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area XSEG    (XDATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute external ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area XABS    (ABS,XDATA)
+                             61 ;--------------------------------------------------------
+                             62 ; external initialized ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area XISEG   (XDATA)
+                             65 	.area HOME    (CODE)
+                             66 	.area GSINIT0 (CODE)
+                             67 	.area GSINIT1 (CODE)
+                             68 	.area GSINIT2 (CODE)
+                             69 	.area GSINIT3 (CODE)
+                             70 	.area GSINIT4 (CODE)
+                             71 	.area GSINIT5 (CODE)
+                             72 	.area GSINIT  (CODE)
+                             73 	.area GSFINAL (CODE)
+                             74 	.area CSEG    (CODE)
+                             75 ;--------------------------------------------------------
+                             76 ; global & static initialisations
+                             77 ;--------------------------------------------------------
+                             78 	.area HOME    (CODE)
+                             79 	.area GSINIT  (CODE)
+                             80 	.area GSFINAL (CODE)
+                             81 	.area GSINIT  (CODE)
+                             82 ;--------------------------------------------------------
+                             83 ; Home
+                             84 ;--------------------------------------------------------
+                             85 	.area HOME    (CODE)
+                             86 	.area HOME    (CODE)
+                             87 ;--------------------------------------------------------
+                             88 ; code
+                             89 ;--------------------------------------------------------
+                             90 	.area CSEG    (CODE)
+                             91 ;------------------------------------------------------------
+                             92 ;Allocation info for local variables in function 'init'
+                             93 ;------------------------------------------------------------
+                             94 ;------------------------------------------------------------
+                             95 ;	../../../core/dev/nullradio.c:6: init(void)
+                             96 ;	-----------------------------------------
+                             97 ;	 function init
+                             98 ;	-----------------------------------------
+   0000                      99 _init:
+                    0002    100 	ar2 = 0x02
+                    0003    101 	ar3 = 0x03
+                    0004    102 	ar4 = 0x04
+                    0005    103 	ar5 = 0x05
+                    0006    104 	ar6 = 0x06
+                    0007    105 	ar7 = 0x07
+                    0000    106 	ar0 = 0x00
+                    0001    107 	ar1 = 0x01
+                            108 ;	../../../core/dev/nullradio.c:8: return 0;
+   0000 90 00 00            109 	mov	dptr,#0x0000
+   0003 22                  110 	ret
+                            111 ;------------------------------------------------------------
+                            112 ;Allocation info for local variables in function 'prepare'
+                            113 ;------------------------------------------------------------
+                            114 ;payload_len               Allocated to stack - offset -4
+                            115 ;payload                   Allocated to registers 
+                            116 ;------------------------------------------------------------
+                            117 ;	../../../core/dev/nullradio.c:12: prepare(const void *payload, unsigned short payload_len)
+                            118 ;	-----------------------------------------
+                            119 ;	 function prepare
+                            120 ;	-----------------------------------------
+   0004                     121 _prepare:
+   0004 C0*00               122 	push	_bp
+   0006 85 81*00            123 	mov	_bp,sp
+                            124 ;	../../../core/dev/nullradio.c:14: return 1;
+   0009 90 00 01            125 	mov	dptr,#0x0001
+   000C D0*00               126 	pop	_bp
+   000E 22                  127 	ret
+                            128 ;------------------------------------------------------------
+                            129 ;Allocation info for local variables in function 'transmit'
+                            130 ;------------------------------------------------------------
+                            131 ;transmit_len              Allocated to registers 
+                            132 ;------------------------------------------------------------
+                            133 ;	../../../core/dev/nullradio.c:18: transmit(unsigned short transmit_len)
+                            134 ;	-----------------------------------------
+                            135 ;	 function transmit
+                            136 ;	-----------------------------------------
+   000F                     137 _transmit:
+                            138 ;	../../../core/dev/nullradio.c:20: return RADIO_TX_OK;
+   000F 90 00 00            139 	mov	dptr,#0x0000
+   0012 22                  140 	ret
+                            141 ;------------------------------------------------------------
+                            142 ;Allocation info for local variables in function 'send'
+                            143 ;------------------------------------------------------------
+                            144 ;payload_len               Allocated to stack - offset -4
+                            145 ;payload                   Allocated to registers r2 r3 r4 
+                            146 ;------------------------------------------------------------
+                            147 ;	../../../core/dev/nullradio.c:24: send(const void *payload, unsigned short payload_len)
+                            148 ;	-----------------------------------------
+                            149 ;	 function send
+                            150 ;	-----------------------------------------
+   0013                     151 _send:
+   0013 C0*00               152 	push	_bp
+   0015 85 81*00            153 	mov	_bp,sp
+   0018 AA 82               154 	mov	r2,dpl
+   001A AB 83               155 	mov	r3,dph
+   001C AC F0               156 	mov	r4,b
+                            157 ;	../../../core/dev/nullradio.c:26: prepare(payload, payload_len);
+   001E E5*00               158 	mov	a,_bp
+   0020 24 FC               159 	add	a,#0xfc
+   0022 F8                  160 	mov	r0,a
+   0023 E6                  161 	mov	a,@r0
+   0024 C0 E0               162 	push	acc
+   0026 08                  163 	inc	r0
+   0027 E6                  164 	mov	a,@r0
+   0028 C0 E0               165 	push	acc
+   002A 8A 82               166 	mov	dpl,r2
+   002C 8B 83               167 	mov	dph,r3
+   002E 8C F0               168 	mov	b,r4
+   0030 12s00r04            169 	lcall	_prepare
+   0033 15 81               170 	dec	sp
+   0035 15 81               171 	dec	sp
+                            172 ;	../../../core/dev/nullradio.c:27: return transmit(payload_len);
+   0037 E5*00               173 	mov	a,_bp
+   0039 24 FC               174 	add	a,#0xfc
+   003B F8                  175 	mov	r0,a
+   003C 86 82               176 	mov	dpl,@r0
+   003E 08                  177 	inc	r0
+   003F 86 83               178 	mov	dph,@r0
+   0041 12s00r0F            179 	lcall	_transmit
+   0044 D0*00               180 	pop	_bp
+   0046 22                  181 	ret
+                            182 ;------------------------------------------------------------
+                            183 ;Allocation info for local variables in function 'read'
+                            184 ;------------------------------------------------------------
+                            185 ;buf_len                   Allocated to stack - offset -4
+                            186 ;buf                       Allocated to registers 
+                            187 ;------------------------------------------------------------
+                            188 ;	../../../core/dev/nullradio.c:31: read(void *buf, unsigned short buf_len)
+                            189 ;	-----------------------------------------
+                            190 ;	 function read
+                            191 ;	-----------------------------------------
+   0047                     192 _read:
+   0047 C0*00               193 	push	_bp
+   0049 85 81*00            194 	mov	_bp,sp
+                            195 ;	../../../core/dev/nullradio.c:33: return 0;
+   004C 90 00 00            196 	mov	dptr,#0x0000
+   004F D0*00               197 	pop	_bp
+   0051 22                  198 	ret
+                            199 ;------------------------------------------------------------
+                            200 ;Allocation info for local variables in function 'channel_clear'
+                            201 ;------------------------------------------------------------
+                            202 ;------------------------------------------------------------
+                            203 ;	../../../core/dev/nullradio.c:37: channel_clear(void)
+                            204 ;	-----------------------------------------
+                            205 ;	 function channel_clear
+                            206 ;	-----------------------------------------
+   0052                     207 _channel_clear:
+                            208 ;	../../../core/dev/nullradio.c:39: return 1;
+   0052 90 00 01            209 	mov	dptr,#0x0001
+   0055 22                  210 	ret
+                            211 ;------------------------------------------------------------
+                            212 ;Allocation info for local variables in function 'receiving_packet'
+                            213 ;------------------------------------------------------------
+                            214 ;------------------------------------------------------------
+                            215 ;	../../../core/dev/nullradio.c:43: receiving_packet(void)
+                            216 ;	-----------------------------------------
+                            217 ;	 function receiving_packet
+                            218 ;	-----------------------------------------
+   0056                     219 _receiving_packet:
+                            220 ;	../../../core/dev/nullradio.c:45: return 0;
+   0056 90 00 00            221 	mov	dptr,#0x0000
+   0059 22                  222 	ret
+                            223 ;------------------------------------------------------------
+                            224 ;Allocation info for local variables in function 'pending_packet'
+                            225 ;------------------------------------------------------------
+                            226 ;------------------------------------------------------------
+                            227 ;	../../../core/dev/nullradio.c:49: pending_packet(void)
+                            228 ;	-----------------------------------------
+                            229 ;	 function pending_packet
+                            230 ;	-----------------------------------------
+   005A                     231 _pending_packet:
+                            232 ;	../../../core/dev/nullradio.c:51: return 0;
+   005A 90 00 00            233 	mov	dptr,#0x0000
+   005D 22                  234 	ret
+                            235 ;------------------------------------------------------------
+                            236 ;Allocation info for local variables in function 'on'
+                            237 ;------------------------------------------------------------
+                            238 ;------------------------------------------------------------
+                            239 ;	../../../core/dev/nullradio.c:55: on(void)
+                            240 ;	-----------------------------------------
+                            241 ;	 function on
+                            242 ;	-----------------------------------------
+   005E                     243 _on:
+                            244 ;	../../../core/dev/nullradio.c:57: return 0;
+   005E 90 00 00            245 	mov	dptr,#0x0000
+   0061 22                  246 	ret
+                            247 ;------------------------------------------------------------
+                            248 ;Allocation info for local variables in function 'off'
+                            249 ;------------------------------------------------------------
+                            250 ;------------------------------------------------------------
+                            251 ;	../../../core/dev/nullradio.c:61: off(void)
+                            252 ;	-----------------------------------------
+                            253 ;	 function off
+                            254 ;	-----------------------------------------
+   0062                     255 _off:
+                            256 ;	../../../core/dev/nullradio.c:63: return 0;
+   0062 90 00 00            257 	mov	dptr,#0x0000
+   0065 22                  258 	ret
+                            259 	.area CSEG    (CODE)
+                            260 	.area CONST   (CODE)
+   0000                     261 _nullradio_driver:
+   0000r00s00               262 	.byte _init,(_init >> 8)
+   0002r04s00               263 	.byte _prepare,(_prepare >> 8)
+   0004r0Fs00               264 	.byte _transmit,(_transmit >> 8)
+   0006r13s00               265 	.byte _send,(_send >> 8)
+   0008r47s00               266 	.byte _read,(_read >> 8)
+   000Ar52s00               267 	.byte _channel_clear,(_channel_clear >> 8)
+   000Cr56s00               268 	.byte _receiving_packet,(_receiving_packet >> 8)
+   000Er5As00               269 	.byte _pending_packet,(_pending_packet >> 8)
+   0010r5Es00               270 	.byte _on,(_on >> 8)
+   0012r62s00               271 	.byte _off,(_off >> 8)
+                            272 	.area XINIT   (CODE)
+                            273 	.area CABS    (ABS,CODE)

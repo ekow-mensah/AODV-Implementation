@@ -1,0 +1,5 @@
+obj_sensinode/bus.rel: ../../../cpu/cc2430/dev/bus.c ../../../cpu/cc2430/dev/banked.h \
+ ../../../cpu/cc2430/./cc2430_sfr.h ../../../cpu/cc2430/./dev/bus.h \
+ ../../../cpu/cc2430/./dev/banked.h ../../../cpu/cc2430/./8051def.h \
+ ../../../platform/sensinode/./contiki-conf.h ../../../core/./sys/cc.h \
+ ../../../core/sys/log.h ../../../core/./sys/clock.h

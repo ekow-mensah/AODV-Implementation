@@ -1,0 +1,3613 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:27:26 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module dhcpc
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _IRCON2_P2IF
+                             13 	.globl _IRCON2_UTX0IF
+                             14 	.globl _IRCON2_UTX1IF
+                             15 	.globl _IRCON2_P1IF
+                             16 	.globl _IRCON2_WDTIF
+                             17 	.globl _CY
+                             18 	.globl _AC
+                             19 	.globl _F0
+                             20 	.globl _RS1
+                             21 	.globl _RS0
+                             22 	.globl _OV
+                             23 	.globl _F1
+                             24 	.globl _P
+                             25 	.globl _IRCON_DMAIF
+                             26 	.globl _IRCON_T1IF
+                             27 	.globl _IRCON_T2IF
+                             28 	.globl _IRCON_T3IF
+                             29 	.globl _IRCON_T4IF
+                             30 	.globl _IRCON_P0IF
+                             31 	.globl _IRCON_STIF
+                             32 	.globl _IEN1_DMAIE
+                             33 	.globl _IEN1_T1IE
+                             34 	.globl _IEN1_T2IE
+                             35 	.globl _IEN1_T3IE
+                             36 	.globl _IEN1_T4IE
+                             37 	.globl _IEN1_P0IE
+                             38 	.globl _IEN0_RFERRIE
+                             39 	.globl _IEN0_ADCIE
+                             40 	.globl _IEN0_URX0IE
+                             41 	.globl _IEN0_URX1IE
+                             42 	.globl _IEN0_ENCIE
+                             43 	.globl _IEN0_STIE
+                             44 	.globl _IEN0_EA
+                             45 	.globl _EA
+                             46 	.globl _P2_4
+                             47 	.globl _P2_3
+                             48 	.globl _P2_2
+                             49 	.globl _P2_1
+                             50 	.globl _P2_0
+                             51 	.globl _S0CON_ENCIF_0
+                             52 	.globl _S0CON_ENCIF_1
+                             53 	.globl _P1_7
+                             54 	.globl _P1_6
+                             55 	.globl _P1_5
+                             56 	.globl _P1_4
+                             57 	.globl _P1_3
+                             58 	.globl _P1_2
+                             59 	.globl _P1_1
+                             60 	.globl _P1_0
+                             61 	.globl _TCON_IT0
+                             62 	.globl _TCON_RFERRIF
+                             63 	.globl _TCON_IT1
+                             64 	.globl _TCON_URX0IF
+                             65 	.globl _TCON_ADCIF
+                             66 	.globl _TCON_URX1IF
+                             67 	.globl _P0_0
+                             68 	.globl _P0_1
+                             69 	.globl _P0_2
+                             70 	.globl _P0_3
+                             71 	.globl _P0_4
+                             72 	.globl _P0_5
+                             73 	.globl _P0_6
+                             74 	.globl _P0_7
+                             75 	.globl _P2DIR
+                             76 	.globl _P1DIR
+                             77 	.globl _P0DIR
+                             78 	.globl _U1GCR
+                             79 	.globl _U1UCR
+                             80 	.globl _U1BAUD
+                             81 	.globl _U1BUF
+                             82 	.globl _U1CSR
+                             83 	.globl _P2INP
+                             84 	.globl _P1INP
+                             85 	.globl _P2SEL
+                             86 	.globl _P1SEL
+                             87 	.globl _P0SEL
+                             88 	.globl _ADCCFG
+                             89 	.globl _PERCFG
+                             90 	.globl _B
+                             91 	.globl _T4CC1
+                             92 	.globl _T4CCTL1
+                             93 	.globl _T4CC0
+                             94 	.globl _T4CCTL0
+                             95 	.globl _T4CTL
+                             96 	.globl _T4CNT
+                             97 	.globl _RFIF
+                             98 	.globl _IRCON2
+                             99 	.globl _T1CCTL2
+                            100 	.globl _T1CCTL1
+                            101 	.globl _T1CCTL0
+                            102 	.globl _T1CTL
+                            103 	.globl _T1CNTH
+                            104 	.globl _T1CNTL
+                            105 	.globl _RFST
+                            106 	.globl _ACC
+                            107 	.globl _T1CC2H
+                            108 	.globl _T1CC2L
+                            109 	.globl _T1CC1H
+                            110 	.globl _T1CC1L
+                            111 	.globl _T1CC0H
+                            112 	.globl _T1CC0L
+                            113 	.globl _RFD
+                            114 	.globl _TIMIF
+                            115 	.globl _DMAREQ
+                            116 	.globl _DMAARM
+                            117 	.globl _DMA0CFGH
+                            118 	.globl _DMA0CFGL
+                            119 	.globl _DMA1CFGH
+                            120 	.globl _DMA1CFGL
+                            121 	.globl _DMAIRQ
+                            122 	.globl _PSW
+                            123 	.globl _T3CC1
+                            124 	.globl _T3CCTL1
+                            125 	.globl _T3CC0
+                            126 	.globl _T3CCTL0
+                            127 	.globl _T3CTL
+                            128 	.globl _T3CNT
+                            129 	.globl _WDCTL
+                            130 	.globl _T2CON
+                            131 	.globl _MEMCTR
+                            132 	.globl _CLKCON
+                            133 	.globl _U0GCR
+                            134 	.globl _U0UCR
+                            135 	.globl _T2CNF
+                            136 	.globl _U0BAUD
+                            137 	.globl _U0BUF
+                            138 	.globl _IRCON
+                            139 	.globl _SLEEP
+                            140 	.globl _RNDH
+                            141 	.globl _RNDL
+                            142 	.globl _ADCH
+                            143 	.globl _ADCL
+                            144 	.globl _IP1
+                            145 	.globl _IEN1
+                            146 	.globl _RCCTL
+                            147 	.globl _ADCCON3
+                            148 	.globl _ADCCON2
+                            149 	.globl _ADCCON1
+                            150 	.globl _ENCCS
+                            151 	.globl _ENCDO
+                            152 	.globl _ENCDI
+                            153 	.globl _FWDATA
+                            154 	.globl _FCTL
+                            155 	.globl _FADDRH
+                            156 	.globl _FADDRL
+                            157 	.globl _FWT
+                            158 	.globl _IP0
+                            159 	.globl _IEN0
+                            160 	.globl _IE
+                            161 	.globl _T2THD
+                            162 	.globl _T2TLD
+                            163 	.globl _T2CAPHPH
+                            164 	.globl _T2CAPLPL
+                            165 	.globl _T2OF2
+                            166 	.globl _T2OF1
+                            167 	.globl _T2OF0
+                            168 	.globl _P2
+                            169 	.globl _PSBANK
+                            170 	.globl _FMAP
+                            171 	.globl _T2PEROF2
+                            172 	.globl _T2PEROF1
+                            173 	.globl _T2PEROF0
+                            174 	.globl _S1CON
+                            175 	.globl _IEN2
+                            176 	.globl _HSRC
+                            177 	.globl _S0CON
+                            178 	.globl _ST2
+                            179 	.globl _ST1
+                            180 	.globl _ST0
+                            181 	.globl _T2CMP
+                            182 	.globl __XPAGE
+                            183 	.globl _DPS
+                            184 	.globl _RFIM
+                            185 	.globl _P1
+                            186 	.globl _P0INP
+                            187 	.globl _P1IEN
+                            188 	.globl _PICTL
+                            189 	.globl _P2IFG
+                            190 	.globl _P1IFG
+                            191 	.globl _P0IFG
+                            192 	.globl _TCON
+                            193 	.globl _PCON
+                            194 	.globl _U0CSR
+                            195 	.globl _DPH1
+                            196 	.globl _DPL1
+                            197 	.globl _DPH0
+                            198 	.globl _DPL0
+                            199 	.globl _SP
+                            200 	.globl _P0
+                            201 	.globl _ADC_SHADOW
+                            202 	.globl _U1BUF_SHADOW
+                            203 	.globl _RFD_SHADOW
+                            204 	.globl _U0BUF_SHADOW
+                            205 	.globl _RFSTATUS
+                            206 	.globl _CHIPID
+                            207 	.globl _CHVER
+                            208 	.globl _FSMTC1
+                            209 	.globl _RXFIFOCNT
+                            210 	.globl _IOCFG3
+                            211 	.globl _IOCFG2
+                            212 	.globl _IOCFG1
+                            213 	.globl _IOCFG0
+                            214 	.globl _SHORTADDRL
+                            215 	.globl _SHORTADDRH
+                            216 	.globl _PANIDL
+                            217 	.globl _PANIDH
+                            218 	.globl _IEEE_ADDR7
+                            219 	.globl _IEEE_ADDR6
+                            220 	.globl _IEEE_ADDR5
+                            221 	.globl _IEEE_ADDR4
+                            222 	.globl _IEEE_ADDR3
+                            223 	.globl _IEEE_ADDR2
+                            224 	.globl _IEEE_ADDR1
+                            225 	.globl _IEEE_ADDR0
+                            226 	.globl _DACTSTL
+                            227 	.globl _DACTSTH
+                            228 	.globl _ADCTSTL
+                            229 	.globl _ADCTSTH
+                            230 	.globl _FSMSTATE
+                            231 	.globl _AGCCTRLL
+                            232 	.globl _AGCCTRLH
+                            233 	.globl _MANORL
+                            234 	.globl _MANORH
+                            235 	.globl _MANANDL
+                            236 	.globl _MANANDH
+                            237 	.globl _FSMTCL
+                            238 	.globl _FSMTCH
+                            239 	.globl _RFPWR
+                            240 	.globl _CSPT
+                            241 	.globl _CSPCTRL
+                            242 	.globl _CSPZ
+                            243 	.globl _CSPY
+                            244 	.globl _CSPX
+                            245 	.globl _FSCTRLL
+                            246 	.globl _FSCTRLH
+                            247 	.globl _RXCTRL1L
+                            248 	.globl _RXCTRL1H
+                            249 	.globl _RXCTRL0L
+                            250 	.globl _RXCTRL0H
+                            251 	.globl _TXCTRLL
+                            252 	.globl _TXCTRLH
+                            253 	.globl _SYNCWORDL
+                            254 	.globl _SYNCWORDH
+                            255 	.globl _RSSIL
+                            256 	.globl _RSSIH
+                            257 	.globl _MDMCTRL1L
+                            258 	.globl _MDMCTRL1H
+                            259 	.globl _MDMCTRL0L
+                            260 	.globl _MDMCTRL0H
+                            261 	.globl _dhcpc_init
+                            262 	.globl _dhcpc_appcall
+                            263 	.globl _dhcpc_request
+                            264 ;--------------------------------------------------------
+                            265 ; special function registers
+                            266 ;--------------------------------------------------------
+                            267 	.area RSEG    (ABS,DATA)
+   0000                     268 	.org 0x0000
+                    0080    269 _P0	=	0x0080
+                    0081    270 _SP	=	0x0081
+                    0082    271 _DPL0	=	0x0082
+                    0083    272 _DPH0	=	0x0083
+                    0084    273 _DPL1	=	0x0084
+                    0085    274 _DPH1	=	0x0085
+                    0086    275 _U0CSR	=	0x0086
+                    0087    276 _PCON	=	0x0087
+                    0088    277 _TCON	=	0x0088
+                    0089    278 _P0IFG	=	0x0089
+                    008A    279 _P1IFG	=	0x008a
+                    008B    280 _P2IFG	=	0x008b
+                    008C    281 _PICTL	=	0x008c
+                    008D    282 _P1IEN	=	0x008d
+                    008F    283 _P0INP	=	0x008f
+                    0090    284 _P1	=	0x0090
+                    0091    285 _RFIM	=	0x0091
+                    0092    286 _DPS	=	0x0092
+                    0093    287 __XPAGE	=	0x0093
+                    0094    288 _T2CMP	=	0x0094
+                    0095    289 _ST0	=	0x0095
+                    0096    290 _ST1	=	0x0096
+                    0097    291 _ST2	=	0x0097
+                    0098    292 _S0CON	=	0x0098
+                    0099    293 _HSRC	=	0x0099
+                    009A    294 _IEN2	=	0x009a
+                    009B    295 _S1CON	=	0x009b
+                    009C    296 _T2PEROF0	=	0x009c
+                    009D    297 _T2PEROF1	=	0x009d
+                    009E    298 _T2PEROF2	=	0x009e
+                    009F    299 _FMAP	=	0x009f
+                    009F    300 _PSBANK	=	0x009f
+                    00A0    301 _P2	=	0x00a0
+                    00A1    302 _T2OF0	=	0x00a1
+                    00A2    303 _T2OF1	=	0x00a2
+                    00A3    304 _T2OF2	=	0x00a3
+                    00A4    305 _T2CAPLPL	=	0x00a4
+                    00A5    306 _T2CAPHPH	=	0x00a5
+                    00A6    307 _T2TLD	=	0x00a6
+                    00A7    308 _T2THD	=	0x00a7
+                    00A8    309 _IE	=	0x00a8
+                    00A8    310 _IEN0	=	0x00a8
+                    00A9    311 _IP0	=	0x00a9
+                    00AB    312 _FWT	=	0x00ab
+                    00AC    313 _FADDRL	=	0x00ac
+                    00AD    314 _FADDRH	=	0x00ad
+                    00AE    315 _FCTL	=	0x00ae
+                    00AF    316 _FWDATA	=	0x00af
+                    00B1    317 _ENCDI	=	0x00b1
+                    00B2    318 _ENCDO	=	0x00b2
+                    00B3    319 _ENCCS	=	0x00b3
+                    00B4    320 _ADCCON1	=	0x00b4
+                    00B5    321 _ADCCON2	=	0x00b5
+                    00B6    322 _ADCCON3	=	0x00b6
+                    00B7    323 _RCCTL	=	0x00b7
+                    00B8    324 _IEN1	=	0x00b8
+                    00B9    325 _IP1	=	0x00b9
+                    00BA    326 _ADCL	=	0x00ba
+                    00BB    327 _ADCH	=	0x00bb
+                    00BC    328 _RNDL	=	0x00bc
+                    00BD    329 _RNDH	=	0x00bd
+                    00BE    330 _SLEEP	=	0x00be
+                    00C0    331 _IRCON	=	0x00c0
+                    00C1    332 _U0BUF	=	0x00c1
+                    00C2    333 _U0BAUD	=	0x00c2
+                    00C3    334 _T2CNF	=	0x00c3
+                    00C4    335 _U0UCR	=	0x00c4
+                    00C5    336 _U0GCR	=	0x00c5
+                    00C6    337 _CLKCON	=	0x00c6
+                    00C7    338 _MEMCTR	=	0x00c7
+                    00C8    339 _T2CON	=	0x00c8
+                    00C9    340 _WDCTL	=	0x00c9
+                    00CA    341 _T3CNT	=	0x00ca
+                    00CB    342 _T3CTL	=	0x00cb
+                    00CC    343 _T3CCTL0	=	0x00cc
+                    00CD    344 _T3CC0	=	0x00cd
+                    00CE    345 _T3CCTL1	=	0x00ce
+                    00CF    346 _T3CC1	=	0x00cf
+                    00D0    347 _PSW	=	0x00d0
+                    00D1    348 _DMAIRQ	=	0x00d1
+                    00D2    349 _DMA1CFGL	=	0x00d2
+                    00D3    350 _DMA1CFGH	=	0x00d3
+                    00D4    351 _DMA0CFGL	=	0x00d4
+                    00D5    352 _DMA0CFGH	=	0x00d5
+                    00D6    353 _DMAARM	=	0x00d6
+                    00D7    354 _DMAREQ	=	0x00d7
+                    00D8    355 _TIMIF	=	0x00d8
+                    00D9    356 _RFD	=	0x00d9
+                    00DA    357 _T1CC0L	=	0x00da
+                    00DB    358 _T1CC0H	=	0x00db
+                    00DC    359 _T1CC1L	=	0x00dc
+                    00DD    360 _T1CC1H	=	0x00dd
+                    00DE    361 _T1CC2L	=	0x00de
+                    00DF    362 _T1CC2H	=	0x00df
+                    00E0    363 _ACC	=	0x00e0
+                    00E1    364 _RFST	=	0x00e1
+                    00E2    365 _T1CNTL	=	0x00e2
+                    00E3    366 _T1CNTH	=	0x00e3
+                    00E4    367 _T1CTL	=	0x00e4
+                    00E5    368 _T1CCTL0	=	0x00e5
+                    00E6    369 _T1CCTL1	=	0x00e6
+                    00E7    370 _T1CCTL2	=	0x00e7
+                    00E8    371 _IRCON2	=	0x00e8
+                    00E9    372 _RFIF	=	0x00e9
+                    00EA    373 _T4CNT	=	0x00ea
+                    00EB    374 _T4CTL	=	0x00eb
+                    00EC    375 _T4CCTL0	=	0x00ec
+                    00ED    376 _T4CC0	=	0x00ed
+                    00EE    377 _T4CCTL1	=	0x00ee
+                    00EF    378 _T4CC1	=	0x00ef
+                    00F0    379 _B	=	0x00f0
+                    00F1    380 _PERCFG	=	0x00f1
+                    00F2    381 _ADCCFG	=	0x00f2
+                    00F3    382 _P0SEL	=	0x00f3
+                    00F4    383 _P1SEL	=	0x00f4
+                    00F5    384 _P2SEL	=	0x00f5
+                    00F6    385 _P1INP	=	0x00f6
+                    00F7    386 _P2INP	=	0x00f7
+                    00F8    387 _U1CSR	=	0x00f8
+                    00F9    388 _U1BUF	=	0x00f9
+                    00FA    389 _U1BAUD	=	0x00fa
+                    00FB    390 _U1UCR	=	0x00fb
+                    00FC    391 _U1GCR	=	0x00fc
+                    00FD    392 _P0DIR	=	0x00fd
+                    00FE    393 _P1DIR	=	0x00fe
+                    00FF    394 _P2DIR	=	0x00ff
+                            395 ;--------------------------------------------------------
+                            396 ; special function bits
+                            397 ;--------------------------------------------------------
+                            398 	.area RSEG    (ABS,DATA)
+   0000                     399 	.org 0x0000
+                    0087    400 _P0_7	=	0x0087
+                    0086    401 _P0_6	=	0x0086
+                    0085    402 _P0_5	=	0x0085
+                    0084    403 _P0_4	=	0x0084
+                    0083    404 _P0_3	=	0x0083
+                    0082    405 _P0_2	=	0x0082
+                    0081    406 _P0_1	=	0x0081
+                    0080    407 _P0_0	=	0x0080
+                    008F    408 _TCON_URX1IF	=	0x008f
+                    008D    409 _TCON_ADCIF	=	0x008d
+                    008B    410 _TCON_URX0IF	=	0x008b
+                    008A    411 _TCON_IT1	=	0x008a
+                    0089    412 _TCON_RFERRIF	=	0x0089
+                    0088    413 _TCON_IT0	=	0x0088
+                    0090    414 _P1_0	=	0x0090
+                    0091    415 _P1_1	=	0x0091
+                    0092    416 _P1_2	=	0x0092
+                    0093    417 _P1_3	=	0x0093
+                    0094    418 _P1_4	=	0x0094
+                    0095    419 _P1_5	=	0x0095
+                    0096    420 _P1_6	=	0x0096
+                    0097    421 _P1_7	=	0x0097
+                    0099    422 _S0CON_ENCIF_1	=	0x0099
+                    0098    423 _S0CON_ENCIF_0	=	0x0098
+                    00A0    424 _P2_0	=	0x00a0
+                    00A1    425 _P2_1	=	0x00a1
+                    00A2    426 _P2_2	=	0x00a2
+                    00A3    427 _P2_3	=	0x00a3
+                    00A4    428 _P2_4	=	0x00a4
+                    00AF    429 _EA	=	0x00af
+                    00AF    430 _IEN0_EA	=	0x00af
+                    00AD    431 _IEN0_STIE	=	0x00ad
+                    00AC    432 _IEN0_ENCIE	=	0x00ac
+                    00AB    433 _IEN0_URX1IE	=	0x00ab
+                    00AA    434 _IEN0_URX0IE	=	0x00aa
+                    00A9    435 _IEN0_ADCIE	=	0x00a9
+                    00A8    436 _IEN0_RFERRIE	=	0x00a8
+                    00BD    437 _IEN1_P0IE	=	0x00bd
+                    00BC    438 _IEN1_T4IE	=	0x00bc
+                    00BB    439 _IEN1_T3IE	=	0x00bb
+                    00BA    440 _IEN1_T2IE	=	0x00ba
+                    00B9    441 _IEN1_T1IE	=	0x00b9
+                    00B8    442 _IEN1_DMAIE	=	0x00b8
+                    00C7    443 _IRCON_STIF	=	0x00c7
+                    00C5    444 _IRCON_P0IF	=	0x00c5
+                    00C4    445 _IRCON_T4IF	=	0x00c4
+                    00C3    446 _IRCON_T3IF	=	0x00c3
+                    00C2    447 _IRCON_T2IF	=	0x00c2
+                    00C1    448 _IRCON_T1IF	=	0x00c1
+                    00C0    449 _IRCON_DMAIF	=	0x00c0
+                    00D0    450 _P	=	0x00d0
+                    00D1    451 _F1	=	0x00d1
+                    00D2    452 _OV	=	0x00d2
+                    00D3    453 _RS0	=	0x00d3
+                    00D4    454 _RS1	=	0x00d4
+                    00D5    455 _F0	=	0x00d5
+                    00D6    456 _AC	=	0x00d6
+                    00D7    457 _CY	=	0x00d7
+                    00EC    458 _IRCON2_WDTIF	=	0x00ec
+                    00EB    459 _IRCON2_P1IF	=	0x00eb
+                    00EA    460 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    461 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    462 _IRCON2_P2IF	=	0x00e8
+                            463 ;--------------------------------------------------------
+                            464 ; overlayable register banks
+                            465 ;--------------------------------------------------------
+                            466 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     467 	.ds 8
+                            468 ;--------------------------------------------------------
+                            469 ; internal ram data
+                            470 ;--------------------------------------------------------
+                            471 	.area DSEG    (DATA)
+                            472 ;--------------------------------------------------------
+                            473 ; overlayable items in internal ram 
+                            474 ;--------------------------------------------------------
+                            475 	.area OSEG    (OVR,DATA)
+                            476 ;--------------------------------------------------------
+                            477 ; indirectly addressable internal ram data
+                            478 ;--------------------------------------------------------
+                            479 	.area ISEG    (DATA)
+                            480 ;--------------------------------------------------------
+                            481 ; absolute internal ram data
+                            482 ;--------------------------------------------------------
+                            483 	.area IABS    (ABS,DATA)
+                            484 	.area IABS    (ABS,DATA)
+                            485 ;--------------------------------------------------------
+                            486 ; bit data
+                            487 ;--------------------------------------------------------
+                            488 	.area BSEG    (BIT)
+                            489 ;--------------------------------------------------------
+                            490 ; paged external ram data
+                            491 ;--------------------------------------------------------
+                            492 	.area PSEG    (PAG,XDATA)
+                            493 ;--------------------------------------------------------
+                            494 ; external ram data
+                            495 ;--------------------------------------------------------
+                            496 	.area XSEG    (XDATA)
+                    DF02    497 _MDMCTRL0H	=	0xdf02
+                    DF03    498 _MDMCTRL0L	=	0xdf03
+                    DF04    499 _MDMCTRL1H	=	0xdf04
+                    DF05    500 _MDMCTRL1L	=	0xdf05
+                    DF06    501 _RSSIH	=	0xdf06
+                    DF07    502 _RSSIL	=	0xdf07
+                    DF08    503 _SYNCWORDH	=	0xdf08
+                    DF09    504 _SYNCWORDL	=	0xdf09
+                    DF0A    505 _TXCTRLH	=	0xdf0a
+                    DF0B    506 _TXCTRLL	=	0xdf0b
+                    DF0C    507 _RXCTRL0H	=	0xdf0c
+                    DF0D    508 _RXCTRL0L	=	0xdf0d
+                    DF0E    509 _RXCTRL1H	=	0xdf0e
+                    DF0F    510 _RXCTRL1L	=	0xdf0f
+                    DF10    511 _FSCTRLH	=	0xdf10
+                    DF11    512 _FSCTRLL	=	0xdf11
+                    DF12    513 _CSPX	=	0xdf12
+                    DF13    514 _CSPY	=	0xdf13
+                    DF14    515 _CSPZ	=	0xdf14
+                    DF15    516 _CSPCTRL	=	0xdf15
+                    DF16    517 _CSPT	=	0xdf16
+                    DF17    518 _RFPWR	=	0xdf17
+                    DF20    519 _FSMTCH	=	0xdf20
+                    DF21    520 _FSMTCL	=	0xdf21
+                    DF22    521 _MANANDH	=	0xdf22
+                    DF23    522 _MANANDL	=	0xdf23
+                    DF24    523 _MANORH	=	0xdf24
+                    DF25    524 _MANORL	=	0xdf25
+                    DF26    525 _AGCCTRLH	=	0xdf26
+                    DF27    526 _AGCCTRLL	=	0xdf27
+                    DF39    527 _FSMSTATE	=	0xdf39
+                    DF3A    528 _ADCTSTH	=	0xdf3a
+                    DF3B    529 _ADCTSTL	=	0xdf3b
+                    DF3C    530 _DACTSTH	=	0xdf3c
+                    DF3D    531 _DACTSTL	=	0xdf3d
+                    DF43    532 _IEEE_ADDR0	=	0xdf43
+                    DF44    533 _IEEE_ADDR1	=	0xdf44
+                    DF45    534 _IEEE_ADDR2	=	0xdf45
+                    DF46    535 _IEEE_ADDR3	=	0xdf46
+                    DF47    536 _IEEE_ADDR4	=	0xdf47
+                    DF48    537 _IEEE_ADDR5	=	0xdf48
+                    DF49    538 _IEEE_ADDR6	=	0xdf49
+                    DF4A    539 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    540 _PANIDH	=	0xdf4b
+                    DF4C    541 _PANIDL	=	0xdf4c
+                    DF4D    542 _SHORTADDRH	=	0xdf4d
+                    DF4E    543 _SHORTADDRL	=	0xdf4e
+                    DF4F    544 _IOCFG0	=	0xdf4f
+                    DF50    545 _IOCFG1	=	0xdf50
+                    DF51    546 _IOCFG2	=	0xdf51
+                    DF52    547 _IOCFG3	=	0xdf52
+                    DF53    548 _RXFIFOCNT	=	0xdf53
+                    DF54    549 _FSMTC1	=	0xdf54
+                    DF60    550 _CHVER	=	0xdf60
+                    DF61    551 _CHIPID	=	0xdf61
+                    DF62    552 _RFSTATUS	=	0xdf62
+                    DFC1    553 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    554 _RFD_SHADOW	=	0xdfd9
+                    DFF9    555 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    556 _ADC_SHADOW	=	0xdfba
+   0000                     557 _s:
+   0000                     558 	.ds 49
+   0031                     559 _xid:
+   0031                     560 	.ds 4
+                            561 ;--------------------------------------------------------
+                            562 ; absolute external ram data
+                            563 ;--------------------------------------------------------
+                            564 	.area XABS    (ABS,XDATA)
+                            565 ;--------------------------------------------------------
+                            566 ; external initialized ram data
+                            567 ;--------------------------------------------------------
+                            568 	.area XISEG   (XDATA)
+                            569 	.area HOME    (CODE)
+                            570 	.area GSINIT0 (CODE)
+                            571 	.area GSINIT1 (CODE)
+                            572 	.area GSINIT2 (CODE)
+                            573 	.area GSINIT3 (CODE)
+                            574 	.area GSINIT4 (CODE)
+                            575 	.area GSINIT5 (CODE)
+                            576 	.area GSINIT  (CODE)
+                            577 	.area GSFINAL (CODE)
+                            578 	.area CSEG    (CODE)
+                            579 ;--------------------------------------------------------
+                            580 ; global & static initialisations
+                            581 ;--------------------------------------------------------
+                            582 	.area HOME    (CODE)
+                            583 	.area GSINIT  (CODE)
+                            584 	.area GSFINAL (CODE)
+                            585 	.area GSINIT  (CODE)
+                            586 ;--------------------------------------------------------
+                            587 ; Home
+                            588 ;--------------------------------------------------------
+                            589 	.area HOME    (CODE)
+                            590 	.area HOME    (CODE)
+                            591 ;--------------------------------------------------------
+                            592 ; code
+                            593 ;--------------------------------------------------------
+                            594 	.area CSEG    (CODE)
+                            595 ;------------------------------------------------------------
+                            596 ;Allocation info for local variables in function 'add_msg_type'
+                            597 ;------------------------------------------------------------
+                            598 ;type                      Allocated to stack - offset -3
+                            599 ;optptr                    Allocated to registers r2 r3 r4 
+                            600 ;------------------------------------------------------------
+                            601 ;	../../../core/net/dhcpc.c:97: add_msg_type(u8_t *optptr, u8_t type)
+                            602 ;	-----------------------------------------
+                            603 ;	 function add_msg_type
+                            604 ;	-----------------------------------------
+   0000                     605 _add_msg_type:
+                    0002    606 	ar2 = 0x02
+                    0003    607 	ar3 = 0x03
+                    0004    608 	ar4 = 0x04
+                    0005    609 	ar5 = 0x05
+                    0006    610 	ar6 = 0x06
+                    0007    611 	ar7 = 0x07
+                    0000    612 	ar0 = 0x00
+                    0001    613 	ar1 = 0x01
+   0000 C0*00               614 	push	_bp
+   0002 85 81*00            615 	mov	_bp,sp
+                            616 ;	../../../core/net/dhcpc.c:99: *optptr++ = DHCP_OPTION_MSG_TYPE;
+   0005 AC F0               617 	mov	r4,b
+   0007 74 35               618 	mov	a,#0x35
+   0009 12s00r00            619 	lcall	__gptrput
+   000C A3                  620 	inc	dptr
+                            621 ;	../../../core/net/dhcpc.c:100: *optptr++ = 1;
+   000D 8C F0               622 	mov	b,r4
+   000F 74 01               623 	mov	a,#0x01
+   0011 12s00r00            624 	lcall	__gptrput
+   0014 A3                  625 	inc	dptr
+                            626 ;	../../../core/net/dhcpc.c:101: *optptr++ = type;
+   0015 8C F0               627 	mov	b,r4
+   0017 E5*00               628 	mov	a,_bp
+   0019 24 FD               629 	add	a,#0xfd
+   001B F8                  630 	mov	r0,a
+   001C E6                  631 	mov	a,@r0
+   001D 12s00r00            632 	lcall	__gptrput
+   0020 A3                  633 	inc	dptr
+                            634 ;	../../../core/net/dhcpc.c:102: return optptr;
+   0021 8C F0               635 	mov	b,r4
+   0023 D0*00               636 	pop	_bp
+   0025 22                  637 	ret
+                            638 ;------------------------------------------------------------
+                            639 ;Allocation info for local variables in function 'add_server_id'
+                            640 ;------------------------------------------------------------
+                            641 ;optptr                    Allocated to registers r2 r3 r4 
+                            642 ;------------------------------------------------------------
+                            643 ;	../../../core/net/dhcpc.c:106: add_server_id(u8_t *optptr)
+                            644 ;	-----------------------------------------
+                            645 ;	 function add_server_id
+                            646 ;	-----------------------------------------
+   0026                     647 _add_server_id:
+                            648 ;	../../../core/net/dhcpc.c:108: *optptr++ = DHCP_OPTION_SERVER_ID;
+   0026 AC F0               649 	mov	r4,b
+   0028 74 36               650 	mov	a,#0x36
+   002A 12s00r00            651 	lcall	__gptrput
+   002D A3                  652 	inc	dptr
+                            653 ;	../../../core/net/dhcpc.c:109: *optptr++ = 4;
+   002E 8C F0               654 	mov	b,r4
+   0030 74 04               655 	mov	a,#0x04
+   0032 12s00r00            656 	lcall	__gptrput
+   0035 A3                  657 	inc	dptr
+   0036 AA 82               658 	mov	r2,dpl
+   0038 AB 83               659 	mov	r3,dph
+                            660 ;	../../../core/net/dhcpc.c:110: memcpy(optptr, s.serverid, 4);
+   003A C0 02               661 	push	ar2
+   003C C0 03               662 	push	ar3
+   003E C0 04               663 	push	ar4
+   0040 74 04               664 	mov	a,#0x04
+   0042 C0 E0               665 	push	acc
+   0044 E4                  666 	clr	a
+   0045 C0 E0               667 	push	acc
+   0047 74r19               668 	mov	a,#(_s + 0x0019)
+   0049 C0 E0               669 	push	acc
+   004B 74s00               670 	mov	a,#((_s + 0x0019) >> 8)
+   004D C0 E0               671 	push	acc
+   004F E4                  672 	clr	a
+   0050 C0 E0               673 	push	acc
+   0052 8A 82               674 	mov	dpl,r2
+   0054 8B 83               675 	mov	dph,r3
+   0056 8C F0               676 	mov	b,r4
+   0058 12s00r00            677 	lcall	_memcpy
+   005B E5 81               678 	mov	a,sp
+   005D 24 FB               679 	add	a,#0xfb
+   005F F5 81               680 	mov	sp,a
+   0061 D0 04               681 	pop	ar4
+   0063 D0 03               682 	pop	ar3
+   0065 D0 02               683 	pop	ar2
+                            684 ;	../../../core/net/dhcpc.c:111: return optptr + 4;
+   0067 74 04               685 	mov	a,#0x04
+   0069 2A                  686 	add	a,r2
+   006A FA                  687 	mov	r2,a
+   006B E4                  688 	clr	a
+   006C 3B                  689 	addc	a,r3
+   006D FB                  690 	mov	r3,a
+   006E 8A 82               691 	mov	dpl,r2
+   0070 8B 83               692 	mov	dph,r3
+   0072 8C F0               693 	mov	b,r4
+   0074 22                  694 	ret
+                            695 ;------------------------------------------------------------
+                            696 ;Allocation info for local variables in function 'add_req_ipaddr'
+                            697 ;------------------------------------------------------------
+                            698 ;optptr                    Allocated to registers r2 r3 r4 
+                            699 ;------------------------------------------------------------
+                            700 ;	../../../core/net/dhcpc.c:115: add_req_ipaddr(u8_t *optptr)
+                            701 ;	-----------------------------------------
+                            702 ;	 function add_req_ipaddr
+                            703 ;	-----------------------------------------
+   0075                     704 _add_req_ipaddr:
+                            705 ;	../../../core/net/dhcpc.c:117: *optptr++ = DHCP_OPTION_REQ_IPADDR;
+   0075 AC F0               706 	mov	r4,b
+   0077 74 32               707 	mov	a,#0x32
+   0079 12s00r00            708 	lcall	__gptrput
+   007C A3                  709 	inc	dptr
+                            710 ;	../../../core/net/dhcpc.c:118: *optptr++ = 4;
+   007D 8C F0               711 	mov	b,r4
+   007F 74 04               712 	mov	a,#0x04
+   0081 12s00r00            713 	lcall	__gptrput
+   0084 A3                  714 	inc	dptr
+   0085 AA 82               715 	mov	r2,dpl
+   0087 AB 83               716 	mov	r3,dph
+                            717 ;	../../../core/net/dhcpc.c:119: memcpy(optptr, s.ipaddr.u16, 4);
+   0089 C0 02               718 	push	ar2
+   008B C0 03               719 	push	ar3
+   008D C0 04               720 	push	ar4
+   008F 74 04               721 	mov	a,#0x04
+   0091 C0 E0               722 	push	acc
+   0093 E4                  723 	clr	a
+   0094 C0 E0               724 	push	acc
+   0096 74r21               725 	mov	a,#(_s + 0x0021)
+   0098 C0 E0               726 	push	acc
+   009A 74s00               727 	mov	a,#((_s + 0x0021) >> 8)
+   009C C0 E0               728 	push	acc
+   009E E4                  729 	clr	a
+   009F C0 E0               730 	push	acc
+   00A1 8A 82               731 	mov	dpl,r2
+   00A3 8B 83               732 	mov	dph,r3
+   00A5 8C F0               733 	mov	b,r4
+   00A7 12s00r00            734 	lcall	_memcpy
+   00AA E5 81               735 	mov	a,sp
+   00AC 24 FB               736 	add	a,#0xfb
+   00AE F5 81               737 	mov	sp,a
+   00B0 D0 04               738 	pop	ar4
+   00B2 D0 03               739 	pop	ar3
+   00B4 D0 02               740 	pop	ar2
+                            741 ;	../../../core/net/dhcpc.c:120: return optptr + 4;
+   00B6 74 04               742 	mov	a,#0x04
+   00B8 2A                  743 	add	a,r2
+   00B9 FA                  744 	mov	r2,a
+   00BA E4                  745 	clr	a
+   00BB 3B                  746 	addc	a,r3
+   00BC FB                  747 	mov	r3,a
+   00BD 8A 82               748 	mov	dpl,r2
+   00BF 8B 83               749 	mov	dph,r3
+   00C1 8C F0               750 	mov	b,r4
+   00C3 22                  751 	ret
+                            752 ;------------------------------------------------------------
+                            753 ;Allocation info for local variables in function 'add_req_options'
+                            754 ;------------------------------------------------------------
+                            755 ;optptr                    Allocated to registers r2 r3 r4 
+                            756 ;------------------------------------------------------------
+                            757 ;	../../../core/net/dhcpc.c:124: add_req_options(u8_t *optptr)
+                            758 ;	-----------------------------------------
+                            759 ;	 function add_req_options
+                            760 ;	-----------------------------------------
+   00C4                     761 _add_req_options:
+                            762 ;	../../../core/net/dhcpc.c:126: *optptr++ = DHCP_OPTION_REQ_LIST;
+   00C4 AC F0               763 	mov	r4,b
+   00C6 74 37               764 	mov	a,#0x37
+   00C8 12s00r00            765 	lcall	__gptrput
+   00CB A3                  766 	inc	dptr
+                            767 ;	../../../core/net/dhcpc.c:127: *optptr++ = 3;
+   00CC 8C F0               768 	mov	b,r4
+   00CE 74 03               769 	mov	a,#0x03
+   00D0 12s00r00            770 	lcall	__gptrput
+   00D3 A3                  771 	inc	dptr
+                            772 ;	../../../core/net/dhcpc.c:128: *optptr++ = DHCP_OPTION_SUBNET_MASK;
+   00D4 8C F0               773 	mov	b,r4
+   00D6 74 01               774 	mov	a,#0x01
+   00D8 12s00r00            775 	lcall	__gptrput
+   00DB A3                  776 	inc	dptr
+                            777 ;	../../../core/net/dhcpc.c:129: *optptr++ = DHCP_OPTION_ROUTER;
+   00DC 8C F0               778 	mov	b,r4
+   00DE 74 03               779 	mov	a,#0x03
+   00E0 12s00r00            780 	lcall	__gptrput
+   00E3 A3                  781 	inc	dptr
+                            782 ;	../../../core/net/dhcpc.c:130: *optptr++ = DHCP_OPTION_DNS_SERVER;
+   00E4 8C F0               783 	mov	b,r4
+   00E6 74 06               784 	mov	a,#0x06
+   00E8 12s00r00            785 	lcall	__gptrput
+   00EB A3                  786 	inc	dptr
+                            787 ;	../../../core/net/dhcpc.c:131: return optptr;
+   00EC 8C F0               788 	mov	b,r4
+   00EE 22                  789 	ret
+                            790 ;------------------------------------------------------------
+                            791 ;Allocation info for local variables in function 'add_end'
+                            792 ;------------------------------------------------------------
+                            793 ;optptr                    Allocated to registers r2 r3 r4 
+                            794 ;------------------------------------------------------------
+                            795 ;	../../../core/net/dhcpc.c:135: add_end(u8_t *optptr)
+                            796 ;	-----------------------------------------
+                            797 ;	 function add_end
+                            798 ;	-----------------------------------------
+   00EF                     799 _add_end:
+                            800 ;	../../../core/net/dhcpc.c:137: *optptr++ = DHCP_OPTION_END;
+   00EF AC F0               801 	mov	r4,b
+   00F1 74 FF               802 	mov	a,#0xFF
+   00F3 12s00r00            803 	lcall	__gptrput
+   00F6 A3                  804 	inc	dptr
+                            805 ;	../../../core/net/dhcpc.c:138: return optptr;
+   00F7 8C F0               806 	mov	b,r4
+   00F9 22                  807 	ret
+                            808 ;------------------------------------------------------------
+                            809 ;Allocation info for local variables in function 'create_msg'
+                            810 ;------------------------------------------------------------
+                            811 ;m                         Allocated to stack - offset 1
+                            812 ;sloc0                     Allocated to stack - offset 4
+                            813 ;sloc1                     Allocated to stack - offset 6
+                            814 ;sloc2                     Allocated to stack - offset 4
+                            815 ;------------------------------------------------------------
+                            816 ;	../../../core/net/dhcpc.c:142: create_msg(CC_REGISTER_ARG struct dhcp_msg *m)
+                            817 ;	-----------------------------------------
+                            818 ;	 function create_msg
+                            819 ;	-----------------------------------------
+   00FA                     820 _create_msg:
+   00FA C0*00               821 	push	_bp
+   00FC 85 81*00            822 	mov	_bp,sp
+   00FF C0 82               823 	push	dpl
+   0101 C0 83               824 	push	dph
+   0103 C0 F0               825 	push	b
+   0105 05 81               826 	inc	sp
+   0107 05 81               827 	inc	sp
+   0109 05 81               828 	inc	sp
+                            829 ;	../../../core/net/dhcpc.c:144: m->op = DHCP_REQUEST;
+   010B A8*00               830 	mov	r0,_bp
+   010D 08                  831 	inc	r0
+   010E 86 82               832 	mov	dpl,@r0
+   0110 08                  833 	inc	r0
+   0111 86 83               834 	mov	dph,@r0
+   0113 08                  835 	inc	r0
+   0114 86 F0               836 	mov	b,@r0
+   0116 74 01               837 	mov	a,#0x01
+   0118 12s00r00            838 	lcall	__gptrput
+                            839 ;	../../../core/net/dhcpc.c:145: m->htype = DHCP_HTYPE_ETHERNET;
+   011B A8*00               840 	mov	r0,_bp
+   011D 08                  841 	inc	r0
+   011E 74 01               842 	mov	a,#0x01
+   0120 26                  843 	add	a,@r0
+   0121 FD                  844 	mov	r5,a
+   0122 E4                  845 	clr	a
+   0123 08                  846 	inc	r0
+   0124 36                  847 	addc	a,@r0
+   0125 FE                  848 	mov	r6,a
+   0126 08                  849 	inc	r0
+   0127 86 07               850 	mov	ar7,@r0
+   0129 8D 82               851 	mov	dpl,r5
+   012B 8E 83               852 	mov	dph,r6
+   012D 8F F0               853 	mov	b,r7
+   012F 74 01               854 	mov	a,#0x01
+   0131 12s00r00            855 	lcall	__gptrput
+                            856 ;	../../../core/net/dhcpc.c:146: m->hlen = s.mac_len;
+   0134 A8*00               857 	mov	r0,_bp
+   0136 08                  858 	inc	r0
+   0137 74 02               859 	mov	a,#0x02
+   0139 26                  860 	add	a,@r0
+   013A FD                  861 	mov	r5,a
+   013B E4                  862 	clr	a
+   013C 08                  863 	inc	r0
+   013D 36                  864 	addc	a,@r0
+   013E FE                  865 	mov	r6,a
+   013F 08                  866 	inc	r0
+   0140 86 07               867 	mov	ar7,@r0
+   0142 90s00r17            868 	mov	dptr,#(_s + 0x0017)
+   0145 E0                  869 	movx	a,@dptr
+   0146 FA                  870 	mov	r2,a
+   0147 A3                  871 	inc	dptr
+   0148 E0                  872 	movx	a,@dptr
+   0149 8D 82               873 	mov	dpl,r5
+   014B 8E 83               874 	mov	dph,r6
+   014D 8F F0               875 	mov	b,r7
+   014F EA                  876 	mov	a,r2
+   0150 12s00r00            877 	lcall	__gptrput
+                            878 ;	../../../core/net/dhcpc.c:147: m->hops = 0;
+   0153 A8*00               879 	mov	r0,_bp
+   0155 08                  880 	inc	r0
+   0156 74 03               881 	mov	a,#0x03
+   0158 26                  882 	add	a,@r0
+   0159 FD                  883 	mov	r5,a
+   015A E4                  884 	clr	a
+   015B 08                  885 	inc	r0
+   015C 36                  886 	addc	a,@r0
+   015D FE                  887 	mov	r6,a
+   015E 08                  888 	inc	r0
+   015F 86 07               889 	mov	ar7,@r0
+   0161 8D 82               890 	mov	dpl,r5
+   0163 8E 83               891 	mov	dph,r6
+   0165 8F F0               892 	mov	b,r7
+   0167 E4                  893 	clr	a
+   0168 12s00r00            894 	lcall	__gptrput
+                            895 ;	../../../core/net/dhcpc.c:148: memcpy(m->xid, &xid, sizeof(m->xid));
+   016B A8*00               896 	mov	r0,_bp
+   016D 08                  897 	inc	r0
+   016E 74 04               898 	mov	a,#0x04
+   0170 26                  899 	add	a,@r0
+   0171 FD                  900 	mov	r5,a
+   0172 E4                  901 	clr	a
+   0173 08                  902 	inc	r0
+   0174 36                  903 	addc	a,@r0
+   0175 FE                  904 	mov	r6,a
+   0176 08                  905 	inc	r0
+   0177 86 07               906 	mov	ar7,@r0
+   0179 74 04               907 	mov	a,#0x04
+   017B C0 E0               908 	push	acc
+   017D E4                  909 	clr	a
+   017E C0 E0               910 	push	acc
+   0180 74r31               911 	mov	a,#_xid
+   0182 C0 E0               912 	push	acc
+   0184 74s00               913 	mov	a,#(_xid >> 8)
+   0186 C0 E0               914 	push	acc
+   0188 E4                  915 	clr	a
+   0189 C0 E0               916 	push	acc
+   018B 8D 82               917 	mov	dpl,r5
+   018D 8E 83               918 	mov	dph,r6
+   018F 8F F0               919 	mov	b,r7
+   0191 12s00r00            920 	lcall	_memcpy
+   0194 E5 81               921 	mov	a,sp
+   0196 24 FB               922 	add	a,#0xfb
+   0198 F5 81               923 	mov	sp,a
+                            924 ;	../../../core/net/dhcpc.c:149: m->secs = 0;
+   019A A8*00               925 	mov	r0,_bp
+   019C 08                  926 	inc	r0
+   019D 74 08               927 	mov	a,#0x08
+   019F 26                  928 	add	a,@r0
+   01A0 FD                  929 	mov	r5,a
+   01A1 E4                  930 	clr	a
+   01A2 08                  931 	inc	r0
+   01A3 36                  932 	addc	a,@r0
+   01A4 FE                  933 	mov	r6,a
+   01A5 08                  934 	inc	r0
+   01A6 86 07               935 	mov	ar7,@r0
+   01A8 8D 82               936 	mov	dpl,r5
+   01AA 8E 83               937 	mov	dph,r6
+   01AC 8F F0               938 	mov	b,r7
+   01AE E4                  939 	clr	a
+   01AF 12s00r00            940 	lcall	__gptrput
+   01B2 A3                  941 	inc	dptr
+   01B3 E4                  942 	clr	a
+   01B4 12s00r00            943 	lcall	__gptrput
+                            944 ;	../../../core/net/dhcpc.c:150: m->flags = HTONS(BOOTP_BROADCAST); /*  Broadcast bit. */
+   01B7 A8*00               945 	mov	r0,_bp
+   01B9 08                  946 	inc	r0
+   01BA 74 0A               947 	mov	a,#0x0A
+   01BC 26                  948 	add	a,@r0
+   01BD FD                  949 	mov	r5,a
+   01BE E4                  950 	clr	a
+   01BF 08                  951 	inc	r0
+   01C0 36                  952 	addc	a,@r0
+   01C1 FE                  953 	mov	r6,a
+   01C2 08                  954 	inc	r0
+   01C3 86 07               955 	mov	ar7,@r0
+   01C5 8D 82               956 	mov	dpl,r5
+   01C7 8E 83               957 	mov	dph,r6
+   01C9 8F F0               958 	mov	b,r7
+   01CB 74 80               959 	mov	a,#0x80
+   01CD 12s00r00            960 	lcall	__gptrput
+   01D0 A3                  961 	inc	dptr
+   01D1 E4                  962 	clr	a
+   01D2 12s00r00            963 	lcall	__gptrput
+                            964 ;	../../../core/net/dhcpc.c:152: memcpy(m->ciaddr, uip_hostaddr.u16, sizeof(m->ciaddr));
+   01D5 A8*00               965 	mov	r0,_bp
+   01D7 08                  966 	inc	r0
+   01D8 74 0C               967 	mov	a,#0x0C
+   01DA 26                  968 	add	a,@r0
+   01DB FD                  969 	mov	r5,a
+   01DC E4                  970 	clr	a
+   01DD 08                  971 	inc	r0
+   01DE 36                  972 	addc	a,@r0
+   01DF FE                  973 	mov	r6,a
+   01E0 08                  974 	inc	r0
+   01E1 86 07               975 	mov	ar7,@r0
+   01E3 74 04               976 	mov	a,#0x04
+   01E5 C0 E0               977 	push	acc
+   01E7 E4                  978 	clr	a
+   01E8 C0 E0               979 	push	acc
+   01EA 74r00               980 	mov	a,#_uip_hostaddr
+   01EC C0 E0               981 	push	acc
+   01EE 74s00               982 	mov	a,#(_uip_hostaddr >> 8)
+   01F0 C0 E0               983 	push	acc
+   01F2 E4                  984 	clr	a
+   01F3 C0 E0               985 	push	acc
+   01F5 8D 82               986 	mov	dpl,r5
+   01F7 8E 83               987 	mov	dph,r6
+   01F9 8F F0               988 	mov	b,r7
+   01FB 12s00r00            989 	lcall	_memcpy
+   01FE E5 81               990 	mov	a,sp
+   0200 24 FB               991 	add	a,#0xfb
+   0202 F5 81               992 	mov	sp,a
+                            993 ;	../../../core/net/dhcpc.c:153: memset(m->yiaddr, 0, sizeof(m->yiaddr));
+   0204 A8*00               994 	mov	r0,_bp
+   0206 08                  995 	inc	r0
+   0207 74 10               996 	mov	a,#0x10
+   0209 26                  997 	add	a,@r0
+   020A FD                  998 	mov	r5,a
+   020B E4                  999 	clr	a
+   020C 08                 1000 	inc	r0
+   020D 36                 1001 	addc	a,@r0
+   020E FE                 1002 	mov	r6,a
+   020F 08                 1003 	inc	r0
+   0210 86 07              1004 	mov	ar7,@r0
+   0212 74 04              1005 	mov	a,#0x04
+   0214 C0 E0              1006 	push	acc
+   0216 E4                 1007 	clr	a
+   0217 C0 E0              1008 	push	acc
+   0219 E4                 1009 	clr	a
+   021A C0 E0              1010 	push	acc
+   021C 8D 82              1011 	mov	dpl,r5
+   021E 8E 83              1012 	mov	dph,r6
+   0220 8F F0              1013 	mov	b,r7
+   0222 12s00r00           1014 	lcall	_memset
+   0225 15 81              1015 	dec	sp
+   0227 15 81              1016 	dec	sp
+   0229 15 81              1017 	dec	sp
+                           1018 ;	../../../core/net/dhcpc.c:154: memset(m->siaddr, 0, sizeof(m->siaddr));
+   022B A8*00              1019 	mov	r0,_bp
+   022D 08                 1020 	inc	r0
+   022E 74 14              1021 	mov	a,#0x14
+   0230 26                 1022 	add	a,@r0
+   0231 FD                 1023 	mov	r5,a
+   0232 E4                 1024 	clr	a
+   0233 08                 1025 	inc	r0
+   0234 36                 1026 	addc	a,@r0
+   0235 FE                 1027 	mov	r6,a
+   0236 08                 1028 	inc	r0
+   0237 86 07              1029 	mov	ar7,@r0
+   0239 74 04              1030 	mov	a,#0x04
+   023B C0 E0              1031 	push	acc
+   023D E4                 1032 	clr	a
+   023E C0 E0              1033 	push	acc
+   0240 E4                 1034 	clr	a
+   0241 C0 E0              1035 	push	acc
+   0243 8D 82              1036 	mov	dpl,r5
+   0245 8E 83              1037 	mov	dph,r6
+   0247 8F F0              1038 	mov	b,r7
+   0249 12s00r00           1039 	lcall	_memset
+   024C 15 81              1040 	dec	sp
+   024E 15 81              1041 	dec	sp
+   0250 15 81              1042 	dec	sp
+                           1043 ;	../../../core/net/dhcpc.c:155: memset(m->giaddr, 0, sizeof(m->giaddr));
+   0252 A8*00              1044 	mov	r0,_bp
+   0254 08                 1045 	inc	r0
+   0255 74 18              1046 	mov	a,#0x18
+   0257 26                 1047 	add	a,@r0
+   0258 FD                 1048 	mov	r5,a
+   0259 E4                 1049 	clr	a
+   025A 08                 1050 	inc	r0
+   025B 36                 1051 	addc	a,@r0
+   025C FE                 1052 	mov	r6,a
+   025D 08                 1053 	inc	r0
+   025E 86 07              1054 	mov	ar7,@r0
+   0260 74 04              1055 	mov	a,#0x04
+   0262 C0 E0              1056 	push	acc
+   0264 E4                 1057 	clr	a
+   0265 C0 E0              1058 	push	acc
+   0267 E4                 1059 	clr	a
+   0268 C0 E0              1060 	push	acc
+   026A 8D 82              1061 	mov	dpl,r5
+   026C 8E 83              1062 	mov	dph,r6
+   026E 8F F0              1063 	mov	b,r7
+   0270 12s00r00           1064 	lcall	_memset
+   0273 15 81              1065 	dec	sp
+   0275 15 81              1066 	dec	sp
+   0277 15 81              1067 	dec	sp
+                           1068 ;	../../../core/net/dhcpc.c:156: memcpy(m->chaddr, s.mac_addr, s.mac_len);
+   0279 90s00r17           1069 	mov	dptr,#(_s + 0x0017)
+   027C E0                 1070 	movx	a,@dptr
+   027D FD                 1071 	mov	r5,a
+   027E A3                 1072 	inc	dptr
+   027F E0                 1073 	movx	a,@dptr
+   0280 FE                 1074 	mov	r6,a
+   0281 90s00r14           1075 	mov	dptr,#(_s + 0x0014)
+   0284 E5*00              1076 	mov	a,_bp
+   0286 24 04              1077 	add	a,#0x04
+   0288 F8                 1078 	mov	r0,a
+   0289 E0                 1079 	movx	a,@dptr
+   028A F6                 1080 	mov	@r0,a
+   028B A3                 1081 	inc	dptr
+   028C E0                 1082 	movx	a,@dptr
+   028D 08                 1083 	inc	r0
+   028E F6                 1084 	mov	@r0,a
+   028F A3                 1085 	inc	dptr
+   0290 E0                 1086 	movx	a,@dptr
+   0291 08                 1087 	inc	r0
+   0292 F6                 1088 	mov	@r0,a
+   0293 A8*00              1089 	mov	r0,_bp
+   0295 08                 1090 	inc	r0
+   0296 74 1C              1091 	mov	a,#0x1C
+   0298 26                 1092 	add	a,@r0
+   0299 FA                 1093 	mov	r2,a
+   029A E4                 1094 	clr	a
+   029B 08                 1095 	inc	r0
+   029C 36                 1096 	addc	a,@r0
+   029D FB                 1097 	mov	r3,a
+   029E 08                 1098 	inc	r0
+   029F 86 04              1099 	mov	ar4,@r0
+   02A1 C0 05              1100 	push	ar5
+   02A3 C0 06              1101 	push	ar6
+   02A5 E5*00              1102 	mov	a,_bp
+   02A7 24 04              1103 	add	a,#0x04
+   02A9 F8                 1104 	mov	r0,a
+   02AA E6                 1105 	mov	a,@r0
+   02AB C0 E0              1106 	push	acc
+   02AD 08                 1107 	inc	r0
+   02AE E6                 1108 	mov	a,@r0
+   02AF C0 E0              1109 	push	acc
+   02B1 08                 1110 	inc	r0
+   02B2 E6                 1111 	mov	a,@r0
+   02B3 C0 E0              1112 	push	acc
+   02B5 8A 82              1113 	mov	dpl,r2
+   02B7 8B 83              1114 	mov	dph,r3
+   02B9 8C F0              1115 	mov	b,r4
+   02BB 12s00r00           1116 	lcall	_memcpy
+   02BE E5 81              1117 	mov	a,sp
+   02C0 24 FB              1118 	add	a,#0xfb
+   02C2 F5 81              1119 	mov	sp,a
+                           1120 ;	../../../core/net/dhcpc.c:157: memset(&m->chaddr[s.mac_len], 0, sizeof(m->chaddr) - s.mac_len);
+   02C4 90s00r17           1121 	mov	dptr,#(_s + 0x0017)
+   02C7 E0                 1122 	movx	a,@dptr
+   02C8 FA                 1123 	mov	r2,a
+   02C9 A3                 1124 	inc	dptr
+   02CA E0                 1125 	movx	a,@dptr
+   02CB FB                 1126 	mov	r3,a
+   02CC E5*00              1127 	mov	a,_bp
+   02CE 24 04              1128 	add	a,#0x04
+   02D0 F8                 1129 	mov	r0,a
+   02D1 74 10              1130 	mov	a,#0x10
+   02D3 C3                 1131 	clr	c
+   02D4 9A                 1132 	subb	a,r2
+   02D5 F6                 1133 	mov	@r0,a
+   02D6 E4                 1134 	clr	a
+   02D7 9B                 1135 	subb	a,r3
+   02D8 08                 1136 	inc	r0
+   02D9 F6                 1137 	mov	@r0,a
+   02DA A8*00              1138 	mov	r0,_bp
+   02DC 08                 1139 	inc	r0
+   02DD 74 1C              1140 	mov	a,#0x1C
+   02DF 26                 1141 	add	a,@r0
+   02E0 FE                 1142 	mov	r6,a
+   02E1 E4                 1143 	clr	a
+   02E2 08                 1144 	inc	r0
+   02E3 36                 1145 	addc	a,@r0
+   02E4 FF                 1146 	mov	r7,a
+   02E5 08                 1147 	inc	r0
+   02E6 86 04              1148 	mov	ar4,@r0
+   02E8 EA                 1149 	mov	a,r2
+   02E9 2E                 1150 	add	a,r6
+   02EA FA                 1151 	mov	r2,a
+   02EB EB                 1152 	mov	a,r3
+   02EC 3F                 1153 	addc	a,r7
+   02ED FB                 1154 	mov	r3,a
+   02EE 8C 05              1155 	mov	ar5,r4
+   02F0 E5*00              1156 	mov	a,_bp
+   02F2 24 04              1157 	add	a,#0x04
+   02F4 F8                 1158 	mov	r0,a
+   02F5 E6                 1159 	mov	a,@r0
+   02F6 C0 E0              1160 	push	acc
+   02F8 08                 1161 	inc	r0
+   02F9 E6                 1162 	mov	a,@r0
+   02FA C0 E0              1163 	push	acc
+   02FC E4                 1164 	clr	a
+   02FD C0 E0              1165 	push	acc
+   02FF 8A 82              1166 	mov	dpl,r2
+   0301 8B 83              1167 	mov	dph,r3
+   0303 8D F0              1168 	mov	b,r5
+   0305 12s00r00           1169 	lcall	_memset
+   0308 15 81              1170 	dec	sp
+   030A 15 81              1171 	dec	sp
+   030C 15 81              1172 	dec	sp
+                           1173 ;	../../../core/net/dhcpc.c:159: memset(m->sname, 0, sizeof(m->sname));
+   030E A8*00              1174 	mov	r0,_bp
+   0310 08                 1175 	inc	r0
+   0311 74 2C              1176 	mov	a,#0x2C
+   0313 26                 1177 	add	a,@r0
+   0314 FA                 1178 	mov	r2,a
+   0315 E4                 1179 	clr	a
+   0316 08                 1180 	inc	r0
+   0317 36                 1181 	addc	a,@r0
+   0318 FB                 1182 	mov	r3,a
+   0319 08                 1183 	inc	r0
+   031A 86 04              1184 	mov	ar4,@r0
+   031C 74 40              1185 	mov	a,#0x40
+   031E C0 E0              1186 	push	acc
+   0320 E4                 1187 	clr	a
+   0321 C0 E0              1188 	push	acc
+   0323 E4                 1189 	clr	a
+   0324 C0 E0              1190 	push	acc
+   0326 8A 82              1191 	mov	dpl,r2
+   0328 8B 83              1192 	mov	dph,r3
+   032A 8C F0              1193 	mov	b,r4
+   032C 12s00r00           1194 	lcall	_memset
+   032F 15 81              1195 	dec	sp
+   0331 15 81              1196 	dec	sp
+   0333 15 81              1197 	dec	sp
+                           1198 ;	../../../core/net/dhcpc.c:160: memset(m->file, 0, sizeof(m->file));
+   0335 A8*00              1199 	mov	r0,_bp
+   0337 08                 1200 	inc	r0
+   0338 74 6C              1201 	mov	a,#0x6C
+   033A 26                 1202 	add	a,@r0
+   033B FA                 1203 	mov	r2,a
+   033C E4                 1204 	clr	a
+   033D 08                 1205 	inc	r0
+   033E 36                 1206 	addc	a,@r0
+   033F FB                 1207 	mov	r3,a
+   0340 08                 1208 	inc	r0
+   0341 86 04              1209 	mov	ar4,@r0
+   0343 74 80              1210 	mov	a,#0x80
+   0345 C0 E0              1211 	push	acc
+   0347 E4                 1212 	clr	a
+   0348 C0 E0              1213 	push	acc
+   034A E4                 1214 	clr	a
+   034B C0 E0              1215 	push	acc
+   034D 8A 82              1216 	mov	dpl,r2
+   034F 8B 83              1217 	mov	dph,r3
+   0351 8C F0              1218 	mov	b,r4
+   0353 12s00r00           1219 	lcall	_memset
+   0356 15 81              1220 	dec	sp
+   0358 15 81              1221 	dec	sp
+   035A 15 81              1222 	dec	sp
+                           1223 ;	../../../core/net/dhcpc.c:163: memcpy(m->options, magic_cookie, sizeof(magic_cookie));
+   035C A8*00              1224 	mov	r0,_bp
+   035E 08                 1225 	inc	r0
+   035F 74 EC              1226 	mov	a,#0xEC
+   0361 26                 1227 	add	a,@r0
+   0362 FA                 1228 	mov	r2,a
+   0363 E4                 1229 	clr	a
+   0364 08                 1230 	inc	r0
+   0365 36                 1231 	addc	a,@r0
+   0366 FB                 1232 	mov	r3,a
+   0367 08                 1233 	inc	r0
+   0368 86 04              1234 	mov	ar4,@r0
+   036A 74 04              1235 	mov	a,#0x04
+   036C C0 E0              1236 	push	acc
+   036E E4                 1237 	clr	a
+   036F C0 E0              1238 	push	acc
+   0371 74r00              1239 	mov	a,#_magic_cookie
+   0373 C0 E0              1240 	push	acc
+   0375 74s00              1241 	mov	a,#(_magic_cookie >> 8)
+   0377 C0 E0              1242 	push	acc
+   0379 74 80              1243 	mov	a,#0x80
+   037B C0 E0              1244 	push	acc
+   037D 8A 82              1245 	mov	dpl,r2
+   037F 8B 83              1246 	mov	dph,r3
+   0381 8C F0              1247 	mov	b,r4
+   0383 12s00r00           1248 	lcall	_memcpy
+   0386 E5 81              1249 	mov	a,sp
+   0388 24 FB              1250 	add	a,#0xfb
+   038A F5 81              1251 	mov	sp,a
+   038C 85*00 81           1252 	mov	sp,_bp
+   038F D0*00              1253 	pop	_bp
+   0391 22                 1254 	ret
+                           1255 ;------------------------------------------------------------
+                           1256 ;Allocation info for local variables in function 'send_discover'
+                           1257 ;------------------------------------------------------------
+                           1258 ;end                       Allocated to registers r2 r3 r4 
+                           1259 ;m                         Allocated to registers r2 r3 r4 
+                           1260 ;------------------------------------------------------------
+                           1261 ;	../../../core/net/dhcpc.c:167: send_discover(void)
+                           1262 ;	-----------------------------------------
+                           1263 ;	 function send_discover
+                           1264 ;	-----------------------------------------
+   0392                    1265 _send_discover:
+                           1266 ;	../../../core/net/dhcpc.c:170: struct dhcp_msg *m = (struct dhcp_msg *)uip_appdata;
+   0392 90s00r00           1267 	mov	dptr,#_uip_appdata
+   0395 E0                 1268 	movx	a,@dptr
+   0396 FA                 1269 	mov	r2,a
+   0397 A3                 1270 	inc	dptr
+   0398 E0                 1271 	movx	a,@dptr
+   0399 FB                 1272 	mov	r3,a
+   039A A3                 1273 	inc	dptr
+   039B E0                 1274 	movx	a,@dptr
+   039C FC                 1275 	mov	r4,a
+                           1276 ;	../../../core/net/dhcpc.c:172: create_msg(m);
+   039D 8A 82              1277 	mov	dpl,r2
+   039F 8B 83              1278 	mov	dph,r3
+   03A1 8C F0              1279 	mov	b,r4
+   03A3 C0 02              1280 	push	ar2
+   03A5 C0 03              1281 	push	ar3
+   03A7 C0 04              1282 	push	ar4
+   03A9 12s00rFA           1283 	lcall	_create_msg
+   03AC D0 04              1284 	pop	ar4
+   03AE D0 03              1285 	pop	ar3
+   03B0 D0 02              1286 	pop	ar2
+                           1287 ;	../../../core/net/dhcpc.c:174: end = add_msg_type(&m->options[4], DHCPDISCOVER);
+   03B2 74 EC              1288 	mov	a,#0xEC
+   03B4 2A                 1289 	add	a,r2
+   03B5 FA                 1290 	mov	r2,a
+   03B6 E4                 1291 	clr	a
+   03B7 3B                 1292 	addc	a,r3
+   03B8 FB                 1293 	mov	r3,a
+   03B9 74 04              1294 	mov	a,#0x04
+   03BB 2A                 1295 	add	a,r2
+   03BC FA                 1296 	mov	r2,a
+   03BD E4                 1297 	clr	a
+   03BE 3B                 1298 	addc	a,r3
+   03BF FB                 1299 	mov	r3,a
+   03C0 74 01              1300 	mov	a,#0x01
+   03C2 C0 E0              1301 	push	acc
+   03C4 8A 82              1302 	mov	dpl,r2
+   03C6 8B 83              1303 	mov	dph,r3
+   03C8 8C F0              1304 	mov	b,r4
+   03CA 12s00r00           1305 	lcall	_add_msg_type
+   03CD AA 82              1306 	mov	r2,dpl
+   03CF AB 83              1307 	mov	r3,dph
+   03D1 AC F0              1308 	mov	r4,b
+   03D3 15 81              1309 	dec	sp
+                           1310 ;	../../../core/net/dhcpc.c:175: end = add_req_options(end);
+   03D5 8A 82              1311 	mov	dpl,r2
+   03D7 8B 83              1312 	mov	dph,r3
+   03D9 8C F0              1313 	mov	b,r4
+   03DB 12s00rC4           1314 	lcall	_add_req_options
+   03DE AD 82              1315 	mov	r5,dpl
+   03E0 AE 83              1316 	mov	r6,dph
+   03E2 AF F0              1317 	mov	r7,b
+   03E4 8D 02              1318 	mov	ar2,r5
+   03E6 8E 03              1319 	mov	ar3,r6
+   03E8 8F 04              1320 	mov	ar4,r7
+                           1321 ;	../../../core/net/dhcpc.c:176: end = add_end(end);
+   03EA 8A 82              1322 	mov	dpl,r2
+   03EC 8B 83              1323 	mov	dph,r3
+   03EE 8C F0              1324 	mov	b,r4
+   03F0 12s00rEF           1325 	lcall	_add_end
+   03F3 AA 82              1326 	mov	r2,dpl
+   03F5 AB 83              1327 	mov	r3,dph
+                           1328 ;	../../../core/net/dhcpc.c:178: uip_send(uip_appdata, (int)(end - (u8_t *)uip_appdata));
+   03F7 90s00r00           1329 	mov	dptr,#_uip_appdata
+   03FA E0                 1330 	movx	a,@dptr
+   03FB FD                 1331 	mov	r5,a
+   03FC A3                 1332 	inc	dptr
+   03FD E0                 1333 	movx	a,@dptr
+   03FE FE                 1334 	mov	r6,a
+   03FF A3                 1335 	inc	dptr
+   0400 E0                 1336 	movx	a,@dptr
+   0401 FF                 1337 	mov	r7,a
+   0402 EA                 1338 	mov	a,r2
+   0403 C3                 1339 	clr	c
+   0404 9D                 1340 	subb	a,r5
+   0405 FA                 1341 	mov	r2,a
+   0406 EB                 1342 	mov	a,r3
+   0407 9E                 1343 	subb	a,r6
+   0408 FB                 1344 	mov	r3,a
+   0409 C0 02              1345 	push	ar2
+   040B C0 03              1346 	push	ar3
+   040D 8D 82              1347 	mov	dpl,r5
+   040F 8E 83              1348 	mov	dph,r6
+   0411 8F F0              1349 	mov	b,r7
+   0413 12s00r00           1350 	lcall	_uip_send
+   0416 15 81              1351 	dec	sp
+   0418 15 81              1352 	dec	sp
+   041A 22                 1353 	ret
+                           1354 ;------------------------------------------------------------
+                           1355 ;Allocation info for local variables in function 'send_request'
+                           1356 ;------------------------------------------------------------
+                           1357 ;end                       Allocated to registers r2 r3 r4 
+                           1358 ;m                         Allocated to registers r2 r3 r4 
+                           1359 ;------------------------------------------------------------
+                           1360 ;	../../../core/net/dhcpc.c:182: send_request(void)
+                           1361 ;	-----------------------------------------
+                           1362 ;	 function send_request
+                           1363 ;	-----------------------------------------
+   041B                    1364 _send_request:
+                           1365 ;	../../../core/net/dhcpc.c:185: struct dhcp_msg *m = (struct dhcp_msg *)uip_appdata;
+   041B 90s00r00           1366 	mov	dptr,#_uip_appdata
+   041E E0                 1367 	movx	a,@dptr
+   041F FA                 1368 	mov	r2,a
+   0420 A3                 1369 	inc	dptr
+   0421 E0                 1370 	movx	a,@dptr
+   0422 FB                 1371 	mov	r3,a
+   0423 A3                 1372 	inc	dptr
+   0424 E0                 1373 	movx	a,@dptr
+   0425 FC                 1374 	mov	r4,a
+                           1375 ;	../../../core/net/dhcpc.c:187: create_msg(m);
+   0426 8A 82              1376 	mov	dpl,r2
+   0428 8B 83              1377 	mov	dph,r3
+   042A 8C F0              1378 	mov	b,r4
+   042C C0 02              1379 	push	ar2
+   042E C0 03              1380 	push	ar3
+   0430 C0 04              1381 	push	ar4
+   0432 12s00rFA           1382 	lcall	_create_msg
+   0435 D0 04              1383 	pop	ar4
+   0437 D0 03              1384 	pop	ar3
+   0439 D0 02              1385 	pop	ar2
+                           1386 ;	../../../core/net/dhcpc.c:189: end = add_msg_type(&m->options[4], DHCPREQUEST);
+   043B 74 EC              1387 	mov	a,#0xEC
+   043D 2A                 1388 	add	a,r2
+   043E FA                 1389 	mov	r2,a
+   043F E4                 1390 	clr	a
+   0440 3B                 1391 	addc	a,r3
+   0441 FB                 1392 	mov	r3,a
+   0442 74 04              1393 	mov	a,#0x04
+   0444 2A                 1394 	add	a,r2
+   0445 FA                 1395 	mov	r2,a
+   0446 E4                 1396 	clr	a
+   0447 3B                 1397 	addc	a,r3
+   0448 FB                 1398 	mov	r3,a
+   0449 74 03              1399 	mov	a,#0x03
+   044B C0 E0              1400 	push	acc
+   044D 8A 82              1401 	mov	dpl,r2
+   044F 8B 83              1402 	mov	dph,r3
+   0451 8C F0              1403 	mov	b,r4
+   0453 12s00r00           1404 	lcall	_add_msg_type
+   0456 AA 82              1405 	mov	r2,dpl
+   0458 AB 83              1406 	mov	r3,dph
+   045A AC F0              1407 	mov	r4,b
+   045C 15 81              1408 	dec	sp
+                           1409 ;	../../../core/net/dhcpc.c:190: end = add_server_id(end);
+   045E 8A 82              1410 	mov	dpl,r2
+   0460 8B 83              1411 	mov	dph,r3
+   0462 8C F0              1412 	mov	b,r4
+   0464 12s00r26           1413 	lcall	_add_server_id
+   0467 AD 82              1414 	mov	r5,dpl
+   0469 AE 83              1415 	mov	r6,dph
+   046B AF F0              1416 	mov	r7,b
+   046D 8D 02              1417 	mov	ar2,r5
+   046F 8E 03              1418 	mov	ar3,r6
+   0471 8F 04              1419 	mov	ar4,r7
+                           1420 ;	../../../core/net/dhcpc.c:191: end = add_req_ipaddr(end);
+   0473 8A 82              1421 	mov	dpl,r2
+   0475 8B 83              1422 	mov	dph,r3
+   0477 8C F0              1423 	mov	b,r4
+   0479 12s00r75           1424 	lcall	_add_req_ipaddr
+   047C AD 82              1425 	mov	r5,dpl
+   047E AE 83              1426 	mov	r6,dph
+   0480 AF F0              1427 	mov	r7,b
+   0482 8D 02              1428 	mov	ar2,r5
+   0484 8E 03              1429 	mov	ar3,r6
+   0486 8F 04              1430 	mov	ar4,r7
+                           1431 ;	../../../core/net/dhcpc.c:192: end = add_end(end);
+   0488 8A 82              1432 	mov	dpl,r2
+   048A 8B 83              1433 	mov	dph,r3
+   048C 8C F0              1434 	mov	b,r4
+   048E 12s00rEF           1435 	lcall	_add_end
+   0491 AA 82              1436 	mov	r2,dpl
+   0493 AB 83              1437 	mov	r3,dph
+                           1438 ;	../../../core/net/dhcpc.c:194: uip_send(uip_appdata, (int)(end - (u8_t *)uip_appdata));
+   0495 90s00r00           1439 	mov	dptr,#_uip_appdata
+   0498 E0                 1440 	movx	a,@dptr
+   0499 FD                 1441 	mov	r5,a
+   049A A3                 1442 	inc	dptr
+   049B E0                 1443 	movx	a,@dptr
+   049C FE                 1444 	mov	r6,a
+   049D A3                 1445 	inc	dptr
+   049E E0                 1446 	movx	a,@dptr
+   049F FF                 1447 	mov	r7,a
+   04A0 EA                 1448 	mov	a,r2
+   04A1 C3                 1449 	clr	c
+   04A2 9D                 1450 	subb	a,r5
+   04A3 FA                 1451 	mov	r2,a
+   04A4 EB                 1452 	mov	a,r3
+   04A5 9E                 1453 	subb	a,r6
+   04A6 FB                 1454 	mov	r3,a
+   04A7 C0 02              1455 	push	ar2
+   04A9 C0 03              1456 	push	ar3
+   04AB 8D 82              1457 	mov	dpl,r5
+   04AD 8E 83              1458 	mov	dph,r6
+   04AF 8F F0              1459 	mov	b,r7
+   04B1 12s00r00           1460 	lcall	_uip_send
+   04B4 15 81              1461 	dec	sp
+   04B6 15 81              1462 	dec	sp
+   04B8 22                 1463 	ret
+                           1464 ;------------------------------------------------------------
+                           1465 ;Allocation info for local variables in function 'parse_options'
+                           1466 ;------------------------------------------------------------
+                           1467 ;len                       Allocated to stack - offset -4
+                           1468 ;optptr                    Allocated to stack - offset 1
+                           1469 ;end                       Allocated to stack - offset 4
+                           1470 ;type                      Allocated to registers r5 
+                           1471 ;------------------------------------------------------------
+                           1472 ;	../../../core/net/dhcpc.c:198: parse_options(u8_t *optptr, int len)
+                           1473 ;	-----------------------------------------
+                           1474 ;	 function parse_options
+                           1475 ;	-----------------------------------------
+   04B9                    1476 _parse_options:
+   04B9 C0*00              1477 	push	_bp
+   04BB 85 81*00           1478 	mov	_bp,sp
+   04BE C0 82              1479 	push	dpl
+   04C0 C0 83              1480 	push	dph
+   04C2 C0 F0              1481 	push	b
+   04C4 05 81              1482 	inc	sp
+   04C6 05 81              1483 	inc	sp
+   04C8 05 81              1484 	inc	sp
+                           1485 ;	../../../core/net/dhcpc.c:200: u8_t *end = optptr + len;
+   04CA A8*00              1486 	mov	r0,_bp
+   04CC 08                 1487 	inc	r0
+   04CD E5*00              1488 	mov	a,_bp
+   04CF 24 FC              1489 	add	a,#0xfc
+   04D1 F9                 1490 	mov	r1,a
+   04D2 E7                 1491 	mov	a,@r1
+   04D3 26                 1492 	add	a,@r0
+   04D4 FD                 1493 	mov	r5,a
+   04D5 09                 1494 	inc	r1
+   04D6 E7                 1495 	mov	a,@r1
+   04D7 08                 1496 	inc	r0
+   04D8 36                 1497 	addc	a,@r0
+   04D9 FE                 1498 	mov	r6,a
+   04DA 08                 1499 	inc	r0
+   04DB 86 07              1500 	mov	ar7,@r0
+   04DD E5*00              1501 	mov	a,_bp
+   04DF 24 04              1502 	add	a,#0x04
+   04E1 F8                 1503 	mov	r0,a
+   04E2 A6 05              1504 	mov	@r0,ar5
+   04E4 08                 1505 	inc	r0
+   04E5 A6 06              1506 	mov	@r0,ar6
+   04E7 08                 1507 	inc	r0
+   04E8 A6 07              1508 	mov	@r0,ar7
+                           1509 ;	../../../core/net/dhcpc.c:201: u8_t type = 0;
+   04EA 7D 00              1510 	mov	r5,#0x00
+                           1511 ;	../../../core/net/dhcpc.c:203: while(optptr < end) {
+   04EC                    1512 00109$:
+   04EC A8*00              1513 	mov	r0,_bp
+   04EE 08                 1514 	inc	r0
+   04EF E5*00              1515 	mov	a,_bp
+   04F1 24 04              1516 	add	a,#0x04
+   04F3 F9                 1517 	mov	r1,a
+   04F4 C3                 1518 	clr	c
+   04F5 E6                 1519 	mov	a,@r0
+   04F6 97                 1520 	subb	a,@r1
+   04F7 08                 1521 	inc	r0
+   04F8 E6                 1522 	mov	a,@r0
+   04F9 09                 1523 	inc	r1
+   04FA 97                 1524 	subb	a,@r1
+   04FB 08                 1525 	inc	r0
+   04FC E6                 1526 	mov	a,@r0
+   04FD 09                 1527 	inc	r1
+   04FE 97                 1528 	subb	a,@r1
+   04FF 40 03              1529 	jc	00123$
+   0501 02s06r8A           1530 	ljmp	00111$
+   0504                    1531 00123$:
+                           1532 ;	../../../core/net/dhcpc.c:204: switch(*optptr) {
+   0504 A8*00              1533 	mov	r0,_bp
+   0506 08                 1534 	inc	r0
+   0507 86 82              1535 	mov	dpl,@r0
+   0509 08                 1536 	inc	r0
+   050A 86 83              1537 	mov	dph,@r0
+   050C 08                 1538 	inc	r0
+   050D 86 F0              1539 	mov	b,@r0
+   050F 12s00r00           1540 	lcall	__gptrget
+   0512 FE                 1541 	mov	r6,a
+   0513 BE 01 02           1542 	cjne	r6,#0x01,00124$
+   0516 80 26              1543 	sjmp	00101$
+   0518                    1544 00124$:
+   0518 BE 03 02           1545 	cjne	r6,#0x03,00125$
+   051B 80 56              1546 	sjmp	00102$
+   051D                    1547 00125$:
+   051D BE 06 03           1548 	cjne	r6,#0x06,00126$
+   0520 02s05rA8           1549 	ljmp	00103$
+   0523                    1550 00126$:
+   0523 BE 33 03           1551 	cjne	r6,#0x33,00127$
+   0526 02s06r28           1552 	ljmp	00106$
+   0529                    1553 00127$:
+   0529 BE 35 03           1554 	cjne	r6,#0x35,00128$
+   052C 02s05rDD           1555 	ljmp	00104$
+   052F                    1556 00128$:
+   052F BE 36 03           1557 	cjne	r6,#0x36,00129$
+   0532 02s05rF8           1558 	ljmp	00105$
+   0535                    1559 00129$:
+   0535 BE FF 03           1560 	cjne	r6,#0xFF,00130$
+   0538 02s06r58           1561 	ljmp	00107$
+   053B                    1562 00130$:
+   053B 02s06r5C           1563 	ljmp	00108$
+                           1564 ;	../../../core/net/dhcpc.c:205: case DHCP_OPTION_SUBNET_MASK:
+   053E                    1565 00101$:
+                           1566 ;	../../../core/net/dhcpc.c:206: memcpy(s.netmask.u16, optptr + 2, 4);
+   053E C0 05              1567 	push	ar5
+   0540 A8*00              1568 	mov	r0,_bp
+   0542 08                 1569 	inc	r0
+   0543 74 02              1570 	mov	a,#0x02
+   0545 26                 1571 	add	a,@r0
+   0546 FE                 1572 	mov	r6,a
+   0547 E4                 1573 	clr	a
+   0548 08                 1574 	inc	r0
+   0549 36                 1575 	addc	a,@r0
+   054A FF                 1576 	mov	r7,a
+   054B 08                 1577 	inc	r0
+   054C 86 05              1578 	mov	ar5,@r0
+   054E C0 05              1579 	push	ar5
+   0550 74 04              1580 	mov	a,#0x04
+   0552 C0 E0              1581 	push	acc
+   0554 E4                 1582 	clr	a
+   0555 C0 E0              1583 	push	acc
+   0557 C0 06              1584 	push	ar6
+   0559 C0 07              1585 	push	ar7
+   055B C0 05              1586 	push	ar5
+   055D 90s00r25           1587 	mov	dptr,#(_s + 0x0025)
+   0560 75 F0 00           1588 	mov	b,#0x00
+   0563 12s00r00           1589 	lcall	_memcpy
+   0566 E5 81              1590 	mov	a,sp
+   0568 24 FB              1591 	add	a,#0xfb
+   056A F5 81              1592 	mov	sp,a
+   056C D0 05              1593 	pop	ar5
+                           1594 ;	../../../core/net/dhcpc.c:207: break;
+   056E D0 05              1595 	pop	ar5
+   0570 02s06r5C           1596 	ljmp	00108$
+                           1597 ;	../../../core/net/dhcpc.c:208: case DHCP_OPTION_ROUTER:
+   0573                    1598 00102$:
+                           1599 ;	../../../core/net/dhcpc.c:209: memcpy(s.default_router.u16, optptr + 2, 4);
+   0573 C0 05              1600 	push	ar5
+   0575 A8*00              1601 	mov	r0,_bp
+   0577 08                 1602 	inc	r0
+   0578 74 02              1603 	mov	a,#0x02
+   057A 26                 1604 	add	a,@r0
+   057B FE                 1605 	mov	r6,a
+   057C E4                 1606 	clr	a
+   057D 08                 1607 	inc	r0
+   057E 36                 1608 	addc	a,@r0
+   057F FF                 1609 	mov	r7,a
+   0580 08                 1610 	inc	r0
+   0581 86 05              1611 	mov	ar5,@r0
+   0583 C0 05              1612 	push	ar5
+   0585 74 04              1613 	mov	a,#0x04
+   0587 C0 E0              1614 	push	acc
+   0589 E4                 1615 	clr	a
+   058A C0 E0              1616 	push	acc
+   058C C0 06              1617 	push	ar6
+   058E C0 07              1618 	push	ar7
+   0590 C0 05              1619 	push	ar5
+   0592 90s00r2D           1620 	mov	dptr,#(_s + 0x002d)
+   0595 75 F0 00           1621 	mov	b,#0x00
+   0598 12s00r00           1622 	lcall	_memcpy
+   059B E5 81              1623 	mov	a,sp
+   059D 24 FB              1624 	add	a,#0xfb
+   059F F5 81              1625 	mov	sp,a
+   05A1 D0 05              1626 	pop	ar5
+                           1627 ;	../../../core/net/dhcpc.c:210: break;
+   05A3 D0 05              1628 	pop	ar5
+   05A5 02s06r5C           1629 	ljmp	00108$
+                           1630 ;	../../../core/net/dhcpc.c:211: case DHCP_OPTION_DNS_SERVER:
+   05A8                    1631 00103$:
+                           1632 ;	../../../core/net/dhcpc.c:212: memcpy(s.dnsaddr.u16, optptr + 2, 4);
+   05A8 C0 05              1633 	push	ar5
+   05AA A8*00              1634 	mov	r0,_bp
+   05AC 08                 1635 	inc	r0
+   05AD 74 02              1636 	mov	a,#0x02
+   05AF 26                 1637 	add	a,@r0
+   05B0 FE                 1638 	mov	r6,a
+   05B1 E4                 1639 	clr	a
+   05B2 08                 1640 	inc	r0
+   05B3 36                 1641 	addc	a,@r0
+   05B4 FF                 1642 	mov	r7,a
+   05B5 08                 1643 	inc	r0
+   05B6 86 05              1644 	mov	ar5,@r0
+   05B8 C0 05              1645 	push	ar5
+   05BA 74 04              1646 	mov	a,#0x04
+   05BC C0 E0              1647 	push	acc
+   05BE E4                 1648 	clr	a
+   05BF C0 E0              1649 	push	acc
+   05C1 C0 06              1650 	push	ar6
+   05C3 C0 07              1651 	push	ar7
+   05C5 C0 05              1652 	push	ar5
+   05C7 90s00r29           1653 	mov	dptr,#(_s + 0x0029)
+   05CA 75 F0 00           1654 	mov	b,#0x00
+   05CD 12s00r00           1655 	lcall	_memcpy
+   05D0 E5 81              1656 	mov	a,sp
+   05D2 24 FB              1657 	add	a,#0xfb
+   05D4 F5 81              1658 	mov	sp,a
+   05D6 D0 05              1659 	pop	ar5
+                           1660 ;	../../../core/net/dhcpc.c:213: break;
+   05D8 D0 05              1661 	pop	ar5
+   05DA 02s06r5C           1662 	ljmp	00108$
+                           1663 ;	../../../core/net/dhcpc.c:214: case DHCP_OPTION_MSG_TYPE:
+   05DD                    1664 00104$:
+                           1665 ;	../../../core/net/dhcpc.c:215: type = *(optptr + 2);
+   05DD A8*00              1666 	mov	r0,_bp
+   05DF 08                 1667 	inc	r0
+   05E0 74 02              1668 	mov	a,#0x02
+   05E2 26                 1669 	add	a,@r0
+   05E3 FE                 1670 	mov	r6,a
+   05E4 E4                 1671 	clr	a
+   05E5 08                 1672 	inc	r0
+   05E6 36                 1673 	addc	a,@r0
+   05E7 FF                 1674 	mov	r7,a
+   05E8 08                 1675 	inc	r0
+   05E9 86 02              1676 	mov	ar2,@r0
+   05EB 8E 82              1677 	mov	dpl,r6
+   05ED 8F 83              1678 	mov	dph,r7
+   05EF 8A F0              1679 	mov	b,r2
+   05F1 12s00r00           1680 	lcall	__gptrget
+   05F4 FE                 1681 	mov	r6,a
+   05F5 FD                 1682 	mov	r5,a
+                           1683 ;	../../../core/net/dhcpc.c:216: break;
+                           1684 ;	../../../core/net/dhcpc.c:217: case DHCP_OPTION_SERVER_ID:
+   05F6 80 64              1685 	sjmp	00108$
+   05F8                    1686 00105$:
+                           1687 ;	../../../core/net/dhcpc.c:218: memcpy(s.serverid, optptr + 2, 4);
+   05F8 A8*00              1688 	mov	r0,_bp
+   05FA 08                 1689 	inc	r0
+   05FB 74 02              1690 	mov	a,#0x02
+   05FD 26                 1691 	add	a,@r0
+   05FE FA                 1692 	mov	r2,a
+   05FF E4                 1693 	clr	a
+   0600 08                 1694 	inc	r0
+   0601 36                 1695 	addc	a,@r0
+   0602 FB                 1696 	mov	r3,a
+   0603 08                 1697 	inc	r0
+   0604 86 04              1698 	mov	ar4,@r0
+   0606 C0 05              1699 	push	ar5
+   0608 74 04              1700 	mov	a,#0x04
+   060A C0 E0              1701 	push	acc
+   060C E4                 1702 	clr	a
+   060D C0 E0              1703 	push	acc
+   060F C0 02              1704 	push	ar2
+   0611 C0 03              1705 	push	ar3
+   0613 C0 04              1706 	push	ar4
+   0615 90s00r19           1707 	mov	dptr,#(_s + 0x0019)
+   0618 75 F0 00           1708 	mov	b,#0x00
+   061B 12s00r00           1709 	lcall	_memcpy
+   061E E5 81              1710 	mov	a,sp
+   0620 24 FB              1711 	add	a,#0xfb
+   0622 F5 81              1712 	mov	sp,a
+   0624 D0 05              1713 	pop	ar5
+                           1714 ;	../../../core/net/dhcpc.c:219: break;
+                           1715 ;	../../../core/net/dhcpc.c:220: case DHCP_OPTION_LEASE_TIME:
+   0626 80 34              1716 	sjmp	00108$
+   0628                    1717 00106$:
+                           1718 ;	../../../core/net/dhcpc.c:221: memcpy(s.lease_time, optptr + 2, 4);
+   0628 A8*00              1719 	mov	r0,_bp
+   062A 08                 1720 	inc	r0
+   062B 74 02              1721 	mov	a,#0x02
+   062D 26                 1722 	add	a,@r0
+   062E FA                 1723 	mov	r2,a
+   062F E4                 1724 	clr	a
+   0630 08                 1725 	inc	r0
+   0631 36                 1726 	addc	a,@r0
+   0632 FB                 1727 	mov	r3,a
+   0633 08                 1728 	inc	r0
+   0634 86 04              1729 	mov	ar4,@r0
+   0636 C0 05              1730 	push	ar5
+   0638 74 04              1731 	mov	a,#0x04
+   063A C0 E0              1732 	push	acc
+   063C E4                 1733 	clr	a
+   063D C0 E0              1734 	push	acc
+   063F C0 02              1735 	push	ar2
+   0641 C0 03              1736 	push	ar3
+   0643 C0 04              1737 	push	ar4
+   0645 90s00r1D           1738 	mov	dptr,#(_s + 0x001d)
+   0648 75 F0 00           1739 	mov	b,#0x00
+   064B 12s00r00           1740 	lcall	_memcpy
+   064E E5 81              1741 	mov	a,sp
+   0650 24 FB              1742 	add	a,#0xfb
+   0652 F5 81              1743 	mov	sp,a
+   0654 D0 05              1744 	pop	ar5
+                           1745 ;	../../../core/net/dhcpc.c:222: break;
+                           1746 ;	../../../core/net/dhcpc.c:223: case DHCP_OPTION_END:
+   0656 80 04              1747 	sjmp	00108$
+   0658                    1748 00107$:
+                           1749 ;	../../../core/net/dhcpc.c:224: return type;
+   0658 8D 82              1750 	mov	dpl,r5
+                           1751 ;	../../../core/net/dhcpc.c:225: }
+   065A 80 30              1752 	sjmp	00112$
+   065C                    1753 00108$:
+                           1754 ;	../../../core/net/dhcpc.c:227: optptr += optptr[1] + 2;
+   065C A8*00              1755 	mov	r0,_bp
+   065E 08                 1756 	inc	r0
+   065F 74 01              1757 	mov	a,#0x01
+   0661 26                 1758 	add	a,@r0
+   0662 FA                 1759 	mov	r2,a
+   0663 E4                 1760 	clr	a
+   0664 08                 1761 	inc	r0
+   0665 36                 1762 	addc	a,@r0
+   0666 FB                 1763 	mov	r3,a
+   0667 08                 1764 	inc	r0
+   0668 86 04              1765 	mov	ar4,@r0
+   066A 8A 82              1766 	mov	dpl,r2
+   066C 8B 83              1767 	mov	dph,r3
+   066E 8C F0              1768 	mov	b,r4
+   0670 12s00r00           1769 	lcall	__gptrget
+   0673 FA                 1770 	mov	r2,a
+   0674 7B 00              1771 	mov	r3,#0x00
+   0676 74 02              1772 	mov	a,#0x02
+   0678 2A                 1773 	add	a,r2
+   0679 FA                 1774 	mov	r2,a
+   067A E4                 1775 	clr	a
+   067B 3B                 1776 	addc	a,r3
+   067C FB                 1777 	mov	r3,a
+   067D A8*00              1778 	mov	r0,_bp
+   067F 08                 1779 	inc	r0
+   0680 EA                 1780 	mov	a,r2
+   0681 26                 1781 	add	a,@r0
+   0682 F6                 1782 	mov	@r0,a
+   0683 EB                 1783 	mov	a,r3
+   0684 08                 1784 	inc	r0
+   0685 36                 1785 	addc	a,@r0
+   0686 F6                 1786 	mov	@r0,a
+   0687 02s04rEC           1787 	ljmp	00109$
+   068A                    1788 00111$:
+                           1789 ;	../../../core/net/dhcpc.c:229: return type;
+   068A 8D 82              1790 	mov	dpl,r5
+   068C                    1791 00112$:
+   068C 85*00 81           1792 	mov	sp,_bp
+   068F D0*00              1793 	pop	_bp
+   0691 22                 1794 	ret
+                           1795 ;------------------------------------------------------------
+                           1796 ;Allocation info for local variables in function 'parse_msg'
+                           1797 ;------------------------------------------------------------
+                           1798 ;m                         Allocated to stack - offset 1
+                           1799 ;sloc0                     Allocated to stack - offset 4
+                           1800 ;------------------------------------------------------------
+                           1801 ;	../../../core/net/dhcpc.c:233: parse_msg(void)
+                           1802 ;	-----------------------------------------
+                           1803 ;	 function parse_msg
+                           1804 ;	-----------------------------------------
+   0692                    1805 _parse_msg:
+   0692 C0*00              1806 	push	_bp
+   0694 E5 81              1807 	mov	a,sp
+   0696 F5*00              1808 	mov	_bp,a
+   0698 24 05              1809 	add	a,#0x05
+   069A F5 81              1810 	mov	sp,a
+                           1811 ;	../../../core/net/dhcpc.c:235: struct dhcp_msg *m = (struct dhcp_msg *)uip_appdata;
+   069C 90s00r00           1812 	mov	dptr,#_uip_appdata
+   069F E0                 1813 	movx	a,@dptr
+   06A0 FA                 1814 	mov	r2,a
+   06A1 A3                 1815 	inc	dptr
+   06A2 E0                 1816 	movx	a,@dptr
+   06A3 FB                 1817 	mov	r3,a
+   06A4 A3                 1818 	inc	dptr
+   06A5 E0                 1819 	movx	a,@dptr
+   06A6 FC                 1820 	mov	r4,a
+   06A7 A8*00              1821 	mov	r0,_bp
+   06A9 08                 1822 	inc	r0
+   06AA A6 02              1823 	mov	@r0,ar2
+   06AC 08                 1824 	inc	r0
+   06AD A6 03              1825 	mov	@r0,ar3
+   06AF 08                 1826 	inc	r0
+   06B0 A6 04              1827 	mov	@r0,ar4
+                           1828 ;	../../../core/net/dhcpc.c:237: if(m->op == DHCP_REPLY &&
+   06B2 A8*00              1829 	mov	r0,_bp
+   06B4 08                 1830 	inc	r0
+   06B5 86 82              1831 	mov	dpl,@r0
+   06B7 08                 1832 	inc	r0
+   06B8 86 83              1833 	mov	dph,@r0
+   06BA 08                 1834 	inc	r0
+   06BB 86 F0              1835 	mov	b,@r0
+   06BD 12s00r00           1836 	lcall	__gptrget
+   06C0 FD                 1837 	mov	r5,a
+   06C1 BD 02 02           1838 	cjne	r5,#0x02,00110$
+   06C4 80 03              1839 	sjmp	00111$
+   06C6                    1840 00110$:
+   06C6 02s07rAF           1841 	ljmp	00102$
+   06C9                    1842 00111$:
+                           1843 ;	../../../core/net/dhcpc.c:238: memcmp(m->xid, &xid, sizeof(xid)) == 0 &&
+   06C9 A8*00              1844 	mov	r0,_bp
+   06CB 08                 1845 	inc	r0
+   06CC 74 04              1846 	mov	a,#0x04
+   06CE 26                 1847 	add	a,@r0
+   06CF FD                 1848 	mov	r5,a
+   06D0 E4                 1849 	clr	a
+   06D1 08                 1850 	inc	r0
+   06D2 36                 1851 	addc	a,@r0
+   06D3 FE                 1852 	mov	r6,a
+   06D4 08                 1853 	inc	r0
+   06D5 86 07              1854 	mov	ar7,@r0
+   06D7 74 04              1855 	mov	a,#0x04
+   06D9 C0 E0              1856 	push	acc
+   06DB E4                 1857 	clr	a
+   06DC C0 E0              1858 	push	acc
+   06DE 74r31              1859 	mov	a,#_xid
+   06E0 C0 E0              1860 	push	acc
+   06E2 74s00              1861 	mov	a,#(_xid >> 8)
+   06E4 C0 E0              1862 	push	acc
+   06E6 E4                 1863 	clr	a
+   06E7 C0 E0              1864 	push	acc
+   06E9 8D 82              1865 	mov	dpl,r5
+   06EB 8E 83              1866 	mov	dph,r6
+   06ED 8F F0              1867 	mov	b,r7
+   06EF 12s00r00           1868 	lcall	_memcmp
+   06F2 AD 82              1869 	mov	r5,dpl
+   06F4 AE 83              1870 	mov	r6,dph
+   06F6 E5 81              1871 	mov	a,sp
+   06F8 24 FB              1872 	add	a,#0xfb
+   06FA F5 81              1873 	mov	sp,a
+   06FC ED                 1874 	mov	a,r5
+   06FD 4E                 1875 	orl	a,r6
+   06FE 60 03              1876 	jz	00112$
+   0700 02s07rAF           1877 	ljmp	00102$
+   0703                    1878 00112$:
+                           1879 ;	../../../core/net/dhcpc.c:239: memcmp(m->chaddr, s.mac_addr, s.mac_len) == 0) {
+   0703 90s00r17           1880 	mov	dptr,#(_s + 0x0017)
+   0706 E5*00              1881 	mov	a,_bp
+   0708 24 04              1882 	add	a,#0x04
+   070A F8                 1883 	mov	r0,a
+   070B E0                 1884 	movx	a,@dptr
+   070C F6                 1885 	mov	@r0,a
+   070D A3                 1886 	inc	dptr
+   070E E0                 1887 	movx	a,@dptr
+   070F 08                 1888 	inc	r0
+   0710 F6                 1889 	mov	@r0,a
+   0711 90s00r14           1890 	mov	dptr,#(_s + 0x0014)
+   0714 E0                 1891 	movx	a,@dptr
+   0715 FF                 1892 	mov	r7,a
+   0716 A3                 1893 	inc	dptr
+   0717 E0                 1894 	movx	a,@dptr
+   0718 FA                 1895 	mov	r2,a
+   0719 A3                 1896 	inc	dptr
+   071A E0                 1897 	movx	a,@dptr
+   071B FB                 1898 	mov	r3,a
+   071C A8*00              1899 	mov	r0,_bp
+   071E 08                 1900 	inc	r0
+   071F 74 1C              1901 	mov	a,#0x1C
+   0721 26                 1902 	add	a,@r0
+   0722 FC                 1903 	mov	r4,a
+   0723 E4                 1904 	clr	a
+   0724 08                 1905 	inc	r0
+   0725 36                 1906 	addc	a,@r0
+   0726 FD                 1907 	mov	r5,a
+   0727 08                 1908 	inc	r0
+   0728 86 06              1909 	mov	ar6,@r0
+   072A E5*00              1910 	mov	a,_bp
+   072C 24 04              1911 	add	a,#0x04
+   072E F8                 1912 	mov	r0,a
+   072F E6                 1913 	mov	a,@r0
+   0730 C0 E0              1914 	push	acc
+   0732 08                 1915 	inc	r0
+   0733 E6                 1916 	mov	a,@r0
+   0734 C0 E0              1917 	push	acc
+   0736 C0 07              1918 	push	ar7
+   0738 C0 02              1919 	push	ar2
+   073A C0 03              1920 	push	ar3
+   073C 8C 82              1921 	mov	dpl,r4
+   073E 8D 83              1922 	mov	dph,r5
+   0740 8E F0              1923 	mov	b,r6
+   0742 12s00r00           1924 	lcall	_memcmp
+   0745 AA 82              1925 	mov	r2,dpl
+   0747 AB 83              1926 	mov	r3,dph
+   0749 E5 81              1927 	mov	a,sp
+   074B 24 FB              1928 	add	a,#0xfb
+   074D F5 81              1929 	mov	sp,a
+   074F EA                 1930 	mov	a,r2
+   0750 4B                 1931 	orl	a,r3
+   0751 70 5C              1932 	jnz	00102$
+                           1933 ;	../../../core/net/dhcpc.c:240: memcpy(s.ipaddr.u16, m->yiaddr, 4);
+   0753 A8*00              1934 	mov	r0,_bp
+   0755 08                 1935 	inc	r0
+   0756 74 10              1936 	mov	a,#0x10
+   0758 26                 1937 	add	a,@r0
+   0759 FA                 1938 	mov	r2,a
+   075A E4                 1939 	clr	a
+   075B 08                 1940 	inc	r0
+   075C 36                 1941 	addc	a,@r0
+   075D FB                 1942 	mov	r3,a
+   075E 08                 1943 	inc	r0
+   075F 86 04              1944 	mov	ar4,@r0
+   0761 74 04              1945 	mov	a,#0x04
+   0763 C0 E0              1946 	push	acc
+   0765 E4                 1947 	clr	a
+   0766 C0 E0              1948 	push	acc
+   0768 C0 02              1949 	push	ar2
+   076A C0 03              1950 	push	ar3
+   076C C0 04              1951 	push	ar4
+   076E 90s00r21           1952 	mov	dptr,#(_s + 0x0021)
+   0771 75 F0 00           1953 	mov	b,#0x00
+   0774 12s00r00           1954 	lcall	_memcpy
+   0777 E5 81              1955 	mov	a,sp
+   0779 24 FB              1956 	add	a,#0xfb
+   077B F5 81              1957 	mov	sp,a
+                           1958 ;	../../../core/net/dhcpc.c:241: return parse_options(&m->options[4], uip_datalen());
+   077D A8*00              1959 	mov	r0,_bp
+   077F 08                 1960 	inc	r0
+   0780 74 EC              1961 	mov	a,#0xEC
+   0782 26                 1962 	add	a,@r0
+   0783 FA                 1963 	mov	r2,a
+   0784 E4                 1964 	clr	a
+   0785 08                 1965 	inc	r0
+   0786 36                 1966 	addc	a,@r0
+   0787 FB                 1967 	mov	r3,a
+   0788 08                 1968 	inc	r0
+   0789 86 04              1969 	mov	ar4,@r0
+   078B 74 04              1970 	mov	a,#0x04
+   078D 2A                 1971 	add	a,r2
+   078E FA                 1972 	mov	r2,a
+   078F E4                 1973 	clr	a
+   0790 3B                 1974 	addc	a,r3
+   0791 FB                 1975 	mov	r3,a
+   0792 90s00r00           1976 	mov	dptr,#_uip_len
+   0795 E0                 1977 	movx	a,@dptr
+   0796 C0 E0              1978 	push	acc
+   0798 A3                 1979 	inc	dptr
+   0799 E0                 1980 	movx	a,@dptr
+   079A C0 E0              1981 	push	acc
+   079C 8A 82              1982 	mov	dpl,r2
+   079E 8B 83              1983 	mov	dph,r3
+   07A0 8C F0              1984 	mov	b,r4
+   07A2 12s04rB9           1985 	lcall	_parse_options
+   07A5 AA 82              1986 	mov	r2,dpl
+   07A7 15 81              1987 	dec	sp
+   07A9 15 81              1988 	dec	sp
+   07AB 8A 82              1989 	mov	dpl,r2
+   07AD 80 03              1990 	sjmp	00105$
+   07AF                    1991 00102$:
+                           1992 ;	../../../core/net/dhcpc.c:243: return 0;
+   07AF 75 82 00           1993 	mov	dpl,#0x00
+   07B2                    1994 00105$:
+   07B2 85*00 81           1995 	mov	sp,_bp
+   07B5 D0*00              1996 	pop	_bp
+   07B7 22                 1997 	ret
+                           1998 ;------------------------------------------------------------
+                           1999 ;Allocation info for local variables in function 'msg_for_me'
+                           2000 ;------------------------------------------------------------
+                           2001 ;m                         Allocated to stack - offset 1
+                           2002 ;optptr                    Allocated to stack - offset 4
+                           2003 ;end                       Allocated to registers r2 r3 r4 
+                           2004 ;sloc0                     Allocated to stack - offset 7
+                           2005 ;sloc1                     Allocated to stack - offset 12
+                           2006 ;------------------------------------------------------------
+                           2007 ;	../../../core/net/dhcpc.c:250: msg_for_me(void)
+                           2008 ;	-----------------------------------------
+                           2009 ;	 function msg_for_me
+                           2010 ;	-----------------------------------------
+   07B8                    2011 _msg_for_me:
+   07B8 C0*00              2012 	push	_bp
+   07BA E5 81              2013 	mov	a,sp
+   07BC F5*00              2014 	mov	_bp,a
+   07BE 24 08              2015 	add	a,#0x08
+   07C0 F5 81              2016 	mov	sp,a
+                           2017 ;	../../../core/net/dhcpc.c:252: struct dhcp_msg *m = (struct dhcp_msg *)uip_appdata;
+   07C2 90s00r00           2018 	mov	dptr,#_uip_appdata
+   07C5 E0                 2019 	movx	a,@dptr
+   07C6 FA                 2020 	mov	r2,a
+   07C7 A3                 2021 	inc	dptr
+   07C8 E0                 2022 	movx	a,@dptr
+   07C9 FB                 2023 	mov	r3,a
+   07CA A3                 2024 	inc	dptr
+   07CB E0                 2025 	movx	a,@dptr
+   07CC FC                 2026 	mov	r4,a
+   07CD 8A 05              2027 	mov	ar5,r2
+   07CF 8B 06              2028 	mov	ar6,r3
+   07D1 8C 07              2029 	mov	ar7,r4
+   07D3 A8*00              2030 	mov	r0,_bp
+   07D5 08                 2031 	inc	r0
+   07D6 A6 05              2032 	mov	@r0,ar5
+   07D8 08                 2033 	inc	r0
+   07D9 A6 06              2034 	mov	@r0,ar6
+   07DB 08                 2035 	inc	r0
+   07DC A6 07              2036 	mov	@r0,ar7
+                           2037 ;	../../../core/net/dhcpc.c:253: u8_t *optptr = &m->options[4];
+   07DE A8*00              2038 	mov	r0,_bp
+   07E0 08                 2039 	inc	r0
+   07E1 E5*00              2040 	mov	a,_bp
+   07E3 24 04              2041 	add	a,#0x04
+   07E5 F9                 2042 	mov	r1,a
+   07E6 74 F0              2043 	mov	a,#0xF0
+   07E8 26                 2044 	add	a,@r0
+   07E9 F7                 2045 	mov	@r1,a
+   07EA E4                 2046 	clr	a
+   07EB 08                 2047 	inc	r0
+   07EC 36                 2048 	addc	a,@r0
+   07ED 09                 2049 	inc	r1
+   07EE F7                 2050 	mov	@r1,a
+   07EF 08                 2051 	inc	r0
+   07F0 09                 2052 	inc	r1
+   07F1 E6                 2053 	mov	a,@r0
+   07F2 F7                 2054 	mov	@r1,a
+                           2055 ;	../../../core/net/dhcpc.c:254: u8_t *end = (u8_t*)uip_appdata + uip_datalen();
+   07F3 90s00r00           2056 	mov	dptr,#_uip_len
+   07F6 E0                 2057 	movx	a,@dptr
+   07F7 FD                 2058 	mov	r5,a
+   07F8 A3                 2059 	inc	dptr
+   07F9 E0                 2060 	movx	a,@dptr
+   07FA FE                 2061 	mov	r6,a
+   07FB ED                 2062 	mov	a,r5
+   07FC 2A                 2063 	add	a,r2
+   07FD FA                 2064 	mov	r2,a
+   07FE EE                 2065 	mov	a,r6
+   07FF 3B                 2066 	addc	a,r3
+   0800 FB                 2067 	mov	r3,a
+                           2068 ;	../../../core/net/dhcpc.c:256: if(m->op == DHCP_REPLY &&
+   0801 A8*00              2069 	mov	r0,_bp
+   0803 08                 2070 	inc	r0
+   0804 86 82              2071 	mov	dpl,@r0
+   0806 08                 2072 	inc	r0
+   0807 86 83              2073 	mov	dph,@r0
+   0809 08                 2074 	inc	r0
+   080A 86 F0              2075 	mov	b,@r0
+   080C 12s00r00           2076 	lcall	__gptrget
+   080F FD                 2077 	mov	r5,a
+   0810 BD 02 02           2078 	cjne	r5,#0x02,00121$
+   0813 80 03              2079 	sjmp	00122$
+   0815                    2080 00121$:
+   0815 02s09r44           2081 	ljmp	00110$
+   0818                    2082 00122$:
+                           2083 ;	../../../core/net/dhcpc.c:257: memcmp(m->xid, &xid, sizeof(xid)) == 0 &&
+   0818 A8*00              2084 	mov	r0,_bp
+   081A 08                 2085 	inc	r0
+   081B 74 04              2086 	mov	a,#0x04
+   081D 26                 2087 	add	a,@r0
+   081E FD                 2088 	mov	r5,a
+   081F E4                 2089 	clr	a
+   0820 08                 2090 	inc	r0
+   0821 36                 2091 	addc	a,@r0
+   0822 FE                 2092 	mov	r6,a
+   0823 08                 2093 	inc	r0
+   0824 86 07              2094 	mov	ar7,@r0
+   0826 C0 02              2095 	push	ar2
+   0828 C0 03              2096 	push	ar3
+   082A C0 04              2097 	push	ar4
+   082C 74 04              2098 	mov	a,#0x04
+   082E C0 E0              2099 	push	acc
+   0830 E4                 2100 	clr	a
+   0831 C0 E0              2101 	push	acc
+   0833 74r31              2102 	mov	a,#_xid
+   0835 C0 E0              2103 	push	acc
+   0837 74s00              2104 	mov	a,#(_xid >> 8)
+   0839 C0 E0              2105 	push	acc
+   083B E4                 2106 	clr	a
+   083C C0 E0              2107 	push	acc
+   083E 8D 82              2108 	mov	dpl,r5
+   0840 8E 83              2109 	mov	dph,r6
+   0842 8F F0              2110 	mov	b,r7
+   0844 12s00r00           2111 	lcall	_memcmp
+   0847 AD 82              2112 	mov	r5,dpl
+   0849 AE 83              2113 	mov	r6,dph
+   084B E5 81              2114 	mov	a,sp
+   084D 24 FB              2115 	add	a,#0xfb
+   084F F5 81              2116 	mov	sp,a
+   0851 D0 04              2117 	pop	ar4
+   0853 D0 03              2118 	pop	ar3
+   0855 D0 02              2119 	pop	ar2
+   0857 ED                 2120 	mov	a,r5
+   0858 4E                 2121 	orl	a,r6
+   0859 60 03              2122 	jz	00123$
+   085B 02s09r44           2123 	ljmp	00110$
+   085E                    2124 00123$:
+                           2125 ;	../../../core/net/dhcpc.c:258: memcmp(m->chaddr, s.mac_addr, s.mac_len) == 0) {
+   085E C0 02              2126 	push	ar2
+   0860 C0 03              2127 	push	ar3
+   0862 C0 04              2128 	push	ar4
+   0864 90s00r17           2129 	mov	dptr,#(_s + 0x0017)
+   0867 E5*00              2130 	mov	a,_bp
+   0869 24 07              2131 	add	a,#0x07
+   086B F8                 2132 	mov	r0,a
+   086C E0                 2133 	movx	a,@dptr
+   086D F6                 2134 	mov	@r0,a
+   086E A3                 2135 	inc	dptr
+   086F E0                 2136 	movx	a,@dptr
+   0870 08                 2137 	inc	r0
+   0871 F6                 2138 	mov	@r0,a
+   0872 90s00r14           2139 	mov	dptr,#(_s + 0x0014)
+   0875 E0                 2140 	movx	a,@dptr
+   0876 FF                 2141 	mov	r7,a
+   0877 A3                 2142 	inc	dptr
+   0878 E0                 2143 	movx	a,@dptr
+   0879 FA                 2144 	mov	r2,a
+   087A A3                 2145 	inc	dptr
+   087B E0                 2146 	movx	a,@dptr
+   087C FB                 2147 	mov	r3,a
+   087D A8*00              2148 	mov	r0,_bp
+   087F 08                 2149 	inc	r0
+   0880 74 1C              2150 	mov	a,#0x1C
+   0882 26                 2151 	add	a,@r0
+   0883 FC                 2152 	mov	r4,a
+   0884 E4                 2153 	clr	a
+   0885 08                 2154 	inc	r0
+   0886 36                 2155 	addc	a,@r0
+   0887 FD                 2156 	mov	r5,a
+   0888 08                 2157 	inc	r0
+   0889 86 06              2158 	mov	ar6,@r0
+   088B C0 04              2159 	push	ar4
+   088D E5*00              2160 	mov	a,_bp
+   088F 24 07              2161 	add	a,#0x07
+   0891 F8                 2162 	mov	r0,a
+   0892 E6                 2163 	mov	a,@r0
+   0893 C0 E0              2164 	push	acc
+   0895 08                 2165 	inc	r0
+   0896 E6                 2166 	mov	a,@r0
+   0897 C0 E0              2167 	push	acc
+   0899 C0 07              2168 	push	ar7
+   089B C0 02              2169 	push	ar2
+   089D C0 03              2170 	push	ar3
+   089F 8C 82              2171 	mov	dpl,r4
+   08A1 8D 83              2172 	mov	dph,r5
+   08A3 8E F0              2173 	mov	b,r6
+   08A5 12s00r00           2174 	lcall	_memcmp
+   08A8 AA 82              2175 	mov	r2,dpl
+   08AA AB 83              2176 	mov	r3,dph
+   08AC E5 81              2177 	mov	a,sp
+   08AE 24 FB              2178 	add	a,#0xfb
+   08B0 F5 81              2179 	mov	sp,a
+   08B2 D0 04              2180 	pop	ar4
+   08B4 EA                 2181 	mov	a,r2
+   08B5 4B                 2182 	orl	a,r3
+   08B6 D0 04              2183 	pop	ar4
+   08B8 D0 03              2184 	pop	ar3
+   08BA D0 02              2185 	pop	ar2
+   08BC 60 03              2186 	jz	00124$
+   08BE 02s09r44           2187 	ljmp	00110$
+   08C1                    2188 00124$:
+                           2189 ;	../../../core/net/dhcpc.c:259: while(optptr < end) {
+   08C1                    2190 00106$:
+   08C1 E5*00              2191 	mov	a,_bp
+   08C3 24 04              2192 	add	a,#0x04
+   08C5 F8                 2193 	mov	r0,a
+   08C6 C3                 2194 	clr	c
+   08C7 E6                 2195 	mov	a,@r0
+   08C8 9A                 2196 	subb	a,r2
+   08C9 08                 2197 	inc	r0
+   08CA E6                 2198 	mov	a,@r0
+   08CB 9B                 2199 	subb	a,r3
+   08CC 08                 2200 	inc	r0
+   08CD E6                 2201 	mov	a,@r0
+   08CE 9C                 2202 	subb	a,r4
+   08CF 40 03              2203 	jc	00125$
+   08D1 02s09r44           2204 	ljmp	00110$
+   08D4                    2205 00125$:
+                           2206 ;	../../../core/net/dhcpc.c:260: if(*optptr == DHCP_OPTION_MSG_TYPE) {
+   08D4 E5*00              2207 	mov	a,_bp
+   08D6 24 04              2208 	add	a,#0x04
+   08D8 F8                 2209 	mov	r0,a
+   08D9 86 82              2210 	mov	dpl,@r0
+   08DB 08                 2211 	inc	r0
+   08DC 86 83              2212 	mov	dph,@r0
+   08DE 08                 2213 	inc	r0
+   08DF 86 F0              2214 	mov	b,@r0
+   08E1 12s00r00           2215 	lcall	__gptrget
+   08E4 FD                 2216 	mov	r5,a
+   08E5 BD 35 22           2217 	cjne	r5,#0x35,00104$
+                           2218 ;	../../../core/net/dhcpc.c:261: return *(optptr + 2);
+   08E8 E5*00              2219 	mov	a,_bp
+   08EA 24 04              2220 	add	a,#0x04
+   08EC F8                 2221 	mov	r0,a
+   08ED 74 02              2222 	mov	a,#0x02
+   08EF 26                 2223 	add	a,@r0
+   08F0 FA                 2224 	mov	r2,a
+   08F1 E4                 2225 	clr	a
+   08F2 08                 2226 	inc	r0
+   08F3 36                 2227 	addc	a,@r0
+   08F4 FB                 2228 	mov	r3,a
+   08F5 08                 2229 	inc	r0
+   08F6 86 04              2230 	mov	ar4,@r0
+   08F8 8A 82              2231 	mov	dpl,r2
+   08FA 8B 83              2232 	mov	dph,r3
+   08FC 8C F0              2233 	mov	b,r4
+   08FE 12s00r00           2234 	lcall	__gptrget
+   0901 FE                 2235 	mov	r6,a
+   0902 7F 00              2236 	mov	r7,#0x00
+   0904 8E 82              2237 	mov	dpl,r6
+   0906 8F 83              2238 	mov	dph,r7
+   0908 80 3D              2239 	sjmp	00113$
+   090A                    2240 00104$:
+                           2241 ;	../../../core/net/dhcpc.c:262: } else if (*optptr == DHCP_OPTION_END) {
+   090A BD FF 05           2242 	cjne	r5,#0xFF,00105$
+                           2243 ;	../../../core/net/dhcpc.c:263: return -1;
+   090D 90 FF FF           2244 	mov	dptr,#0xFFFF
+   0910 80 35              2245 	sjmp	00113$
+   0912                    2246 00105$:
+                           2247 ;	../../../core/net/dhcpc.c:265: optptr += optptr[1] + 2;
+   0912 E5*00              2248 	mov	a,_bp
+   0914 24 04              2249 	add	a,#0x04
+   0916 F8                 2250 	mov	r0,a
+   0917 74 01              2251 	mov	a,#0x01
+   0919 26                 2252 	add	a,@r0
+   091A FD                 2253 	mov	r5,a
+   091B E4                 2254 	clr	a
+   091C 08                 2255 	inc	r0
+   091D 36                 2256 	addc	a,@r0
+   091E FE                 2257 	mov	r6,a
+   091F 08                 2258 	inc	r0
+   0920 86 07              2259 	mov	ar7,@r0
+   0922 8D 82              2260 	mov	dpl,r5
+   0924 8E 83              2261 	mov	dph,r6
+   0926 8F F0              2262 	mov	b,r7
+   0928 12s00r00           2263 	lcall	__gptrget
+   092B FD                 2264 	mov	r5,a
+   092C 7E 00              2265 	mov	r6,#0x00
+   092E 74 02              2266 	mov	a,#0x02
+   0930 2D                 2267 	add	a,r5
+   0931 FD                 2268 	mov	r5,a
+   0932 E4                 2269 	clr	a
+   0933 3E                 2270 	addc	a,r6
+   0934 FE                 2271 	mov	r6,a
+   0935 E5*00              2272 	mov	a,_bp
+   0937 24 04              2273 	add	a,#0x04
+   0939 F8                 2274 	mov	r0,a
+   093A ED                 2275 	mov	a,r5
+   093B 26                 2276 	add	a,@r0
+   093C F6                 2277 	mov	@r0,a
+   093D EE                 2278 	mov	a,r6
+   093E 08                 2279 	inc	r0
+   093F 36                 2280 	addc	a,@r0
+   0940 F6                 2281 	mov	@r0,a
+   0941 02s08rC1           2282 	ljmp	00106$
+   0944                    2283 00110$:
+                           2284 ;	../../../core/net/dhcpc.c:268: return -1;
+   0944 90 FF FF           2285 	mov	dptr,#0xFFFF
+   0947                    2286 00113$:
+   0947 85*00 81           2287 	mov	sp,_bp
+   094A D0*00              2288 	pop	_bp
+   094C 22                 2289 	ret
+                           2290 ;------------------------------------------------------------
+                           2291 ;Allocation info for local variables in function 'handle_dhcp'
+                           2292 ;------------------------------------------------------------
+                           2293 ;data                      Allocated to stack - offset -5
+                           2294 ;ev                        Allocated to registers r2 
+                           2295 ;PT_YIELD_FLAG             Allocated to registers r3 
+                           2296 ;ticks                     Allocated to registers r3 r7 
+                           2297 ;ticks                     Allocated to registers r3 r7 
+                           2298 ;sloc0                     Allocated to stack - offset 1
+                           2299 ;------------------------------------------------------------
+                           2300 ;	../../../core/net/dhcpc.c:272: PT_THREAD(handle_dhcp(process_event_t ev, void *data))
+                           2301 ;	-----------------------------------------
+                           2302 ;	 function handle_dhcp
+                           2303 ;	-----------------------------------------
+   094D                    2304 _handle_dhcp:
+   094D C0*00              2305 	push	_bp
+   094F E5 81              2306 	mov	a,sp
+   0951 F5*00              2307 	mov	_bp,a
+   0953 24 04              2308 	add	a,#0x04
+   0955 F5 81              2309 	mov	sp,a
+   0957 AA 82              2310 	mov	r2,dpl
+                           2311 ;	../../../core/net/dhcpc.c:274: PT_BEGIN(&s.pt);
+   0959 7B 01              2312 	mov	r3,#0x01
+   095B 90s00r00           2313 	mov	dptr,#_s
+   095E E0                 2314 	movx	a,@dptr
+   095F FC                 2315 	mov	r4,a
+   0960 A3                 2316 	inc	dptr
+   0961 E0                 2317 	movx	a,@dptr
+   0962 FD                 2318 	mov	r5,a
+   0963 BC 00 05           2319 	cjne	r4,#0x00,00253$
+   0966 BD 00 02           2320 	cjne	r5,#0x00,00253$
+   0969 80 42              2321 	sjmp	00102$
+   096B                    2322 00253$:
+   096B BC 1B 06           2323 	cjne	r4,#0x1B,00254$
+   096E BD 01 03           2324 	cjne	r5,#0x01,00254$
+   0971 02s0Ar05           2325 	ljmp	00103$
+   0974                    2326 00254$:
+   0974 BC 20 06           2327 	cjne	r4,#0x20,00255$
+   0977 BD 01 03           2328 	cjne	r5,#0x01,00255$
+   097A 02s0Ar3E           2329 	ljmp	00112$
+   097D                    2330 00255$:
+   097D BC 33 06           2331 	cjne	r4,#0x33,00256$
+   0980 BD 01 03           2332 	cjne	r5,#0x01,00256$
+   0983 02s0Br1A           2333 	ljmp	00131$
+   0986                    2334 00256$:
+   0986 BC 38 06           2335 	cjne	r4,#0x38,00257$
+   0989 BD 01 03           2336 	cjne	r5,#0x01,00257$
+   098C 02s0Br53           2337 	ljmp	00140$
+   098F                    2338 00257$:
+   098F BC 65 06           2339 	cjne	r4,#0x65,00258$
+   0992 BD 01 03           2340 	cjne	r5,#0x01,00258$
+   0995 02s0Dr0C           2341 	ljmp	00163$
+   0998                    2342 00258$:
+   0998 BC 76 06           2343 	cjne	r4,#0x76,00259$
+   099B BD 01 03           2344 	cjne	r5,#0x01,00259$
+   099E 02s0DrFA           2345 	ljmp	00176$
+   09A1                    2346 00259$:
+   09A1 BC 7D 06           2347 	cjne	r4,#0x7D,00260$
+   09A4 BD 01 03           2348 	cjne	r5,#0x01,00260$
+   09A7 02s0Er9F           2349 	ljmp	00185$
+   09AA                    2350 00260$:
+   09AA 02s0Fr19           2351 	ljmp	00201$
+                           2352 ;	../../../core/net/dhcpc.c:276: init:
+   09AD                    2353 00102$:
+                           2354 ;	../../../core/net/dhcpc.c:277: xid++;
+   09AD 90s00r31           2355 	mov	dptr,#_xid
+   09B0 E0                 2356 	movx	a,@dptr
+   09B1 24 01              2357 	add	a,#0x01
+   09B3 F0                 2358 	movx	@dptr,a
+   09B4 A3                 2359 	inc	dptr
+   09B5 E0                 2360 	movx	a,@dptr
+   09B6 34 00              2361 	addc	a,#0x00
+   09B8 F0                 2362 	movx	@dptr,a
+   09B9 A3                 2363 	inc	dptr
+   09BA E0                 2364 	movx	a,@dptr
+   09BB 34 00              2365 	addc	a,#0x00
+   09BD F0                 2366 	movx	@dptr,a
+   09BE A3                 2367 	inc	dptr
+   09BF E0                 2368 	movx	a,@dptr
+   09C0 34 00              2369 	addc	a,#0x00
+   09C2 F0                 2370 	movx	@dptr,a
+                           2371 ;	../../../core/net/dhcpc.c:278: s.state = STATE_SENDING;
+   09C3 90s00r02           2372 	mov	dptr,#(_s + 0x0002)
+   09C6 74 01              2373 	mov	a,#0x01
+   09C8 F0                 2374 	movx	@dptr,a
+                           2375 ;	../../../core/net/dhcpc.c:279: s.ticks = CLOCK_SECOND;
+   09C9 90s00r10           2376 	mov	dptr,#(_s + 0x0010)
+   09CC 74 80              2377 	mov	a,#0x80
+   09CE F0                 2378 	movx	@dptr,a
+   09CF A3                 2379 	inc	dptr
+   09D0 E4                 2380 	clr	a
+   09D1 F0                 2381 	movx	@dptr,a
+   09D2 A3                 2382 	inc	dptr
+   09D3 F0                 2383 	movx	@dptr,a
+   09D4 A3                 2384 	inc	dptr
+   09D5 F0                 2385 	movx	@dptr,a
+                           2386 ;	../../../core/net/dhcpc.c:281: while(ev != tcpip_event) {
+   09D6                    2387 00109$:
+   09D6 90s00r00           2388 	mov	dptr,#_tcpip_event
+   09D9 E0                 2389 	movx	a,@dptr
+   09DA FC                 2390 	mov	r4,a
+   09DB EA                 2391 	mov	a,r2
+   09DC B5 04 02           2392 	cjne	a,ar4,00261$
+   09DF 80 2D              2393 	sjmp	00111$
+   09E1                    2394 00261$:
+                           2395 ;	../../../core/net/dhcpc.c:282: tcpip_poll_udp(s.conn);
+   09E1 90s00r03           2396 	mov	dptr,#(_s + 0x0003)
+   09E4 E0                 2397 	movx	a,@dptr
+   09E5 FC                 2398 	mov	r4,a
+   09E6 A3                 2399 	inc	dptr
+   09E7 E0                 2400 	movx	a,@dptr
+   09E8 FD                 2401 	mov	r5,a
+   09E9 A3                 2402 	inc	dptr
+   09EA E0                 2403 	movx	a,@dptr
+   09EB FE                 2404 	mov	r6,a
+   09EC 8C 82              2405 	mov	dpl,r4
+   09EE 8D 83              2406 	mov	dph,r5
+   09F0 8E F0              2407 	mov	b,r6
+   09F2 C0 02              2408 	push	ar2
+   09F4 12s00r00           2409 	lcall	_tcpip_poll_udp
+   09F7 D0 02              2410 	pop	ar2
+                           2411 ;	../../../core/net/dhcpc.c:283: PT_YIELD(&s.pt);
+   09F9 7B 00              2412 	mov	r3,#0x00
+   09FB 90s00r00           2413 	mov	dptr,#_s
+   09FE 74 1B              2414 	mov	a,#0x1B
+   0A00 F0                 2415 	movx	@dptr,a
+   0A01 A3                 2416 	inc	dptr
+   0A02 74 01              2417 	mov	a,#0x01
+   0A04 F0                 2418 	movx	@dptr,a
+   0A05                    2419 00103$:
+   0A05 EB                 2420 	mov	a,r3
+   0A06 70 CE              2421 	jnz	00109$
+   0A08 75 82 01           2422 	mov	dpl,#0x01
+   0A0B 02s0Fr23           2423 	ljmp	00202$
+   0A0E                    2424 00111$:
+                           2425 ;	../../../core/net/dhcpc.c:285: send_discover();
+   0A0E C0 02              2426 	push	ar2
+   0A10 12s03r92           2427 	lcall	_send_discover
+                           2428 ;	../../../core/net/dhcpc.c:286: etimer_set(&s.etimer, s.ticks);
+   0A13 90s00r10           2429 	mov	dptr,#(_s + 0x0010)
+   0A16 E0                 2430 	movx	a,@dptr
+   0A17 FC                 2431 	mov	r4,a
+   0A18 A3                 2432 	inc	dptr
+   0A19 E0                 2433 	movx	a,@dptr
+   0A1A FD                 2434 	mov	r5,a
+   0A1B A3                 2435 	inc	dptr
+   0A1C E0                 2436 	movx	a,@dptr
+   0A1D A3                 2437 	inc	dptr
+   0A1E E0                 2438 	movx	a,@dptr
+   0A1F C0 04              2439 	push	ar4
+   0A21 C0 05              2440 	push	ar5
+   0A23 90s00r06           2441 	mov	dptr,#(_s + 0x0006)
+   0A26 75 F0 00           2442 	mov	b,#0x00
+   0A29 12s00r00           2443 	lcall	_etimer_set
+   0A2C 15 81              2444 	dec	sp
+   0A2E 15 81              2445 	dec	sp
+   0A30 D0 02              2446 	pop	ar2
+                           2447 ;	../../../core/net/dhcpc.c:288: PT_YIELD(&s.pt);
+   0A32                    2448 00115$:
+   0A32 7B 00              2449 	mov	r3,#0x00
+   0A34 90s00r00           2450 	mov	dptr,#_s
+   0A37 74 20              2451 	mov	a,#0x20
+   0A39 F0                 2452 	movx	@dptr,a
+   0A3A A3                 2453 	inc	dptr
+   0A3B 74 01              2454 	mov	a,#0x01
+   0A3D F0                 2455 	movx	@dptr,a
+   0A3E                    2456 00112$:
+   0A3E EB                 2457 	mov	a,r3
+   0A3F 70 06              2458 	jnz	00116$
+   0A41 75 82 01           2459 	mov	dpl,#0x01
+   0A44 02s0Fr23           2460 	ljmp	00202$
+   0A47                    2461 00116$:
+                           2462 ;	../../../core/net/dhcpc.c:289: if(ev == tcpip_event && uip_newdata() && msg_for_me() == DHCPOFFER) {
+   0A47 90s00r00           2463 	mov	dptr,#_tcpip_event
+   0A4A E0                 2464 	movx	a,@dptr
+   0A4B FC                 2465 	mov	r4,a
+   0A4C EA                 2466 	mov	a,r2
+   0A4D B5 04 28           2467 	cjne	a,ar4,00123$
+   0A50 90s00r00           2468 	mov	dptr,#_uip_flags
+   0A53 E0                 2469 	movx	a,@dptr
+   0A54 FC                 2470 	mov	r4,a
+   0A55 30 E1 20           2471 	jnb	acc.1,00123$
+   0A58 C0 02              2472 	push	ar2
+   0A5A 12s07rB8           2473 	lcall	_msg_for_me
+   0A5D AC 82              2474 	mov	r4,dpl
+   0A5F AD 83              2475 	mov	r5,dph
+   0A61 D0 02              2476 	pop	ar2
+   0A63 BC 02 12           2477 	cjne	r4,#0x02,00123$
+   0A66 BD 00 0F           2478 	cjne	r5,#0x00,00123$
+                           2479 ;	../../../core/net/dhcpc.c:290: parse_msg();
+   0A69 C0 02              2480 	push	ar2
+   0A6B 12s06r92           2481 	lcall	_parse_msg
+   0A6E D0 02              2482 	pop	ar2
+                           2483 ;	../../../core/net/dhcpc.c:291: s.state = STATE_OFFER_RECEIVED;
+   0A70 90s00r02           2484 	mov	dptr,#(_s + 0x0002)
+   0A73 74 02              2485 	mov	a,#0x02
+   0A75 F0                 2486 	movx	@dptr,a
+                           2487 ;	../../../core/net/dhcpc.c:292: goto selecting;
+   0A76 80 50              2488 	sjmp	00130$
+   0A78                    2489 00123$:
+                           2490 ;	../../../core/net/dhcpc.c:294: } while (!etimer_expired(&s.etimer));
+   0A78 90s00r06           2491 	mov	dptr,#(_s + 0x0006)
+   0A7B 75 F0 00           2492 	mov	b,#0x00
+   0A7E C0 02              2493 	push	ar2
+   0A80 12s00r00           2494 	lcall	_etimer_expired
+   0A83 E5 82              2495 	mov	a,dpl
+   0A85 85 83 F0           2496 	mov	b,dph
+   0A88 D0 02              2497 	pop	ar2
+   0A8A 45 F0              2498 	orl	a,b
+   0A8C 60 A4              2499 	jz	00115$
+                           2500 ;	../../../core/net/dhcpc.c:296: if(s.ticks < CLOCK_SECOND * 60) {
+   0A8E 90s00r10           2501 	mov	dptr,#(_s + 0x0010)
+   0A91 E0                 2502 	movx	a,@dptr
+   0A92 FC                 2503 	mov	r4,a
+   0A93 A3                 2504 	inc	dptr
+   0A94 E0                 2505 	movx	a,@dptr
+   0A95 FD                 2506 	mov	r5,a
+   0A96 A3                 2507 	inc	dptr
+   0A97 E0                 2508 	movx	a,@dptr
+   0A98 FE                 2509 	mov	r6,a
+   0A99 A3                 2510 	inc	dptr
+   0A9A E0                 2511 	movx	a,@dptr
+   0A9B FF                 2512 	mov	r7,a
+   0A9C C3                 2513 	clr	c
+   0A9D ED                 2514 	mov	a,r5
+   0A9E 94 1E              2515 	subb	a,#0x1E
+   0AA0 EE                 2516 	mov	a,r6
+   0AA1 94 00              2517 	subb	a,#0x00
+   0AA3 EF                 2518 	mov	a,r7
+   0AA4 94 00              2519 	subb	a,#0x00
+   0AA6 40 03              2520 	jc	00270$
+   0AA8 02s09rD6           2521 	ljmp	00109$
+   0AAB                    2522 00270$:
+                           2523 ;	../../../core/net/dhcpc.c:297: s.ticks *= 2;
+   0AAB EC                 2524 	mov	a,r4
+   0AAC 2C                 2525 	add	a,r4
+   0AAD FC                 2526 	mov	r4,a
+   0AAE ED                 2527 	mov	a,r5
+   0AAF 33                 2528 	rlc	a
+   0AB0 FD                 2529 	mov	r5,a
+   0AB1 EE                 2530 	mov	a,r6
+   0AB2 33                 2531 	rlc	a
+   0AB3 FE                 2532 	mov	r6,a
+   0AB4 EF                 2533 	mov	a,r7
+   0AB5 33                 2534 	rlc	a
+   0AB6 FF                 2535 	mov	r7,a
+   0AB7 90s00r10           2536 	mov	dptr,#(_s + 0x0010)
+   0ABA EC                 2537 	mov	a,r4
+   0ABB F0                 2538 	movx	@dptr,a
+   0ABC A3                 2539 	inc	dptr
+   0ABD ED                 2540 	mov	a,r5
+   0ABE F0                 2541 	movx	@dptr,a
+   0ABF A3                 2542 	inc	dptr
+   0AC0 EE                 2543 	mov	a,r6
+   0AC1 F0                 2544 	movx	@dptr,a
+   0AC2 A3                 2545 	inc	dptr
+   0AC3 EF                 2546 	mov	a,r7
+   0AC4 F0                 2547 	movx	@dptr,a
+   0AC5 02s09rD6           2548 	ljmp	00109$
+                           2549 ;	../../../core/net/dhcpc.c:301: selecting:
+   0AC8                    2550 00130$:
+                           2551 ;	../../../core/net/dhcpc.c:302: xid++;
+   0AC8 90s00r31           2552 	mov	dptr,#_xid
+   0ACB E0                 2553 	movx	a,@dptr
+   0ACC 24 01              2554 	add	a,#0x01
+   0ACE F0                 2555 	movx	@dptr,a
+   0ACF A3                 2556 	inc	dptr
+   0AD0 E0                 2557 	movx	a,@dptr
+   0AD1 34 00              2558 	addc	a,#0x00
+   0AD3 F0                 2559 	movx	@dptr,a
+   0AD4 A3                 2560 	inc	dptr
+   0AD5 E0                 2561 	movx	a,@dptr
+   0AD6 34 00              2562 	addc	a,#0x00
+   0AD8 F0                 2563 	movx	@dptr,a
+   0AD9 A3                 2564 	inc	dptr
+   0ADA E0                 2565 	movx	a,@dptr
+   0ADB 34 00              2566 	addc	a,#0x00
+   0ADD F0                 2567 	movx	@dptr,a
+                           2568 ;	../../../core/net/dhcpc.c:303: s.ticks = CLOCK_SECOND;
+   0ADE 90s00r10           2569 	mov	dptr,#(_s + 0x0010)
+   0AE1 74 80              2570 	mov	a,#0x80
+   0AE3 F0                 2571 	movx	@dptr,a
+   0AE4 A3                 2572 	inc	dptr
+   0AE5 E4                 2573 	clr	a
+   0AE6 F0                 2574 	movx	@dptr,a
+   0AE7 A3                 2575 	inc	dptr
+   0AE8 F0                 2576 	movx	@dptr,a
+   0AE9 A3                 2577 	inc	dptr
+   0AEA F0                 2578 	movx	@dptr,a
+                           2579 ;	../../../core/net/dhcpc.c:305: while(ev != tcpip_event) {
+   0AEB                    2580 00137$:
+   0AEB 90s00r00           2581 	mov	dptr,#_tcpip_event
+   0AEE E0                 2582 	movx	a,@dptr
+   0AEF FC                 2583 	mov	r4,a
+   0AF0 EA                 2584 	mov	a,r2
+   0AF1 B5 04 02           2585 	cjne	a,ar4,00271$
+   0AF4 80 2D              2586 	sjmp	00139$
+   0AF6                    2587 00271$:
+                           2588 ;	../../../core/net/dhcpc.c:306: tcpip_poll_udp(s.conn);
+   0AF6 90s00r03           2589 	mov	dptr,#(_s + 0x0003)
+   0AF9 E0                 2590 	movx	a,@dptr
+   0AFA FC                 2591 	mov	r4,a
+   0AFB A3                 2592 	inc	dptr
+   0AFC E0                 2593 	movx	a,@dptr
+   0AFD FD                 2594 	mov	r5,a
+   0AFE A3                 2595 	inc	dptr
+   0AFF E0                 2596 	movx	a,@dptr
+   0B00 FE                 2597 	mov	r6,a
+   0B01 8C 82              2598 	mov	dpl,r4
+   0B03 8D 83              2599 	mov	dph,r5
+   0B05 8E F0              2600 	mov	b,r6
+   0B07 C0 02              2601 	push	ar2
+   0B09 12s00r00           2602 	lcall	_tcpip_poll_udp
+   0B0C D0 02              2603 	pop	ar2
+                           2604 ;	../../../core/net/dhcpc.c:307: PT_YIELD(&s.pt);
+   0B0E 7B 00              2605 	mov	r3,#0x00
+   0B10 90s00r00           2606 	mov	dptr,#_s
+   0B13 74 33              2607 	mov	a,#0x33
+   0B15 F0                 2608 	movx	@dptr,a
+   0B16 A3                 2609 	inc	dptr
+   0B17 74 01              2610 	mov	a,#0x01
+   0B19 F0                 2611 	movx	@dptr,a
+   0B1A                    2612 00131$:
+   0B1A EB                 2613 	mov	a,r3
+   0B1B 70 CE              2614 	jnz	00137$
+   0B1D 75 82 01           2615 	mov	dpl,#0x01
+   0B20 02s0Fr23           2616 	ljmp	00202$
+   0B23                    2617 00139$:
+                           2618 ;	../../../core/net/dhcpc.c:309: send_request();
+   0B23 C0 02              2619 	push	ar2
+   0B25 12s04r1B           2620 	lcall	_send_request
+                           2621 ;	../../../core/net/dhcpc.c:310: etimer_set(&s.etimer, s.ticks);
+   0B28 90s00r10           2622 	mov	dptr,#(_s + 0x0010)
+   0B2B E0                 2623 	movx	a,@dptr
+   0B2C FC                 2624 	mov	r4,a
+   0B2D A3                 2625 	inc	dptr
+   0B2E E0                 2626 	movx	a,@dptr
+   0B2F FD                 2627 	mov	r5,a
+   0B30 A3                 2628 	inc	dptr
+   0B31 E0                 2629 	movx	a,@dptr
+   0B32 A3                 2630 	inc	dptr
+   0B33 E0                 2631 	movx	a,@dptr
+   0B34 C0 04              2632 	push	ar4
+   0B36 C0 05              2633 	push	ar5
+   0B38 90s00r06           2634 	mov	dptr,#(_s + 0x0006)
+   0B3B 75 F0 00           2635 	mov	b,#0x00
+   0B3E 12s00r00           2636 	lcall	_etimer_set
+   0B41 15 81              2637 	dec	sp
+   0B43 15 81              2638 	dec	sp
+   0B45 D0 02              2639 	pop	ar2
+                           2640 ;	../../../core/net/dhcpc.c:312: PT_YIELD(&s.pt);
+   0B47                    2641 00143$:
+   0B47 7B 00              2642 	mov	r3,#0x00
+   0B49 90s00r00           2643 	mov	dptr,#_s
+   0B4C 74 38              2644 	mov	a,#0x38
+   0B4E F0                 2645 	movx	@dptr,a
+   0B4F A3                 2646 	inc	dptr
+   0B50 74 01              2647 	mov	a,#0x01
+   0B52 F0                 2648 	movx	@dptr,a
+   0B53                    2649 00140$:
+   0B53 EB                 2650 	mov	a,r3
+   0B54 70 06              2651 	jnz	00144$
+   0B56 75 82 01           2652 	mov	dpl,#0x01
+   0B59 02s0Fr23           2653 	ljmp	00202$
+   0B5C                    2654 00144$:
+                           2655 ;	../../../core/net/dhcpc.c:313: if(ev == tcpip_event && uip_newdata() && msg_for_me() == DHCPACK) {
+   0B5C 90s00r00           2656 	mov	dptr,#_tcpip_event
+   0B5F E0                 2657 	movx	a,@dptr
+   0B60 FC                 2658 	mov	r4,a
+   0B61 EA                 2659 	mov	a,r2
+   0B62 B5 04 28           2660 	cjne	a,ar4,00151$
+   0B65 90s00r00           2661 	mov	dptr,#_uip_flags
+   0B68 E0                 2662 	movx	a,@dptr
+   0B69 FC                 2663 	mov	r4,a
+   0B6A 30 E1 20           2664 	jnb	acc.1,00151$
+   0B6D C0 02              2665 	push	ar2
+   0B6F 12s07rB8           2666 	lcall	_msg_for_me
+   0B72 AC 82              2667 	mov	r4,dpl
+   0B74 AD 83              2668 	mov	r5,dph
+   0B76 D0 02              2669 	pop	ar2
+   0B78 BC 05 12           2670 	cjne	r4,#0x05,00151$
+   0B7B BD 00 0F           2671 	cjne	r5,#0x00,00151$
+                           2672 ;	../../../core/net/dhcpc.c:314: parse_msg();
+   0B7E C0 02              2673 	push	ar2
+   0B80 12s06r92           2674 	lcall	_parse_msg
+   0B83 D0 02              2675 	pop	ar2
+                           2676 ;	../../../core/net/dhcpc.c:315: s.state = STATE_CONFIG_RECEIVED;
+   0B85 90s00r02           2677 	mov	dptr,#(_s + 0x0002)
+   0B88 74 03              2678 	mov	a,#0x03
+   0B8A F0                 2679 	movx	@dptr,a
+                           2680 ;	../../../core/net/dhcpc.c:316: goto bound;
+   0B8B 80 5B              2681 	sjmp	00159$
+   0B8D                    2682 00151$:
+                           2683 ;	../../../core/net/dhcpc.c:318: } while (!etimer_expired(&s.etimer));
+   0B8D 90s00r06           2684 	mov	dptr,#(_s + 0x0006)
+   0B90 75 F0 00           2685 	mov	b,#0x00
+   0B93 C0 02              2686 	push	ar2
+   0B95 12s00r00           2687 	lcall	_etimer_expired
+   0B98 E5 82              2688 	mov	a,dpl
+   0B9A 85 83 F0           2689 	mov	b,dph
+   0B9D D0 02              2690 	pop	ar2
+   0B9F 45 F0              2691 	orl	a,b
+   0BA1 60 A4              2692 	jz	00143$
+                           2693 ;	../../../core/net/dhcpc.c:320: if(s.ticks <= CLOCK_SECOND * 10) {
+   0BA3 90s00r10           2694 	mov	dptr,#(_s + 0x0010)
+   0BA6 E0                 2695 	movx	a,@dptr
+   0BA7 FC                 2696 	mov	r4,a
+   0BA8 A3                 2697 	inc	dptr
+   0BA9 E0                 2698 	movx	a,@dptr
+   0BAA FD                 2699 	mov	r5,a
+   0BAB A3                 2700 	inc	dptr
+   0BAC E0                 2701 	movx	a,@dptr
+   0BAD FE                 2702 	mov	r6,a
+   0BAE A3                 2703 	inc	dptr
+   0BAF E0                 2704 	movx	a,@dptr
+   0BB0 FF                 2705 	mov	r7,a
+   0BB1 C3                 2706 	clr	c
+   0BB2 E4                 2707 	clr	a
+   0BB3 9C                 2708 	subb	a,r4
+   0BB4 74 05              2709 	mov	a,#0x05
+   0BB6 9D                 2710 	subb	a,r5
+   0BB7 E4                 2711 	clr	a
+   0BB8 9E                 2712 	subb	a,r6
+   0BB9 E4                 2713 	clr	a
+   0BBA 9F                 2714 	subb	a,r7
+   0BBB 50 03              2715 	jnc	00280$
+   0BBD 02s09rAD           2716 	ljmp	00102$
+   0BC0                    2717 00280$:
+                           2718 ;	../../../core/net/dhcpc.c:321: s.ticks += CLOCK_SECOND;
+   0BC0 74 80              2719 	mov	a,#0x80
+   0BC2 2C                 2720 	add	a,r4
+   0BC3 FC                 2721 	mov	r4,a
+   0BC4 E4                 2722 	clr	a
+   0BC5 3D                 2723 	addc	a,r5
+   0BC6 FD                 2724 	mov	r5,a
+   0BC7 E4                 2725 	clr	a
+   0BC8 3E                 2726 	addc	a,r6
+   0BC9 FE                 2727 	mov	r6,a
+   0BCA E4                 2728 	clr	a
+   0BCB 3F                 2729 	addc	a,r7
+   0BCC FF                 2730 	mov	r7,a
+   0BCD 90s00r10           2731 	mov	dptr,#(_s + 0x0010)
+   0BD0 EC                 2732 	mov	a,r4
+   0BD1 F0                 2733 	movx	@dptr,a
+   0BD2 A3                 2734 	inc	dptr
+   0BD3 ED                 2735 	mov	a,r5
+   0BD4 F0                 2736 	movx	@dptr,a
+   0BD5 A3                 2737 	inc	dptr
+   0BD6 EE                 2738 	mov	a,r6
+   0BD7 F0                 2739 	movx	@dptr,a
+   0BD8 A3                 2740 	inc	dptr
+   0BD9 EF                 2741 	mov	a,r7
+   0BDA F0                 2742 	movx	@dptr,a
+                           2743 ;	../../../core/net/dhcpc.c:325: } while(s.state != STATE_CONFIG_RECEIVED);
+   0BDB 90s00r02           2744 	mov	dptr,#(_s + 0x0002)
+   0BDE E0                 2745 	movx	a,@dptr
+   0BDF FC                 2746 	mov	r4,a
+   0BE0 BC 03 02           2747 	cjne	r4,#0x03,00281$
+   0BE3 80 03              2748 	sjmp	00282$
+   0BE5                    2749 00281$:
+   0BE5 02s0ArEB           2750 	ljmp	00137$
+   0BE8                    2751 00282$:
+                           2752 ;	../../../core/net/dhcpc.c:327: bound:
+   0BE8                    2753 00159$:
+                           2754 ;	../../../core/net/dhcpc.c:338: dhcpc_configured(&s);
+   0BE8 C0 02              2755 	push	ar2
+   0BEA 90s00r00           2756 	mov	dptr,#_s
+   0BED 75 F0 00           2757 	mov	b,#0x00
+   0BF0 C0 02              2758 	push	ar2
+   0BF2 12s00r00           2759 	lcall	_dhcpc_configured
+                           2760 ;	../../../core/net/dhcpc.c:346: s.ticks = (ntohs(s.lease_time[0])*65536ul + ntohs(s.lease_time[1])
+   0BF5 90s00r1D           2761 	mov	dptr,#(_s + 0x001d)
+   0BF8 E0                 2762 	movx	a,@dptr
+   0BF9 FC                 2763 	mov	r4,a
+   0BFA A3                 2764 	inc	dptr
+   0BFB E0                 2765 	movx	a,@dptr
+   0BFC FD                 2766 	mov	r5,a
+   0BFD 8C 82              2767 	mov	dpl,r4
+   0BFF 8D 83              2768 	mov	dph,r5
+   0C01 12s00r00           2769 	lcall	_htons
+   0C04 AC 82              2770 	mov	r4,dpl
+   0C06 AD 83              2771 	mov	r5,dph
+   0C08 D0 02              2772 	pop	ar2
+   0C0A A8*00              2773 	mov	r0,_bp
+   0C0C 08                 2774 	inc	r0
+   0C0D 08                 2775 	inc	r0
+   0C0E 08                 2776 	inc	r0
+   0C0F 08                 2777 	inc	r0
+   0C10 A6 05              2778 	mov	@r0,ar5
+   0C12 18                 2779 	dec	r0
+   0C13 A6 04              2780 	mov	@r0,ar4
+   0C15 18                 2781 	dec	r0
+   0C16 76 00              2782 	mov	@r0,#0x00
+   0C18 18                 2783 	dec	r0
+   0C19 76 00              2784 	mov	@r0,#0x00
+   0C1B 90s00r1F           2785 	mov	dptr,#(_s + 0x001f)
+   0C1E E0                 2786 	movx	a,@dptr
+   0C1F FA                 2787 	mov	r2,a
+   0C20 A3                 2788 	inc	dptr
+   0C21 E0                 2789 	movx	a,@dptr
+   0C22 FC                 2790 	mov	r4,a
+   0C23 8A 82              2791 	mov	dpl,r2
+   0C25 8C 83              2792 	mov	dph,r4
+   0C27 12s00r00           2793 	lcall	_htons
+   0C2A AA 82              2794 	mov	r2,dpl
+   0C2C AC 83              2795 	mov	r4,dph
+   0C2E 7D 00              2796 	mov	r5,#0x00
+   0C30 7E 00              2797 	mov	r6,#0x00
+   0C32 A8*00              2798 	mov	r0,_bp
+   0C34 08                 2799 	inc	r0
+   0C35 EA                 2800 	mov	a,r2
+   0C36 26                 2801 	add	a,@r0
+   0C37 FA                 2802 	mov	r2,a
+   0C38 EC                 2803 	mov	a,r4
+   0C39 08                 2804 	inc	r0
+   0C3A 36                 2805 	addc	a,@r0
+   0C3B FC                 2806 	mov	r4,a
+   0C3C ED                 2807 	mov	a,r5
+   0C3D 08                 2808 	inc	r0
+   0C3E 36                 2809 	addc	a,@r0
+   0C3F FD                 2810 	mov	r5,a
+   0C40 EE                 2811 	mov	a,r6
+   0C41 08                 2812 	inc	r0
+   0C42 36                 2813 	addc	a,@r0
+   0C43 54 01              2814 	anl	a,#0x01
+   0C45 A2 E0              2815 	mov	c,acc.0
+   0C47 CD                 2816 	xch	a,r5
+   0C48 13                 2817 	rrc	a
+   0C49 CD                 2818 	xch	a,r5
+   0C4A 13                 2819 	rrc	a
+   0C4B CD                 2820 	xch	a,r5
+   0C4C FE                 2821 	mov	r6,a
+   0C4D EC                 2822 	mov	a,r4
+   0C4E C3                 2823 	clr	c
+   0C4F 13                 2824 	rrc	a
+   0C50 4D                 2825 	orl	a,r5
+   0C51 FD                 2826 	mov	r5,a
+   0C52 EC                 2827 	mov	a,r4
+   0C53 54 01              2828 	anl	a,#0x01
+   0C55 A2 E0              2829 	mov	c,acc.0
+   0C57 CA                 2830 	xch	a,r2
+   0C58 13                 2831 	rrc	a
+   0C59 CA                 2832 	xch	a,r2
+   0C5A 13                 2833 	rrc	a
+   0C5B CA                 2834 	xch	a,r2
+   0C5C FC                 2835 	mov	r4,a
+   0C5D EE                 2836 	mov	a,r6
+   0C5E C3                 2837 	clr	c
+   0C5F 13                 2838 	rrc	a
+   0C60 FE                 2839 	mov	r6,a
+   0C61 ED                 2840 	mov	a,r5
+   0C62 13                 2841 	rrc	a
+   0C63 FD                 2842 	mov	r5,a
+   0C64 EC                 2843 	mov	a,r4
+   0C65 13                 2844 	rrc	a
+   0C66 FC                 2845 	mov	r4,a
+   0C67 EA                 2846 	mov	a,r2
+   0C68 13                 2847 	rrc	a
+   0C69 90s00r10           2848 	mov	dptr,#(_s + 0x0010)
+   0C6C F0                 2849 	movx	@dptr,a
+   0C6D A3                 2850 	inc	dptr
+   0C6E EC                 2851 	mov	a,r4
+   0C6F F0                 2852 	movx	@dptr,a
+   0C70 A3                 2853 	inc	dptr
+   0C71 ED                 2854 	mov	a,r5
+   0C72 F0                 2855 	movx	@dptr,a
+   0C73 A3                 2856 	inc	dptr
+   0C74 EE                 2857 	mov	a,r6
+   0C75 F0                 2858 	movx	@dptr,a
+                           2859 ;	../../../core/net/dhcpc.c:395: PT_END(&s.pt);
+   0C76 D0 02              2860 	pop	ar2
+                           2861 ;	../../../core/net/dhcpc.c:352: while(s.ticks > 0) {
+   0C78                    2862 00170$:
+   0C78 90s00r10           2863 	mov	dptr,#(_s + 0x0010)
+   0C7B E0                 2864 	movx	a,@dptr
+   0C7C FC                 2865 	mov	r4,a
+   0C7D A3                 2866 	inc	dptr
+   0C7E E0                 2867 	movx	a,@dptr
+   0C7F FD                 2868 	mov	r5,a
+   0C80 A3                 2869 	inc	dptr
+   0C81 E0                 2870 	movx	a,@dptr
+   0C82 FE                 2871 	mov	r6,a
+   0C83 A3                 2872 	inc	dptr
+   0C84 E0                 2873 	movx	a,@dptr
+   0C85 FF                 2874 	mov	r7,a
+   0C86 EC                 2875 	mov	a,r4
+   0C87 4D                 2876 	orl	a,r5
+   0C88 4E                 2877 	orl	a,r6
+   0C89 4F                 2878 	orl	a,r7
+   0C8A 70 03              2879 	jnz	00283$
+   0C8C 02s0Dr2E           2880 	ljmp	00173$
+   0C8F                    2881 00283$:
+                           2882 ;	../../../core/net/dhcpc.c:354: ticks = IMIN(s.ticks, MAX_TICKS);
+   0C8F C3                 2883 	clr	c
+   0C90 EC                 2884 	mov	a,r4
+   0C91 94 FF              2885 	subb	a,#0xFF
+   0C93 ED                 2886 	mov	a,r5
+   0C94 94 7F              2887 	subb	a,#0x7F
+   0C96 EE                 2888 	mov	a,r6
+   0C97 94 00              2889 	subb	a,#0x00
+   0C99 EF                 2890 	mov	a,r7
+   0C9A 94 00              2891 	subb	a,#0x00
+   0C9C 40 08              2892 	jc	00205$
+   0C9E 7C FF              2893 	mov	r4,#0xFF
+   0CA0 7D 7F              2894 	mov	r5,#0x7F
+   0CA2 7E 00              2895 	mov	r6,#0x00
+   0CA4 7F 00              2896 	mov	r7,#0x00
+   0CA6                    2897 00205$:
+   0CA6 C0 02              2898 	push	ar2
+   0CA8 8C 03              2899 	mov	ar3,r4
+   0CAA 8D 07              2900 	mov	ar7,r5
+                           2901 ;	../../../core/net/dhcpc.c:355: s.ticks -= ticks;
+   0CAC 90s00r10           2902 	mov	dptr,#(_s + 0x0010)
+   0CAF A8*00              2903 	mov	r0,_bp
+   0CB1 08                 2904 	inc	r0
+   0CB2 E0                 2905 	movx	a,@dptr
+   0CB3 F6                 2906 	mov	@r0,a
+   0CB4 A3                 2907 	inc	dptr
+   0CB5 E0                 2908 	movx	a,@dptr
+   0CB6 08                 2909 	inc	r0
+   0CB7 F6                 2910 	mov	@r0,a
+   0CB8 A3                 2911 	inc	dptr
+   0CB9 E0                 2912 	movx	a,@dptr
+   0CBA 08                 2913 	inc	r0
+   0CBB F6                 2914 	mov	@r0,a
+   0CBC A3                 2915 	inc	dptr
+   0CBD E0                 2916 	movx	a,@dptr
+   0CBE 08                 2917 	inc	r0
+   0CBF F6                 2918 	mov	@r0,a
+   0CC0 8B 05              2919 	mov	ar5,r3
+   0CC2 8F 02              2920 	mov	ar2,r7
+   0CC4 7C 00              2921 	mov	r4,#0x00
+   0CC6 7E 00              2922 	mov	r6,#0x00
+   0CC8 A8*00              2923 	mov	r0,_bp
+   0CCA 08                 2924 	inc	r0
+   0CCB E6                 2925 	mov	a,@r0
+   0CCC C3                 2926 	clr	c
+   0CCD 9D                 2927 	subb	a,r5
+   0CCE FD                 2928 	mov	r5,a
+   0CCF 08                 2929 	inc	r0
+   0CD0 E6                 2930 	mov	a,@r0
+   0CD1 9A                 2931 	subb	a,r2
+   0CD2 FA                 2932 	mov	r2,a
+   0CD3 08                 2933 	inc	r0
+   0CD4 E6                 2934 	mov	a,@r0
+   0CD5 9C                 2935 	subb	a,r4
+   0CD6 FC                 2936 	mov	r4,a
+   0CD7 08                 2937 	inc	r0
+   0CD8 E6                 2938 	mov	a,@r0
+   0CD9 9E                 2939 	subb	a,r6
+   0CDA FE                 2940 	mov	r6,a
+   0CDB 90s00r10           2941 	mov	dptr,#(_s + 0x0010)
+   0CDE ED                 2942 	mov	a,r5
+   0CDF F0                 2943 	movx	@dptr,a
+   0CE0 A3                 2944 	inc	dptr
+   0CE1 EA                 2945 	mov	a,r2
+   0CE2 F0                 2946 	movx	@dptr,a
+   0CE3 A3                 2947 	inc	dptr
+   0CE4 EC                 2948 	mov	a,r4
+   0CE5 F0                 2949 	movx	@dptr,a
+   0CE6 A3                 2950 	inc	dptr
+   0CE7 EE                 2951 	mov	a,r6
+   0CE8 F0                 2952 	movx	@dptr,a
+                           2953 ;	../../../core/net/dhcpc.c:356: etimer_set(&s.etimer, ticks);
+   0CE9 C0 02              2954 	push	ar2
+   0CEB C0 03              2955 	push	ar3
+   0CED C0 07              2956 	push	ar7
+   0CEF 90s00r06           2957 	mov	dptr,#(_s + 0x0006)
+   0CF2 75 F0 00           2958 	mov	b,#0x00
+   0CF5 12s00r00           2959 	lcall	_etimer_set
+   0CF8 15 81              2960 	dec	sp
+   0CFA 15 81              2961 	dec	sp
+   0CFC D0 02              2962 	pop	ar2
+                           2963 ;	../../../core/net/dhcpc.c:357: PT_YIELD_UNTIL(&s.pt, etimer_expired(&s.etimer));
+   0CFE 7B 00              2964 	mov	r3,#0x00
+   0D00 90s00r00           2965 	mov	dptr,#_s
+   0D03 74 65              2966 	mov	a,#0x65
+   0D05 F0                 2967 	movx	@dptr,a
+   0D06 A3                 2968 	inc	dptr
+   0D07 74 01              2969 	mov	a,#0x01
+   0D09 F0                 2970 	movx	@dptr,a
+                           2971 ;	../../../core/net/dhcpc.c:395: PT_END(&s.pt);
+   0D0A D0 02              2972 	pop	ar2
+                           2973 ;	../../../core/net/dhcpc.c:357: PT_YIELD_UNTIL(&s.pt, etimer_expired(&s.etimer));
+   0D0C                    2974 00163$:
+   0D0C EB                 2975 	mov	a,r3
+   0D0D 60 19              2976 	jz	00164$
+   0D0F 90s00r06           2977 	mov	dptr,#(_s + 0x0006)
+   0D12 75 F0 00           2978 	mov	b,#0x00
+   0D15 C0 02              2979 	push	ar2
+   0D17 12s00r00           2980 	lcall	_etimer_expired
+   0D1A E5 82              2981 	mov	a,dpl
+   0D1C 85 83 F0           2982 	mov	b,dph
+   0D1F D0 02              2983 	pop	ar2
+   0D21 45 F0              2984 	orl	a,b
+   0D23 60 03              2985 	jz	00286$
+   0D25 02s0Cr78           2986 	ljmp	00170$
+   0D28                    2987 00286$:
+   0D28                    2988 00164$:
+   0D28 75 82 01           2989 	mov	dpl,#0x01
+   0D2B 02s0Fr23           2990 	ljmp	00202$
+                           2991 ;	../../../core/net/dhcpc.c:361: <= MAX_TICKS32) {
+   0D2E                    2992 00173$:
+                           2993 ;	../../../core/net/dhcpc.c:362: s.ticks = (ntohs(s.lease_time[0])*65536ul + ntohs(s.lease_time[1])
+   0D2E C0 02              2994 	push	ar2
+   0D30 90s00r1D           2995 	mov	dptr,#(_s + 0x001d)
+   0D33 E0                 2996 	movx	a,@dptr
+   0D34 FC                 2997 	mov	r4,a
+   0D35 A3                 2998 	inc	dptr
+   0D36 E0                 2999 	movx	a,@dptr
+   0D37 FD                 3000 	mov	r5,a
+   0D38 8C 82              3001 	mov	dpl,r4
+   0D3A 8D 83              3002 	mov	dph,r5
+   0D3C C0 02              3003 	push	ar2
+   0D3E 12s00r00           3004 	lcall	_htons
+   0D41 AC 82              3005 	mov	r4,dpl
+   0D43 AD 83              3006 	mov	r5,dph
+   0D45 D0 02              3007 	pop	ar2
+   0D47 A8*00              3008 	mov	r0,_bp
+   0D49 08                 3009 	inc	r0
+   0D4A 08                 3010 	inc	r0
+   0D4B 08                 3011 	inc	r0
+   0D4C 08                 3012 	inc	r0
+   0D4D A6 05              3013 	mov	@r0,ar5
+   0D4F 18                 3014 	dec	r0
+   0D50 A6 04              3015 	mov	@r0,ar4
+   0D52 18                 3016 	dec	r0
+   0D53 76 00              3017 	mov	@r0,#0x00
+   0D55 18                 3018 	dec	r0
+   0D56 76 00              3019 	mov	@r0,#0x00
+   0D58 90s00r1F           3020 	mov	dptr,#(_s + 0x001f)
+   0D5B E0                 3021 	movx	a,@dptr
+   0D5C FA                 3022 	mov	r2,a
+   0D5D A3                 3023 	inc	dptr
+   0D5E E0                 3024 	movx	a,@dptr
+   0D5F FC                 3025 	mov	r4,a
+   0D60 8A 82              3026 	mov	dpl,r2
+   0D62 8C 83              3027 	mov	dph,r4
+   0D64 12s00r00           3028 	lcall	_htons
+   0D67 AA 82              3029 	mov	r2,dpl
+   0D69 AC 83              3030 	mov	r4,dph
+   0D6B 7D 00              3031 	mov	r5,#0x00
+   0D6D 7E 00              3032 	mov	r6,#0x00
+   0D6F A8*00              3033 	mov	r0,_bp
+   0D71 08                 3034 	inc	r0
+   0D72 EA                 3035 	mov	a,r2
+   0D73 26                 3036 	add	a,@r0
+   0D74 FA                 3037 	mov	r2,a
+   0D75 EC                 3038 	mov	a,r4
+   0D76 08                 3039 	inc	r0
+   0D77 36                 3040 	addc	a,@r0
+   0D78 FC                 3041 	mov	r4,a
+   0D79 ED                 3042 	mov	a,r5
+   0D7A 08                 3043 	inc	r0
+   0D7B 36                 3044 	addc	a,@r0
+   0D7C FD                 3045 	mov	r5,a
+   0D7D EE                 3046 	mov	a,r6
+   0D7E 08                 3047 	inc	r0
+   0D7F 36                 3048 	addc	a,@r0
+   0D80 54 01              3049 	anl	a,#0x01
+   0D82 A2 E0              3050 	mov	c,acc.0
+   0D84 CD                 3051 	xch	a,r5
+   0D85 13                 3052 	rrc	a
+   0D86 CD                 3053 	xch	a,r5
+   0D87 13                 3054 	rrc	a
+   0D88 CD                 3055 	xch	a,r5
+   0D89 FE                 3056 	mov	r6,a
+   0D8A EC                 3057 	mov	a,r4
+   0D8B C3                 3058 	clr	c
+   0D8C 13                 3059 	rrc	a
+   0D8D 4D                 3060 	orl	a,r5
+   0D8E FD                 3061 	mov	r5,a
+   0D8F EC                 3062 	mov	a,r4
+   0D90 54 01              3063 	anl	a,#0x01
+   0D92 A2 E0              3064 	mov	c,acc.0
+   0D94 CA                 3065 	xch	a,r2
+   0D95 13                 3066 	rrc	a
+   0D96 CA                 3067 	xch	a,r2
+   0D97 13                 3068 	rrc	a
+   0D98 CA                 3069 	xch	a,r2
+   0D99 FC                 3070 	mov	r4,a
+   0D9A EE                 3071 	mov	a,r6
+   0D9B C3                 3072 	clr	c
+   0D9C 13                 3073 	rrc	a
+   0D9D FE                 3074 	mov	r6,a
+   0D9E ED                 3075 	mov	a,r5
+   0D9F 13                 3076 	rrc	a
+   0DA0 FD                 3077 	mov	r5,a
+   0DA1 EC                 3078 	mov	a,r4
+   0DA2 13                 3079 	rrc	a
+   0DA3 FC                 3080 	mov	r4,a
+   0DA4 EA                 3081 	mov	a,r2
+   0DA5 13                 3082 	rrc	a
+   0DA6 90s00r10           3083 	mov	dptr,#(_s + 0x0010)
+   0DA9 F0                 3084 	movx	@dptr,a
+   0DAA A3                 3085 	inc	dptr
+   0DAB EC                 3086 	mov	a,r4
+   0DAC F0                 3087 	movx	@dptr,a
+   0DAD A3                 3088 	inc	dptr
+   0DAE ED                 3089 	mov	a,r5
+   0DAF F0                 3090 	movx	@dptr,a
+   0DB0 A3                 3091 	inc	dptr
+   0DB1 EE                 3092 	mov	a,r6
+   0DB2 F0                 3093 	movx	@dptr,a
+                           3094 ;	../../../core/net/dhcpc.c:369: xid++;
+   0DB3 90s00r31           3095 	mov	dptr,#_xid
+   0DB6 E0                 3096 	movx	a,@dptr
+   0DB7 24 01              3097 	add	a,#0x01
+   0DB9 F0                 3098 	movx	@dptr,a
+   0DBA A3                 3099 	inc	dptr
+   0DBB E0                 3100 	movx	a,@dptr
+   0DBC 34 00              3101 	addc	a,#0x00
+   0DBE F0                 3102 	movx	@dptr,a
+   0DBF A3                 3103 	inc	dptr
+   0DC0 E0                 3104 	movx	a,@dptr
+   0DC1 34 00              3105 	addc	a,#0x00
+   0DC3 F0                 3106 	movx	@dptr,a
+   0DC4 A3                 3107 	inc	dptr
+   0DC5 E0                 3108 	movx	a,@dptr
+   0DC6 34 00              3109 	addc	a,#0x00
+   0DC8 F0                 3110 	movx	@dptr,a
+                           3111 ;	../../../core/net/dhcpc.c:395: PT_END(&s.pt);
+   0DC9 D0 02              3112 	pop	ar2
+                           3113 ;	../../../core/net/dhcpc.c:372: while(ev != tcpip_event) {
+   0DCB                    3114 00182$:
+   0DCB 90s00r00           3115 	mov	dptr,#_tcpip_event
+   0DCE E0                 3116 	movx	a,@dptr
+   0DCF FC                 3117 	mov	r4,a
+   0DD0 EA                 3118 	mov	a,r2
+   0DD1 B5 04 02           3119 	cjne	a,ar4,00287$
+   0DD4 80 2D              3120 	sjmp	00184$
+   0DD6                    3121 00287$:
+                           3122 ;	../../../core/net/dhcpc.c:373: tcpip_poll_udp(s.conn);
+   0DD6 90s00r03           3123 	mov	dptr,#(_s + 0x0003)
+   0DD9 E0                 3124 	movx	a,@dptr
+   0DDA FC                 3125 	mov	r4,a
+   0DDB A3                 3126 	inc	dptr
+   0DDC E0                 3127 	movx	a,@dptr
+   0DDD FD                 3128 	mov	r5,a
+   0DDE A3                 3129 	inc	dptr
+   0DDF E0                 3130 	movx	a,@dptr
+   0DE0 FE                 3131 	mov	r6,a
+   0DE1 8C 82              3132 	mov	dpl,r4
+   0DE3 8D 83              3133 	mov	dph,r5
+   0DE5 8E F0              3134 	mov	b,r6
+   0DE7 C0 02              3135 	push	ar2
+   0DE9 12s00r00           3136 	lcall	_tcpip_poll_udp
+   0DEC D0 02              3137 	pop	ar2
+                           3138 ;	../../../core/net/dhcpc.c:374: PT_YIELD(&s.pt);
+   0DEE 7B 00              3139 	mov	r3,#0x00
+   0DF0 90s00r00           3140 	mov	dptr,#_s
+   0DF3 74 76              3141 	mov	a,#0x76
+   0DF5 F0                 3142 	movx	@dptr,a
+   0DF6 A3                 3143 	inc	dptr
+   0DF7 74 01              3144 	mov	a,#0x01
+   0DF9 F0                 3145 	movx	@dptr,a
+   0DFA                    3146 00176$:
+   0DFA EB                 3147 	mov	a,r3
+   0DFB 70 CE              3148 	jnz	00182$
+   0DFD 75 82 01           3149 	mov	dpl,#0x01
+   0E00 02s0Fr23           3150 	ljmp	00202$
+   0E03                    3151 00184$:
+                           3152 ;	../../../core/net/dhcpc.c:376: send_request();
+   0E03 C0 02              3153 	push	ar2
+   0E05 12s04r1B           3154 	lcall	_send_request
+   0E08 D0 02              3155 	pop	ar2
+                           3156 ;	../../../core/net/dhcpc.c:377: ticks = IMIN(s.ticks / 2, MAX_TICKS);
+   0E0A 90s00r10           3157 	mov	dptr,#(_s + 0x0010)
+   0E0D E0                 3158 	movx	a,@dptr
+   0E0E FC                 3159 	mov	r4,a
+   0E0F A3                 3160 	inc	dptr
+   0E10 E0                 3161 	movx	a,@dptr
+   0E11 FD                 3162 	mov	r5,a
+   0E12 A3                 3163 	inc	dptr
+   0E13 E0                 3164 	movx	a,@dptr
+   0E14 FE                 3165 	mov	r6,a
+   0E15 A3                 3166 	inc	dptr
+   0E16 E0                 3167 	movx	a,@dptr
+   0E17 C3                 3168 	clr	c
+   0E18 13                 3169 	rrc	a
+   0E19 FF                 3170 	mov	r7,a
+   0E1A EE                 3171 	mov	a,r6
+   0E1B 13                 3172 	rrc	a
+   0E1C FE                 3173 	mov	r6,a
+   0E1D ED                 3174 	mov	a,r5
+   0E1E 13                 3175 	rrc	a
+   0E1F FD                 3176 	mov	r5,a
+   0E20 EC                 3177 	mov	a,r4
+   0E21 13                 3178 	rrc	a
+   0E22 FC                 3179 	mov	r4,a
+   0E23 C3                 3180 	clr	c
+   0E24 94 FF              3181 	subb	a,#0xFF
+   0E26 ED                 3182 	mov	a,r5
+   0E27 94 7F              3183 	subb	a,#0x7F
+   0E29 EE                 3184 	mov	a,r6
+   0E2A 94 00              3185 	subb	a,#0x00
+   0E2C EF                 3186 	mov	a,r7
+   0E2D 94 00              3187 	subb	a,#0x00
+   0E2F 40 08              3188 	jc	00207$
+   0E31 7C FF              3189 	mov	r4,#0xFF
+   0E33 7D 7F              3190 	mov	r5,#0x7F
+   0E35 7E 00              3191 	mov	r6,#0x00
+   0E37 7F 00              3192 	mov	r7,#0x00
+   0E39                    3193 00207$:
+   0E39 C0 02              3194 	push	ar2
+   0E3B 8C 03              3195 	mov	ar3,r4
+   0E3D 8D 07              3196 	mov	ar7,r5
+                           3197 ;	../../../core/net/dhcpc.c:378: s.ticks -= ticks;
+   0E3F 90s00r10           3198 	mov	dptr,#(_s + 0x0010)
+   0E42 A8*00              3199 	mov	r0,_bp
+   0E44 08                 3200 	inc	r0
+   0E45 E0                 3201 	movx	a,@dptr
+   0E46 F6                 3202 	mov	@r0,a
+   0E47 A3                 3203 	inc	dptr
+   0E48 E0                 3204 	movx	a,@dptr
+   0E49 08                 3205 	inc	r0
+   0E4A F6                 3206 	mov	@r0,a
+   0E4B A3                 3207 	inc	dptr
+   0E4C E0                 3208 	movx	a,@dptr
+   0E4D 08                 3209 	inc	r0
+   0E4E F6                 3210 	mov	@r0,a
+   0E4F A3                 3211 	inc	dptr
+   0E50 E0                 3212 	movx	a,@dptr
+   0E51 08                 3213 	inc	r0
+   0E52 F6                 3214 	mov	@r0,a
+   0E53 8B 05              3215 	mov	ar5,r3
+   0E55 8F 02              3216 	mov	ar2,r7
+   0E57 7C 00              3217 	mov	r4,#0x00
+   0E59 7E 00              3218 	mov	r6,#0x00
+   0E5B A8*00              3219 	mov	r0,_bp
+   0E5D 08                 3220 	inc	r0
+   0E5E E6                 3221 	mov	a,@r0
+   0E5F C3                 3222 	clr	c
+   0E60 9D                 3223 	subb	a,r5
+   0E61 FD                 3224 	mov	r5,a
+   0E62 08                 3225 	inc	r0
+   0E63 E6                 3226 	mov	a,@r0
+   0E64 9A                 3227 	subb	a,r2
+   0E65 FA                 3228 	mov	r2,a
+   0E66 08                 3229 	inc	r0
+   0E67 E6                 3230 	mov	a,@r0
+   0E68 9C                 3231 	subb	a,r4
+   0E69 FC                 3232 	mov	r4,a
+   0E6A 08                 3233 	inc	r0
+   0E6B E6                 3234 	mov	a,@r0
+   0E6C 9E                 3235 	subb	a,r6
+   0E6D FE                 3236 	mov	r6,a
+   0E6E 90s00r10           3237 	mov	dptr,#(_s + 0x0010)
+   0E71 ED                 3238 	mov	a,r5
+   0E72 F0                 3239 	movx	@dptr,a
+   0E73 A3                 3240 	inc	dptr
+   0E74 EA                 3241 	mov	a,r2
+   0E75 F0                 3242 	movx	@dptr,a
+   0E76 A3                 3243 	inc	dptr
+   0E77 EC                 3244 	mov	a,r4
+   0E78 F0                 3245 	movx	@dptr,a
+   0E79 A3                 3246 	inc	dptr
+   0E7A EE                 3247 	mov	a,r6
+   0E7B F0                 3248 	movx	@dptr,a
+                           3249 ;	../../../core/net/dhcpc.c:379: etimer_set(&s.etimer, ticks);
+   0E7C C0 02              3250 	push	ar2
+   0E7E C0 03              3251 	push	ar3
+   0E80 C0 07              3252 	push	ar7
+   0E82 90s00r06           3253 	mov	dptr,#(_s + 0x0006)
+   0E85 75 F0 00           3254 	mov	b,#0x00
+   0E88 12s00r00           3255 	lcall	_etimer_set
+   0E8B 15 81              3256 	dec	sp
+   0E8D 15 81              3257 	dec	sp
+   0E8F D0 02              3258 	pop	ar2
+                           3259 ;	../../../core/net/dhcpc.c:395: PT_END(&s.pt);
+   0E91 D0 02              3260 	pop	ar2
+                           3261 ;	../../../core/net/dhcpc.c:381: PT_YIELD(&s.pt);
+   0E93                    3262 00188$:
+   0E93 7B 00              3263 	mov	r3,#0x00
+   0E95 90s00r00           3264 	mov	dptr,#_s
+   0E98 74 7D              3265 	mov	a,#0x7D
+   0E9A F0                 3266 	movx	@dptr,a
+   0E9B A3                 3267 	inc	dptr
+   0E9C 74 01              3268 	mov	a,#0x01
+   0E9E F0                 3269 	movx	@dptr,a
+   0E9F                    3270 00185$:
+   0E9F EB                 3271 	mov	a,r3
+   0EA0 70 05              3272 	jnz	00189$
+   0EA2 75 82 01           3273 	mov	dpl,#0x01
+   0EA5 80 7C              3274 	sjmp	00202$
+   0EA7                    3275 00189$:
+                           3276 ;	../../../core/net/dhcpc.c:382: if(ev == tcpip_event && uip_newdata() && msg_for_me() == DHCPACK) {
+   0EA7 90s00r00           3277 	mov	dptr,#_tcpip_event
+   0EAA E0                 3278 	movx	a,@dptr
+   0EAB FB                 3279 	mov	r3,a
+   0EAC EA                 3280 	mov	a,r2
+   0EAD B5 03 23           3281 	cjne	a,ar3,00196$
+   0EB0 90s00r00           3282 	mov	dptr,#_uip_flags
+   0EB3 E0                 3283 	movx	a,@dptr
+   0EB4 FB                 3284 	mov	r3,a
+   0EB5 30 E1 1B           3285 	jnb	acc.1,00196$
+   0EB8 C0 02              3286 	push	ar2
+   0EBA 12s07rB8           3287 	lcall	_msg_for_me
+   0EBD AB 82              3288 	mov	r3,dpl
+   0EBF AC 83              3289 	mov	r4,dph
+   0EC1 D0 02              3290 	pop	ar2
+   0EC3 BB 05 0D           3291 	cjne	r3,#0x05,00196$
+   0EC6 BC 00 0A           3292 	cjne	r4,#0x00,00196$
+                           3293 ;	../../../core/net/dhcpc.c:383: parse_msg();
+   0EC9 C0 02              3294 	push	ar2
+   0ECB 12s06r92           3295 	lcall	_parse_msg
+   0ECE D0 02              3296 	pop	ar2
+                           3297 ;	../../../core/net/dhcpc.c:384: goto bound;
+   0ED0 02s0BrE8           3298 	ljmp	00159$
+   0ED3                    3299 00196$:
+                           3300 ;	../../../core/net/dhcpc.c:386: } while(!etimer_expired(&s.etimer));
+   0ED3 90s00r06           3301 	mov	dptr,#(_s + 0x0006)
+   0ED6 75 F0 00           3302 	mov	b,#0x00
+   0ED9 C0 02              3303 	push	ar2
+   0EDB 12s00r00           3304 	lcall	_etimer_expired
+   0EDE E5 82              3305 	mov	a,dpl
+   0EE0 85 83 F0           3306 	mov	b,dph
+   0EE3 D0 02              3307 	pop	ar2
+   0EE5 45 F0              3308 	orl	a,b
+   0EE7 60 AA              3309 	jz	00188$
+                           3310 ;	../../../core/net/dhcpc.c:387: } while(s.ticks >= CLOCK_SECOND*3);
+   0EE9 90s00r10           3311 	mov	dptr,#(_s + 0x0010)
+   0EEC E0                 3312 	movx	a,@dptr
+   0EED FB                 3313 	mov	r3,a
+   0EEE A3                 3314 	inc	dptr
+   0EEF E0                 3315 	movx	a,@dptr
+   0EF0 FC                 3316 	mov	r4,a
+   0EF1 A3                 3317 	inc	dptr
+   0EF2 E0                 3318 	movx	a,@dptr
+   0EF3 FD                 3319 	mov	r5,a
+   0EF4 A3                 3320 	inc	dptr
+   0EF5 E0                 3321 	movx	a,@dptr
+   0EF6 FE                 3322 	mov	r6,a
+   0EF7 C3                 3323 	clr	c
+   0EF8 EB                 3324 	mov	a,r3
+   0EF9 94 80              3325 	subb	a,#0x80
+   0EFB EC                 3326 	mov	a,r4
+   0EFC 94 01              3327 	subb	a,#0x01
+   0EFE ED                 3328 	mov	a,r5
+   0EFF 94 00              3329 	subb	a,#0x00
+   0F01 EE                 3330 	mov	a,r6
+   0F02 94 00              3331 	subb	a,#0x00
+   0F04 40 03              3332 	jc	00297$
+   0F06 02s0DrCB           3333 	ljmp	00182$
+   0F09                    3334 00297$:
+                           3335 ;	../../../core/net/dhcpc.c:392: dhcpc_unconfigured(&s);
+   0F09 90s00r00           3336 	mov	dptr,#_s
+   0F0C 75 F0 00           3337 	mov	b,#0x00
+   0F0F C0 02              3338 	push	ar2
+   0F11 12s00r00           3339 	lcall	_dhcpc_unconfigured
+   0F14 D0 02              3340 	pop	ar2
+                           3341 ;	../../../core/net/dhcpc.c:393: goto init;
+   0F16 02s09rAD           3342 	ljmp	00102$
+                           3343 ;	../../../core/net/dhcpc.c:395: PT_END(&s.pt);
+   0F19                    3344 00201$:
+   0F19 90s00r00           3345 	mov	dptr,#_s
+   0F1C E4                 3346 	clr	a
+   0F1D F0                 3347 	movx	@dptr,a
+   0F1E A3                 3348 	inc	dptr
+   0F1F F0                 3349 	movx	@dptr,a
+   0F20 75 82 03           3350 	mov	dpl,#0x03
+   0F23                    3351 00202$:
+   0F23 85*00 81           3352 	mov	sp,_bp
+   0F26 D0*00              3353 	pop	_bp
+   0F28 22                 3354 	ret
+                           3355 ;------------------------------------------------------------
+                           3356 ;Allocation info for local variables in function 'dhcpc_init'
+                           3357 ;------------------------------------------------------------
+                           3358 ;mac_len                   Allocated to stack - offset -4
+                           3359 ;mac_addr                  Allocated to registers r2 r3 r4 
+                           3360 ;addr                      Allocated to stack - offset 1
+                           3361 ;------------------------------------------------------------
+                           3362 ;	../../../core/net/dhcpc.c:399: dhcpc_init(const void *mac_addr, int mac_len)
+                           3363 ;	-----------------------------------------
+                           3364 ;	 function dhcpc_init
+                           3365 ;	-----------------------------------------
+   0F29                    3366 _dhcpc_init:
+   0F29 C0*00              3367 	push	_bp
+   0F2B E5 81              3368 	mov	a,sp
+   0F2D F5*00              3369 	mov	_bp,a
+   0F2F 24 04              3370 	add	a,#0x04
+   0F31 F5 81              3371 	mov	sp,a
+   0F33 AA 82              3372 	mov	r2,dpl
+   0F35 AB 83              3373 	mov	r3,dph
+   0F37 AC F0              3374 	mov	r4,b
+                           3375 ;	../../../core/net/dhcpc.c:403: s.mac_addr = mac_addr;
+   0F39 90s00r14           3376 	mov	dptr,#(_s + 0x0014)
+   0F3C EA                 3377 	mov	a,r2
+   0F3D F0                 3378 	movx	@dptr,a
+   0F3E A3                 3379 	inc	dptr
+   0F3F EB                 3380 	mov	a,r3
+   0F40 F0                 3381 	movx	@dptr,a
+   0F41 A3                 3382 	inc	dptr
+   0F42 EC                 3383 	mov	a,r4
+   0F43 F0                 3384 	movx	@dptr,a
+                           3385 ;	../../../core/net/dhcpc.c:404: s.mac_len  = mac_len;
+   0F44 90s00r17           3386 	mov	dptr,#(_s + 0x0017)
+   0F47 E5*00              3387 	mov	a,_bp
+   0F49 24 FC              3388 	add	a,#0xfc
+   0F4B F8                 3389 	mov	r0,a
+   0F4C E6                 3390 	mov	a,@r0
+   0F4D F0                 3391 	movx	@dptr,a
+   0F4E A3                 3392 	inc	dptr
+   0F4F 08                 3393 	inc	r0
+   0F50 E6                 3394 	mov	a,@r0
+   0F51 F0                 3395 	movx	@dptr,a
+                           3396 ;	../../../core/net/dhcpc.c:406: s.state = STATE_INITIAL;
+   0F52 90s00r02           3397 	mov	dptr,#(_s + 0x0002)
+   0F55 E4                 3398 	clr	a
+   0F56 F0                 3399 	movx	@dptr,a
+                           3400 ;	../../../core/net/dhcpc.c:407: uip_ipaddr(&addr, 255,255,255,255);
+   0F57 E5*00              3401 	mov	a,_bp
+   0F59 04                 3402 	inc	a
+   0F5A F8                 3403 	mov	r0,a
+   0F5B 76 FF              3404 	mov	@r0,#0xFF
+   0F5D AA*00              3405 	mov	r2,_bp
+   0F5F 0A                 3406 	inc	r2
+   0F60 EA                 3407 	mov	a,r2
+   0F61 04                 3408 	inc	a
+   0F62 F8                 3409 	mov	r0,a
+   0F63 76 FF              3410 	mov	@r0,#0xFF
+   0F65 74 02              3411 	mov	a,#0x02
+   0F67 2A                 3412 	add	a,r2
+   0F68 F8                 3413 	mov	r0,a
+   0F69 76 FF              3414 	mov	@r0,#0xFF
+   0F6B 74 03              3415 	mov	a,#0x03
+   0F6D 2A                 3416 	add	a,r2
+   0F6E F8                 3417 	mov	r0,a
+   0F6F 76 FF              3418 	mov	@r0,#0xFF
+                           3419 ;	../../../core/net/dhcpc.c:408: s.conn = udp_new(&addr, HTONS(DHCPC_SERVER_PORT), NULL);
+   0F71 AA*00              3420 	mov	r2,_bp
+   0F73 0A                 3421 	inc	r2
+   0F74 7B 00              3422 	mov	r3,#0x00
+   0F76 7C 40              3423 	mov	r4,#0x40
+   0F78 E4                 3424 	clr	a
+   0F79 C0 E0              3425 	push	acc
+   0F7B C0 E0              3426 	push	acc
+   0F7D C0 E0              3427 	push	acc
+   0F7F E4                 3428 	clr	a
+   0F80 C0 E0              3429 	push	acc
+   0F82 74 43              3430 	mov	a,#0x43
+   0F84 C0 E0              3431 	push	acc
+   0F86 8A 82              3432 	mov	dpl,r2
+   0F88 8B 83              3433 	mov	dph,r3
+   0F8A 8C F0              3434 	mov	b,r4
+   0F8C 12s00r00           3435 	lcall	_udp_new
+   0F8F AA 82              3436 	mov	r2,dpl
+   0F91 AB 83              3437 	mov	r3,dph
+   0F93 AC F0              3438 	mov	r4,b
+   0F95 E5 81              3439 	mov	a,sp
+   0F97 24 FB              3440 	add	a,#0xfb
+   0F99 F5 81              3441 	mov	sp,a
+   0F9B 90s00r03           3442 	mov	dptr,#(_s + 0x0003)
+   0F9E EA                 3443 	mov	a,r2
+   0F9F F0                 3444 	movx	@dptr,a
+   0FA0 A3                 3445 	inc	dptr
+   0FA1 EB                 3446 	mov	a,r3
+   0FA2 F0                 3447 	movx	@dptr,a
+   0FA3 A3                 3448 	inc	dptr
+   0FA4 EC                 3449 	mov	a,r4
+   0FA5 F0                 3450 	movx	@dptr,a
+                           3451 ;	../../../core/net/dhcpc.c:409: if(s.conn != NULL) {
+   0FA6 90s00r03           3452 	mov	dptr,#(_s + 0x0003)
+   0FA9 E0                 3453 	movx	a,@dptr
+   0FAA FA                 3454 	mov	r2,a
+   0FAB A3                 3455 	inc	dptr
+   0FAC E0                 3456 	movx	a,@dptr
+   0FAD FB                 3457 	mov	r3,a
+   0FAE A3                 3458 	inc	dptr
+   0FAF E0                 3459 	movx	a,@dptr
+   0FB0 FC                 3460 	mov	r4,a
+   0FB1 BA 00 08           3461 	cjne	r2,#0x00,00109$
+   0FB4 BB 00 05           3462 	cjne	r3,#0x00,00109$
+   0FB7 BC 00 02           3463 	cjne	r4,#0x00,00109$
+   0FBA 80 17              3464 	sjmp	00105$
+   0FBC                    3465 00109$:
+                           3466 ;	../../../core/net/dhcpc.c:410: udp_bind(s.conn, HTONS(DHCPC_CLIENT_PORT));
+   0FBC 74 04              3467 	mov	a,#0x04
+   0FBE 2A                 3468 	add	a,r2
+   0FBF FA                 3469 	mov	r2,a
+   0FC0 E4                 3470 	clr	a
+   0FC1 3B                 3471 	addc	a,r3
+   0FC2 FB                 3472 	mov	r3,a
+   0FC3 8A 82              3473 	mov	dpl,r2
+   0FC5 8B 83              3474 	mov	dph,r3
+   0FC7 8C F0              3475 	mov	b,r4
+   0FC9 E4                 3476 	clr	a
+   0FCA 12s00r00           3477 	lcall	__gptrput
+   0FCD A3                 3478 	inc	dptr
+   0FCE 74 44              3479 	mov	a,#0x44
+   0FD0 12s00r00           3480 	lcall	__gptrput
+   0FD3                    3481 00105$:
+                           3482 ;	../../../core/net/dhcpc.c:412: PT_INIT(&s.pt);
+   0FD3 90s00r00           3483 	mov	dptr,#_s
+   0FD6 E4                 3484 	clr	a
+   0FD7 F0                 3485 	movx	@dptr,a
+   0FD8 A3                 3486 	inc	dptr
+   0FD9 F0                 3487 	movx	@dptr,a
+   0FDA 85*00 81           3488 	mov	sp,_bp
+   0FDD D0*00              3489 	pop	_bp
+   0FDF 22                 3490 	ret
+                           3491 ;------------------------------------------------------------
+                           3492 ;Allocation info for local variables in function 'dhcpc_appcall'
+                           3493 ;------------------------------------------------------------
+                           3494 ;data                      Allocated to stack - offset -5
+                           3495 ;ev                        Allocated to registers r2 
+                           3496 ;------------------------------------------------------------
+                           3497 ;	../../../core/net/dhcpc.c:416: dhcpc_appcall(process_event_t ev, void *data)
+                           3498 ;	-----------------------------------------
+                           3499 ;	 function dhcpc_appcall
+                           3500 ;	-----------------------------------------
+   0FE0                    3501 _dhcpc_appcall:
+   0FE0 C0*00              3502 	push	_bp
+   0FE2 85 81*00           3503 	mov	_bp,sp
+   0FE5 AA 82              3504 	mov	r2,dpl
+                           3505 ;	../../../core/net/dhcpc.c:418: if(ev == tcpip_event || ev == PROCESS_EVENT_TIMER) {
+   0FE7 90s00r00           3506 	mov	dptr,#_tcpip_event
+   0FEA E0                 3507 	movx	a,@dptr
+   0FEB FB                 3508 	mov	r3,a
+   0FEC EA                 3509 	mov	a,r2
+   0FED B5 03 02           3510 	cjne	a,ar3,00107$
+   0FF0 80 03              3511 	sjmp	00101$
+   0FF2                    3512 00107$:
+   0FF2 BA 88 1B           3513 	cjne	r2,#0x88,00104$
+   0FF5                    3514 00101$:
+                           3515 ;	../../../core/net/dhcpc.c:419: handle_dhcp(ev, data);
+   0FF5 E5*00              3516 	mov	a,_bp
+   0FF7 24 FB              3517 	add	a,#0xfb
+   0FF9 F8                 3518 	mov	r0,a
+   0FFA E6                 3519 	mov	a,@r0
+   0FFB C0 E0              3520 	push	acc
+   0FFD 08                 3521 	inc	r0
+   0FFE E6                 3522 	mov	a,@r0
+   0FFF C0 E0              3523 	push	acc
+   1001 08                 3524 	inc	r0
+   1002 E6                 3525 	mov	a,@r0
+   1003 C0 E0              3526 	push	acc
+   1005 8A 82              3527 	mov	dpl,r2
+   1007 12s09r4D           3528 	lcall	_handle_dhcp
+   100A 15 81              3529 	dec	sp
+   100C 15 81              3530 	dec	sp
+   100E 15 81              3531 	dec	sp
+   1010                    3532 00104$:
+   1010 D0*00              3533 	pop	_bp
+   1012 22                 3534 	ret
+                           3535 ;------------------------------------------------------------
+                           3536 ;Allocation info for local variables in function 'dhcpc_request'
+                           3537 ;------------------------------------------------------------
+                           3538 ;ipaddr                    Allocated to stack - offset 1
+                           3539 ;------------------------------------------------------------
+                           3540 ;	../../../core/net/dhcpc.c:424: dhcpc_request(void)
+                           3541 ;	-----------------------------------------
+                           3542 ;	 function dhcpc_request
+                           3543 ;	-----------------------------------------
+   1013                    3544 _dhcpc_request:
+   1013 C0*00              3545 	push	_bp
+   1015 E5 81              3546 	mov	a,sp
+   1017 F5*00              3547 	mov	_bp,a
+   1019 24 04              3548 	add	a,#0x04
+   101B F5 81              3549 	mov	sp,a
+                           3550 ;	../../../core/net/dhcpc.c:428: if(s.state == STATE_INITIAL) {
+   101D 90s00r02           3551 	mov	dptr,#(_s + 0x0002)
+   1020 E0                 3552 	movx	a,@dptr
+   1021 70 50              3553 	jnz	00106$
+                           3554 ;	../../../core/net/dhcpc.c:429: uip_ipaddr(&ipaddr, 0,0,0,0);
+   1023 E5*00              3555 	mov	a,_bp
+   1025 04                 3556 	inc	a
+   1026 F8                 3557 	mov	r0,a
+   1027 76 00              3558 	mov	@r0,#0x00
+   1029 AA*00              3559 	mov	r2,_bp
+   102B 0A                 3560 	inc	r2
+   102C EA                 3561 	mov	a,r2
+   102D 04                 3562 	inc	a
+   102E F8                 3563 	mov	r0,a
+   102F 76 00              3564 	mov	@r0,#0x00
+   1031 74 02              3565 	mov	a,#0x02
+   1033 2A                 3566 	add	a,r2
+   1034 F8                 3567 	mov	r0,a
+   1035 76 00              3568 	mov	@r0,#0x00
+   1037 74 03              3569 	mov	a,#0x03
+   1039 2A                 3570 	add	a,r2
+   103A F8                 3571 	mov	r0,a
+   103B 76 00              3572 	mov	@r0,#0x00
+                           3573 ;	../../../core/net/dhcpc.c:430: uip_sethostaddr(&ipaddr);
+   103D AA*00              3574 	mov	r2,_bp
+   103F 0A                 3575 	inc	r2
+   1040 7B 00              3576 	mov	r3,#0x00
+   1042 7C 40              3577 	mov	r4,#0x40
+   1044 74 04              3578 	mov	a,#0x04
+   1046 C0 E0              3579 	push	acc
+   1048 E4                 3580 	clr	a
+   1049 C0 E0              3581 	push	acc
+   104B C0 02              3582 	push	ar2
+   104D C0 03              3583 	push	ar3
+   104F C0 04              3584 	push	ar4
+   1051 90s00r00           3585 	mov	dptr,#_uip_hostaddr
+   1054 75 F0 00           3586 	mov	b,#0x00
+   1057 12s00r00           3587 	lcall	_memcpy
+   105A E5 81              3588 	mov	a,sp
+   105C 24 FB              3589 	add	a,#0xfb
+   105E F5 81              3590 	mov	sp,a
+                           3591 ;	../../../core/net/dhcpc.c:431: handle_dhcp(PROCESS_EVENT_NONE, NULL);
+   1060 E4                 3592 	clr	a
+   1061 C0 E0              3593 	push	acc
+   1063 C0 E0              3594 	push	acc
+   1065 C0 E0              3595 	push	acc
+   1067 75 82 80           3596 	mov	dpl,#0x80
+   106A 12s09r4D           3597 	lcall	_handle_dhcp
+   106D 15 81              3598 	dec	sp
+   106F 15 81              3599 	dec	sp
+   1071 15 81              3600 	dec	sp
+   1073                    3601 00106$:
+   1073 85*00 81           3602 	mov	sp,_bp
+   1076 D0*00              3603 	pop	_bp
+   1078 22                 3604 	ret
+                           3605 	.area CSEG    (CODE)
+                           3606 	.area CONST   (CODE)
+   0000                    3607 _magic_cookie:
+   0000 63                 3608 	.db #0x63	; 99	c
+   0001 82                 3609 	.db #0x82	; 130
+   0002 53                 3610 	.db #0x53	; 83	S
+   0003 63                 3611 	.db #0x63	; 99	c
+                           3612 	.area XINIT   (CODE)
+                           3613 	.area CABS    (ABS,CODE)

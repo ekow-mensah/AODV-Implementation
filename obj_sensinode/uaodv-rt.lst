@@ -1,0 +1,1400 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:27:31 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module uaodv_rt
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _uaodv_rt_init
+                             13 	.globl _IRCON2_P2IF
+                             14 	.globl _IRCON2_UTX0IF
+                             15 	.globl _IRCON2_UTX1IF
+                             16 	.globl _IRCON2_P1IF
+                             17 	.globl _IRCON2_WDTIF
+                             18 	.globl _CY
+                             19 	.globl _AC
+                             20 	.globl _F0
+                             21 	.globl _RS1
+                             22 	.globl _RS0
+                             23 	.globl _OV
+                             24 	.globl _F1
+                             25 	.globl _P
+                             26 	.globl _IRCON_DMAIF
+                             27 	.globl _IRCON_T1IF
+                             28 	.globl _IRCON_T2IF
+                             29 	.globl _IRCON_T3IF
+                             30 	.globl _IRCON_T4IF
+                             31 	.globl _IRCON_P0IF
+                             32 	.globl _IRCON_STIF
+                             33 	.globl _IEN1_DMAIE
+                             34 	.globl _IEN1_T1IE
+                             35 	.globl _IEN1_T2IE
+                             36 	.globl _IEN1_T3IE
+                             37 	.globl _IEN1_T4IE
+                             38 	.globl _IEN1_P0IE
+                             39 	.globl _IEN0_RFERRIE
+                             40 	.globl _IEN0_ADCIE
+                             41 	.globl _IEN0_URX0IE
+                             42 	.globl _IEN0_URX1IE
+                             43 	.globl _IEN0_ENCIE
+                             44 	.globl _IEN0_STIE
+                             45 	.globl _IEN0_EA
+                             46 	.globl _EA
+                             47 	.globl _P2_4
+                             48 	.globl _P2_3
+                             49 	.globl _P2_2
+                             50 	.globl _P2_1
+                             51 	.globl _P2_0
+                             52 	.globl _S0CON_ENCIF_0
+                             53 	.globl _S0CON_ENCIF_1
+                             54 	.globl _P1_7
+                             55 	.globl _P1_6
+                             56 	.globl _P1_5
+                             57 	.globl _P1_4
+                             58 	.globl _P1_3
+                             59 	.globl _P1_2
+                             60 	.globl _P1_1
+                             61 	.globl _P1_0
+                             62 	.globl _TCON_IT0
+                             63 	.globl _TCON_RFERRIF
+                             64 	.globl _TCON_IT1
+                             65 	.globl _TCON_URX0IF
+                             66 	.globl _TCON_ADCIF
+                             67 	.globl _TCON_URX1IF
+                             68 	.globl _P0_0
+                             69 	.globl _P0_1
+                             70 	.globl _P0_2
+                             71 	.globl _P0_3
+                             72 	.globl _P0_4
+                             73 	.globl _P0_5
+                             74 	.globl _P0_6
+                             75 	.globl _P0_7
+                             76 	.globl _P2DIR
+                             77 	.globl _P1DIR
+                             78 	.globl _P0DIR
+                             79 	.globl _U1GCR
+                             80 	.globl _U1UCR
+                             81 	.globl _U1BAUD
+                             82 	.globl _U1BUF
+                             83 	.globl _U1CSR
+                             84 	.globl _P2INP
+                             85 	.globl _P1INP
+                             86 	.globl _P2SEL
+                             87 	.globl _P1SEL
+                             88 	.globl _P0SEL
+                             89 	.globl _ADCCFG
+                             90 	.globl _PERCFG
+                             91 	.globl _B
+                             92 	.globl _T4CC1
+                             93 	.globl _T4CCTL1
+                             94 	.globl _T4CC0
+                             95 	.globl _T4CCTL0
+                             96 	.globl _T4CTL
+                             97 	.globl _T4CNT
+                             98 	.globl _RFIF
+                             99 	.globl _IRCON2
+                            100 	.globl _T1CCTL2
+                            101 	.globl _T1CCTL1
+                            102 	.globl _T1CCTL0
+                            103 	.globl _T1CTL
+                            104 	.globl _T1CNTH
+                            105 	.globl _T1CNTL
+                            106 	.globl _RFST
+                            107 	.globl _ACC
+                            108 	.globl _T1CC2H
+                            109 	.globl _T1CC2L
+                            110 	.globl _T1CC1H
+                            111 	.globl _T1CC1L
+                            112 	.globl _T1CC0H
+                            113 	.globl _T1CC0L
+                            114 	.globl _RFD
+                            115 	.globl _TIMIF
+                            116 	.globl _DMAREQ
+                            117 	.globl _DMAARM
+                            118 	.globl _DMA0CFGH
+                            119 	.globl _DMA0CFGL
+                            120 	.globl _DMA1CFGH
+                            121 	.globl _DMA1CFGL
+                            122 	.globl _DMAIRQ
+                            123 	.globl _PSW
+                            124 	.globl _T3CC1
+                            125 	.globl _T3CCTL1
+                            126 	.globl _T3CC0
+                            127 	.globl _T3CCTL0
+                            128 	.globl _T3CTL
+                            129 	.globl _T3CNT
+                            130 	.globl _WDCTL
+                            131 	.globl _T2CON
+                            132 	.globl _MEMCTR
+                            133 	.globl _CLKCON
+                            134 	.globl _U0GCR
+                            135 	.globl _U0UCR
+                            136 	.globl _T2CNF
+                            137 	.globl _U0BAUD
+                            138 	.globl _U0BUF
+                            139 	.globl _IRCON
+                            140 	.globl _SLEEP
+                            141 	.globl _RNDH
+                            142 	.globl _RNDL
+                            143 	.globl _ADCH
+                            144 	.globl _ADCL
+                            145 	.globl _IP1
+                            146 	.globl _IEN1
+                            147 	.globl _RCCTL
+                            148 	.globl _ADCCON3
+                            149 	.globl _ADCCON2
+                            150 	.globl _ADCCON1
+                            151 	.globl _ENCCS
+                            152 	.globl _ENCDO
+                            153 	.globl _ENCDI
+                            154 	.globl _FWDATA
+                            155 	.globl _FCTL
+                            156 	.globl _FADDRH
+                            157 	.globl _FADDRL
+                            158 	.globl _FWT
+                            159 	.globl _IP0
+                            160 	.globl _IEN0
+                            161 	.globl _IE
+                            162 	.globl _T2THD
+                            163 	.globl _T2TLD
+                            164 	.globl _T2CAPHPH
+                            165 	.globl _T2CAPLPL
+                            166 	.globl _T2OF2
+                            167 	.globl _T2OF1
+                            168 	.globl _T2OF0
+                            169 	.globl _P2
+                            170 	.globl _PSBANK
+                            171 	.globl _FMAP
+                            172 	.globl _T2PEROF2
+                            173 	.globl _T2PEROF1
+                            174 	.globl _T2PEROF0
+                            175 	.globl _S1CON
+                            176 	.globl _IEN2
+                            177 	.globl _HSRC
+                            178 	.globl _S0CON
+                            179 	.globl _ST2
+                            180 	.globl _ST1
+                            181 	.globl _ST0
+                            182 	.globl _T2CMP
+                            183 	.globl __XPAGE
+                            184 	.globl _DPS
+                            185 	.globl _RFIM
+                            186 	.globl _P1
+                            187 	.globl _P0INP
+                            188 	.globl _P1IEN
+                            189 	.globl _PICTL
+                            190 	.globl _P2IFG
+                            191 	.globl _P1IFG
+                            192 	.globl _P0IFG
+                            193 	.globl _TCON
+                            194 	.globl _PCON
+                            195 	.globl _U0CSR
+                            196 	.globl _DPH1
+                            197 	.globl _DPL1
+                            198 	.globl _DPH0
+                            199 	.globl _DPL0
+                            200 	.globl _SP
+                            201 	.globl _P0
+                            202 	.globl _ADC_SHADOW
+                            203 	.globl _U1BUF_SHADOW
+                            204 	.globl _RFD_SHADOW
+                            205 	.globl _U0BUF_SHADOW
+                            206 	.globl _RFSTATUS
+                            207 	.globl _CHIPID
+                            208 	.globl _CHVER
+                            209 	.globl _FSMTC1
+                            210 	.globl _RXFIFOCNT
+                            211 	.globl _IOCFG3
+                            212 	.globl _IOCFG2
+                            213 	.globl _IOCFG1
+                            214 	.globl _IOCFG0
+                            215 	.globl _SHORTADDRL
+                            216 	.globl _SHORTADDRH
+                            217 	.globl _PANIDL
+                            218 	.globl _PANIDH
+                            219 	.globl _IEEE_ADDR7
+                            220 	.globl _IEEE_ADDR6
+                            221 	.globl _IEEE_ADDR5
+                            222 	.globl _IEEE_ADDR4
+                            223 	.globl _IEEE_ADDR3
+                            224 	.globl _IEEE_ADDR2
+                            225 	.globl _IEEE_ADDR1
+                            226 	.globl _IEEE_ADDR0
+                            227 	.globl _DACTSTL
+                            228 	.globl _DACTSTH
+                            229 	.globl _ADCTSTL
+                            230 	.globl _ADCTSTH
+                            231 	.globl _FSMSTATE
+                            232 	.globl _AGCCTRLL
+                            233 	.globl _AGCCTRLH
+                            234 	.globl _MANORL
+                            235 	.globl _MANORH
+                            236 	.globl _MANANDL
+                            237 	.globl _MANANDH
+                            238 	.globl _FSMTCL
+                            239 	.globl _FSMTCH
+                            240 	.globl _RFPWR
+                            241 	.globl _CSPT
+                            242 	.globl _CSPCTRL
+                            243 	.globl _CSPZ
+                            244 	.globl _CSPY
+                            245 	.globl _CSPX
+                            246 	.globl _FSCTRLL
+                            247 	.globl _FSCTRLH
+                            248 	.globl _RXCTRL1L
+                            249 	.globl _RXCTRL1H
+                            250 	.globl _RXCTRL0L
+                            251 	.globl _RXCTRL0H
+                            252 	.globl _TXCTRLL
+                            253 	.globl _TXCTRLH
+                            254 	.globl _SYNCWORDL
+                            255 	.globl _SYNCWORDH
+                            256 	.globl _RSSIL
+                            257 	.globl _RSSIH
+                            258 	.globl _MDMCTRL1L
+                            259 	.globl _MDMCTRL1H
+                            260 	.globl _MDMCTRL0L
+                            261 	.globl _MDMCTRL0H
+                            262 	.globl _uaodv_rt_add
+                            263 	.globl _uaodv_rt_lookup_any
+                            264 	.globl _uaodv_rt_lookup
+                            265 	.globl _uaodv_rt_lru
+                            266 	.globl _uaodv_rt_flush_all
+                            267 ;--------------------------------------------------------
+                            268 ; special function registers
+                            269 ;--------------------------------------------------------
+                            270 	.area RSEG    (ABS,DATA)
+   0000                     271 	.org 0x0000
+                    0080    272 _P0	=	0x0080
+                    0081    273 _SP	=	0x0081
+                    0082    274 _DPL0	=	0x0082
+                    0083    275 _DPH0	=	0x0083
+                    0084    276 _DPL1	=	0x0084
+                    0085    277 _DPH1	=	0x0085
+                    0086    278 _U0CSR	=	0x0086
+                    0087    279 _PCON	=	0x0087
+                    0088    280 _TCON	=	0x0088
+                    0089    281 _P0IFG	=	0x0089
+                    008A    282 _P1IFG	=	0x008a
+                    008B    283 _P2IFG	=	0x008b
+                    008C    284 _PICTL	=	0x008c
+                    008D    285 _P1IEN	=	0x008d
+                    008F    286 _P0INP	=	0x008f
+                    0090    287 _P1	=	0x0090
+                    0091    288 _RFIM	=	0x0091
+                    0092    289 _DPS	=	0x0092
+                    0093    290 __XPAGE	=	0x0093
+                    0094    291 _T2CMP	=	0x0094
+                    0095    292 _ST0	=	0x0095
+                    0096    293 _ST1	=	0x0096
+                    0097    294 _ST2	=	0x0097
+                    0098    295 _S0CON	=	0x0098
+                    0099    296 _HSRC	=	0x0099
+                    009A    297 _IEN2	=	0x009a
+                    009B    298 _S1CON	=	0x009b
+                    009C    299 _T2PEROF0	=	0x009c
+                    009D    300 _T2PEROF1	=	0x009d
+                    009E    301 _T2PEROF2	=	0x009e
+                    009F    302 _FMAP	=	0x009f
+                    009F    303 _PSBANK	=	0x009f
+                    00A0    304 _P2	=	0x00a0
+                    00A1    305 _T2OF0	=	0x00a1
+                    00A2    306 _T2OF1	=	0x00a2
+                    00A3    307 _T2OF2	=	0x00a3
+                    00A4    308 _T2CAPLPL	=	0x00a4
+                    00A5    309 _T2CAPHPH	=	0x00a5
+                    00A6    310 _T2TLD	=	0x00a6
+                    00A7    311 _T2THD	=	0x00a7
+                    00A8    312 _IE	=	0x00a8
+                    00A8    313 _IEN0	=	0x00a8
+                    00A9    314 _IP0	=	0x00a9
+                    00AB    315 _FWT	=	0x00ab
+                    00AC    316 _FADDRL	=	0x00ac
+                    00AD    317 _FADDRH	=	0x00ad
+                    00AE    318 _FCTL	=	0x00ae
+                    00AF    319 _FWDATA	=	0x00af
+                    00B1    320 _ENCDI	=	0x00b1
+                    00B2    321 _ENCDO	=	0x00b2
+                    00B3    322 _ENCCS	=	0x00b3
+                    00B4    323 _ADCCON1	=	0x00b4
+                    00B5    324 _ADCCON2	=	0x00b5
+                    00B6    325 _ADCCON3	=	0x00b6
+                    00B7    326 _RCCTL	=	0x00b7
+                    00B8    327 _IEN1	=	0x00b8
+                    00B9    328 _IP1	=	0x00b9
+                    00BA    329 _ADCL	=	0x00ba
+                    00BB    330 _ADCH	=	0x00bb
+                    00BC    331 _RNDL	=	0x00bc
+                    00BD    332 _RNDH	=	0x00bd
+                    00BE    333 _SLEEP	=	0x00be
+                    00C0    334 _IRCON	=	0x00c0
+                    00C1    335 _U0BUF	=	0x00c1
+                    00C2    336 _U0BAUD	=	0x00c2
+                    00C3    337 _T2CNF	=	0x00c3
+                    00C4    338 _U0UCR	=	0x00c4
+                    00C5    339 _U0GCR	=	0x00c5
+                    00C6    340 _CLKCON	=	0x00c6
+                    00C7    341 _MEMCTR	=	0x00c7
+                    00C8    342 _T2CON	=	0x00c8
+                    00C9    343 _WDCTL	=	0x00c9
+                    00CA    344 _T3CNT	=	0x00ca
+                    00CB    345 _T3CTL	=	0x00cb
+                    00CC    346 _T3CCTL0	=	0x00cc
+                    00CD    347 _T3CC0	=	0x00cd
+                    00CE    348 _T3CCTL1	=	0x00ce
+                    00CF    349 _T3CC1	=	0x00cf
+                    00D0    350 _PSW	=	0x00d0
+                    00D1    351 _DMAIRQ	=	0x00d1
+                    00D2    352 _DMA1CFGL	=	0x00d2
+                    00D3    353 _DMA1CFGH	=	0x00d3
+                    00D4    354 _DMA0CFGL	=	0x00d4
+                    00D5    355 _DMA0CFGH	=	0x00d5
+                    00D6    356 _DMAARM	=	0x00d6
+                    00D7    357 _DMAREQ	=	0x00d7
+                    00D8    358 _TIMIF	=	0x00d8
+                    00D9    359 _RFD	=	0x00d9
+                    00DA    360 _T1CC0L	=	0x00da
+                    00DB    361 _T1CC0H	=	0x00db
+                    00DC    362 _T1CC1L	=	0x00dc
+                    00DD    363 _T1CC1H	=	0x00dd
+                    00DE    364 _T1CC2L	=	0x00de
+                    00DF    365 _T1CC2H	=	0x00df
+                    00E0    366 _ACC	=	0x00e0
+                    00E1    367 _RFST	=	0x00e1
+                    00E2    368 _T1CNTL	=	0x00e2
+                    00E3    369 _T1CNTH	=	0x00e3
+                    00E4    370 _T1CTL	=	0x00e4
+                    00E5    371 _T1CCTL0	=	0x00e5
+                    00E6    372 _T1CCTL1	=	0x00e6
+                    00E7    373 _T1CCTL2	=	0x00e7
+                    00E8    374 _IRCON2	=	0x00e8
+                    00E9    375 _RFIF	=	0x00e9
+                    00EA    376 _T4CNT	=	0x00ea
+                    00EB    377 _T4CTL	=	0x00eb
+                    00EC    378 _T4CCTL0	=	0x00ec
+                    00ED    379 _T4CC0	=	0x00ed
+                    00EE    380 _T4CCTL1	=	0x00ee
+                    00EF    381 _T4CC1	=	0x00ef
+                    00F0    382 _B	=	0x00f0
+                    00F1    383 _PERCFG	=	0x00f1
+                    00F2    384 _ADCCFG	=	0x00f2
+                    00F3    385 _P0SEL	=	0x00f3
+                    00F4    386 _P1SEL	=	0x00f4
+                    00F5    387 _P2SEL	=	0x00f5
+                    00F6    388 _P1INP	=	0x00f6
+                    00F7    389 _P2INP	=	0x00f7
+                    00F8    390 _U1CSR	=	0x00f8
+                    00F9    391 _U1BUF	=	0x00f9
+                    00FA    392 _U1BAUD	=	0x00fa
+                    00FB    393 _U1UCR	=	0x00fb
+                    00FC    394 _U1GCR	=	0x00fc
+                    00FD    395 _P0DIR	=	0x00fd
+                    00FE    396 _P1DIR	=	0x00fe
+                    00FF    397 _P2DIR	=	0x00ff
+                            398 ;--------------------------------------------------------
+                            399 ; special function bits
+                            400 ;--------------------------------------------------------
+                            401 	.area RSEG    (ABS,DATA)
+   0000                     402 	.org 0x0000
+                    0087    403 _P0_7	=	0x0087
+                    0086    404 _P0_6	=	0x0086
+                    0085    405 _P0_5	=	0x0085
+                    0084    406 _P0_4	=	0x0084
+                    0083    407 _P0_3	=	0x0083
+                    0082    408 _P0_2	=	0x0082
+                    0081    409 _P0_1	=	0x0081
+                    0080    410 _P0_0	=	0x0080
+                    008F    411 _TCON_URX1IF	=	0x008f
+                    008D    412 _TCON_ADCIF	=	0x008d
+                    008B    413 _TCON_URX0IF	=	0x008b
+                    008A    414 _TCON_IT1	=	0x008a
+                    0089    415 _TCON_RFERRIF	=	0x0089
+                    0088    416 _TCON_IT0	=	0x0088
+                    0090    417 _P1_0	=	0x0090
+                    0091    418 _P1_1	=	0x0091
+                    0092    419 _P1_2	=	0x0092
+                    0093    420 _P1_3	=	0x0093
+                    0094    421 _P1_4	=	0x0094
+                    0095    422 _P1_5	=	0x0095
+                    0096    423 _P1_6	=	0x0096
+                    0097    424 _P1_7	=	0x0097
+                    0099    425 _S0CON_ENCIF_1	=	0x0099
+                    0098    426 _S0CON_ENCIF_0	=	0x0098
+                    00A0    427 _P2_0	=	0x00a0
+                    00A1    428 _P2_1	=	0x00a1
+                    00A2    429 _P2_2	=	0x00a2
+                    00A3    430 _P2_3	=	0x00a3
+                    00A4    431 _P2_4	=	0x00a4
+                    00AF    432 _EA	=	0x00af
+                    00AF    433 _IEN0_EA	=	0x00af
+                    00AD    434 _IEN0_STIE	=	0x00ad
+                    00AC    435 _IEN0_ENCIE	=	0x00ac
+                    00AB    436 _IEN0_URX1IE	=	0x00ab
+                    00AA    437 _IEN0_URX0IE	=	0x00aa
+                    00A9    438 _IEN0_ADCIE	=	0x00a9
+                    00A8    439 _IEN0_RFERRIE	=	0x00a8
+                    00BD    440 _IEN1_P0IE	=	0x00bd
+                    00BC    441 _IEN1_T4IE	=	0x00bc
+                    00BB    442 _IEN1_T3IE	=	0x00bb
+                    00BA    443 _IEN1_T2IE	=	0x00ba
+                    00B9    444 _IEN1_T1IE	=	0x00b9
+                    00B8    445 _IEN1_DMAIE	=	0x00b8
+                    00C7    446 _IRCON_STIF	=	0x00c7
+                    00C5    447 _IRCON_P0IF	=	0x00c5
+                    00C4    448 _IRCON_T4IF	=	0x00c4
+                    00C3    449 _IRCON_T3IF	=	0x00c3
+                    00C2    450 _IRCON_T2IF	=	0x00c2
+                    00C1    451 _IRCON_T1IF	=	0x00c1
+                    00C0    452 _IRCON_DMAIF	=	0x00c0
+                    00D0    453 _P	=	0x00d0
+                    00D1    454 _F1	=	0x00d1
+                    00D2    455 _OV	=	0x00d2
+                    00D3    456 _RS0	=	0x00d3
+                    00D4    457 _RS1	=	0x00d4
+                    00D5    458 _F0	=	0x00d5
+                    00D6    459 _AC	=	0x00d6
+                    00D7    460 _CY	=	0x00d7
+                    00EC    461 _IRCON2_WDTIF	=	0x00ec
+                    00EB    462 _IRCON2_P1IF	=	0x00eb
+                    00EA    463 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    464 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    465 _IRCON2_P2IF	=	0x00e8
+                            466 ;--------------------------------------------------------
+                            467 ; overlayable register banks
+                            468 ;--------------------------------------------------------
+                            469 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     470 	.ds 8
+                            471 ;--------------------------------------------------------
+                            472 ; internal ram data
+                            473 ;--------------------------------------------------------
+                            474 	.area DSEG    (DATA)
+                            475 ;--------------------------------------------------------
+                            476 ; overlayable items in internal ram 
+                            477 ;--------------------------------------------------------
+                            478 	.area OSEG    (OVR,DATA)
+                            479 ;--------------------------------------------------------
+                            480 ; indirectly addressable internal ram data
+                            481 ;--------------------------------------------------------
+                            482 	.area ISEG    (DATA)
+                            483 ;--------------------------------------------------------
+                            484 ; absolute internal ram data
+                            485 ;--------------------------------------------------------
+                            486 	.area IABS    (ABS,DATA)
+                            487 	.area IABS    (ABS,DATA)
+                            488 ;--------------------------------------------------------
+                            489 ; bit data
+                            490 ;--------------------------------------------------------
+                            491 	.area BSEG    (BIT)
+                            492 ;--------------------------------------------------------
+                            493 ; paged external ram data
+                            494 ;--------------------------------------------------------
+                            495 	.area PSEG    (PAG,XDATA)
+                            496 ;--------------------------------------------------------
+                            497 ; external ram data
+                            498 ;--------------------------------------------------------
+                            499 	.area XSEG    (XDATA)
+                    DF02    500 _MDMCTRL0H	=	0xdf02
+                    DF03    501 _MDMCTRL0L	=	0xdf03
+                    DF04    502 _MDMCTRL1H	=	0xdf04
+                    DF05    503 _MDMCTRL1L	=	0xdf05
+                    DF06    504 _RSSIH	=	0xdf06
+                    DF07    505 _RSSIL	=	0xdf07
+                    DF08    506 _SYNCWORDH	=	0xdf08
+                    DF09    507 _SYNCWORDL	=	0xdf09
+                    DF0A    508 _TXCTRLH	=	0xdf0a
+                    DF0B    509 _TXCTRLL	=	0xdf0b
+                    DF0C    510 _RXCTRL0H	=	0xdf0c
+                    DF0D    511 _RXCTRL0L	=	0xdf0d
+                    DF0E    512 _RXCTRL1H	=	0xdf0e
+                    DF0F    513 _RXCTRL1L	=	0xdf0f
+                    DF10    514 _FSCTRLH	=	0xdf10
+                    DF11    515 _FSCTRLL	=	0xdf11
+                    DF12    516 _CSPX	=	0xdf12
+                    DF13    517 _CSPY	=	0xdf13
+                    DF14    518 _CSPZ	=	0xdf14
+                    DF15    519 _CSPCTRL	=	0xdf15
+                    DF16    520 _CSPT	=	0xdf16
+                    DF17    521 _RFPWR	=	0xdf17
+                    DF20    522 _FSMTCH	=	0xdf20
+                    DF21    523 _FSMTCL	=	0xdf21
+                    DF22    524 _MANANDH	=	0xdf22
+                    DF23    525 _MANANDL	=	0xdf23
+                    DF24    526 _MANORH	=	0xdf24
+                    DF25    527 _MANORL	=	0xdf25
+                    DF26    528 _AGCCTRLH	=	0xdf26
+                    DF27    529 _AGCCTRLL	=	0xdf27
+                    DF39    530 _FSMSTATE	=	0xdf39
+                    DF3A    531 _ADCTSTH	=	0xdf3a
+                    DF3B    532 _ADCTSTL	=	0xdf3b
+                    DF3C    533 _DACTSTH	=	0xdf3c
+                    DF3D    534 _DACTSTL	=	0xdf3d
+                    DF43    535 _IEEE_ADDR0	=	0xdf43
+                    DF44    536 _IEEE_ADDR1	=	0xdf44
+                    DF45    537 _IEEE_ADDR2	=	0xdf45
+                    DF46    538 _IEEE_ADDR3	=	0xdf46
+                    DF47    539 _IEEE_ADDR4	=	0xdf47
+                    DF48    540 _IEEE_ADDR5	=	0xdf48
+                    DF49    541 _IEEE_ADDR6	=	0xdf49
+                    DF4A    542 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    543 _PANIDH	=	0xdf4b
+                    DF4C    544 _PANIDL	=	0xdf4c
+                    DF4D    545 _SHORTADDRH	=	0xdf4d
+                    DF4E    546 _SHORTADDRL	=	0xdf4e
+                    DF4F    547 _IOCFG0	=	0xdf4f
+                    DF50    548 _IOCFG1	=	0xdf50
+                    DF51    549 _IOCFG2	=	0xdf51
+                    DF52    550 _IOCFG3	=	0xdf52
+                    DF53    551 _RXFIFOCNT	=	0xdf53
+                    DF54    552 _FSMTC1	=	0xdf54
+                    DF60    553 _CHVER	=	0xdf60
+                    DF61    554 _CHIPID	=	0xdf61
+                    DF62    555 _RFSTATUS	=	0xdf62
+                    DFC1    556 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    557 _RFD_SHADOW	=	0xdfd9
+                    DFF9    558 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    559 _ADC_SHADOW	=	0xdfba
+   0000                     560 _route_mem_memb_count:
+   0000                     561 	.ds 8
+   0008                     562 _route_mem_memb_mem:
+   0008                     563 	.ds 136
+                            564 ;--------------------------------------------------------
+                            565 ; absolute external ram data
+                            566 ;--------------------------------------------------------
+                            567 	.area XABS    (ABS,XDATA)
+                            568 ;--------------------------------------------------------
+                            569 ; external initialized ram data
+                            570 ;--------------------------------------------------------
+                            571 	.area XISEG   (XDATA)
+   0000                     572 _route_table_list:
+   0000                     573 	.ds 3
+   0003                     574 _route_table:
+   0003                     575 	.ds 3
+   0006                     576 _route_mem:
+   0006                     577 	.ds 10
+                            578 	.area HOME    (CODE)
+                            579 	.area GSINIT0 (CODE)
+                            580 	.area GSINIT1 (CODE)
+                            581 	.area GSINIT2 (CODE)
+                            582 	.area GSINIT3 (CODE)
+                            583 	.area GSINIT4 (CODE)
+                            584 	.area GSINIT5 (CODE)
+                            585 	.area GSINIT  (CODE)
+                            586 	.area GSFINAL (CODE)
+                            587 	.area CSEG    (CODE)
+                            588 ;--------------------------------------------------------
+                            589 ; global & static initialisations
+                            590 ;--------------------------------------------------------
+                            591 	.area HOME    (CODE)
+                            592 	.area GSINIT  (CODE)
+                            593 	.area GSFINAL (CODE)
+                            594 	.area GSINIT  (CODE)
+                            595 ;--------------------------------------------------------
+                            596 ; Home
+                            597 ;--------------------------------------------------------
+                            598 	.area HOME    (CODE)
+                            599 	.area HOME    (CODE)
+                            600 ;--------------------------------------------------------
+                            601 ; code
+                            602 ;--------------------------------------------------------
+                            603 	.area CSEG    (CODE)
+                            604 ;------------------------------------------------------------
+                            605 ;Allocation info for local variables in function 'uaodv_rt_init'
+                            606 ;------------------------------------------------------------
+                            607 ;------------------------------------------------------------
+                            608 ;	../../../core/net/uaodv-rt.c:57: uaodv_rt_init(void)
+                            609 ;	-----------------------------------------
+                            610 ;	 function uaodv_rt_init
+                            611 ;	-----------------------------------------
+   0000                     612 _uaodv_rt_init:
+                    0002    613 	ar2 = 0x02
+                    0003    614 	ar3 = 0x03
+                    0004    615 	ar4 = 0x04
+                    0005    616 	ar5 = 0x05
+                    0006    617 	ar6 = 0x06
+                    0007    618 	ar7 = 0x07
+                    0000    619 	ar0 = 0x00
+                    0001    620 	ar1 = 0x01
+                            621 ;	../../../core/net/uaodv-rt.c:59: list_init(route_table);
+   0000 90s00r03            622 	mov	dptr,#_route_table
+   0003 E0                  623 	movx	a,@dptr
+   0004 FA                  624 	mov	r2,a
+   0005 A3                  625 	inc	dptr
+   0006 E0                  626 	movx	a,@dptr
+   0007 FB                  627 	mov	r3,a
+   0008 A3                  628 	inc	dptr
+   0009 E0                  629 	movx	a,@dptr
+   000A FC                  630 	mov	r4,a
+   000B 8A 82               631 	mov	dpl,r2
+   000D 8B 83               632 	mov	dph,r3
+   000F 8C F0               633 	mov	b,r4
+   0011 12s00r00            634 	lcall	_list_init
+                            635 ;	../../../core/net/uaodv-rt.c:60: memb_init(&route_mem);
+   0014 90s00r06            636 	mov	dptr,#_route_mem
+   0017 75 F0 00            637 	mov	b,#0x00
+   001A 02s00r00            638 	ljmp	_memb_init
+                            639 ;------------------------------------------------------------
+                            640 ;Allocation info for local variables in function 'uaodv_rt_add'
+                            641 ;------------------------------------------------------------
+                            642 ;nexthop                   Allocated to stack - offset -5
+                            643 ;hop_count                 Allocated to stack - offset -7
+                            644 ;seqno                     Allocated to stack - offset -10
+                            645 ;dest                      Allocated to stack - offset 1
+                            646 ;e                         Allocated to stack - offset 4
+                            647 ;sloc0                     Allocated to stack - offset 7
+                            648 ;------------------------------------------------------------
+                            649 ;	../../../core/net/uaodv-rt.c:64: uaodv_rt_add(uip_ipaddr_t *dest, uip_ipaddr_t *nexthop,
+                            650 ;	-----------------------------------------
+                            651 ;	 function uaodv_rt_add
+                            652 ;	-----------------------------------------
+   001D                     653 _uaodv_rt_add:
+   001D C0*00               654 	push	_bp
+   001F 85 81*00            655 	mov	_bp,sp
+   0022 C0 82               656 	push	dpl
+   0024 C0 83               657 	push	dph
+   0026 C0 F0               658 	push	b
+   0028 E5 81               659 	mov	a,sp
+   002A 24 09               660 	add	a,#0x09
+   002C F5 81               661 	mov	sp,a
+                            662 ;	../../../core/net/uaodv-rt.c:70: e = uaodv_rt_lookup_any(dest);
+   002E A8*00               663 	mov	r0,_bp
+   0030 08                  664 	inc	r0
+   0031 86 82               665 	mov	dpl,@r0
+   0033 08                  666 	inc	r0
+   0034 86 83               667 	mov	dph,@r0
+   0036 08                  668 	inc	r0
+   0037 86 F0               669 	mov	b,@r0
+   0039 12s02r24            670 	lcall	_uaodv_rt_lookup_any
+   003C AD 82               671 	mov	r5,dpl
+   003E AE 83               672 	mov	r6,dph
+   0040 AF F0               673 	mov	r7,b
+   0042 E5*00               674 	mov	a,_bp
+   0044 24 04               675 	add	a,#0x04
+   0046 F8                  676 	mov	r0,a
+   0047 A6 05               677 	mov	@r0,ar5
+   0049 08                  678 	inc	r0
+   004A A6 06               679 	mov	@r0,ar6
+   004C 08                  680 	inc	r0
+   004D A6 07               681 	mov	@r0,ar7
+                            682 ;	../../../core/net/uaodv-rt.c:71: if(e != NULL) {
+   004F E5*00               683 	mov	a,_bp
+   0051 24 04               684 	add	a,#0x04
+   0053 F8                  685 	mov	r0,a
+   0054 E6                  686 	mov	a,@r0
+   0055 08                  687 	inc	r0
+   0056 46                  688 	orl	a,@r0
+   0057 08                  689 	inc	r0
+   0058 46                  690 	orl	a,@r0
+   0059 60 2C               691 	jz	00104$
+                            692 ;	../../../core/net/uaodv-rt.c:72: list_remove(route_table, e);    
+   005B 90s00r03            693 	mov	dptr,#_route_table
+   005E E0                  694 	movx	a,@dptr
+   005F FA                  695 	mov	r2,a
+   0060 A3                  696 	inc	dptr
+   0061 E0                  697 	movx	a,@dptr
+   0062 FB                  698 	mov	r3,a
+   0063 A3                  699 	inc	dptr
+   0064 E0                  700 	movx	a,@dptr
+   0065 FC                  701 	mov	r4,a
+   0066 E5*00               702 	mov	a,_bp
+   0068 24 04               703 	add	a,#0x04
+   006A F8                  704 	mov	r0,a
+   006B E6                  705 	mov	a,@r0
+   006C C0 E0               706 	push	acc
+   006E 08                  707 	inc	r0
+   006F E6                  708 	mov	a,@r0
+   0070 C0 E0               709 	push	acc
+   0072 08                  710 	inc	r0
+   0073 E6                  711 	mov	a,@r0
+   0074 C0 E0               712 	push	acc
+   0076 8A 82               713 	mov	dpl,r2
+   0078 8B 83               714 	mov	dph,r3
+   007A 8C F0               715 	mov	b,r4
+   007C 12s00r00            716 	lcall	_list_remove
+   007F 15 81               717 	dec	sp
+   0081 15 81               718 	dec	sp
+   0083 15 81               719 	dec	sp
+   0085 80 4F               720 	sjmp	00105$
+   0087                     721 00104$:
+                            722 ;	../../../core/net/uaodv-rt.c:75: e = memb_alloc(&route_mem);
+   0087 90s00r06            723 	mov	dptr,#_route_mem
+   008A 75 F0 00            724 	mov	b,#0x00
+   008D 12s00r00            725 	lcall	_memb_alloc
+   0090 AA 82               726 	mov	r2,dpl
+   0092 AB 83               727 	mov	r3,dph
+   0094 AC F0               728 	mov	r4,b
+   0096 E5*00               729 	mov	a,_bp
+   0098 24 04               730 	add	a,#0x04
+   009A F8                  731 	mov	r0,a
+   009B A6 02               732 	mov	@r0,ar2
+   009D 08                  733 	inc	r0
+   009E A6 03               734 	mov	@r0,ar3
+   00A0 08                  735 	inc	r0
+   00A1 A6 04               736 	mov	@r0,ar4
+                            737 ;	../../../core/net/uaodv-rt.c:76: if(e == NULL) {
+   00A3 E5*00               738 	mov	a,_bp
+   00A5 24 04               739 	add	a,#0x04
+   00A7 F8                  740 	mov	r0,a
+   00A8 E6                  741 	mov	a,@r0
+   00A9 08                  742 	inc	r0
+   00AA 46                  743 	orl	a,@r0
+   00AB 08                  744 	inc	r0
+   00AC 46                  745 	orl	a,@r0
+   00AD 70 27               746 	jnz	00105$
+                            747 ;	../../../core/net/uaodv-rt.c:77: e = list_chop(route_table); /* Remove oldest entry. */
+   00AF 90s00r03            748 	mov	dptr,#_route_table
+   00B2 E0                  749 	movx	a,@dptr
+   00B3 FA                  750 	mov	r2,a
+   00B4 A3                  751 	inc	dptr
+   00B5 E0                  752 	movx	a,@dptr
+   00B6 FB                  753 	mov	r3,a
+   00B7 A3                  754 	inc	dptr
+   00B8 E0                  755 	movx	a,@dptr
+   00B9 FC                  756 	mov	r4,a
+   00BA 8A 82               757 	mov	dpl,r2
+   00BC 8B 83               758 	mov	dph,r3
+   00BE 8C F0               759 	mov	b,r4
+   00C0 12s00r00            760 	lcall	_list_chop
+   00C3 AA 82               761 	mov	r2,dpl
+   00C5 AB 83               762 	mov	r3,dph
+   00C7 AC F0               763 	mov	r4,b
+   00C9 E5*00               764 	mov	a,_bp
+   00CB 24 04               765 	add	a,#0x04
+   00CD F8                  766 	mov	r0,a
+   00CE A6 02               767 	mov	@r0,ar2
+   00D0 08                  768 	inc	r0
+   00D1 A6 03               769 	mov	@r0,ar3
+   00D3 08                  770 	inc	r0
+   00D4 A6 04               771 	mov	@r0,ar4
+                            772 ;	../../../core/net/uaodv-rt.c:90: return e;
+                            773 ;	../../../core/net/uaodv-rt.c:77: e = list_chop(route_table); /* Remove oldest entry. */
+   00D6                     774 00105$:
+                            775 ;	../../../core/net/uaodv-rt.c:81: uip_ipaddr_copy(&e->dest, dest);
+   00D6 E5*00               776 	mov	a,_bp
+   00D8 24 04               777 	add	a,#0x04
+   00DA F8                  778 	mov	r0,a
+   00DB 74 03               779 	mov	a,#0x03
+   00DD 26                  780 	add	a,@r0
+   00DE FA                  781 	mov	r2,a
+   00DF E4                  782 	clr	a
+   00E0 08                  783 	inc	r0
+   00E1 36                  784 	addc	a,@r0
+   00E2 FB                  785 	mov	r3,a
+   00E3 08                  786 	inc	r0
+   00E4 86 04               787 	mov	ar4,@r0
+   00E6 74 04               788 	mov	a,#0x04
+   00E8 C0 E0               789 	push	acc
+   00EA E4                  790 	clr	a
+   00EB C0 E0               791 	push	acc
+   00ED A8*00               792 	mov	r0,_bp
+   00EF 08                  793 	inc	r0
+   00F0 E6                  794 	mov	a,@r0
+   00F1 C0 E0               795 	push	acc
+   00F3 08                  796 	inc	r0
+   00F4 E6                  797 	mov	a,@r0
+   00F5 C0 E0               798 	push	acc
+   00F7 08                  799 	inc	r0
+   00F8 E6                  800 	mov	a,@r0
+   00F9 C0 E0               801 	push	acc
+   00FB 8A 82               802 	mov	dpl,r2
+   00FD 8B 83               803 	mov	dph,r3
+   00FF 8C F0               804 	mov	b,r4
+   0101 12s00r00            805 	lcall	_memcpy
+   0104 E5 81               806 	mov	a,sp
+   0106 24 FB               807 	add	a,#0xfb
+   0108 F5 81               808 	mov	sp,a
+                            809 ;	../../../core/net/uaodv-rt.c:82: uip_ipaddr_copy(&e->nexthop, nexthop);
+   010A E5*00               810 	mov	a,_bp
+   010C 24 04               811 	add	a,#0x04
+   010E F8                  812 	mov	r0,a
+   010F 74 07               813 	mov	a,#0x07
+   0111 26                  814 	add	a,@r0
+   0112 FA                  815 	mov	r2,a
+   0113 E4                  816 	clr	a
+   0114 08                  817 	inc	r0
+   0115 36                  818 	addc	a,@r0
+   0116 FB                  819 	mov	r3,a
+   0117 08                  820 	inc	r0
+   0118 86 04               821 	mov	ar4,@r0
+   011A 74 04               822 	mov	a,#0x04
+   011C C0 E0               823 	push	acc
+   011E E4                  824 	clr	a
+   011F C0 E0               825 	push	acc
+   0121 E5*00               826 	mov	a,_bp
+   0123 24 FB               827 	add	a,#0xfb
+   0125 F8                  828 	mov	r0,a
+   0126 E6                  829 	mov	a,@r0
+   0127 C0 E0               830 	push	acc
+   0129 08                  831 	inc	r0
+   012A E6                  832 	mov	a,@r0
+   012B C0 E0               833 	push	acc
+   012D 08                  834 	inc	r0
+   012E E6                  835 	mov	a,@r0
+   012F C0 E0               836 	push	acc
+   0131 8A 82               837 	mov	dpl,r2
+   0133 8B 83               838 	mov	dph,r3
+   0135 8C F0               839 	mov	b,r4
+   0137 12s00r00            840 	lcall	_memcpy
+   013A E5 81               841 	mov	a,sp
+   013C 24 FB               842 	add	a,#0xfb
+   013E F5 81               843 	mov	sp,a
+                            844 ;	../../../core/net/uaodv-rt.c:83: e->hop_count = hop_count;
+   0140 E5*00               845 	mov	a,_bp
+   0142 24 04               846 	add	a,#0x04
+   0144 F8                  847 	mov	r0,a
+   0145 74 0F               848 	mov	a,#0x0F
+   0147 26                  849 	add	a,@r0
+   0148 FA                  850 	mov	r2,a
+   0149 E4                  851 	clr	a
+   014A 08                  852 	inc	r0
+   014B 36                  853 	addc	a,@r0
+   014C FB                  854 	mov	r3,a
+   014D 08                  855 	inc	r0
+   014E 86 04               856 	mov	ar4,@r0
+   0150 E5*00               857 	mov	a,_bp
+   0152 24 F9               858 	add	a,#0xf9
+   0154 F8                  859 	mov	r0,a
+   0155 86 05               860 	mov	ar5,@r0
+   0157 8A 82               861 	mov	dpl,r2
+   0159 8B 83               862 	mov	dph,r3
+   015B 8C F0               863 	mov	b,r4
+   015D ED                  864 	mov	a,r5
+   015E 12s00r00            865 	lcall	__gptrput
+                            866 ;	../../../core/net/uaodv-rt.c:84: e->hseqno = ntohl(*seqno);
+   0161 E5*00               867 	mov	a,_bp
+   0163 24 04               868 	add	a,#0x04
+   0165 F8                  869 	mov	r0,a
+   0166 E5*00               870 	mov	a,_bp
+   0168 24 07               871 	add	a,#0x07
+   016A F9                  872 	mov	r1,a
+   016B 74 0B               873 	mov	a,#0x0B
+   016D 26                  874 	add	a,@r0
+   016E F7                  875 	mov	@r1,a
+   016F E4                  876 	clr	a
+   0170 08                  877 	inc	r0
+   0171 36                  878 	addc	a,@r0
+   0172 09                  879 	inc	r1
+   0173 F7                  880 	mov	@r1,a
+   0174 08                  881 	inc	r0
+   0175 09                  882 	inc	r1
+   0176 E6                  883 	mov	a,@r0
+   0177 F7                  884 	mov	@r1,a
+   0178 E5*00               885 	mov	a,_bp
+   017A 24 F6               886 	add	a,#0xf6
+   017C F8                  887 	mov	r0,a
+   017D 86 05               888 	mov	ar5,@r0
+   017F 08                  889 	inc	r0
+   0180 86 06               890 	mov	ar6,@r0
+   0182 08                  891 	inc	r0
+   0183 86 07               892 	mov	ar7,@r0
+   0185 8D 82               893 	mov	dpl,r5
+   0187 8E 83               894 	mov	dph,r6
+   0189 8F F0               895 	mov	b,r7
+   018B 12s00r00            896 	lcall	__gptrget
+   018E FD                  897 	mov	r5,a
+   018F A3                  898 	inc	dptr
+   0190 12s00r00            899 	lcall	__gptrget
+   0193 FE                  900 	mov	r6,a
+   0194 A3                  901 	inc	dptr
+   0195 12s00r00            902 	lcall	__gptrget
+   0198 FF                  903 	mov	r7,a
+   0199 A3                  904 	inc	dptr
+   019A 12s00r00            905 	lcall	__gptrget
+   019D 8D 82               906 	mov	dpl,r5
+   019F 8E 83               907 	mov	dph,r6
+   01A1 8F F0               908 	mov	b,r7
+   01A3 12s00r00            909 	lcall	_htonl
+   01A6 AA 82               910 	mov	r2,dpl
+   01A8 AB 83               911 	mov	r3,dph
+   01AA AC F0               912 	mov	r4,b
+   01AC FD                  913 	mov	r5,a
+   01AD E5*00               914 	mov	a,_bp
+   01AF 24 07               915 	add	a,#0x07
+   01B1 F8                  916 	mov	r0,a
+   01B2 86 82               917 	mov	dpl,@r0
+   01B4 08                  918 	inc	r0
+   01B5 86 83               919 	mov	dph,@r0
+   01B7 08                  920 	inc	r0
+   01B8 86 F0               921 	mov	b,@r0
+   01BA EA                  922 	mov	a,r2
+   01BB 12s00r00            923 	lcall	__gptrput
+   01BE A3                  924 	inc	dptr
+   01BF EB                  925 	mov	a,r3
+   01C0 12s00r00            926 	lcall	__gptrput
+   01C3 A3                  927 	inc	dptr
+   01C4 EC                  928 	mov	a,r4
+   01C5 12s00r00            929 	lcall	__gptrput
+   01C8 A3                  930 	inc	dptr
+   01C9 ED                  931 	mov	a,r5
+   01CA 12s00r00            932 	lcall	__gptrput
+                            933 ;	../../../core/net/uaodv-rt.c:85: e->is_bad = 0;
+   01CD E5*00               934 	mov	a,_bp
+   01CF 24 04               935 	add	a,#0x04
+   01D1 F8                  936 	mov	r0,a
+   01D2 74 10               937 	mov	a,#0x10
+   01D4 26                  938 	add	a,@r0
+   01D5 FA                  939 	mov	r2,a
+   01D6 E4                  940 	clr	a
+   01D7 08                  941 	inc	r0
+   01D8 36                  942 	addc	a,@r0
+   01D9 FB                  943 	mov	r3,a
+   01DA 08                  944 	inc	r0
+   01DB 86 04               945 	mov	ar4,@r0
+   01DD 8A 82               946 	mov	dpl,r2
+   01DF 8B 83               947 	mov	dph,r3
+   01E1 8C F0               948 	mov	b,r4
+   01E3 E4                  949 	clr	a
+   01E4 12s00r00            950 	lcall	__gptrput
+                            951 ;	../../../core/net/uaodv-rt.c:88: list_push(route_table, e);
+   01E7 90s00r03            952 	mov	dptr,#_route_table
+   01EA E0                  953 	movx	a,@dptr
+   01EB FA                  954 	mov	r2,a
+   01EC A3                  955 	inc	dptr
+   01ED E0                  956 	movx	a,@dptr
+   01EE FB                  957 	mov	r3,a
+   01EF A3                  958 	inc	dptr
+   01F0 E0                  959 	movx	a,@dptr
+   01F1 FC                  960 	mov	r4,a
+   01F2 E5*00               961 	mov	a,_bp
+   01F4 24 04               962 	add	a,#0x04
+   01F6 F8                  963 	mov	r0,a
+   01F7 E6                  964 	mov	a,@r0
+   01F8 C0 E0               965 	push	acc
+   01FA 08                  966 	inc	r0
+   01FB E6                  967 	mov	a,@r0
+   01FC C0 E0               968 	push	acc
+   01FE 08                  969 	inc	r0
+   01FF E6                  970 	mov	a,@r0
+   0200 C0 E0               971 	push	acc
+   0202 8A 82               972 	mov	dpl,r2
+   0204 8B 83               973 	mov	dph,r3
+   0206 8C F0               974 	mov	b,r4
+   0208 12s00r00            975 	lcall	_list_push
+   020B 15 81               976 	dec	sp
+   020D 15 81               977 	dec	sp
+   020F 15 81               978 	dec	sp
+                            979 ;	../../../core/net/uaodv-rt.c:90: return e;
+   0211 E5*00               980 	mov	a,_bp
+   0213 24 04               981 	add	a,#0x04
+   0215 F8                  982 	mov	r0,a
+   0216 86 82               983 	mov	dpl,@r0
+   0218 08                  984 	inc	r0
+   0219 86 83               985 	mov	dph,@r0
+   021B 08                  986 	inc	r0
+   021C 86 F0               987 	mov	b,@r0
+   021E 85*00 81            988 	mov	sp,_bp
+   0221 D0*00               989 	pop	_bp
+   0223 22                  990 	ret
+                            991 ;------------------------------------------------------------
+                            992 ;Allocation info for local variables in function 'uaodv_rt_lookup_any'
+                            993 ;------------------------------------------------------------
+                            994 ;dest                      Allocated to stack - offset 1
+                            995 ;e                         Allocated to stack - offset 4
+                            996 ;sloc0                     Allocated to stack - offset 7
+                            997 ;------------------------------------------------------------
+                            998 ;	../../../core/net/uaodv-rt.c:94: uaodv_rt_lookup_any(uip_ipaddr_t *dest)
+                            999 ;	-----------------------------------------
+                           1000 ;	 function uaodv_rt_lookup_any
+                           1001 ;	-----------------------------------------
+   0224                    1002 _uaodv_rt_lookup_any:
+   0224 C0*00              1003 	push	_bp
+   0226 85 81*00           1004 	mov	_bp,sp
+   0229 C0 82              1005 	push	dpl
+   022B C0 83              1006 	push	dph
+   022D C0 F0              1007 	push	b
+   022F E5 81              1008 	mov	a,sp
+   0231 24 09              1009 	add	a,#0x09
+   0233 F5 81              1010 	mov	sp,a
+                           1011 ;	../../../core/net/uaodv-rt.c:98: for(e = list_head(route_table); e != NULL; e = e->next) {
+   0235 90s00r03           1012 	mov	dptr,#_route_table
+   0238 E0                 1013 	movx	a,@dptr
+   0239 FD                 1014 	mov	r5,a
+   023A A3                 1015 	inc	dptr
+   023B E0                 1016 	movx	a,@dptr
+   023C FE                 1017 	mov	r6,a
+   023D A3                 1018 	inc	dptr
+   023E E0                 1019 	movx	a,@dptr
+   023F FF                 1020 	mov	r7,a
+   0240 8D 82              1021 	mov	dpl,r5
+   0242 8E 83              1022 	mov	dph,r6
+   0244 8F F0              1023 	mov	b,r7
+   0246 12s00r00           1024 	lcall	_list_head
+   0249 AD 82              1025 	mov	r5,dpl
+   024B AE 83              1026 	mov	r6,dph
+   024D AF F0              1027 	mov	r7,b
+   024F E5*00              1028 	mov	a,_bp
+   0251 24 04              1029 	add	a,#0x04
+   0253 F8                 1030 	mov	r0,a
+   0254 A6 05              1031 	mov	@r0,ar5
+   0256 08                 1032 	inc	r0
+   0257 A6 06              1033 	mov	@r0,ar6
+   0259 08                 1034 	inc	r0
+   025A A6 07              1035 	mov	@r0,ar7
+   025C A8*00              1036 	mov	r0,_bp
+   025E 08                 1037 	inc	r0
+   025F 74 02              1038 	mov	a,#0x02
+   0261 26                 1039 	add	a,@r0
+   0262 FA                 1040 	mov	r2,a
+   0263 E4                 1041 	clr	a
+   0264 08                 1042 	inc	r0
+   0265 36                 1043 	addc	a,@r0
+   0266 FB                 1044 	mov	r3,a
+   0267 08                 1045 	inc	r0
+   0268 86 04              1046 	mov	ar4,@r0
+   026A                    1047 00104$:
+   026A E5*00              1048 	mov	a,_bp
+   026C 24 04              1049 	add	a,#0x04
+   026E F8                 1050 	mov	r0,a
+   026F B6 00 0B           1051 	cjne	@r0,#0x00,00114$
+   0272 08                 1052 	inc	r0
+   0273 B6 00 07           1053 	cjne	@r0,#0x00,00114$
+   0276 08                 1054 	inc	r0
+   0277 B6 00 03           1055 	cjne	@r0,#0x00,00114$
+   027A 02s03r63           1056 	ljmp	00107$
+   027D                    1057 00114$:
+                           1058 ;	../../../core/net/uaodv-rt.c:99: if(uip_ipaddr_cmp(dest, &e->dest)) {
+   027D C0 02              1059 	push	ar2
+   027F C0 03              1060 	push	ar3
+   0281 C0 04              1061 	push	ar4
+   0283 E5*00              1062 	mov	a,_bp
+   0285 24 04              1063 	add	a,#0x04
+   0287 F8                 1064 	mov	r0,a
+   0288 74 03              1065 	mov	a,#0x03
+   028A 26                 1066 	add	a,@r0
+   028B FA                 1067 	mov	r2,a
+   028C E4                 1068 	clr	a
+   028D 08                 1069 	inc	r0
+   028E 36                 1070 	addc	a,@r0
+   028F FB                 1071 	mov	r3,a
+   0290 08                 1072 	inc	r0
+   0291 86 04              1073 	mov	ar4,@r0
+   0293 A8*00              1074 	mov	r0,_bp
+   0295 08                 1075 	inc	r0
+   0296 86 82              1076 	mov	dpl,@r0
+   0298 08                 1077 	inc	r0
+   0299 86 83              1078 	mov	dph,@r0
+   029B 08                 1079 	inc	r0
+   029C 86 F0              1080 	mov	b,@r0
+   029E 12s00r00           1081 	lcall	__gptrget
+   02A1 FD                 1082 	mov	r5,a
+   02A2 A3                 1083 	inc	dptr
+   02A3 12s00r00           1084 	lcall	__gptrget
+   02A6 FE                 1085 	mov	r6,a
+   02A7 8A 82              1086 	mov	dpl,r2
+   02A9 8B 83              1087 	mov	dph,r3
+   02AB 8C F0              1088 	mov	b,r4
+   02AD 12s00r00           1089 	lcall	__gptrget
+   02B0 FA                 1090 	mov	r2,a
+   02B1 A3                 1091 	inc	dptr
+   02B2 12s00r00           1092 	lcall	__gptrget
+   02B5 FB                 1093 	mov	r3,a
+   02B6 ED                 1094 	mov	a,r5
+   02B7 B5 02 06           1095 	cjne	a,ar2,00115$
+   02BA EE                 1096 	mov	a,r6
+   02BB B5 03 02           1097 	cjne	a,ar3,00115$
+   02BE 80 09              1098 	sjmp	00116$
+   02C0                    1099 00115$:
+   02C0 D0 04              1100 	pop	ar4
+   02C2 D0 03              1101 	pop	ar3
+   02C4 D0 02              1102 	pop	ar2
+   02C6 02s03r41           1103 	ljmp	00106$
+   02C9                    1104 00116$:
+   02C9 D0 04              1105 	pop	ar4
+   02CB D0 03              1106 	pop	ar3
+   02CD D0 02              1107 	pop	ar2
+   02CF E5*00              1108 	mov	a,_bp
+   02D1 24 04              1109 	add	a,#0x04
+   02D3 F8                 1110 	mov	r0,a
+   02D4 74 03              1111 	mov	a,#0x03
+   02D6 26                 1112 	add	a,@r0
+   02D7 FD                 1113 	mov	r5,a
+   02D8 E4                 1114 	clr	a
+   02D9 08                 1115 	inc	r0
+   02DA 36                 1116 	addc	a,@r0
+   02DB FE                 1117 	mov	r6,a
+   02DC 08                 1118 	inc	r0
+   02DD 86 07              1119 	mov	ar7,@r0
+   02DF E5*00              1120 	mov	a,_bp
+   02E1 24 07              1121 	add	a,#0x07
+   02E3 F8                 1122 	mov	r0,a
+   02E4 74 02              1123 	mov	a,#0x02
+   02E6 2D                 1124 	add	a,r5
+   02E7 F6                 1125 	mov	@r0,a
+   02E8 E4                 1126 	clr	a
+   02E9 3E                 1127 	addc	a,r6
+   02EA 08                 1128 	inc	r0
+   02EB F6                 1129 	mov	@r0,a
+   02EC 08                 1130 	inc	r0
+   02ED A6 07              1131 	mov	@r0,ar7
+   02EF 8A 82              1132 	mov	dpl,r2
+   02F1 8B 83              1133 	mov	dph,r3
+   02F3 8C F0              1134 	mov	b,r4
+   02F5 12s00r00           1135 	lcall	__gptrget
+   02F8 FD                 1136 	mov	r5,a
+   02F9 A3                 1137 	inc	dptr
+   02FA 12s00r00           1138 	lcall	__gptrget
+   02FD FE                 1139 	mov	r6,a
+   02FE C0 02              1140 	push	ar2
+   0300 C0 03              1141 	push	ar3
+   0302 C0 04              1142 	push	ar4
+   0304 E5*00              1143 	mov	a,_bp
+   0306 24 07              1144 	add	a,#0x07
+   0308 F8                 1145 	mov	r0,a
+   0309 86 82              1146 	mov	dpl,@r0
+   030B 08                 1147 	inc	r0
+   030C 86 83              1148 	mov	dph,@r0
+   030E 08                 1149 	inc	r0
+   030F 86 F0              1150 	mov	b,@r0
+   0311 12s00r00           1151 	lcall	__gptrget
+   0314 FF                 1152 	mov	r7,a
+   0315 A3                 1153 	inc	dptr
+   0316 12s00r00           1154 	lcall	__gptrget
+   0319 FA                 1155 	mov	r2,a
+   031A ED                 1156 	mov	a,r5
+   031B B5 07 06           1157 	cjne	a,ar7,00117$
+   031E EE                 1158 	mov	a,r6
+   031F B5 02 02           1159 	cjne	a,ar2,00117$
+   0322 80 08              1160 	sjmp	00118$
+   0324                    1161 00117$:
+   0324 D0 04              1162 	pop	ar4
+   0326 D0 03              1163 	pop	ar3
+   0328 D0 02              1164 	pop	ar2
+   032A 80 15              1165 	sjmp	00106$
+   032C                    1166 00118$:
+   032C D0 04              1167 	pop	ar4
+   032E D0 03              1168 	pop	ar3
+   0330 D0 02              1169 	pop	ar2
+                           1170 ;	../../../core/net/uaodv-rt.c:100: return e;
+   0332 E5*00              1171 	mov	a,_bp
+   0334 24 04              1172 	add	a,#0x04
+   0336 F8                 1173 	mov	r0,a
+   0337 86 82              1174 	mov	dpl,@r0
+   0339 08                 1175 	inc	r0
+   033A 86 83              1176 	mov	dph,@r0
+   033C 08                 1177 	inc	r0
+   033D 86 F0              1178 	mov	b,@r0
+   033F 80 28              1179 	sjmp	00108$
+   0341                    1180 00106$:
+                           1181 ;	../../../core/net/uaodv-rt.c:98: for(e = list_head(route_table); e != NULL; e = e->next) {
+   0341 E5*00              1182 	mov	a,_bp
+   0343 24 04              1183 	add	a,#0x04
+   0345 F8                 1184 	mov	r0,a
+   0346 86 82              1185 	mov	dpl,@r0
+   0348 08                 1186 	inc	r0
+   0349 86 83              1187 	mov	dph,@r0
+   034B 08                 1188 	inc	r0
+   034C 86 F0              1189 	mov	b,@r0
+   034E 12s00r00           1190 	lcall	__gptrget
+   0351 18                 1191 	dec	r0
+   0352 18                 1192 	dec	r0
+   0353 F6                 1193 	mov	@r0,a
+   0354 A3                 1194 	inc	dptr
+   0355 12s00r00           1195 	lcall	__gptrget
+   0358 08                 1196 	inc	r0
+   0359 F6                 1197 	mov	@r0,a
+   035A A3                 1198 	inc	dptr
+   035B 12s00r00           1199 	lcall	__gptrget
+   035E 08                 1200 	inc	r0
+   035F F6                 1201 	mov	@r0,a
+   0360 02s02r6A           1202 	ljmp	00104$
+   0363                    1203 00107$:
+                           1204 ;	../../../core/net/uaodv-rt.c:103: return NULL;
+   0363 90 00 00           1205 	mov	dptr,#0x0000
+   0366 75 F0 00           1206 	mov	b,#0x00
+   0369                    1207 00108$:
+   0369 85*00 81           1208 	mov	sp,_bp
+   036C D0*00              1209 	pop	_bp
+   036E 22                 1210 	ret
+                           1211 ;------------------------------------------------------------
+                           1212 ;Allocation info for local variables in function 'uaodv_rt_lookup'
+                           1213 ;------------------------------------------------------------
+                           1214 ;dest                      Allocated to registers r2 r3 r4 
+                           1215 ;e                         Allocated to registers r2 r3 r4 
+                           1216 ;------------------------------------------------------------
+                           1217 ;	../../../core/net/uaodv-rt.c:107: uaodv_rt_lookup(uip_ipaddr_t *dest)
+                           1218 ;	-----------------------------------------
+                           1219 ;	 function uaodv_rt_lookup
+                           1220 ;	-----------------------------------------
+   036F                    1221 _uaodv_rt_lookup:
+                           1222 ;	../../../core/net/uaodv-rt.c:111: e = uaodv_rt_lookup_any(dest);
+   036F 12s02r24           1223 	lcall	_uaodv_rt_lookup_any
+   0372 AA 82              1224 	mov	r2,dpl
+   0374 AB 83              1225 	mov	r3,dph
+   0376 AC F0              1226 	mov	r4,b
+                           1227 ;	../../../core/net/uaodv-rt.c:112: if(e != NULL && e->is_bad)
+   0378 EA                 1228 	mov	a,r2
+   0379 4B                 1229 	orl	a,r3
+   037A 4C                 1230 	orl	a,r4
+   037B 60 1B              1231 	jz	00102$
+   037D 74 10              1232 	mov	a,#0x10
+   037F 2A                 1233 	add	a,r2
+   0380 FD                 1234 	mov	r5,a
+   0381 E4                 1235 	clr	a
+   0382 3B                 1236 	addc	a,r3
+   0383 FE                 1237 	mov	r6,a
+   0384 8C 07              1238 	mov	ar7,r4
+   0386 8D 82              1239 	mov	dpl,r5
+   0388 8E 83              1240 	mov	dph,r6
+   038A 8F F0              1241 	mov	b,r7
+   038C 12s00r00           1242 	lcall	__gptrget
+   038F 60 07              1243 	jz	00102$
+                           1244 ;	../../../core/net/uaodv-rt.c:113: return NULL;
+   0391 90 00 00           1245 	mov	dptr,#0x0000
+   0394 75 F0 00           1246 	mov	b,#0x00
+   0397 22                 1247 	ret
+   0398                    1248 00102$:
+                           1249 ;	../../../core/net/uaodv-rt.c:114: return e;
+   0398 8A 82              1250 	mov	dpl,r2
+   039A 8B 83              1251 	mov	dph,r3
+   039C 8C F0              1252 	mov	b,r4
+   039E 22                 1253 	ret
+                           1254 ;------------------------------------------------------------
+                           1255 ;Allocation info for local variables in function 'uaodv_rt_lru'
+                           1256 ;------------------------------------------------------------
+                           1257 ;e                         Allocated to registers r2 r3 r4 
+                           1258 ;------------------------------------------------------------
+                           1259 ;	../../../core/net/uaodv-rt.c:127: uaodv_rt_lru(struct uaodv_rt_entry *e)
+                           1260 ;	-----------------------------------------
+                           1261 ;	 function uaodv_rt_lru
+                           1262 ;	-----------------------------------------
+   039F                    1263 _uaodv_rt_lru:
+   039F AA 82              1264 	mov	r2,dpl
+   03A1 AB 83              1265 	mov	r3,dph
+   03A3 AC F0              1266 	mov	r4,b
+                           1267 ;	../../../core/net/uaodv-rt.c:129: if(e != list_head(route_table)) {
+   03A5 90s00r03           1268 	mov	dptr,#_route_table
+   03A8 E0                 1269 	movx	a,@dptr
+   03A9 FD                 1270 	mov	r5,a
+   03AA A3                 1271 	inc	dptr
+   03AB E0                 1272 	movx	a,@dptr
+   03AC FE                 1273 	mov	r6,a
+   03AD A3                 1274 	inc	dptr
+   03AE E0                 1275 	movx	a,@dptr
+   03AF FF                 1276 	mov	r7,a
+   03B0 8D 82              1277 	mov	dpl,r5
+   03B2 8E 83              1278 	mov	dph,r6
+   03B4 8F F0              1279 	mov	b,r7
+   03B6 C0 02              1280 	push	ar2
+   03B8 C0 03              1281 	push	ar3
+   03BA C0 04              1282 	push	ar4
+   03BC 12s00r00           1283 	lcall	_list_head
+   03BF AD 82              1284 	mov	r5,dpl
+   03C1 AE 83              1285 	mov	r6,dph
+   03C3 AF F0              1286 	mov	r7,b
+   03C5 D0 04              1287 	pop	ar4
+   03C7 D0 03              1288 	pop	ar3
+   03C9 D0 02              1289 	pop	ar2
+   03CB EA                 1290 	mov	a,r2
+   03CC B5 05 09           1291 	cjne	a,ar5,00106$
+   03CF EB                 1292 	mov	a,r3
+   03D0 B5 06 05           1293 	cjne	a,ar6,00106$
+   03D3 EC                 1294 	mov	a,r4
+   03D4 B5 07 01           1295 	cjne	a,ar7,00106$
+   03D7 22                 1296 	ret
+   03D8                    1297 00106$:
+                           1298 ;	../../../core/net/uaodv-rt.c:130: list_remove(route_table, e);
+   03D8 90s00r03           1299 	mov	dptr,#_route_table
+   03DB E0                 1300 	movx	a,@dptr
+   03DC FD                 1301 	mov	r5,a
+   03DD A3                 1302 	inc	dptr
+   03DE E0                 1303 	movx	a,@dptr
+   03DF FE                 1304 	mov	r6,a
+   03E0 A3                 1305 	inc	dptr
+   03E1 E0                 1306 	movx	a,@dptr
+   03E2 FF                 1307 	mov	r7,a
+   03E3 C0 02              1308 	push	ar2
+   03E5 C0 03              1309 	push	ar3
+   03E7 C0 04              1310 	push	ar4
+   03E9 C0 02              1311 	push	ar2
+   03EB C0 03              1312 	push	ar3
+   03ED C0 04              1313 	push	ar4
+   03EF 8D 82              1314 	mov	dpl,r5
+   03F1 8E 83              1315 	mov	dph,r6
+   03F3 8F F0              1316 	mov	b,r7
+   03F5 12s00r00           1317 	lcall	_list_remove
+   03F8 15 81              1318 	dec	sp
+   03FA 15 81              1319 	dec	sp
+   03FC 15 81              1320 	dec	sp
+                           1321 ;	../../../core/net/uaodv-rt.c:131: list_push(route_table, e);
+   03FE 90s00r03           1322 	mov	dptr,#_route_table
+   0401 E0                 1323 	movx	a,@dptr
+   0402 FD                 1324 	mov	r5,a
+   0403 A3                 1325 	inc	dptr
+   0404 E0                 1326 	movx	a,@dptr
+   0405 FE                 1327 	mov	r6,a
+   0406 A3                 1328 	inc	dptr
+   0407 E0                 1329 	movx	a,@dptr
+   0408 FF                 1330 	mov	r7,a
+   0409 8D 82              1331 	mov	dpl,r5
+   040B 8E 83              1332 	mov	dph,r6
+   040D 8F F0              1333 	mov	b,r7
+   040F 12s00r00           1334 	lcall	_list_push
+   0412 15 81              1335 	dec	sp
+   0414 15 81              1336 	dec	sp
+   0416 15 81              1337 	dec	sp
+   0418 22                 1338 	ret
+                           1339 ;------------------------------------------------------------
+                           1340 ;Allocation info for local variables in function 'uaodv_rt_flush_all'
+                           1341 ;------------------------------------------------------------
+                           1342 ;e                         Allocated to registers r2 r3 r4 
+                           1343 ;------------------------------------------------------------
+                           1344 ;	../../../core/net/uaodv-rt.c:136: uaodv_rt_flush_all(void)
+                           1345 ;	-----------------------------------------
+                           1346 ;	 function uaodv_rt_flush_all
+                           1347 ;	-----------------------------------------
+   0419                    1348 _uaodv_rt_flush_all:
+                           1349 ;	../../../core/net/uaodv-rt.c:140: while (1) {
+   0419                    1350 00105$:
+                           1351 ;	../../../core/net/uaodv-rt.c:141: e = list_pop(route_table);
+   0419 90s00r03           1352 	mov	dptr,#_route_table
+   041C E0                 1353 	movx	a,@dptr
+   041D FA                 1354 	mov	r2,a
+   041E A3                 1355 	inc	dptr
+   041F E0                 1356 	movx	a,@dptr
+   0420 FB                 1357 	mov	r3,a
+   0421 A3                 1358 	inc	dptr
+   0422 E0                 1359 	movx	a,@dptr
+   0423 FC                 1360 	mov	r4,a
+   0424 8A 82              1361 	mov	dpl,r2
+   0426 8B 83              1362 	mov	dph,r3
+   0428 8C F0              1363 	mov	b,r4
+   042A 12s00r00           1364 	lcall	_list_pop
+   042D AA 82              1365 	mov	r2,dpl
+   042F AB 83              1366 	mov	r3,dph
+   0431 AC F0              1367 	mov	r4,b
+                           1368 ;	../../../core/net/uaodv-rt.c:142: if(e != NULL)
+   0433 EA                 1369 	mov	a,r2
+   0434 4B                 1370 	orl	a,r3
+   0435 4C                 1371 	orl	a,r4
+   0436 60 17              1372 	jz	00107$
+                           1373 ;	../../../core/net/uaodv-rt.c:143: memb_free(&route_mem, e);
+   0438 C0 02              1374 	push	ar2
+   043A C0 03              1375 	push	ar3
+   043C C0 04              1376 	push	ar4
+   043E 90s00r06           1377 	mov	dptr,#_route_mem
+   0441 75 F0 00           1378 	mov	b,#0x00
+   0444 12s00r00           1379 	lcall	_memb_free
+   0447 15 81              1380 	dec	sp
+   0449 15 81              1381 	dec	sp
+   044B 15 81              1382 	dec	sp
+                           1383 ;	../../../core/net/uaodv-rt.c:145: break;
+   044D 80 CA              1384 	sjmp	00105$
+   044F                    1385 00107$:
+   044F 22                 1386 	ret
+                           1387 	.area CSEG    (CODE)
+                           1388 	.area CONST   (CODE)
+                           1389 	.area XINIT   (CODE)
+   0000                    1390 __xinit__route_table_list:
+                           1391 ; generic printIvalPtr
+   0000 00 00 00           1392 	.byte #0x00,#0x00,#0x00
+   0003                    1393 __xinit__route_table:
+   0003r00s00 00           1394 	.byte _route_table_list,(_route_table_list >> 8),#0x00
+   0006                    1395 __xinit__route_mem:
+   0006 11 00              1396 	.byte #0x11,#0x00	; 17
+   0008 08 00              1397 	.byte #0x08,#0x00	; 8
+   000Ar00s00 00           1398 	.byte _route_mem_memb_count,(_route_mem_memb_count >> 8),#0x00
+   000Dr08s00 00           1399 	.byte _route_mem_memb_mem,(_route_mem_memb_mem >> 8),#0x00
+                           1400 	.area CABS    (ABS,CODE)

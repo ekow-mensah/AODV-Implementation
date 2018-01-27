@@ -8,7 +8,7 @@ DEFINES=MODEL_N740
 # These examples don't need code banking so we turn it off 
 #HAVE_BANKING=1
 
-CONTIKI_PROJECT = transmitter receiver
+CONTIKI_PROJECT = transmitter router
 
 
 all: $(CONTIKI_PROJECT) 

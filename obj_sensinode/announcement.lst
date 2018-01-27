@@ -1,0 +1,984 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:24:47 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module announcement
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _announcement_init
+                             13 	.globl _announcement_register
+                             14 	.globl _announcement_remove
+                             15 	.globl _announcement_remove_value
+                             16 	.globl _announcement_set_value
+                             17 	.globl _announcement_bump
+                             18 	.globl _announcement_listen
+                             19 	.globl _announcement_register_listen_callback
+                             20 	.globl _announcement_register_observer_callback
+                             21 	.globl _announcement_list
+                             22 	.globl _announcement_heard
+                             23 ;--------------------------------------------------------
+                             24 ; special function registers
+                             25 ;--------------------------------------------------------
+                             26 	.area RSEG    (ABS,DATA)
+   0000                      27 	.org 0x0000
+                             28 ;--------------------------------------------------------
+                             29 ; special function bits
+                             30 ;--------------------------------------------------------
+                             31 	.area RSEG    (ABS,DATA)
+   0000                      32 	.org 0x0000
+                             33 ;--------------------------------------------------------
+                             34 ; overlayable register banks
+                             35 ;--------------------------------------------------------
+                             36 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      37 	.ds 8
+                             38 ;--------------------------------------------------------
+                             39 ; internal ram data
+                             40 ;--------------------------------------------------------
+                             41 	.area DSEG    (DATA)
+                             42 ;--------------------------------------------------------
+                             43 ; overlayable items in internal ram 
+                             44 ;--------------------------------------------------------
+                             45 	.area OSEG    (OVR,DATA)
+                             46 ;--------------------------------------------------------
+                             47 ; indirectly addressable internal ram data
+                             48 ;--------------------------------------------------------
+                             49 	.area ISEG    (DATA)
+                             50 ;--------------------------------------------------------
+                             51 ; absolute internal ram data
+                             52 ;--------------------------------------------------------
+                             53 	.area IABS    (ABS,DATA)
+                             54 	.area IABS    (ABS,DATA)
+                             55 ;--------------------------------------------------------
+                             56 ; bit data
+                             57 ;--------------------------------------------------------
+                             58 	.area BSEG    (BIT)
+                             59 ;--------------------------------------------------------
+                             60 ; paged external ram data
+                             61 ;--------------------------------------------------------
+                             62 	.area PSEG    (PAG,XDATA)
+                             63 ;--------------------------------------------------------
+                             64 ; external ram data
+                             65 ;--------------------------------------------------------
+                             66 	.area XSEG    (XDATA)
+   0000                      67 _listen_callback:
+   0000                      68 	.ds 2
+   0002                      69 _observer_callback:
+   0002                      70 	.ds 2
+                             71 ;--------------------------------------------------------
+                             72 ; absolute external ram data
+                             73 ;--------------------------------------------------------
+                             74 	.area XABS    (ABS,XDATA)
+                             75 ;--------------------------------------------------------
+                             76 ; external initialized ram data
+                             77 ;--------------------------------------------------------
+                             78 	.area XISEG   (XDATA)
+   0000                      79 _announcements_list:
+   0000                      80 	.ds 3
+   0003                      81 _announcements:
+   0003                      82 	.ds 3
+                             83 	.area HOME    (CODE)
+                             84 	.area GSINIT0 (CODE)
+                             85 	.area GSINIT1 (CODE)
+                             86 	.area GSINIT2 (CODE)
+                             87 	.area GSINIT3 (CODE)
+                             88 	.area GSINIT4 (CODE)
+                             89 	.area GSINIT5 (CODE)
+                             90 	.area GSINIT  (CODE)
+                             91 	.area GSFINAL (CODE)
+                             92 	.area CSEG    (CODE)
+                             93 ;--------------------------------------------------------
+                             94 ; global & static initialisations
+                             95 ;--------------------------------------------------------
+                             96 	.area HOME    (CODE)
+                             97 	.area GSINIT  (CODE)
+                             98 	.area GSFINAL (CODE)
+                             99 	.area GSINIT  (CODE)
+                            100 ;--------------------------------------------------------
+                            101 ; Home
+                            102 ;--------------------------------------------------------
+                            103 	.area HOME    (CODE)
+                            104 	.area HOME    (CODE)
+                            105 ;--------------------------------------------------------
+                            106 ; code
+                            107 ;--------------------------------------------------------
+                            108 	.area CSEG    (CODE)
+                            109 ;------------------------------------------------------------
+                            110 ;Allocation info for local variables in function 'announcement_init'
+                            111 ;------------------------------------------------------------
+                            112 ;------------------------------------------------------------
+                            113 ;	../../../core/net/rime/announcement.c:57: announcement_init(void)
+                            114 ;	-----------------------------------------
+                            115 ;	 function announcement_init
+                            116 ;	-----------------------------------------
+   0000                     117 _announcement_init:
+                    0002    118 	ar2 = 0x02
+                    0003    119 	ar3 = 0x03
+                    0004    120 	ar4 = 0x04
+                    0005    121 	ar5 = 0x05
+                    0006    122 	ar6 = 0x06
+                    0007    123 	ar7 = 0x07
+                    0000    124 	ar0 = 0x00
+                    0001    125 	ar1 = 0x01
+                            126 ;	../../../core/net/rime/announcement.c:59: list_init(announcements);
+   0000 90s00r03            127 	mov	dptr,#_announcements
+   0003 E0                  128 	movx	a,@dptr
+   0004 FA                  129 	mov	r2,a
+   0005 A3                  130 	inc	dptr
+   0006 E0                  131 	movx	a,@dptr
+   0007 FB                  132 	mov	r3,a
+   0008 A3                  133 	inc	dptr
+   0009 E0                  134 	movx	a,@dptr
+   000A FC                  135 	mov	r4,a
+   000B 8A 82               136 	mov	dpl,r2
+   000D 8B 83               137 	mov	dph,r3
+   000F 8C F0               138 	mov	b,r4
+   0011 02s00r00            139 	ljmp	_list_init
+                            140 ;------------------------------------------------------------
+                            141 ;Allocation info for local variables in function 'announcement_register'
+                            142 ;------------------------------------------------------------
+                            143 ;id                        Allocated to stack - offset -4
+                            144 ;callback                  Allocated to stack - offset -6
+                            145 ;a                         Allocated to stack - offset 1
+                            146 ;sloc0                     Allocated to stack - offset 4
+                            147 ;------------------------------------------------------------
+                            148 ;	../../../core/net/rime/announcement.c:63: announcement_register(struct announcement *a, uint16_t id,
+                            149 ;	-----------------------------------------
+                            150 ;	 function announcement_register
+                            151 ;	-----------------------------------------
+   0014                     152 _announcement_register:
+   0014 C0*00               153 	push	_bp
+   0016 85 81*00            154 	mov	_bp,sp
+   0019 C0 82               155 	push	dpl
+   001B C0 83               156 	push	dph
+   001D C0 F0               157 	push	b
+   001F 05 81               158 	inc	sp
+   0021 05 81               159 	inc	sp
+   0023 05 81               160 	inc	sp
+                            161 ;	../../../core/net/rime/announcement.c:66: a->id = id;
+   0025 A8*00               162 	mov	r0,_bp
+   0027 08                  163 	inc	r0
+   0028 74 03               164 	mov	a,#0x03
+   002A 26                  165 	add	a,@r0
+   002B FD                  166 	mov	r5,a
+   002C E4                  167 	clr	a
+   002D 08                  168 	inc	r0
+   002E 36                  169 	addc	a,@r0
+   002F FE                  170 	mov	r6,a
+   0030 08                  171 	inc	r0
+   0031 86 07               172 	mov	ar7,@r0
+   0033 8D 82               173 	mov	dpl,r5
+   0035 8E 83               174 	mov	dph,r6
+   0037 8F F0               175 	mov	b,r7
+   0039 E5*00               176 	mov	a,_bp
+   003B 24 FC               177 	add	a,#0xfc
+   003D F8                  178 	mov	r0,a
+   003E E6                  179 	mov	a,@r0
+   003F 12s00r00            180 	lcall	__gptrput
+   0042 A3                  181 	inc	dptr
+   0043 08                  182 	inc	r0
+   0044 E6                  183 	mov	a,@r0
+   0045 12s00r00            184 	lcall	__gptrput
+                            185 ;	../../../core/net/rime/announcement.c:67: a->has_value = 0;
+   0048 A8*00               186 	mov	r0,_bp
+   004A 08                  187 	inc	r0
+   004B E5*00               188 	mov	a,_bp
+   004D 24 04               189 	add	a,#0x04
+   004F F9                  190 	mov	r1,a
+   0050 74 09               191 	mov	a,#0x09
+   0052 26                  192 	add	a,@r0
+   0053 F7                  193 	mov	@r1,a
+   0054 E4                  194 	clr	a
+   0055 08                  195 	inc	r0
+   0056 36                  196 	addc	a,@r0
+   0057 09                  197 	inc	r1
+   0058 F7                  198 	mov	@r1,a
+   0059 08                  199 	inc	r0
+   005A 09                  200 	inc	r1
+   005B E6                  201 	mov	a,@r0
+   005C F7                  202 	mov	@r1,a
+   005D E5*00               203 	mov	a,_bp
+   005F 24 04               204 	add	a,#0x04
+   0061 F8                  205 	mov	r0,a
+   0062 86 82               206 	mov	dpl,@r0
+   0064 08                  207 	inc	r0
+   0065 86 83               208 	mov	dph,@r0
+   0067 08                  209 	inc	r0
+   0068 86 F0               210 	mov	b,@r0
+   006A E4                  211 	clr	a
+   006B 12s00r00            212 	lcall	__gptrput
+                            213 ;	../../../core/net/rime/announcement.c:68: a->callback = callback;
+   006E A8*00               214 	mov	r0,_bp
+   0070 08                  215 	inc	r0
+   0071 74 07               216 	mov	a,#0x07
+   0073 26                  217 	add	a,@r0
+   0074 FA                  218 	mov	r2,a
+   0075 E4                  219 	clr	a
+   0076 08                  220 	inc	r0
+   0077 36                  221 	addc	a,@r0
+   0078 FB                  222 	mov	r3,a
+   0079 08                  223 	inc	r0
+   007A 86 04               224 	mov	ar4,@r0
+   007C 8A 82               225 	mov	dpl,r2
+   007E 8B 83               226 	mov	dph,r3
+   0080 8C F0               227 	mov	b,r4
+   0082 E5*00               228 	mov	a,_bp
+   0084 24 FA               229 	add	a,#0xfa
+   0086 F8                  230 	mov	r0,a
+   0087 E6                  231 	mov	a,@r0
+   0088 12s00r00            232 	lcall	__gptrput
+   008B A3                  233 	inc	dptr
+   008C 08                  234 	inc	r0
+   008D E6                  235 	mov	a,@r0
+   008E 12s00r00            236 	lcall	__gptrput
+                            237 ;	../../../core/net/rime/announcement.c:69: list_add(announcements, a);
+   0091 90s00r03            238 	mov	dptr,#_announcements
+   0094 E0                  239 	movx	a,@dptr
+   0095 FA                  240 	mov	r2,a
+   0096 A3                  241 	inc	dptr
+   0097 E0                  242 	movx	a,@dptr
+   0098 FB                  243 	mov	r3,a
+   0099 A3                  244 	inc	dptr
+   009A E0                  245 	movx	a,@dptr
+   009B FC                  246 	mov	r4,a
+   009C C0 05               247 	push	ar5
+   009E C0 06               248 	push	ar6
+   00A0 C0 07               249 	push	ar7
+   00A2 A8*00               250 	mov	r0,_bp
+   00A4 08                  251 	inc	r0
+   00A5 E6                  252 	mov	a,@r0
+   00A6 C0 E0               253 	push	acc
+   00A8 08                  254 	inc	r0
+   00A9 E6                  255 	mov	a,@r0
+   00AA C0 E0               256 	push	acc
+   00AC 08                  257 	inc	r0
+   00AD E6                  258 	mov	a,@r0
+   00AE C0 E0               259 	push	acc
+   00B0 8A 82               260 	mov	dpl,r2
+   00B2 8B 83               261 	mov	dph,r3
+   00B4 8C F0               262 	mov	b,r4
+   00B6 12s00r00            263 	lcall	_list_add
+   00B9 15 81               264 	dec	sp
+   00BB 15 81               265 	dec	sp
+   00BD 15 81               266 	dec	sp
+   00BF D0 07               267 	pop	ar7
+   00C1 D0 06               268 	pop	ar6
+   00C3 D0 05               269 	pop	ar5
+                            270 ;	../../../core/net/rime/announcement.c:70: if(observer_callback) {
+   00C5 90s00r02            271 	mov	dptr,#_observer_callback
+   00C8 E0                  272 	movx	a,@dptr
+   00C9 FA                  273 	mov	r2,a
+   00CA A3                  274 	inc	dptr
+   00CB E0                  275 	movx	a,@dptr
+   00CC FB                  276 	mov	r3,a
+   00CD 4A                  277 	orl	a,r2
+   00CE 60 69               278 	jz	00103$
+                            279 ;	../../../core/net/rime/announcement.c:72: a->value, 0, ANNOUNCEMENT_BUMP);
+   00D0 A8*00               280 	mov	r0,_bp
+   00D2 08                  281 	inc	r0
+   00D3 74 05               282 	mov	a,#0x05
+   00D5 26                  283 	add	a,@r0
+   00D6 FA                  284 	mov	r2,a
+   00D7 E4                  285 	clr	a
+   00D8 08                  286 	inc	r0
+   00D9 36                  287 	addc	a,@r0
+   00DA FB                  288 	mov	r3,a
+   00DB 08                  289 	inc	r0
+   00DC 86 04               290 	mov	ar4,@r0
+   00DE 8A 82               291 	mov	dpl,r2
+   00E0 8B 83               292 	mov	dph,r3
+   00E2 8C F0               293 	mov	b,r4
+   00E4 12s00r00            294 	lcall	__gptrget
+   00E7 FA                  295 	mov	r2,a
+   00E8 A3                  296 	inc	dptr
+   00E9 12s00r00            297 	lcall	__gptrget
+   00EC FB                  298 	mov	r3,a
+                            299 ;	../../../core/net/rime/announcement.c:71: observer_callback(a->id, a->has_value,
+   00ED E5*00               300 	mov	a,_bp
+   00EF 24 04               301 	add	a,#0x04
+   00F1 F8                  302 	mov	r0,a
+   00F2 86 82               303 	mov	dpl,@r0
+   00F4 08                  304 	inc	r0
+   00F5 86 83               305 	mov	dph,@r0
+   00F7 08                  306 	inc	r0
+   00F8 86 F0               307 	mov	b,@r0
+   00FA 12s00r00            308 	lcall	__gptrget
+   00FD FC                  309 	mov	r4,a
+   00FE 8D 82               310 	mov	dpl,r5
+   0100 8E 83               311 	mov	dph,r6
+   0102 8F F0               312 	mov	b,r7
+   0104 12s00r00            313 	lcall	__gptrget
+   0107 FD                  314 	mov	r5,a
+   0108 A3                  315 	inc	dptr
+   0109 12s00r00            316 	lcall	__gptrget
+   010C FE                  317 	mov	r6,a
+   010D 74 01               318 	mov	a,#0x01
+   010F C0 E0               319 	push	acc
+   0111 E4                  320 	clr	a
+   0112 C0 E0               321 	push	acc
+   0114 C0 E0               322 	push	acc
+   0116 C0 02               323 	push	ar2
+   0118 C0 03               324 	push	ar3
+   011A C0 04               325 	push	ar4
+   011C 74r33               326 	mov	a,#00107$
+   011E C0 E0               327 	push	acc
+   0120 74s01               328 	mov	a,#(00107$ >> 8)
+   0122 C0 E0               329 	push	acc
+   0124 90s00r02            330 	mov	dptr,#_observer_callback
+   0127 E0                  331 	movx	a,@dptr
+   0128 C0 E0               332 	push	acc
+   012A A3                  333 	inc	dptr
+   012B E0                  334 	movx	a,@dptr
+   012C C0 E0               335 	push	acc
+   012E 8D 82               336 	mov	dpl,r5
+   0130 8E 83               337 	mov	dph,r6
+   0132 22                  338 	ret
+   0133                     339 00107$:
+   0133 E5 81               340 	mov	a,sp
+   0135 24 FA               341 	add	a,#0xfa
+   0137 F5 81               342 	mov	sp,a
+   0139                     343 00103$:
+   0139 85*00 81            344 	mov	sp,_bp
+   013C D0*00               345 	pop	_bp
+   013E 22                  346 	ret
+                            347 ;------------------------------------------------------------
+                            348 ;Allocation info for local variables in function 'announcement_remove'
+                            349 ;------------------------------------------------------------
+                            350 ;a                         Allocated to registers r2 r3 r4 
+                            351 ;------------------------------------------------------------
+                            352 ;	../../../core/net/rime/announcement.c:77: announcement_remove(struct announcement *a)
+                            353 ;	-----------------------------------------
+                            354 ;	 function announcement_remove
+                            355 ;	-----------------------------------------
+   013F                     356 _announcement_remove:
+   013F AA 82               357 	mov	r2,dpl
+   0141 AB 83               358 	mov	r3,dph
+   0143 AC F0               359 	mov	r4,b
+                            360 ;	../../../core/net/rime/announcement.c:79: list_remove(announcements, a);
+   0145 90s00r03            361 	mov	dptr,#_announcements
+   0148 E0                  362 	movx	a,@dptr
+   0149 FD                  363 	mov	r5,a
+   014A A3                  364 	inc	dptr
+   014B E0                  365 	movx	a,@dptr
+   014C FE                  366 	mov	r6,a
+   014D A3                  367 	inc	dptr
+   014E E0                  368 	movx	a,@dptr
+   014F FF                  369 	mov	r7,a
+   0150 C0 02               370 	push	ar2
+   0152 C0 03               371 	push	ar3
+   0154 C0 04               372 	push	ar4
+   0156 8D 82               373 	mov	dpl,r5
+   0158 8E 83               374 	mov	dph,r6
+   015A 8F F0               375 	mov	b,r7
+   015C 12s00r00            376 	lcall	_list_remove
+   015F 15 81               377 	dec	sp
+   0161 15 81               378 	dec	sp
+   0163 15 81               379 	dec	sp
+   0165 22                  380 	ret
+                            381 ;------------------------------------------------------------
+                            382 ;Allocation info for local variables in function 'announcement_remove_value'
+                            383 ;------------------------------------------------------------
+                            384 ;a                         Allocated to registers r2 r3 r4 
+                            385 ;------------------------------------------------------------
+                            386 ;	../../../core/net/rime/announcement.c:83: announcement_remove_value(struct announcement *a)
+                            387 ;	-----------------------------------------
+                            388 ;	 function announcement_remove_value
+                            389 ;	-----------------------------------------
+   0166                     390 _announcement_remove_value:
+   0166 AA 82               391 	mov	r2,dpl
+   0168 AB 83               392 	mov	r3,dph
+   016A AC F0               393 	mov	r4,b
+                            394 ;	../../../core/net/rime/announcement.c:85: a->has_value = 0;
+   016C 74 09               395 	mov	a,#0x09
+   016E 2A                  396 	add	a,r2
+   016F FD                  397 	mov	r5,a
+   0170 E4                  398 	clr	a
+   0171 3B                  399 	addc	a,r3
+   0172 FE                  400 	mov	r6,a
+   0173 8C 07               401 	mov	ar7,r4
+   0175 8D 82               402 	mov	dpl,r5
+   0177 8E 83               403 	mov	dph,r6
+   0179 8F F0               404 	mov	b,r7
+   017B E4                  405 	clr	a
+   017C 12s00r00            406 	lcall	__gptrput
+                            407 ;	../../../core/net/rime/announcement.c:86: if(observer_callback) {
+   017F 90s00r02            408 	mov	dptr,#_observer_callback
+   0182 E0                  409 	movx	a,@dptr
+   0183 FD                  410 	mov	r5,a
+   0184 A3                  411 	inc	dptr
+   0185 E0                  412 	movx	a,@dptr
+   0186 FE                  413 	mov	r6,a
+   0187 4D                  414 	orl	a,r5
+   0188 60 43               415 	jz	00103$
+                            416 ;	../../../core/net/rime/announcement.c:87: observer_callback(a->id, 0, 0, 0, ANNOUNCEMENT_NOBUMP);
+   018A 74 03               417 	mov	a,#0x03
+   018C 2A                  418 	add	a,r2
+   018D FA                  419 	mov	r2,a
+   018E E4                  420 	clr	a
+   018F 3B                  421 	addc	a,r3
+   0190 FB                  422 	mov	r3,a
+   0191 8A 82               423 	mov	dpl,r2
+   0193 8B 83               424 	mov	dph,r3
+   0195 8C F0               425 	mov	b,r4
+   0197 12s00r00            426 	lcall	__gptrget
+   019A FA                  427 	mov	r2,a
+   019B A3                  428 	inc	dptr
+   019C 12s00r00            429 	lcall	__gptrget
+   019F FB                  430 	mov	r3,a
+   01A0 E4                  431 	clr	a
+   01A1 C0 E0               432 	push	acc
+   01A3 E4                  433 	clr	a
+   01A4 C0 E0               434 	push	acc
+   01A6 C0 E0               435 	push	acc
+   01A8 E4                  436 	clr	a
+   01A9 C0 E0               437 	push	acc
+   01AB C0 E0               438 	push	acc
+   01AD E4                  439 	clr	a
+   01AE C0 E0               440 	push	acc
+   01B0 74rC7               441 	mov	a,#00107$
+   01B2 C0 E0               442 	push	acc
+   01B4 74s01               443 	mov	a,#(00107$ >> 8)
+   01B6 C0 E0               444 	push	acc
+   01B8 90s00r02            445 	mov	dptr,#_observer_callback
+   01BB E0                  446 	movx	a,@dptr
+   01BC C0 E0               447 	push	acc
+   01BE A3                  448 	inc	dptr
+   01BF E0                  449 	movx	a,@dptr
+   01C0 C0 E0               450 	push	acc
+   01C2 8A 82               451 	mov	dpl,r2
+   01C4 8B 83               452 	mov	dph,r3
+   01C6 22                  453 	ret
+   01C7                     454 00107$:
+   01C7 E5 81               455 	mov	a,sp
+   01C9 24 FA               456 	add	a,#0xfa
+   01CB F5 81               457 	mov	sp,a
+   01CD                     458 00103$:
+   01CD 22                  459 	ret
+                            460 ;------------------------------------------------------------
+                            461 ;Allocation info for local variables in function 'announcement_set_value'
+                            462 ;------------------------------------------------------------
+                            463 ;value                     Allocated to stack - offset -4
+                            464 ;a                         Allocated to registers r2 r3 r4 
+                            465 ;oldvalue                  Allocated to stack - offset 1
+                            466 ;sloc0                     Allocated to stack - offset 3
+                            467 ;------------------------------------------------------------
+                            468 ;	../../../core/net/rime/announcement.c:93: announcement_set_value(struct announcement *a, uint16_t value)
+                            469 ;	-----------------------------------------
+                            470 ;	 function announcement_set_value
+                            471 ;	-----------------------------------------
+   01CE                     472 _announcement_set_value:
+   01CE C0*00               473 	push	_bp
+   01D0 E5 81               474 	mov	a,sp
+   01D2 F5*00               475 	mov	_bp,a
+   01D4 24 05               476 	add	a,#0x05
+   01D6 F5 81               477 	mov	sp,a
+   01D8 AA 82               478 	mov	r2,dpl
+   01DA AB 83               479 	mov	r3,dph
+   01DC AC F0               480 	mov	r4,b
+                            481 ;	../../../core/net/rime/announcement.c:95: uint16_t oldvalue = a->value;
+   01DE 74 05               482 	mov	a,#0x05
+   01E0 2A                  483 	add	a,r2
+   01E1 FD                  484 	mov	r5,a
+   01E2 E4                  485 	clr	a
+   01E3 3B                  486 	addc	a,r3
+   01E4 FE                  487 	mov	r6,a
+   01E5 8C 07               488 	mov	ar7,r4
+   01E7 8D 82               489 	mov	dpl,r5
+   01E9 8E 83               490 	mov	dph,r6
+   01EB 8F F0               491 	mov	b,r7
+   01ED A8*00               492 	mov	r0,_bp
+   01EF 08                  493 	inc	r0
+   01F0 12s00r00            494 	lcall	__gptrget
+   01F3 F6                  495 	mov	@r0,a
+   01F4 A3                  496 	inc	dptr
+   01F5 12s00r00            497 	lcall	__gptrget
+   01F8 08                  498 	inc	r0
+   01F9 F6                  499 	mov	@r0,a
+                            500 ;	../../../core/net/rime/announcement.c:97: a->has_value = 1;
+   01FA E5*00               501 	mov	a,_bp
+   01FC 24 03               502 	add	a,#0x03
+   01FE F8                  503 	mov	r0,a
+   01FF 74 09               504 	mov	a,#0x09
+   0201 2A                  505 	add	a,r2
+   0202 F6                  506 	mov	@r0,a
+   0203 E4                  507 	clr	a
+   0204 3B                  508 	addc	a,r3
+   0205 08                  509 	inc	r0
+   0206 F6                  510 	mov	@r0,a
+   0207 08                  511 	inc	r0
+   0208 A6 04               512 	mov	@r0,ar4
+   020A E5*00               513 	mov	a,_bp
+   020C 24 03               514 	add	a,#0x03
+   020E F8                  515 	mov	r0,a
+   020F 86 82               516 	mov	dpl,@r0
+   0211 08                  517 	inc	r0
+   0212 86 83               518 	mov	dph,@r0
+   0214 08                  519 	inc	r0
+   0215 86 F0               520 	mov	b,@r0
+   0217 74 01               521 	mov	a,#0x01
+   0219 12s00r00            522 	lcall	__gptrput
+                            523 ;	../../../core/net/rime/announcement.c:98: a->value = value;
+   021C 8D 82               524 	mov	dpl,r5
+   021E 8E 83               525 	mov	dph,r6
+   0220 8F F0               526 	mov	b,r7
+   0222 E5*00               527 	mov	a,_bp
+   0224 24 FC               528 	add	a,#0xfc
+   0226 F8                  529 	mov	r0,a
+   0227 E6                  530 	mov	a,@r0
+   0228 12s00r00            531 	lcall	__gptrput
+   022B A3                  532 	inc	dptr
+   022C 08                  533 	inc	r0
+   022D E6                  534 	mov	a,@r0
+   022E 12s00r00            535 	lcall	__gptrput
+                            536 ;	../../../core/net/rime/announcement.c:99: if(observer_callback) {
+   0231 90s00r02            537 	mov	dptr,#_observer_callback
+   0234 E0                  538 	movx	a,@dptr
+   0235 FD                  539 	mov	r5,a
+   0236 A3                  540 	inc	dptr
+   0237 E0                  541 	movx	a,@dptr
+   0238 FE                  542 	mov	r6,a
+   0239 4D                  543 	orl	a,r5
+   023A 60 5F               544 	jz	00103$
+                            545 ;	../../../core/net/rime/announcement.c:100: observer_callback(a->id, a->has_value,
+   023C E5*00               546 	mov	a,_bp
+   023E 24 03               547 	add	a,#0x03
+   0240 F8                  548 	mov	r0,a
+   0241 86 82               549 	mov	dpl,@r0
+   0243 08                  550 	inc	r0
+   0244 86 83               551 	mov	dph,@r0
+   0246 08                  552 	inc	r0
+   0247 86 F0               553 	mov	b,@r0
+   0249 12s00r00            554 	lcall	__gptrget
+   024C FD                  555 	mov	r5,a
+   024D 74 03               556 	mov	a,#0x03
+   024F 2A                  557 	add	a,r2
+   0250 FA                  558 	mov	r2,a
+   0251 E4                  559 	clr	a
+   0252 3B                  560 	addc	a,r3
+   0253 FB                  561 	mov	r3,a
+   0254 8A 82               562 	mov	dpl,r2
+   0256 8B 83               563 	mov	dph,r3
+   0258 8C F0               564 	mov	b,r4
+   025A 12s00r00            565 	lcall	__gptrget
+   025D FA                  566 	mov	r2,a
+   025E A3                  567 	inc	dptr
+   025F 12s00r00            568 	lcall	__gptrget
+   0262 FB                  569 	mov	r3,a
+   0263 E4                  570 	clr	a
+   0264 C0 E0               571 	push	acc
+   0266 A8*00               572 	mov	r0,_bp
+   0268 08                  573 	inc	r0
+   0269 E6                  574 	mov	a,@r0
+   026A C0 E0               575 	push	acc
+   026C 08                  576 	inc	r0
+   026D E6                  577 	mov	a,@r0
+   026E C0 E0               578 	push	acc
+   0270 E5*00               579 	mov	a,_bp
+   0272 24 FC               580 	add	a,#0xfc
+   0274 F8                  581 	mov	r0,a
+   0275 E6                  582 	mov	a,@r0
+   0276 C0 E0               583 	push	acc
+   0278 08                  584 	inc	r0
+   0279 E6                  585 	mov	a,@r0
+   027A C0 E0               586 	push	acc
+   027C C0 05               587 	push	ar5
+   027E 74r95               588 	mov	a,#00107$
+   0280 C0 E0               589 	push	acc
+   0282 74s02               590 	mov	a,#(00107$ >> 8)
+   0284 C0 E0               591 	push	acc
+   0286 90s00r02            592 	mov	dptr,#_observer_callback
+   0289 E0                  593 	movx	a,@dptr
+   028A C0 E0               594 	push	acc
+   028C A3                  595 	inc	dptr
+   028D E0                  596 	movx	a,@dptr
+   028E C0 E0               597 	push	acc
+   0290 8A 82               598 	mov	dpl,r2
+   0292 8B 83               599 	mov	dph,r3
+   0294 22                  600 	ret
+   0295                     601 00107$:
+   0295 E5 81               602 	mov	a,sp
+   0297 24 FA               603 	add	a,#0xfa
+   0299 F5 81               604 	mov	sp,a
+   029B                     605 00103$:
+   029B 85*00 81            606 	mov	sp,_bp
+   029E D0*00               607 	pop	_bp
+   02A0 22                  608 	ret
+                            609 ;------------------------------------------------------------
+                            610 ;Allocation info for local variables in function 'announcement_bump'
+                            611 ;------------------------------------------------------------
+                            612 ;a                         Allocated to registers r2 r3 r4 
+                            613 ;------------------------------------------------------------
+                            614 ;	../../../core/net/rime/announcement.c:106: announcement_bump(struct announcement *a)
+                            615 ;	-----------------------------------------
+                            616 ;	 function announcement_bump
+                            617 ;	-----------------------------------------
+   02A1                     618 _announcement_bump:
+   02A1 AA 82               619 	mov	r2,dpl
+   02A3 AB 83               620 	mov	r3,dph
+   02A5 AC F0               621 	mov	r4,b
+                            622 ;	../../../core/net/rime/announcement.c:108: if(observer_callback) {
+   02A7 90s00r02            623 	mov	dptr,#_observer_callback
+   02AA E0                  624 	movx	a,@dptr
+   02AB FD                  625 	mov	r5,a
+   02AC A3                  626 	inc	dptr
+   02AD E0                  627 	movx	a,@dptr
+   02AE FE                  628 	mov	r6,a
+   02AF 4D                  629 	orl	a,r5
+   02B0 60 6C               630 	jz	00103$
+                            631 ;	../../../core/net/rime/announcement.c:110: a->value, a->value, ANNOUNCEMENT_BUMP);
+   02B2 74 05               632 	mov	a,#0x05
+   02B4 2A                  633 	add	a,r2
+   02B5 FD                  634 	mov	r5,a
+   02B6 E4                  635 	clr	a
+   02B7 3B                  636 	addc	a,r3
+   02B8 FE                  637 	mov	r6,a
+   02B9 8C 07               638 	mov	ar7,r4
+   02BB 8D 82               639 	mov	dpl,r5
+   02BD 8E 83               640 	mov	dph,r6
+   02BF 8F F0               641 	mov	b,r7
+   02C1 12s00r00            642 	lcall	__gptrget
+   02C4 FD                  643 	mov	r5,a
+   02C5 A3                  644 	inc	dptr
+   02C6 12s00r00            645 	lcall	__gptrget
+   02C9 FE                  646 	mov	r6,a
+                            647 ;	../../../core/net/rime/announcement.c:109: observer_callback(a->id, a->has_value,
+   02CA 74 09               648 	mov	a,#0x09
+   02CC 2A                  649 	add	a,r2
+   02CD FF                  650 	mov	r7,a
+   02CE E4                  651 	clr	a
+   02CF 3B                  652 	addc	a,r3
+   02D0 F8                  653 	mov	r0,a
+   02D1 8C 01               654 	mov	ar1,r4
+   02D3 8F 82               655 	mov	dpl,r7
+   02D5 88 83               656 	mov	dph,r0
+   02D7 89 F0               657 	mov	b,r1
+   02D9 12s00r00            658 	lcall	__gptrget
+   02DC FF                  659 	mov	r7,a
+   02DD 74 03               660 	mov	a,#0x03
+   02DF 2A                  661 	add	a,r2
+   02E0 FA                  662 	mov	r2,a
+   02E1 E4                  663 	clr	a
+   02E2 3B                  664 	addc	a,r3
+   02E3 FB                  665 	mov	r3,a
+   02E4 8A 82               666 	mov	dpl,r2
+   02E6 8B 83               667 	mov	dph,r3
+   02E8 8C F0               668 	mov	b,r4
+   02EA 12s00r00            669 	lcall	__gptrget
+   02ED FA                  670 	mov	r2,a
+   02EE A3                  671 	inc	dptr
+   02EF 12s00r00            672 	lcall	__gptrget
+   02F2 FB                  673 	mov	r3,a
+   02F3 74 01               674 	mov	a,#0x01
+   02F5 C0 E0               675 	push	acc
+   02F7 C0 05               676 	push	ar5
+   02F9 C0 06               677 	push	ar6
+   02FB C0 05               678 	push	ar5
+   02FD C0 06               679 	push	ar6
+   02FF C0 07               680 	push	ar7
+   0301 74r18               681 	mov	a,#00107$
+   0303 C0 E0               682 	push	acc
+   0305 74s03               683 	mov	a,#(00107$ >> 8)
+   0307 C0 E0               684 	push	acc
+   0309 90s00r02            685 	mov	dptr,#_observer_callback
+   030C E0                  686 	movx	a,@dptr
+   030D C0 E0               687 	push	acc
+   030F A3                  688 	inc	dptr
+   0310 E0                  689 	movx	a,@dptr
+   0311 C0 E0               690 	push	acc
+   0313 8A 82               691 	mov	dpl,r2
+   0315 8B 83               692 	mov	dph,r3
+   0317 22                  693 	ret
+   0318                     694 00107$:
+   0318 E5 81               695 	mov	a,sp
+   031A 24 FA               696 	add	a,#0xfa
+   031C F5 81               697 	mov	sp,a
+   031E                     698 00103$:
+   031E 22                  699 	ret
+                            700 ;------------------------------------------------------------
+                            701 ;Allocation info for local variables in function 'announcement_listen'
+                            702 ;------------------------------------------------------------
+                            703 ;time                      Allocated to registers r2 r3 
+                            704 ;------------------------------------------------------------
+                            705 ;	../../../core/net/rime/announcement.c:115: announcement_listen(int time)
+                            706 ;	-----------------------------------------
+                            707 ;	 function announcement_listen
+                            708 ;	-----------------------------------------
+   031F                     709 _announcement_listen:
+   031F AA 82               710 	mov	r2,dpl
+   0321 AB 83               711 	mov	r3,dph
+                            712 ;	../../../core/net/rime/announcement.c:117: if(listen_callback) {
+   0323 90s00r00            713 	mov	dptr,#_listen_callback
+   0326 E0                  714 	movx	a,@dptr
+   0327 FC                  715 	mov	r4,a
+   0328 A3                  716 	inc	dptr
+   0329 E0                  717 	movx	a,@dptr
+   032A FD                  718 	mov	r5,a
+   032B 4C                  719 	orl	a,r4
+   032C 60 17               720 	jz	00103$
+                            721 ;	../../../core/net/rime/announcement.c:118: listen_callback(time);
+   032E 74r45               722 	mov	a,#00107$
+   0330 C0 E0               723 	push	acc
+   0332 74s03               724 	mov	a,#(00107$ >> 8)
+   0334 C0 E0               725 	push	acc
+   0336 90s00r00            726 	mov	dptr,#_listen_callback
+   0339 E0                  727 	movx	a,@dptr
+   033A C0 E0               728 	push	acc
+   033C A3                  729 	inc	dptr
+   033D E0                  730 	movx	a,@dptr
+   033E C0 E0               731 	push	acc
+   0340 8A 82               732 	mov	dpl,r2
+   0342 8B 83               733 	mov	dph,r3
+   0344 22                  734 	ret
+   0345                     735 00107$:
+   0345                     736 00103$:
+   0345 22                  737 	ret
+                            738 ;------------------------------------------------------------
+                            739 ;Allocation info for local variables in function 'announcement_register_listen_callback'
+                            740 ;------------------------------------------------------------
+                            741 ;callback                  Allocated to registers 
+                            742 ;------------------------------------------------------------
+                            743 ;	../../../core/net/rime/announcement.c:123: announcement_register_listen_callback(void (*callback)(int time))
+                            744 ;	-----------------------------------------
+                            745 ;	 function announcement_register_listen_callback
+                            746 ;	-----------------------------------------
+   0346                     747 _announcement_register_listen_callback:
+   0346 AA 83               748 	mov	r2,dph
+   0348 E5 82               749 	mov	a,dpl
+   034A 90s00r00            750 	mov	dptr,#_listen_callback
+   034D F0                  751 	movx	@dptr,a
+   034E A3                  752 	inc	dptr
+   034F EA                  753 	mov	a,r2
+   0350 F0                  754 	movx	@dptr,a
+                            755 ;	../../../core/net/rime/announcement.c:125: listen_callback = callback;
+   0351 22                  756 	ret
+                            757 ;------------------------------------------------------------
+                            758 ;Allocation info for local variables in function 'announcement_register_observer_callback'
+                            759 ;------------------------------------------------------------
+                            760 ;callback                  Allocated to registers 
+                            761 ;------------------------------------------------------------
+                            762 ;	../../../core/net/rime/announcement.c:129: announcement_register_observer_callback(announcement_observer callback)
+                            763 ;	-----------------------------------------
+                            764 ;	 function announcement_register_observer_callback
+                            765 ;	-----------------------------------------
+   0352                     766 _announcement_register_observer_callback:
+   0352 AA 83               767 	mov	r2,dph
+   0354 E5 82               768 	mov	a,dpl
+   0356 90s00r02            769 	mov	dptr,#_observer_callback
+   0359 F0                  770 	movx	@dptr,a
+   035A A3                  771 	inc	dptr
+   035B EA                  772 	mov	a,r2
+   035C F0                  773 	movx	@dptr,a
+                            774 ;	../../../core/net/rime/announcement.c:131: observer_callback = callback;
+   035D 22                  775 	ret
+                            776 ;------------------------------------------------------------
+                            777 ;Allocation info for local variables in function 'announcement_list'
+                            778 ;------------------------------------------------------------
+                            779 ;------------------------------------------------------------
+                            780 ;	../../../core/net/rime/announcement.c:135: announcement_list(void)
+                            781 ;	-----------------------------------------
+                            782 ;	 function announcement_list
+                            783 ;	-----------------------------------------
+   035E                     784 _announcement_list:
+                            785 ;	../../../core/net/rime/announcement.c:137: return list_head(announcements);
+   035E 90s00r03            786 	mov	dptr,#_announcements
+   0361 E0                  787 	movx	a,@dptr
+   0362 FA                  788 	mov	r2,a
+   0363 A3                  789 	inc	dptr
+   0364 E0                  790 	movx	a,@dptr
+   0365 FB                  791 	mov	r3,a
+   0366 A3                  792 	inc	dptr
+   0367 E0                  793 	movx	a,@dptr
+   0368 FC                  794 	mov	r4,a
+   0369 8A 82               795 	mov	dpl,r2
+   036B 8B 83               796 	mov	dph,r3
+   036D 8C F0               797 	mov	b,r4
+   036F 02s00r00            798 	ljmp	_list_head
+                            799 ;------------------------------------------------------------
+                            800 ;Allocation info for local variables in function 'announcement_heard'
+                            801 ;------------------------------------------------------------
+                            802 ;id                        Allocated to stack - offset -4
+                            803 ;value                     Allocated to stack - offset -6
+                            804 ;from                      Allocated to registers r2 r3 r4 
+                            805 ;a                         Allocated to registers r5 r6 r7 
+                            806 ;sloc0                     Allocated to stack - offset 1
+                            807 ;------------------------------------------------------------
+                            808 ;	../../../core/net/rime/announcement.c:141: announcement_heard(const rimeaddr_t *from, uint16_t id, uint16_t value)
+                            809 ;	-----------------------------------------
+                            810 ;	 function announcement_heard
+                            811 ;	-----------------------------------------
+   0372                     812 _announcement_heard:
+   0372 C0*00               813 	push	_bp
+   0374 85 81*00            814 	mov	_bp,sp
+   0377 05 81               815 	inc	sp
+   0379 05 81               816 	inc	sp
+   037B AA 82               817 	mov	r2,dpl
+   037D AB 83               818 	mov	r3,dph
+   037F AC F0               819 	mov	r4,b
+                            820 ;	../../../core/net/rime/announcement.c:144: for(a = list_head(announcements); a != NULL; a = list_item_next(a)) {
+   0381 90s00r03            821 	mov	dptr,#_announcements
+   0384 E0                  822 	movx	a,@dptr
+   0385 FD                  823 	mov	r5,a
+   0386 A3                  824 	inc	dptr
+   0387 E0                  825 	movx	a,@dptr
+   0388 FE                  826 	mov	r6,a
+   0389 A3                  827 	inc	dptr
+   038A E0                  828 	movx	a,@dptr
+   038B FF                  829 	mov	r7,a
+   038C 8D 82               830 	mov	dpl,r5
+   038E 8E 83               831 	mov	dph,r6
+   0390 8F F0               832 	mov	b,r7
+   0392 C0 02               833 	push	ar2
+   0394 C0 03               834 	push	ar3
+   0396 C0 04               835 	push	ar4
+   0398 12s00r00            836 	lcall	_list_head
+   039B AD 82               837 	mov	r5,dpl
+   039D AE 83               838 	mov	r6,dph
+   039F AF F0               839 	mov	r7,b
+   03A1 D0 04               840 	pop	ar4
+   03A3 D0 03               841 	pop	ar3
+   03A5 D0 02               842 	pop	ar2
+   03A7                     843 00105$:
+   03A7 BD 00 09            844 	cjne	r5,#0x00,00115$
+   03AA BE 00 06            845 	cjne	r6,#0x00,00115$
+   03AD BF 00 03            846 	cjne	r7,#0x00,00115$
+   03B0 02s04r76            847 	ljmp	00109$
+   03B3                     848 00115$:
+                            849 ;	../../../core/net/rime/announcement.c:145: if(a->id == id) {
+   03B3 C0 02               850 	push	ar2
+   03B5 C0 03               851 	push	ar3
+   03B7 C0 04               852 	push	ar4
+   03B9 74 03               853 	mov	a,#0x03
+   03BB 2D                  854 	add	a,r5
+   03BC FA                  855 	mov	r2,a
+   03BD E4                  856 	clr	a
+   03BE 3E                  857 	addc	a,r6
+   03BF FB                  858 	mov	r3,a
+   03C0 8F 04               859 	mov	ar4,r7
+   03C2 8A 82               860 	mov	dpl,r2
+   03C4 8B 83               861 	mov	dph,r3
+   03C6 8C F0               862 	mov	b,r4
+   03C8 12s00r00            863 	lcall	__gptrget
+   03CB FA                  864 	mov	r2,a
+   03CC A3                  865 	inc	dptr
+   03CD 12s00r00            866 	lcall	__gptrget
+   03D0 FB                  867 	mov	r3,a
+   03D1 E5*00               868 	mov	a,_bp
+   03D3 24 FC               869 	add	a,#0xfc
+   03D5 F8                  870 	mov	r0,a
+   03D6 E6                  871 	mov	a,@r0
+   03D7 B5 02 07            872 	cjne	a,ar2,00116$
+   03DA 08                  873 	inc	r0
+   03DB E6                  874 	mov	a,@r0
+   03DC B5 03 02            875 	cjne	a,ar3,00116$
+   03DF 80 08               876 	sjmp	00117$
+   03E1                     877 00116$:
+   03E1 D0 04               878 	pop	ar4
+   03E3 D0 03               879 	pop	ar3
+   03E5 D0 02               880 	pop	ar2
+   03E7 80 69               881 	sjmp	00107$
+   03E9                     882 00117$:
+                            883 ;	../../../core/net/rime/announcement.c:146: if(a->callback != NULL) {
+   03E9 74 07               884 	mov	a,#0x07
+   03EB 2D                  885 	add	a,r5
+   03EC FA                  886 	mov	r2,a
+   03ED E4                  887 	clr	a
+   03EE 3E                  888 	addc	a,r6
+   03EF FB                  889 	mov	r3,a
+   03F0 8F 04               890 	mov	ar4,r7
+   03F2 8A 82               891 	mov	dpl,r2
+   03F4 8B 83               892 	mov	dph,r3
+   03F6 8C F0               893 	mov	b,r4
+   03F8 A8*00               894 	mov	r0,_bp
+   03FA 08                  895 	inc	r0
+   03FB 12s00r00            896 	lcall	__gptrget
+   03FE F6                  897 	mov	@r0,a
+   03FF A3                  898 	inc	dptr
+   0400 12s00r00            899 	lcall	__gptrget
+   0403 08                  900 	inc	r0
+   0404 F6                  901 	mov	@r0,a
+   0405 D0 04               902 	pop	ar4
+   0407 D0 03               903 	pop	ar3
+   0409 D0 02               904 	pop	ar2
+   040B A8*00               905 	mov	r0,_bp
+   040D 08                  906 	inc	r0
+   040E E6                  907 	mov	a,@r0
+   040F 08                  908 	inc	r0
+   0410 46                  909 	orl	a,@r0
+   0411 60 3D               910 	jz	00102$
+                            911 ;	../../../core/net/rime/announcement.c:147: a->callback(a, from, id, value);
+   0413 E5*00               912 	mov	a,_bp
+   0415 24 FA               913 	add	a,#0xfa
+   0417 F8                  914 	mov	r0,a
+   0418 E6                  915 	mov	a,@r0
+   0419 C0 E0               916 	push	acc
+   041B 08                  917 	inc	r0
+   041C E6                  918 	mov	a,@r0
+   041D C0 E0               919 	push	acc
+   041F E5*00               920 	mov	a,_bp
+   0421 24 FC               921 	add	a,#0xfc
+   0423 F8                  922 	mov	r0,a
+   0424 E6                  923 	mov	a,@r0
+   0425 C0 E0               924 	push	acc
+   0427 08                  925 	inc	r0
+   0428 E6                  926 	mov	a,@r0
+   0429 C0 E0               927 	push	acc
+   042B C0 02               928 	push	ar2
+   042D C0 03               929 	push	ar3
+   042F C0 04               930 	push	ar4
+   0431 74r4A               931 	mov	a,#00119$
+   0433 C0 E0               932 	push	acc
+   0435 74s04               933 	mov	a,#(00119$ >> 8)
+   0437 C0 E0               934 	push	acc
+   0439 A8*00               935 	mov	r0,_bp
+   043B 08                  936 	inc	r0
+   043C E6                  937 	mov	a,@r0
+   043D C0 E0               938 	push	acc
+   043F 08                  939 	inc	r0
+   0440 E6                  940 	mov	a,@r0
+   0441 C0 E0               941 	push	acc
+   0443 8D 82               942 	mov	dpl,r5
+   0445 8E 83               943 	mov	dph,r6
+   0447 8F F0               944 	mov	b,r7
+   0449 22                  945 	ret
+   044A                     946 00119$:
+   044A E5 81               947 	mov	a,sp
+   044C 24 F9               948 	add	a,#0xf9
+   044E F5 81               949 	mov	sp,a
+   0450                     950 00102$:
+                            951 ;	../../../core/net/rime/announcement.c:149: return;
+   0450 80 24               952 	sjmp	00109$
+   0452                     953 00107$:
+                            954 ;	../../../core/net/rime/announcement.c:144: for(a = list_head(announcements); a != NULL; a = list_item_next(a)) {
+   0452 C0 02               955 	push	ar2
+   0454 C0 03               956 	push	ar3
+   0456 C0 04               957 	push	ar4
+   0458 8D 82               958 	mov	dpl,r5
+   045A 8E 83               959 	mov	dph,r6
+   045C 8F F0               960 	mov	b,r7
+   045E 12s00r00            961 	lcall	_list_item_next
+   0461 AA 82               962 	mov	r2,dpl
+   0463 AB 83               963 	mov	r3,dph
+   0465 AC F0               964 	mov	r4,b
+   0467 8A 05               965 	mov	ar5,r2
+   0469 8B 06               966 	mov	ar6,r3
+   046B 8C 07               967 	mov	ar7,r4
+   046D D0 04               968 	pop	ar4
+   046F D0 03               969 	pop	ar3
+   0471 D0 02               970 	pop	ar2
+   0473 02s03rA7            971 	ljmp	00105$
+   0476                     972 00109$:
+   0476 85*00 81            973 	mov	sp,_bp
+   0479 D0*00               974 	pop	_bp
+   047B 22                  975 	ret
+                            976 	.area CSEG    (CODE)
+                            977 	.area CONST   (CODE)
+                            978 	.area XINIT   (CODE)
+   0000                     979 __xinit__announcements_list:
+                            980 ; generic printIvalPtr
+   0000 00 00 00            981 	.byte #0x00,#0x00,#0x00
+   0003                     982 __xinit__announcements:
+   0003r00s00 00            983 	.byte _announcements_list,(_announcements_list >> 8),#0x00
+                            984 	.area CABS    (ABS,CODE)

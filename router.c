@@ -17,7 +17,7 @@
 
 /* define threshold battery level & table length */
 #define AVG_BATTERY_LEVEL 3000
-#define TABLELENGTH 15
+#define TABLELENGTH 3
 
 /* Routing Table Struct */
 typedef struct
@@ -26,14 +26,19 @@ typedef struct
     uint16_t nextHop;
     uint16_t batteryLevel;
     uint16_t RSSI;
+    uint8_t hopcount;
 } RoutingTable;
 
 /* Backward Table Struct */
 typedef struct
 {
-    uint8_t BroadcastID; // to identify broadcast mesage
+    uint8_t broadcastID; // to identify broadcast mesage
     uint16_t sourceAddr; // source device from which route request was received
     uint16_t destAddr;   // the address of the destination for which a route is desired.
+    uint8_t seqNumber;
+    uint8_t hopcount;
+    //uint16_t battery;
+    //uint16_t RSSI;
 } BackwardTable;
 
 /* define the routing table and unicast callback function */
@@ -50,10 +55,19 @@ static const struct unicast_callbacks unicast_callbacks = {recv_uc};
 static struct unicast_conn uc;
 static struct broadcast_conn bc;
 static rimeaddr_t addr;
+static uint16_t nodeAddr;
+static uint16_t rrepSource;
+static uint16_t rreqSource;
 static uint8_t txDataBuffer[50];
-static uint8_t brdcastCounter = 1;
-static uint8_t brdcastLimit = 3;
-static uint8_t brdcastId = 1;
+static unsigned int found;
+
+/* sensor values */
+static int rv;
+static struct sensors_sensor *sensor;
+static float sane = 0;
+static uint16_t battery;
+static uint8_t tempReading1 = 0;
+static uint8_t tempReading2 = 0;
 
 /* Define the router thread */
 PROCESS(router_process, "Starting Router...");
@@ -63,67 +77,101 @@ static void recv_bc(struct broadcast_conn *c, const rimeaddr_t *from)
 {
     /* obtain broadcast packet */
     uint8_t *tx_data;
-    uint8_t brdcstId;
-    uint16_t dest;   // desired destination address of packet
-    uint16_t source; // source address of RREQ broadcaster
+    uint16_t dest; // desired destination address of packet
+    uint16_t source;
+    uint8_t brdcastCounter;
+    uint8_t brdcastLimit;
+    uint8_t brdcastId;
+    uint16_t sequenceNumber;
+    uint16_t hopcnt;
 
     /* define node address and other variables */
-    uint16_t nodeAddr;
     static int i = 0;
-    unsigned int found;
+    static int m = 0;
 
     //place contents of received (RREQ) broadcast packet
     tx_data = packetbuf_dataptr();
 
-    switch (data[0])
+    switch (tx_data[0])
     {
-    case RREQ:
+    case CMD_RREQ:
 
         found = 0;
 
-        /* Extract destination and source address from RREQ packet */
+        /* Extract broadcastID, destination & source address from RREQ packet */
         dest = tx_data[1];
         dest = dest << 8;
         dest = dest | tx_data[2];
-
         source = from->u8[1];
         source = source << 8;
-        source = souce | from->u8[0];
+        source = source | from->u8[0];
+        brdcastCounter = tx_data[3];
+        brdcastLimit = tx_data[4];
+        brdcastId = tx_data[5];
+        sequenceNumber = tx_data[6];
+        hopcnt = tx_data[7];
 
-        /* obtain the node address */
-        nodeAddr = rimeaddr_node_addr.u8[1];
-        nodeAddr = nodeAddr << 8;
-        nodeAddr = nodeAddr | rimeaddr_node_addr.u8[0];
+        /* obtain the node address of router */
+        nodeAddr = 0x2323;
 
-        /* initialise backward table */
+        /* loop through backward table */
         for (i = 0; i < TABLELENGTH; i++)
         {
-            /* /* check if currentNode is the destination node, */
-            if (nodeAddr == dest)
+            /* this is to prevent routing loops */
+            if (txBackTable[i].broadcastID == brdcastId)
             {
-                found = 1;
-                /* return RREP message via unicast channel */
-                break;
+                // broadcast has already been received so drop packet
+                packetbuf_clear();
             }
             else
             {
-                /* if not, rebroadcast RREQ message */
-                /* store source & destination address in the routing table */
-                txBackTable[i].sourceAddr = source;
-                txBackTable[i].destAddr = dest;
-                break;
-            }
-        }
-
-        /* Triggered if there is a failure in the route reply packet  */
-        if (!found)
-        {
-            for (i = 0; i < TABLELENGTH; i++)
-            {
-                if (txbackTable[i].destAddr == 0x0000)
+                /*  check if currentNode is the destination node if it is, set flag to true */
+                if (nodeAddr == dest)
                 {
-                    txbackTable[i].destAddr = dest;
+                    // rejecting RREQ's obtained directly from the sender
+                    if (source == rreqSource)
+                    {
+                        packetbuf_clear();
+                    }
+                    else
+                    {
+                        found = 1;
+                        /* update receiver's routing table */
+                        txRoutingTable[i].destAddr = dest;
+                        txRoutingTable[i].nextHop = source;
+                        txRoutingTable[i].batteryLevel = 0;
+                        txRoutingTable[i].RSSI = packetbuf_attr(PACKETBUF_ATTR_RSSI);
+                        txRoutingTable[i].hopcount = 0;
+                        rrepSource = dest;
+                        printf("Received RREQ from: %d\n\r", source);
+                        break;
+                    }
+                }
+                else
+                {
+                    printf("Received RREQ from: %d\n\r", source);
+                    /* if the destination address is != to node address
+                 * update reverse table */
+                    hopcnt++;
+                    txBackTable[i].broadcastID = brdcastId;
                     txBackTable[i].sourceAddr = source;
+                    txBackTable[i].destAddr = source;
+                    txBackTable[i].hopcount = hopcnt;
+                    rreqSource = source;
+
+                    /* prepare RREQ packet */
+                    txDataBuffer[0] = tx_data[0];
+                    txDataBuffer[1] = dest >> 8;
+                    txDataBuffer[2] = dest;
+                    txDataBuffer[3] = brdcastCounter;
+                    txDataBuffer[4] = brdcastLimit;
+                    txDataBuffer[5] = brdcastId;
+                    txDataBuffer[6] = hopcnt;
+                    brdcastId++;
+                    packetbuf_copyfrom(txDataBuffer, 6);
+                    broadcast_send(&bc);
+
+                    printf("RREQ received from %02x.%02x  Rebroadcasting...\n\r", from->u8[0], from->u8[1]);
                 }
             }
         }
@@ -142,16 +190,16 @@ static void recv_bc(struct broadcast_conn *c, const rimeaddr_t *from)
 static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
 {
     /* initialise variables used in building the packet */
-    uint8_t *tx_data;           // the transmission data
-    uint16_t dest = 0;          // destination address
-    uint16_t source = 0;        //source address
-    uint16_t nexthop_count = 0; // next hop counter
-    uint16_t battery = 0;       // battery level
-    uint16_t rssi = 0;          // signal strength
+    uint8_t *tx_data;     // the transmission data
+    uint16_t dest = 0;    // destination address
+    uint16_t source = 0;  //source address
+    uint16_t battery = 0; // battery level
+    uint8_t hopcnt = 0;
     static int i = 0;
+    static int j = 0;
 
     /* initialise boolean variables */
-    unsigned int successful = 0;
+    static unsigned int foundAddr = 0;
 
     /* empty contents of buffer into the tx_data variable */
     tx_data = packetbuf_dataptr();
@@ -163,7 +211,6 @@ static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
         /* obtain source address, destination address battery level and rssi
        * from tx_data and store them in the corresponding variables 
        */
-        successful = 0;
         dest = tx_data[1];
         dest = dest << 8;
         dest = dest | tx_data[2];
@@ -173,72 +220,81 @@ static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
         battery = tx_data[4];
         battery = battery << 8;
         battery = battery | tx_data[3];
-        rssi = packetbuf_attr(PACKETBUF_ATTR_RSSI);
+        hopcnt = tx_data[1];
 
-        /* initialise routing table */
+        /* find Sender's address from the backward table */
+        for (j = 0; j < TABLELENGTH; j++)
+        {
+            if (txBackTable[j].destAddr == rreqSource)
+            {
+                foundAddr = 1;
+                hopcnt++;
+                /* update forwarding table */
+                txRoutingTable[j].destAddr = dest;
+                txRoutingTable[j].nextHop = source;
+                txRoutingTable[j].batteryLevel = battery;
+                txRoutingTable[j].RSSI = packetbuf_attr(PACKETBUF_ATTR_RSSI);
+                txRoutingTable[j].hopcount = hopcnt;
+
+                txDataBuffer[0] = CMD_RREP;
+                txDataBuffer[1] = dest >> 8;
+                txDataBuffer[2] = dest;
+                txDataBuffer[3] = battery >> 8;
+                txDataBuffer[4] = battery;
+                txDataBuffer[5] = hopcnt;
+                packetbuf_copyfrom(txDataBuffer, 6);
+
+                addr.u8[0] = txBackTable[j].sourceAddr;
+                addr.u8[1] = txBackTable[j].sourceAddr >> 8;
+                unicast_send(&uc, &addr);
+                printf("\n\rfound source address sending RREP to sender ...\n\r");
+            }
+        }
+        break;
+
+    case CMD_TXDATA:
+        /* extract the parameters for the data packet */
+        dest = tx_data[1];
+        dest = dest << 8;
+        dest = dest | tx_data[2];
+        source = from->u8[1];
+        source = source << 8;
+        source = source | from->u8[0];
+        tempReading1 = tx_data[5];
+        tempReading2 = tx_data[6];
+        battery = tx_data[7];
+        battery = battery << 8;
+        battery = battery | tx_data[8];
+
+        /* obtain the node address of router */
+        nodeAddr = 0x2323;
+
         for (i = 0; i < TABLELENGTH; i++)
         {
-            /* if the destination address in the routing table is transmitters the same the destination
-         * address extracted from the RREP packet, then the route request was successful.
-         */
-            if (txRoutingTable[i].destAddr == dest)
+            if (txRoutingTable[i].destAddr == nodeAddr)
             {
-                successful = 1;
-                /* if the nextHop value stored in the routing table is the same as the source address 
-           * within RREP packet, update the RSSI and Battery values */
-                if (txRoutingTable[i].nextHop == source)
-                {
-                    txRoutingTable[i].RSSI = rssi;
-                    txRoutingTable[i].batteryLevel = battery;
-                }
-                else
-                {
-                    /* transmitter determines best path by using average battery level as selection criteria first
-             * and then RSSI values (signal strength)
-             */
-                    if (battery > AVG_BATTERY_LEVEL)
-                    {
-                        /* if the sender of RREP packet has a higher rssi value than what is stored in the routing table 
-              * update RSSI & battery level values in the routing table */
-                        if (rssi > txRoutingTable[i].RSSI)
-                        {
-                            txRoutingTable[i].RSSI = rssi;
-                            txRoutingTable[i].batteryLevel = battery;
-                        }
-                        else
-                        {
-                            /* Uses battery level as other selection criteria, if battery level of sender of RREP packet 
-                 * is greater than what is stored in the routing table, update nexthop, RSSI & battery level 
-                 * values
-                 */
-                            if (battery > txRoutingTable[i].batteryLevel)
-                            {
-                                txRoutingTable[i].nextHop = source;
-                                txRoutingTable[i].RSSI = rssi;
-                                txRoutingTable[i].batteryLevel = battery;
-                            }
-                            break;
-                        }
-                    }
-                }
+                printf("Temp=%d.%02u C received from: %d \n\r", tempReading1, tempReading2, source);
             }
+            else
+            {
+                /* relay data to the next hop */
+                txDataBuffer[0] = CMD_TXDATA;
+                txDataBuffer[1] = dest >> 8;
+                txDataBuffer[2] = dest;
+                txDataBuffer[3] = source >> 8;
+                txDataBuffer[4] = source;
+                txDataBuffer[5] = tempReading1;
+                txDataBuffer[6] = tempReading2;
+                txDataBuffer[7] = battery >> 8;
+                txDataBuffer[8] = battery;
 
-            /* Triggered if there is a failure in the route reply packet  */
-            if (!successful)
-            {
-                for (i = 0; i < TABLELENGTH; i++)
-                {
-                    if (txRoutingTable[i].destAddr == 0x0000)
-                    {
-                        txRoutingTable[i].destAddr = dest;
-                        txRoutingTable[i].nextHop = source;
-                        txRoutingTable[i].RSSI = rssi;
-                        txRoutingTable[i].batteryLevel = battery;
-                    }
-                }
+                packetbuf_copyfrom(txDataBuffer, 9);
+                addr.u8[0] = txRoutingTable[i].nextHop;
+                addr.u8[1] = txRoutingTable[i].nextHop >> 8;
+                unicast_send(&uc, &addr);
             }
-            break;
         }
+        break;
 
     default:
         break;
@@ -252,6 +308,7 @@ PROCESS_THREAD(router_process, ev, data)
 {
     static uint8_t i = 0;
     static uint8_t j = 0;
+    static struct etimer et;
 
     PROCESS_BEGIN();
 
@@ -268,28 +325,53 @@ PROCESS_THREAD(router_process, ev, data)
     for (i = 0; i < TABLELENGTH; i++)
     {
         txBackTable[i].sourceAddr = 0xffff;
-        txtBackTable[i].destAddr = 0x0000;
+        txBackTable[i].destAddr = 0x0000;
     }
 
-    if (i == 0)
+    putstring("\n\r========================\n\r");
+    putstring("     Router/Receiver\n\r");
+    putstring("========================\n\r");
+
+    broadcast_open(&bc, 134, &broadcast_callbacks);
+    unicast_open(&uc, 135, &unicast_callbacks);
+
+    etimer_set(&et, CLOCK_SECOND * 2);
+
+    while (1)
     {
-        rv = sensor->value(ADC_SENSOR_TYPE_VDD);
-        if (rv != -1)
-        {
-            sane = rv * 3.75 / 2047;
-            battery = sane * 1000;
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
-            /* build route request packet (RREQ) */
-            txDataBuffer[0] = CMD_RREP; // Type of message (i.e. RREQ message)
-            txDataBuffer[1] = destAddr >> 8;
-            txDataBuffer[2] = destAddr;
-            txDataBuffer[3] = brdcastCounter; //broadcast counter
-            txDataBuffer[4] = brdcastLimit;   //broadcast limit
-            txDataBuffer[5] = brdcastId;      //broadcast id
-            brdcastId++;
-            packetbuf_copyfrom(txDataBuffer, 6);
-            broadcast_send(&bc);
+        if (found)
+        {
+            //send route reply (RREP)
+            rv = sensor->value(ADC_SENSOR_TYPE_VDD);
+            if (rv != -1)
+            {
+                for (j = 0; j < TABLELENGTH; j++)
+                {
+                    sane = rv * 3.75 / 2047;
+                    battery = sane * 1000;
+                    /*build route request packet (RREP) & return RREP via unicast channel */
+                    txDataBuffer[0] = CMD_RREP;
+                    txDataBuffer[1] = rrepSource >> 8;
+                    txDataBuffer[2] = rrepSource;
+                    txDataBuffer[3] = battery >> 8;
+                    txDataBuffer[4] = battery;
+                    txDataBuffer[5] = txRoutingTable[j].hopcount;
+                    packetbuf_copyfrom(txDataBuffer, 6);
+
+                    addr.u8[0] = txRoutingTable[j].nextHop;
+                    addr.u8[1] = txRoutingTable[j].nextHop >> 8;
+                    unicast_send(&uc, &addr);
+                    printf("RREP Source: %d\n\r", &addr);
+                    printf("prepared rrep packet now sending to %02x.%02x\n\r", addr.u8[0], addr.u8[1]);
+                }
+            }
         }
+
+        // reset timer
+        etimer_reset(&et);
     }
-    /* obtain battery level & RSSI readings */
+
+    PROCESS_END();
 }

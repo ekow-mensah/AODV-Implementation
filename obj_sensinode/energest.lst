@@ -1,0 +1,1206 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:26:35 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module energest
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _energest_leveldevice_leveltime
+                             13 	.globl _IRCON2_P2IF
+                             14 	.globl _IRCON2_UTX0IF
+                             15 	.globl _IRCON2_UTX1IF
+                             16 	.globl _IRCON2_P1IF
+                             17 	.globl _IRCON2_WDTIF
+                             18 	.globl _CY
+                             19 	.globl _AC
+                             20 	.globl _F0
+                             21 	.globl _RS1
+                             22 	.globl _RS0
+                             23 	.globl _OV
+                             24 	.globl _F1
+                             25 	.globl _P
+                             26 	.globl _IRCON_DMAIF
+                             27 	.globl _IRCON_T1IF
+                             28 	.globl _IRCON_T2IF
+                             29 	.globl _IRCON_T3IF
+                             30 	.globl _IRCON_T4IF
+                             31 	.globl _IRCON_P0IF
+                             32 	.globl _IRCON_STIF
+                             33 	.globl _IEN1_DMAIE
+                             34 	.globl _IEN1_T1IE
+                             35 	.globl _IEN1_T2IE
+                             36 	.globl _IEN1_T3IE
+                             37 	.globl _IEN1_T4IE
+                             38 	.globl _IEN1_P0IE
+                             39 	.globl _IEN0_RFERRIE
+                             40 	.globl _IEN0_ADCIE
+                             41 	.globl _IEN0_URX0IE
+                             42 	.globl _IEN0_URX1IE
+                             43 	.globl _IEN0_ENCIE
+                             44 	.globl _IEN0_STIE
+                             45 	.globl _IEN0_EA
+                             46 	.globl _EA
+                             47 	.globl _P2_4
+                             48 	.globl _P2_3
+                             49 	.globl _P2_2
+                             50 	.globl _P2_1
+                             51 	.globl _P2_0
+                             52 	.globl _S0CON_ENCIF_0
+                             53 	.globl _S0CON_ENCIF_1
+                             54 	.globl _P1_7
+                             55 	.globl _P1_6
+                             56 	.globl _P1_5
+                             57 	.globl _P1_4
+                             58 	.globl _P1_3
+                             59 	.globl _P1_2
+                             60 	.globl _P1_1
+                             61 	.globl _P1_0
+                             62 	.globl _TCON_IT0
+                             63 	.globl _TCON_RFERRIF
+                             64 	.globl _TCON_IT1
+                             65 	.globl _TCON_URX0IF
+                             66 	.globl _TCON_ADCIF
+                             67 	.globl _TCON_URX1IF
+                             68 	.globl _P0_0
+                             69 	.globl _P0_1
+                             70 	.globl _P0_2
+                             71 	.globl _P0_3
+                             72 	.globl _P0_4
+                             73 	.globl _P0_5
+                             74 	.globl _P0_6
+                             75 	.globl _P0_7
+                             76 	.globl _P2DIR
+                             77 	.globl _P1DIR
+                             78 	.globl _P0DIR
+                             79 	.globl _U1GCR
+                             80 	.globl _U1UCR
+                             81 	.globl _U1BAUD
+                             82 	.globl _U1BUF
+                             83 	.globl _U1CSR
+                             84 	.globl _P2INP
+                             85 	.globl _P1INP
+                             86 	.globl _P2SEL
+                             87 	.globl _P1SEL
+                             88 	.globl _P0SEL
+                             89 	.globl _ADCCFG
+                             90 	.globl _PERCFG
+                             91 	.globl _B
+                             92 	.globl _T4CC1
+                             93 	.globl _T4CCTL1
+                             94 	.globl _T4CC0
+                             95 	.globl _T4CCTL0
+                             96 	.globl _T4CTL
+                             97 	.globl _T4CNT
+                             98 	.globl _RFIF
+                             99 	.globl _IRCON2
+                            100 	.globl _T1CCTL2
+                            101 	.globl _T1CCTL1
+                            102 	.globl _T1CCTL0
+                            103 	.globl _T1CTL
+                            104 	.globl _T1CNTH
+                            105 	.globl _T1CNTL
+                            106 	.globl _RFST
+                            107 	.globl _ACC
+                            108 	.globl _T1CC2H
+                            109 	.globl _T1CC2L
+                            110 	.globl _T1CC1H
+                            111 	.globl _T1CC1L
+                            112 	.globl _T1CC0H
+                            113 	.globl _T1CC0L
+                            114 	.globl _RFD
+                            115 	.globl _TIMIF
+                            116 	.globl _DMAREQ
+                            117 	.globl _DMAARM
+                            118 	.globl _DMA0CFGH
+                            119 	.globl _DMA0CFGL
+                            120 	.globl _DMA1CFGH
+                            121 	.globl _DMA1CFGL
+                            122 	.globl _DMAIRQ
+                            123 	.globl _PSW
+                            124 	.globl _T3CC1
+                            125 	.globl _T3CCTL1
+                            126 	.globl _T3CC0
+                            127 	.globl _T3CCTL0
+                            128 	.globl _T3CTL
+                            129 	.globl _T3CNT
+                            130 	.globl _WDCTL
+                            131 	.globl _T2CON
+                            132 	.globl _MEMCTR
+                            133 	.globl _CLKCON
+                            134 	.globl _U0GCR
+                            135 	.globl _U0UCR
+                            136 	.globl _T2CNF
+                            137 	.globl _U0BAUD
+                            138 	.globl _U0BUF
+                            139 	.globl _IRCON
+                            140 	.globl _SLEEP
+                            141 	.globl _RNDH
+                            142 	.globl _RNDL
+                            143 	.globl _ADCH
+                            144 	.globl _ADCL
+                            145 	.globl _IP1
+                            146 	.globl _IEN1
+                            147 	.globl _RCCTL
+                            148 	.globl _ADCCON3
+                            149 	.globl _ADCCON2
+                            150 	.globl _ADCCON1
+                            151 	.globl _ENCCS
+                            152 	.globl _ENCDO
+                            153 	.globl _ENCDI
+                            154 	.globl _FWDATA
+                            155 	.globl _FCTL
+                            156 	.globl _FADDRH
+                            157 	.globl _FADDRL
+                            158 	.globl _FWT
+                            159 	.globl _IP0
+                            160 	.globl _IEN0
+                            161 	.globl _IE
+                            162 	.globl _T2THD
+                            163 	.globl _T2TLD
+                            164 	.globl _T2CAPHPH
+                            165 	.globl _T2CAPLPL
+                            166 	.globl _T2OF2
+                            167 	.globl _T2OF1
+                            168 	.globl _T2OF0
+                            169 	.globl _P2
+                            170 	.globl _PSBANK
+                            171 	.globl _FMAP
+                            172 	.globl _T2PEROF2
+                            173 	.globl _T2PEROF1
+                            174 	.globl _T2PEROF0
+                            175 	.globl _S1CON
+                            176 	.globl _IEN2
+                            177 	.globl _HSRC
+                            178 	.globl _S0CON
+                            179 	.globl _ST2
+                            180 	.globl _ST1
+                            181 	.globl _ST0
+                            182 	.globl _T2CMP
+                            183 	.globl __XPAGE
+                            184 	.globl _DPS
+                            185 	.globl _RFIM
+                            186 	.globl _P1
+                            187 	.globl _P0INP
+                            188 	.globl _P1IEN
+                            189 	.globl _PICTL
+                            190 	.globl _P2IFG
+                            191 	.globl _P1IFG
+                            192 	.globl _P0IFG
+                            193 	.globl _TCON
+                            194 	.globl _PCON
+                            195 	.globl _U0CSR
+                            196 	.globl _DPH1
+                            197 	.globl _DPL1
+                            198 	.globl _DPH0
+                            199 	.globl _DPL0
+                            200 	.globl _SP
+                            201 	.globl _P0
+                            202 	.globl _energest_current_mode
+                            203 	.globl _energest_current_time
+                            204 	.globl _energest_total_time
+                            205 	.globl _energest_total_count
+                            206 	.globl _ADC_SHADOW
+                            207 	.globl _U1BUF_SHADOW
+                            208 	.globl _RFD_SHADOW
+                            209 	.globl _U0BUF_SHADOW
+                            210 	.globl _RFSTATUS
+                            211 	.globl _CHIPID
+                            212 	.globl _CHVER
+                            213 	.globl _FSMTC1
+                            214 	.globl _RXFIFOCNT
+                            215 	.globl _IOCFG3
+                            216 	.globl _IOCFG2
+                            217 	.globl _IOCFG1
+                            218 	.globl _IOCFG0
+                            219 	.globl _SHORTADDRL
+                            220 	.globl _SHORTADDRH
+                            221 	.globl _PANIDL
+                            222 	.globl _PANIDH
+                            223 	.globl _IEEE_ADDR7
+                            224 	.globl _IEEE_ADDR6
+                            225 	.globl _IEEE_ADDR5
+                            226 	.globl _IEEE_ADDR4
+                            227 	.globl _IEEE_ADDR3
+                            228 	.globl _IEEE_ADDR2
+                            229 	.globl _IEEE_ADDR1
+                            230 	.globl _IEEE_ADDR0
+                            231 	.globl _DACTSTL
+                            232 	.globl _DACTSTH
+                            233 	.globl _ADCTSTL
+                            234 	.globl _ADCTSTH
+                            235 	.globl _FSMSTATE
+                            236 	.globl _AGCCTRLL
+                            237 	.globl _AGCCTRLH
+                            238 	.globl _MANORL
+                            239 	.globl _MANORH
+                            240 	.globl _MANANDL
+                            241 	.globl _MANANDH
+                            242 	.globl _FSMTCL
+                            243 	.globl _FSMTCH
+                            244 	.globl _RFPWR
+                            245 	.globl _CSPT
+                            246 	.globl _CSPCTRL
+                            247 	.globl _CSPZ
+                            248 	.globl _CSPY
+                            249 	.globl _CSPX
+                            250 	.globl _FSCTRLL
+                            251 	.globl _FSCTRLH
+                            252 	.globl _RXCTRL1L
+                            253 	.globl _RXCTRL1H
+                            254 	.globl _RXCTRL0L
+                            255 	.globl _RXCTRL0H
+                            256 	.globl _TXCTRLL
+                            257 	.globl _TXCTRLH
+                            258 	.globl _SYNCWORDL
+                            259 	.globl _SYNCWORDH
+                            260 	.globl _RSSIL
+                            261 	.globl _RSSIH
+                            262 	.globl _MDMCTRL1L
+                            263 	.globl _MDMCTRL1H
+                            264 	.globl _MDMCTRL0L
+                            265 	.globl _MDMCTRL0H
+                            266 	.globl _energest_init
+                            267 	.globl _energest_type_time
+                            268 	.globl _energest_type_set
+                            269 	.globl _energest_flush
+                            270 ;--------------------------------------------------------
+                            271 ; special function registers
+                            272 ;--------------------------------------------------------
+                            273 	.area RSEG    (ABS,DATA)
+   0000                     274 	.org 0x0000
+                    0080    275 _P0	=	0x0080
+                    0081    276 _SP	=	0x0081
+                    0082    277 _DPL0	=	0x0082
+                    0083    278 _DPH0	=	0x0083
+                    0084    279 _DPL1	=	0x0084
+                    0085    280 _DPH1	=	0x0085
+                    0086    281 _U0CSR	=	0x0086
+                    0087    282 _PCON	=	0x0087
+                    0088    283 _TCON	=	0x0088
+                    0089    284 _P0IFG	=	0x0089
+                    008A    285 _P1IFG	=	0x008a
+                    008B    286 _P2IFG	=	0x008b
+                    008C    287 _PICTL	=	0x008c
+                    008D    288 _P1IEN	=	0x008d
+                    008F    289 _P0INP	=	0x008f
+                    0090    290 _P1	=	0x0090
+                    0091    291 _RFIM	=	0x0091
+                    0092    292 _DPS	=	0x0092
+                    0093    293 __XPAGE	=	0x0093
+                    0094    294 _T2CMP	=	0x0094
+                    0095    295 _ST0	=	0x0095
+                    0096    296 _ST1	=	0x0096
+                    0097    297 _ST2	=	0x0097
+                    0098    298 _S0CON	=	0x0098
+                    0099    299 _HSRC	=	0x0099
+                    009A    300 _IEN2	=	0x009a
+                    009B    301 _S1CON	=	0x009b
+                    009C    302 _T2PEROF0	=	0x009c
+                    009D    303 _T2PEROF1	=	0x009d
+                    009E    304 _T2PEROF2	=	0x009e
+                    009F    305 _FMAP	=	0x009f
+                    009F    306 _PSBANK	=	0x009f
+                    00A0    307 _P2	=	0x00a0
+                    00A1    308 _T2OF0	=	0x00a1
+                    00A2    309 _T2OF1	=	0x00a2
+                    00A3    310 _T2OF2	=	0x00a3
+                    00A4    311 _T2CAPLPL	=	0x00a4
+                    00A5    312 _T2CAPHPH	=	0x00a5
+                    00A6    313 _T2TLD	=	0x00a6
+                    00A7    314 _T2THD	=	0x00a7
+                    00A8    315 _IE	=	0x00a8
+                    00A8    316 _IEN0	=	0x00a8
+                    00A9    317 _IP0	=	0x00a9
+                    00AB    318 _FWT	=	0x00ab
+                    00AC    319 _FADDRL	=	0x00ac
+                    00AD    320 _FADDRH	=	0x00ad
+                    00AE    321 _FCTL	=	0x00ae
+                    00AF    322 _FWDATA	=	0x00af
+                    00B1    323 _ENCDI	=	0x00b1
+                    00B2    324 _ENCDO	=	0x00b2
+                    00B3    325 _ENCCS	=	0x00b3
+                    00B4    326 _ADCCON1	=	0x00b4
+                    00B5    327 _ADCCON2	=	0x00b5
+                    00B6    328 _ADCCON3	=	0x00b6
+                    00B7    329 _RCCTL	=	0x00b7
+                    00B8    330 _IEN1	=	0x00b8
+                    00B9    331 _IP1	=	0x00b9
+                    00BA    332 _ADCL	=	0x00ba
+                    00BB    333 _ADCH	=	0x00bb
+                    00BC    334 _RNDL	=	0x00bc
+                    00BD    335 _RNDH	=	0x00bd
+                    00BE    336 _SLEEP	=	0x00be
+                    00C0    337 _IRCON	=	0x00c0
+                    00C1    338 _U0BUF	=	0x00c1
+                    00C2    339 _U0BAUD	=	0x00c2
+                    00C3    340 _T2CNF	=	0x00c3
+                    00C4    341 _U0UCR	=	0x00c4
+                    00C5    342 _U0GCR	=	0x00c5
+                    00C6    343 _CLKCON	=	0x00c6
+                    00C7    344 _MEMCTR	=	0x00c7
+                    00C8    345 _T2CON	=	0x00c8
+                    00C9    346 _WDCTL	=	0x00c9
+                    00CA    347 _T3CNT	=	0x00ca
+                    00CB    348 _T3CTL	=	0x00cb
+                    00CC    349 _T3CCTL0	=	0x00cc
+                    00CD    350 _T3CC0	=	0x00cd
+                    00CE    351 _T3CCTL1	=	0x00ce
+                    00CF    352 _T3CC1	=	0x00cf
+                    00D0    353 _PSW	=	0x00d0
+                    00D1    354 _DMAIRQ	=	0x00d1
+                    00D2    355 _DMA1CFGL	=	0x00d2
+                    00D3    356 _DMA1CFGH	=	0x00d3
+                    00D4    357 _DMA0CFGL	=	0x00d4
+                    00D5    358 _DMA0CFGH	=	0x00d5
+                    00D6    359 _DMAARM	=	0x00d6
+                    00D7    360 _DMAREQ	=	0x00d7
+                    00D8    361 _TIMIF	=	0x00d8
+                    00D9    362 _RFD	=	0x00d9
+                    00DA    363 _T1CC0L	=	0x00da
+                    00DB    364 _T1CC0H	=	0x00db
+                    00DC    365 _T1CC1L	=	0x00dc
+                    00DD    366 _T1CC1H	=	0x00dd
+                    00DE    367 _T1CC2L	=	0x00de
+                    00DF    368 _T1CC2H	=	0x00df
+                    00E0    369 _ACC	=	0x00e0
+                    00E1    370 _RFST	=	0x00e1
+                    00E2    371 _T1CNTL	=	0x00e2
+                    00E3    372 _T1CNTH	=	0x00e3
+                    00E4    373 _T1CTL	=	0x00e4
+                    00E5    374 _T1CCTL0	=	0x00e5
+                    00E6    375 _T1CCTL1	=	0x00e6
+                    00E7    376 _T1CCTL2	=	0x00e7
+                    00E8    377 _IRCON2	=	0x00e8
+                    00E9    378 _RFIF	=	0x00e9
+                    00EA    379 _T4CNT	=	0x00ea
+                    00EB    380 _T4CTL	=	0x00eb
+                    00EC    381 _T4CCTL0	=	0x00ec
+                    00ED    382 _T4CC0	=	0x00ed
+                    00EE    383 _T4CCTL1	=	0x00ee
+                    00EF    384 _T4CC1	=	0x00ef
+                    00F0    385 _B	=	0x00f0
+                    00F1    386 _PERCFG	=	0x00f1
+                    00F2    387 _ADCCFG	=	0x00f2
+                    00F3    388 _P0SEL	=	0x00f3
+                    00F4    389 _P1SEL	=	0x00f4
+                    00F5    390 _P2SEL	=	0x00f5
+                    00F6    391 _P1INP	=	0x00f6
+                    00F7    392 _P2INP	=	0x00f7
+                    00F8    393 _U1CSR	=	0x00f8
+                    00F9    394 _U1BUF	=	0x00f9
+                    00FA    395 _U1BAUD	=	0x00fa
+                    00FB    396 _U1UCR	=	0x00fb
+                    00FC    397 _U1GCR	=	0x00fc
+                    00FD    398 _P0DIR	=	0x00fd
+                    00FE    399 _P1DIR	=	0x00fe
+                    00FF    400 _P2DIR	=	0x00ff
+                            401 ;--------------------------------------------------------
+                            402 ; special function bits
+                            403 ;--------------------------------------------------------
+                            404 	.area RSEG    (ABS,DATA)
+   0000                     405 	.org 0x0000
+                    0087    406 _P0_7	=	0x0087
+                    0086    407 _P0_6	=	0x0086
+                    0085    408 _P0_5	=	0x0085
+                    0084    409 _P0_4	=	0x0084
+                    0083    410 _P0_3	=	0x0083
+                    0082    411 _P0_2	=	0x0082
+                    0081    412 _P0_1	=	0x0081
+                    0080    413 _P0_0	=	0x0080
+                    008F    414 _TCON_URX1IF	=	0x008f
+                    008D    415 _TCON_ADCIF	=	0x008d
+                    008B    416 _TCON_URX0IF	=	0x008b
+                    008A    417 _TCON_IT1	=	0x008a
+                    0089    418 _TCON_RFERRIF	=	0x0089
+                    0088    419 _TCON_IT0	=	0x0088
+                    0090    420 _P1_0	=	0x0090
+                    0091    421 _P1_1	=	0x0091
+                    0092    422 _P1_2	=	0x0092
+                    0093    423 _P1_3	=	0x0093
+                    0094    424 _P1_4	=	0x0094
+                    0095    425 _P1_5	=	0x0095
+                    0096    426 _P1_6	=	0x0096
+                    0097    427 _P1_7	=	0x0097
+                    0099    428 _S0CON_ENCIF_1	=	0x0099
+                    0098    429 _S0CON_ENCIF_0	=	0x0098
+                    00A0    430 _P2_0	=	0x00a0
+                    00A1    431 _P2_1	=	0x00a1
+                    00A2    432 _P2_2	=	0x00a2
+                    00A3    433 _P2_3	=	0x00a3
+                    00A4    434 _P2_4	=	0x00a4
+                    00AF    435 _EA	=	0x00af
+                    00AF    436 _IEN0_EA	=	0x00af
+                    00AD    437 _IEN0_STIE	=	0x00ad
+                    00AC    438 _IEN0_ENCIE	=	0x00ac
+                    00AB    439 _IEN0_URX1IE	=	0x00ab
+                    00AA    440 _IEN0_URX0IE	=	0x00aa
+                    00A9    441 _IEN0_ADCIE	=	0x00a9
+                    00A8    442 _IEN0_RFERRIE	=	0x00a8
+                    00BD    443 _IEN1_P0IE	=	0x00bd
+                    00BC    444 _IEN1_T4IE	=	0x00bc
+                    00BB    445 _IEN1_T3IE	=	0x00bb
+                    00BA    446 _IEN1_T2IE	=	0x00ba
+                    00B9    447 _IEN1_T1IE	=	0x00b9
+                    00B8    448 _IEN1_DMAIE	=	0x00b8
+                    00C7    449 _IRCON_STIF	=	0x00c7
+                    00C5    450 _IRCON_P0IF	=	0x00c5
+                    00C4    451 _IRCON_T4IF	=	0x00c4
+                    00C3    452 _IRCON_T3IF	=	0x00c3
+                    00C2    453 _IRCON_T2IF	=	0x00c2
+                    00C1    454 _IRCON_T1IF	=	0x00c1
+                    00C0    455 _IRCON_DMAIF	=	0x00c0
+                    00D0    456 _P	=	0x00d0
+                    00D1    457 _F1	=	0x00d1
+                    00D2    458 _OV	=	0x00d2
+                    00D3    459 _RS0	=	0x00d3
+                    00D4    460 _RS1	=	0x00d4
+                    00D5    461 _F0	=	0x00d5
+                    00D6    462 _AC	=	0x00d6
+                    00D7    463 _CY	=	0x00d7
+                    00EC    464 _IRCON2_WDTIF	=	0x00ec
+                    00EB    465 _IRCON2_P1IF	=	0x00eb
+                    00EA    466 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    467 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    468 _IRCON2_P2IF	=	0x00e8
+                            469 ;--------------------------------------------------------
+                            470 ; overlayable register banks
+                            471 ;--------------------------------------------------------
+                            472 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     473 	.ds 8
+                            474 ;--------------------------------------------------------
+                            475 ; internal ram data
+                            476 ;--------------------------------------------------------
+                            477 	.area DSEG    (DATA)
+                            478 ;--------------------------------------------------------
+                            479 ; overlayable items in internal ram 
+                            480 ;--------------------------------------------------------
+                            481 	.area OSEG    (OVR,DATA)
+                            482 ;--------------------------------------------------------
+                            483 ; indirectly addressable internal ram data
+                            484 ;--------------------------------------------------------
+                            485 	.area ISEG    (DATA)
+                            486 ;--------------------------------------------------------
+                            487 ; absolute internal ram data
+                            488 ;--------------------------------------------------------
+                            489 	.area IABS    (ABS,DATA)
+                            490 	.area IABS    (ABS,DATA)
+                            491 ;--------------------------------------------------------
+                            492 ; bit data
+                            493 ;--------------------------------------------------------
+                            494 	.area BSEG    (BIT)
+                            495 ;--------------------------------------------------------
+                            496 ; paged external ram data
+                            497 ;--------------------------------------------------------
+                            498 	.area PSEG    (PAG,XDATA)
+                            499 ;--------------------------------------------------------
+                            500 ; external ram data
+                            501 ;--------------------------------------------------------
+                            502 	.area XSEG    (XDATA)
+                    DF02    503 _MDMCTRL0H	=	0xdf02
+                    DF03    504 _MDMCTRL0L	=	0xdf03
+                    DF04    505 _MDMCTRL1H	=	0xdf04
+                    DF05    506 _MDMCTRL1L	=	0xdf05
+                    DF06    507 _RSSIH	=	0xdf06
+                    DF07    508 _RSSIL	=	0xdf07
+                    DF08    509 _SYNCWORDH	=	0xdf08
+                    DF09    510 _SYNCWORDL	=	0xdf09
+                    DF0A    511 _TXCTRLH	=	0xdf0a
+                    DF0B    512 _TXCTRLL	=	0xdf0b
+                    DF0C    513 _RXCTRL0H	=	0xdf0c
+                    DF0D    514 _RXCTRL0L	=	0xdf0d
+                    DF0E    515 _RXCTRL1H	=	0xdf0e
+                    DF0F    516 _RXCTRL1L	=	0xdf0f
+                    DF10    517 _FSCTRLH	=	0xdf10
+                    DF11    518 _FSCTRLL	=	0xdf11
+                    DF12    519 _CSPX	=	0xdf12
+                    DF13    520 _CSPY	=	0xdf13
+                    DF14    521 _CSPZ	=	0xdf14
+                    DF15    522 _CSPCTRL	=	0xdf15
+                    DF16    523 _CSPT	=	0xdf16
+                    DF17    524 _RFPWR	=	0xdf17
+                    DF20    525 _FSMTCH	=	0xdf20
+                    DF21    526 _FSMTCL	=	0xdf21
+                    DF22    527 _MANANDH	=	0xdf22
+                    DF23    528 _MANANDL	=	0xdf23
+                    DF24    529 _MANORH	=	0xdf24
+                    DF25    530 _MANORL	=	0xdf25
+                    DF26    531 _AGCCTRLH	=	0xdf26
+                    DF27    532 _AGCCTRLL	=	0xdf27
+                    DF39    533 _FSMSTATE	=	0xdf39
+                    DF3A    534 _ADCTSTH	=	0xdf3a
+                    DF3B    535 _ADCTSTL	=	0xdf3b
+                    DF3C    536 _DACTSTH	=	0xdf3c
+                    DF3D    537 _DACTSTL	=	0xdf3d
+                    DF43    538 _IEEE_ADDR0	=	0xdf43
+                    DF44    539 _IEEE_ADDR1	=	0xdf44
+                    DF45    540 _IEEE_ADDR2	=	0xdf45
+                    DF46    541 _IEEE_ADDR3	=	0xdf46
+                    DF47    542 _IEEE_ADDR4	=	0xdf47
+                    DF48    543 _IEEE_ADDR5	=	0xdf48
+                    DF49    544 _IEEE_ADDR6	=	0xdf49
+                    DF4A    545 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    546 _PANIDH	=	0xdf4b
+                    DF4C    547 _PANIDL	=	0xdf4c
+                    DF4D    548 _SHORTADDRH	=	0xdf4d
+                    DF4E    549 _SHORTADDRL	=	0xdf4e
+                    DF4F    550 _IOCFG0	=	0xdf4f
+                    DF50    551 _IOCFG1	=	0xdf50
+                    DF51    552 _IOCFG2	=	0xdf51
+                    DF52    553 _IOCFG3	=	0xdf52
+                    DF53    554 _RXFIFOCNT	=	0xdf53
+                    DF54    555 _FSMTC1	=	0xdf54
+                    DF60    556 _CHVER	=	0xdf60
+                    DF61    557 _CHIPID	=	0xdf61
+                    DF62    558 _RFSTATUS	=	0xdf62
+                    DFC1    559 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    560 _RFD_SHADOW	=	0xdfd9
+                    DFF9    561 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    562 _ADC_SHADOW	=	0xdfba
+   0000                     563 _energest_total_count::
+   0000                     564 	.ds 2
+   0002                     565 _energest_total_time::
+   0002                     566 	.ds 48
+   0032                     567 _energest_current_time::
+   0032                     568 	.ds 24
+   004A                     569 _energest_current_mode::
+   004A                     570 	.ds 12
+                            571 ;--------------------------------------------------------
+                            572 ; absolute external ram data
+                            573 ;--------------------------------------------------------
+                            574 	.area XABS    (ABS,XDATA)
+                            575 ;--------------------------------------------------------
+                            576 ; external initialized ram data
+                            577 ;--------------------------------------------------------
+                            578 	.area XISEG   (XDATA)
+                            579 	.area HOME    (CODE)
+                            580 	.area GSINIT0 (CODE)
+                            581 	.area GSINIT1 (CODE)
+                            582 	.area GSINIT2 (CODE)
+                            583 	.area GSINIT3 (CODE)
+                            584 	.area GSINIT4 (CODE)
+                            585 	.area GSINIT5 (CODE)
+                            586 	.area GSINIT  (CODE)
+                            587 	.area GSFINAL (CODE)
+                            588 	.area CSEG    (CODE)
+                            589 ;--------------------------------------------------------
+                            590 ; global & static initialisations
+                            591 ;--------------------------------------------------------
+                            592 	.area HOME    (CODE)
+                            593 	.area GSINIT  (CODE)
+                            594 	.area GSFINAL (CODE)
+                            595 	.area GSINIT  (CODE)
+                            596 ;--------------------------------------------------------
+                            597 ; Home
+                            598 ;--------------------------------------------------------
+                            599 	.area HOME    (CODE)
+                            600 	.area HOME    (CODE)
+                            601 ;--------------------------------------------------------
+                            602 ; code
+                            603 ;--------------------------------------------------------
+                            604 	.area CSEG    (CODE)
+                            605 ;------------------------------------------------------------
+                            606 ;Allocation info for local variables in function 'energest_init'
+                            607 ;------------------------------------------------------------
+                            608 ;i                         Allocated to registers r2 r3 
+                            609 ;------------------------------------------------------------
+                            610 ;	../../../core/sys/energest.c:56: energest_init(void)
+                            611 ;	-----------------------------------------
+                            612 ;	 function energest_init
+                            613 ;	-----------------------------------------
+   0000                     614 _energest_init:
+                    0002    615 	ar2 = 0x02
+                    0003    616 	ar3 = 0x03
+                    0004    617 	ar4 = 0x04
+                    0005    618 	ar5 = 0x05
+                    0006    619 	ar6 = 0x06
+                    0007    620 	ar7 = 0x07
+                    0000    621 	ar0 = 0x00
+                    0001    622 	ar1 = 0x01
+                            623 ;	../../../core/sys/energest.c:59: for(i = 0; i < ENERGEST_TYPE_MAX; ++i) {
+   0000 7A 00               624 	mov	r2,#0x00
+   0002 7B 00               625 	mov	r3,#0x00
+   0004                     626 00101$:
+   0004 C3                  627 	clr	c
+   0005 EA                  628 	mov	a,r2
+   0006 94 0C               629 	subb	a,#0x0C
+   0008 EB                  630 	mov	a,r3
+   0009 64 80               631 	xrl	a,#0x80
+   000B 94 80               632 	subb	a,#0x80
+   000D 50 4C               633 	jnc	00105$
+                            634 ;	../../../core/sys/energest.c:60: energest_total_time[i].current = energest_current_time[i] = 0;
+   000F 8A 04               635 	mov	ar4,r2
+   0011 EB                  636 	mov	a,r3
+   0012 CC                  637 	xch	a,r4
+   0013 25 E0               638 	add	a,acc
+   0015 CC                  639 	xch	a,r4
+   0016 33                  640 	rlc	a
+   0017 CC                  641 	xch	a,r4
+   0018 25 E0               642 	add	a,acc
+   001A CC                  643 	xch	a,r4
+   001B 33                  644 	rlc	a
+   001C FD                  645 	mov	r5,a
+   001D EC                  646 	mov	a,r4
+   001E 24r02               647 	add	a,#_energest_total_time
+   0020 FC                  648 	mov	r4,a
+   0021 ED                  649 	mov	a,r5
+   0022 34s00               650 	addc	a,#(_energest_total_time >> 8)
+   0024 FD                  651 	mov	r5,a
+   0025 8A 06               652 	mov	ar6,r2
+   0027 EB                  653 	mov	a,r3
+   0028 CE                  654 	xch	a,r6
+   0029 25 E0               655 	add	a,acc
+   002B CE                  656 	xch	a,r6
+   002C 33                  657 	rlc	a
+   002D FF                  658 	mov	r7,a
+   002E EE                  659 	mov	a,r6
+   002F 24r32               660 	add	a,#_energest_current_time
+   0031 F5 82               661 	mov	dpl,a
+   0033 EF                  662 	mov	a,r7
+   0034 34s00               663 	addc	a,#(_energest_current_time >> 8)
+   0036 F5 83               664 	mov	dph,a
+   0038 E4                  665 	clr	a
+   0039 F0                  666 	movx	@dptr,a
+   003A A3                  667 	inc	dptr
+   003B F0                  668 	movx	@dptr,a
+   003C 8C 82               669 	mov	dpl,r4
+   003E 8D 83               670 	mov	dph,r5
+   0040 E4                  671 	clr	a
+   0041 F0                  672 	movx	@dptr,a
+   0042 A3                  673 	inc	dptr
+   0043 F0                  674 	movx	@dptr,a
+   0044 A3                  675 	inc	dptr
+   0045 F0                  676 	movx	@dptr,a
+   0046 A3                  677 	inc	dptr
+   0047 F0                  678 	movx	@dptr,a
+                            679 ;	../../../core/sys/energest.c:61: energest_current_mode[i] = 0;
+   0048 EA                  680 	mov	a,r2
+   0049 24r4A               681 	add	a,#_energest_current_mode
+   004B F5 82               682 	mov	dpl,a
+   004D EB                  683 	mov	a,r3
+   004E 34s00               684 	addc	a,#(_energest_current_mode >> 8)
+   0050 F5 83               685 	mov	dph,a
+   0052 E4                  686 	clr	a
+   0053 F0                  687 	movx	@dptr,a
+                            688 ;	../../../core/sys/energest.c:59: for(i = 0; i < ENERGEST_TYPE_MAX; ++i) {
+   0054 0A                  689 	inc	r2
+   0055 BA 00 AC            690 	cjne	r2,#0x00,00101$
+   0058 0B                  691 	inc	r3
+   0059 80 A9               692 	sjmp	00101$
+   005B                     693 00105$:
+   005B 22                  694 	ret
+                            695 ;------------------------------------------------------------
+                            696 ;Allocation info for local variables in function 'energest_type_time'
+                            697 ;------------------------------------------------------------
+                            698 ;type                      Allocated to stack - offset 1
+                            699 ;now                       Allocated to stack - offset 3
+                            700 ;sloc0                     Allocated to stack - offset 5
+                            701 ;sloc1                     Allocated to stack - offset 9
+                            702 ;------------------------------------------------------------
+                            703 ;	../../../core/sys/energest.c:71: energest_type_time(int type)
+                            704 ;	-----------------------------------------
+                            705 ;	 function energest_type_time
+                            706 ;	-----------------------------------------
+   005C                     707 _energest_type_time:
+   005C C0*00               708 	push	_bp
+   005E 85 81*00            709 	mov	_bp,sp
+   0061 C0 82               710 	push	dpl
+   0063 C0 83               711 	push	dph
+   0065 E5 81               712 	mov	a,sp
+   0067 24 0A               713 	add	a,#0x0a
+   0069 F5 81               714 	mov	sp,a
+                            715 ;	../../../core/sys/energest.c:75: if(energest_current_mode[type]) {
+   006B A8*00               716 	mov	r0,_bp
+   006D 08                  717 	inc	r0
+   006E E6                  718 	mov	a,@r0
+   006F 24r4A               719 	add	a,#_energest_current_mode
+   0071 FC                  720 	mov	r4,a
+   0072 08                  721 	inc	r0
+   0073 E6                  722 	mov	a,@r0
+   0074 34s00               723 	addc	a,#(_energest_current_mode >> 8)
+   0076 FD                  724 	mov	r5,a
+   0077 8C 82               725 	mov	dpl,r4
+   0079 8D 83               726 	mov	dph,r5
+   007B E0                  727 	movx	a,@dptr
+   007C 70 03               728 	jnz	00106$
+   007E 02s01r3A            729 	ljmp	00102$
+   0081                     730 00106$:
+                            731 ;	../../../core/sys/energest.c:76: rtimer_clock_t now = RTIMER_NOW();
+   0081 AC E2               732 	mov	r4,_T1CNTL
+   0083 7D 00               733 	mov	r5,#0x00
+   0085 AF E3               734 	mov	r7,_T1CNTH
+   0087 E4                  735 	clr	a
+   0088 2C                  736 	add	a,r4
+   0089 FC                  737 	mov	r4,a
+   008A EF                  738 	mov	a,r7
+   008B 3D                  739 	addc	a,r5
+   008C FD                  740 	mov	r5,a
+   008D E5*00               741 	mov	a,_bp
+   008F 24 03               742 	add	a,#0x03
+   0091 F8                  743 	mov	r0,a
+   0092 A6 04               744 	mov	@r0,ar4
+   0094 08                  745 	inc	r0
+   0095 A6 05               746 	mov	@r0,ar5
+                            747 ;	../../../core/sys/energest.c:77: energest_total_time[type].current += (rtimer_clock_t)
+   0097 A8*00               748 	mov	r0,_bp
+   0099 08                  749 	inc	r0
+   009A 86 06               750 	mov	ar6,@r0
+   009C 08                  751 	inc	r0
+   009D E6                  752 	mov	a,@r0
+   009E CE                  753 	xch	a,r6
+   009F 25 E0               754 	add	a,acc
+   00A1 CE                  755 	xch	a,r6
+   00A2 33                  756 	rlc	a
+   00A3 CE                  757 	xch	a,r6
+   00A4 25 E0               758 	add	a,acc
+   00A6 CE                  759 	xch	a,r6
+   00A7 33                  760 	rlc	a
+   00A8 FF                  761 	mov	r7,a
+   00A9 EE                  762 	mov	a,r6
+   00AA 24r02               763 	add	a,#_energest_total_time
+   00AC FE                  764 	mov	r6,a
+   00AD EF                  765 	mov	a,r7
+   00AE 34s00               766 	addc	a,#(_energest_total_time >> 8)
+   00B0 FF                  767 	mov	r7,a
+   00B1 8E 82               768 	mov	dpl,r6
+   00B3 8F 83               769 	mov	dph,r7
+   00B5 E5*00               770 	mov	a,_bp
+   00B7 24 05               771 	add	a,#0x05
+   00B9 F8                  772 	mov	r0,a
+   00BA E0                  773 	movx	a,@dptr
+   00BB F6                  774 	mov	@r0,a
+   00BC A3                  775 	inc	dptr
+   00BD E0                  776 	movx	a,@dptr
+   00BE 08                  777 	inc	r0
+   00BF F6                  778 	mov	@r0,a
+   00C0 A3                  779 	inc	dptr
+   00C1 E0                  780 	movx	a,@dptr
+   00C2 08                  781 	inc	r0
+   00C3 F6                  782 	mov	@r0,a
+   00C4 A3                  783 	inc	dptr
+   00C5 E0                  784 	movx	a,@dptr
+   00C6 08                  785 	inc	r0
+   00C7 F6                  786 	mov	@r0,a
+                            787 ;	../../../core/sys/energest.c:78: (now - energest_current_time[type]);
+   00C8 A8*00               788 	mov	r0,_bp
+   00CA 08                  789 	inc	r0
+   00CB 86 02               790 	mov	ar2,@r0
+   00CD 08                  791 	inc	r0
+   00CE E6                  792 	mov	a,@r0
+   00CF CA                  793 	xch	a,r2
+   00D0 25 E0               794 	add	a,acc
+   00D2 CA                  795 	xch	a,r2
+   00D3 33                  796 	rlc	a
+   00D4 FB                  797 	mov	r3,a
+   00D5 E5*00               798 	mov	a,_bp
+   00D7 24 09               799 	add	a,#0x09
+   00D9 F8                  800 	mov	r0,a
+   00DA EA                  801 	mov	a,r2
+   00DB 24r32               802 	add	a,#_energest_current_time
+   00DD F6                  803 	mov	@r0,a
+   00DE EB                  804 	mov	a,r3
+   00DF 34s00               805 	addc	a,#(_energest_current_time >> 8)
+   00E1 08                  806 	inc	r0
+   00E2 F6                  807 	mov	@r0,a
+   00E3 E5*00               808 	mov	a,_bp
+   00E5 24 09               809 	add	a,#0x09
+   00E7 F8                  810 	mov	r0,a
+   00E8 86 82               811 	mov	dpl,@r0
+   00EA 08                  812 	inc	r0
+   00EB 86 83               813 	mov	dph,@r0
+   00ED E0                  814 	movx	a,@dptr
+   00EE FC                  815 	mov	r4,a
+   00EF A3                  816 	inc	dptr
+   00F0 E0                  817 	movx	a,@dptr
+   00F1 FD                  818 	mov	r5,a
+   00F2 E5*00               819 	mov	a,_bp
+   00F4 24 03               820 	add	a,#0x03
+   00F6 F8                  821 	mov	r0,a
+   00F7 E6                  822 	mov	a,@r0
+   00F8 C3                  823 	clr	c
+   00F9 9C                  824 	subb	a,r4
+   00FA FC                  825 	mov	r4,a
+   00FB 08                  826 	inc	r0
+   00FC E6                  827 	mov	a,@r0
+   00FD 9D                  828 	subb	a,r5
+   00FE FD                  829 	mov	r5,a
+   00FF E4                  830 	clr	a
+   0100 FA                  831 	mov	r2,a
+   0101 FB                  832 	mov	r3,a
+   0102 E5*00               833 	mov	a,_bp
+   0104 24 05               834 	add	a,#0x05
+   0106 F8                  835 	mov	r0,a
+   0107 EC                  836 	mov	a,r4
+   0108 26                  837 	add	a,@r0
+   0109 FC                  838 	mov	r4,a
+   010A ED                  839 	mov	a,r5
+   010B 08                  840 	inc	r0
+   010C 36                  841 	addc	a,@r0
+   010D FD                  842 	mov	r5,a
+   010E EA                  843 	mov	a,r2
+   010F 08                  844 	inc	r0
+   0110 36                  845 	addc	a,@r0
+   0111 FA                  846 	mov	r2,a
+   0112 EB                  847 	mov	a,r3
+   0113 08                  848 	inc	r0
+   0114 36                  849 	addc	a,@r0
+   0115 FB                  850 	mov	r3,a
+   0116 8E 82               851 	mov	dpl,r6
+   0118 8F 83               852 	mov	dph,r7
+   011A EC                  853 	mov	a,r4
+   011B F0                  854 	movx	@dptr,a
+   011C A3                  855 	inc	dptr
+   011D ED                  856 	mov	a,r5
+   011E F0                  857 	movx	@dptr,a
+   011F A3                  858 	inc	dptr
+   0120 EA                  859 	mov	a,r2
+   0121 F0                  860 	movx	@dptr,a
+   0122 A3                  861 	inc	dptr
+   0123 EB                  862 	mov	a,r3
+   0124 F0                  863 	movx	@dptr,a
+                            864 ;	../../../core/sys/energest.c:79: energest_current_time[type] = now;
+   0125 E5*00               865 	mov	a,_bp
+   0127 24 09               866 	add	a,#0x09
+   0129 F8                  867 	mov	r0,a
+   012A 86 82               868 	mov	dpl,@r0
+   012C 08                  869 	inc	r0
+   012D 86 83               870 	mov	dph,@r0
+   012F E5*00               871 	mov	a,_bp
+   0131 24 03               872 	add	a,#0x03
+   0133 F9                  873 	mov	r1,a
+   0134 E7                  874 	mov	a,@r1
+   0135 F0                  875 	movx	@dptr,a
+   0136 A3                  876 	inc	dptr
+   0137 09                  877 	inc	r1
+   0138 E7                  878 	mov	a,@r1
+   0139 F0                  879 	movx	@dptr,a
+   013A                     880 00102$:
+                            881 ;	../../../core/sys/energest.c:82: return energest_total_time[type].current;
+   013A A8*00               882 	mov	r0,_bp
+   013C 08                  883 	inc	r0
+   013D 86 02               884 	mov	ar2,@r0
+   013F 08                  885 	inc	r0
+   0140 E6                  886 	mov	a,@r0
+   0141 CA                  887 	xch	a,r2
+   0142 25 E0               888 	add	a,acc
+   0144 CA                  889 	xch	a,r2
+   0145 33                  890 	rlc	a
+   0146 CA                  891 	xch	a,r2
+   0147 25 E0               892 	add	a,acc
+   0149 CA                  893 	xch	a,r2
+   014A 33                  894 	rlc	a
+   014B FB                  895 	mov	r3,a
+   014C EA                  896 	mov	a,r2
+   014D 24r02               897 	add	a,#_energest_total_time
+   014F F5 82               898 	mov	dpl,a
+   0151 EB                  899 	mov	a,r3
+   0152 34s00               900 	addc	a,#(_energest_total_time >> 8)
+   0154 F5 83               901 	mov	dph,a
+   0156 E0                  902 	movx	a,@dptr
+   0157 FA                  903 	mov	r2,a
+   0158 A3                  904 	inc	dptr
+   0159 E0                  905 	movx	a,@dptr
+   015A FB                  906 	mov	r3,a
+   015B A3                  907 	inc	dptr
+   015C E0                  908 	movx	a,@dptr
+   015D FC                  909 	mov	r4,a
+   015E A3                  910 	inc	dptr
+   015F E0                  911 	movx	a,@dptr
+   0160 8A 82               912 	mov	dpl,r2
+   0162 8B 83               913 	mov	dph,r3
+   0164 8C F0               914 	mov	b,r4
+   0166 85*00 81            915 	mov	sp,_bp
+   0169 D0*00               916 	pop	_bp
+   016B 22                  917 	ret
+                            918 ;------------------------------------------------------------
+                            919 ;Allocation info for local variables in function 'energest_leveldevice_leveltime'
+                            920 ;------------------------------------------------------------
+                            921 ;powerlevel                Allocated to registers 
+                            922 ;------------------------------------------------------------
+                            923 ;	../../../core/sys/energest.c:86: energest_leveldevice_leveltime(int powerlevel)
+                            924 ;	-----------------------------------------
+                            925 ;	 function energest_leveldevice_leveltime
+                            926 ;	-----------------------------------------
+   016C                     927 _energest_leveldevice_leveltime:
+                            928 ;	../../../core/sys/energest.c:91: return 0;
+   016C 90 00 00            929 	mov	dptr,#(0x00&0x00ff)
+   016F E4                  930 	clr	a
+   0170 F5 F0               931 	mov	b,a
+   0172 22                  932 	ret
+                            933 ;------------------------------------------------------------
+                            934 ;Allocation info for local variables in function 'energest_type_set'
+                            935 ;------------------------------------------------------------
+                            936 ;val                       Allocated to stack - offset -6
+                            937 ;type                      Allocated to registers r2 r3 
+                            938 ;------------------------------------------------------------
+                            939 ;	../../../core/sys/energest.c:96: energest_type_set(int type, unsigned long val)
+                            940 ;	-----------------------------------------
+                            941 ;	 function energest_type_set
+                            942 ;	-----------------------------------------
+   0173                     943 _energest_type_set:
+   0173 C0*00               944 	push	_bp
+   0175 85 81*00            945 	mov	_bp,sp
+   0178 AA 82               946 	mov	r2,dpl
+                            947 ;	../../../core/sys/energest.c:98: energest_total_time[type].current = val;
+   017A E5 83               948 	mov	a,dph
+   017C CA                  949 	xch	a,r2
+   017D 25 E0               950 	add	a,acc
+   017F CA                  951 	xch	a,r2
+   0180 33                  952 	rlc	a
+   0181 CA                  953 	xch	a,r2
+   0182 25 E0               954 	add	a,acc
+   0184 CA                  955 	xch	a,r2
+   0185 33                  956 	rlc	a
+   0186 FB                  957 	mov	r3,a
+   0187 EA                  958 	mov	a,r2
+   0188 24r02               959 	add	a,#_energest_total_time
+   018A F5 82               960 	mov	dpl,a
+   018C EB                  961 	mov	a,r3
+   018D 34s00               962 	addc	a,#(_energest_total_time >> 8)
+   018F F5 83               963 	mov	dph,a
+   0191 E5*00               964 	mov	a,_bp
+   0193 24 FA               965 	add	a,#0xfa
+   0195 F8                  966 	mov	r0,a
+   0196 E6                  967 	mov	a,@r0
+   0197 F0                  968 	movx	@dptr,a
+   0198 A3                  969 	inc	dptr
+   0199 08                  970 	inc	r0
+   019A E6                  971 	mov	a,@r0
+   019B F0                  972 	movx	@dptr,a
+   019C A3                  973 	inc	dptr
+   019D 08                  974 	inc	r0
+   019E E6                  975 	mov	a,@r0
+   019F F0                  976 	movx	@dptr,a
+   01A0 A3                  977 	inc	dptr
+   01A1 08                  978 	inc	r0
+   01A2 E6                  979 	mov	a,@r0
+   01A3 F0                  980 	movx	@dptr,a
+   01A4 D0*00               981 	pop	_bp
+   01A6 22                  982 	ret
+                            983 ;------------------------------------------------------------
+                            984 ;Allocation info for local variables in function 'energest_flush'
+                            985 ;------------------------------------------------------------
+                            986 ;now                       Allocated to stack - offset 1
+                            987 ;i                         Allocated to stack - offset 3
+                            988 ;sloc0                     Allocated to stack - offset 5
+                            989 ;sloc1                     Allocated to stack - offset 9
+                            990 ;------------------------------------------------------------
+                            991 ;	../../../core/sys/energest.c:103: energest_flush(void)
+                            992 ;	-----------------------------------------
+                            993 ;	 function energest_flush
+                            994 ;	-----------------------------------------
+   01A7                     995 _energest_flush:
+   01A7 C0*00               996 	push	_bp
+   01A9 E5 81               997 	mov	a,sp
+   01AB F5*00               998 	mov	_bp,a
+   01AD 24 0A               999 	add	a,#0x0a
+   01AF F5 81              1000 	mov	sp,a
+                           1001 ;	../../../core/sys/energest.c:107: for(i = 0; i < ENERGEST_TYPE_MAX; i++) {
+   01B1 E5*00              1002 	mov	a,_bp
+   01B3 24 03              1003 	add	a,#0x03
+   01B5 F8                 1004 	mov	r0,a
+   01B6 E4                 1005 	clr	a
+   01B7 F6                 1006 	mov	@r0,a
+   01B8 08                 1007 	inc	r0
+   01B9 F6                 1008 	mov	@r0,a
+   01BA                    1009 00103$:
+   01BA E5*00              1010 	mov	a,_bp
+   01BC 24 03              1011 	add	a,#0x03
+   01BE F8                 1012 	mov	r0,a
+   01BF C3                 1013 	clr	c
+   01C0 E6                 1014 	mov	a,@r0
+   01C1 94 0C              1015 	subb	a,#0x0C
+   01C3 08                 1016 	inc	r0
+   01C4 E6                 1017 	mov	a,@r0
+   01C5 64 80              1018 	xrl	a,#0x80
+   01C7 94 80              1019 	subb	a,#0x80
+   01C9 40 03              1020 	jc	00113$
+   01CB 02s02rAB           1021 	ljmp	00107$
+   01CE                    1022 00113$:
+                           1023 ;	../../../core/sys/energest.c:108: if(energest_current_mode[i]) {
+   01CE E5*00              1024 	mov	a,_bp
+   01D0 24 03              1025 	add	a,#0x03
+   01D2 F8                 1026 	mov	r0,a
+   01D3 E6                 1027 	mov	a,@r0
+   01D4 24r4A              1028 	add	a,#_energest_current_mode
+   01D6 FC                 1029 	mov	r4,a
+   01D7 08                 1030 	inc	r0
+   01D8 E6                 1031 	mov	a,@r0
+   01D9 34s00              1032 	addc	a,#(_energest_current_mode >> 8)
+   01DB FD                 1033 	mov	r5,a
+   01DC 8C 82              1034 	mov	dpl,r4
+   01DE 8D 83              1035 	mov	dph,r5
+   01E0 E0                 1036 	movx	a,@dptr
+   01E1 70 03              1037 	jnz	00114$
+   01E3 02s02r9D           1038 	ljmp	00105$
+   01E6                    1039 00114$:
+                           1040 ;	../../../core/sys/energest.c:109: now = RTIMER_NOW();
+   01E6 AC E2              1041 	mov	r4,_T1CNTL
+   01E8 7D 00              1042 	mov	r5,#0x00
+   01EA AF E3              1043 	mov	r7,_T1CNTH
+   01EC E4                 1044 	clr	a
+   01ED 2C                 1045 	add	a,r4
+   01EE FC                 1046 	mov	r4,a
+   01EF EF                 1047 	mov	a,r7
+   01F0 3D                 1048 	addc	a,r5
+   01F1 FD                 1049 	mov	r5,a
+   01F2 A8*00              1050 	mov	r0,_bp
+   01F4 08                 1051 	inc	r0
+   01F5 A6 04              1052 	mov	@r0,ar4
+   01F7 08                 1053 	inc	r0
+   01F8 A6 05              1054 	mov	@r0,ar5
+                           1055 ;	../../../core/sys/energest.c:110: energest_total_time[i].current += (rtimer_clock_t)
+   01FA E5*00              1056 	mov	a,_bp
+   01FC 24 03              1057 	add	a,#0x03
+   01FE F8                 1058 	mov	r0,a
+   01FF 86 06              1059 	mov	ar6,@r0
+   0201 08                 1060 	inc	r0
+   0202 E6                 1061 	mov	a,@r0
+   0203 CE                 1062 	xch	a,r6
+   0204 25 E0              1063 	add	a,acc
+   0206 CE                 1064 	xch	a,r6
+   0207 33                 1065 	rlc	a
+   0208 CE                 1066 	xch	a,r6
+   0209 25 E0              1067 	add	a,acc
+   020B CE                 1068 	xch	a,r6
+   020C 33                 1069 	rlc	a
+   020D FF                 1070 	mov	r7,a
+   020E EE                 1071 	mov	a,r6
+   020F 24r02              1072 	add	a,#_energest_total_time
+   0211 FE                 1073 	mov	r6,a
+   0212 EF                 1074 	mov	a,r7
+   0213 34s00              1075 	addc	a,#(_energest_total_time >> 8)
+   0215 FF                 1076 	mov	r7,a
+   0216 8E 82              1077 	mov	dpl,r6
+   0218 8F 83              1078 	mov	dph,r7
+   021A E5*00              1079 	mov	a,_bp
+   021C 24 05              1080 	add	a,#0x05
+   021E F8                 1081 	mov	r0,a
+   021F E0                 1082 	movx	a,@dptr
+   0220 F6                 1083 	mov	@r0,a
+   0221 A3                 1084 	inc	dptr
+   0222 E0                 1085 	movx	a,@dptr
+   0223 08                 1086 	inc	r0
+   0224 F6                 1087 	mov	@r0,a
+   0225 A3                 1088 	inc	dptr
+   0226 E0                 1089 	movx	a,@dptr
+   0227 08                 1090 	inc	r0
+   0228 F6                 1091 	mov	@r0,a
+   0229 A3                 1092 	inc	dptr
+   022A E0                 1093 	movx	a,@dptr
+   022B 08                 1094 	inc	r0
+   022C F6                 1095 	mov	@r0,a
+                           1096 ;	../../../core/sys/energest.c:111: (now - energest_current_time[i]);
+   022D E5*00              1097 	mov	a,_bp
+   022F 24 03              1098 	add	a,#0x03
+   0231 F8                 1099 	mov	r0,a
+   0232 86 02              1100 	mov	ar2,@r0
+   0234 08                 1101 	inc	r0
+   0235 E6                 1102 	mov	a,@r0
+   0236 CA                 1103 	xch	a,r2
+   0237 25 E0              1104 	add	a,acc
+   0239 CA                 1105 	xch	a,r2
+   023A 33                 1106 	rlc	a
+   023B FB                 1107 	mov	r3,a
+   023C E5*00              1108 	mov	a,_bp
+   023E 24 09              1109 	add	a,#0x09
+   0240 F8                 1110 	mov	r0,a
+   0241 EA                 1111 	mov	a,r2
+   0242 24r32              1112 	add	a,#_energest_current_time
+   0244 F6                 1113 	mov	@r0,a
+   0245 EB                 1114 	mov	a,r3
+   0246 34s00              1115 	addc	a,#(_energest_current_time >> 8)
+   0248 08                 1116 	inc	r0
+   0249 F6                 1117 	mov	@r0,a
+   024A E5*00              1118 	mov	a,_bp
+   024C 24 09              1119 	add	a,#0x09
+   024E F8                 1120 	mov	r0,a
+   024F 86 82              1121 	mov	dpl,@r0
+   0251 08                 1122 	inc	r0
+   0252 86 83              1123 	mov	dph,@r0
+   0254 E0                 1124 	movx	a,@dptr
+   0255 FC                 1125 	mov	r4,a
+   0256 A3                 1126 	inc	dptr
+   0257 E0                 1127 	movx	a,@dptr
+   0258 FD                 1128 	mov	r5,a
+   0259 A8*00              1129 	mov	r0,_bp
+   025B 08                 1130 	inc	r0
+   025C E6                 1131 	mov	a,@r0
+   025D C3                 1132 	clr	c
+   025E 9C                 1133 	subb	a,r4
+   025F FC                 1134 	mov	r4,a
+   0260 08                 1135 	inc	r0
+   0261 E6                 1136 	mov	a,@r0
+   0262 9D                 1137 	subb	a,r5
+   0263 FD                 1138 	mov	r5,a
+   0264 E4                 1139 	clr	a
+   0265 FA                 1140 	mov	r2,a
+   0266 FB                 1141 	mov	r3,a
+   0267 E5*00              1142 	mov	a,_bp
+   0269 24 05              1143 	add	a,#0x05
+   026B F8                 1144 	mov	r0,a
+   026C EC                 1145 	mov	a,r4
+   026D 26                 1146 	add	a,@r0
+   026E FC                 1147 	mov	r4,a
+   026F ED                 1148 	mov	a,r5
+   0270 08                 1149 	inc	r0
+   0271 36                 1150 	addc	a,@r0
+   0272 FD                 1151 	mov	r5,a
+   0273 EA                 1152 	mov	a,r2
+   0274 08                 1153 	inc	r0
+   0275 36                 1154 	addc	a,@r0
+   0276 FA                 1155 	mov	r2,a
+   0277 EB                 1156 	mov	a,r3
+   0278 08                 1157 	inc	r0
+   0279 36                 1158 	addc	a,@r0
+   027A FB                 1159 	mov	r3,a
+   027B 8E 82              1160 	mov	dpl,r6
+   027D 8F 83              1161 	mov	dph,r7
+   027F EC                 1162 	mov	a,r4
+   0280 F0                 1163 	movx	@dptr,a
+   0281 A3                 1164 	inc	dptr
+   0282 ED                 1165 	mov	a,r5
+   0283 F0                 1166 	movx	@dptr,a
+   0284 A3                 1167 	inc	dptr
+   0285 EA                 1168 	mov	a,r2
+   0286 F0                 1169 	movx	@dptr,a
+   0287 A3                 1170 	inc	dptr
+   0288 EB                 1171 	mov	a,r3
+   0289 F0                 1172 	movx	@dptr,a
+                           1173 ;	../../../core/sys/energest.c:112: energest_current_time[i] = now;
+   028A E5*00              1174 	mov	a,_bp
+   028C 24 09              1175 	add	a,#0x09
+   028E F8                 1176 	mov	r0,a
+   028F 86 82              1177 	mov	dpl,@r0
+   0291 08                 1178 	inc	r0
+   0292 86 83              1179 	mov	dph,@r0
+   0294 A9*00              1180 	mov	r1,_bp
+   0296 09                 1181 	inc	r1
+   0297 E7                 1182 	mov	a,@r1
+   0298 F0                 1183 	movx	@dptr,a
+   0299 A3                 1184 	inc	dptr
+   029A 09                 1185 	inc	r1
+   029B E7                 1186 	mov	a,@r1
+   029C F0                 1187 	movx	@dptr,a
+   029D                    1188 00105$:
+                           1189 ;	../../../core/sys/energest.c:107: for(i = 0; i < ENERGEST_TYPE_MAX; i++) {
+   029D E5*00              1190 	mov	a,_bp
+   029F 24 03              1191 	add	a,#0x03
+   02A1 F8                 1192 	mov	r0,a
+   02A2 06                 1193 	inc	@r0
+   02A3 B6 00 02           1194 	cjne	@r0,#0x00,00115$
+   02A6 08                 1195 	inc	r0
+   02A7 06                 1196 	inc	@r0
+   02A8                    1197 00115$:
+   02A8 02s01rBA           1198 	ljmp	00103$
+   02AB                    1199 00107$:
+   02AB 85*00 81           1200 	mov	sp,_bp
+   02AE D0*00              1201 	pop	_bp
+   02B0 22                 1202 	ret
+                           1203 	.area CSEG    (CODE)
+                           1204 	.area CONST   (CODE)
+                           1205 	.area XINIT   (CODE)
+                           1206 	.area CABS    (ABS,CODE)

@@ -1,0 +1,3359 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 17:04:02 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module router
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _autostart_processes
+                             13 	.globl _IRCON2_P2IF
+                             14 	.globl _IRCON2_UTX0IF
+                             15 	.globl _IRCON2_UTX1IF
+                             16 	.globl _IRCON2_P1IF
+                             17 	.globl _IRCON2_WDTIF
+                             18 	.globl _CY
+                             19 	.globl _AC
+                             20 	.globl _F0
+                             21 	.globl _RS1
+                             22 	.globl _RS0
+                             23 	.globl _OV
+                             24 	.globl _F1
+                             25 	.globl _P
+                             26 	.globl _IRCON_DMAIF
+                             27 	.globl _IRCON_T1IF
+                             28 	.globl _IRCON_T2IF
+                             29 	.globl _IRCON_T3IF
+                             30 	.globl _IRCON_T4IF
+                             31 	.globl _IRCON_P0IF
+                             32 	.globl _IRCON_STIF
+                             33 	.globl _IEN1_DMAIE
+                             34 	.globl _IEN1_T1IE
+                             35 	.globl _IEN1_T2IE
+                             36 	.globl _IEN1_T3IE
+                             37 	.globl _IEN1_T4IE
+                             38 	.globl _IEN1_P0IE
+                             39 	.globl _IEN0_RFERRIE
+                             40 	.globl _IEN0_ADCIE
+                             41 	.globl _IEN0_URX0IE
+                             42 	.globl _IEN0_URX1IE
+                             43 	.globl _IEN0_ENCIE
+                             44 	.globl _IEN0_STIE
+                             45 	.globl _IEN0_EA
+                             46 	.globl _EA
+                             47 	.globl _P2_4
+                             48 	.globl _P2_3
+                             49 	.globl _P2_2
+                             50 	.globl _P2_1
+                             51 	.globl _P2_0
+                             52 	.globl _S0CON_ENCIF_0
+                             53 	.globl _S0CON_ENCIF_1
+                             54 	.globl _P1_7
+                             55 	.globl _P1_6
+                             56 	.globl _P1_5
+                             57 	.globl _P1_4
+                             58 	.globl _P1_3
+                             59 	.globl _P1_2
+                             60 	.globl _P1_1
+                             61 	.globl _P1_0
+                             62 	.globl _TCON_IT0
+                             63 	.globl _TCON_RFERRIF
+                             64 	.globl _TCON_IT1
+                             65 	.globl _TCON_URX0IF
+                             66 	.globl _TCON_ADCIF
+                             67 	.globl _TCON_URX1IF
+                             68 	.globl _P0_0
+                             69 	.globl _P0_1
+                             70 	.globl _P0_2
+                             71 	.globl _P0_3
+                             72 	.globl _P0_4
+                             73 	.globl _P0_5
+                             74 	.globl _P0_6
+                             75 	.globl _P0_7
+                             76 	.globl _P2DIR
+                             77 	.globl _P1DIR
+                             78 	.globl _P0DIR
+                             79 	.globl _U1GCR
+                             80 	.globl _U1UCR
+                             81 	.globl _U1BAUD
+                             82 	.globl _U1BUF
+                             83 	.globl _U1CSR
+                             84 	.globl _P2INP
+                             85 	.globl _P1INP
+                             86 	.globl _P2SEL
+                             87 	.globl _P1SEL
+                             88 	.globl _P0SEL
+                             89 	.globl _ADCCFG
+                             90 	.globl _PERCFG
+                             91 	.globl _B
+                             92 	.globl _T4CC1
+                             93 	.globl _T4CCTL1
+                             94 	.globl _T4CC0
+                             95 	.globl _T4CCTL0
+                             96 	.globl _T4CTL
+                             97 	.globl _T4CNT
+                             98 	.globl _RFIF
+                             99 	.globl _IRCON2
+                            100 	.globl _T1CCTL2
+                            101 	.globl _T1CCTL1
+                            102 	.globl _T1CCTL0
+                            103 	.globl _T1CTL
+                            104 	.globl _T1CNTH
+                            105 	.globl _T1CNTL
+                            106 	.globl _RFST
+                            107 	.globl _ACC
+                            108 	.globl _T1CC2H
+                            109 	.globl _T1CC2L
+                            110 	.globl _T1CC1H
+                            111 	.globl _T1CC1L
+                            112 	.globl _T1CC0H
+                            113 	.globl _T1CC0L
+                            114 	.globl _RFD
+                            115 	.globl _TIMIF
+                            116 	.globl _DMAREQ
+                            117 	.globl _DMAARM
+                            118 	.globl _DMA0CFGH
+                            119 	.globl _DMA0CFGL
+                            120 	.globl _DMA1CFGH
+                            121 	.globl _DMA1CFGL
+                            122 	.globl _DMAIRQ
+                            123 	.globl _PSW
+                            124 	.globl _T3CC1
+                            125 	.globl _T3CCTL1
+                            126 	.globl _T3CC0
+                            127 	.globl _T3CCTL0
+                            128 	.globl _T3CTL
+                            129 	.globl _T3CNT
+                            130 	.globl _WDCTL
+                            131 	.globl _T2CON
+                            132 	.globl _MEMCTR
+                            133 	.globl _CLKCON
+                            134 	.globl _U0GCR
+                            135 	.globl _U0UCR
+                            136 	.globl _T2CNF
+                            137 	.globl _U0BAUD
+                            138 	.globl _U0BUF
+                            139 	.globl _IRCON
+                            140 	.globl _SLEEP
+                            141 	.globl _RNDH
+                            142 	.globl _RNDL
+                            143 	.globl _ADCH
+                            144 	.globl _ADCL
+                            145 	.globl _IP1
+                            146 	.globl _IEN1
+                            147 	.globl _RCCTL
+                            148 	.globl _ADCCON3
+                            149 	.globl _ADCCON2
+                            150 	.globl _ADCCON1
+                            151 	.globl _ENCCS
+                            152 	.globl _ENCDO
+                            153 	.globl _ENCDI
+                            154 	.globl _FWDATA
+                            155 	.globl _FCTL
+                            156 	.globl _FADDRH
+                            157 	.globl _FADDRL
+                            158 	.globl _FWT
+                            159 	.globl _IP0
+                            160 	.globl _IEN0
+                            161 	.globl _IE
+                            162 	.globl _T2THD
+                            163 	.globl _T2TLD
+                            164 	.globl _T2CAPHPH
+                            165 	.globl _T2CAPLPL
+                            166 	.globl _T2OF2
+                            167 	.globl _T2OF1
+                            168 	.globl _T2OF0
+                            169 	.globl _P2
+                            170 	.globl _PSBANK
+                            171 	.globl _FMAP
+                            172 	.globl _T2PEROF2
+                            173 	.globl _T2PEROF1
+                            174 	.globl _T2PEROF0
+                            175 	.globl _S1CON
+                            176 	.globl _IEN2
+                            177 	.globl _HSRC
+                            178 	.globl _S0CON
+                            179 	.globl _ST2
+                            180 	.globl _ST1
+                            181 	.globl _ST0
+                            182 	.globl _T2CMP
+                            183 	.globl __XPAGE
+                            184 	.globl _DPS
+                            185 	.globl _RFIM
+                            186 	.globl _P1
+                            187 	.globl _P0INP
+                            188 	.globl _P1IEN
+                            189 	.globl _PICTL
+                            190 	.globl _P2IFG
+                            191 	.globl _P1IFG
+                            192 	.globl _P0IFG
+                            193 	.globl _TCON
+                            194 	.globl _PCON
+                            195 	.globl _U0CSR
+                            196 	.globl _DPH1
+                            197 	.globl _DPL1
+                            198 	.globl _DPH0
+                            199 	.globl _DPL0
+                            200 	.globl _SP
+                            201 	.globl _P0
+                            202 	.globl _router_process
+                            203 	.globl _ADC_SHADOW
+                            204 	.globl _U1BUF_SHADOW
+                            205 	.globl _RFD_SHADOW
+                            206 	.globl _U0BUF_SHADOW
+                            207 	.globl _RFSTATUS
+                            208 	.globl _CHIPID
+                            209 	.globl _CHVER
+                            210 	.globl _FSMTC1
+                            211 	.globl _RXFIFOCNT
+                            212 	.globl _IOCFG3
+                            213 	.globl _IOCFG2
+                            214 	.globl _IOCFG1
+                            215 	.globl _IOCFG0
+                            216 	.globl _SHORTADDRL
+                            217 	.globl _SHORTADDRH
+                            218 	.globl _PANIDL
+                            219 	.globl _PANIDH
+                            220 	.globl _IEEE_ADDR7
+                            221 	.globl _IEEE_ADDR6
+                            222 	.globl _IEEE_ADDR5
+                            223 	.globl _IEEE_ADDR4
+                            224 	.globl _IEEE_ADDR3
+                            225 	.globl _IEEE_ADDR2
+                            226 	.globl _IEEE_ADDR1
+                            227 	.globl _IEEE_ADDR0
+                            228 	.globl _DACTSTL
+                            229 	.globl _DACTSTH
+                            230 	.globl _ADCTSTL
+                            231 	.globl _ADCTSTH
+                            232 	.globl _FSMSTATE
+                            233 	.globl _AGCCTRLL
+                            234 	.globl _AGCCTRLH
+                            235 	.globl _MANORL
+                            236 	.globl _MANORH
+                            237 	.globl _MANANDL
+                            238 	.globl _MANANDH
+                            239 	.globl _FSMTCL
+                            240 	.globl _FSMTCH
+                            241 	.globl _RFPWR
+                            242 	.globl _CSPT
+                            243 	.globl _CSPCTRL
+                            244 	.globl _CSPZ
+                            245 	.globl _CSPY
+                            246 	.globl _CSPX
+                            247 	.globl _FSCTRLL
+                            248 	.globl _FSCTRLH
+                            249 	.globl _RXCTRL1L
+                            250 	.globl _RXCTRL1H
+                            251 	.globl _RXCTRL0L
+                            252 	.globl _RXCTRL0H
+                            253 	.globl _TXCTRLL
+                            254 	.globl _TXCTRLH
+                            255 	.globl _SYNCWORDL
+                            256 	.globl _SYNCWORDH
+                            257 	.globl _RSSIL
+                            258 	.globl _RSSIH
+                            259 	.globl _MDMCTRL1L
+                            260 	.globl _MDMCTRL1H
+                            261 	.globl _MDMCTRL0L
+                            262 	.globl _MDMCTRL0H
+                            263 ;--------------------------------------------------------
+                            264 ; special function registers
+                            265 ;--------------------------------------------------------
+                            266 	.area RSEG    (ABS,DATA)
+   0000                     267 	.org 0x0000
+                    0080    268 _P0	=	0x0080
+                    0081    269 _SP	=	0x0081
+                    0082    270 _DPL0	=	0x0082
+                    0083    271 _DPH0	=	0x0083
+                    0084    272 _DPL1	=	0x0084
+                    0085    273 _DPH1	=	0x0085
+                    0086    274 _U0CSR	=	0x0086
+                    0087    275 _PCON	=	0x0087
+                    0088    276 _TCON	=	0x0088
+                    0089    277 _P0IFG	=	0x0089
+                    008A    278 _P1IFG	=	0x008a
+                    008B    279 _P2IFG	=	0x008b
+                    008C    280 _PICTL	=	0x008c
+                    008D    281 _P1IEN	=	0x008d
+                    008F    282 _P0INP	=	0x008f
+                    0090    283 _P1	=	0x0090
+                    0091    284 _RFIM	=	0x0091
+                    0092    285 _DPS	=	0x0092
+                    0093    286 __XPAGE	=	0x0093
+                    0094    287 _T2CMP	=	0x0094
+                    0095    288 _ST0	=	0x0095
+                    0096    289 _ST1	=	0x0096
+                    0097    290 _ST2	=	0x0097
+                    0098    291 _S0CON	=	0x0098
+                    0099    292 _HSRC	=	0x0099
+                    009A    293 _IEN2	=	0x009a
+                    009B    294 _S1CON	=	0x009b
+                    009C    295 _T2PEROF0	=	0x009c
+                    009D    296 _T2PEROF1	=	0x009d
+                    009E    297 _T2PEROF2	=	0x009e
+                    009F    298 _FMAP	=	0x009f
+                    009F    299 _PSBANK	=	0x009f
+                    00A0    300 _P2	=	0x00a0
+                    00A1    301 _T2OF0	=	0x00a1
+                    00A2    302 _T2OF1	=	0x00a2
+                    00A3    303 _T2OF2	=	0x00a3
+                    00A4    304 _T2CAPLPL	=	0x00a4
+                    00A5    305 _T2CAPHPH	=	0x00a5
+                    00A6    306 _T2TLD	=	0x00a6
+                    00A7    307 _T2THD	=	0x00a7
+                    00A8    308 _IE	=	0x00a8
+                    00A8    309 _IEN0	=	0x00a8
+                    00A9    310 _IP0	=	0x00a9
+                    00AB    311 _FWT	=	0x00ab
+                    00AC    312 _FADDRL	=	0x00ac
+                    00AD    313 _FADDRH	=	0x00ad
+                    00AE    314 _FCTL	=	0x00ae
+                    00AF    315 _FWDATA	=	0x00af
+                    00B1    316 _ENCDI	=	0x00b1
+                    00B2    317 _ENCDO	=	0x00b2
+                    00B3    318 _ENCCS	=	0x00b3
+                    00B4    319 _ADCCON1	=	0x00b4
+                    00B5    320 _ADCCON2	=	0x00b5
+                    00B6    321 _ADCCON3	=	0x00b6
+                    00B7    322 _RCCTL	=	0x00b7
+                    00B8    323 _IEN1	=	0x00b8
+                    00B9    324 _IP1	=	0x00b9
+                    00BA    325 _ADCL	=	0x00ba
+                    00BB    326 _ADCH	=	0x00bb
+                    00BC    327 _RNDL	=	0x00bc
+                    00BD    328 _RNDH	=	0x00bd
+                    00BE    329 _SLEEP	=	0x00be
+                    00C0    330 _IRCON	=	0x00c0
+                    00C1    331 _U0BUF	=	0x00c1
+                    00C2    332 _U0BAUD	=	0x00c2
+                    00C3    333 _T2CNF	=	0x00c3
+                    00C4    334 _U0UCR	=	0x00c4
+                    00C5    335 _U0GCR	=	0x00c5
+                    00C6    336 _CLKCON	=	0x00c6
+                    00C7    337 _MEMCTR	=	0x00c7
+                    00C8    338 _T2CON	=	0x00c8
+                    00C9    339 _WDCTL	=	0x00c9
+                    00CA    340 _T3CNT	=	0x00ca
+                    00CB    341 _T3CTL	=	0x00cb
+                    00CC    342 _T3CCTL0	=	0x00cc
+                    00CD    343 _T3CC0	=	0x00cd
+                    00CE    344 _T3CCTL1	=	0x00ce
+                    00CF    345 _T3CC1	=	0x00cf
+                    00D0    346 _PSW	=	0x00d0
+                    00D1    347 _DMAIRQ	=	0x00d1
+                    00D2    348 _DMA1CFGL	=	0x00d2
+                    00D3    349 _DMA1CFGH	=	0x00d3
+                    00D4    350 _DMA0CFGL	=	0x00d4
+                    00D5    351 _DMA0CFGH	=	0x00d5
+                    00D6    352 _DMAARM	=	0x00d6
+                    00D7    353 _DMAREQ	=	0x00d7
+                    00D8    354 _TIMIF	=	0x00d8
+                    00D9    355 _RFD	=	0x00d9
+                    00DA    356 _T1CC0L	=	0x00da
+                    00DB    357 _T1CC0H	=	0x00db
+                    00DC    358 _T1CC1L	=	0x00dc
+                    00DD    359 _T1CC1H	=	0x00dd
+                    00DE    360 _T1CC2L	=	0x00de
+                    00DF    361 _T1CC2H	=	0x00df
+                    00E0    362 _ACC	=	0x00e0
+                    00E1    363 _RFST	=	0x00e1
+                    00E2    364 _T1CNTL	=	0x00e2
+                    00E3    365 _T1CNTH	=	0x00e3
+                    00E4    366 _T1CTL	=	0x00e4
+                    00E5    367 _T1CCTL0	=	0x00e5
+                    00E6    368 _T1CCTL1	=	0x00e6
+                    00E7    369 _T1CCTL2	=	0x00e7
+                    00E8    370 _IRCON2	=	0x00e8
+                    00E9    371 _RFIF	=	0x00e9
+                    00EA    372 _T4CNT	=	0x00ea
+                    00EB    373 _T4CTL	=	0x00eb
+                    00EC    374 _T4CCTL0	=	0x00ec
+                    00ED    375 _T4CC0	=	0x00ed
+                    00EE    376 _T4CCTL1	=	0x00ee
+                    00EF    377 _T4CC1	=	0x00ef
+                    00F0    378 _B	=	0x00f0
+                    00F1    379 _PERCFG	=	0x00f1
+                    00F2    380 _ADCCFG	=	0x00f2
+                    00F3    381 _P0SEL	=	0x00f3
+                    00F4    382 _P1SEL	=	0x00f4
+                    00F5    383 _P2SEL	=	0x00f5
+                    00F6    384 _P1INP	=	0x00f6
+                    00F7    385 _P2INP	=	0x00f7
+                    00F8    386 _U1CSR	=	0x00f8
+                    00F9    387 _U1BUF	=	0x00f9
+                    00FA    388 _U1BAUD	=	0x00fa
+                    00FB    389 _U1UCR	=	0x00fb
+                    00FC    390 _U1GCR	=	0x00fc
+                    00FD    391 _P0DIR	=	0x00fd
+                    00FE    392 _P1DIR	=	0x00fe
+                    00FF    393 _P2DIR	=	0x00ff
+                            394 ;--------------------------------------------------------
+                            395 ; special function bits
+                            396 ;--------------------------------------------------------
+                            397 	.area RSEG    (ABS,DATA)
+   0000                     398 	.org 0x0000
+                    0087    399 _P0_7	=	0x0087
+                    0086    400 _P0_6	=	0x0086
+                    0085    401 _P0_5	=	0x0085
+                    0084    402 _P0_4	=	0x0084
+                    0083    403 _P0_3	=	0x0083
+                    0082    404 _P0_2	=	0x0082
+                    0081    405 _P0_1	=	0x0081
+                    0080    406 _P0_0	=	0x0080
+                    008F    407 _TCON_URX1IF	=	0x008f
+                    008D    408 _TCON_ADCIF	=	0x008d
+                    008B    409 _TCON_URX0IF	=	0x008b
+                    008A    410 _TCON_IT1	=	0x008a
+                    0089    411 _TCON_RFERRIF	=	0x0089
+                    0088    412 _TCON_IT0	=	0x0088
+                    0090    413 _P1_0	=	0x0090
+                    0091    414 _P1_1	=	0x0091
+                    0092    415 _P1_2	=	0x0092
+                    0093    416 _P1_3	=	0x0093
+                    0094    417 _P1_4	=	0x0094
+                    0095    418 _P1_5	=	0x0095
+                    0096    419 _P1_6	=	0x0096
+                    0097    420 _P1_7	=	0x0097
+                    0099    421 _S0CON_ENCIF_1	=	0x0099
+                    0098    422 _S0CON_ENCIF_0	=	0x0098
+                    00A0    423 _P2_0	=	0x00a0
+                    00A1    424 _P2_1	=	0x00a1
+                    00A2    425 _P2_2	=	0x00a2
+                    00A3    426 _P2_3	=	0x00a3
+                    00A4    427 _P2_4	=	0x00a4
+                    00AF    428 _EA	=	0x00af
+                    00AF    429 _IEN0_EA	=	0x00af
+                    00AD    430 _IEN0_STIE	=	0x00ad
+                    00AC    431 _IEN0_ENCIE	=	0x00ac
+                    00AB    432 _IEN0_URX1IE	=	0x00ab
+                    00AA    433 _IEN0_URX0IE	=	0x00aa
+                    00A9    434 _IEN0_ADCIE	=	0x00a9
+                    00A8    435 _IEN0_RFERRIE	=	0x00a8
+                    00BD    436 _IEN1_P0IE	=	0x00bd
+                    00BC    437 _IEN1_T4IE	=	0x00bc
+                    00BB    438 _IEN1_T3IE	=	0x00bb
+                    00BA    439 _IEN1_T2IE	=	0x00ba
+                    00B9    440 _IEN1_T1IE	=	0x00b9
+                    00B8    441 _IEN1_DMAIE	=	0x00b8
+                    00C7    442 _IRCON_STIF	=	0x00c7
+                    00C5    443 _IRCON_P0IF	=	0x00c5
+                    00C4    444 _IRCON_T4IF	=	0x00c4
+                    00C3    445 _IRCON_T3IF	=	0x00c3
+                    00C2    446 _IRCON_T2IF	=	0x00c2
+                    00C1    447 _IRCON_T1IF	=	0x00c1
+                    00C0    448 _IRCON_DMAIF	=	0x00c0
+                    00D0    449 _P	=	0x00d0
+                    00D1    450 _F1	=	0x00d1
+                    00D2    451 _OV	=	0x00d2
+                    00D3    452 _RS0	=	0x00d3
+                    00D4    453 _RS1	=	0x00d4
+                    00D5    454 _F0	=	0x00d5
+                    00D6    455 _AC	=	0x00d6
+                    00D7    456 _CY	=	0x00d7
+                    00EC    457 _IRCON2_WDTIF	=	0x00ec
+                    00EB    458 _IRCON2_P1IF	=	0x00eb
+                    00EA    459 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    460 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    461 _IRCON2_P2IF	=	0x00e8
+                            462 ;--------------------------------------------------------
+                            463 ; overlayable register banks
+                            464 ;--------------------------------------------------------
+                            465 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     466 	.ds 8
+                            467 ;--------------------------------------------------------
+                            468 ; internal ram data
+                            469 ;--------------------------------------------------------
+                            470 	.area DSEG    (DATA)
+                            471 ;--------------------------------------------------------
+                            472 ; overlayable items in internal ram 
+                            473 ;--------------------------------------------------------
+                            474 	.area OSEG    (OVR,DATA)
+                            475 ;--------------------------------------------------------
+                            476 ; indirectly addressable internal ram data
+                            477 ;--------------------------------------------------------
+                            478 	.area ISEG    (DATA)
+                            479 ;--------------------------------------------------------
+                            480 ; absolute internal ram data
+                            481 ;--------------------------------------------------------
+                            482 	.area IABS    (ABS,DATA)
+                            483 	.area IABS    (ABS,DATA)
+                            484 ;--------------------------------------------------------
+                            485 ; bit data
+                            486 ;--------------------------------------------------------
+                            487 	.area BSEG    (BIT)
+                            488 ;--------------------------------------------------------
+                            489 ; paged external ram data
+                            490 ;--------------------------------------------------------
+                            491 	.area PSEG    (PAG,XDATA)
+                            492 ;--------------------------------------------------------
+                            493 ; external ram data
+                            494 ;--------------------------------------------------------
+                            495 	.area XSEG    (XDATA)
+                    DF02    496 _MDMCTRL0H	=	0xdf02
+                    DF03    497 _MDMCTRL0L	=	0xdf03
+                    DF04    498 _MDMCTRL1H	=	0xdf04
+                    DF05    499 _MDMCTRL1L	=	0xdf05
+                    DF06    500 _RSSIH	=	0xdf06
+                    DF07    501 _RSSIL	=	0xdf07
+                    DF08    502 _SYNCWORDH	=	0xdf08
+                    DF09    503 _SYNCWORDL	=	0xdf09
+                    DF0A    504 _TXCTRLH	=	0xdf0a
+                    DF0B    505 _TXCTRLL	=	0xdf0b
+                    DF0C    506 _RXCTRL0H	=	0xdf0c
+                    DF0D    507 _RXCTRL0L	=	0xdf0d
+                    DF0E    508 _RXCTRL1H	=	0xdf0e
+                    DF0F    509 _RXCTRL1L	=	0xdf0f
+                    DF10    510 _FSCTRLH	=	0xdf10
+                    DF11    511 _FSCTRLL	=	0xdf11
+                    DF12    512 _CSPX	=	0xdf12
+                    DF13    513 _CSPY	=	0xdf13
+                    DF14    514 _CSPZ	=	0xdf14
+                    DF15    515 _CSPCTRL	=	0xdf15
+                    DF16    516 _CSPT	=	0xdf16
+                    DF17    517 _RFPWR	=	0xdf17
+                    DF20    518 _FSMTCH	=	0xdf20
+                    DF21    519 _FSMTCL	=	0xdf21
+                    DF22    520 _MANANDH	=	0xdf22
+                    DF23    521 _MANANDL	=	0xdf23
+                    DF24    522 _MANORH	=	0xdf24
+                    DF25    523 _MANORL	=	0xdf25
+                    DF26    524 _AGCCTRLH	=	0xdf26
+                    DF27    525 _AGCCTRLL	=	0xdf27
+                    DF39    526 _FSMSTATE	=	0xdf39
+                    DF3A    527 _ADCTSTH	=	0xdf3a
+                    DF3B    528 _ADCTSTL	=	0xdf3b
+                    DF3C    529 _DACTSTH	=	0xdf3c
+                    DF3D    530 _DACTSTL	=	0xdf3d
+                    DF43    531 _IEEE_ADDR0	=	0xdf43
+                    DF44    532 _IEEE_ADDR1	=	0xdf44
+                    DF45    533 _IEEE_ADDR2	=	0xdf45
+                    DF46    534 _IEEE_ADDR3	=	0xdf46
+                    DF47    535 _IEEE_ADDR4	=	0xdf47
+                    DF48    536 _IEEE_ADDR5	=	0xdf48
+                    DF49    537 _IEEE_ADDR6	=	0xdf49
+                    DF4A    538 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    539 _PANIDH	=	0xdf4b
+                    DF4C    540 _PANIDL	=	0xdf4c
+                    DF4D    541 _SHORTADDRH	=	0xdf4d
+                    DF4E    542 _SHORTADDRL	=	0xdf4e
+                    DF4F    543 _IOCFG0	=	0xdf4f
+                    DF50    544 _IOCFG1	=	0xdf50
+                    DF51    545 _IOCFG2	=	0xdf51
+                    DF52    546 _IOCFG3	=	0xdf52
+                    DF53    547 _RXFIFOCNT	=	0xdf53
+                    DF54    548 _FSMTC1	=	0xdf54
+                    DF60    549 _CHVER	=	0xdf60
+                    DF61    550 _CHIPID	=	0xdf61
+                    DF62    551 _RFSTATUS	=	0xdf62
+                    DFC1    552 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    553 _RFD_SHADOW	=	0xdfd9
+                    DFF9    554 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    555 _ADC_SHADOW	=	0xdfba
+   0000                     556 _txRoutingTable:
+   0000                     557 	.ds 27
+   001B                     558 _txBackTable:
+   001B                     559 	.ds 21
+   0030                     560 _uc:
+   0030                     561 	.ds 18
+   0042                     562 _bc:
+   0042                     563 	.ds 15
+   0051                     564 _addr:
+   0051                     565 	.ds 2
+   0053                     566 _nodeAddr:
+   0053                     567 	.ds 2
+   0055                     568 _rrepSource:
+   0055                     569 	.ds 2
+   0057                     570 _rreqSource:
+   0057                     571 	.ds 2
+   0059                     572 _txDataBuffer:
+   0059                     573 	.ds 50
+   008B                     574 _found:
+   008B                     575 	.ds 2
+   008D                     576 _rv:
+   008D                     577 	.ds 2
+   008F                     578 _sensor:
+   008F                     579 	.ds 3
+   0092                     580 _battery:
+   0092                     581 	.ds 2
+   0094                     582 _recv_bc_i_1_1:
+   0094                     583 	.ds 2
+   0096                     584 _recv_bc_m_1_1:
+   0096                     585 	.ds 2
+   0098                     586 _recv_uc_i_1_1:
+   0098                     587 	.ds 2
+   009A                     588 _recv_uc_j_1_1:
+   009A                     589 	.ds 2
+   009C                     590 _recv_uc_foundAddr_1_1:
+   009C                     591 	.ds 2
+   009E                     592 _process_thread_router_process_i_1_1:
+   009E                     593 	.ds 1
+   009F                     594 _process_thread_router_process_j_1_1:
+   009F                     595 	.ds 1
+   00A0                     596 _process_thread_router_process_et_1_1:
+   00A0                     597 	.ds 10
+                            598 ;--------------------------------------------------------
+                            599 ; absolute external ram data
+                            600 ;--------------------------------------------------------
+                            601 	.area XABS    (ABS,XDATA)
+                            602 ;--------------------------------------------------------
+                            603 ; external initialized ram data
+                            604 ;--------------------------------------------------------
+                            605 	.area XISEG   (XDATA)
+   0000                     606 _sane:
+   0000                     607 	.ds 4
+   0004                     608 _tempReading1:
+   0004                     609 	.ds 1
+   0005                     610 _tempReading2:
+   0005                     611 	.ds 1
+   0006                     612 _router_process::
+   0006                     613 	.ds 9
+                            614 	.area HOME    (CODE)
+                            615 	.area GSINIT0 (CODE)
+                            616 	.area GSINIT1 (CODE)
+                            617 	.area GSINIT2 (CODE)
+                            618 	.area GSINIT3 (CODE)
+                            619 	.area GSINIT4 (CODE)
+                            620 	.area GSINIT5 (CODE)
+                            621 	.area GSINIT  (CODE)
+                            622 	.area GSFINAL (CODE)
+                            623 	.area CSEG    (CODE)
+                            624 ;--------------------------------------------------------
+                            625 ; global & static initialisations
+                            626 ;--------------------------------------------------------
+                            627 	.area HOME    (CODE)
+                            628 	.area GSINIT  (CODE)
+                            629 	.area GSFINAL (CODE)
+                            630 	.area GSINIT  (CODE)
+                            631 ;------------------------------------------------------------
+                            632 ;Allocation info for local variables in function 'recv_bc'
+                            633 ;------------------------------------------------------------
+                            634 ;from                      Allocated to stack - offset -5
+                            635 ;c                         Allocated to registers 
+                            636 ;tx_data                   Allocated to stack - offset 1
+                            637 ;dest                      Allocated to stack - offset 4
+                            638 ;source                    Allocated to stack - offset 6
+                            639 ;brdcastCounter            Allocated to stack - offset 8
+                            640 ;brdcastLimit              Allocated to stack - offset 9
+                            641 ;brdcastId                 Allocated to registers r5 
+                            642 ;sequenceNumber            Allocated to registers 
+                            643 ;hopcnt                    Allocated to registers r3 r2 
+                            644 ;sloc0                     Allocated to stack - offset 10
+                            645 ;sloc1                     Allocated to stack - offset 13
+                            646 ;sloc2                     Allocated to stack - offset 14
+                            647 ;sloc3                     Allocated to stack - offset 16
+                            648 ;i                         Allocated with name '_recv_bc_i_1_1'
+                            649 ;m                         Allocated with name '_recv_bc_m_1_1'
+                            650 ;------------------------------------------------------------
+                            651 ;	router.c:89: static int i = 0;
+   0000 90s00r94            652 	mov	dptr,#_recv_bc_i_1_1
+   0003 E4                  653 	clr	a
+   0004 F0                  654 	movx	@dptr,a
+   0005 A3                  655 	inc	dptr
+   0006 F0                  656 	movx	@dptr,a
+                            657 ;	router.c:90: static int m = 0;
+   0007 90s00r96            658 	mov	dptr,#_recv_bc_m_1_1
+   000A E4                  659 	clr	a
+   000B F0                  660 	movx	@dptr,a
+   000C A3                  661 	inc	dptr
+   000D F0                  662 	movx	@dptr,a
+                            663 ;------------------------------------------------------------
+                            664 ;Allocation info for local variables in function 'recv_uc'
+                            665 ;------------------------------------------------------------
+                            666 ;from                      Allocated to stack - offset -5
+                            667 ;c                         Allocated to registers 
+                            668 ;tx_data                   Allocated to stack - offset 1
+                            669 ;dest                      Allocated to stack - offset 4
+                            670 ;source                    Allocated to stack - offset 6
+                            671 ;battery                   Allocated to stack - offset 8
+                            672 ;hopcnt                    Allocated to registers r4 
+                            673 ;sloc0                     Allocated to stack - offset 10
+                            674 ;sloc1                     Allocated to stack - offset 11
+                            675 ;i                         Allocated with name '_recv_uc_i_1_1'
+                            676 ;j                         Allocated with name '_recv_uc_j_1_1'
+                            677 ;foundAddr                 Allocated with name '_recv_uc_foundAddr_1_1'
+                            678 ;------------------------------------------------------------
+                            679 ;	router.c:198: static int i = 0;
+   000E 90s00r98            680 	mov	dptr,#_recv_uc_i_1_1
+   0011 E4                  681 	clr	a
+   0012 F0                  682 	movx	@dptr,a
+   0013 A3                  683 	inc	dptr
+   0014 F0                  684 	movx	@dptr,a
+                            685 ;	router.c:199: static int j = 0;
+   0015 90s00r9A            686 	mov	dptr,#_recv_uc_j_1_1
+   0018 E4                  687 	clr	a
+   0019 F0                  688 	movx	@dptr,a
+   001A A3                  689 	inc	dptr
+   001B F0                  690 	movx	@dptr,a
+                            691 ;	router.c:202: static unsigned int foundAddr = 0;
+   001C 90s00r9C            692 	mov	dptr,#_recv_uc_foundAddr_1_1
+   001F E4                  693 	clr	a
+   0020 F0                  694 	movx	@dptr,a
+   0021 A3                  695 	inc	dptr
+   0022 F0                  696 	movx	@dptr,a
+                            697 ;------------------------------------------------------------
+                            698 ;Allocation info for local variables in function 'process_thread_router_process'
+                            699 ;------------------------------------------------------------
+                            700 ;ev                        Allocated to stack - offset -3
+                            701 ;data                      Allocated to stack - offset -6
+                            702 ;process_pt                Allocated to registers r2 r3 r4 
+                            703 ;PT_YIELD_FLAG             Allocated to registers r5 
+                            704 ;i                         Allocated with name '_process_thread_router_process_i_1_1'
+                            705 ;j                         Allocated with name '_process_thread_router_process_j_1_1'
+                            706 ;et                        Allocated with name '_process_thread_router_process_et_1_1'
+                            707 ;------------------------------------------------------------
+                            708 ;	router.c:309: static uint8_t i = 0;
+   0023 90s00r9E            709 	mov	dptr,#_process_thread_router_process_i_1_1
+                            710 ;	router.c:310: static uint8_t j = 0;
+   0026 E4                  711 	clr	a
+   0027 F0                  712 	movx	@dptr,a
+   0028 90s00r9F            713 	mov	dptr,#_process_thread_router_process_j_1_1
+   002B F0                  714 	movx	@dptr,a
+                            715 ;--------------------------------------------------------
+                            716 ; Home
+                            717 ;--------------------------------------------------------
+                            718 	.area HOME    (CODE)
+                            719 	.area HOME    (CODE)
+                            720 ;--------------------------------------------------------
+                            721 ; code
+                            722 ;--------------------------------------------------------
+                            723 	.area CSEG    (CODE)
+                            724 ;------------------------------------------------------------
+                            725 ;Allocation info for local variables in function 'recv_bc'
+                            726 ;------------------------------------------------------------
+                            727 ;from                      Allocated to stack - offset -5
+                            728 ;c                         Allocated to registers 
+                            729 ;tx_data                   Allocated to stack - offset 1
+                            730 ;dest                      Allocated to stack - offset 4
+                            731 ;source                    Allocated to stack - offset 6
+                            732 ;brdcastCounter            Allocated to stack - offset 8
+                            733 ;brdcastLimit              Allocated to stack - offset 9
+                            734 ;brdcastId                 Allocated to registers r5 
+                            735 ;sequenceNumber            Allocated to registers 
+                            736 ;hopcnt                    Allocated to registers r3 r2 
+                            737 ;sloc0                     Allocated to stack - offset 10
+                            738 ;sloc1                     Allocated to stack - offset 13
+                            739 ;sloc2                     Allocated to stack - offset 14
+                            740 ;sloc3                     Allocated to stack - offset 16
+                            741 ;i                         Allocated with name '_recv_bc_i_1_1'
+                            742 ;m                         Allocated with name '_recv_bc_m_1_1'
+                            743 ;------------------------------------------------------------
+                            744 ;	router.c:76: static void recv_bc(struct broadcast_conn *c, const rimeaddr_t *from)
+                            745 ;	-----------------------------------------
+                            746 ;	 function recv_bc
+                            747 ;	-----------------------------------------
+   0000                     748 _recv_bc:
+                    0002    749 	ar2 = 0x02
+                    0003    750 	ar3 = 0x03
+                    0004    751 	ar4 = 0x04
+                    0005    752 	ar5 = 0x05
+                    0006    753 	ar6 = 0x06
+                    0007    754 	ar7 = 0x07
+                    0000    755 	ar0 = 0x00
+                    0001    756 	ar1 = 0x01
+   0000 C0*00               757 	push	_bp
+   0002 E5 81               758 	mov	a,sp
+   0004 F5*00               759 	mov	_bp,a
+   0006 24 12               760 	add	a,#0x12
+   0008 F5 81               761 	mov	sp,a
+                            762 ;	router.c:93: tx_data = packetbuf_dataptr();
+   000A 12s00r00            763 	lcall	_packetbuf_dataptr
+   000D AA 82               764 	mov	r2,dpl
+   000F AB 83               765 	mov	r3,dph
+   0011 AC F0               766 	mov	r4,b
+   0013 A8*00               767 	mov	r0,_bp
+   0015 08                  768 	inc	r0
+   0016 A6 02               769 	mov	@r0,ar2
+   0018 08                  770 	inc	r0
+   0019 A6 03               771 	mov	@r0,ar3
+   001B 08                  772 	inc	r0
+   001C A6 04               773 	mov	@r0,ar4
+                            774 ;	router.c:95: switch (tx_data[0])
+   001E A8*00               775 	mov	r0,_bp
+   0020 08                  776 	inc	r0
+   0021 86 82               777 	mov	dpl,@r0
+   0023 08                  778 	inc	r0
+   0024 86 83               779 	mov	dph,@r0
+   0026 08                  780 	inc	r0
+   0027 86 F0               781 	mov	b,@r0
+   0029 12s00r00            782 	lcall	__gptrget
+   002C FD                  783 	mov	r5,a
+   002D BD 25 02            784 	cjne	r5,#0x25,00125$
+   0030 80 03               785 	sjmp	00126$
+   0032                     786 00125$:
+   0032 02s04rA6            787 	ljmp	00116$
+   0035                     788 00126$:
+                            789 ;	router.c:99: found = 0;
+   0035 90s00r8B            790 	mov	dptr,#_found
+   0038 E4                  791 	clr	a
+   0039 F0                  792 	movx	@dptr,a
+   003A A3                  793 	inc	dptr
+   003B F0                  794 	movx	@dptr,a
+                            795 ;	router.c:102: dest = tx_data[1];
+   003C A8*00               796 	mov	r0,_bp
+   003E 08                  797 	inc	r0
+   003F 74 01               798 	mov	a,#0x01
+   0041 26                  799 	add	a,@r0
+   0042 FD                  800 	mov	r5,a
+   0043 E4                  801 	clr	a
+   0044 08                  802 	inc	r0
+   0045 36                  803 	addc	a,@r0
+   0046 FE                  804 	mov	r6,a
+   0047 08                  805 	inc	r0
+   0048 86 07               806 	mov	ar7,@r0
+   004A 8D 82               807 	mov	dpl,r5
+   004C 8E 83               808 	mov	dph,r6
+   004E 8F F0               809 	mov	b,r7
+   0050 12s00r00            810 	lcall	__gptrget
+   0053 FD                  811 	mov	r5,a
+   0054 E5*00               812 	mov	a,_bp
+   0056 24 04               813 	add	a,#0x04
+   0058 F8                  814 	mov	r0,a
+   0059 A6 05               815 	mov	@r0,ar5
+   005B 08                  816 	inc	r0
+   005C 76 00               817 	mov	@r0,#0x00
+                            818 ;	router.c:103: dest = dest << 8;
+   005E E5*00               819 	mov	a,_bp
+   0060 24 04               820 	add	a,#0x04
+   0062 F8                  821 	mov	r0,a
+   0063 E6                  822 	mov	a,@r0
+   0064 08                  823 	inc	r0
+   0065 F6                  824 	mov	@r0,a
+   0066 18                  825 	dec	r0
+   0067 76 00               826 	mov	@r0,#0x00
+                            827 ;	router.c:104: dest = dest | tx_data[2];
+   0069 A8*00               828 	mov	r0,_bp
+   006B 08                  829 	inc	r0
+   006C 74 02               830 	mov	a,#0x02
+   006E 26                  831 	add	a,@r0
+   006F FF                  832 	mov	r7,a
+   0070 E4                  833 	clr	a
+   0071 08                  834 	inc	r0
+   0072 36                  835 	addc	a,@r0
+   0073 FD                  836 	mov	r5,a
+   0074 08                  837 	inc	r0
+   0075 86 06               838 	mov	ar6,@r0
+   0077 8F 82               839 	mov	dpl,r7
+   0079 8D 83               840 	mov	dph,r5
+   007B 8E F0               841 	mov	b,r6
+   007D 12s00r00            842 	lcall	__gptrget
+   0080 FF                  843 	mov	r7,a
+   0081 7D 00               844 	mov	r5,#0x00
+   0083 E5*00               845 	mov	a,_bp
+   0085 24 04               846 	add	a,#0x04
+   0087 F8                  847 	mov	r0,a
+   0088 EF                  848 	mov	a,r7
+   0089 46                  849 	orl	a,@r0
+   008A F6                  850 	mov	@r0,a
+   008B ED                  851 	mov	a,r5
+   008C 08                  852 	inc	r0
+   008D 46                  853 	orl	a,@r0
+   008E F6                  854 	mov	@r0,a
+                            855 ;	router.c:105: source = from->u8[1];
+   008F E5*00               856 	mov	a,_bp
+   0091 24 FB               857 	add	a,#0xfb
+   0093 F8                  858 	mov	r0,a
+   0094 E5*00               859 	mov	a,_bp
+   0096 24 10               860 	add	a,#0x10
+   0098 F9                  861 	mov	r1,a
+   0099 E6                  862 	mov	a,@r0
+   009A F7                  863 	mov	@r1,a
+   009B 08                  864 	inc	r0
+   009C 09                  865 	inc	r1
+   009D E6                  866 	mov	a,@r0
+   009E F7                  867 	mov	@r1,a
+   009F 08                  868 	inc	r0
+   00A0 09                  869 	inc	r1
+   00A1 E6                  870 	mov	a,@r0
+   00A2 F7                  871 	mov	@r1,a
+   00A3 E5*00               872 	mov	a,_bp
+   00A5 24 10               873 	add	a,#0x10
+   00A7 F8                  874 	mov	r0,a
+   00A8 E5*00               875 	mov	a,_bp
+   00AA 24 0A               876 	add	a,#0x0a
+   00AC F9                  877 	mov	r1,a
+   00AD 74 01               878 	mov	a,#0x01
+   00AF 26                  879 	add	a,@r0
+   00B0 F7                  880 	mov	@r1,a
+   00B1 E4                  881 	clr	a
+   00B2 08                  882 	inc	r0
+   00B3 36                  883 	addc	a,@r0
+   00B4 09                  884 	inc	r1
+   00B5 F7                  885 	mov	@r1,a
+   00B6 08                  886 	inc	r0
+   00B7 09                  887 	inc	r1
+   00B8 E6                  888 	mov	a,@r0
+   00B9 F7                  889 	mov	@r1,a
+   00BA E5*00               890 	mov	a,_bp
+   00BC 24 0A               891 	add	a,#0x0a
+   00BE F8                  892 	mov	r0,a
+   00BF 86 82               893 	mov	dpl,@r0
+   00C1 08                  894 	inc	r0
+   00C2 86 83               895 	mov	dph,@r0
+   00C4 08                  896 	inc	r0
+   00C5 86 F0               897 	mov	b,@r0
+   00C7 12s00r00            898 	lcall	__gptrget
+   00CA FA                  899 	mov	r2,a
+   00CB E5*00               900 	mov	a,_bp
+   00CD 24 06               901 	add	a,#0x06
+   00CF F8                  902 	mov	r0,a
+   00D0 A6 02               903 	mov	@r0,ar2
+   00D2 08                  904 	inc	r0
+   00D3 76 00               905 	mov	@r0,#0x00
+                            906 ;	router.c:106: source = source << 8;
+   00D5 E5*00               907 	mov	a,_bp
+   00D7 24 06               908 	add	a,#0x06
+   00D9 F8                  909 	mov	r0,a
+   00DA E6                  910 	mov	a,@r0
+   00DB 08                  911 	inc	r0
+   00DC F6                  912 	mov	@r0,a
+   00DD 18                  913 	dec	r0
+   00DE 76 00               914 	mov	@r0,#0x00
+                            915 ;	router.c:107: source = source | from->u8[0];
+   00E0 E5*00               916 	mov	a,_bp
+   00E2 24 10               917 	add	a,#0x10
+   00E4 F8                  918 	mov	r0,a
+   00E5 86 82               919 	mov	dpl,@r0
+   00E7 08                  920 	inc	r0
+   00E8 86 83               921 	mov	dph,@r0
+   00EA 08                  922 	inc	r0
+   00EB 86 F0               923 	mov	b,@r0
+   00ED 12s00r00            924 	lcall	__gptrget
+   00F0 FC                  925 	mov	r4,a
+   00F1 7A 00               926 	mov	r2,#0x00
+   00F3 E5*00               927 	mov	a,_bp
+   00F5 24 06               928 	add	a,#0x06
+   00F7 F8                  929 	mov	r0,a
+   00F8 EC                  930 	mov	a,r4
+   00F9 46                  931 	orl	a,@r0
+   00FA F6                  932 	mov	@r0,a
+   00FB EA                  933 	mov	a,r2
+   00FC 08                  934 	inc	r0
+   00FD 46                  935 	orl	a,@r0
+   00FE F6                  936 	mov	@r0,a
+                            937 ;	router.c:108: brdcastCounter = tx_data[3];
+   00FF A8*00               938 	mov	r0,_bp
+   0101 08                  939 	inc	r0
+   0102 74 03               940 	mov	a,#0x03
+   0104 26                  941 	add	a,@r0
+   0105 FA                  942 	mov	r2,a
+   0106 E4                  943 	clr	a
+   0107 08                  944 	inc	r0
+   0108 36                  945 	addc	a,@r0
+   0109 FB                  946 	mov	r3,a
+   010A 08                  947 	inc	r0
+   010B 86 04               948 	mov	ar4,@r0
+   010D 8A 82               949 	mov	dpl,r2
+   010F 8B 83               950 	mov	dph,r3
+   0111 8C F0               951 	mov	b,r4
+   0113 12s00r00            952 	lcall	__gptrget
+   0116 FA                  953 	mov	r2,a
+   0117 E5*00               954 	mov	a,_bp
+   0119 24 08               955 	add	a,#0x08
+   011B F8                  956 	mov	r0,a
+   011C A6 02               957 	mov	@r0,ar2
+                            958 ;	router.c:109: brdcastLimit = tx_data[4];
+   011E A8*00               959 	mov	r0,_bp
+   0120 08                  960 	inc	r0
+   0121 74 04               961 	mov	a,#0x04
+   0123 26                  962 	add	a,@r0
+   0124 FB                  963 	mov	r3,a
+   0125 E4                  964 	clr	a
+   0126 08                  965 	inc	r0
+   0127 36                  966 	addc	a,@r0
+   0128 FC                  967 	mov	r4,a
+   0129 08                  968 	inc	r0
+   012A 86 02               969 	mov	ar2,@r0
+   012C 8B 82               970 	mov	dpl,r3
+   012E 8C 83               971 	mov	dph,r4
+   0130 8A F0               972 	mov	b,r2
+   0132 12s00r00            973 	lcall	__gptrget
+   0135 FB                  974 	mov	r3,a
+   0136 E5*00               975 	mov	a,_bp
+   0138 24 09               976 	add	a,#0x09
+   013A F8                  977 	mov	r0,a
+   013B A6 03               978 	mov	@r0,ar3
+                            979 ;	router.c:110: brdcastId = tx_data[5];
+   013D A8*00               980 	mov	r0,_bp
+   013F 08                  981 	inc	r0
+   0140 74 05               982 	mov	a,#0x05
+   0142 26                  983 	add	a,@r0
+   0143 FB                  984 	mov	r3,a
+   0144 E4                  985 	clr	a
+   0145 08                  986 	inc	r0
+   0146 36                  987 	addc	a,@r0
+   0147 FC                  988 	mov	r4,a
+   0148 08                  989 	inc	r0
+   0149 86 02               990 	mov	ar2,@r0
+   014B 8B 82               991 	mov	dpl,r3
+   014D 8C 83               992 	mov	dph,r4
+   014F 8A F0               993 	mov	b,r2
+   0151 12s00r00            994 	lcall	__gptrget
+   0154 FD                  995 	mov	r5,a
+                            996 ;	router.c:112: hopcnt = tx_data[7];
+   0155 A8*00               997 	mov	r0,_bp
+   0157 08                  998 	inc	r0
+   0158 74 07               999 	mov	a,#0x07
+   015A 26                 1000 	add	a,@r0
+   015B FB                 1001 	mov	r3,a
+   015C E4                 1002 	clr	a
+   015D 08                 1003 	inc	r0
+   015E 36                 1004 	addc	a,@r0
+   015F FC                 1005 	mov	r4,a
+   0160 08                 1006 	inc	r0
+   0161 86 02              1007 	mov	ar2,@r0
+   0163 8B 82              1008 	mov	dpl,r3
+   0165 8C 83              1009 	mov	dph,r4
+   0167 8A F0              1010 	mov	b,r2
+   0169 12s00r00           1011 	lcall	__gptrget
+   016C FB                 1012 	mov	r3,a
+   016D 7A 00              1013 	mov	r2,#0x00
+                           1014 ;	router.c:115: nodeAddr = 0x2323;
+   016F 90s00r53           1015 	mov	dptr,#_nodeAddr
+   0172 74 23              1016 	mov	a,#0x23
+   0174 F0                 1017 	movx	@dptr,a
+   0175 A3                 1018 	inc	dptr
+   0176 F0                 1019 	movx	@dptr,a
+                           1020 ;	router.c:118: for (i = 0; i < TABLELENGTH; i++)
+   0177 90s00r94           1021 	mov	dptr,#_recv_bc_i_1_1
+   017A E4                 1022 	clr	a
+   017B F0                 1023 	movx	@dptr,a
+   017C A3                 1024 	inc	dptr
+   017D F0                 1025 	movx	@dptr,a
+   017E E5*00              1026 	mov	a,_bp
+   0180 24 04              1027 	add	a,#0x04
+   0182 F8                 1028 	mov	r0,a
+   0183 08                 1029 	inc	r0
+   0184 86 04              1030 	mov	ar4,@r0
+   0186 E5*00              1031 	mov	a,_bp
+   0188 24 0D              1032 	add	a,#0x0d
+   018A F8                 1033 	mov	r0,a
+   018B A6 05              1034 	mov	@r0,ar5
+   018D                    1035 00111$:
+   018D 90s00r94           1036 	mov	dptr,#_recv_bc_i_1_1
+   0190 E5*00              1037 	mov	a,_bp
+   0192 24 0E              1038 	add	a,#0x0e
+   0194 F8                 1039 	mov	r0,a
+   0195 E0                 1040 	movx	a,@dptr
+   0196 F6                 1041 	mov	@r0,a
+   0197 A3                 1042 	inc	dptr
+   0198 E0                 1043 	movx	a,@dptr
+   0199 08                 1044 	inc	r0
+   019A F6                 1045 	mov	@r0,a
+   019B E5*00              1046 	mov	a,_bp
+   019D 24 0E              1047 	add	a,#0x0e
+   019F F8                 1048 	mov	r0,a
+   01A0 C3                 1049 	clr	c
+   01A1 E6                 1050 	mov	a,@r0
+   01A2 94 03              1051 	subb	a,#0x03
+   01A4 08                 1052 	inc	r0
+   01A5 E6                 1053 	mov	a,@r0
+   01A6 64 80              1054 	xrl	a,#0x80
+   01A8 94 80              1055 	subb	a,#0x80
+   01AA 40 03              1056 	jc	00127$
+   01AC 02s04rA6           1057 	ljmp	00116$
+   01AF                    1058 00127$:
+                           1059 ;	router.c:121: if (txBackTable[i].broadcastID == brdcastId)
+   01AF C0 04              1060 	push	ar4
+   01B1 C0 02              1061 	push	ar2
+   01B3 C0 03              1062 	push	ar3
+   01B5 E5*00              1063 	mov	a,_bp
+   01B7 24 0E              1064 	add	a,#0x0e
+   01B9 F8                 1065 	mov	r0,a
+   01BA E6                 1066 	mov	a,@r0
+   01BB C0 E0              1067 	push	acc
+   01BD 08                 1068 	inc	r0
+   01BE E6                 1069 	mov	a,@r0
+   01BF C0 E0              1070 	push	acc
+   01C1 90 00 07           1071 	mov	dptr,#0x0007
+   01C4 12s00r00           1072 	lcall	__mulint
+   01C7 AC 82              1073 	mov	r4,dpl
+   01C9 AD 83              1074 	mov	r5,dph
+   01CB 15 81              1075 	dec	sp
+   01CD 15 81              1076 	dec	sp
+   01CF D0 03              1077 	pop	ar3
+   01D1 D0 02              1078 	pop	ar2
+   01D3 EC                 1079 	mov	a,r4
+   01D4 24r1B              1080 	add	a,#_txBackTable
+   01D6 F5 82              1081 	mov	dpl,a
+   01D8 ED                 1082 	mov	a,r5
+   01D9 34s00              1083 	addc	a,#(_txBackTable >> 8)
+   01DB F5 83              1084 	mov	dph,a
+   01DD E0                 1085 	movx	a,@dptr
+   01DE FC                 1086 	mov	r4,a
+   01DF E5*00              1087 	mov	a,_bp
+   01E1 24 0D              1088 	add	a,#0x0d
+   01E3 F8                 1089 	mov	r0,a
+   01E4 E6                 1090 	mov	a,@r0
+   01E5 B5 04 02           1091 	cjne	a,ar4,00128$
+   01E8 80 04              1092 	sjmp	00129$
+   01EA                    1093 00128$:
+   01EA D0 04              1094 	pop	ar4
+   01EC 80 14              1095 	sjmp	00109$
+   01EE                    1096 00129$:
+   01EE D0 04              1097 	pop	ar4
+                           1098 ;	router.c:124: packetbuf_clear();
+   01F0 C0 02              1099 	push	ar2
+   01F2 C0 03              1100 	push	ar3
+   01F4 C0 04              1101 	push	ar4
+   01F6 12s00r00           1102 	lcall	_packetbuf_clear
+   01F9 D0 04              1103 	pop	ar4
+   01FB D0 03              1104 	pop	ar3
+   01FD D0 02              1105 	pop	ar2
+   01FF 02s04r97           1106 	ljmp	00113$
+   0202                    1107 00109$:
+                           1108 ;	router.c:129: if (nodeAddr == dest)
+   0202 90s00r53           1109 	mov	dptr,#_nodeAddr
+   0205 E0                 1110 	movx	a,@dptr
+   0206 FD                 1111 	mov	r5,a
+   0207 A3                 1112 	inc	dptr
+   0208 E0                 1113 	movx	a,@dptr
+   0209 FE                 1114 	mov	r6,a
+   020A E5*00              1115 	mov	a,_bp
+   020C 24 04              1116 	add	a,#0x04
+   020E F8                 1117 	mov	r0,a
+   020F E6                 1118 	mov	a,@r0
+   0210 B5 05 07           1119 	cjne	a,ar5,00130$
+   0213 08                 1120 	inc	r0
+   0214 E6                 1121 	mov	a,@r0
+   0215 B5 06 02           1122 	cjne	a,ar6,00130$
+   0218 80 03              1123 	sjmp	00131$
+   021A                    1124 00130$:
+   021A 02s03r25           1125 	ljmp	00106$
+   021D                    1126 00131$:
+                           1127 ;	router.c:132: if (source == rreqSource)
+   021D 90s00r57           1128 	mov	dptr,#_rreqSource
+   0220 E0                 1129 	movx	a,@dptr
+   0221 FD                 1130 	mov	r5,a
+   0222 A3                 1131 	inc	dptr
+   0223 E0                 1132 	movx	a,@dptr
+   0224 FE                 1133 	mov	r6,a
+   0225 E5*00              1134 	mov	a,_bp
+   0227 24 06              1135 	add	a,#0x06
+   0229 F8                 1136 	mov	r0,a
+   022A E6                 1137 	mov	a,@r0
+   022B B5 05 07           1138 	cjne	a,ar5,00132$
+   022E 08                 1139 	inc	r0
+   022F E6                 1140 	mov	a,@r0
+   0230 B5 06 02           1141 	cjne	a,ar6,00132$
+   0233 80 02              1142 	sjmp	00133$
+   0235                    1143 00132$:
+   0235 80 12              1144 	sjmp	00103$
+   0237                    1145 00133$:
+                           1146 ;	router.c:134: packetbuf_clear();
+   0237 C0 02              1147 	push	ar2
+   0239 C0 03              1148 	push	ar3
+   023B C0 04              1149 	push	ar4
+   023D 12s00r00           1150 	lcall	_packetbuf_clear
+   0240 D0 04              1151 	pop	ar4
+   0242 D0 03              1152 	pop	ar3
+   0244 D0 02              1153 	pop	ar2
+   0246 02s04r97           1154 	ljmp	00113$
+   0249                    1155 00103$:
+                           1156 ;	router.c:138: found = 1;
+   0249 90s00r8B           1157 	mov	dptr,#_found
+   024C 74 01              1158 	mov	a,#0x01
+   024E F0                 1159 	movx	@dptr,a
+   024F A3                 1160 	inc	dptr
+   0250 E4                 1161 	clr	a
+   0251 F0                 1162 	movx	@dptr,a
+                           1163 ;	router.c:140: txRoutingTable[i].destAddr = dest;
+   0252 E5*00              1164 	mov	a,_bp
+   0254 24 0E              1165 	add	a,#0x0e
+   0256 F8                 1166 	mov	r0,a
+   0257 E6                 1167 	mov	a,@r0
+   0258 C0 E0              1168 	push	acc
+   025A 08                 1169 	inc	r0
+   025B E6                 1170 	mov	a,@r0
+   025C C0 E0              1171 	push	acc
+   025E 90 00 09           1172 	mov	dptr,#0x0009
+   0261 12s00r00           1173 	lcall	__mulint
+   0264 AD 82              1174 	mov	r5,dpl
+   0266 AE 83              1175 	mov	r6,dph
+   0268 15 81              1176 	dec	sp
+   026A 15 81              1177 	dec	sp
+   026C ED                 1178 	mov	a,r5
+   026D 24r00              1179 	add	a,#_txRoutingTable
+   026F F5 82              1180 	mov	dpl,a
+   0271 EE                 1181 	mov	a,r6
+   0272 34s00              1182 	addc	a,#(_txRoutingTable >> 8)
+   0274 F5 83              1183 	mov	dph,a
+   0276 E5*00              1184 	mov	a,_bp
+   0278 24 04              1185 	add	a,#0x04
+   027A F8                 1186 	mov	r0,a
+   027B E6                 1187 	mov	a,@r0
+   027C F0                 1188 	movx	@dptr,a
+   027D A3                 1189 	inc	dptr
+   027E 08                 1190 	inc	r0
+   027F E6                 1191 	mov	a,@r0
+   0280 F0                 1192 	movx	@dptr,a
+                           1193 ;	router.c:141: txRoutingTable[i].nextHop = source;
+   0281 ED                 1194 	mov	a,r5
+   0282 24r00              1195 	add	a,#_txRoutingTable
+   0284 FD                 1196 	mov	r5,a
+   0285 EE                 1197 	mov	a,r6
+   0286 34s00              1198 	addc	a,#(_txRoutingTable >> 8)
+   0288 FE                 1199 	mov	r6,a
+   0289 8D 82              1200 	mov	dpl,r5
+   028B 8E 83              1201 	mov	dph,r6
+   028D A3                 1202 	inc	dptr
+   028E A3                 1203 	inc	dptr
+   028F E5*00              1204 	mov	a,_bp
+   0291 24 06              1205 	add	a,#0x06
+   0293 F8                 1206 	mov	r0,a
+   0294 E6                 1207 	mov	a,@r0
+   0295 F0                 1208 	movx	@dptr,a
+   0296 A3                 1209 	inc	dptr
+   0297 08                 1210 	inc	r0
+   0298 E6                 1211 	mov	a,@r0
+   0299 F0                 1212 	movx	@dptr,a
+                           1213 ;	router.c:142: txRoutingTable[i].batteryLevel = 0;
+   029A 8D 82              1214 	mov	dpl,r5
+   029C 8E 83              1215 	mov	dph,r6
+   029E A3                 1216 	inc	dptr
+   029F A3                 1217 	inc	dptr
+   02A0 A3                 1218 	inc	dptr
+   02A1 A3                 1219 	inc	dptr
+   02A2 E4                 1220 	clr	a
+   02A3 F0                 1221 	movx	@dptr,a
+   02A4 A3                 1222 	inc	dptr
+   02A5 F0                 1223 	movx	@dptr,a
+                           1224 ;	router.c:143: txRoutingTable[i].RSSI = packetbuf_attr(PACKETBUF_ATTR_RSSI);
+   02A6 74 06              1225 	mov	a,#0x06
+   02A8 2D                 1226 	add	a,r5
+   02A9 FA                 1227 	mov	r2,a
+   02AA E4                 1228 	clr	a
+   02AB 3E                 1229 	addc	a,r6
+   02AC FB                 1230 	mov	r3,a
+   02AD 75 82 04           1231 	mov	dpl,#0x04
+   02B0 C0 02              1232 	push	ar2
+   02B2 C0 03              1233 	push	ar3
+   02B4 12s00r00           1234 	lcall	_packetbuf_attr
+   02B7 AF 82              1235 	mov	r7,dpl
+   02B9 AD 83              1236 	mov	r5,dph
+   02BB D0 03              1237 	pop	ar3
+   02BD D0 02              1238 	pop	ar2
+   02BF 8A 82              1239 	mov	dpl,r2
+   02C1 8B 83              1240 	mov	dph,r3
+   02C3 EF                 1241 	mov	a,r7
+   02C4 F0                 1242 	movx	@dptr,a
+   02C5 A3                 1243 	inc	dptr
+   02C6 ED                 1244 	mov	a,r5
+   02C7 F0                 1245 	movx	@dptr,a
+                           1246 ;	router.c:144: txRoutingTable[i].hopcount = 0;
+   02C8 90s00r94           1247 	mov	dptr,#_recv_bc_i_1_1
+   02CB E0                 1248 	movx	a,@dptr
+   02CC C0 E0              1249 	push	acc
+   02CE A3                 1250 	inc	dptr
+   02CF E0                 1251 	movx	a,@dptr
+   02D0 C0 E0              1252 	push	acc
+   02D2 90 00 09           1253 	mov	dptr,#0x0009
+   02D5 12s00r00           1254 	lcall	__mulint
+   02D8 AD 82              1255 	mov	r5,dpl
+   02DA AE 83              1256 	mov	r6,dph
+   02DC 15 81              1257 	dec	sp
+   02DE 15 81              1258 	dec	sp
+   02E0 ED                 1259 	mov	a,r5
+   02E1 24r00              1260 	add	a,#_txRoutingTable
+   02E3 FD                 1261 	mov	r5,a
+   02E4 EE                 1262 	mov	a,r6
+   02E5 34s00              1263 	addc	a,#(_txRoutingTable >> 8)
+   02E7 FE                 1264 	mov	r6,a
+   02E8 74 08              1265 	mov	a,#0x08
+   02EA 2D                 1266 	add	a,r5
+   02EB F5 82              1267 	mov	dpl,a
+   02ED E4                 1268 	clr	a
+   02EE 3E                 1269 	addc	a,r6
+   02EF F5 83              1270 	mov	dph,a
+   02F1 E4                 1271 	clr	a
+   02F2 F0                 1272 	movx	@dptr,a
+                           1273 ;	router.c:145: rrepSource = dest;
+   02F3 E5*00              1274 	mov	a,_bp
+   02F5 24 04              1275 	add	a,#0x04
+   02F7 F8                 1276 	mov	r0,a
+   02F8 90s00r55           1277 	mov	dptr,#_rrepSource
+   02FB E6                 1278 	mov	a,@r0
+   02FC F0                 1279 	movx	@dptr,a
+   02FD 08                 1280 	inc	r0
+   02FE A3                 1281 	inc	dptr
+   02FF E6                 1282 	mov	a,@r0
+   0300 F0                 1283 	movx	@dptr,a
+                           1284 ;	router.c:146: printf("Received RREQ from: %d\n\r", source);
+   0301 E5*00              1285 	mov	a,_bp
+   0303 24 06              1286 	add	a,#0x06
+   0305 F8                 1287 	mov	r0,a
+   0306 E6                 1288 	mov	a,@r0
+   0307 C0 E0              1289 	push	acc
+   0309 08                 1290 	inc	r0
+   030A E6                 1291 	mov	a,@r0
+   030B C0 E0              1292 	push	acc
+   030D 74r0E              1293 	mov	a,#__str_0
+   030F C0 E0              1294 	push	acc
+   0311 74s00              1295 	mov	a,#(__str_0 >> 8)
+   0313 C0 E0              1296 	push	acc
+   0315 74 80              1297 	mov	a,#0x80
+   0317 C0 E0              1298 	push	acc
+   0319 12s00r00           1299 	lcall	_printf
+   031C E5 81              1300 	mov	a,sp
+   031E 24 FB              1301 	add	a,#0xfb
+   0320 F5 81              1302 	mov	sp,a
+                           1303 ;	router.c:147: break;
+   0322 02s04rA6           1304 	ljmp	00116$
+   0325                    1305 00106$:
+                           1306 ;	router.c:152: printf("Received RREQ from: %d\n\r", source);
+   0325 C0 02              1307 	push	ar2
+   0327 C0 03              1308 	push	ar3
+   0329 C0 04              1309 	push	ar4
+   032B E5*00              1310 	mov	a,_bp
+   032D 24 06              1311 	add	a,#0x06
+   032F F8                 1312 	mov	r0,a
+   0330 E6                 1313 	mov	a,@r0
+   0331 C0 E0              1314 	push	acc
+   0333 08                 1315 	inc	r0
+   0334 E6                 1316 	mov	a,@r0
+   0335 C0 E0              1317 	push	acc
+   0337 74r0E              1318 	mov	a,#__str_0
+   0339 C0 E0              1319 	push	acc
+   033B 74s00              1320 	mov	a,#(__str_0 >> 8)
+   033D C0 E0              1321 	push	acc
+   033F 74 80              1322 	mov	a,#0x80
+   0341 C0 E0              1323 	push	acc
+   0343 12s00r00           1324 	lcall	_printf
+   0346 E5 81              1325 	mov	a,sp
+   0348 24 FB              1326 	add	a,#0xfb
+   034A F5 81              1327 	mov	sp,a
+   034C D0 04              1328 	pop	ar4
+   034E D0 03              1329 	pop	ar3
+   0350 D0 02              1330 	pop	ar2
+                           1331 ;	router.c:155: hopcnt++;
+   0352 0B                 1332 	inc	r3
+   0353 BB 00 01           1333 	cjne	r3,#0x00,00134$
+   0356 0A                 1334 	inc	r2
+   0357                    1335 00134$:
+                           1336 ;	router.c:156: txBackTable[i].broadcastID = brdcastId;
+   0357 C0 02              1337 	push	ar2
+   0359 C0 03              1338 	push	ar3
+   035B C0 04              1339 	push	ar4
+   035D 90s00r94           1340 	mov	dptr,#_recv_bc_i_1_1
+   0360 E0                 1341 	movx	a,@dptr
+   0361 C0 E0              1342 	push	acc
+   0363 A3                 1343 	inc	dptr
+   0364 E0                 1344 	movx	a,@dptr
+   0365 C0 E0              1345 	push	acc
+   0367 90 00 07           1346 	mov	dptr,#0x0007
+   036A 12s00r00           1347 	lcall	__mulint
+   036D AD 82              1348 	mov	r5,dpl
+   036F AE 83              1349 	mov	r6,dph
+   0371 15 81              1350 	dec	sp
+   0373 15 81              1351 	dec	sp
+   0375 D0 04              1352 	pop	ar4
+   0377 D0 03              1353 	pop	ar3
+   0379 ED                 1354 	mov	a,r5
+   037A 24r1B              1355 	add	a,#_txBackTable
+   037C F5 82              1356 	mov	dpl,a
+   037E EE                 1357 	mov	a,r6
+   037F 34s00              1358 	addc	a,#(_txBackTable >> 8)
+   0381 F5 83              1359 	mov	dph,a
+   0383 E5*00              1360 	mov	a,_bp
+   0385 24 0D              1361 	add	a,#0x0d
+   0387 F8                 1362 	mov	r0,a
+   0388 E6                 1363 	mov	a,@r0
+   0389 F0                 1364 	movx	@dptr,a
+                           1365 ;	router.c:157: txBackTable[i].sourceAddr = source;
+   038A ED                 1366 	mov	a,r5
+   038B 24r1B              1367 	add	a,#_txBackTable
+   038D FD                 1368 	mov	r5,a
+   038E EE                 1369 	mov	a,r6
+   038F 34s00              1370 	addc	a,#(_txBackTable >> 8)
+   0391 FE                 1371 	mov	r6,a
+   0392 8D 82              1372 	mov	dpl,r5
+   0394 8E 83              1373 	mov	dph,r6
+   0396 A3                 1374 	inc	dptr
+   0397 E5*00              1375 	mov	a,_bp
+   0399 24 06              1376 	add	a,#0x06
+   039B F8                 1377 	mov	r0,a
+   039C E6                 1378 	mov	a,@r0
+   039D F0                 1379 	movx	@dptr,a
+   039E A3                 1380 	inc	dptr
+   039F 08                 1381 	inc	r0
+   03A0 E6                 1382 	mov	a,@r0
+   03A1 F0                 1383 	movx	@dptr,a
+                           1384 ;	router.c:158: txBackTable[i].destAddr = source;
+   03A2 8D 82              1385 	mov	dpl,r5
+   03A4 8E 83              1386 	mov	dph,r6
+   03A6 A3                 1387 	inc	dptr
+   03A7 A3                 1388 	inc	dptr
+   03A8 A3                 1389 	inc	dptr
+   03A9 E5*00              1390 	mov	a,_bp
+   03AB 24 06              1391 	add	a,#0x06
+   03AD F8                 1392 	mov	r0,a
+   03AE E6                 1393 	mov	a,@r0
+   03AF F0                 1394 	movx	@dptr,a
+   03B0 A3                 1395 	inc	dptr
+   03B1 08                 1396 	inc	r0
+   03B2 E6                 1397 	mov	a,@r0
+   03B3 F0                 1398 	movx	@dptr,a
+                           1399 ;	router.c:159: txBackTable[i].hopcount = hopcnt;
+   03B4 74 06              1400 	mov	a,#0x06
+   03B6 2D                 1401 	add	a,r5
+   03B7 FD                 1402 	mov	r5,a
+   03B8 E4                 1403 	clr	a
+   03B9 3E                 1404 	addc	a,r6
+   03BA FE                 1405 	mov	r6,a
+   03BB 8B 07              1406 	mov	ar7,r3
+   03BD 8D 82              1407 	mov	dpl,r5
+   03BF 8E 83              1408 	mov	dph,r6
+   03C1 EF                 1409 	mov	a,r7
+   03C2 F0                 1410 	movx	@dptr,a
+                           1411 ;	router.c:160: rreqSource = source;
+   03C3 E5*00              1412 	mov	a,_bp
+   03C5 24 06              1413 	add	a,#0x06
+   03C7 F8                 1414 	mov	r0,a
+   03C8 90s00r57           1415 	mov	dptr,#_rreqSource
+   03CB E6                 1416 	mov	a,@r0
+   03CC F0                 1417 	movx	@dptr,a
+   03CD 08                 1418 	inc	r0
+   03CE A3                 1419 	inc	dptr
+   03CF E6                 1420 	mov	a,@r0
+   03D0 F0                 1421 	movx	@dptr,a
+                           1422 ;	router.c:163: txDataBuffer[0] = tx_data[0];
+   03D1 A8*00              1423 	mov	r0,_bp
+   03D3 08                 1424 	inc	r0
+   03D4 86 82              1425 	mov	dpl,@r0
+   03D6 08                 1426 	inc	r0
+   03D7 86 83              1427 	mov	dph,@r0
+   03D9 08                 1428 	inc	r0
+   03DA 86 F0              1429 	mov	b,@r0
+   03DC 12s00r00           1430 	lcall	__gptrget
+   03DF 90s00r59           1431 	mov	dptr,#_txDataBuffer
+   03E2 F0                 1432 	movx	@dptr,a
+                           1433 ;	router.c:164: txDataBuffer[1] = dest >> 8;
+   03E3 90s00r5A           1434 	mov	dptr,#(_txDataBuffer + 0x0001)
+   03E6 EC                 1435 	mov	a,r4
+   03E7 F0                 1436 	movx	@dptr,a
+                           1437 ;	router.c:165: txDataBuffer[2] = dest;
+   03E8 E5*00              1438 	mov	a,_bp
+   03EA 24 04              1439 	add	a,#0x04
+   03EC F8                 1440 	mov	r0,a
+   03ED 86 05              1441 	mov	ar5,@r0
+   03EF 90s00r5B           1442 	mov	dptr,#(_txDataBuffer + 0x0002)
+   03F2 ED                 1443 	mov	a,r5
+   03F3 F0                 1444 	movx	@dptr,a
+                           1445 ;	router.c:166: txDataBuffer[3] = brdcastCounter;
+   03F4 90s00r5C           1446 	mov	dptr,#(_txDataBuffer + 0x0003)
+   03F7 E5*00              1447 	mov	a,_bp
+   03F9 24 08              1448 	add	a,#0x08
+   03FB F8                 1449 	mov	r0,a
+   03FC E6                 1450 	mov	a,@r0
+   03FD F0                 1451 	movx	@dptr,a
+                           1452 ;	router.c:167: txDataBuffer[4] = brdcastLimit;
+   03FE 90s00r5D           1453 	mov	dptr,#(_txDataBuffer + 0x0004)
+   0401 E5*00              1454 	mov	a,_bp
+   0403 24 09              1455 	add	a,#0x09
+   0405 F8                 1456 	mov	r0,a
+   0406 E6                 1457 	mov	a,@r0
+   0407 F0                 1458 	movx	@dptr,a
+                           1459 ;	router.c:168: txDataBuffer[5] = brdcastId;
+   0408 90s00r5E           1460 	mov	dptr,#(_txDataBuffer + 0x0005)
+   040B E5*00              1461 	mov	a,_bp
+   040D 24 0D              1462 	add	a,#0x0d
+   040F F8                 1463 	mov	r0,a
+   0410 E6                 1464 	mov	a,@r0
+   0411 F0                 1465 	movx	@dptr,a
+                           1466 ;	router.c:169: txDataBuffer[6] = hopcnt;
+   0412 90s00r5F           1467 	mov	dptr,#(_txDataBuffer + 0x0006)
+   0415 EF                 1468 	mov	a,r7
+   0416 F0                 1469 	movx	@dptr,a
+                           1470 ;	router.c:170: brdcastId++;
+   0417 E5*00              1471 	mov	a,_bp
+   0419 24 0D              1472 	add	a,#0x0d
+   041B F8                 1473 	mov	r0,a
+   041C 06                 1474 	inc	@r0
+                           1475 ;	router.c:171: packetbuf_copyfrom(txDataBuffer, 6);
+   041D C0 03              1476 	push	ar3
+   041F C0 04              1477 	push	ar4
+   0421 74 06              1478 	mov	a,#0x06
+   0423 C0 E0              1479 	push	acc
+   0425 E4                 1480 	clr	a
+   0426 C0 E0              1481 	push	acc
+   0428 90s00r59           1482 	mov	dptr,#_txDataBuffer
+   042B 75 F0 00           1483 	mov	b,#0x00
+   042E 12s00r00           1484 	lcall	_packetbuf_copyfrom
+   0431 15 81              1485 	dec	sp
+   0433 15 81              1486 	dec	sp
+                           1487 ;	router.c:172: broadcast_send(&bc);
+   0435 90s00r42           1488 	mov	dptr,#_bc
+   0438 75 F0 00           1489 	mov	b,#0x00
+   043B 12s00r00           1490 	lcall	_broadcast_send
+   043E D0 04              1491 	pop	ar4
+   0440 D0 03              1492 	pop	ar3
+   0442 D0 02              1493 	pop	ar2
+                           1494 ;	router.c:174: printf("RREQ received from %02x.%02x  Rebroadcasting...\n\r", from->u8[0], from->u8[1]);
+   0444 E5*00              1495 	mov	a,_bp
+   0446 24 0A              1496 	add	a,#0x0a
+   0448 F8                 1497 	mov	r0,a
+   0449 86 82              1498 	mov	dpl,@r0
+   044B 08                 1499 	inc	r0
+   044C 86 83              1500 	mov	dph,@r0
+   044E 08                 1501 	inc	r0
+   044F 86 F0              1502 	mov	b,@r0
+   0451 12s00r00           1503 	lcall	__gptrget
+   0454 FD                 1504 	mov	r5,a
+   0455 7E 00              1505 	mov	r6,#0x00
+   0457 E5*00              1506 	mov	a,_bp
+   0459 24 10              1507 	add	a,#0x10
+   045B F8                 1508 	mov	r0,a
+   045C 86 82              1509 	mov	dpl,@r0
+   045E 08                 1510 	inc	r0
+   045F 86 83              1511 	mov	dph,@r0
+   0461 08                 1512 	inc	r0
+   0462 86 F0              1513 	mov	b,@r0
+   0464 12s00r00           1514 	lcall	__gptrget
+   0467 FF                 1515 	mov	r7,a
+   0468 C0 04              1516 	push	ar4
+   046A 7C 00              1517 	mov	r4,#0x00
+   046C C0 02              1518 	push	ar2
+   046E C0 03              1519 	push	ar3
+   0470 C0 04              1520 	push	ar4
+   0472 C0 05              1521 	push	ar5
+   0474 C0 06              1522 	push	ar6
+   0476 C0 07              1523 	push	ar7
+   0478 C0 04              1524 	push	ar4
+   047A 74r27              1525 	mov	a,#__str_1
+   047C C0 E0              1526 	push	acc
+   047E 74s00              1527 	mov	a,#(__str_1 >> 8)
+   0480 C0 E0              1528 	push	acc
+   0482 74 80              1529 	mov	a,#0x80
+   0484 C0 E0              1530 	push	acc
+   0486 12s00r00           1531 	lcall	_printf
+   0489 E5 81              1532 	mov	a,sp
+   048B 24 F9              1533 	add	a,#0xf9
+   048D F5 81              1534 	mov	sp,a
+   048F D0 04              1535 	pop	ar4
+   0491 D0 03              1536 	pop	ar3
+   0493 D0 02              1537 	pop	ar2
+                           1538 ;	router.c:184: packetbuf_clear();
+   0495 D0 04              1539 	pop	ar4
+                           1540 ;	router.c:174: printf("RREQ received from %02x.%02x  Rebroadcasting...\n\r", from->u8[0], from->u8[1]);
+   0497                    1541 00113$:
+                           1542 ;	router.c:118: for (i = 0; i < TABLELENGTH; i++)
+   0497 90s00r94           1543 	mov	dptr,#_recv_bc_i_1_1
+   049A E0                 1544 	movx	a,@dptr
+   049B 24 01              1545 	add	a,#0x01
+   049D F0                 1546 	movx	@dptr,a
+   049E A3                 1547 	inc	dptr
+   049F E0                 1548 	movx	a,@dptr
+   04A0 34 00              1549 	addc	a,#0x00
+   04A2 F0                 1550 	movx	@dptr,a
+   04A3 02s01r8D           1551 	ljmp	00111$
+                           1552 ;	router.c:182: }
+   04A6                    1553 00116$:
+                           1554 ;	router.c:184: packetbuf_clear();
+   04A6 12s00r00           1555 	lcall	_packetbuf_clear
+   04A9 85*00 81           1556 	mov	sp,_bp
+   04AC D0*00              1557 	pop	_bp
+   04AE 22                 1558 	ret
+                           1559 ;------------------------------------------------------------
+                           1560 ;Allocation info for local variables in function 'recv_uc'
+                           1561 ;------------------------------------------------------------
+                           1562 ;from                      Allocated to stack - offset -5
+                           1563 ;c                         Allocated to registers 
+                           1564 ;tx_data                   Allocated to stack - offset 1
+                           1565 ;dest                      Allocated to stack - offset 4
+                           1566 ;source                    Allocated to stack - offset 6
+                           1567 ;battery                   Allocated to stack - offset 8
+                           1568 ;hopcnt                    Allocated to registers r4 
+                           1569 ;sloc0                     Allocated to stack - offset 10
+                           1570 ;sloc1                     Allocated to stack - offset 11
+                           1571 ;i                         Allocated with name '_recv_uc_i_1_1'
+                           1572 ;j                         Allocated with name '_recv_uc_j_1_1'
+                           1573 ;foundAddr                 Allocated with name '_recv_uc_foundAddr_1_1'
+                           1574 ;------------------------------------------------------------
+                           1575 ;	router.c:190: static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
+                           1576 ;	-----------------------------------------
+                           1577 ;	 function recv_uc
+                           1578 ;	-----------------------------------------
+   04AF                    1579 _recv_uc:
+   04AF C0*00              1580 	push	_bp
+   04B1 E5 81              1581 	mov	a,sp
+   04B3 F5*00              1582 	mov	_bp,a
+   04B5 24 0C              1583 	add	a,#0x0c
+   04B7 F5 81              1584 	mov	sp,a
+                           1585 ;	router.c:205: tx_data = packetbuf_dataptr();
+   04B9 12s00r00           1586 	lcall	_packetbuf_dataptr
+   04BC AA 82              1587 	mov	r2,dpl
+   04BE AB 83              1588 	mov	r3,dph
+   04C0 AC F0              1589 	mov	r4,b
+   04C2 A8*00              1590 	mov	r0,_bp
+   04C4 08                 1591 	inc	r0
+   04C5 A6 02              1592 	mov	@r0,ar2
+   04C7 08                 1593 	inc	r0
+   04C8 A6 03              1594 	mov	@r0,ar3
+   04CA 08                 1595 	inc	r0
+   04CB A6 04              1596 	mov	@r0,ar4
+                           1597 ;	router.c:207: switch (tx_data[0])
+   04CD A8*00              1598 	mov	r0,_bp
+   04CF 08                 1599 	inc	r0
+   04D0 86 82              1600 	mov	dpl,@r0
+   04D2 08                 1601 	inc	r0
+   04D3 86 83              1602 	mov	dph,@r0
+   04D5 08                 1603 	inc	r0
+   04D6 86 F0              1604 	mov	b,@r0
+   04D8 12s00r00           1605 	lcall	__gptrget
+   04DB FD                 1606 	mov	r5,a
+   04DC BD 26 02           1607 	cjne	r5,#0x26,00129$
+   04DF 80 09              1608 	sjmp	00101$
+   04E1                    1609 00129$:
+   04E1 BD 27 03           1610 	cjne	r5,#0x27,00130$
+   04E4 02s08r05           1611 	ljmp	00104$
+   04E7                    1612 00130$:
+   04E7 02s0ArC3           1613 	ljmp	00109$
+                           1614 ;	router.c:210: case CMD_RREP:
+   04EA                    1615 00101$:
+                           1616 ;	router.c:214: dest = tx_data[1];
+   04EA A8*00              1617 	mov	r0,_bp
+   04EC 08                 1618 	inc	r0
+   04ED 74 01              1619 	mov	a,#0x01
+   04EF 26                 1620 	add	a,@r0
+   04F0 FD                 1621 	mov	r5,a
+   04F1 E4                 1622 	clr	a
+   04F2 08                 1623 	inc	r0
+   04F3 36                 1624 	addc	a,@r0
+   04F4 FE                 1625 	mov	r6,a
+   04F5 08                 1626 	inc	r0
+   04F6 86 07              1627 	mov	ar7,@r0
+   04F8 8D 82              1628 	mov	dpl,r5
+   04FA 8E 83              1629 	mov	dph,r6
+   04FC 8F F0              1630 	mov	b,r7
+   04FE E5*00              1631 	mov	a,_bp
+   0500 24 0A              1632 	add	a,#0x0a
+   0502 F8                 1633 	mov	r0,a
+   0503 12s00r00           1634 	lcall	__gptrget
+   0506 F6                 1635 	mov	@r0,a
+   0507 E5*00              1636 	mov	a,_bp
+   0509 24 0A              1637 	add	a,#0x0a
+   050B F8                 1638 	mov	r0,a
+   050C E5*00              1639 	mov	a,_bp
+   050E 24 04              1640 	add	a,#0x04
+   0510 F9                 1641 	mov	r1,a
+   0511 E6                 1642 	mov	a,@r0
+   0512 F7                 1643 	mov	@r1,a
+   0513 09                 1644 	inc	r1
+   0514 77 00              1645 	mov	@r1,#0x00
+                           1646 ;	router.c:215: dest = dest << 8;
+   0516 E5*00              1647 	mov	a,_bp
+   0518 24 04              1648 	add	a,#0x04
+   051A F8                 1649 	mov	r0,a
+   051B E6                 1650 	mov	a,@r0
+   051C 08                 1651 	inc	r0
+   051D F6                 1652 	mov	@r0,a
+   051E 18                 1653 	dec	r0
+   051F 76 00              1654 	mov	@r0,#0x00
+                           1655 ;	router.c:216: dest = dest | tx_data[2];
+   0521 A8*00              1656 	mov	r0,_bp
+   0523 08                 1657 	inc	r0
+   0524 74 02              1658 	mov	a,#0x02
+   0526 26                 1659 	add	a,@r0
+   0527 FE                 1660 	mov	r6,a
+   0528 E4                 1661 	clr	a
+   0529 08                 1662 	inc	r0
+   052A 36                 1663 	addc	a,@r0
+   052B FF                 1664 	mov	r7,a
+   052C 08                 1665 	inc	r0
+   052D 86 02              1666 	mov	ar2,@r0
+   052F 8E 82              1667 	mov	dpl,r6
+   0531 8F 83              1668 	mov	dph,r7
+   0533 8A F0              1669 	mov	b,r2
+   0535 12s00r00           1670 	lcall	__gptrget
+   0538 FE                 1671 	mov	r6,a
+   0539 7A 00              1672 	mov	r2,#0x00
+   053B E5*00              1673 	mov	a,_bp
+   053D 24 04              1674 	add	a,#0x04
+   053F F8                 1675 	mov	r0,a
+   0540 EE                 1676 	mov	a,r6
+   0541 46                 1677 	orl	a,@r0
+   0542 F6                 1678 	mov	@r0,a
+   0543 EA                 1679 	mov	a,r2
+   0544 08                 1680 	inc	r0
+   0545 46                 1681 	orl	a,@r0
+   0546 F6                 1682 	mov	@r0,a
+                           1683 ;	router.c:217: source = from->u8[1];
+   0547 E5*00              1684 	mov	a,_bp
+   0549 24 FB              1685 	add	a,#0xfb
+   054B F8                 1686 	mov	r0,a
+   054C 86 02              1687 	mov	ar2,@r0
+   054E 08                 1688 	inc	r0
+   054F 86 03              1689 	mov	ar3,@r0
+   0551 08                 1690 	inc	r0
+   0552 86 04              1691 	mov	ar4,@r0
+   0554 74 01              1692 	mov	a,#0x01
+   0556 2A                 1693 	add	a,r2
+   0557 FE                 1694 	mov	r6,a
+   0558 E4                 1695 	clr	a
+   0559 3B                 1696 	addc	a,r3
+   055A FF                 1697 	mov	r7,a
+   055B 8C 05              1698 	mov	ar5,r4
+   055D 8E 82              1699 	mov	dpl,r6
+   055F 8F 83              1700 	mov	dph,r7
+   0561 8D F0              1701 	mov	b,r5
+   0563 12s00r00           1702 	lcall	__gptrget
+   0566 FE                 1703 	mov	r6,a
+   0567 E5*00              1704 	mov	a,_bp
+   0569 24 06              1705 	add	a,#0x06
+   056B F8                 1706 	mov	r0,a
+   056C A6 06              1707 	mov	@r0,ar6
+   056E 08                 1708 	inc	r0
+   056F 76 00              1709 	mov	@r0,#0x00
+                           1710 ;	router.c:218: source = source << 8;
+   0571 E5*00              1711 	mov	a,_bp
+   0573 24 06              1712 	add	a,#0x06
+   0575 F8                 1713 	mov	r0,a
+   0576 E6                 1714 	mov	a,@r0
+   0577 08                 1715 	inc	r0
+   0578 F6                 1716 	mov	@r0,a
+   0579 18                 1717 	dec	r0
+   057A 76 00              1718 	mov	@r0,#0x00
+                           1719 ;	router.c:219: source = source | from->u8[0];
+   057C 8A 82              1720 	mov	dpl,r2
+   057E 8B 83              1721 	mov	dph,r3
+   0580 8C F0              1722 	mov	b,r4
+   0582 12s00r00           1723 	lcall	__gptrget
+   0585 FA                 1724 	mov	r2,a
+   0586 7B 00              1725 	mov	r3,#0x00
+   0588 E5*00              1726 	mov	a,_bp
+   058A 24 06              1727 	add	a,#0x06
+   058C F8                 1728 	mov	r0,a
+   058D EA                 1729 	mov	a,r2
+   058E 46                 1730 	orl	a,@r0
+   058F F6                 1731 	mov	@r0,a
+   0590 EB                 1732 	mov	a,r3
+   0591 08                 1733 	inc	r0
+   0592 46                 1734 	orl	a,@r0
+   0593 F6                 1735 	mov	@r0,a
+                           1736 ;	router.c:220: battery = tx_data[4];
+   0594 A8*00              1737 	mov	r0,_bp
+   0596 08                 1738 	inc	r0
+   0597 74 04              1739 	mov	a,#0x04
+   0599 26                 1740 	add	a,@r0
+   059A FA                 1741 	mov	r2,a
+   059B E4                 1742 	clr	a
+   059C 08                 1743 	inc	r0
+   059D 36                 1744 	addc	a,@r0
+   059E FB                 1745 	mov	r3,a
+   059F 08                 1746 	inc	r0
+   05A0 86 04              1747 	mov	ar4,@r0
+   05A2 8A 82              1748 	mov	dpl,r2
+   05A4 8B 83              1749 	mov	dph,r3
+   05A6 8C F0              1750 	mov	b,r4
+   05A8 12s00r00           1751 	lcall	__gptrget
+   05AB FA                 1752 	mov	r2,a
+   05AC E5*00              1753 	mov	a,_bp
+   05AE 24 08              1754 	add	a,#0x08
+   05B0 F8                 1755 	mov	r0,a
+   05B1 A6 02              1756 	mov	@r0,ar2
+   05B3 08                 1757 	inc	r0
+   05B4 76 00              1758 	mov	@r0,#0x00
+                           1759 ;	router.c:221: battery = battery << 8;
+   05B6 E5*00              1760 	mov	a,_bp
+   05B8 24 08              1761 	add	a,#0x08
+   05BA F8                 1762 	mov	r0,a
+   05BB E6                 1763 	mov	a,@r0
+   05BC 08                 1764 	inc	r0
+   05BD F6                 1765 	mov	@r0,a
+   05BE 18                 1766 	dec	r0
+   05BF 76 00              1767 	mov	@r0,#0x00
+                           1768 ;	router.c:222: battery = battery | tx_data[3];
+   05C1 A8*00              1769 	mov	r0,_bp
+   05C3 08                 1770 	inc	r0
+   05C4 74 03              1771 	mov	a,#0x03
+   05C6 26                 1772 	add	a,@r0
+   05C7 FC                 1773 	mov	r4,a
+   05C8 E4                 1774 	clr	a
+   05C9 08                 1775 	inc	r0
+   05CA 36                 1776 	addc	a,@r0
+   05CB FF                 1777 	mov	r7,a
+   05CC 08                 1778 	inc	r0
+   05CD 86 05              1779 	mov	ar5,@r0
+   05CF 8C 82              1780 	mov	dpl,r4
+   05D1 8F 83              1781 	mov	dph,r7
+   05D3 8D F0              1782 	mov	b,r5
+   05D5 12s00r00           1783 	lcall	__gptrget
+   05D8 FC                 1784 	mov	r4,a
+   05D9 7D 00              1785 	mov	r5,#0x00
+   05DB E5*00              1786 	mov	a,_bp
+   05DD 24 08              1787 	add	a,#0x08
+   05DF F8                 1788 	mov	r0,a
+   05E0 EC                 1789 	mov	a,r4
+   05E1 46                 1790 	orl	a,@r0
+   05E2 F6                 1791 	mov	@r0,a
+   05E3 ED                 1792 	mov	a,r5
+   05E4 08                 1793 	inc	r0
+   05E5 46                 1794 	orl	a,@r0
+   05E6 F6                 1795 	mov	@r0,a
+                           1796 ;	router.c:223: hopcnt = tx_data[1];
+   05E7 E5*00              1797 	mov	a,_bp
+   05E9 24 0A              1798 	add	a,#0x0a
+   05EB F8                 1799 	mov	r0,a
+   05EC 86 04              1800 	mov	ar4,@r0
+                           1801 ;	router.c:226: for (j = 0; j < TABLELENGTH; j++)
+   05EE 90s00r9A           1802 	mov	dptr,#_recv_uc_j_1_1
+   05F1 E4                 1803 	clr	a
+   05F2 F0                 1804 	movx	@dptr,a
+   05F3 A3                 1805 	inc	dptr
+   05F4 F0                 1806 	movx	@dptr,a
+   05F5 E5*00              1807 	mov	a,_bp
+   05F7 24 04              1808 	add	a,#0x04
+   05F9 F8                 1809 	mov	r0,a
+   05FA 08                 1810 	inc	r0
+   05FB 86 05              1811 	mov	ar5,@r0
+   05FD E5*00              1812 	mov	a,_bp
+   05FF 24 08              1813 	add	a,#0x08
+   0601 F8                 1814 	mov	r0,a
+   0602 E5*00              1815 	mov	a,_bp
+   0604 24 0A              1816 	add	a,#0x0a
+   0606 F9                 1817 	mov	r1,a
+   0607 08                 1818 	inc	r0
+   0608 E6                 1819 	mov	a,@r0
+   0609 F7                 1820 	mov	@r1,a
+   060A                    1821 00110$:
+   060A 90s00r9A           1822 	mov	dptr,#_recv_uc_j_1_1
+   060D E5*00              1823 	mov	a,_bp
+   060F 24 0B              1824 	add	a,#0x0b
+   0611 F8                 1825 	mov	r0,a
+   0612 E0                 1826 	movx	a,@dptr
+   0613 F6                 1827 	mov	@r0,a
+   0614 A3                 1828 	inc	dptr
+   0615 E0                 1829 	movx	a,@dptr
+   0616 08                 1830 	inc	r0
+   0617 F6                 1831 	mov	@r0,a
+   0618 E5*00              1832 	mov	a,_bp
+   061A 24 0B              1833 	add	a,#0x0b
+   061C F8                 1834 	mov	r0,a
+   061D C3                 1835 	clr	c
+   061E E6                 1836 	mov	a,@r0
+   061F 94 03              1837 	subb	a,#0x03
+   0621 08                 1838 	inc	r0
+   0622 E6                 1839 	mov	a,@r0
+   0623 64 80              1840 	xrl	a,#0x80
+   0625 94 80              1841 	subb	a,#0x80
+   0627 40 03              1842 	jc	00131$
+   0629 02s0ArC3           1843 	ljmp	00109$
+   062C                    1844 00131$:
+                           1845 ;	router.c:228: if (txBackTable[j].destAddr == rreqSource)
+   062C C0 04              1846 	push	ar4
+   062E C0 05              1847 	push	ar5
+   0630 E5*00              1848 	mov	a,_bp
+   0632 24 0B              1849 	add	a,#0x0b
+   0634 F8                 1850 	mov	r0,a
+   0635 E6                 1851 	mov	a,@r0
+   0636 C0 E0              1852 	push	acc
+   0638 08                 1853 	inc	r0
+   0639 E6                 1854 	mov	a,@r0
+   063A C0 E0              1855 	push	acc
+   063C 90 00 07           1856 	mov	dptr,#0x0007
+   063F 12s00r00           1857 	lcall	__mulint
+   0642 AF 82              1858 	mov	r7,dpl
+   0644 AE 83              1859 	mov	r6,dph
+   0646 15 81              1860 	dec	sp
+   0648 15 81              1861 	dec	sp
+   064A D0 05              1862 	pop	ar5
+   064C D0 04              1863 	pop	ar4
+   064E EF                 1864 	mov	a,r7
+   064F 24r1B              1865 	add	a,#_txBackTable
+   0651 FF                 1866 	mov	r7,a
+   0652 EE                 1867 	mov	a,r6
+   0653 34s00              1868 	addc	a,#(_txBackTable >> 8)
+   0655 FE                 1869 	mov	r6,a
+   0656 8F 82              1870 	mov	dpl,r7
+   0658 8E 83              1871 	mov	dph,r6
+   065A A3                 1872 	inc	dptr
+   065B A3                 1873 	inc	dptr
+   065C A3                 1874 	inc	dptr
+   065D E0                 1875 	movx	a,@dptr
+   065E FE                 1876 	mov	r6,a
+   065F A3                 1877 	inc	dptr
+   0660 E0                 1878 	movx	a,@dptr
+   0661 FF                 1879 	mov	r7,a
+   0662 90s00r57           1880 	mov	dptr,#_rreqSource
+   0665 E0                 1881 	movx	a,@dptr
+   0666 FA                 1882 	mov	r2,a
+   0667 A3                 1883 	inc	dptr
+   0668 E0                 1884 	movx	a,@dptr
+   0669 FB                 1885 	mov	r3,a
+   066A EE                 1886 	mov	a,r6
+   066B B5 02 06           1887 	cjne	a,ar2,00132$
+   066E EF                 1888 	mov	a,r7
+   066F B5 03 02           1889 	cjne	a,ar3,00132$
+   0672 80 03              1890 	sjmp	00133$
+   0674                    1891 00132$:
+   0674 02s07rF6           1892 	ljmp	00112$
+   0677                    1893 00133$:
+                           1894 ;	router.c:230: foundAddr = 1;
+   0677 90s00r9C           1895 	mov	dptr,#_recv_uc_foundAddr_1_1
+   067A 74 01              1896 	mov	a,#0x01
+   067C F0                 1897 	movx	@dptr,a
+   067D A3                 1898 	inc	dptr
+   067E E4                 1899 	clr	a
+   067F F0                 1900 	movx	@dptr,a
+                           1901 ;	router.c:231: hopcnt++;
+   0680 0C                 1902 	inc	r4
+                           1903 ;	router.c:233: txRoutingTable[j].destAddr = dest;
+   0681 C0 04              1904 	push	ar4
+   0683 C0 05              1905 	push	ar5
+   0685 E5*00              1906 	mov	a,_bp
+   0687 24 0B              1907 	add	a,#0x0b
+   0689 F8                 1908 	mov	r0,a
+   068A E6                 1909 	mov	a,@r0
+   068B C0 E0              1910 	push	acc
+   068D 08                 1911 	inc	r0
+   068E E6                 1912 	mov	a,@r0
+   068F C0 E0              1913 	push	acc
+   0691 90 00 09           1914 	mov	dptr,#0x0009
+   0694 12s00r00           1915 	lcall	__mulint
+   0697 AA 82              1916 	mov	r2,dpl
+   0699 AB 83              1917 	mov	r3,dph
+   069B 15 81              1918 	dec	sp
+   069D 15 81              1919 	dec	sp
+   069F D0 05              1920 	pop	ar5
+   06A1 D0 04              1921 	pop	ar4
+   06A3 EA                 1922 	mov	a,r2
+   06A4 24r00              1923 	add	a,#_txRoutingTable
+   06A6 F5 82              1924 	mov	dpl,a
+   06A8 EB                 1925 	mov	a,r3
+   06A9 34s00              1926 	addc	a,#(_txRoutingTable >> 8)
+   06AB F5 83              1927 	mov	dph,a
+   06AD E5*00              1928 	mov	a,_bp
+   06AF 24 04              1929 	add	a,#0x04
+   06B1 F8                 1930 	mov	r0,a
+   06B2 E6                 1931 	mov	a,@r0
+   06B3 F0                 1932 	movx	@dptr,a
+   06B4 A3                 1933 	inc	dptr
+   06B5 08                 1934 	inc	r0
+   06B6 E6                 1935 	mov	a,@r0
+   06B7 F0                 1936 	movx	@dptr,a
+                           1937 ;	router.c:234: txRoutingTable[j].nextHop = source;
+   06B8 EA                 1938 	mov	a,r2
+   06B9 24r00              1939 	add	a,#_txRoutingTable
+   06BB FA                 1940 	mov	r2,a
+   06BC EB                 1941 	mov	a,r3
+   06BD 34s00              1942 	addc	a,#(_txRoutingTable >> 8)
+   06BF FB                 1943 	mov	r3,a
+   06C0 8A 82              1944 	mov	dpl,r2
+   06C2 8B 83              1945 	mov	dph,r3
+   06C4 A3                 1946 	inc	dptr
+   06C5 A3                 1947 	inc	dptr
+   06C6 E5*00              1948 	mov	a,_bp
+   06C8 24 06              1949 	add	a,#0x06
+   06CA F8                 1950 	mov	r0,a
+   06CB E6                 1951 	mov	a,@r0
+   06CC F0                 1952 	movx	@dptr,a
+   06CD A3                 1953 	inc	dptr
+   06CE 08                 1954 	inc	r0
+   06CF E6                 1955 	mov	a,@r0
+   06D0 F0                 1956 	movx	@dptr,a
+                           1957 ;	router.c:235: txRoutingTable[j].batteryLevel = battery;
+   06D1 8A 82              1958 	mov	dpl,r2
+   06D3 8B 83              1959 	mov	dph,r3
+   06D5 A3                 1960 	inc	dptr
+   06D6 A3                 1961 	inc	dptr
+   06D7 A3                 1962 	inc	dptr
+   06D8 A3                 1963 	inc	dptr
+   06D9 E5*00              1964 	mov	a,_bp
+   06DB 24 08              1965 	add	a,#0x08
+   06DD F8                 1966 	mov	r0,a
+   06DE E6                 1967 	mov	a,@r0
+   06DF F0                 1968 	movx	@dptr,a
+   06E0 A3                 1969 	inc	dptr
+   06E1 08                 1970 	inc	r0
+   06E2 E6                 1971 	mov	a,@r0
+   06E3 F0                 1972 	movx	@dptr,a
+                           1973 ;	router.c:236: txRoutingTable[j].RSSI = packetbuf_attr(PACKETBUF_ATTR_RSSI);
+   06E4 74 06              1974 	mov	a,#0x06
+   06E6 2A                 1975 	add	a,r2
+   06E7 FA                 1976 	mov	r2,a
+   06E8 E4                 1977 	clr	a
+   06E9 3B                 1978 	addc	a,r3
+   06EA FB                 1979 	mov	r3,a
+   06EB 75 82 04           1980 	mov	dpl,#0x04
+   06EE C0 02              1981 	push	ar2
+   06F0 C0 03              1982 	push	ar3
+   06F2 C0 04              1983 	push	ar4
+   06F4 C0 05              1984 	push	ar5
+   06F6 12s00r00           1985 	lcall	_packetbuf_attr
+   06F9 AF 82              1986 	mov	r7,dpl
+   06FB AE 83              1987 	mov	r6,dph
+   06FD D0 05              1988 	pop	ar5
+   06FF D0 04              1989 	pop	ar4
+   0701 D0 03              1990 	pop	ar3
+   0703 D0 02              1991 	pop	ar2
+   0705 8A 82              1992 	mov	dpl,r2
+   0707 8B 83              1993 	mov	dph,r3
+   0709 EF                 1994 	mov	a,r7
+   070A F0                 1995 	movx	@dptr,a
+   070B A3                 1996 	inc	dptr
+   070C EE                 1997 	mov	a,r6
+   070D F0                 1998 	movx	@dptr,a
+                           1999 ;	router.c:237: txRoutingTable[j].hopcount = hopcnt;
+   070E C0 04              2000 	push	ar4
+   0710 C0 05              2001 	push	ar5
+   0712 90s00r9A           2002 	mov	dptr,#_recv_uc_j_1_1
+   0715 E0                 2003 	movx	a,@dptr
+   0716 C0 E0              2004 	push	acc
+   0718 A3                 2005 	inc	dptr
+   0719 E0                 2006 	movx	a,@dptr
+   071A C0 E0              2007 	push	acc
+   071C 90 00 09           2008 	mov	dptr,#0x0009
+   071F 12s00r00           2009 	lcall	__mulint
+   0722 AA 82              2010 	mov	r2,dpl
+   0724 AB 83              2011 	mov	r3,dph
+   0726 15 81              2012 	dec	sp
+   0728 15 81              2013 	dec	sp
+   072A D0 05              2014 	pop	ar5
+   072C D0 04              2015 	pop	ar4
+   072E EA                 2016 	mov	a,r2
+   072F 24r00              2017 	add	a,#_txRoutingTable
+   0731 FA                 2018 	mov	r2,a
+   0732 EB                 2019 	mov	a,r3
+   0733 34s00              2020 	addc	a,#(_txRoutingTable >> 8)
+   0735 FB                 2021 	mov	r3,a
+   0736 74 08              2022 	mov	a,#0x08
+   0738 2A                 2023 	add	a,r2
+   0739 F5 82              2024 	mov	dpl,a
+   073B E4                 2025 	clr	a
+   073C 3B                 2026 	addc	a,r3
+   073D F5 83              2027 	mov	dph,a
+   073F EC                 2028 	mov	a,r4
+   0740 F0                 2029 	movx	@dptr,a
+                           2030 ;	router.c:239: txDataBuffer[0] = CMD_RREP;
+   0741 90s00r59           2031 	mov	dptr,#_txDataBuffer
+   0744 74 26              2032 	mov	a,#0x26
+   0746 F0                 2033 	movx	@dptr,a
+                           2034 ;	router.c:240: txDataBuffer[1] = dest >> 8;
+   0747 90s00r5A           2035 	mov	dptr,#(_txDataBuffer + 0x0001)
+   074A ED                 2036 	mov	a,r5
+   074B F0                 2037 	movx	@dptr,a
+                           2038 ;	router.c:241: txDataBuffer[2] = dest;
+   074C E5*00              2039 	mov	a,_bp
+   074E 24 04              2040 	add	a,#0x04
+   0750 F8                 2041 	mov	r0,a
+   0751 86 06              2042 	mov	ar6,@r0
+   0753 90s00r5B           2043 	mov	dptr,#(_txDataBuffer + 0x0002)
+   0756 EE                 2044 	mov	a,r6
+   0757 F0                 2045 	movx	@dptr,a
+                           2046 ;	router.c:242: txDataBuffer[3] = battery >> 8;
+   0758 90s00r5C           2047 	mov	dptr,#(_txDataBuffer + 0x0003)
+   075B E5*00              2048 	mov	a,_bp
+   075D 24 0A              2049 	add	a,#0x0a
+   075F F8                 2050 	mov	r0,a
+   0760 E6                 2051 	mov	a,@r0
+   0761 F0                 2052 	movx	@dptr,a
+                           2053 ;	router.c:243: txDataBuffer[4] = battery;
+   0762 E5*00              2054 	mov	a,_bp
+   0764 24 08              2055 	add	a,#0x08
+   0766 F8                 2056 	mov	r0,a
+   0767 86 02              2057 	mov	ar2,@r0
+   0769 90s00r5D           2058 	mov	dptr,#(_txDataBuffer + 0x0004)
+   076C EA                 2059 	mov	a,r2
+   076D F0                 2060 	movx	@dptr,a
+                           2061 ;	router.c:244: txDataBuffer[5] = hopcnt;
+   076E 90s00r5E           2062 	mov	dptr,#(_txDataBuffer + 0x0005)
+   0771 EC                 2063 	mov	a,r4
+   0772 F0                 2064 	movx	@dptr,a
+                           2065 ;	router.c:245: packetbuf_copyfrom(txDataBuffer, 6);
+   0773 C0 04              2066 	push	ar4
+   0775 C0 05              2067 	push	ar5
+   0777 74 06              2068 	mov	a,#0x06
+   0779 C0 E0              2069 	push	acc
+   077B E4                 2070 	clr	a
+   077C C0 E0              2071 	push	acc
+   077E 90s00r59           2072 	mov	dptr,#_txDataBuffer
+   0781 75 F0 00           2073 	mov	b,#0x00
+   0784 12s00r00           2074 	lcall	_packetbuf_copyfrom
+   0787 15 81              2075 	dec	sp
+   0789 15 81              2076 	dec	sp
+                           2077 ;	router.c:247: addr.u8[0] = txBackTable[j].sourceAddr;
+   078B 90s00r9A           2078 	mov	dptr,#_recv_uc_j_1_1
+   078E E0                 2079 	movx	a,@dptr
+   078F C0 E0              2080 	push	acc
+   0791 A3                 2081 	inc	dptr
+   0792 E0                 2082 	movx	a,@dptr
+   0793 C0 E0              2083 	push	acc
+   0795 90 00 07           2084 	mov	dptr,#0x0007
+   0798 12s00r00           2085 	lcall	__mulint
+   079B AA 82              2086 	mov	r2,dpl
+   079D AB 83              2087 	mov	r3,dph
+   079F 15 81              2088 	dec	sp
+   07A1 15 81              2089 	dec	sp
+   07A3 EA                 2090 	mov	a,r2
+   07A4 24r1B              2091 	add	a,#_txBackTable
+   07A6 FA                 2092 	mov	r2,a
+   07A7 EB                 2093 	mov	a,r3
+   07A8 34s00              2094 	addc	a,#(_txBackTable >> 8)
+   07AA FB                 2095 	mov	r3,a
+   07AB 8A 82              2096 	mov	dpl,r2
+   07AD 8B 83              2097 	mov	dph,r3
+   07AF A3                 2098 	inc	dptr
+   07B0 E0                 2099 	movx	a,@dptr
+   07B1 FA                 2100 	mov	r2,a
+   07B2 A3                 2101 	inc	dptr
+   07B3 E0                 2102 	movx	a,@dptr
+   07B4 FB                 2103 	mov	r3,a
+   07B5 8A 06              2104 	mov	ar6,r2
+   07B7 90s00r51           2105 	mov	dptr,#_addr
+   07BA EE                 2106 	mov	a,r6
+   07BB F0                 2107 	movx	@dptr,a
+                           2108 ;	router.c:248: addr.u8[1] = txBackTable[j].sourceAddr >> 8;
+   07BC 8B 02              2109 	mov	ar2,r3
+   07BE 90s00r52           2110 	mov	dptr,#(_addr + 0x0001)
+   07C1 EA                 2111 	mov	a,r2
+   07C2 F0                 2112 	movx	@dptr,a
+                           2113 ;	router.c:249: unicast_send(&uc, &addr);
+   07C3 74r51              2114 	mov	a,#_addr
+   07C5 C0 E0              2115 	push	acc
+   07C7 74s00              2116 	mov	a,#(_addr >> 8)
+   07C9 C0 E0              2117 	push	acc
+   07CB E4                 2118 	clr	a
+   07CC C0 E0              2119 	push	acc
+   07CE 90s00r30           2120 	mov	dptr,#_uc
+   07D1 75 F0 00           2121 	mov	b,#0x00
+   07D4 12s00r00           2122 	lcall	_unicast_send
+   07D7 15 81              2123 	dec	sp
+   07D9 15 81              2124 	dec	sp
+   07DB 15 81              2125 	dec	sp
+                           2126 ;	router.c:250: printf("\n\rfound source address sending RREP to sender ...\n\r");
+   07DD 74r59              2127 	mov	a,#__str_2
+   07DF C0 E0              2128 	push	acc
+   07E1 74s00              2129 	mov	a,#(__str_2 >> 8)
+   07E3 C0 E0              2130 	push	acc
+   07E5 74 80              2131 	mov	a,#0x80
+   07E7 C0 E0              2132 	push	acc
+   07E9 12s00r00           2133 	lcall	_printf
+   07EC 15 81              2134 	dec	sp
+   07EE 15 81              2135 	dec	sp
+   07F0 15 81              2136 	dec	sp
+   07F2 D0 05              2137 	pop	ar5
+   07F4 D0 04              2138 	pop	ar4
+   07F6                    2139 00112$:
+                           2140 ;	router.c:226: for (j = 0; j < TABLELENGTH; j++)
+   07F6 90s00r9A           2141 	mov	dptr,#_recv_uc_j_1_1
+   07F9 E0                 2142 	movx	a,@dptr
+   07FA 24 01              2143 	add	a,#0x01
+   07FC F0                 2144 	movx	@dptr,a
+   07FD A3                 2145 	inc	dptr
+   07FE E0                 2146 	movx	a,@dptr
+   07FF 34 00              2147 	addc	a,#0x00
+   0801 F0                 2148 	movx	@dptr,a
+   0802 02s06r0A           2149 	ljmp	00110$
+                           2150 ;	router.c:255: case CMD_TXDATA:
+   0805                    2151 00104$:
+                           2152 ;	router.c:257: dest = tx_data[1];
+   0805 A8*00              2153 	mov	r0,_bp
+   0807 08                 2154 	inc	r0
+   0808 74 01              2155 	mov	a,#0x01
+   080A 26                 2156 	add	a,@r0
+   080B FA                 2157 	mov	r2,a
+   080C E4                 2158 	clr	a
+   080D 08                 2159 	inc	r0
+   080E 36                 2160 	addc	a,@r0
+   080F FB                 2161 	mov	r3,a
+   0810 08                 2162 	inc	r0
+   0811 86 04              2163 	mov	ar4,@r0
+   0813 8A 82              2164 	mov	dpl,r2
+   0815 8B 83              2165 	mov	dph,r3
+   0817 8C F0              2166 	mov	b,r4
+   0819 12s00r00           2167 	lcall	__gptrget
+   081C FA                 2168 	mov	r2,a
+   081D E5*00              2169 	mov	a,_bp
+   081F 24 04              2170 	add	a,#0x04
+   0821 F8                 2171 	mov	r0,a
+   0822 A6 02              2172 	mov	@r0,ar2
+   0824 08                 2173 	inc	r0
+   0825 76 00              2174 	mov	@r0,#0x00
+                           2175 ;	router.c:258: dest = dest << 8;
+   0827 E5*00              2176 	mov	a,_bp
+   0829 24 04              2177 	add	a,#0x04
+   082B F8                 2178 	mov	r0,a
+   082C E6                 2179 	mov	a,@r0
+   082D 08                 2180 	inc	r0
+   082E F6                 2181 	mov	@r0,a
+   082F 18                 2182 	dec	r0
+   0830 76 00              2183 	mov	@r0,#0x00
+                           2184 ;	router.c:259: dest = dest | tx_data[2];
+   0832 A8*00              2185 	mov	r0,_bp
+   0834 08                 2186 	inc	r0
+   0835 74 02              2187 	mov	a,#0x02
+   0837 26                 2188 	add	a,@r0
+   0838 FA                 2189 	mov	r2,a
+   0839 E4                 2190 	clr	a
+   083A 08                 2191 	inc	r0
+   083B 36                 2192 	addc	a,@r0
+   083C FB                 2193 	mov	r3,a
+   083D 08                 2194 	inc	r0
+   083E 86 04              2195 	mov	ar4,@r0
+   0840 8A 82              2196 	mov	dpl,r2
+   0842 8B 83              2197 	mov	dph,r3
+   0844 8C F0              2198 	mov	b,r4
+   0846 12s00r00           2199 	lcall	__gptrget
+   0849 FA                 2200 	mov	r2,a
+   084A 7B 00              2201 	mov	r3,#0x00
+   084C E5*00              2202 	mov	a,_bp
+   084E 24 04              2203 	add	a,#0x04
+   0850 F8                 2204 	mov	r0,a
+   0851 EA                 2205 	mov	a,r2
+   0852 46                 2206 	orl	a,@r0
+   0853 F6                 2207 	mov	@r0,a
+   0854 EB                 2208 	mov	a,r3
+   0855 08                 2209 	inc	r0
+   0856 46                 2210 	orl	a,@r0
+   0857 F6                 2211 	mov	@r0,a
+                           2212 ;	router.c:260: source = from->u8[1];
+   0858 E5*00              2213 	mov	a,_bp
+   085A 24 FB              2214 	add	a,#0xfb
+   085C F8                 2215 	mov	r0,a
+   085D 86 02              2216 	mov	ar2,@r0
+   085F 08                 2217 	inc	r0
+   0860 86 03              2218 	mov	ar3,@r0
+   0862 08                 2219 	inc	r0
+   0863 86 04              2220 	mov	ar4,@r0
+   0865 74 01              2221 	mov	a,#0x01
+   0867 2A                 2222 	add	a,r2
+   0868 FD                 2223 	mov	r5,a
+   0869 E4                 2224 	clr	a
+   086A 3B                 2225 	addc	a,r3
+   086B FE                 2226 	mov	r6,a
+   086C 8C 07              2227 	mov	ar7,r4
+   086E 8D 82              2228 	mov	dpl,r5
+   0870 8E 83              2229 	mov	dph,r6
+   0872 8F F0              2230 	mov	b,r7
+   0874 12s00r00           2231 	lcall	__gptrget
+   0877 FD                 2232 	mov	r5,a
+   0878 E5*00              2233 	mov	a,_bp
+   087A 24 06              2234 	add	a,#0x06
+   087C F8                 2235 	mov	r0,a
+   087D A6 05              2236 	mov	@r0,ar5
+   087F 08                 2237 	inc	r0
+   0880 76 00              2238 	mov	@r0,#0x00
+                           2239 ;	router.c:261: source = source << 8;
+   0882 E5*00              2240 	mov	a,_bp
+   0884 24 06              2241 	add	a,#0x06
+   0886 F8                 2242 	mov	r0,a
+   0887 E6                 2243 	mov	a,@r0
+   0888 08                 2244 	inc	r0
+   0889 F6                 2245 	mov	@r0,a
+   088A 18                 2246 	dec	r0
+   088B 76 00              2247 	mov	@r0,#0x00
+                           2248 ;	router.c:262: source = source | from->u8[0];
+   088D 8A 82              2249 	mov	dpl,r2
+   088F 8B 83              2250 	mov	dph,r3
+   0891 8C F0              2251 	mov	b,r4
+   0893 12s00r00           2252 	lcall	__gptrget
+   0896 FA                 2253 	mov	r2,a
+   0897 7B 00              2254 	mov	r3,#0x00
+   0899 E5*00              2255 	mov	a,_bp
+   089B 24 06              2256 	add	a,#0x06
+   089D F8                 2257 	mov	r0,a
+   089E EA                 2258 	mov	a,r2
+   089F 46                 2259 	orl	a,@r0
+   08A0 F6                 2260 	mov	@r0,a
+   08A1 EB                 2261 	mov	a,r3
+   08A2 08                 2262 	inc	r0
+   08A3 46                 2263 	orl	a,@r0
+   08A4 F6                 2264 	mov	@r0,a
+                           2265 ;	router.c:263: tempReading1 = tx_data[5];
+   08A5 A8*00              2266 	mov	r0,_bp
+   08A7 08                 2267 	inc	r0
+   08A8 74 05              2268 	mov	a,#0x05
+   08AA 26                 2269 	add	a,@r0
+   08AB FA                 2270 	mov	r2,a
+   08AC E4                 2271 	clr	a
+   08AD 08                 2272 	inc	r0
+   08AE 36                 2273 	addc	a,@r0
+   08AF FB                 2274 	mov	r3,a
+   08B0 08                 2275 	inc	r0
+   08B1 86 04              2276 	mov	ar4,@r0
+   08B3 8A 82              2277 	mov	dpl,r2
+   08B5 8B 83              2278 	mov	dph,r3
+   08B7 8C F0              2279 	mov	b,r4
+   08B9 12s00r00           2280 	lcall	__gptrget
+   08BC 90s00r04           2281 	mov	dptr,#_tempReading1
+   08BF F0                 2282 	movx	@dptr,a
+                           2283 ;	router.c:264: tempReading2 = tx_data[6];
+   08C0 A8*00              2284 	mov	r0,_bp
+   08C2 08                 2285 	inc	r0
+   08C3 74 06              2286 	mov	a,#0x06
+   08C5 26                 2287 	add	a,@r0
+   08C6 FA                 2288 	mov	r2,a
+   08C7 E4                 2289 	clr	a
+   08C8 08                 2290 	inc	r0
+   08C9 36                 2291 	addc	a,@r0
+   08CA FB                 2292 	mov	r3,a
+   08CB 08                 2293 	inc	r0
+   08CC 86 04              2294 	mov	ar4,@r0
+   08CE 8A 82              2295 	mov	dpl,r2
+   08D0 8B 83              2296 	mov	dph,r3
+   08D2 8C F0              2297 	mov	b,r4
+   08D4 12s00r00           2298 	lcall	__gptrget
+   08D7 90s00r05           2299 	mov	dptr,#_tempReading2
+   08DA F0                 2300 	movx	@dptr,a
+                           2301 ;	router.c:265: battery = tx_data[7];
+   08DB A8*00              2302 	mov	r0,_bp
+   08DD 08                 2303 	inc	r0
+   08DE 74 07              2304 	mov	a,#0x07
+   08E0 26                 2305 	add	a,@r0
+   08E1 FA                 2306 	mov	r2,a
+   08E2 E4                 2307 	clr	a
+   08E3 08                 2308 	inc	r0
+   08E4 36                 2309 	addc	a,@r0
+   08E5 FB                 2310 	mov	r3,a
+   08E6 08                 2311 	inc	r0
+   08E7 86 04              2312 	mov	ar4,@r0
+   08E9 8A 82              2313 	mov	dpl,r2
+   08EB 8B 83              2314 	mov	dph,r3
+   08ED 8C F0              2315 	mov	b,r4
+   08EF 12s00r00           2316 	lcall	__gptrget
+   08F2 FA                 2317 	mov	r2,a
+   08F3 E5*00              2318 	mov	a,_bp
+   08F5 24 08              2319 	add	a,#0x08
+   08F7 F8                 2320 	mov	r0,a
+   08F8 A6 02              2321 	mov	@r0,ar2
+   08FA 08                 2322 	inc	r0
+   08FB 76 00              2323 	mov	@r0,#0x00
+                           2324 ;	router.c:266: battery = battery << 8;
+   08FD E5*00              2325 	mov	a,_bp
+   08FF 24 08              2326 	add	a,#0x08
+   0901 F8                 2327 	mov	r0,a
+   0902 E6                 2328 	mov	a,@r0
+   0903 08                 2329 	inc	r0
+   0904 F6                 2330 	mov	@r0,a
+   0905 18                 2331 	dec	r0
+   0906 76 00              2332 	mov	@r0,#0x00
+                           2333 ;	router.c:267: battery = battery | tx_data[8];
+   0908 A8*00              2334 	mov	r0,_bp
+   090A 08                 2335 	inc	r0
+   090B 74 08              2336 	mov	a,#0x08
+   090D 26                 2337 	add	a,@r0
+   090E FA                 2338 	mov	r2,a
+   090F E4                 2339 	clr	a
+   0910 08                 2340 	inc	r0
+   0911 36                 2341 	addc	a,@r0
+   0912 FB                 2342 	mov	r3,a
+   0913 08                 2343 	inc	r0
+   0914 86 04              2344 	mov	ar4,@r0
+   0916 8A 82              2345 	mov	dpl,r2
+   0918 8B 83              2346 	mov	dph,r3
+   091A 8C F0              2347 	mov	b,r4
+   091C 12s00r00           2348 	lcall	__gptrget
+   091F FA                 2349 	mov	r2,a
+   0920 7B 00              2350 	mov	r3,#0x00
+   0922 E5*00              2351 	mov	a,_bp
+   0924 24 08              2352 	add	a,#0x08
+   0926 F8                 2353 	mov	r0,a
+   0927 EA                 2354 	mov	a,r2
+   0928 46                 2355 	orl	a,@r0
+   0929 F6                 2356 	mov	@r0,a
+   092A EB                 2357 	mov	a,r3
+   092B 08                 2358 	inc	r0
+   092C 46                 2359 	orl	a,@r0
+   092D F6                 2360 	mov	@r0,a
+                           2361 ;	router.c:270: nodeAddr = 0x2323;
+   092E 90s00r53           2362 	mov	dptr,#_nodeAddr
+   0931 74 23              2363 	mov	a,#0x23
+   0933 F0                 2364 	movx	@dptr,a
+   0934 A3                 2365 	inc	dptr
+   0935 F0                 2366 	movx	@dptr,a
+                           2367 ;	router.c:272: for (i = 0; i < TABLELENGTH; i++)
+   0936 90s00r98           2368 	mov	dptr,#_recv_uc_i_1_1
+   0939 E4                 2369 	clr	a
+   093A F0                 2370 	movx	@dptr,a
+   093B A3                 2371 	inc	dptr
+   093C F0                 2372 	movx	@dptr,a
+   093D E5*00              2373 	mov	a,_bp
+   093F 24 04              2374 	add	a,#0x04
+   0941 F8                 2375 	mov	r0,a
+   0942 08                 2376 	inc	r0
+   0943 86 02              2377 	mov	ar2,@r0
+   0945 E5*00              2378 	mov	a,_bp
+   0947 24 06              2379 	add	a,#0x06
+   0949 F8                 2380 	mov	r0,a
+   094A 08                 2381 	inc	r0
+   094B 86 03              2382 	mov	ar3,@r0
+   094D E5*00              2383 	mov	a,_bp
+   094F 24 08              2384 	add	a,#0x08
+   0951 F8                 2385 	mov	r0,a
+   0952 08                 2386 	inc	r0
+   0953 86 04              2387 	mov	ar4,@r0
+   0955                    2388 00114$:
+   0955 90s00r98           2389 	mov	dptr,#_recv_uc_i_1_1
+   0958 E0                 2390 	movx	a,@dptr
+   0959 FD                 2391 	mov	r5,a
+   095A A3                 2392 	inc	dptr
+   095B E0                 2393 	movx	a,@dptr
+   095C FE                 2394 	mov	r6,a
+   095D C3                 2395 	clr	c
+   095E ED                 2396 	mov	a,r5
+   095F 94 03              2397 	subb	a,#0x03
+   0961 EE                 2398 	mov	a,r6
+   0962 64 80              2399 	xrl	a,#0x80
+   0964 94 80              2400 	subb	a,#0x80
+   0966 40 03              2401 	jc	00134$
+   0968 02s0ArC3           2402 	ljmp	00109$
+   096B                    2403 00134$:
+                           2404 ;	router.c:274: if (txRoutingTable[i].destAddr == nodeAddr)
+   096B C0 04              2405 	push	ar4
+   096D C0 02              2406 	push	ar2
+   096F C0 03              2407 	push	ar3
+   0971 C0 04              2408 	push	ar4
+   0973 C0 05              2409 	push	ar5
+   0975 C0 06              2410 	push	ar6
+   0977 90 00 09           2411 	mov	dptr,#0x0009
+   097A 12s00r00           2412 	lcall	__mulint
+   097D AD 82              2413 	mov	r5,dpl
+   097F AE 83              2414 	mov	r6,dph
+   0981 15 81              2415 	dec	sp
+   0983 15 81              2416 	dec	sp
+   0985 D0 04              2417 	pop	ar4
+   0987 D0 03              2418 	pop	ar3
+   0989 D0 02              2419 	pop	ar2
+   098B ED                 2420 	mov	a,r5
+   098C 24r00              2421 	add	a,#_txRoutingTable
+   098E F5 82              2422 	mov	dpl,a
+   0990 EE                 2423 	mov	a,r6
+   0991 34s00              2424 	addc	a,#(_txRoutingTable >> 8)
+   0993 F5 83              2425 	mov	dph,a
+   0995 E0                 2426 	movx	a,@dptr
+   0996 FD                 2427 	mov	r5,a
+   0997 A3                 2428 	inc	dptr
+   0998 E0                 2429 	movx	a,@dptr
+   0999 FE                 2430 	mov	r6,a
+   099A 90s00r53           2431 	mov	dptr,#_nodeAddr
+   099D E0                 2432 	movx	a,@dptr
+   099E FF                 2433 	mov	r7,a
+   099F A3                 2434 	inc	dptr
+   09A0 E0                 2435 	movx	a,@dptr
+   09A1 FC                 2436 	mov	r4,a
+   09A2 ED                 2437 	mov	a,r5
+   09A3 B5 07 06           2438 	cjne	a,ar7,00135$
+   09A6 EE                 2439 	mov	a,r6
+   09A7 B5 04 02           2440 	cjne	a,ar4,00135$
+   09AA 80 04              2441 	sjmp	00136$
+   09AC                    2442 00135$:
+   09AC D0 04              2443 	pop	ar4
+   09AE 80 48              2444 	sjmp	00106$
+   09B0                    2445 00136$:
+                           2446 ;	router.c:276: printf("Temp=%d.%02u C received from: %d \n\r", tempReading1, tempReading2, source);
+   09B0 90s00r05           2447 	mov	dptr,#_tempReading2
+   09B3 E0                 2448 	movx	a,@dptr
+   09B4 FD                 2449 	mov	r5,a
+   09B5 7E 00              2450 	mov	r6,#0x00
+   09B7 90s00r04           2451 	mov	dptr,#_tempReading1
+   09BA E0                 2452 	movx	a,@dptr
+   09BB FF                 2453 	mov	r7,a
+   09BC 7C 00              2454 	mov	r4,#0x00
+   09BE C0 02              2455 	push	ar2
+   09C0 C0 03              2456 	push	ar3
+   09C2 C0 04              2457 	push	ar4
+   09C4 E5*00              2458 	mov	a,_bp
+   09C6 24 06              2459 	add	a,#0x06
+   09C8 F8                 2460 	mov	r0,a
+   09C9 E6                 2461 	mov	a,@r0
+   09CA C0 E0              2462 	push	acc
+   09CC 08                 2463 	inc	r0
+   09CD E6                 2464 	mov	a,@r0
+   09CE C0 E0              2465 	push	acc
+   09D0 C0 05              2466 	push	ar5
+   09D2 C0 06              2467 	push	ar6
+   09D4 C0 07              2468 	push	ar7
+   09D6 C0 04              2469 	push	ar4
+   09D8 74r8D              2470 	mov	a,#__str_3
+   09DA C0 E0              2471 	push	acc
+   09DC 74s00              2472 	mov	a,#(__str_3 >> 8)
+   09DE C0 E0              2473 	push	acc
+   09E0 74 80              2474 	mov	a,#0x80
+   09E2 C0 E0              2475 	push	acc
+   09E4 12s00r00           2476 	lcall	_printf
+   09E7 E5 81              2477 	mov	a,sp
+   09E9 24 F7              2478 	add	a,#0xf7
+   09EB F5 81              2479 	mov	sp,a
+   09ED D0 04              2480 	pop	ar4
+   09EF D0 03              2481 	pop	ar3
+   09F1 D0 02              2482 	pop	ar2
+   09F3 D0 04              2483 	pop	ar4
+   09F5 02s0ArB4           2484 	ljmp	00116$
+   09F8                    2485 00106$:
+                           2486 ;	router.c:281: txDataBuffer[0] = CMD_TXDATA;
+   09F8 90s00r59           2487 	mov	dptr,#_txDataBuffer
+   09FB 74 27              2488 	mov	a,#0x27
+   09FD F0                 2489 	movx	@dptr,a
+                           2490 ;	router.c:282: txDataBuffer[1] = dest >> 8;
+   09FE 90s00r5A           2491 	mov	dptr,#(_txDataBuffer + 0x0001)
+   0A01 EA                 2492 	mov	a,r2
+   0A02 F0                 2493 	movx	@dptr,a
+                           2494 ;	router.c:283: txDataBuffer[2] = dest;
+   0A03 E5*00              2495 	mov	a,_bp
+   0A05 24 04              2496 	add	a,#0x04
+   0A07 F8                 2497 	mov	r0,a
+   0A08 86 06              2498 	mov	ar6,@r0
+   0A0A 90s00r5B           2499 	mov	dptr,#(_txDataBuffer + 0x0002)
+   0A0D EE                 2500 	mov	a,r6
+   0A0E F0                 2501 	movx	@dptr,a
+                           2502 ;	router.c:284: txDataBuffer[3] = source >> 8;
+   0A0F 90s00r5C           2503 	mov	dptr,#(_txDataBuffer + 0x0003)
+   0A12 EB                 2504 	mov	a,r3
+   0A13 F0                 2505 	movx	@dptr,a
+                           2506 ;	router.c:285: txDataBuffer[4] = source;
+   0A14 E5*00              2507 	mov	a,_bp
+   0A16 24 06              2508 	add	a,#0x06
+   0A18 F8                 2509 	mov	r0,a
+   0A19 86 06              2510 	mov	ar6,@r0
+   0A1B 90s00r5D           2511 	mov	dptr,#(_txDataBuffer + 0x0004)
+   0A1E EE                 2512 	mov	a,r6
+   0A1F F0                 2513 	movx	@dptr,a
+                           2514 ;	router.c:286: txDataBuffer[5] = tempReading1;
+   0A20 90s00r04           2515 	mov	dptr,#_tempReading1
+   0A23 E0                 2516 	movx	a,@dptr
+   0A24 90s00r5E           2517 	mov	dptr,#(_txDataBuffer + 0x0005)
+   0A27 F0                 2518 	movx	@dptr,a
+                           2519 ;	router.c:287: txDataBuffer[6] = tempReading2;
+   0A28 90s00r05           2520 	mov	dptr,#_tempReading2
+   0A2B E0                 2521 	movx	a,@dptr
+   0A2C 90s00r5F           2522 	mov	dptr,#(_txDataBuffer + 0x0006)
+   0A2F F0                 2523 	movx	@dptr,a
+                           2524 ;	router.c:288: txDataBuffer[7] = battery >> 8;
+   0A30 90s00r60           2525 	mov	dptr,#(_txDataBuffer + 0x0007)
+   0A33 EC                 2526 	mov	a,r4
+   0A34 F0                 2527 	movx	@dptr,a
+                           2528 ;	router.c:289: txDataBuffer[8] = battery;
+   0A35 E5*00              2529 	mov	a,_bp
+   0A37 24 08              2530 	add	a,#0x08
+   0A39 F8                 2531 	mov	r0,a
+   0A3A 86 05              2532 	mov	ar5,@r0
+   0A3C 90s00r61           2533 	mov	dptr,#(_txDataBuffer + 0x0008)
+   0A3F ED                 2534 	mov	a,r5
+   0A40 F0                 2535 	movx	@dptr,a
+                           2536 ;	router.c:291: packetbuf_copyfrom(txDataBuffer, 9);
+   0A41 C0 02              2537 	push	ar2
+   0A43 C0 03              2538 	push	ar3
+   0A45 C0 04              2539 	push	ar4
+   0A47 74 09              2540 	mov	a,#0x09
+   0A49 C0 E0              2541 	push	acc
+   0A4B E4                 2542 	clr	a
+   0A4C C0 E0              2543 	push	acc
+   0A4E 90s00r59           2544 	mov	dptr,#_txDataBuffer
+   0A51 75 F0 00           2545 	mov	b,#0x00
+   0A54 12s00r00           2546 	lcall	_packetbuf_copyfrom
+   0A57 15 81              2547 	dec	sp
+   0A59 15 81              2548 	dec	sp
+                           2549 ;	router.c:292: addr.u8[0] = txRoutingTable[i].nextHop;
+   0A5B 90s00r98           2550 	mov	dptr,#_recv_uc_i_1_1
+   0A5E E0                 2551 	movx	a,@dptr
+   0A5F C0 E0              2552 	push	acc
+   0A61 A3                 2553 	inc	dptr
+   0A62 E0                 2554 	movx	a,@dptr
+   0A63 C0 E0              2555 	push	acc
+   0A65 90 00 09           2556 	mov	dptr,#0x0009
+   0A68 12s00r00           2557 	lcall	__mulint
+   0A6B AD 82              2558 	mov	r5,dpl
+   0A6D AE 83              2559 	mov	r6,dph
+   0A6F 15 81              2560 	dec	sp
+   0A71 15 81              2561 	dec	sp
+   0A73 ED                 2562 	mov	a,r5
+   0A74 24r00              2563 	add	a,#_txRoutingTable
+   0A76 FD                 2564 	mov	r5,a
+   0A77 EE                 2565 	mov	a,r6
+   0A78 34s00              2566 	addc	a,#(_txRoutingTable >> 8)
+   0A7A FE                 2567 	mov	r6,a
+   0A7B 8D 82              2568 	mov	dpl,r5
+   0A7D 8E 83              2569 	mov	dph,r6
+   0A7F A3                 2570 	inc	dptr
+   0A80 A3                 2571 	inc	dptr
+   0A81 E0                 2572 	movx	a,@dptr
+   0A82 FD                 2573 	mov	r5,a
+   0A83 A3                 2574 	inc	dptr
+   0A84 E0                 2575 	movx	a,@dptr
+   0A85 FE                 2576 	mov	r6,a
+   0A86 8D 07              2577 	mov	ar7,r5
+   0A88 90s00r51           2578 	mov	dptr,#_addr
+   0A8B EF                 2579 	mov	a,r7
+   0A8C F0                 2580 	movx	@dptr,a
+                           2581 ;	router.c:293: addr.u8[1] = txRoutingTable[i].nextHop >> 8;
+   0A8D 8E 05              2582 	mov	ar5,r6
+   0A8F 90s00r52           2583 	mov	dptr,#(_addr + 0x0001)
+   0A92 ED                 2584 	mov	a,r5
+   0A93 F0                 2585 	movx	@dptr,a
+                           2586 ;	router.c:294: unicast_send(&uc, &addr);
+   0A94 74r51              2587 	mov	a,#_addr
+   0A96 C0 E0              2588 	push	acc
+   0A98 74s00              2589 	mov	a,#(_addr >> 8)
+   0A9A C0 E0              2590 	push	acc
+   0A9C E4                 2591 	clr	a
+   0A9D C0 E0              2592 	push	acc
+   0A9F 90s00r30           2593 	mov	dptr,#_uc
+   0AA2 75 F0 00           2594 	mov	b,#0x00
+   0AA5 12s00r00           2595 	lcall	_unicast_send
+   0AA8 15 81              2596 	dec	sp
+   0AAA 15 81              2597 	dec	sp
+   0AAC 15 81              2598 	dec	sp
+   0AAE D0 04              2599 	pop	ar4
+   0AB0 D0 03              2600 	pop	ar3
+   0AB2 D0 02              2601 	pop	ar2
+   0AB4                    2602 00116$:
+                           2603 ;	router.c:272: for (i = 0; i < TABLELENGTH; i++)
+   0AB4 90s00r98           2604 	mov	dptr,#_recv_uc_i_1_1
+   0AB7 E0                 2605 	movx	a,@dptr
+   0AB8 24 01              2606 	add	a,#0x01
+   0ABA F0                 2607 	movx	@dptr,a
+   0ABB A3                 2608 	inc	dptr
+   0ABC E0                 2609 	movx	a,@dptr
+   0ABD 34 00              2610 	addc	a,#0x00
+   0ABF F0                 2611 	movx	@dptr,a
+   0AC0 02s09r55           2612 	ljmp	00114$
+                           2613 ;	router.c:301: }
+   0AC3                    2614 00109$:
+                           2615 ;	router.c:304: packetbuf_clear();
+   0AC3 12s00r00           2616 	lcall	_packetbuf_clear
+   0AC6 85*00 81           2617 	mov	sp,_bp
+   0AC9 D0*00              2618 	pop	_bp
+   0ACB 22                 2619 	ret
+                           2620 ;------------------------------------------------------------
+                           2621 ;Allocation info for local variables in function 'process_thread_router_process'
+                           2622 ;------------------------------------------------------------
+                           2623 ;ev                        Allocated to stack - offset -3
+                           2624 ;data                      Allocated to stack - offset -6
+                           2625 ;process_pt                Allocated to registers r2 r3 r4 
+                           2626 ;PT_YIELD_FLAG             Allocated to registers r5 
+                           2627 ;i                         Allocated with name '_process_thread_router_process_i_1_1'
+                           2628 ;j                         Allocated with name '_process_thread_router_process_j_1_1'
+                           2629 ;et                        Allocated with name '_process_thread_router_process_et_1_1'
+                           2630 ;------------------------------------------------------------
+                           2631 ;	router.c:307: PROCESS_THREAD(router_process, ev, data)
+                           2632 ;	-----------------------------------------
+                           2633 ;	 function process_thread_router_process
+                           2634 ;	-----------------------------------------
+   0ACC                    2635 _process_thread_router_process:
+   0ACC C0*00              2636 	push	_bp
+   0ACE 85 81*00           2637 	mov	_bp,sp
+                           2638 ;	router.c:313: PROCESS_BEGIN();
+   0AD1 AA 82              2639 	mov	r2,dpl
+   0AD3 AB 83              2640 	mov	r3,dph
+   0AD5 AC F0              2641 	mov	r4,b
+   0AD7 7D 01              2642 	mov	r5,#0x01
+   0AD9 12s00r00           2643 	lcall	__gptrget
+   0ADC FE                 2644 	mov	r6,a
+   0ADD A3                 2645 	inc	dptr
+   0ADE 12s00r00           2646 	lcall	__gptrget
+   0AE1 FF                 2647 	mov	r7,a
+   0AE2 BE 00 05           2648 	cjne	r6,#0x00,00143$
+   0AE5 BF 00 02           2649 	cjne	r7,#0x00,00143$
+   0AE8 80 0C              2650 	sjmp	00101$
+   0AEA                    2651 00143$:
+   0AEA BE 56 06           2652 	cjne	r6,#0x56,00144$
+   0AED BF 01 03           2653 	cjne	r7,#0x01,00144$
+   0AF0 02s0Cr2E           2654 	ljmp	00102$
+   0AF3                    2655 00144$:
+   0AF3 02s0ErAB           2656 	ljmp	00116$
+   0AF6                    2657 00101$:
+                           2658 ;	router.c:316: for (i = 0; i < TABLELENGTH; i++)
+   0AF6 90s00r9E           2659 	mov	dptr,#_process_thread_router_process_i_1_1
+   0AF9 E4                 2660 	clr	a
+   0AFA F0                 2661 	movx	@dptr,a
+   0AFB                    2662 00117$:
+   0AFB 90s00r9E           2663 	mov	dptr,#_process_thread_router_process_i_1_1
+   0AFE E0                 2664 	movx	a,@dptr
+   0AFF FE                 2665 	mov	r6,a
+   0B00 BE 03 00           2666 	cjne	r6,#0x03,00145$
+   0B03                    2667 00145$:
+   0B03 50 53              2668 	jnc	00120$
+                           2669 ;	router.c:318: txRoutingTable[i].destAddr = 0x0000;
+   0B05 C0 02              2670 	push	ar2
+   0B07 C0 03              2671 	push	ar3
+   0B09 C0 04              2672 	push	ar4
+   0B0B EE                 2673 	mov	a,r6
+   0B0C 75 F0 09           2674 	mov	b,#0x09
+   0B0F A4                 2675 	mul	ab
+   0B10 FF                 2676 	mov	r7,a
+   0B11 24r00              2677 	add	a,#_txRoutingTable
+   0B13 F5 82              2678 	mov	dpl,a
+   0B15 E4                 2679 	clr	a
+   0B16 34s00              2680 	addc	a,#(_txRoutingTable >> 8)
+   0B18 F5 83              2681 	mov	dph,a
+   0B1A E4                 2682 	clr	a
+   0B1B F0                 2683 	movx	@dptr,a
+   0B1C A3                 2684 	inc	dptr
+   0B1D F0                 2685 	movx	@dptr,a
+                           2686 ;	router.c:319: txRoutingTable[i].nextHop = 0xffff;
+   0B1E EF                 2687 	mov	a,r7
+   0B1F 24r00              2688 	add	a,#_txRoutingTable
+   0B21 FF                 2689 	mov	r7,a
+   0B22 E4                 2690 	clr	a
+   0B23 34s00              2691 	addc	a,#(_txRoutingTable >> 8)
+   0B25 FA                 2692 	mov	r2,a
+   0B26 8F 82              2693 	mov	dpl,r7
+   0B28 8A 83              2694 	mov	dph,r2
+   0B2A A3                 2695 	inc	dptr
+   0B2B A3                 2696 	inc	dptr
+   0B2C 74 FF              2697 	mov	a,#0xFF
+   0B2E F0                 2698 	movx	@dptr,a
+   0B2F A3                 2699 	inc	dptr
+   0B30 F0                 2700 	movx	@dptr,a
+                           2701 ;	router.c:320: txRoutingTable[i].batteryLevel = 0;
+   0B31 8F 82              2702 	mov	dpl,r7
+   0B33 8A 83              2703 	mov	dph,r2
+   0B35 A3                 2704 	inc	dptr
+   0B36 A3                 2705 	inc	dptr
+   0B37 A3                 2706 	inc	dptr
+   0B38 A3                 2707 	inc	dptr
+   0B39 E4                 2708 	clr	a
+   0B3A F0                 2709 	movx	@dptr,a
+   0B3B A3                 2710 	inc	dptr
+   0B3C F0                 2711 	movx	@dptr,a
+                           2712 ;	router.c:321: txRoutingTable[i].RSSI = 0;
+   0B3D 74 06              2713 	mov	a,#0x06
+   0B3F 2F                 2714 	add	a,r7
+   0B40 F5 82              2715 	mov	dpl,a
+   0B42 E4                 2716 	clr	a
+   0B43 3A                 2717 	addc	a,r2
+   0B44 F5 83              2718 	mov	dph,a
+   0B46 E4                 2719 	clr	a
+   0B47 F0                 2720 	movx	@dptr,a
+   0B48 A3                 2721 	inc	dptr
+   0B49 F0                 2722 	movx	@dptr,a
+                           2723 ;	router.c:316: for (i = 0; i < TABLELENGTH; i++)
+   0B4A 90s00r9E           2724 	mov	dptr,#_process_thread_router_process_i_1_1
+   0B4D EE                 2725 	mov	a,r6
+   0B4E 04                 2726 	inc	a
+   0B4F F0                 2727 	movx	@dptr,a
+   0B50 D0 04              2728 	pop	ar4
+   0B52 D0 03              2729 	pop	ar3
+   0B54 D0 02              2730 	pop	ar2
+   0B56 80 A3              2731 	sjmp	00117$
+   0B58                    2732 00120$:
+                           2733 ;	router.c:325: for (i = 0; i < TABLELENGTH; i++)
+   0B58 90s00r9E           2734 	mov	dptr,#_process_thread_router_process_i_1_1
+   0B5B E4                 2735 	clr	a
+   0B5C F0                 2736 	movx	@dptr,a
+   0B5D                    2737 00121$:
+   0B5D 90s00r9E           2738 	mov	dptr,#_process_thread_router_process_i_1_1
+   0B60 E0                 2739 	movx	a,@dptr
+   0B61 FE                 2740 	mov	r6,a
+   0B62 BE 03 00           2741 	cjne	r6,#0x03,00147$
+   0B65                    2742 00147$:
+   0B65 50 35              2743 	jnc	00124$
+                           2744 ;	router.c:327: txBackTable[i].sourceAddr = 0xffff;
+   0B67 C0 02              2745 	push	ar2
+   0B69 C0 03              2746 	push	ar3
+   0B6B C0 04              2747 	push	ar4
+   0B6D EE                 2748 	mov	a,r6
+   0B6E 75 F0 07           2749 	mov	b,#0x07
+   0B71 A4                 2750 	mul	ab
+   0B72 24r1B              2751 	add	a,#_txBackTable
+   0B74 FF                 2752 	mov	r7,a
+   0B75 E4                 2753 	clr	a
+   0B76 34s00              2754 	addc	a,#(_txBackTable >> 8)
+   0B78 FA                 2755 	mov	r2,a
+   0B79 8F 82              2756 	mov	dpl,r7
+   0B7B 8A 83              2757 	mov	dph,r2
+   0B7D A3                 2758 	inc	dptr
+   0B7E 74 FF              2759 	mov	a,#0xFF
+   0B80 F0                 2760 	movx	@dptr,a
+   0B81 A3                 2761 	inc	dptr
+   0B82 F0                 2762 	movx	@dptr,a
+                           2763 ;	router.c:328: txBackTable[i].destAddr = 0x0000;
+   0B83 8F 82              2764 	mov	dpl,r7
+   0B85 8A 83              2765 	mov	dph,r2
+   0B87 A3                 2766 	inc	dptr
+   0B88 A3                 2767 	inc	dptr
+   0B89 A3                 2768 	inc	dptr
+   0B8A E4                 2769 	clr	a
+   0B8B F0                 2770 	movx	@dptr,a
+   0B8C A3                 2771 	inc	dptr
+   0B8D F0                 2772 	movx	@dptr,a
+                           2773 ;	router.c:325: for (i = 0; i < TABLELENGTH; i++)
+   0B8E 90s00r9E           2774 	mov	dptr,#_process_thread_router_process_i_1_1
+   0B91 EE                 2775 	mov	a,r6
+   0B92 04                 2776 	inc	a
+   0B93 F0                 2777 	movx	@dptr,a
+   0B94 D0 04              2778 	pop	ar4
+   0B96 D0 03              2779 	pop	ar3
+   0B98 D0 02              2780 	pop	ar2
+   0B9A 80 C1              2781 	sjmp	00121$
+   0B9C                    2782 00124$:
+                           2783 ;	router.c:331: putstring("\n\r========================\n\r");
+   0B9C 90s00rB1           2784 	mov	dptr,#__str_4
+   0B9F 75 F0 80           2785 	mov	b,#0x80
+   0BA2 C0 02              2786 	push	ar2
+   0BA4 C0 03              2787 	push	ar3
+   0BA6 C0 04              2788 	push	ar4
+   0BA8 12s00r00           2789 	lcall	_putstring
+                           2790 ;	router.c:332: putstring("     Router/Receiver\n\r");
+   0BAB 90s00rCE           2791 	mov	dptr,#__str_5
+   0BAE 75 F0 80           2792 	mov	b,#0x80
+   0BB1 12s00r00           2793 	lcall	_putstring
+                           2794 ;	router.c:333: putstring("========================\n\r");
+   0BB4 90s00rE5           2795 	mov	dptr,#__str_6
+   0BB7 75 F0 80           2796 	mov	b,#0x80
+   0BBA 12s00r00           2797 	lcall	_putstring
+                           2798 ;	router.c:335: broadcast_open(&bc, 134, &broadcast_callbacks);
+   0BBD 74r00              2799 	mov	a,#_broadcast_callbacks
+   0BBF C0 E0              2800 	push	acc
+   0BC1 74s00              2801 	mov	a,#(_broadcast_callbacks >> 8)
+   0BC3 C0 E0              2802 	push	acc
+   0BC5 74 80              2803 	mov	a,#0x80
+   0BC7 C0 E0              2804 	push	acc
+   0BC9 74 86              2805 	mov	a,#0x86
+   0BCB C0 E0              2806 	push	acc
+   0BCD E4                 2807 	clr	a
+   0BCE C0 E0              2808 	push	acc
+   0BD0 90s00r42           2809 	mov	dptr,#_bc
+   0BD3 75 F0 00           2810 	mov	b,#0x00
+   0BD6 12s00r00           2811 	lcall	_broadcast_open
+   0BD9 E5 81              2812 	mov	a,sp
+   0BDB 24 FB              2813 	add	a,#0xfb
+   0BDD F5 81              2814 	mov	sp,a
+                           2815 ;	router.c:336: unicast_open(&uc, 135, &unicast_callbacks);
+   0BDF 74r04              2816 	mov	a,#_unicast_callbacks
+   0BE1 C0 E0              2817 	push	acc
+   0BE3 74s00              2818 	mov	a,#(_unicast_callbacks >> 8)
+   0BE5 C0 E0              2819 	push	acc
+   0BE7 74 80              2820 	mov	a,#0x80
+   0BE9 C0 E0              2821 	push	acc
+   0BEB 74 87              2822 	mov	a,#0x87
+   0BED C0 E0              2823 	push	acc
+   0BEF E4                 2824 	clr	a
+   0BF0 C0 E0              2825 	push	acc
+   0BF2 90s00r30           2826 	mov	dptr,#_uc
+   0BF5 75 F0 00           2827 	mov	b,#0x00
+   0BF8 12s00r00           2828 	lcall	_unicast_open
+   0BFB E5 81              2829 	mov	a,sp
+   0BFD 24 FB              2830 	add	a,#0xfb
+   0BFF F5 81              2831 	mov	sp,a
+                           2832 ;	router.c:338: etimer_set(&et, CLOCK_SECOND * 2);
+   0C01 E4                 2833 	clr	a
+   0C02 C0 E0              2834 	push	acc
+   0C04 74 01              2835 	mov	a,#0x01
+   0C06 C0 E0              2836 	push	acc
+   0C08 90s00rA0           2837 	mov	dptr,#_process_thread_router_process_et_1_1
+   0C0B 75 F0 00           2838 	mov	b,#0x00
+   0C0E 12s00r00           2839 	lcall	_etimer_set
+   0C11 15 81              2840 	dec	sp
+   0C13 15 81              2841 	dec	sp
+   0C15 D0 04              2842 	pop	ar4
+   0C17 D0 03              2843 	pop	ar3
+   0C19 D0 02              2844 	pop	ar2
+                           2845 ;	router.c:340: while (1)
+   0C1B                    2846 00114$:
+                           2847 ;	router.c:342: PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+   0C1B 7D 00              2848 	mov	r5,#0x00
+   0C1D 8A 82              2849 	mov	dpl,r2
+   0C1F 8B 83              2850 	mov	dph,r3
+   0C21 8C F0              2851 	mov	b,r4
+   0C23 74 56              2852 	mov	a,#0x56
+   0C25 12s00r00           2853 	lcall	__gptrput
+   0C28 A3                 2854 	inc	dptr
+   0C29 74 01              2855 	mov	a,#0x01
+   0C2B 12s00r00           2856 	lcall	__gptrput
+   0C2E                    2857 00102$:
+   0C2E ED                 2858 	mov	a,r5
+   0C2F 60 1E              2859 	jz	00103$
+   0C31 90s00rA0           2860 	mov	dptr,#_process_thread_router_process_et_1_1
+   0C34 75 F0 00           2861 	mov	b,#0x00
+   0C37 C0 02              2862 	push	ar2
+   0C39 C0 03              2863 	push	ar3
+   0C3B C0 04              2864 	push	ar4
+   0C3D 12s00r00           2865 	lcall	_etimer_expired
+   0C40 E5 82              2866 	mov	a,dpl
+   0C42 85 83 F0           2867 	mov	b,dph
+   0C45 D0 04              2868 	pop	ar4
+   0C47 D0 03              2869 	pop	ar3
+   0C49 D0 02              2870 	pop	ar2
+   0C4B 45 F0              2871 	orl	a,b
+   0C4D 70 06              2872 	jnz	00107$
+   0C4F                    2873 00103$:
+   0C4F 75 82 01           2874 	mov	dpl,#0x01
+   0C52 02s0ErBD           2875 	ljmp	00129$
+   0C55                    2876 00107$:
+                           2877 ;	router.c:344: if (found)
+   0C55 90s00r8B           2878 	mov	dptr,#_found
+   0C58 E0                 2879 	movx	a,@dptr
+   0C59 FD                 2880 	mov	r5,a
+   0C5A A3                 2881 	inc	dptr
+   0C5B E0                 2882 	movx	a,@dptr
+   0C5C FE                 2883 	mov	r6,a
+   0C5D 4D                 2884 	orl	a,r5
+   0C5E 70 03              2885 	jnz	00151$
+   0C60 02s0Er93           2886 	ljmp	00112$
+   0C63                    2887 00151$:
+                           2888 ;	router.c:347: rv = sensor->value(ADC_SENSOR_TYPE_VDD);
+   0C63 90s00r8F           2889 	mov	dptr,#_sensor
+   0C66 E0                 2890 	movx	a,@dptr
+   0C67 FD                 2891 	mov	r5,a
+   0C68 A3                 2892 	inc	dptr
+   0C69 E0                 2893 	movx	a,@dptr
+   0C6A FE                 2894 	mov	r6,a
+   0C6B A3                 2895 	inc	dptr
+   0C6C E0                 2896 	movx	a,@dptr
+   0C6D FF                 2897 	mov	r7,a
+   0C6E 74 03              2898 	mov	a,#0x03
+   0C70 2D                 2899 	add	a,r5
+   0C71 FD                 2900 	mov	r5,a
+   0C72 E4                 2901 	clr	a
+   0C73 3E                 2902 	addc	a,r6
+   0C74 FE                 2903 	mov	r6,a
+   0C75 8D 82              2904 	mov	dpl,r5
+   0C77 8E 83              2905 	mov	dph,r6
+   0C79 8F F0              2906 	mov	b,r7
+   0C7B 12s00r00           2907 	lcall	__gptrget
+   0C7E FD                 2908 	mov	r5,a
+   0C7F A3                 2909 	inc	dptr
+   0C80 12s00r00           2910 	lcall	__gptrget
+   0C83 FE                 2911 	mov	r6,a
+   0C84 C0 02              2912 	push	ar2
+   0C86 C0 03              2913 	push	ar3
+   0C88 C0 04              2914 	push	ar4
+   0C8A 74r9A              2915 	mov	a,#00152$
+   0C8C C0 E0              2916 	push	acc
+   0C8E 74s0C              2917 	mov	a,#(00152$ >> 8)
+   0C90 C0 E0              2918 	push	acc
+   0C92 C0 05              2919 	push	ar5
+   0C94 C0 06              2920 	push	ar6
+   0C96 90 00 04           2921 	mov	dptr,#0x0004
+   0C99 22                 2922 	ret
+   0C9A                    2923 00152$:
+   0C9A AD 82              2924 	mov	r5,dpl
+   0C9C AE 83              2925 	mov	r6,dph
+   0C9E D0 04              2926 	pop	ar4
+   0CA0 D0 03              2927 	pop	ar3
+   0CA2 D0 02              2928 	pop	ar2
+   0CA4 90s00r8D           2929 	mov	dptr,#_rv
+   0CA7 ED                 2930 	mov	a,r5
+   0CA8 F0                 2931 	movx	@dptr,a
+   0CA9 A3                 2932 	inc	dptr
+   0CAA EE                 2933 	mov	a,r6
+   0CAB F0                 2934 	movx	@dptr,a
+                           2935 ;	router.c:348: if (rv != -1)
+   0CAC BD FF 06           2936 	cjne	r5,#0xFF,00153$
+   0CAF BE FF 03           2937 	cjne	r6,#0xFF,00153$
+   0CB2 02s0Er93           2938 	ljmp	00112$
+   0CB5                    2939 00153$:
+                           2940 ;	router.c:350: for (j = 0; j < TABLELENGTH; j++)
+   0CB5 90s00r9F           2941 	mov	dptr,#_process_thread_router_process_j_1_1
+   0CB8 E4                 2942 	clr	a
+   0CB9 F0                 2943 	movx	@dptr,a
+   0CBA                    2944 00125$:
+   0CBA 90s00r9F           2945 	mov	dptr,#_process_thread_router_process_j_1_1
+   0CBD E0                 2946 	movx	a,@dptr
+   0CBE FD                 2947 	mov	r5,a
+   0CBF BD 03 00           2948 	cjne	r5,#0x03,00154$
+   0CC2                    2949 00154$:
+   0CC2 40 03              2950 	jc	00155$
+   0CC4 02s0Er93           2951 	ljmp	00112$
+   0CC7                    2952 00155$:
+                           2953 ;	router.c:352: sane = rv * 3.75 / 2047;
+   0CC7 C0 02              2954 	push	ar2
+   0CC9 C0 03              2955 	push	ar3
+   0CCB C0 04              2956 	push	ar4
+   0CCD 90s00r8D           2957 	mov	dptr,#_rv
+   0CD0 E0                 2958 	movx	a,@dptr
+   0CD1 FE                 2959 	mov	r6,a
+   0CD2 A3                 2960 	inc	dptr
+   0CD3 E0                 2961 	movx	a,@dptr
+   0CD4 FF                 2962 	mov	r7,a
+   0CD5 8E 82              2963 	mov	dpl,r6
+   0CD7 8F 83              2964 	mov	dph,r7
+   0CD9 C0 04              2965 	push	ar4
+   0CDB C0 05              2966 	push	ar5
+   0CDD 12s00r00           2967 	lcall	___sint2fs
+   0CE0 AE 82              2968 	mov	r6,dpl
+   0CE2 AF 83              2969 	mov	r7,dph
+   0CE4 AA F0              2970 	mov	r2,b
+   0CE6 FB                 2971 	mov	r3,a
+   0CE7 D0 05              2972 	pop	ar5
+   0CE9 D0 04              2973 	pop	ar4
+   0CEB C0 05              2974 	push	ar5
+   0CED C0 06              2975 	push	ar6
+   0CEF C0 07              2976 	push	ar7
+   0CF1 C0 02              2977 	push	ar2
+   0CF3 C0 03              2978 	push	ar3
+   0CF5 90 00 00           2979 	mov	dptr,#0x0000
+   0CF8 75 F0 70           2980 	mov	b,#0x70
+   0CFB 74 40              2981 	mov	a,#0x40
+   0CFD 12s00r00           2982 	lcall	___fsmul
+   0D00 AA 82              2983 	mov	r2,dpl
+   0D02 AB 83              2984 	mov	r3,dph
+   0D04 AC F0              2985 	mov	r4,b
+   0D06 FE                 2986 	mov	r6,a
+   0D07 E5 81              2987 	mov	a,sp
+   0D09 24 FC              2988 	add	a,#0xfc
+   0D0B F5 81              2989 	mov	sp,a
+   0D0D E4                 2990 	clr	a
+   0D0E C0 E0              2991 	push	acc
+   0D10 74 E0              2992 	mov	a,#0xE0
+   0D12 C0 E0              2993 	push	acc
+   0D14 74 FF              2994 	mov	a,#0xFF
+   0D16 C0 E0              2995 	push	acc
+   0D18 74 44              2996 	mov	a,#0x44
+   0D1A C0 E0              2997 	push	acc
+   0D1C 8A 82              2998 	mov	dpl,r2
+   0D1E 8B 83              2999 	mov	dph,r3
+   0D20 8C F0              3000 	mov	b,r4
+   0D22 EE                 3001 	mov	a,r6
+   0D23 12s00r00           3002 	lcall	___fsdiv
+   0D26 AA 82              3003 	mov	r2,dpl
+   0D28 AB 83              3004 	mov	r3,dph
+   0D2A AC F0              3005 	mov	r4,b
+   0D2C FE                 3006 	mov	r6,a
+   0D2D E5 81              3007 	mov	a,sp
+   0D2F 24 FC              3008 	add	a,#0xfc
+   0D31 F5 81              3009 	mov	sp,a
+   0D33 90s00r00           3010 	mov	dptr,#_sane
+   0D36 EA                 3011 	mov	a,r2
+   0D37 F0                 3012 	movx	@dptr,a
+   0D38 A3                 3013 	inc	dptr
+   0D39 EB                 3014 	mov	a,r3
+   0D3A F0                 3015 	movx	@dptr,a
+   0D3B A3                 3016 	inc	dptr
+   0D3C EC                 3017 	mov	a,r4
+   0D3D F0                 3018 	movx	@dptr,a
+   0D3E A3                 3019 	inc	dptr
+   0D3F EE                 3020 	mov	a,r6
+   0D40 F0                 3021 	movx	@dptr,a
+                           3022 ;	router.c:353: battery = sane * 1000;
+   0D41 C0 02              3023 	push	ar2
+   0D43 C0 03              3024 	push	ar3
+   0D45 C0 04              3025 	push	ar4
+   0D47 C0 06              3026 	push	ar6
+   0D49 90 00 00           3027 	mov	dptr,#0x0000
+   0D4C 75 F0 7A           3028 	mov	b,#0x7A
+   0D4F 74 44              3029 	mov	a,#0x44
+   0D51 12s00r00           3030 	lcall	___fsmul
+   0D54 AA 82              3031 	mov	r2,dpl
+   0D56 AB 83              3032 	mov	r3,dph
+   0D58 AC F0              3033 	mov	r4,b
+   0D5A FE                 3034 	mov	r6,a
+   0D5B E5 81              3035 	mov	a,sp
+   0D5D 24 FC              3036 	add	a,#0xfc
+   0D5F F5 81              3037 	mov	sp,a
+   0D61 D0 05              3038 	pop	ar5
+   0D63 8A 82              3039 	mov	dpl,r2
+   0D65 8B 83              3040 	mov	dph,r3
+   0D67 8C F0              3041 	mov	b,r4
+   0D69 EE                 3042 	mov	a,r6
+   0D6A C0 04              3043 	push	ar4
+   0D6C C0 05              3044 	push	ar5
+   0D6E 12s00r00           3045 	lcall	___fs2uint
+   0D71 AA 82              3046 	mov	r2,dpl
+   0D73 AB 83              3047 	mov	r3,dph
+   0D75 D0 05              3048 	pop	ar5
+   0D77 D0 04              3049 	pop	ar4
+   0D79 90s00r92           3050 	mov	dptr,#_battery
+   0D7C EA                 3051 	mov	a,r2
+   0D7D F0                 3052 	movx	@dptr,a
+   0D7E A3                 3053 	inc	dptr
+   0D7F EB                 3054 	mov	a,r3
+   0D80 F0                 3055 	movx	@dptr,a
+                           3056 ;	router.c:355: txDataBuffer[0] = CMD_RREP;
+   0D81 90s00r59           3057 	mov	dptr,#_txDataBuffer
+   0D84 74 26              3058 	mov	a,#0x26
+   0D86 F0                 3059 	movx	@dptr,a
+                           3060 ;	router.c:356: txDataBuffer[1] = rrepSource >> 8;
+   0D87 90s00r55           3061 	mov	dptr,#_rrepSource
+   0D8A E0                 3062 	movx	a,@dptr
+   0D8B FC                 3063 	mov	r4,a
+   0D8C A3                 3064 	inc	dptr
+   0D8D E0                 3065 	movx	a,@dptr
+   0D8E 90s00r5A           3066 	mov	dptr,#(_txDataBuffer + 0x0001)
+   0D91 F0                 3067 	movx	@dptr,a
+                           3068 ;	router.c:357: txDataBuffer[2] = rrepSource;
+   0D92 90s00r5B           3069 	mov	dptr,#(_txDataBuffer + 0x0002)
+   0D95 EC                 3070 	mov	a,r4
+   0D96 F0                 3071 	movx	@dptr,a
+                           3072 ;	router.c:358: txDataBuffer[3] = battery >> 8;
+   0D97 8B 04              3073 	mov	ar4,r3
+   0D99 90s00r5C           3074 	mov	dptr,#(_txDataBuffer + 0x0003)
+   0D9C EC                 3075 	mov	a,r4
+   0D9D F0                 3076 	movx	@dptr,a
+                           3077 ;	router.c:359: txDataBuffer[4] = battery;
+   0D9E 90s00r5D           3078 	mov	dptr,#(_txDataBuffer + 0x0004)
+   0DA1 EA                 3079 	mov	a,r2
+   0DA2 F0                 3080 	movx	@dptr,a
+                           3081 ;	router.c:360: txDataBuffer[5] = txRoutingTable[j].hopcount;
+   0DA3 ED                 3082 	mov	a,r5
+   0DA4 75 F0 09           3083 	mov	b,#0x09
+   0DA7 A4                 3084 	mul	ab
+   0DA8 24r00              3085 	add	a,#_txRoutingTable
+   0DAA FA                 3086 	mov	r2,a
+   0DAB E4                 3087 	clr	a
+   0DAC 34s00              3088 	addc	a,#(_txRoutingTable >> 8)
+   0DAE FB                 3089 	mov	r3,a
+   0DAF 74 08              3090 	mov	a,#0x08
+   0DB1 2A                 3091 	add	a,r2
+   0DB2 F5 82              3092 	mov	dpl,a
+   0DB4 E4                 3093 	clr	a
+   0DB5 3B                 3094 	addc	a,r3
+   0DB6 F5 83              3095 	mov	dph,a
+   0DB8 E0                 3096 	movx	a,@dptr
+   0DB9 FA                 3097 	mov	r2,a
+   0DBA 90s00r5E           3098 	mov	dptr,#(_txDataBuffer + 0x0005)
+   0DBD F0                 3099 	movx	@dptr,a
+                           3100 ;	router.c:361: packetbuf_copyfrom(txDataBuffer, 6);
+   0DBE C0 02              3101 	push	ar2
+   0DC0 C0 03              3102 	push	ar3
+   0DC2 C0 04              3103 	push	ar4
+   0DC4 74 06              3104 	mov	a,#0x06
+   0DC6 C0 E0              3105 	push	acc
+   0DC8 E4                 3106 	clr	a
+   0DC9 C0 E0              3107 	push	acc
+   0DCB 90s00r59           3108 	mov	dptr,#_txDataBuffer
+   0DCE 75 F0 00           3109 	mov	b,#0x00
+   0DD1 12s00r00           3110 	lcall	_packetbuf_copyfrom
+   0DD4 15 81              3111 	dec	sp
+   0DD6 15 81              3112 	dec	sp
+   0DD8 D0 04              3113 	pop	ar4
+   0DDA D0 03              3114 	pop	ar3
+   0DDC D0 02              3115 	pop	ar2
+                           3116 ;	router.c:363: addr.u8[0] = txRoutingTable[j].nextHop;
+   0DDE 90s00r9F           3117 	mov	dptr,#_process_thread_router_process_j_1_1
+   0DE1 E0                 3118 	movx	a,@dptr
+   0DE2 75 F0 09           3119 	mov	b,#0x09
+   0DE5 A4                 3120 	mul	ab
+   0DE6 24r00              3121 	add	a,#_txRoutingTable
+   0DE8 FA                 3122 	mov	r2,a
+   0DE9 E4                 3123 	clr	a
+   0DEA 34s00              3124 	addc	a,#(_txRoutingTable >> 8)
+   0DEC FB                 3125 	mov	r3,a
+   0DED 8A 82              3126 	mov	dpl,r2
+   0DEF 8B 83              3127 	mov	dph,r3
+   0DF1 A3                 3128 	inc	dptr
+   0DF2 A3                 3129 	inc	dptr
+   0DF3 E0                 3130 	movx	a,@dptr
+   0DF4 FA                 3131 	mov	r2,a
+   0DF5 A3                 3132 	inc	dptr
+   0DF6 E0                 3133 	movx	a,@dptr
+   0DF7 FB                 3134 	mov	r3,a
+   0DF8 8A 04              3135 	mov	ar4,r2
+   0DFA 90s00r51           3136 	mov	dptr,#_addr
+   0DFD EC                 3137 	mov	a,r4
+   0DFE F0                 3138 	movx	@dptr,a
+                           3139 ;	router.c:364: addr.u8[1] = txRoutingTable[j].nextHop >> 8;
+   0DFF 8B 02              3140 	mov	ar2,r3
+   0E01 90s00r52           3141 	mov	dptr,#(_addr + 0x0001)
+   0E04 EA                 3142 	mov	a,r2
+   0E05 F0                 3143 	movx	@dptr,a
+                           3144 ;	router.c:365: unicast_send(&uc, &addr);
+   0E06 C0 02              3145 	push	ar2
+   0E08 C0 03              3146 	push	ar3
+   0E0A C0 04              3147 	push	ar4
+   0E0C 74r51              3148 	mov	a,#_addr
+   0E0E C0 E0              3149 	push	acc
+   0E10 74s00              3150 	mov	a,#(_addr >> 8)
+   0E12 C0 E0              3151 	push	acc
+   0E14 E4                 3152 	clr	a
+   0E15 C0 E0              3153 	push	acc
+   0E17 90s00r30           3154 	mov	dptr,#_uc
+   0E1A 75 F0 00           3155 	mov	b,#0x00
+   0E1D 12s00r00           3156 	lcall	_unicast_send
+   0E20 15 81              3157 	dec	sp
+   0E22 15 81              3158 	dec	sp
+   0E24 15 81              3159 	dec	sp
+                           3160 ;	router.c:366: printf("RREP Source: %d\n\r", &addr);
+   0E26 74r51              3161 	mov	a,#_addr
+   0E28 C0 E0              3162 	push	acc
+   0E2A 74s00              3163 	mov	a,#(_addr >> 8)
+   0E2C C0 E0              3164 	push	acc
+   0E2E E4                 3165 	clr	a
+   0E2F C0 E0              3166 	push	acc
+   0E31 74r00              3167 	mov	a,#__str_7
+   0E33 C0 E0              3168 	push	acc
+   0E35 74s01              3169 	mov	a,#(__str_7 >> 8)
+   0E37 C0 E0              3170 	push	acc
+   0E39 74 80              3171 	mov	a,#0x80
+   0E3B C0 E0              3172 	push	acc
+   0E3D 12s00r00           3173 	lcall	_printf
+   0E40 E5 81              3174 	mov	a,sp
+   0E42 24 FA              3175 	add	a,#0xfa
+   0E44 F5 81              3176 	mov	sp,a
+   0E46 D0 04              3177 	pop	ar4
+   0E48 D0 03              3178 	pop	ar3
+   0E4A D0 02              3179 	pop	ar2
+                           3180 ;	router.c:367: printf("prepared rrep packet now sending to %02x.%02x\n\r", addr.u8[0], addr.u8[1]);
+   0E4C 90s00r52           3181 	mov	dptr,#(_addr + 0x0001)
+   0E4F E0                 3182 	movx	a,@dptr
+   0E50 FA                 3183 	mov	r2,a
+   0E51 7B 00              3184 	mov	r3,#0x00
+   0E53 90s00r51           3185 	mov	dptr,#_addr
+   0E56 E0                 3186 	movx	a,@dptr
+   0E57 FC                 3187 	mov	r4,a
+   0E58 7D 00              3188 	mov	r5,#0x00
+   0E5A C0 02              3189 	push	ar2
+   0E5C C0 03              3190 	push	ar3
+   0E5E C0 04              3191 	push	ar4
+   0E60 C0 02              3192 	push	ar2
+   0E62 C0 03              3193 	push	ar3
+   0E64 C0 04              3194 	push	ar4
+   0E66 C0 05              3195 	push	ar5
+   0E68 74r12              3196 	mov	a,#__str_8
+   0E6A C0 E0              3197 	push	acc
+   0E6C 74s01              3198 	mov	a,#(__str_8 >> 8)
+   0E6E C0 E0              3199 	push	acc
+   0E70 74 80              3200 	mov	a,#0x80
+   0E72 C0 E0              3201 	push	acc
+   0E74 12s00r00           3202 	lcall	_printf
+   0E77 E5 81              3203 	mov	a,sp
+   0E79 24 F9              3204 	add	a,#0xf9
+   0E7B F5 81              3205 	mov	sp,a
+   0E7D D0 04              3206 	pop	ar4
+   0E7F D0 03              3207 	pop	ar3
+   0E81 D0 02              3208 	pop	ar2
+                           3209 ;	router.c:350: for (j = 0; j < TABLELENGTH; j++)
+   0E83 90s00r9F           3210 	mov	dptr,#_process_thread_router_process_j_1_1
+   0E86 E0                 3211 	movx	a,@dptr
+   0E87 24 01              3212 	add	a,#0x01
+   0E89 F0                 3213 	movx	@dptr,a
+   0E8A D0 04              3214 	pop	ar4
+   0E8C D0 03              3215 	pop	ar3
+   0E8E D0 02              3216 	pop	ar2
+   0E90 02s0CrBA           3217 	ljmp	00125$
+   0E93                    3218 00112$:
+                           3219 ;	router.c:373: etimer_reset(&et);
+   0E93 90s00rA0           3220 	mov	dptr,#_process_thread_router_process_et_1_1
+   0E96 75 F0 00           3221 	mov	b,#0x00
+   0E99 C0 02              3222 	push	ar2
+   0E9B C0 03              3223 	push	ar3
+   0E9D C0 04              3224 	push	ar4
+   0E9F 12s00r00           3225 	lcall	_etimer_reset
+   0EA2 D0 04              3226 	pop	ar4
+   0EA4 D0 03              3227 	pop	ar3
+   0EA6 D0 02              3228 	pop	ar2
+   0EA8 02s0Cr1B           3229 	ljmp	00114$
+                           3230 ;	router.c:376: PROCESS_END();
+   0EAB                    3231 00116$:
+   0EAB 8A 82              3232 	mov	dpl,r2
+   0EAD 8B 83              3233 	mov	dph,r3
+   0EAF 8C F0              3234 	mov	b,r4
+   0EB1 E4                 3235 	clr	a
+   0EB2 12s00r00           3236 	lcall	__gptrput
+   0EB5 A3                 3237 	inc	dptr
+   0EB6 E4                 3238 	clr	a
+   0EB7 12s00r00           3239 	lcall	__gptrput
+   0EBA 75 82 03           3240 	mov	dpl,#0x03
+   0EBD                    3241 00129$:
+   0EBD D0*00              3242 	pop	_bp
+   0EBF 22                 3243 	ret
+                           3244 	.area CSEG    (CODE)
+                           3245 	.area CONST   (CODE)
+   0000                    3246 _broadcast_callbacks:
+   0000r00s00              3247 	.byte _recv_bc,(_recv_bc >> 8)
+   0002 00 00              3248 	.byte #0x00,#0x00
+   0004                    3249 _unicast_callbacks:
+   0004rAFs04              3250 	.byte _recv_uc,(_recv_uc >> 8)
+   0006 00 00              3251 	.byte #0x00,#0x00
+   0008                    3252 _autostart_processes:
+   0008r06s00 00           3253 	.byte _router_process,(_router_process >> 8),#0x00
+                           3254 ; generic printIvalPtr
+   000B 00 00 00           3255 	.byte #0x00,#0x00,#0x00
+   000E                    3256 __str_0:
+   000E 52 65 63 65 69 76  3257 	.ascii "Received RREQ from: %d"
+        65 64 20 52 52 45
+        51 20 66 72 6F 6D
+        3A 20 25 64
+   0024 0A                 3258 	.db 0x0A
+   0025 0D                 3259 	.db 0x0D
+   0026 00                 3260 	.db 0x00
+   0027                    3261 __str_1:
+   0027 52 52 45 51 20 72  3262 	.ascii "RREQ received from %02x.%02x  Rebroadcasting..."
+        65 63 65 69 76 65
+        64 20 66 72 6F 6D
+        20 25 30 32 78 2E
+        25 30 32 78 20 20
+        52 65 62 72 6F 61
+        64 63 61 73 74 69
+        6E 67 2E 2E 2E
+   0056 0A                 3263 	.db 0x0A
+   0057 0D                 3264 	.db 0x0D
+   0058 00                 3265 	.db 0x00
+   0059                    3266 __str_2:
+   0059 0A                 3267 	.db 0x0A
+   005A 0D                 3268 	.db 0x0D
+   005B 66 6F 75 6E 64 20  3269 	.ascii "found source address sending RREP to sender ..."
+        73 6F 75 72 63 65
+        20 61 64 64 72 65
+        73 73 20 73 65 6E
+        64 69 6E 67 20 52
+        52 45 50 20 74 6F
+        20 73 65 6E 64 65
+        72 20 2E 2E 2E
+   008A 0A                 3270 	.db 0x0A
+   008B 0D                 3271 	.db 0x0D
+   008C 00                 3272 	.db 0x00
+   008D                    3273 __str_3:
+   008D 54 65 6D 70 3D 25  3274 	.ascii "Temp=%d.%02u C received from: %d "
+        64 2E 25 30 32 75
+        20 43 20 72 65 63
+        65 69 76 65 64 20
+        66 72 6F 6D 3A 20
+        25 64 20
+   00AE 0A                 3275 	.db 0x0A
+   00AF 0D                 3276 	.db 0x0D
+   00B0 00                 3277 	.db 0x00
+   00B1                    3278 __str_4:
+   00B1 0A                 3279 	.db 0x0A
+   00B2 0D                 3280 	.db 0x0D
+   00B3 3D 3D 3D 3D 3D 3D  3281 	.ascii "========================"
+        3D 3D 3D 3D 3D 3D
+        3D 3D 3D 3D 3D 3D
+        3D 3D 3D 3D 3D 3D
+   00CB 0A                 3282 	.db 0x0A
+   00CC 0D                 3283 	.db 0x0D
+   00CD 00                 3284 	.db 0x00
+   00CE                    3285 __str_5:
+   00CE 20 20 20 20 20 52  3286 	.ascii "     Router/Receiver"
+        6F 75 74 65 72 2F
+        52 65 63 65 69 76
+        65 72
+   00E2 0A                 3287 	.db 0x0A
+   00E3 0D                 3288 	.db 0x0D
+   00E4 00                 3289 	.db 0x00
+   00E5                    3290 __str_6:
+   00E5 3D 3D 3D 3D 3D 3D  3291 	.ascii "========================"
+        3D 3D 3D 3D 3D 3D
+        3D 3D 3D 3D 3D 3D
+        3D 3D 3D 3D 3D 3D
+   00FD 0A                 3292 	.db 0x0A
+   00FE 0D                 3293 	.db 0x0D
+   00FF 00                 3294 	.db 0x00
+   0100                    3295 __str_7:
+   0100 52 52 45 50 20 53  3296 	.ascii "RREP Source: %d"
+        6F 75 72 63 65 3A
+        20 25 64
+   010F 0A                 3297 	.db 0x0A
+   0110 0D                 3298 	.db 0x0D
+   0111 00                 3299 	.db 0x00
+   0112                    3300 __str_8:
+   0112 70 72 65 70 61 72  3301 	.ascii "prepared rrep packet now sending to %02x.%02x"
+        65 64 20 72 72 65
+        70 20 70 61 63 6B
+        65 74 20 6E 6F 77
+        20 73 65 6E 64 69
+        6E 67 20 74 6F 20
+        25 30 32 78 2E 25
+        30 32 78
+   013F 0A                 3302 	.db 0x0A
+   0140 0D                 3303 	.db 0x0D
+   0141 00                 3304 	.db 0x00
+                           3305 	.area XINIT   (CODE)
+   0000                    3306 __xinit__sane:
+   0000 00 00 00 00        3307 	.byte #0x00,#0x00,#0x00,#0x00	;  0.000000e+00
+   0004                    3308 __xinit__tempReading1:
+   0004 00                 3309 	.db #0x00	; 0
+   0005                    3310 __xinit__tempReading2:
+   0005 00                 3311 	.db #0x00	; 0
+   0006                    3312 __xinit__router_process:
+                           3313 ; generic printIvalPtr
+   0006 00 00 00           3314 	.byte #0x00,#0x00,#0x00
+   0009rCCs0A              3315 	.byte _process_thread_router_process,(_process_thread_router_process >> 8)
+   000B 00 00              3316 	.byte #0x00,#0x00	; 0
+   000D 00                 3317 	.db #0x00	; 0
+   000E 00                 3318 	.db #0x00	; 0
+                           3319 	.area CABS    (ABS,CODE)

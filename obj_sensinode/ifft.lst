@@ -1,0 +1,2146 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:26:42 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module ifft
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _ifft
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 	.area RSEG    (ABS,DATA)
+   0000                      17 	.org 0x0000
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (ABS,DATA)
+   0000                      22 	.org 0x0000
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable register banks
+                             25 ;--------------------------------------------------------
+                             26 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      27 	.ds 8
+                             28 ;--------------------------------------------------------
+                             29 ; internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG    (DATA)
+                             32 ;--------------------------------------------------------
+                             33 ; overlayable items in internal ram 
+                             34 ;--------------------------------------------------------
+                             35 	.area OSEG    (OVR,DATA)
+                             36 ;--------------------------------------------------------
+                             37 ; indirectly addressable internal ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area ISEG    (DATA)
+                             40 ;--------------------------------------------------------
+                             41 ; absolute internal ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area IABS    (ABS,DATA)
+                             44 	.area IABS    (ABS,DATA)
+                             45 ;--------------------------------------------------------
+                             46 ; bit data
+                             47 ;--------------------------------------------------------
+                             48 	.area BSEG    (BIT)
+                             49 ;--------------------------------------------------------
+                             50 ; paged external ram data
+                             51 ;--------------------------------------------------------
+                             52 	.area PSEG    (PAG,XDATA)
+                             53 ;--------------------------------------------------------
+                             54 ; external ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area XSEG    (XDATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute external ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area XABS    (ABS,XDATA)
+                             61 ;--------------------------------------------------------
+                             62 ; external initialized ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area XISEG   (XDATA)
+                             65 	.area HOME    (CODE)
+                             66 	.area GSINIT0 (CODE)
+                             67 	.area GSINIT1 (CODE)
+                             68 	.area GSINIT2 (CODE)
+                             69 	.area GSINIT3 (CODE)
+                             70 	.area GSINIT4 (CODE)
+                             71 	.area GSINIT5 (CODE)
+                             72 	.area GSINIT  (CODE)
+                             73 	.area GSFINAL (CODE)
+                             74 	.area CSEG    (CODE)
+                             75 ;--------------------------------------------------------
+                             76 ; global & static initialisations
+                             77 ;--------------------------------------------------------
+                             78 	.area HOME    (CODE)
+                             79 	.area GSINIT  (CODE)
+                             80 	.area GSFINAL (CODE)
+                             81 	.area GSINIT  (CODE)
+                             82 ;--------------------------------------------------------
+                             83 ; Home
+                             84 ;--------------------------------------------------------
+                             85 	.area HOME    (CODE)
+                             86 	.area HOME    (CODE)
+                             87 ;--------------------------------------------------------
+                             88 ; code
+                             89 ;--------------------------------------------------------
+                             90 	.area CSEG    (CODE)
+                             91 ;------------------------------------------------------------
+                             92 ;Allocation info for local variables in function 'bitrev'
+                             93 ;------------------------------------------------------------
+                             94 ;nu                        Allocated to stack - offset -4
+                             95 ;j                         Allocated to stack - offset 1
+                             96 ;k                         Allocated to registers r2 r3 
+                             97 ;sloc0                     Allocated to stack - offset 5
+                             98 ;------------------------------------------------------------
+                             99 ;	../../../core/lib/ifft.c:62: static uint16_t bitrev(uint16_t j, uint16_t nu)
+                            100 ;	-----------------------------------------
+                            101 ;	 function bitrev
+                            102 ;	-----------------------------------------
+   0000                     103 _bitrev:
+                    0002    104 	ar2 = 0x02
+                    0003    105 	ar3 = 0x03
+                    0004    106 	ar4 = 0x04
+                    0005    107 	ar5 = 0x05
+                    0006    108 	ar6 = 0x06
+                    0007    109 	ar7 = 0x07
+                    0000    110 	ar0 = 0x00
+                    0001    111 	ar1 = 0x01
+   0000 C0*00               112 	push	_bp
+   0002 85 81*00            113 	mov	_bp,sp
+   0005 C0 82               114 	push	dpl
+   0007 C0 83               115 	push	dph
+                            116 ;	../../../core/lib/ifft.c:65: k = 0;
+   0009 E4                  117 	clr	a
+   000A FA                  118 	mov	r2,a
+   000B FB                  119 	mov	r3,a
+   000C E5*00               120 	mov	a,_bp
+   000E 24 FC               121 	add	a,#0xfc
+   0010 F8                  122 	mov	r0,a
+   0011 86 06               123 	mov	ar6,@r0
+   0013 08                  124 	inc	r0
+   0014 86 07               125 	mov	ar7,@r0
+   0016                     126 00101$:
+                            127 ;	../../../core/lib/ifft.c:66: for (; nu > 0; nu--) {
+   0016 EE                  128 	mov	a,r6
+   0017 4F                  129 	orl	a,r7
+   0018 60 02               130 	jz	00107$
+   001A 74 01               131 	mov	a,#0x01
+   001C                     132 00107$:
+   001C FC                  133 	mov	r4,a
+   001D 60 2E               134 	jz	00104$
+                            135 ;	../../../core/lib/ifft.c:67: k  = (k << 1) + (j & 1);
+   001F 8A 04               136 	mov	ar4,r2
+   0021 EB                  137 	mov	a,r3
+   0022 CC                  138 	xch	a,r4
+   0023 25 E0               139 	add	a,acc
+   0025 CC                  140 	xch	a,r4
+   0026 33                  141 	rlc	a
+   0027 FD                  142 	mov	r5,a
+   0028 A8*00               143 	mov	r0,_bp
+   002A 08                  144 	inc	r0
+   002B 74 01               145 	mov	a,#0x01
+   002D 56                  146 	anl	a,@r0
+   002E 7B 00               147 	mov	r3,#0x00
+   0030 2C                  148 	add	a,r4
+   0031 FC                  149 	mov	r4,a
+   0032 EB                  150 	mov	a,r3
+   0033 3D                  151 	addc	a,r5
+   0034 FD                  152 	mov	r5,a
+   0035 8C 02               153 	mov	ar2,r4
+   0037 8D 03               154 	mov	ar3,r5
+                            155 ;	../../../core/lib/ifft.c:68: j = j >> 1;
+   0039 A8*00               156 	mov	r0,_bp
+   003B 08                  157 	inc	r0
+   003C 08                  158 	inc	r0
+   003D E6                  159 	mov	a,@r0
+   003E 18                  160 	dec	r0
+   003F C3                  161 	clr	c
+   0040 13                  162 	rrc	a
+   0041 C6                  163 	xch	a,@r0
+   0042 13                  164 	rrc	a
+   0043 C6                  165 	xch	a,@r0
+   0044 08                  166 	inc	r0
+   0045 F6                  167 	mov	@r0,a
+                            168 ;	../../../core/lib/ifft.c:66: for (; nu > 0; nu--) {
+   0046 1E                  169 	dec	r6
+   0047 BE FF 01            170 	cjne	r6,#0xff,00115$
+   004A 1F                  171 	dec	r7
+   004B                     172 00115$:
+   004B 80 C9               173 	sjmp	00101$
+   004D                     174 00104$:
+                            175 ;	../../../core/lib/ifft.c:70: return k;
+   004D 8A 82               176 	mov	dpl,r2
+   004F 8B 83               177 	mov	dph,r3
+   0051 85*00 81            178 	mov	sp,_bp
+   0054 D0*00               179 	pop	_bp
+   0056 22                  180 	ret
+                            181 ;------------------------------------------------------------
+                            182 ;Allocation info for local variables in function 'sinI'
+                            183 ;------------------------------------------------------------
+                            184 ;angleMilli                Allocated to registers r2 r3 
+                            185 ;pos                       Allocated to registers r2 r3 
+                            186 ;------------------------------------------------------------
+                            187 ;	../../../core/lib/ifft.c:75: static int16_t sinI(uint16_t angleMilli)
+                            188 ;	-----------------------------------------
+                            189 ;	 function sinI
+                            190 ;	-----------------------------------------
+   0057                     191 _sinI:
+   0057 AA 82               192 	mov	r2,dpl
+   0059 AB 83               193 	mov	r3,dph
+                            194 ;	../../../core/lib/ifft.c:78: pos = (uint16_t) ((SIN_TAB_LEN * (uint32_t) angleMilli) / 1000);
+   005B 7C 00               195 	mov	r4,#0x00
+   005D 7D 00               196 	mov	r5,#0x00
+   005F C0 02               197 	push	ar2
+   0061 C0 03               198 	push	ar3
+   0063 C0 04               199 	push	ar4
+   0065 C0 05               200 	push	ar5
+   0067 90 00 78            201 	mov	dptr,#(0x78&0x00ff)
+   006A E4                  202 	clr	a
+   006B F5 F0               203 	mov	b,a
+   006D 12s00r00            204 	lcall	__mullong
+   0070 AA 82               205 	mov	r2,dpl
+   0072 AB 83               206 	mov	r3,dph
+   0074 AC F0               207 	mov	r4,b
+   0076 FD                  208 	mov	r5,a
+   0077 E5 81               209 	mov	a,sp
+   0079 24 FC               210 	add	a,#0xfc
+   007B F5 81               211 	mov	sp,a
+   007D 74 E8               212 	mov	a,#0xE8
+   007F C0 E0               213 	push	acc
+   0081 74 03               214 	mov	a,#0x03
+   0083 C0 E0               215 	push	acc
+   0085 E4                  216 	clr	a
+   0086 C0 E0               217 	push	acc
+   0088 C0 E0               218 	push	acc
+   008A 8A 82               219 	mov	dpl,r2
+   008C 8B 83               220 	mov	dph,r3
+   008E 8C F0               221 	mov	b,r4
+   0090 ED                  222 	mov	a,r5
+   0091 12s00r00            223 	lcall	__divulong
+   0094 AA 82               224 	mov	r2,dpl
+   0096 AB 83               225 	mov	r3,dph
+   0098 E5 81               226 	mov	a,sp
+   009A 24 FC               227 	add	a,#0xfc
+   009C F5 81               228 	mov	sp,a
+                            229 ;	../../../core/lib/ifft.c:79: return SIN_TAB[pos % SIN_TAB_LEN];
+   009E 74 78               230 	mov	a,#0x78
+   00A0 C0 E0               231 	push	acc
+   00A2 E4                  232 	clr	a
+   00A3 C0 E0               233 	push	acc
+   00A5 8A 82               234 	mov	dpl,r2
+   00A7 8B 83               235 	mov	dph,r3
+   00A9 12s00r00            236 	lcall	__moduint
+   00AC AA 82               237 	mov	r2,dpl
+   00AE AB 83               238 	mov	r3,dph
+   00B0 15 81               239 	dec	sp
+   00B2 15 81               240 	dec	sp
+   00B4 EA                  241 	mov	a,r2
+   00B5 24r00               242 	add	a,#_SIN_TAB
+   00B7 F5 82               243 	mov	dpl,a
+   00B9 EB                  244 	mov	a,r3
+   00BA 34s00               245 	addc	a,#(_SIN_TAB >> 8)
+   00BC F5 83               246 	mov	dph,a
+   00BE E4                  247 	clr	a
+   00BF 93                  248 	movc	a,@a+dptr
+   00C0 FA                  249 	mov	r2,a
+   00C1 33                  250 	rlc	a
+   00C2 95 E0               251 	subb	a,acc
+   00C4 8A 82               252 	mov	dpl,r2
+   00C6 F5 83               253 	mov	dph,a
+   00C8 22                  254 	ret
+                            255 ;------------------------------------------------------------
+                            256 ;Allocation info for local variables in function 'cosI'
+                            257 ;------------------------------------------------------------
+                            258 ;angleMilli                Allocated to registers r2 r3 
+                            259 ;------------------------------------------------------------
+                            260 ;	../../../core/lib/ifft.c:82: static int16_t cosI(uint16_t angleMilli)
+                            261 ;	-----------------------------------------
+                            262 ;	 function cosI
+                            263 ;	-----------------------------------------
+   00C9                     264 _cosI:
+   00C9 AA 82               265 	mov	r2,dpl
+   00CB AB 83               266 	mov	r3,dph
+                            267 ;	../../../core/lib/ifft.c:84: return sinI(angleMilli + 250);
+   00CD 74 FA               268 	mov	a,#0xFA
+   00CF 2A                  269 	add	a,r2
+   00D0 FA                  270 	mov	r2,a
+   00D1 E4                  271 	clr	a
+   00D2 3B                  272 	addc	a,r3
+   00D3 FB                  273 	mov	r3,a
+   00D4 8A 82               274 	mov	dpl,r2
+   00D6 8B 83               275 	mov	dph,r3
+   00D8 02s00r57            276 	ljmp	_sinI
+                            277 ;------------------------------------------------------------
+                            278 ;Allocation info for local variables in function 'ilog2'
+                            279 ;------------------------------------------------------------
+                            280 ;val                       Allocated to registers r2 r3 
+                            281 ;log                       Allocated to registers r4 r5 
+                            282 ;------------------------------------------------------------
+                            283 ;	../../../core/lib/ifft.c:87: static uint16_t ilog2(uint16_t val)
+                            284 ;	-----------------------------------------
+                            285 ;	 function ilog2
+                            286 ;	-----------------------------------------
+   00DB                     287 _ilog2:
+   00DB AA 82               288 	mov	r2,dpl
+                            289 ;	../../../core/lib/ifft.c:91: val = val >> 1; /* The 20 = 1 => log = 0 => val = 0 */
+   00DD E5 83               290 	mov	a,dph
+   00DF C3                  291 	clr	c
+   00E0 13                  292 	rrc	a
+   00E1 CA                  293 	xch	a,r2
+   00E2 13                  294 	rrc	a
+   00E3 CA                  295 	xch	a,r2
+   00E4 FB                  296 	mov	r3,a
+                            297 ;	../../../core/lib/ifft.c:92: while (val > 0) {
+   00E5 7C 00               298 	mov	r4,#0x00
+   00E7 7D 00               299 	mov	r5,#0x00
+   00E9                     300 00101$:
+   00E9 EA                  301 	mov	a,r2
+   00EA 4B                  302 	orl	a,r3
+   00EB 60 0E               303 	jz	00103$
+                            304 ;	../../../core/lib/ifft.c:93: val = val >> 1;
+   00ED EB                  305 	mov	a,r3
+   00EE C3                  306 	clr	c
+   00EF 13                  307 	rrc	a
+   00F0 CA                  308 	xch	a,r2
+   00F1 13                  309 	rrc	a
+   00F2 CA                  310 	xch	a,r2
+   00F3 FB                  311 	mov	r3,a
+                            312 ;	../../../core/lib/ifft.c:94: log++;
+   00F4 0C                  313 	inc	r4
+   00F5 BC 00 F1            314 	cjne	r4,#0x00,00101$
+   00F8 0D                  315 	inc	r5
+   00F9 80 EE               316 	sjmp	00101$
+   00FB                     317 00103$:
+                            318 ;	../../../core/lib/ifft.c:96: return log;
+   00FB 8C 82               319 	mov	dpl,r4
+   00FD 8D 83               320 	mov	dph,r5
+   00FF 22                  321 	ret
+                            322 ;------------------------------------------------------------
+                            323 ;Allocation info for local variables in function 'ifft'
+                            324 ;------------------------------------------------------------
+                            325 ;xim                       Allocated to stack - offset -5
+                            326 ;n                         Allocated to stack - offset -7
+                            327 ;xre                       Allocated to stack - offset 1
+                            328 ;nu                        Allocated to stack - offset 4
+                            329 ;n2                        Allocated to stack - offset 6
+                            330 ;nu1                       Allocated to registers r2 r4 
+                            331 ;p                         Allocated to stack - offset 8
+                            332 ;k                         Allocated to registers r2 r6 
+                            333 ;l                         Allocated to stack - offset 10
+                            334 ;i                         Allocated to stack - offset 12
+                            335 ;c                         Allocated to registers r2 r5 r6 r7 
+                            336 ;s                         Allocated to stack - offset 14
+                            337 ;tr                        Allocated to stack - offset 18
+                            338 ;ti                        Allocated to registers r2 r5 r6 r7 
+                            339 ;sloc0                     Allocated to stack - offset 22
+                            340 ;sloc1                     Allocated to stack - offset 24
+                            341 ;sloc2                     Allocated to stack - offset 26
+                            342 ;sloc3                     Allocated to stack - offset 28
+                            343 ;sloc4                     Allocated to stack - offset 30
+                            344 ;sloc5                     Allocated to stack - offset 33
+                            345 ;sloc6                     Allocated to stack - offset 37
+                            346 ;sloc7                     Allocated to stack - offset 41
+                            347 ;sloc8                     Allocated to stack - offset 44
+                            348 ;sloc9                     Allocated to stack - offset 48
+                            349 ;sloc10                    Allocated to stack - offset 52
+                            350 ;------------------------------------------------------------
+                            351 ;	../../../core/lib/ifft.c:114: ifft(int16_t xre[], int16_t xim[], uint16_t n)
+                            352 ;	-----------------------------------------
+                            353 ;	 function ifft
+                            354 ;	-----------------------------------------
+   0100                     355 _ifft:
+   0100 C0*00               356 	push	_bp
+   0102 85 81*00            357 	mov	_bp,sp
+   0105 C0 82               358 	push	dpl
+   0107 C0 83               359 	push	dph
+   0109 C0 F0               360 	push	b
+   010B E5 81               361 	mov	a,sp
+   010D 24 37               362 	add	a,#0x37
+   010F F5 81               363 	mov	sp,a
+                            364 ;	../../../core/lib/ifft.c:122: nu = ilog2(n);
+   0111 E5*00               365 	mov	a,_bp
+   0113 24 F9               366 	add	a,#0xf9
+   0115 F8                  367 	mov	r0,a
+   0116 86 82               368 	mov	dpl,@r0
+   0118 08                  369 	inc	r0
+   0119 86 83               370 	mov	dph,@r0
+   011B 12s00rDB            371 	lcall	_ilog2
+   011E AD 82               372 	mov	r5,dpl
+   0120 AE 83               373 	mov	r6,dph
+   0122 E5*00               374 	mov	a,_bp
+   0124 24 04               375 	add	a,#0x04
+   0126 F8                  376 	mov	r0,a
+   0127 A6 05               377 	mov	@r0,ar5
+   0129 08                  378 	inc	r0
+   012A A6 06               379 	mov	@r0,ar6
+                            380 ;	../../../core/lib/ifft.c:123: nu1 = nu - 1;
+   012C E5*00               381 	mov	a,_bp
+   012E 24 04               382 	add	a,#0x04
+   0130 F8                  383 	mov	r0,a
+   0131 E6                  384 	mov	a,@r0
+   0132 24 FF               385 	add	a,#0xff
+   0134 FA                  386 	mov	r2,a
+   0135 08                  387 	inc	r0
+   0136 E6                  388 	mov	a,@r0
+   0137 34 FF               389 	addc	a,#0xff
+   0139 FC                  390 	mov	r4,a
+                            391 ;	../../../core/lib/ifft.c:124: n2 = n / 2;
+   013A E5*00               392 	mov	a,_bp
+   013C 24 F9               393 	add	a,#0xf9
+   013E F8                  394 	mov	r0,a
+   013F E5*00               395 	mov	a,_bp
+   0141 24 18               396 	add	a,#0x18
+   0143 F9                  397 	mov	r1,a
+   0144 E6                  398 	mov	a,@r0
+   0145 F7                  399 	mov	@r1,a
+   0146 08                  400 	inc	r0
+   0147 E6                  401 	mov	a,@r0
+   0148 C3                  402 	clr	c
+   0149 13                  403 	rrc	a
+   014A C7                  404 	xch	a,@r1
+   014B 13                  405 	rrc	a
+   014C C7                  406 	xch	a,@r1
+   014D 09                  407 	inc	r1
+   014E F7                  408 	mov	@r1,a
+   014F E5*00               409 	mov	a,_bp
+   0151 24 18               410 	add	a,#0x18
+   0153 F8                  411 	mov	r0,a
+   0154 E5*00               412 	mov	a,_bp
+   0156 24 06               413 	add	a,#0x06
+   0158 F9                  414 	mov	r1,a
+   0159 E6                  415 	mov	a,@r0
+   015A F7                  416 	mov	@r1,a
+   015B 08                  417 	inc	r0
+   015C 09                  418 	inc	r1
+   015D E6                  419 	mov	a,@r0
+   015E F7                  420 	mov	@r1,a
+                            421 ;	../../../core/lib/ifft.c:126: for (i = 0; i < n; i++)
+   015F E5*00               422 	mov	a,_bp
+   0161 24 0C               423 	add	a,#0x0c
+   0163 F8                  424 	mov	r0,a
+   0164 E4                  425 	clr	a
+   0165 F6                  426 	mov	@r0,a
+   0166 08                  427 	inc	r0
+   0167 F6                  428 	mov	@r0,a
+   0168                     429 00103$:
+   0168 E5*00               430 	mov	a,_bp
+   016A 24 0C               431 	add	a,#0x0c
+   016C F8                  432 	mov	r0,a
+   016D 86 05               433 	mov	ar5,@r0
+   016F 08                  434 	inc	r0
+   0170 86 07               435 	mov	ar7,@r0
+   0172 E5*00               436 	mov	a,_bp
+   0174 24 F9               437 	add	a,#0xf9
+   0176 F8                  438 	mov	r0,a
+   0177 C3                  439 	clr	c
+   0178 ED                  440 	mov	a,r5
+   0179 96                  441 	subb	a,@r0
+   017A EF                  442 	mov	a,r7
+   017B 08                  443 	inc	r0
+   017C 96                  444 	subb	a,@r0
+   017D 50 3A               445 	jnc	00106$
+                            446 ;	../../../core/lib/ifft.c:127: xim[i] = 0;
+   017F E5*00               447 	mov	a,_bp
+   0181 24 0C               448 	add	a,#0x0c
+   0183 F8                  449 	mov	r0,a
+   0184 86 05               450 	mov	ar5,@r0
+   0186 08                  451 	inc	r0
+   0187 E6                  452 	mov	a,@r0
+   0188 CD                  453 	xch	a,r5
+   0189 25 E0               454 	add	a,acc
+   018B CD                  455 	xch	a,r5
+   018C 33                  456 	rlc	a
+   018D FF                  457 	mov	r7,a
+   018E E5*00               458 	mov	a,_bp
+   0190 24 FB               459 	add	a,#0xfb
+   0192 F8                  460 	mov	r0,a
+   0193 ED                  461 	mov	a,r5
+   0194 26                  462 	add	a,@r0
+   0195 FD                  463 	mov	r5,a
+   0196 EF                  464 	mov	a,r7
+   0197 08                  465 	inc	r0
+   0198 36                  466 	addc	a,@r0
+   0199 FF                  467 	mov	r7,a
+   019A 08                  468 	inc	r0
+   019B 86 03               469 	mov	ar3,@r0
+   019D 8D 82               470 	mov	dpl,r5
+   019F 8F 83               471 	mov	dph,r7
+   01A1 8B F0               472 	mov	b,r3
+   01A3 E4                  473 	clr	a
+   01A4 12s00r00            474 	lcall	__gptrput
+   01A7 A3                  475 	inc	dptr
+   01A8 E4                  476 	clr	a
+   01A9 12s00r00            477 	lcall	__gptrput
+                            478 ;	../../../core/lib/ifft.c:126: for (i = 0; i < n; i++)
+   01AC E5*00               479 	mov	a,_bp
+   01AE 24 0C               480 	add	a,#0x0c
+   01B0 F8                  481 	mov	r0,a
+   01B1 06                  482 	inc	@r0
+   01B2 B6 00 02            483 	cjne	@r0,#0x00,00154$
+   01B5 08                  484 	inc	r0
+   01B6 06                  485 	inc	@r0
+   01B7                     486 00154$:
+   01B7 80 AF               487 	sjmp	00103$
+   01B9                     488 00106$:
+                            489 ;	../../../core/lib/ifft.c:129: for (l = 1; l <= nu; l++) {
+   01B9 E5*00               490 	mov	a,_bp
+   01BB 24 1A               491 	add	a,#0x1a
+   01BD F8                  492 	mov	r0,a
+   01BE A6 02               493 	mov	@r0,ar2
+   01C0 08                  494 	inc	r0
+   01C1 A6 04               495 	mov	@r0,ar4
+   01C3 E5*00               496 	mov	a,_bp
+   01C5 24 0A               497 	add	a,#0x0a
+   01C7 F8                  498 	mov	r0,a
+   01C8 76 01               499 	mov	@r0,#0x01
+   01CA 08                  500 	inc	r0
+   01CB 76 00               501 	mov	@r0,#0x00
+   01CD                     502 00115$:
+   01CD E5*00               503 	mov	a,_bp
+   01CF 24 0A               504 	add	a,#0x0a
+   01D1 F8                  505 	mov	r0,a
+   01D2 86 05               506 	mov	ar5,@r0
+   01D4 08                  507 	inc	r0
+   01D5 86 07               508 	mov	ar7,@r0
+   01D7 E5*00               509 	mov	a,_bp
+   01D9 24 04               510 	add	a,#0x04
+   01DB F8                  511 	mov	r0,a
+   01DC C3                  512 	clr	c
+   01DD E6                  513 	mov	a,@r0
+   01DE 9D                  514 	subb	a,r5
+   01DF 08                  515 	inc	r0
+   01E0 E6                  516 	mov	a,@r0
+   01E1 9F                  517 	subb	a,r7
+   01E2 50 03               518 	jnc	00155$
+   01E4 02s07r98            519 	ljmp	00118$
+   01E7                     520 00155$:
+                            521 ;	../../../core/lib/ifft.c:130: for (k = 0; k < n; k += n2) {
+   01E7 7A 00               522 	mov	r2,#0x00
+   01E9 7E 00               523 	mov	r6,#0x00
+   01EB                     524 00111$:
+   01EB 8A 05               525 	mov	ar5,r2
+   01ED 8E 07               526 	mov	ar7,r6
+   01EF E5*00               527 	mov	a,_bp
+   01F1 24 F9               528 	add	a,#0xf9
+   01F3 F8                  529 	mov	r0,a
+   01F4 C3                  530 	clr	c
+   01F5 ED                  531 	mov	a,r5
+   01F6 96                  532 	subb	a,@r0
+   01F7 EF                  533 	mov	a,r7
+   01F8 08                  534 	inc	r0
+   01F9 96                  535 	subb	a,@r0
+   01FA 40 03               536 	jc	00156$
+   01FC 02s07r70            537 	ljmp	00114$
+   01FF                     538 00156$:
+                            539 ;	../../../core/lib/ifft.c:131: for (i = 1; i <= n2; i++) {
+   01FF E5*00               540 	mov	a,_bp
+   0201 24 16               541 	add	a,#0x16
+   0203 F8                  542 	mov	r0,a
+   0204 A6 02               543 	mov	@r0,ar2
+   0206 08                  544 	inc	r0
+   0207 A6 06               545 	mov	@r0,ar6
+   0209 E5*00               546 	mov	a,_bp
+   020B 24 0C               547 	add	a,#0x0c
+   020D F8                  548 	mov	r0,a
+   020E 76 01               549 	mov	@r0,#0x01
+   0210 08                  550 	inc	r0
+   0211 76 00               551 	mov	@r0,#0x00
+   0213                     552 00107$:
+   0213 E5*00               553 	mov	a,_bp
+   0215 24 0C               554 	add	a,#0x0c
+   0217 F8                  555 	mov	r0,a
+   0218 86 03               556 	mov	ar3,@r0
+   021A 08                  557 	inc	r0
+   021B 86 04               558 	mov	ar4,@r0
+   021D E5*00               559 	mov	a,_bp
+   021F 24 06               560 	add	a,#0x06
+   0221 F8                  561 	mov	r0,a
+   0222 C3                  562 	clr	c
+   0223 E6                  563 	mov	a,@r0
+   0224 9B                  564 	subb	a,r3
+   0225 08                  565 	inc	r0
+   0226 E6                  566 	mov	a,@r0
+   0227 9C                  567 	subb	a,r4
+   0228 50 03               568 	jnc	00157$
+   022A 02s07r57            569 	ljmp	00113$
+   022D                     570 00157$:
+                            571 ;	../../../core/lib/ifft.c:132: p = bitrev(k >> nu1, nu);
+   022D E5*00               572 	mov	a,_bp
+   022F 24 1A               573 	add	a,#0x1a
+   0231 F8                  574 	mov	r0,a
+   0232 86 F0               575 	mov	b,@r0
+   0234 05 F0               576 	inc	b
+   0236 E5*00               577 	mov	a,_bp
+   0238 24 16               578 	add	a,#0x16
+   023A F8                  579 	mov	r0,a
+   023B 86 05               580 	mov	ar5,@r0
+   023D 08                  581 	inc	r0
+   023E 86 07               582 	mov	ar7,@r0
+   0240 E6                  583 	mov	a,@r0
+   0241 33                  584 	rlc	a
+   0242 92 D2               585 	mov	ov,c
+   0244 80 08               586 	sjmp	00159$
+   0246                     587 00158$:
+   0246 A2 D2               588 	mov	c,ov
+   0248 EF                  589 	mov	a,r7
+   0249 13                  590 	rrc	a
+   024A FF                  591 	mov	r7,a
+   024B ED                  592 	mov	a,r5
+   024C 13                  593 	rrc	a
+   024D FD                  594 	mov	r5,a
+   024E                     595 00159$:
+   024E D5 F0 F5            596 	djnz	b,00158$
+   0251 E5*00               597 	mov	a,_bp
+   0253 24 04               598 	add	a,#0x04
+   0255 F8                  599 	mov	r0,a
+   0256 E6                  600 	mov	a,@r0
+   0257 C0 E0               601 	push	acc
+   0259 08                  602 	inc	r0
+   025A E6                  603 	mov	a,@r0
+   025B C0 E0               604 	push	acc
+   025D 8D 82               605 	mov	dpl,r5
+   025F 8F 83               606 	mov	dph,r7
+   0261 12s00r00            607 	lcall	_bitrev
+   0264 AD 82               608 	mov	r5,dpl
+   0266 AF 83               609 	mov	r7,dph
+   0268 15 81               610 	dec	sp
+   026A 15 81               611 	dec	sp
+   026C E5*00               612 	mov	a,_bp
+   026E 24 08               613 	add	a,#0x08
+   0270 F8                  614 	mov	r0,a
+   0271 A6 05               615 	mov	@r0,ar5
+   0273 08                  616 	inc	r0
+   0274 A6 07               617 	mov	@r0,ar7
+                            618 ;	../../../core/lib/ifft.c:133: c = cosI((1000 * p) / n);
+   0276 E5*00               619 	mov	a,_bp
+   0278 24 08               620 	add	a,#0x08
+   027A F8                  621 	mov	r0,a
+   027B E6                  622 	mov	a,@r0
+   027C C0 E0               623 	push	acc
+   027E 08                  624 	inc	r0
+   027F E6                  625 	mov	a,@r0
+   0280 C0 E0               626 	push	acc
+   0282 90 03 E8            627 	mov	dptr,#0x03E8
+   0285 12s00r00            628 	lcall	__mulint
+   0288 C8                  629 	xch	a,r0
+   0289 E5*00               630 	mov	a,_bp
+   028B 24 1C               631 	add	a,#0x1c
+   028D C8                  632 	xch	a,r0
+   028E A6 82               633 	mov	@r0,dpl
+   0290 08                  634 	inc	r0
+   0291 A6 83               635 	mov	@r0,dph
+   0293 15 81               636 	dec	sp
+   0295 15 81               637 	dec	sp
+   0297 E5*00               638 	mov	a,_bp
+   0299 24 1C               639 	add	a,#0x1c
+   029B F8                  640 	mov	r0,a
+   029C 86 03               641 	mov	ar3,@r0
+   029E 08                  642 	inc	r0
+   029F 86 04               643 	mov	ar4,@r0
+   02A1 E5*00               644 	mov	a,_bp
+   02A3 24 F9               645 	add	a,#0xf9
+   02A5 F8                  646 	mov	r0,a
+   02A6 E6                  647 	mov	a,@r0
+   02A7 C0 E0               648 	push	acc
+   02A9 08                  649 	inc	r0
+   02AA E6                  650 	mov	a,@r0
+   02AB C0 E0               651 	push	acc
+   02AD 8B 82               652 	mov	dpl,r3
+   02AF 8C 83               653 	mov	dph,r4
+   02B1 12s00r00            654 	lcall	__divuint
+   02B4 AB 82               655 	mov	r3,dpl
+   02B6 AC 83               656 	mov	r4,dph
+   02B8 15 81               657 	dec	sp
+   02BA 15 81               658 	dec	sp
+   02BC 8B 82               659 	mov	dpl,r3
+   02BE 8C 83               660 	mov	dph,r4
+   02C0 12s00rC9            661 	lcall	_cosI
+   02C3 AB 82               662 	mov	r3,dpl
+   02C5 AC 83               663 	mov	r4,dph
+   02C7 8B 02               664 	mov	ar2,r3
+   02C9 EC                  665 	mov	a,r4
+   02CA FD                  666 	mov	r5,a
+   02CB 33                  667 	rlc	a
+   02CC 95 E0               668 	subb	a,acc
+   02CE FE                  669 	mov	r6,a
+   02CF FF                  670 	mov	r7,a
+                            671 ;	../../../core/lib/ifft.c:134: s = sinI((1000 * p) / n);
+   02D0 E5*00               672 	mov	a,_bp
+   02D2 24 1C               673 	add	a,#0x1c
+   02D4 F8                  674 	mov	r0,a
+   02D5 86 03               675 	mov	ar3,@r0
+   02D7 08                  676 	inc	r0
+   02D8 86 04               677 	mov	ar4,@r0
+   02DA C0 02               678 	push	ar2
+   02DC C0 05               679 	push	ar5
+   02DE C0 06               680 	push	ar6
+   02E0 C0 07               681 	push	ar7
+   02E2 E5*00               682 	mov	a,_bp
+   02E4 24 F9               683 	add	a,#0xf9
+   02E6 F8                  684 	mov	r0,a
+   02E7 E6                  685 	mov	a,@r0
+   02E8 C0 E0               686 	push	acc
+   02EA 08                  687 	inc	r0
+   02EB E6                  688 	mov	a,@r0
+   02EC C0 E0               689 	push	acc
+   02EE 8B 82               690 	mov	dpl,r3
+   02F0 8C 83               691 	mov	dph,r4
+   02F2 12s00r00            692 	lcall	__divuint
+   02F5 AB 82               693 	mov	r3,dpl
+   02F7 AC 83               694 	mov	r4,dph
+   02F9 15 81               695 	dec	sp
+   02FB 15 81               696 	dec	sp
+   02FD 8B 82               697 	mov	dpl,r3
+   02FF 8C 83               698 	mov	dph,r4
+   0301 12s00r57            699 	lcall	_sinI
+   0304 AB 82               700 	mov	r3,dpl
+   0306 AC 83               701 	mov	r4,dph
+   0308 D0 07               702 	pop	ar7
+   030A D0 06               703 	pop	ar6
+   030C D0 05               704 	pop	ar5
+   030E D0 02               705 	pop	ar2
+   0310 E5*00               706 	mov	a,_bp
+   0312 24 0E               707 	add	a,#0x0e
+   0314 F8                  708 	mov	r0,a
+   0315 A6 03               709 	mov	@r0,ar3
+   0317 08                  710 	inc	r0
+   0318 A6 04               711 	mov	@r0,ar4
+   031A EC                  712 	mov	a,r4
+   031B 33                  713 	rlc	a
+   031C 95 E0               714 	subb	a,acc
+   031E 08                  715 	inc	r0
+   031F F6                  716 	mov	@r0,a
+   0320 08                  717 	inc	r0
+   0321 F6                  718 	mov	@r0,a
+                            719 ;	../../../core/lib/ifft.c:136: tr = ((xre[k + n2] * c + xim[k + n2] * s) >> RESOLUTION);
+   0322 E5*00               720 	mov	a,_bp
+   0324 24 16               721 	add	a,#0x16
+   0326 F8                  722 	mov	r0,a
+   0327 E5*00               723 	mov	a,_bp
+   0329 24 06               724 	add	a,#0x06
+   032B F9                  725 	mov	r1,a
+   032C E7                  726 	mov	a,@r1
+   032D 26                  727 	add	a,@r0
+   032E FB                  728 	mov	r3,a
+   032F 09                  729 	inc	r1
+   0330 E7                  730 	mov	a,@r1
+   0331 08                  731 	inc	r0
+   0332 36                  732 	addc	a,@r0
+   0333 FC                  733 	mov	r4,a
+   0334 E5*00               734 	mov	a,_bp
+   0336 24 1C               735 	add	a,#0x1c
+   0338 F8                  736 	mov	r0,a
+   0339 A6 03               737 	mov	@r0,ar3
+   033B EC                  738 	mov	a,r4
+   033C C6                  739 	xch	a,@r0
+   033D 25 E0               740 	add	a,acc
+   033F C6                  741 	xch	a,@r0
+   0340 33                  742 	rlc	a
+   0341 08                  743 	inc	r0
+   0342 F6                  744 	mov	@r0,a
+   0343 A8*00               745 	mov	r0,_bp
+   0345 08                  746 	inc	r0
+   0346 E5*00               747 	mov	a,_bp
+   0348 24 1C               748 	add	a,#0x1c
+   034A F9                  749 	mov	r1,a
+   034B E7                  750 	mov	a,@r1
+   034C 26                  751 	add	a,@r0
+   034D C0 E0               752 	push	acc
+   034F 09                  753 	inc	r1
+   0350 E7                  754 	mov	a,@r1
+   0351 08                  755 	inc	r0
+   0352 36                  756 	addc	a,@r0
+   0353 C0 E0               757 	push	acc
+   0355 08                  758 	inc	r0
+   0356 E6                  759 	mov	a,@r0
+   0357 C0 E0               760 	push	acc
+   0359 E5*00               761 	mov	a,_bp
+   035B 24 20               762 	add	a,#0x20
+   035D F8                  763 	mov	r0,a
+   035E D0 E0               764 	pop	acc
+   0360 F6                  765 	mov	@r0,a
+   0361 18                  766 	dec	r0
+   0362 D0 E0               767 	pop	acc
+   0364 F6                  768 	mov	@r0,a
+   0365 18                  769 	dec	r0
+   0366 D0 E0               770 	pop	acc
+   0368 F6                  771 	mov	@r0,a
+   0369 E5*00               772 	mov	a,_bp
+   036B 24 1E               773 	add	a,#0x1e
+   036D F8                  774 	mov	r0,a
+   036E 86 82               775 	mov	dpl,@r0
+   0370 08                  776 	inc	r0
+   0371 86 83               777 	mov	dph,@r0
+   0373 08                  778 	inc	r0
+   0374 86 F0               779 	mov	b,@r0
+   0376 12s00r00            780 	lcall	__gptrget
+   0379 FB                  781 	mov	r3,a
+   037A A3                  782 	inc	dptr
+   037B 12s00r00            783 	lcall	__gptrget
+   037E FC                  784 	mov	r4,a
+   037F E5*00               785 	mov	a,_bp
+   0381 24 21               786 	add	a,#0x21
+   0383 F8                  787 	mov	r0,a
+   0384 A6 03               788 	mov	@r0,ar3
+   0386 08                  789 	inc	r0
+   0387 A6 04               790 	mov	@r0,ar4
+   0389 EC                  791 	mov	a,r4
+   038A 33                  792 	rlc	a
+   038B 95 E0               793 	subb	a,acc
+   038D 08                  794 	inc	r0
+   038E F6                  795 	mov	@r0,a
+   038F 08                  796 	inc	r0
+   0390 F6                  797 	mov	@r0,a
+   0391 C0 02               798 	push	ar2
+   0393 C0 05               799 	push	ar5
+   0395 C0 06               800 	push	ar6
+   0397 C0 07               801 	push	ar7
+   0399 C0 02               802 	push	ar2
+   039B C0 05               803 	push	ar5
+   039D C0 06               804 	push	ar6
+   039F C0 07               805 	push	ar7
+   03A1 E5*00               806 	mov	a,_bp
+   03A3 24 21               807 	add	a,#0x21
+   03A5 F8                  808 	mov	r0,a
+   03A6 86 82               809 	mov	dpl,@r0
+   03A8 08                  810 	inc	r0
+   03A9 86 83               811 	mov	dph,@r0
+   03AB 08                  812 	inc	r0
+   03AC 86 F0               813 	mov	b,@r0
+   03AE 08                  814 	inc	r0
+   03AF E6                  815 	mov	a,@r0
+   03B0 12s00r00            816 	lcall	__mullong
+   03B3 C8                  817 	xch	a,r0
+   03B4 E5*00               818 	mov	a,_bp
+   03B6 24 25               819 	add	a,#0x25
+   03B8 C8                  820 	xch	a,r0
+   03B9 A6 82               821 	mov	@r0,dpl
+   03BB 08                  822 	inc	r0
+   03BC A6 83               823 	mov	@r0,dph
+   03BE 08                  824 	inc	r0
+   03BF A6 F0               825 	mov	@r0,b
+   03C1 08                  826 	inc	r0
+   03C2 F6                  827 	mov	@r0,a
+   03C3 E5 81               828 	mov	a,sp
+   03C5 24 FC               829 	add	a,#0xfc
+   03C7 F5 81               830 	mov	sp,a
+   03C9 D0 07               831 	pop	ar7
+   03CB D0 06               832 	pop	ar6
+   03CD D0 05               833 	pop	ar5
+   03CF D0 02               834 	pop	ar2
+   03D1 E5*00               835 	mov	a,_bp
+   03D3 24 FB               836 	add	a,#0xfb
+   03D5 F8                  837 	mov	r0,a
+   03D6 E5*00               838 	mov	a,_bp
+   03D8 24 1C               839 	add	a,#0x1c
+   03DA F9                  840 	mov	r1,a
+   03DB E7                  841 	mov	a,@r1
+   03DC 26                  842 	add	a,@r0
+   03DD C0 E0               843 	push	acc
+   03DF 09                  844 	inc	r1
+   03E0 E7                  845 	mov	a,@r1
+   03E1 08                  846 	inc	r0
+   03E2 36                  847 	addc	a,@r0
+   03E3 C0 E0               848 	push	acc
+   03E5 08                  849 	inc	r0
+   03E6 E6                  850 	mov	a,@r0
+   03E7 C0 E0               851 	push	acc
+   03E9 E5*00               852 	mov	a,_bp
+   03EB 24 2B               853 	add	a,#0x2b
+   03ED F8                  854 	mov	r0,a
+   03EE D0 E0               855 	pop	acc
+   03F0 F6                  856 	mov	@r0,a
+   03F1 18                  857 	dec	r0
+   03F2 D0 E0               858 	pop	acc
+   03F4 F6                  859 	mov	@r0,a
+   03F5 18                  860 	dec	r0
+   03F6 D0 E0               861 	pop	acc
+   03F8 F6                  862 	mov	@r0,a
+   03F9 E5*00               863 	mov	a,_bp
+   03FB 24 29               864 	add	a,#0x29
+   03FD F8                  865 	mov	r0,a
+   03FE 86 82               866 	mov	dpl,@r0
+   0400 08                  867 	inc	r0
+   0401 86 83               868 	mov	dph,@r0
+   0403 08                  869 	inc	r0
+   0404 86 F0               870 	mov	b,@r0
+   0406 12s00r00            871 	lcall	__gptrget
+   0409 FB                  872 	mov	r3,a
+   040A A3                  873 	inc	dptr
+   040B 12s00r00            874 	lcall	__gptrget
+   040E FC                  875 	mov	r4,a
+   040F E5*00               876 	mov	a,_bp
+   0411 24 2C               877 	add	a,#0x2c
+   0413 F8                  878 	mov	r0,a
+   0414 A6 03               879 	mov	@r0,ar3
+   0416 08                  880 	inc	r0
+   0417 A6 04               881 	mov	@r0,ar4
+   0419 EC                  882 	mov	a,r4
+   041A 33                  883 	rlc	a
+   041B 95 E0               884 	subb	a,acc
+   041D 08                  885 	inc	r0
+   041E F6                  886 	mov	@r0,a
+   041F 08                  887 	inc	r0
+   0420 F6                  888 	mov	@r0,a
+   0421 C0 02               889 	push	ar2
+   0423 C0 05               890 	push	ar5
+   0425 C0 06               891 	push	ar6
+   0427 C0 07               892 	push	ar7
+   0429 E5*00               893 	mov	a,_bp
+   042B 24 0E               894 	add	a,#0x0e
+   042D F8                  895 	mov	r0,a
+   042E E6                  896 	mov	a,@r0
+   042F C0 E0               897 	push	acc
+   0431 08                  898 	inc	r0
+   0432 E6                  899 	mov	a,@r0
+   0433 C0 E0               900 	push	acc
+   0435 08                  901 	inc	r0
+   0436 E6                  902 	mov	a,@r0
+   0437 C0 E0               903 	push	acc
+   0439 08                  904 	inc	r0
+   043A E6                  905 	mov	a,@r0
+   043B C0 E0               906 	push	acc
+   043D E5*00               907 	mov	a,_bp
+   043F 24 2C               908 	add	a,#0x2c
+   0441 F8                  909 	mov	r0,a
+   0442 86 82               910 	mov	dpl,@r0
+   0444 08                  911 	inc	r0
+   0445 86 83               912 	mov	dph,@r0
+   0447 08                  913 	inc	r0
+   0448 86 F0               914 	mov	b,@r0
+   044A 08                  915 	inc	r0
+   044B E6                  916 	mov	a,@r0
+   044C 12s00r00            917 	lcall	__mullong
+   044F C8                  918 	xch	a,r0
+   0450 E5*00               919 	mov	a,_bp
+   0452 24 30               920 	add	a,#0x30
+   0454 C8                  921 	xch	a,r0
+   0455 A6 82               922 	mov	@r0,dpl
+   0457 08                  923 	inc	r0
+   0458 A6 83               924 	mov	@r0,dph
+   045A 08                  925 	inc	r0
+   045B A6 F0               926 	mov	@r0,b
+   045D 08                  927 	inc	r0
+   045E F6                  928 	mov	@r0,a
+   045F E5 81               929 	mov	a,sp
+   0461 24 FC               930 	add	a,#0xfc
+   0463 F5 81               931 	mov	sp,a
+   0465 D0 07               932 	pop	ar7
+   0467 D0 06               933 	pop	ar6
+   0469 D0 05               934 	pop	ar5
+   046B D0 02               935 	pop	ar2
+   046D E5*00               936 	mov	a,_bp
+   046F 24 25               937 	add	a,#0x25
+   0471 F8                  938 	mov	r0,a
+   0472 E5*00               939 	mov	a,_bp
+   0474 24 30               940 	add	a,#0x30
+   0476 F9                  941 	mov	r1,a
+   0477 E7                  942 	mov	a,@r1
+   0478 26                  943 	add	a,@r0
+   0479 F7                  944 	mov	@r1,a
+   047A 09                  945 	inc	r1
+   047B E7                  946 	mov	a,@r1
+   047C 08                  947 	inc	r0
+   047D 36                  948 	addc	a,@r0
+   047E F7                  949 	mov	@r1,a
+   047F 09                  950 	inc	r1
+   0480 E7                  951 	mov	a,@r1
+   0481 08                  952 	inc	r0
+   0482 36                  953 	addc	a,@r0
+   0483 F7                  954 	mov	@r1,a
+   0484 09                  955 	inc	r1
+   0485 E7                  956 	mov	a,@r1
+   0486 08                  957 	inc	r0
+   0487 36                  958 	addc	a,@r0
+   0488 F7                  959 	mov	@r1,a
+   0489 E5*00               960 	mov	a,_bp
+   048B 24 30               961 	add	a,#0x30
+   048D F8                  962 	mov	r0,a
+   048E E5*00               963 	mov	a,_bp
+   0490 24 12               964 	add	a,#0x12
+   0492 F9                  965 	mov	r1,a
+   0493 E6                  966 	mov	a,@r0
+   0494 F7                  967 	mov	@r1,a
+   0495 08                  968 	inc	r0
+   0496 E6                  969 	mov	a,@r0
+   0497 A2 E7               970 	mov	c,acc.7
+   0499 C7                  971 	xch	a,@r1
+   049A 33                  972 	rlc	a
+   049B C7                  973 	xch	a,@r1
+   049C 33                  974 	rlc	a
+   049D C7                  975 	xch	a,@r1
+   049E 54 01               976 	anl	a,#0x01
+   04A0 09                  977 	inc	r1
+   04A1 F7                  978 	mov	@r1,a
+   04A2 08                  979 	inc	r0
+   04A3 E6                  980 	mov	a,@r0
+   04A4 25 E0               981 	add	a,acc
+   04A6 47                  982 	orl	a,@r1
+   04A7 F7                  983 	mov	@r1,a
+   04A8 E6                  984 	mov	a,@r0
+   04A9 09                  985 	inc	r1
+   04AA F7                  986 	mov	@r1,a
+   04AB 08                  987 	inc	r0
+   04AC E6                  988 	mov	a,@r0
+   04AD A2 E7               989 	mov	c,acc.7
+   04AF C7                  990 	xch	a,@r1
+   04B0 33                  991 	rlc	a
+   04B1 C7                  992 	xch	a,@r1
+   04B2 33                  993 	rlc	a
+   04B3 C7                  994 	xch	a,@r1
+   04B4 54 01               995 	anl	a,#0x01
+   04B6 30 E0 02            996 	jnb	acc.0,00160$
+   04B9 44 FE               997 	orl	a,#0xfe
+   04BB                     998 00160$:
+   04BB 09                  999 	inc	r1
+   04BC F7                 1000 	mov	@r1,a
+                           1001 ;	../../../core/lib/ifft.c:137: ti = ((xim[k + n2] * c - xre[k + n2] * s) >> RESOLUTION);
+   04BD C0 02              1002 	push	ar2
+   04BF C0 05              1003 	push	ar5
+   04C1 C0 06              1004 	push	ar6
+   04C3 C0 07              1005 	push	ar7
+   04C5 E5*00              1006 	mov	a,_bp
+   04C7 24 2C              1007 	add	a,#0x2c
+   04C9 F8                 1008 	mov	r0,a
+   04CA 86 82              1009 	mov	dpl,@r0
+   04CC 08                 1010 	inc	r0
+   04CD 86 83              1011 	mov	dph,@r0
+   04CF 08                 1012 	inc	r0
+   04D0 86 F0              1013 	mov	b,@r0
+   04D2 08                 1014 	inc	r0
+   04D3 E6                 1015 	mov	a,@r0
+   04D4 12s00r00           1016 	lcall	__mullong
+   04D7 AA 82              1017 	mov	r2,dpl
+   04D9 AB 83              1018 	mov	r3,dph
+   04DB AC F0              1019 	mov	r4,b
+   04DD FD                 1020 	mov	r5,a
+   04DE E5 81              1021 	mov	a,sp
+   04E0 24 FC              1022 	add	a,#0xfc
+   04E2 F5 81              1023 	mov	sp,a
+   04E4 C0 02              1024 	push	ar2
+   04E6 C0 03              1025 	push	ar3
+   04E8 C0 04              1026 	push	ar4
+   04EA C0 05              1027 	push	ar5
+   04EC E5*00              1028 	mov	a,_bp
+   04EE 24 0E              1029 	add	a,#0x0e
+   04F0 F8                 1030 	mov	r0,a
+   04F1 E6                 1031 	mov	a,@r0
+   04F2 C0 E0              1032 	push	acc
+   04F4 08                 1033 	inc	r0
+   04F5 E6                 1034 	mov	a,@r0
+   04F6 C0 E0              1035 	push	acc
+   04F8 08                 1036 	inc	r0
+   04F9 E6                 1037 	mov	a,@r0
+   04FA C0 E0              1038 	push	acc
+   04FC 08                 1039 	inc	r0
+   04FD E6                 1040 	mov	a,@r0
+   04FE C0 E0              1041 	push	acc
+   0500 E5*00              1042 	mov	a,_bp
+   0502 24 21              1043 	add	a,#0x21
+   0504 F8                 1044 	mov	r0,a
+   0505 86 82              1045 	mov	dpl,@r0
+   0507 08                 1046 	inc	r0
+   0508 86 83              1047 	mov	dph,@r0
+   050A 08                 1048 	inc	r0
+   050B 86 F0              1049 	mov	b,@r0
+   050D 08                 1050 	inc	r0
+   050E E6                 1051 	mov	a,@r0
+   050F 12s00r00           1052 	lcall	__mullong
+   0512 C8                 1053 	xch	a,r0
+   0513 E5*00              1054 	mov	a,_bp
+   0515 24 2C              1055 	add	a,#0x2c
+   0517 C8                 1056 	xch	a,r0
+   0518 A6 82              1057 	mov	@r0,dpl
+   051A 08                 1058 	inc	r0
+   051B A6 83              1059 	mov	@r0,dph
+   051D 08                 1060 	inc	r0
+   051E A6 F0              1061 	mov	@r0,b
+   0520 08                 1062 	inc	r0
+   0521 F6                 1063 	mov	@r0,a
+   0522 E5 81              1064 	mov	a,sp
+   0524 24 FC              1065 	add	a,#0xfc
+   0526 F5 81              1066 	mov	sp,a
+   0528 D0 05              1067 	pop	ar5
+   052A D0 04              1068 	pop	ar4
+   052C D0 03              1069 	pop	ar3
+   052E D0 02              1070 	pop	ar2
+   0530 E5*00              1071 	mov	a,_bp
+   0532 24 2C              1072 	add	a,#0x2c
+   0534 F8                 1073 	mov	r0,a
+   0535 E5*00              1074 	mov	a,_bp
+   0537 24 30              1075 	add	a,#0x30
+   0539 F9                 1076 	mov	r1,a
+   053A EA                 1077 	mov	a,r2
+   053B C3                 1078 	clr	c
+   053C 96                 1079 	subb	a,@r0
+   053D F7                 1080 	mov	@r1,a
+   053E EB                 1081 	mov	a,r3
+   053F 08                 1082 	inc	r0
+   0540 96                 1083 	subb	a,@r0
+   0541 09                 1084 	inc	r1
+   0542 F7                 1085 	mov	@r1,a
+   0543 EC                 1086 	mov	a,r4
+   0544 08                 1087 	inc	r0
+   0545 96                 1088 	subb	a,@r0
+   0546 09                 1089 	inc	r1
+   0547 F7                 1090 	mov	@r1,a
+   0548 ED                 1091 	mov	a,r5
+   0549 08                 1092 	inc	r0
+   054A 96                 1093 	subb	a,@r0
+   054B 09                 1094 	inc	r1
+   054C F7                 1095 	mov	@r1,a
+   054D E5*00              1096 	mov	a,_bp
+   054F 24 30              1097 	add	a,#0x30
+   0551 F8                 1098 	mov	r0,a
+   0552 86 02              1099 	mov	ar2,@r0
+   0554 08                 1100 	inc	r0
+   0555 E6                 1101 	mov	a,@r0
+   0556 A2 E7              1102 	mov	c,acc.7
+   0558 CA                 1103 	xch	a,r2
+   0559 33                 1104 	rlc	a
+   055A CA                 1105 	xch	a,r2
+   055B 33                 1106 	rlc	a
+   055C CA                 1107 	xch	a,r2
+   055D 54 01              1108 	anl	a,#0x01
+   055F FD                 1109 	mov	r5,a
+   0560 08                 1110 	inc	r0
+   0561 E6                 1111 	mov	a,@r0
+   0562 25 E0              1112 	add	a,acc
+   0564 4D                 1113 	orl	a,r5
+   0565 FD                 1114 	mov	r5,a
+   0566 86 06              1115 	mov	ar6,@r0
+   0568 08                 1116 	inc	r0
+   0569 E6                 1117 	mov	a,@r0
+   056A A2 E7              1118 	mov	c,acc.7
+   056C CE                 1119 	xch	a,r6
+   056D 33                 1120 	rlc	a
+   056E CE                 1121 	xch	a,r6
+   056F 33                 1122 	rlc	a
+   0570 CE                 1123 	xch	a,r6
+   0571 54 01              1124 	anl	a,#0x01
+   0573 30 E0 02           1125 	jnb	acc.0,00161$
+   0576 44 FE              1126 	orl	a,#0xfe
+   0578                    1127 00161$:
+   0578 FF                 1128 	mov	r7,a
+                           1129 ;	../../../core/lib/ifft.c:139: xre[k + n2] = xre[k] - tr;
+   0579 E5*00              1130 	mov	a,_bp
+   057B 24 16              1131 	add	a,#0x16
+   057D F8                 1132 	mov	r0,a
+   057E E5*00              1133 	mov	a,_bp
+   0580 24 30              1134 	add	a,#0x30
+   0582 F9                 1135 	mov	r1,a
+   0583 E6                 1136 	mov	a,@r0
+   0584 F7                 1137 	mov	@r1,a
+   0585 08                 1138 	inc	r0
+   0586 E6                 1139 	mov	a,@r0
+   0587 C7                 1140 	xch	a,@r1
+   0588 25 E0              1141 	add	a,acc
+   058A C7                 1142 	xch	a,@r1
+   058B 33                 1143 	rlc	a
+   058C 09                 1144 	inc	r1
+   058D F7                 1145 	mov	@r1,a
+   058E A8*00              1146 	mov	r0,_bp
+   0590 08                 1147 	inc	r0
+   0591 E5*00              1148 	mov	a,_bp
+   0593 24 30              1149 	add	a,#0x30
+   0595 F9                 1150 	mov	r1,a
+   0596 E7                 1151 	mov	a,@r1
+   0597 26                 1152 	add	a,@r0
+   0598 C0 E0              1153 	push	acc
+   059A 09                 1154 	inc	r1
+   059B E7                 1155 	mov	a,@r1
+   059C 08                 1156 	inc	r0
+   059D 36                 1157 	addc	a,@r0
+   059E C0 E0              1158 	push	acc
+   05A0 08                 1159 	inc	r0
+   05A1 E6                 1160 	mov	a,@r0
+   05A2 C0 E0              1161 	push	acc
+   05A4 E5*00              1162 	mov	a,_bp
+   05A6 24 2E              1163 	add	a,#0x2e
+   05A8 F8                 1164 	mov	r0,a
+   05A9 D0 E0              1165 	pop	acc
+   05AB F6                 1166 	mov	@r0,a
+   05AC 18                 1167 	dec	r0
+   05AD D0 E0              1168 	pop	acc
+   05AF F6                 1169 	mov	@r0,a
+   05B0 18                 1170 	dec	r0
+   05B1 D0 E0              1171 	pop	acc
+   05B3 F6                 1172 	mov	@r0,a
+   05B4 E5*00              1173 	mov	a,_bp
+   05B6 24 2C              1174 	add	a,#0x2c
+   05B8 F8                 1175 	mov	r0,a
+   05B9 86 82              1176 	mov	dpl,@r0
+   05BB 08                 1177 	inc	r0
+   05BC 86 83              1178 	mov	dph,@r0
+   05BE 08                 1179 	inc	r0
+   05BF 86 F0              1180 	mov	b,@r0
+   05C1 12s00r00           1181 	lcall	__gptrget
+   05C4 FB                 1182 	mov	r3,a
+   05C5 A3                 1183 	inc	dptr
+   05C6 12s00r00           1184 	lcall	__gptrget
+   05C9 FC                 1185 	mov	r4,a
+   05CA E5*00              1186 	mov	a,_bp
+   05CC 24 25              1187 	add	a,#0x25
+   05CE F8                 1188 	mov	r0,a
+   05CF A6 03              1189 	mov	@r0,ar3
+   05D1 08                 1190 	inc	r0
+   05D2 A6 04              1191 	mov	@r0,ar4
+   05D4 EC                 1192 	mov	a,r4
+   05D5 33                 1193 	rlc	a
+   05D6 95 E0              1194 	subb	a,acc
+   05D8 08                 1195 	inc	r0
+   05D9 F6                 1196 	mov	@r0,a
+   05DA 08                 1197 	inc	r0
+   05DB F6                 1198 	mov	@r0,a
+   05DC E5*00              1199 	mov	a,_bp
+   05DE 24 25              1200 	add	a,#0x25
+   05E0 F8                 1201 	mov	r0,a
+   05E1 E5*00              1202 	mov	a,_bp
+   05E3 24 12              1203 	add	a,#0x12
+   05E5 F9                 1204 	mov	r1,a
+   05E6 E6                 1205 	mov	a,@r0
+   05E7 C3                 1206 	clr	c
+   05E8 97                 1207 	subb	a,@r1
+   05E9 C0 E0              1208 	push	acc
+   05EB 08                 1209 	inc	r0
+   05EC E6                 1210 	mov	a,@r0
+   05ED 09                 1211 	inc	r1
+   05EE 97                 1212 	subb	a,@r1
+   05EF C0 E0              1213 	push	acc
+   05F1 08                 1214 	inc	r0
+   05F2 E6                 1215 	mov	a,@r0
+   05F3 09                 1216 	inc	r1
+   05F4 97                 1217 	subb	a,@r1
+   05F5 C0 E0              1218 	push	acc
+   05F7 08                 1219 	inc	r0
+   05F8 E6                 1220 	mov	a,@r0
+   05F9 09                 1221 	inc	r1
+   05FA 97                 1222 	subb	a,@r1
+   05FB C0 E0              1223 	push	acc
+   05FD E5*00              1224 	mov	a,_bp
+   05FF 24 24              1225 	add	a,#0x24
+   0601 F8                 1226 	mov	r0,a
+   0602 D0 E0              1227 	pop	acc
+   0604 F6                 1228 	mov	@r0,a
+   0605 18                 1229 	dec	r0
+   0606 D0 E0              1230 	pop	acc
+   0608 F6                 1231 	mov	@r0,a
+   0609 18                 1232 	dec	r0
+   060A D0 E0              1233 	pop	acc
+   060C F6                 1234 	mov	@r0,a
+   060D 18                 1235 	dec	r0
+   060E D0 E0              1236 	pop	acc
+   0610 F6                 1237 	mov	@r0,a
+   0611 E5*00              1238 	mov	a,_bp
+   0613 24 21              1239 	add	a,#0x21
+   0615 F8                 1240 	mov	r0,a
+   0616 86 03              1241 	mov	ar3,@r0
+   0618 08                 1242 	inc	r0
+   0619 86 04              1243 	mov	ar4,@r0
+   061B E5*00              1244 	mov	a,_bp
+   061D 24 1E              1245 	add	a,#0x1e
+   061F F8                 1246 	mov	r0,a
+   0620 86 82              1247 	mov	dpl,@r0
+   0622 08                 1248 	inc	r0
+   0623 86 83              1249 	mov	dph,@r0
+   0625 08                 1250 	inc	r0
+   0626 86 F0              1251 	mov	b,@r0
+   0628 EB                 1252 	mov	a,r3
+   0629 12s00r00           1253 	lcall	__gptrput
+   062C A3                 1254 	inc	dptr
+   062D EC                 1255 	mov	a,r4
+   062E 12s00r00           1256 	lcall	__gptrput
+                           1257 ;	../../../core/lib/ifft.c:140: xim[k + n2] = xim[k] - ti;
+   0631 E5*00              1258 	mov	a,_bp
+   0633 24 FB              1259 	add	a,#0xfb
+   0635 F8                 1260 	mov	r0,a
+   0636 E5*00              1261 	mov	a,_bp
+   0638 24 30              1262 	add	a,#0x30
+   063A F9                 1263 	mov	r1,a
+   063B E7                 1264 	mov	a,@r1
+   063C 26                 1265 	add	a,@r0
+   063D C0 E0              1266 	push	acc
+   063F 09                 1267 	inc	r1
+   0640 E7                 1268 	mov	a,@r1
+   0641 08                 1269 	inc	r0
+   0642 36                 1270 	addc	a,@r0
+   0643 C0 E0              1271 	push	acc
+   0645 08                 1272 	inc	r0
+   0646 E6                 1273 	mov	a,@r0
+   0647 C0 E0              1274 	push	acc
+   0649 E5*00              1275 	mov	a,_bp
+   064B 24 32              1276 	add	a,#0x32
+   064D F8                 1277 	mov	r0,a
+   064E D0 E0              1278 	pop	acc
+   0650 F6                 1279 	mov	@r0,a
+   0651 18                 1280 	dec	r0
+   0652 D0 E0              1281 	pop	acc
+   0654 F6                 1282 	mov	@r0,a
+   0655 18                 1283 	dec	r0
+   0656 D0 E0              1284 	pop	acc
+   0658 F6                 1285 	mov	@r0,a
+   0659 E5*00              1286 	mov	a,_bp
+   065B 24 30              1287 	add	a,#0x30
+   065D F8                 1288 	mov	r0,a
+   065E 86 82              1289 	mov	dpl,@r0
+   0660 08                 1290 	inc	r0
+   0661 86 83              1291 	mov	dph,@r0
+   0663 08                 1292 	inc	r0
+   0664 86 F0              1293 	mov	b,@r0
+   0666 12s00r00           1294 	lcall	__gptrget
+   0669 FB                 1295 	mov	r3,a
+   066A A3                 1296 	inc	dptr
+   066B 12s00r00           1297 	lcall	__gptrget
+   066E FC                 1298 	mov	r4,a
+   066F E5*00              1299 	mov	a,_bp
+   0671 24 21              1300 	add	a,#0x21
+   0673 F8                 1301 	mov	r0,a
+   0674 A6 03              1302 	mov	@r0,ar3
+   0676 08                 1303 	inc	r0
+   0677 A6 04              1304 	mov	@r0,ar4
+   0679 EC                 1305 	mov	a,r4
+   067A 33                 1306 	rlc	a
+   067B 95 E0              1307 	subb	a,acc
+   067D 08                 1308 	inc	r0
+   067E F6                 1309 	mov	@r0,a
+   067F 08                 1310 	inc	r0
+   0680 F6                 1311 	mov	@r0,a
+   0681 E5*00              1312 	mov	a,_bp
+   0683 24 21              1313 	add	a,#0x21
+   0685 F8                 1314 	mov	r0,a
+   0686 E5*00              1315 	mov	a,_bp
+   0688 24 34              1316 	add	a,#0x34
+   068A F9                 1317 	mov	r1,a
+   068B E6                 1318 	mov	a,@r0
+   068C C3                 1319 	clr	c
+   068D 9A                 1320 	subb	a,r2
+   068E F7                 1321 	mov	@r1,a
+   068F 08                 1322 	inc	r0
+   0690 E6                 1323 	mov	a,@r0
+   0691 9D                 1324 	subb	a,r5
+   0692 09                 1325 	inc	r1
+   0693 F7                 1326 	mov	@r1,a
+   0694 08                 1327 	inc	r0
+   0695 E6                 1328 	mov	a,@r0
+   0696 9E                 1329 	subb	a,r6
+   0697 09                 1330 	inc	r1
+   0698 F7                 1331 	mov	@r1,a
+   0699 08                 1332 	inc	r0
+   069A E6                 1333 	mov	a,@r0
+   069B 9F                 1334 	subb	a,r7
+   069C 09                 1335 	inc	r1
+   069D F7                 1336 	mov	@r1,a
+   069E E5*00              1337 	mov	a,_bp
+   06A0 24 34              1338 	add	a,#0x34
+   06A2 F8                 1339 	mov	r0,a
+   06A3 86 03              1340 	mov	ar3,@r0
+   06A5 08                 1341 	inc	r0
+   06A6 86 04              1342 	mov	ar4,@r0
+   06A8 E5*00              1343 	mov	a,_bp
+   06AA 24 29              1344 	add	a,#0x29
+   06AC F8                 1345 	mov	r0,a
+   06AD 86 82              1346 	mov	dpl,@r0
+   06AF 08                 1347 	inc	r0
+   06B0 86 83              1348 	mov	dph,@r0
+   06B2 08                 1349 	inc	r0
+   06B3 86 F0              1350 	mov	b,@r0
+   06B5 EB                 1351 	mov	a,r3
+   06B6 12s00r00           1352 	lcall	__gptrput
+   06B9 A3                 1353 	inc	dptr
+   06BA EC                 1354 	mov	a,r4
+   06BB 12s00r00           1355 	lcall	__gptrput
+                           1356 ;	../../../core/lib/ifft.c:141: xre[k] += tr;
+   06BE E5*00              1357 	mov	a,_bp
+   06C0 24 25              1358 	add	a,#0x25
+   06C2 F8                 1359 	mov	r0,a
+   06C3 E5*00              1360 	mov	a,_bp
+   06C5 24 12              1361 	add	a,#0x12
+   06C7 F9                 1362 	mov	r1,a
+   06C8 E7                 1363 	mov	a,@r1
+   06C9 26                 1364 	add	a,@r0
+   06CA C0 E0              1365 	push	acc
+   06CC 09                 1366 	inc	r1
+   06CD E7                 1367 	mov	a,@r1
+   06CE 08                 1368 	inc	r0
+   06CF 36                 1369 	addc	a,@r0
+   06D0 C0 E0              1370 	push	acc
+   06D2 09                 1371 	inc	r1
+   06D3 E7                 1372 	mov	a,@r1
+   06D4 08                 1373 	inc	r0
+   06D5 36                 1374 	addc	a,@r0
+   06D6 C0 E0              1375 	push	acc
+   06D8 09                 1376 	inc	r1
+   06D9 E7                 1377 	mov	a,@r1
+   06DA 08                 1378 	inc	r0
+   06DB 36                 1379 	addc	a,@r0
+   06DC C0 E0              1380 	push	acc
+   06DE E5*00              1381 	mov	a,_bp
+   06E0 24 37              1382 	add	a,#0x37
+   06E2 F8                 1383 	mov	r0,a
+   06E3 D0 E0              1384 	pop	acc
+   06E5 F6                 1385 	mov	@r0,a
+   06E6 18                 1386 	dec	r0
+   06E7 D0 E0              1387 	pop	acc
+   06E9 F6                 1388 	mov	@r0,a
+   06EA 18                 1389 	dec	r0
+   06EB D0 E0              1390 	pop	acc
+   06ED F6                 1391 	mov	@r0,a
+   06EE 18                 1392 	dec	r0
+   06EF D0 E0              1393 	pop	acc
+   06F1 F6                 1394 	mov	@r0,a
+   06F2 E5*00              1395 	mov	a,_bp
+   06F4 24 34              1396 	add	a,#0x34
+   06F6 F8                 1397 	mov	r0,a
+   06F7 86 03              1398 	mov	ar3,@r0
+   06F9 08                 1399 	inc	r0
+   06FA 86 04              1400 	mov	ar4,@r0
+   06FC E5*00              1401 	mov	a,_bp
+   06FE 24 2C              1402 	add	a,#0x2c
+   0700 F8                 1403 	mov	r0,a
+   0701 86 82              1404 	mov	dpl,@r0
+   0703 08                 1405 	inc	r0
+   0704 86 83              1406 	mov	dph,@r0
+   0706 08                 1407 	inc	r0
+   0707 86 F0              1408 	mov	b,@r0
+   0709 EB                 1409 	mov	a,r3
+   070A 12s00r00           1410 	lcall	__gptrput
+   070D A3                 1411 	inc	dptr
+   070E EC                 1412 	mov	a,r4
+   070F 12s00r00           1413 	lcall	__gptrput
+                           1414 ;	../../../core/lib/ifft.c:142: xim[k] += ti;
+   0712 E5*00              1415 	mov	a,_bp
+   0714 24 21              1416 	add	a,#0x21
+   0716 F8                 1417 	mov	r0,a
+   0717 EA                 1418 	mov	a,r2
+   0718 26                 1419 	add	a,@r0
+   0719 FA                 1420 	mov	r2,a
+   071A ED                 1421 	mov	a,r5
+   071B 08                 1422 	inc	r0
+   071C 36                 1423 	addc	a,@r0
+   071D FD                 1424 	mov	r5,a
+   071E EE                 1425 	mov	a,r6
+   071F 08                 1426 	inc	r0
+   0720 36                 1427 	addc	a,@r0
+   0721 EF                 1428 	mov	a,r7
+   0722 08                 1429 	inc	r0
+   0723 36                 1430 	addc	a,@r0
+   0724 8A 03              1431 	mov	ar3,r2
+   0726 8D 04              1432 	mov	ar4,r5
+   0728 E5*00              1433 	mov	a,_bp
+   072A 24 30              1434 	add	a,#0x30
+   072C F8                 1435 	mov	r0,a
+   072D 86 82              1436 	mov	dpl,@r0
+   072F 08                 1437 	inc	r0
+   0730 86 83              1438 	mov	dph,@r0
+   0732 08                 1439 	inc	r0
+   0733 86 F0              1440 	mov	b,@r0
+   0735 EB                 1441 	mov	a,r3
+   0736 12s00r00           1442 	lcall	__gptrput
+   0739 A3                 1443 	inc	dptr
+   073A EC                 1444 	mov	a,r4
+   073B 12s00r00           1445 	lcall	__gptrput
+                           1446 ;	../../../core/lib/ifft.c:143: k++;
+   073E E5*00              1447 	mov	a,_bp
+   0740 24 16              1448 	add	a,#0x16
+   0742 F8                 1449 	mov	r0,a
+   0743 06                 1450 	inc	@r0
+   0744 B6 00 02           1451 	cjne	@r0,#0x00,00162$
+   0747 08                 1452 	inc	r0
+   0748 06                 1453 	inc	@r0
+   0749                    1454 00162$:
+                           1455 ;	../../../core/lib/ifft.c:131: for (i = 1; i <= n2; i++) {
+   0749 E5*00              1456 	mov	a,_bp
+   074B 24 0C              1457 	add	a,#0x0c
+   074D F8                 1458 	mov	r0,a
+   074E 06                 1459 	inc	@r0
+   074F B6 00 02           1460 	cjne	@r0,#0x00,00163$
+   0752 08                 1461 	inc	r0
+   0753 06                 1462 	inc	@r0
+   0754                    1463 00163$:
+   0754 02s02r13           1464 	ljmp	00107$
+   0757                    1465 00113$:
+                           1466 ;	../../../core/lib/ifft.c:130: for (k = 0; k < n; k += n2) {
+   0757 E5*00              1467 	mov	a,_bp
+   0759 24 16              1468 	add	a,#0x16
+   075B F8                 1469 	mov	r0,a
+   075C E5*00              1470 	mov	a,_bp
+   075E 24 06              1471 	add	a,#0x06
+   0760 F9                 1472 	mov	r1,a
+   0761 E7                 1473 	mov	a,@r1
+   0762 26                 1474 	add	a,@r0
+   0763 FB                 1475 	mov	r3,a
+   0764 09                 1476 	inc	r1
+   0765 E7                 1477 	mov	a,@r1
+   0766 08                 1478 	inc	r0
+   0767 36                 1479 	addc	a,@r0
+   0768 FC                 1480 	mov	r4,a
+   0769 8B 02              1481 	mov	ar2,r3
+   076B 8C 06              1482 	mov	ar6,r4
+   076D 02s01rEB           1483 	ljmp	00111$
+   0770                    1484 00114$:
+                           1485 ;	../../../core/lib/ifft.c:146: nu1--;
+   0770 E5*00              1486 	mov	a,_bp
+   0772 24 1A              1487 	add	a,#0x1a
+   0774 F8                 1488 	mov	r0,a
+   0775 16                 1489 	dec	@r0
+   0776 B6 FF 02           1490 	cjne	@r0,#0xff,00164$
+   0779 08                 1491 	inc	r0
+   077A 16                 1492 	dec	@r0
+   077B                    1493 00164$:
+                           1494 ;	../../../core/lib/ifft.c:147: n2 = n2 / 2;
+   077B E5*00              1495 	mov	a,_bp
+   077D 24 06              1496 	add	a,#0x06
+   077F F8                 1497 	mov	r0,a
+   0780 08                 1498 	inc	r0
+   0781 E6                 1499 	mov	a,@r0
+   0782 18                 1500 	dec	r0
+   0783 C3                 1501 	clr	c
+   0784 13                 1502 	rrc	a
+   0785 C6                 1503 	xch	a,@r0
+   0786 13                 1504 	rrc	a
+   0787 C6                 1505 	xch	a,@r0
+   0788 08                 1506 	inc	r0
+   0789 F6                 1507 	mov	@r0,a
+                           1508 ;	../../../core/lib/ifft.c:129: for (l = 1; l <= nu; l++) {
+   078A E5*00              1509 	mov	a,_bp
+   078C 24 0A              1510 	add	a,#0x0a
+   078E F8                 1511 	mov	r0,a
+   078F 06                 1512 	inc	@r0
+   0790 B6 00 02           1513 	cjne	@r0,#0x00,00165$
+   0793 08                 1514 	inc	r0
+   0794 06                 1515 	inc	@r0
+   0795                    1516 00165$:
+   0795 02s01rCD           1517 	ljmp	00115$
+   0798                    1518 00118$:
+                           1519 ;	../../../core/lib/ifft.c:150: for (k = 0; k < n; k++) {
+   0798 7A 00              1520 	mov	r2,#0x00
+   079A 7B 00              1521 	mov	r3,#0x00
+   079C                    1522 00119$:
+   079C 8A 04              1523 	mov	ar4,r2
+   079E 8B 06              1524 	mov	ar6,r3
+   07A0 E5*00              1525 	mov	a,_bp
+   07A2 24 F9              1526 	add	a,#0xf9
+   07A4 F8                 1527 	mov	r0,a
+   07A5 C3                 1528 	clr	c
+   07A6 EC                 1529 	mov	a,r4
+   07A7 96                 1530 	subb	a,@r0
+   07A8 EE                 1531 	mov	a,r6
+   07A9 08                 1532 	inc	r0
+   07AA 96                 1533 	subb	a,@r0
+   07AB 40 03              1534 	jc	00166$
+   07AD 02s09r53           1535 	ljmp	00122$
+   07B0                    1536 00166$:
+                           1537 ;	../../../core/lib/ifft.c:151: p = bitrev(k, nu);
+   07B0 C0 02              1538 	push	ar2
+   07B2 C0 03              1539 	push	ar3
+   07B4 E5*00              1540 	mov	a,_bp
+   07B6 24 04              1541 	add	a,#0x04
+   07B8 F8                 1542 	mov	r0,a
+   07B9 E6                 1543 	mov	a,@r0
+   07BA C0 E0              1544 	push	acc
+   07BC 08                 1545 	inc	r0
+   07BD E6                 1546 	mov	a,@r0
+   07BE C0 E0              1547 	push	acc
+   07C0 8A 82              1548 	mov	dpl,r2
+   07C2 8B 83              1549 	mov	dph,r3
+   07C4 12s00r00           1550 	lcall	_bitrev
+   07C7 AC 82              1551 	mov	r4,dpl
+   07C9 AE 83              1552 	mov	r6,dph
+   07CB 15 81              1553 	dec	sp
+   07CD 15 81              1554 	dec	sp
+   07CF D0 03              1555 	pop	ar3
+   07D1 D0 02              1556 	pop	ar2
+   07D3 E5*00              1557 	mov	a,_bp
+   07D5 24 08              1558 	add	a,#0x08
+   07D7 F8                 1559 	mov	r0,a
+   07D8 A6 04              1560 	mov	@r0,ar4
+   07DA 08                 1561 	inc	r0
+   07DB A6 06              1562 	mov	@r0,ar6
+                           1563 ;	../../../core/lib/ifft.c:152: if (p > k) {
+   07DD E5*00              1564 	mov	a,_bp
+   07DF 24 08              1565 	add	a,#0x08
+   07E1 F8                 1566 	mov	r0,a
+   07E2 C3                 1567 	clr	c
+   07E3 EA                 1568 	mov	a,r2
+   07E4 96                 1569 	subb	a,@r0
+   07E5 EB                 1570 	mov	a,r3
+   07E6 64 80              1571 	xrl	a,#0x80
+   07E8 08                 1572 	inc	r0
+   07E9 86 F0              1573 	mov	b,@r0
+   07EB 63 F0 80           1574 	xrl	b,#0x80
+   07EE 95 F0              1575 	subb	a,b
+   07F0 40 03              1576 	jc	00167$
+   07F2 02s09r4B           1577 	ljmp	00121$
+   07F5                    1578 00167$:
+                           1579 ;	../../../core/lib/ifft.c:153: n2 = xre[k];
+   07F5 E5*00              1580 	mov	a,_bp
+   07F7 24 34              1581 	add	a,#0x34
+   07F9 F8                 1582 	mov	r0,a
+   07FA A6 02              1583 	mov	@r0,ar2
+   07FC EB                 1584 	mov	a,r3
+   07FD C6                 1585 	xch	a,@r0
+   07FE 25 E0              1586 	add	a,acc
+   0800 C6                 1587 	xch	a,@r0
+   0801 33                 1588 	rlc	a
+   0802 08                 1589 	inc	r0
+   0803 F6                 1590 	mov	@r0,a
+   0804 C0 02              1591 	push	ar2
+   0806 C0 03              1592 	push	ar3
+   0808 A8*00              1593 	mov	r0,_bp
+   080A 08                 1594 	inc	r0
+   080B E5*00              1595 	mov	a,_bp
+   080D 24 34              1596 	add	a,#0x34
+   080F F9                 1597 	mov	r1,a
+   0810 E7                 1598 	mov	a,@r1
+   0811 26                 1599 	add	a,@r0
+   0812 FA                 1600 	mov	r2,a
+   0813 09                 1601 	inc	r1
+   0814 E7                 1602 	mov	a,@r1
+   0815 08                 1603 	inc	r0
+   0816 36                 1604 	addc	a,@r0
+   0817 FB                 1605 	mov	r3,a
+   0818 08                 1606 	inc	r0
+   0819 86 05              1607 	mov	ar5,@r0
+   081B 8A 82              1608 	mov	dpl,r2
+   081D 8B 83              1609 	mov	dph,r3
+   081F 8D F0              1610 	mov	b,r5
+   0821 12s00r00           1611 	lcall	__gptrget
+   0824 FF                 1612 	mov	r7,a
+   0825 A3                 1613 	inc	dptr
+   0826 12s00r00           1614 	lcall	__gptrget
+   0829 FC                 1615 	mov	r4,a
+   082A E5*00              1616 	mov	a,_bp
+   082C 24 06              1617 	add	a,#0x06
+   082E F8                 1618 	mov	r0,a
+   082F A6 07              1619 	mov	@r0,ar7
+   0831 08                 1620 	inc	r0
+   0832 A6 04              1621 	mov	@r0,ar4
+                           1622 ;	../../../core/lib/ifft.c:154: xre[k] = xre[p];
+   0834 E5*00              1623 	mov	a,_bp
+   0836 24 08              1624 	add	a,#0x08
+   0838 F8                 1625 	mov	r0,a
+   0839 E5*00              1626 	mov	a,_bp
+   083B 24 30              1627 	add	a,#0x30
+   083D F9                 1628 	mov	r1,a
+   083E E6                 1629 	mov	a,@r0
+   083F F7                 1630 	mov	@r1,a
+   0840 08                 1631 	inc	r0
+   0841 E6                 1632 	mov	a,@r0
+   0842 C7                 1633 	xch	a,@r1
+   0843 25 E0              1634 	add	a,acc
+   0845 C7                 1635 	xch	a,@r1
+   0846 33                 1636 	rlc	a
+   0847 09                 1637 	inc	r1
+   0848 F7                 1638 	mov	@r1,a
+   0849 A8*00              1639 	mov	r0,_bp
+   084B 08                 1640 	inc	r0
+   084C E5*00              1641 	mov	a,_bp
+   084E 24 30              1642 	add	a,#0x30
+   0850 F9                 1643 	mov	r1,a
+   0851 E7                 1644 	mov	a,@r1
+   0852 26                 1645 	add	a,@r0
+   0853 C0 E0              1646 	push	acc
+   0855 09                 1647 	inc	r1
+   0856 E7                 1648 	mov	a,@r1
+   0857 08                 1649 	inc	r0
+   0858 36                 1650 	addc	a,@r0
+   0859 C0 E0              1651 	push	acc
+   085B 08                 1652 	inc	r0
+   085C E6                 1653 	mov	a,@r0
+   085D C0 E0              1654 	push	acc
+   085F E5*00              1655 	mov	a,_bp
+   0861 24 2E              1656 	add	a,#0x2e
+   0863 F8                 1657 	mov	r0,a
+   0864 D0 E0              1658 	pop	acc
+   0866 F6                 1659 	mov	@r0,a
+   0867 18                 1660 	dec	r0
+   0868 D0 E0              1661 	pop	acc
+   086A F6                 1662 	mov	@r0,a
+   086B 18                 1663 	dec	r0
+   086C D0 E0              1664 	pop	acc
+   086E F6                 1665 	mov	@r0,a
+   086F E5*00              1666 	mov	a,_bp
+   0871 24 2C              1667 	add	a,#0x2c
+   0873 F8                 1668 	mov	r0,a
+   0874 86 82              1669 	mov	dpl,@r0
+   0876 08                 1670 	inc	r0
+   0877 86 83              1671 	mov	dph,@r0
+   0879 08                 1672 	inc	r0
+   087A 86 F0              1673 	mov	b,@r0
+   087C 12s00r00           1674 	lcall	__gptrget
+   087F FC                 1675 	mov	r4,a
+   0880 A3                 1676 	inc	dptr
+   0881 12s00r00           1677 	lcall	__gptrget
+   0884 FE                 1678 	mov	r6,a
+   0885 8A 82              1679 	mov	dpl,r2
+   0887 8B 83              1680 	mov	dph,r3
+   0889 8D F0              1681 	mov	b,r5
+   088B EC                 1682 	mov	a,r4
+   088C 12s00r00           1683 	lcall	__gptrput
+   088F A3                 1684 	inc	dptr
+   0890 EE                 1685 	mov	a,r6
+   0891 12s00r00           1686 	lcall	__gptrput
+                           1687 ;	../../../core/lib/ifft.c:155: xre[p] = n2;
+   0894 E5*00              1688 	mov	a,_bp
+   0896 24 2C              1689 	add	a,#0x2c
+   0898 F8                 1690 	mov	r0,a
+   0899 86 82              1691 	mov	dpl,@r0
+   089B 08                 1692 	inc	r0
+   089C 86 83              1693 	mov	dph,@r0
+   089E 08                 1694 	inc	r0
+   089F 86 F0              1695 	mov	b,@r0
+   08A1 E5*00              1696 	mov	a,_bp
+   08A3 24 06              1697 	add	a,#0x06
+   08A5 F9                 1698 	mov	r1,a
+   08A6 E7                 1699 	mov	a,@r1
+   08A7 12s00r00           1700 	lcall	__gptrput
+   08AA A3                 1701 	inc	dptr
+   08AB 09                 1702 	inc	r1
+   08AC E7                 1703 	mov	a,@r1
+   08AD 12s00r00           1704 	lcall	__gptrput
+                           1705 ;	../../../core/lib/ifft.c:157: n2 = xim[k];
+   08B0 E5*00              1706 	mov	a,_bp
+   08B2 24 FB              1707 	add	a,#0xfb
+   08B4 F8                 1708 	mov	r0,a
+   08B5 E5*00              1709 	mov	a,_bp
+   08B7 24 34              1710 	add	a,#0x34
+   08B9 F9                 1711 	mov	r1,a
+   08BA E7                 1712 	mov	a,@r1
+   08BB 26                 1713 	add	a,@r0
+   08BC FA                 1714 	mov	r2,a
+   08BD 09                 1715 	inc	r1
+   08BE E7                 1716 	mov	a,@r1
+   08BF 08                 1717 	inc	r0
+   08C0 36                 1718 	addc	a,@r0
+   08C1 FB                 1719 	mov	r3,a
+   08C2 08                 1720 	inc	r0
+   08C3 86 04              1721 	mov	ar4,@r0
+   08C5 8A 82              1722 	mov	dpl,r2
+   08C7 8B 83              1723 	mov	dph,r3
+   08C9 8C F0              1724 	mov	b,r4
+   08CB 12s00r00           1725 	lcall	__gptrget
+   08CE FD                 1726 	mov	r5,a
+   08CF A3                 1727 	inc	dptr
+   08D0 12s00r00           1728 	lcall	__gptrget
+   08D3 FE                 1729 	mov	r6,a
+   08D4 E5*00              1730 	mov	a,_bp
+   08D6 24 06              1731 	add	a,#0x06
+   08D8 F8                 1732 	mov	r0,a
+   08D9 A6 05              1733 	mov	@r0,ar5
+   08DB 08                 1734 	inc	r0
+   08DC A6 06              1735 	mov	@r0,ar6
+                           1736 ;	../../../core/lib/ifft.c:158: xim[k] = xim[p];
+   08DE E5*00              1737 	mov	a,_bp
+   08E0 24 FB              1738 	add	a,#0xfb
+   08E2 F8                 1739 	mov	r0,a
+   08E3 E5*00              1740 	mov	a,_bp
+   08E5 24 30              1741 	add	a,#0x30
+   08E7 F9                 1742 	mov	r1,a
+   08E8 E7                 1743 	mov	a,@r1
+   08E9 26                 1744 	add	a,@r0
+   08EA C0 E0              1745 	push	acc
+   08EC 09                 1746 	inc	r1
+   08ED E7                 1747 	mov	a,@r1
+   08EE 08                 1748 	inc	r0
+   08EF 36                 1749 	addc	a,@r0
+   08F0 C0 E0              1750 	push	acc
+   08F2 08                 1751 	inc	r0
+   08F3 E6                 1752 	mov	a,@r0
+   08F4 C0 E0              1753 	push	acc
+   08F6 E5*00              1754 	mov	a,_bp
+   08F8 24 36              1755 	add	a,#0x36
+   08FA F8                 1756 	mov	r0,a
+   08FB D0 E0              1757 	pop	acc
+   08FD F6                 1758 	mov	@r0,a
+   08FE 18                 1759 	dec	r0
+   08FF D0 E0              1760 	pop	acc
+   0901 F6                 1761 	mov	@r0,a
+   0902 18                 1762 	dec	r0
+   0903 D0 E0              1763 	pop	acc
+   0905 F6                 1764 	mov	@r0,a
+   0906 E5*00              1765 	mov	a,_bp
+   0908 24 34              1766 	add	a,#0x34
+   090A F8                 1767 	mov	r0,a
+   090B 86 82              1768 	mov	dpl,@r0
+   090D 08                 1769 	inc	r0
+   090E 86 83              1770 	mov	dph,@r0
+   0910 08                 1771 	inc	r0
+   0911 86 F0              1772 	mov	b,@r0
+   0913 12s00r00           1773 	lcall	__gptrget
+   0916 FD                 1774 	mov	r5,a
+   0917 A3                 1775 	inc	dptr
+   0918 12s00r00           1776 	lcall	__gptrget
+   091B FE                 1777 	mov	r6,a
+   091C 8A 82              1778 	mov	dpl,r2
+   091E 8B 83              1779 	mov	dph,r3
+   0920 8C F0              1780 	mov	b,r4
+   0922 ED                 1781 	mov	a,r5
+   0923 12s00r00           1782 	lcall	__gptrput
+   0926 A3                 1783 	inc	dptr
+   0927 EE                 1784 	mov	a,r6
+   0928 12s00r00           1785 	lcall	__gptrput
+                           1786 ;	../../../core/lib/ifft.c:159: xim[p] = n2;
+   092B E5*00              1787 	mov	a,_bp
+   092D 24 34              1788 	add	a,#0x34
+   092F F8                 1789 	mov	r0,a
+   0930 86 82              1790 	mov	dpl,@r0
+   0932 08                 1791 	inc	r0
+   0933 86 83              1792 	mov	dph,@r0
+   0935 08                 1793 	inc	r0
+   0936 86 F0              1794 	mov	b,@r0
+   0938 E5*00              1795 	mov	a,_bp
+   093A 24 06              1796 	add	a,#0x06
+   093C F9                 1797 	mov	r1,a
+   093D E7                 1798 	mov	a,@r1
+   093E 12s00r00           1799 	lcall	__gptrput
+   0941 A3                 1800 	inc	dptr
+   0942 09                 1801 	inc	r1
+   0943 E7                 1802 	mov	a,@r1
+   0944 12s00r00           1803 	lcall	__gptrput
+                           1804 ;	../../../core/lib/ifft.c:165: for (i = 0, n2 = n / 2; i < n2; i++) {
+   0947 D0 03              1805 	pop	ar3
+   0949 D0 02              1806 	pop	ar2
+                           1807 ;	../../../core/lib/ifft.c:159: xim[p] = n2;
+   094B                    1808 00121$:
+                           1809 ;	../../../core/lib/ifft.c:150: for (k = 0; k < n; k++) {
+   094B 0A                 1810 	inc	r2
+   094C BA 00 01           1811 	cjne	r2,#0x00,00168$
+   094F 0B                 1812 	inc	r3
+   0950                    1813 00168$:
+   0950 02s07r9C           1814 	ljmp	00119$
+   0953                    1815 00122$:
+                           1816 ;	../../../core/lib/ifft.c:165: for (i = 0, n2 = n / 2; i < n2; i++) {
+   0953 E5*00              1817 	mov	a,_bp
+   0955 24 18              1818 	add	a,#0x18
+   0957 F8                 1819 	mov	r0,a
+   0958 86 02              1820 	mov	ar2,@r0
+   095A 08                 1821 	inc	r0
+   095B 86 03              1822 	mov	ar3,@r0
+   095D E5*00              1823 	mov	a,_bp
+   095F 24 06              1824 	add	a,#0x06
+   0961 F8                 1825 	mov	r0,a
+   0962 A6 02              1826 	mov	@r0,ar2
+   0964 08                 1827 	inc	r0
+   0965 A6 03              1828 	mov	@r0,ar3
+   0967 E5*00              1829 	mov	a,_bp
+   0969 24 0C              1830 	add	a,#0x0c
+   096B F8                 1831 	mov	r0,a
+   096C E4                 1832 	clr	a
+   096D F6                 1833 	mov	@r0,a
+   096E 08                 1834 	inc	r0
+   096F F6                 1835 	mov	@r0,a
+   0970                    1836 00123$:
+   0970 E5*00              1837 	mov	a,_bp
+   0972 24 0C              1838 	add	a,#0x0c
+   0974 F8                 1839 	mov	r0,a
+   0975 86 04              1840 	mov	ar4,@r0
+   0977 08                 1841 	inc	r0
+   0978 86 05              1842 	mov	ar5,@r0
+   097A E5*00              1843 	mov	a,_bp
+   097C 24 06              1844 	add	a,#0x06
+   097E F8                 1845 	mov	r0,a
+   097F C3                 1846 	clr	c
+   0980 EC                 1847 	mov	a,r4
+   0981 96                 1848 	subb	a,@r0
+   0982 ED                 1849 	mov	a,r5
+   0983 08                 1850 	inc	r0
+   0984 96                 1851 	subb	a,@r0
+   0985 40 03              1852 	jc	00169$
+   0987 02s0Ar76           1853 	ljmp	00127$
+   098A                    1854 00169$:
+                           1855 ;	../../../core/lib/ifft.c:166: xre[i] = (ABS(xre[i]) + ABS(xim[i]));
+   098A E5*00              1856 	mov	a,_bp
+   098C 24 0C              1857 	add	a,#0x0c
+   098E F8                 1858 	mov	r0,a
+   098F 86 04              1859 	mov	ar4,@r0
+   0991 08                 1860 	inc	r0
+   0992 E6                 1861 	mov	a,@r0
+   0993 CC                 1862 	xch	a,r4
+   0994 25 E0              1863 	add	a,acc
+   0996 CC                 1864 	xch	a,r4
+   0997 33                 1865 	rlc	a
+   0998 FD                 1866 	mov	r5,a
+   0999 A8*00              1867 	mov	r0,_bp
+   099B 08                 1868 	inc	r0
+   099C EC                 1869 	mov	a,r4
+   099D 26                 1870 	add	a,@r0
+   099E FC                 1871 	mov	r4,a
+   099F ED                 1872 	mov	a,r5
+   09A0 08                 1873 	inc	r0
+   09A1 36                 1874 	addc	a,@r0
+   09A2 FD                 1875 	mov	r5,a
+   09A3 08                 1876 	inc	r0
+   09A4 86 06              1877 	mov	ar6,@r0
+   09A6 8C 82              1878 	mov	dpl,r4
+   09A8 8D 83              1879 	mov	dph,r5
+   09AA 8E F0              1880 	mov	b,r6
+   09AC 12s00r00           1881 	lcall	__gptrget
+   09AF FF                 1882 	mov	r7,a
+   09B0 A3                 1883 	inc	dptr
+   09B1 12s00r00           1884 	lcall	__gptrget
+   09B4 FA                 1885 	mov	r2,a
+   09B5 30 E7 18           1886 	jnb	acc.7,00129$
+   09B8 8C 82              1887 	mov	dpl,r4
+   09BA 8D 83              1888 	mov	dph,r5
+   09BC 8E F0              1889 	mov	b,r6
+   09BE 12s00r00           1890 	lcall	__gptrget
+   09C1 FF                 1891 	mov	r7,a
+   09C2 A3                 1892 	inc	dptr
+   09C3 12s00r00           1893 	lcall	__gptrget
+   09C6 FA                 1894 	mov	r2,a
+   09C7 C3                 1895 	clr	c
+   09C8 E4                 1896 	clr	a
+   09C9 9F                 1897 	subb	a,r7
+   09CA FB                 1898 	mov	r3,a
+   09CB E4                 1899 	clr	a
+   09CC 9A                 1900 	subb	a,r2
+   09CD FA                 1901 	mov	r2,a
+   09CE 80 0F              1902 	sjmp	00130$
+   09D0                    1903 00129$:
+   09D0 8C 82              1904 	mov	dpl,r4
+   09D2 8D 83              1905 	mov	dph,r5
+   09D4 8E F0              1906 	mov	b,r6
+   09D6 12s00r00           1907 	lcall	__gptrget
+   09D9 FB                 1908 	mov	r3,a
+   09DA A3                 1909 	inc	dptr
+   09DB 12s00r00           1910 	lcall	__gptrget
+   09DE FA                 1911 	mov	r2,a
+   09DF                    1912 00130$:
+   09DF C0 04              1913 	push	ar4
+   09E1 C0 05              1914 	push	ar5
+   09E3 C0 06              1915 	push	ar6
+   09E5 E5*00              1916 	mov	a,_bp
+   09E7 24 0C              1917 	add	a,#0x0c
+   09E9 F8                 1918 	mov	r0,a
+   09EA 86 07              1919 	mov	ar7,@r0
+   09EC 08                 1920 	inc	r0
+   09ED E6                 1921 	mov	a,@r0
+   09EE CF                 1922 	xch	a,r7
+   09EF 25 E0              1923 	add	a,acc
+   09F1 CF                 1924 	xch	a,r7
+   09F2 33                 1925 	rlc	a
+   09F3 FC                 1926 	mov	r4,a
+   09F4 E5*00              1927 	mov	a,_bp
+   09F6 24 FB              1928 	add	a,#0xfb
+   09F8 F8                 1929 	mov	r0,a
+   09F9 EF                 1930 	mov	a,r7
+   09FA 26                 1931 	add	a,@r0
+   09FB FF                 1932 	mov	r7,a
+   09FC EC                 1933 	mov	a,r4
+   09FD 08                 1934 	inc	r0
+   09FE 36                 1935 	addc	a,@r0
+   09FF FC                 1936 	mov	r4,a
+   0A00 08                 1937 	inc	r0
+   0A01 86 05              1938 	mov	ar5,@r0
+   0A03 8F 82              1939 	mov	dpl,r7
+   0A05 8C 83              1940 	mov	dph,r4
+   0A07 8D F0              1941 	mov	b,r5
+   0A09 E5*00              1942 	mov	a,_bp
+   0A0B 24 30              1943 	add	a,#0x30
+   0A0D F8                 1944 	mov	r0,a
+   0A0E 12s00r00           1945 	lcall	__gptrget
+   0A11 F6                 1946 	mov	@r0,a
+   0A12 A3                 1947 	inc	dptr
+   0A13 12s00r00           1948 	lcall	__gptrget
+   0A16 08                 1949 	inc	r0
+   0A17 F6                 1950 	mov	@r0,a
+   0A18 E5*00              1951 	mov	a,_bp
+   0A1A 24 30              1952 	add	a,#0x30
+   0A1C F8                 1953 	mov	r0,a
+   0A1D 08                 1954 	inc	r0
+   0A1E E6                 1955 	mov	a,@r0
+   0A1F D0 06              1956 	pop	ar6
+   0A21 D0 05              1957 	pop	ar5
+   0A23 D0 04              1958 	pop	ar4
+   0A25 30 E7 15           1959 	jnb	acc.7,00131$
+   0A28 E5*00              1960 	mov	a,_bp
+   0A2A 24 30              1961 	add	a,#0x30
+   0A2C F8                 1962 	mov	r0,a
+   0A2D E5*00              1963 	mov	a,_bp
+   0A2F 24 2C              1964 	add	a,#0x2c
+   0A31 F9                 1965 	mov	r1,a
+   0A32 C3                 1966 	clr	c
+   0A33 E4                 1967 	clr	a
+   0A34 96                 1968 	subb	a,@r0
+   0A35 F7                 1969 	mov	@r1,a
+   0A36 08                 1970 	inc	r0
+   0A37 E4                 1971 	clr	a
+   0A38 96                 1972 	subb	a,@r0
+   0A39 09                 1973 	inc	r1
+   0A3A F7                 1974 	mov	@r1,a
+   0A3B 80 10              1975 	sjmp	00132$
+   0A3D                    1976 00131$:
+   0A3D E5*00              1977 	mov	a,_bp
+   0A3F 24 30              1978 	add	a,#0x30
+   0A41 F8                 1979 	mov	r0,a
+   0A42 E5*00              1980 	mov	a,_bp
+   0A44 24 2C              1981 	add	a,#0x2c
+   0A46 F9                 1982 	mov	r1,a
+   0A47 E6                 1983 	mov	a,@r0
+   0A48 F7                 1984 	mov	@r1,a
+   0A49 08                 1985 	inc	r0
+   0A4A 09                 1986 	inc	r1
+   0A4B E6                 1987 	mov	a,@r0
+   0A4C F7                 1988 	mov	@r1,a
+   0A4D                    1989 00132$:
+   0A4D E5*00              1990 	mov	a,_bp
+   0A4F 24 2C              1991 	add	a,#0x2c
+   0A51 F8                 1992 	mov	r0,a
+   0A52 E6                 1993 	mov	a,@r0
+   0A53 2B                 1994 	add	a,r3
+   0A54 FF                 1995 	mov	r7,a
+   0A55 08                 1996 	inc	r0
+   0A56 E6                 1997 	mov	a,@r0
+   0A57 3A                 1998 	addc	a,r2
+   0A58 FA                 1999 	mov	r2,a
+   0A59 8C 82              2000 	mov	dpl,r4
+   0A5B 8D 83              2001 	mov	dph,r5
+   0A5D 8E F0              2002 	mov	b,r6
+   0A5F EF                 2003 	mov	a,r7
+   0A60 12s00r00           2004 	lcall	__gptrput
+   0A63 A3                 2005 	inc	dptr
+   0A64 EA                 2006 	mov	a,r2
+   0A65 12s00r00           2007 	lcall	__gptrput
+                           2008 ;	../../../core/lib/ifft.c:165: for (i = 0, n2 = n / 2; i < n2; i++) {
+   0A68 E5*00              2009 	mov	a,_bp
+   0A6A 24 0C              2010 	add	a,#0x0c
+   0A6C F8                 2011 	mov	r0,a
+   0A6D 06                 2012 	inc	@r0
+   0A6E B6 00 02           2013 	cjne	@r0,#0x00,00172$
+   0A71 08                 2014 	inc	r0
+   0A72 06                 2015 	inc	@r0
+   0A73                    2016 00172$:
+   0A73 02s09r70           2017 	ljmp	00123$
+   0A76                    2018 00127$:
+   0A76 85*00 81           2019 	mov	sp,_bp
+   0A79 D0*00              2020 	pop	_bp
+   0A7B 22                 2021 	ret
+                           2022 	.area CSEG    (CODE)
+                           2023 	.area CONST   (CODE)
+   0000                    2024 _SIN_TAB:
+   0000 00                 2025 	.db #0x00	;  0
+   0001 06                 2026 	.db #0x06	;  6
+   0002 0D                 2027 	.db #0x0D	;  13
+   0003 14                 2028 	.db #0x14	;  20
+   0004 1A                 2029 	.db #0x1A	;  26
+   0005 21                 2030 	.db #0x21	;  33
+   0006 27                 2031 	.db #0x27	;  39
+   0007 2D                 2032 	.db #0x2D	;  45
+   0008 34                 2033 	.db #0x34	;  52
+   0009 3A                 2034 	.db #0x3A	;  58
+   000A 3F                 2035 	.db #0x3F	;  63
+   000B 45                 2036 	.db #0x45	;  69	E
+   000C 4B                 2037 	.db #0x4B	;  75	K
+   000D 50                 2038 	.db #0x50	;  80	P
+   000E 55                 2039 	.db #0x55	;  85	U
+   000F 5A                 2040 	.db #0x5A	;  90	Z
+   0010 5F                 2041 	.db #0x5F	;  95
+   0011 63                 2042 	.db #0x63	;  99	c
+   0012 67                 2043 	.db #0x67	;  103	g
+   0013 6B                 2044 	.db #0x6B	;  107	k
+   0014 6E                 2045 	.db #0x6E	;  110	n
+   0015 72                 2046 	.db #0x72	;  114	r
+   0016 74                 2047 	.db #0x74	;  116	t
+   0017 77                 2048 	.db #0x77	;  119	w
+   0018 79                 2049 	.db #0x79	;  121	y
+   0019 7B                 2050 	.db #0x7B	;  123
+   001A 7D                 2051 	.db #0x7D	;  125
+   001B 7E                 2052 	.db #0x7E	;  126
+   001C 7F                 2053 	.db #0x7F	;  127
+   001D 7F                 2054 	.db #0x7F	;  127
+   001E 7F                 2055 	.db #0x7F	;  127
+   001F 7F                 2056 	.db #0x7F	;  127
+   0020 7F                 2057 	.db #0x7F	;  127
+   0021 7E                 2058 	.db #0x7E	;  126
+   0022 7D                 2059 	.db #0x7D	;  125
+   0023 7B                 2060 	.db #0x7B	;  123
+   0024 79                 2061 	.db #0x79	;  121	y
+   0025 77                 2062 	.db #0x77	;  119	w
+   0026 74                 2063 	.db #0x74	;  116	t
+   0027 72                 2064 	.db #0x72	;  114	r
+   0028 6E                 2065 	.db #0x6E	;  110	n
+   0029 6B                 2066 	.db #0x6B	;  107	k
+   002A 67                 2067 	.db #0x67	;  103	g
+   002B 63                 2068 	.db #0x63	;  99	c
+   002C 5F                 2069 	.db #0x5F	;  95
+   002D 5A                 2070 	.db #0x5A	;  90	Z
+   002E 55                 2071 	.db #0x55	;  85	U
+   002F 50                 2072 	.db #0x50	;  80	P
+   0030 4B                 2073 	.db #0x4B	;  75	K
+   0031 45                 2074 	.db #0x45	;  69	E
+   0032 3F                 2075 	.db #0x3F	;  63
+   0033 3A                 2076 	.db #0x3A	;  58
+   0034 34                 2077 	.db #0x34	;  52
+   0035 2D                 2078 	.db #0x2D	;  45
+   0036 27                 2079 	.db #0x27	;  39
+   0037 21                 2080 	.db #0x21	;  33
+   0038 1A                 2081 	.db #0x1A	;  26
+   0039 14                 2082 	.db #0x14	;  20
+   003A 0D                 2083 	.db #0x0D	;  13
+   003B 06                 2084 	.db #0x06	;  6
+   003C 00                 2085 	.db #0x00	;  0
+   003D FA                 2086 	.db #0xFA	; -6
+   003E F3                 2087 	.db #0xF3	; -13
+   003F EC                 2088 	.db #0xEC	; -20
+   0040 E6                 2089 	.db #0xE6	; -26
+   0041 DF                 2090 	.db #0xDF	; -33
+   0042 D9                 2091 	.db #0xD9	; -39
+   0043 D3                 2092 	.db #0xD3	; -45
+   0044 CC                 2093 	.db #0xCC	; -52
+   0045 C6                 2094 	.db #0xC6	; -58
+   0046 C1                 2095 	.db #0xC1	; -63
+   0047 BB                 2096 	.db #0xBB	; -69
+   0048 B5                 2097 	.db #0xB5	; -75
+   0049 B0                 2098 	.db #0xB0	; -80
+   004A AB                 2099 	.db #0xAB	; -85
+   004B A6                 2100 	.db #0xA6	; -90
+   004C A1                 2101 	.db #0xA1	; -95
+   004D 9D                 2102 	.db #0x9D	; -99
+   004E 99                 2103 	.db #0x99	; -103
+   004F 95                 2104 	.db #0x95	; -107
+   0050 92                 2105 	.db #0x92	; -110
+   0051 8E                 2106 	.db #0x8E	; -114
+   0052 8C                 2107 	.db #0x8C	; -116
+   0053 89                 2108 	.db #0x89	; -119
+   0054 87                 2109 	.db #0x87	; -121
+   0055 85                 2110 	.db #0x85	; -123
+   0056 83                 2111 	.db #0x83	; -125
+   0057 82                 2112 	.db #0x82	; -126
+   0058 81                 2113 	.db #0x81	; -127
+   0059 81                 2114 	.db #0x81	; -127
+   005A 81                 2115 	.db #0x81	; -127
+   005B 81                 2116 	.db #0x81	; -127
+   005C 81                 2117 	.db #0x81	; -127
+   005D 82                 2118 	.db #0x82	; -126
+   005E 83                 2119 	.db #0x83	; -125
+   005F 85                 2120 	.db #0x85	; -123
+   0060 87                 2121 	.db #0x87	; -121
+   0061 89                 2122 	.db #0x89	; -119
+   0062 8C                 2123 	.db #0x8C	; -116
+   0063 8E                 2124 	.db #0x8E	; -114
+   0064 92                 2125 	.db #0x92	; -110
+   0065 95                 2126 	.db #0x95	; -107
+   0066 99                 2127 	.db #0x99	; -103
+   0067 9D                 2128 	.db #0x9D	; -99
+   0068 A1                 2129 	.db #0xA1	; -95
+   0069 A6                 2130 	.db #0xA6	; -90
+   006A AB                 2131 	.db #0xAB	; -85
+   006B B0                 2132 	.db #0xB0	; -80
+   006C B5                 2133 	.db #0xB5	; -75
+   006D BB                 2134 	.db #0xBB	; -69
+   006E C1                 2135 	.db #0xC1	; -63
+   006F C6                 2136 	.db #0xC6	; -58
+   0070 CC                 2137 	.db #0xCC	; -52
+   0071 D3                 2138 	.db #0xD3	; -45
+   0072 D9                 2139 	.db #0xD9	; -39
+   0073 DF                 2140 	.db #0xDF	; -33
+   0074 E6                 2141 	.db #0xE6	; -26
+   0075 EC                 2142 	.db #0xEC	; -20
+   0076 F3                 2143 	.db #0xF3	; -13
+   0077 FA                 2144 	.db #0xFA	; -6
+                           2145 	.area XINIT   (CODE)
+                           2146 	.area CABS    (ABS,CODE)

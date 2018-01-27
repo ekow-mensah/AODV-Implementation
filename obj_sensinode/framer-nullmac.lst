@@ -1,0 +1,237 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:26:01 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module framer_nullmac
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _framer_nullmac
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 	.area RSEG    (ABS,DATA)
+   0000                      17 	.org 0x0000
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (ABS,DATA)
+   0000                      22 	.org 0x0000
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable register banks
+                             25 ;--------------------------------------------------------
+                             26 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      27 	.ds 8
+                             28 ;--------------------------------------------------------
+                             29 ; internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG    (DATA)
+                             32 ;--------------------------------------------------------
+                             33 ; overlayable items in internal ram 
+                             34 ;--------------------------------------------------------
+                             35 	.area OSEG    (OVR,DATA)
+                             36 ;--------------------------------------------------------
+                             37 ; indirectly addressable internal ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area ISEG    (DATA)
+                             40 ;--------------------------------------------------------
+                             41 ; absolute internal ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area IABS    (ABS,DATA)
+                             44 	.area IABS    (ABS,DATA)
+                             45 ;--------------------------------------------------------
+                             46 ; bit data
+                             47 ;--------------------------------------------------------
+                             48 	.area BSEG    (BIT)
+                             49 ;--------------------------------------------------------
+                             50 ; paged external ram data
+                             51 ;--------------------------------------------------------
+                             52 	.area PSEG    (PAG,XDATA)
+                             53 ;--------------------------------------------------------
+                             54 ; external ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area XSEG    (XDATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute external ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area XABS    (ABS,XDATA)
+                             61 ;--------------------------------------------------------
+                             62 ; external initialized ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area XISEG   (XDATA)
+                             65 	.area HOME    (CODE)
+                             66 	.area GSINIT0 (CODE)
+                             67 	.area GSINIT1 (CODE)
+                             68 	.area GSINIT2 (CODE)
+                             69 	.area GSINIT3 (CODE)
+                             70 	.area GSINIT4 (CODE)
+                             71 	.area GSINIT5 (CODE)
+                             72 	.area GSINIT  (CODE)
+                             73 	.area GSFINAL (CODE)
+                             74 	.area CSEG    (CODE)
+                             75 ;--------------------------------------------------------
+                             76 ; global & static initialisations
+                             77 ;--------------------------------------------------------
+                             78 	.area HOME    (CODE)
+                             79 	.area GSINIT  (CODE)
+                             80 	.area GSFINAL (CODE)
+                             81 	.area GSINIT  (CODE)
+                             82 ;--------------------------------------------------------
+                             83 ; Home
+                             84 ;--------------------------------------------------------
+                             85 	.area HOME    (CODE)
+                             86 	.area HOME    (CODE)
+                             87 ;--------------------------------------------------------
+                             88 ; code
+                             89 ;--------------------------------------------------------
+                             90 	.area CSEG    (CODE)
+                             91 ;------------------------------------------------------------
+                             92 ;Allocation info for local variables in function 'create'
+                             93 ;------------------------------------------------------------
+                             94 ;hdr                       Allocated to registers r2 r3 r4 
+                             95 ;------------------------------------------------------------
+                             96 ;	../../../core/net/mac/framer-nullmac.c:61: create(void)
+                             97 ;	-----------------------------------------
+                             98 ;	 function create
+                             99 ;	-----------------------------------------
+   0000                     100 _create:
+                    0002    101 	ar2 = 0x02
+                    0003    102 	ar3 = 0x03
+                    0004    103 	ar4 = 0x04
+                    0005    104 	ar5 = 0x05
+                    0006    105 	ar6 = 0x06
+                    0007    106 	ar7 = 0x07
+                    0000    107 	ar0 = 0x00
+                    0001    108 	ar1 = 0x01
+                            109 ;	../../../core/net/mac/framer-nullmac.c:65: if(packetbuf_hdralloc(sizeof(struct nullmac_hdr))) {
+   0000 90 00 04            110 	mov	dptr,#0x0004
+   0003 12s00r00            111 	lcall	_packetbuf_hdralloc
+   0006 E5 82               112 	mov	a,dpl
+   0008 85 83 F0            113 	mov	b,dph
+   000B 45 F0               114 	orl	a,b
+   000D 60 5D               115 	jz	00102$
+                            116 ;	../../../core/net/mac/framer-nullmac.c:66: hdr = packetbuf_hdrptr();
+   000F 12s00r00            117 	lcall	_packetbuf_hdrptr
+   0012 AA 82               118 	mov	r2,dpl
+   0014 AB 83               119 	mov	r3,dph
+   0016 AC F0               120 	mov	r4,b
+                            121 ;	../../../core/net/mac/framer-nullmac.c:67: rimeaddr_copy(&(hdr->sender), &rimeaddr_node_addr);
+   0018 74 02               122 	mov	a,#0x02
+   001A 2A                  123 	add	a,r2
+   001B FD                  124 	mov	r5,a
+   001C E4                  125 	clr	a
+   001D 3B                  126 	addc	a,r3
+   001E FE                  127 	mov	r6,a
+   001F 8C 07               128 	mov	ar7,r4
+   0021 C0 02               129 	push	ar2
+   0023 C0 03               130 	push	ar3
+   0025 C0 04               131 	push	ar4
+   0027 74r00               132 	mov	a,#_rimeaddr_node_addr
+   0029 C0 E0               133 	push	acc
+   002B 74s00               134 	mov	a,#(_rimeaddr_node_addr >> 8)
+   002D C0 E0               135 	push	acc
+   002F E4                  136 	clr	a
+   0030 C0 E0               137 	push	acc
+   0032 8D 82               138 	mov	dpl,r5
+   0034 8E 83               139 	mov	dph,r6
+   0036 8F F0               140 	mov	b,r7
+   0038 12s00r00            141 	lcall	_rimeaddr_copy
+   003B 15 81               142 	dec	sp
+   003D 15 81               143 	dec	sp
+   003F 15 81               144 	dec	sp
+                            145 ;	../../../core/net/mac/framer-nullmac.c:68: rimeaddr_copy(&(hdr->receiver), packetbuf_addr(PACKETBUF_ADDR_RECEIVER));
+   0041 75 82 19            146 	mov	dpl,#0x19
+   0044 12s00r00            147 	lcall	_packetbuf_addr
+   0047 AD 82               148 	mov	r5,dpl
+   0049 AE 83               149 	mov	r6,dph
+   004B AF F0               150 	mov	r7,b
+   004D D0 04               151 	pop	ar4
+   004F D0 03               152 	pop	ar3
+   0051 D0 02               153 	pop	ar2
+   0053 C0 05               154 	push	ar5
+   0055 C0 06               155 	push	ar6
+   0057 C0 07               156 	push	ar7
+   0059 8A 82               157 	mov	dpl,r2
+   005B 8B 83               158 	mov	dph,r3
+   005D 8C F0               159 	mov	b,r4
+   005F 12s00r00            160 	lcall	_rimeaddr_copy
+   0062 15 81               161 	dec	sp
+   0064 15 81               162 	dec	sp
+   0066 15 81               163 	dec	sp
+                            164 ;	../../../core/net/mac/framer-nullmac.c:69: return sizeof(struct nullmac_hdr);
+   0068 90 00 04            165 	mov	dptr,#0x0004
+                            166 ;	../../../core/net/mac/framer-nullmac.c:72: return 0;
+   006B 22                  167 	ret
+   006C                     168 00102$:
+   006C 90 00 00            169 	mov	dptr,#0x0000
+   006F 22                  170 	ret
+                            171 ;------------------------------------------------------------
+                            172 ;Allocation info for local variables in function 'parse'
+                            173 ;------------------------------------------------------------
+                            174 ;hdr                       Allocated to registers r2 r3 r4 
+                            175 ;------------------------------------------------------------
+                            176 ;	../../../core/net/mac/framer-nullmac.c:76: parse(void)
+                            177 ;	-----------------------------------------
+                            178 ;	 function parse
+                            179 ;	-----------------------------------------
+   0070                     180 _parse:
+                            181 ;	../../../core/net/mac/framer-nullmac.c:79: hdr = packetbuf_dataptr();
+   0070 12s00r00            182 	lcall	_packetbuf_dataptr
+   0073 AA 82               183 	mov	r2,dpl
+   0075 AB 83               184 	mov	r3,dph
+   0077 AC F0               185 	mov	r4,b
+                            186 ;	../../../core/net/mac/framer-nullmac.c:80: if(packetbuf_hdrreduce(sizeof(struct nullmac_hdr))) {
+   0079 90 00 04            187 	mov	dptr,#0x0004
+   007C C0 02               188 	push	ar2
+   007E C0 03               189 	push	ar3
+   0080 C0 04               190 	push	ar4
+   0082 12s00r00            191 	lcall	_packetbuf_hdrreduce
+   0085 E5 82               192 	mov	a,dpl
+   0087 85 83 F0            193 	mov	b,dph
+   008A D0 04               194 	pop	ar4
+   008C D0 03               195 	pop	ar3
+   008E D0 02               196 	pop	ar2
+   0090 45 F0               197 	orl	a,b
+   0092 60 31               198 	jz	00102$
+                            199 ;	../../../core/net/mac/framer-nullmac.c:81: packetbuf_set_addr(PACKETBUF_ADDR_SENDER, &(hdr->sender));
+   0094 74 02               200 	mov	a,#0x02
+   0096 2A                  201 	add	a,r2
+   0097 FD                  202 	mov	r5,a
+   0098 E4                  203 	clr	a
+   0099 3B                  204 	addc	a,r3
+   009A FE                  205 	mov	r6,a
+   009B 8C 07               206 	mov	ar7,r4
+   009D C0 02               207 	push	ar2
+   009F C0 03               208 	push	ar3
+   00A1 C0 04               209 	push	ar4
+   00A3 C0 05               210 	push	ar5
+   00A5 C0 06               211 	push	ar6
+   00A7 C0 07               212 	push	ar7
+   00A9 75 82 18            213 	mov	dpl,#0x18
+   00AC 12s00r00            214 	lcall	_packetbuf_set_addr
+   00AF 15 81               215 	dec	sp
+   00B1 15 81               216 	dec	sp
+   00B3 15 81               217 	dec	sp
+                            218 ;	../../../core/net/mac/framer-nullmac.c:82: packetbuf_set_addr(PACKETBUF_ADDR_RECEIVER, &(hdr->receiver));
+   00B5 75 82 19            219 	mov	dpl,#0x19
+   00B8 12s00r00            220 	lcall	_packetbuf_set_addr
+   00BB 15 81               221 	dec	sp
+   00BD 15 81               222 	dec	sp
+   00BF 15 81               223 	dec	sp
+                            224 ;	../../../core/net/mac/framer-nullmac.c:89: return sizeof(struct nullmac_hdr);
+   00C1 90 00 04            225 	mov	dptr,#0x0004
+                            226 ;	../../../core/net/mac/framer-nullmac.c:91: return 0;
+   00C4 22                  227 	ret
+   00C5                     228 00102$:
+   00C5 90 00 00            229 	mov	dptr,#0x0000
+   00C8 22                  230 	ret
+                            231 	.area CSEG    (CODE)
+                            232 	.area CONST   (CODE)
+   0000                     233 _framer_nullmac:
+   0000r00s00               234 	.byte _create,(_create >> 8)
+   0002r70s00               235 	.byte _parse,(_parse >> 8)
+                            236 	.area XINIT   (CODE)
+                            237 	.area CABS    (ABS,CODE)

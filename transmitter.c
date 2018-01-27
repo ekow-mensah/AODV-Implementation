@@ -17,7 +17,7 @@
 
 /* define threshold battery level & table length */
 #define AVG_BATTERY_LEVEL 3000
-#define TABLELENGTH 15
+#define TABLELENGTH 3
 
 /* Routing Table Object */
 typedef struct
@@ -30,6 +30,7 @@ typedef struct
 
 /* define the routing table and unicast callback function */
 static RoutingTable txRoutingTable[TABLELENGTH];
+static const struct broadcast_callbacks broadcast_callbacks = {recv_bc};
 static const struct unicast_callbacks unicast_callbacks = {recv_uc};
 
 /* define broadcast & unicast connections 
@@ -40,7 +41,7 @@ static struct broadcast_conn bc;
 static rimeaddr_t addr;
 static uint8_t txDataBuffer[50];
 static uint8_t brdcastCounter = 1;
-static uint8_t brdcastLimit = 3;
+static uint8_t brdcastLimit = 4;
 static uint8_t brdcastId = 1;
 
 /* Sensor Values */
@@ -62,9 +63,9 @@ static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
 {
   /* initialise variables used in building the packet */
   uint8_t *tx_data;           // the transmission data
-  uint16_t dest = 0;          // destination address
+  static uint16_t dest = 0;   // destination address
   uint16_t source = 0;        //source address
-  uint16_t nexthop_count = 0; // next hop counter
+  uint16_t hopcount = 0; // next hop counter
   uint16_t battery = 0;       // battery level
   uint16_t rssi = 0;          // signal strength
   static int i = 0;
@@ -83,9 +84,9 @@ static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
        * from tx_data and store them in the corresponding variables 
        */
     successful = 0;
-    dest = tx_data[1];
+    dest = tx_data[2];
     dest = dest << 8;
-    dest = dest | tx_data[2];
+    dest = dest | tx_data[1];
     source = from->u8[1];
     source = source << 8;
     source = source | from->u8[0];
@@ -142,12 +143,12 @@ static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
         }
       }
 
-      /* Triggered if there is a failure in the route reply packet  */
+      /* The routing table is updated here.  */
       if (!successful)
       {
         for (i = 0; i < TABLELENGTH; i++)
         {
-          if (txRoutingTable[i].destAddr == 0x0000)
+          if (txRoutingTable[i].destAddr == 0xffff)
           {
             txRoutingTable[i].destAddr = dest;
             txRoutingTable[i].nextHop = source;
@@ -155,6 +156,15 @@ static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
             txRoutingTable[i].batteryLevel = battery;
           }
         }
+      }
+
+      printf('\nRouting Table\n\r');
+      for (i = 0; i < TABLELENGTH; i++)
+      {
+        printf("Destination Address: %d\n\r", txRoutingTable[i].destAddr);
+        printf("NextHop: %d\n\r", txRoutingTable[i].nextHop);
+        printf("Battery Level: %d\n\r", txRoutingTable[i].batteryLevel);
+        printf("Rssi: %d\n\r", txRoutingTable[i].RSSI);
       }
       break;
     }
@@ -167,6 +177,11 @@ static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
   packetbuf_clear();
 }
 
+static void recv_bc(struct broadcast_conn *c, rimeaddr_t *from)
+{
+  packetbuf_clear();
+}
+
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(transmitter_process, ev, data)
 {
@@ -175,7 +190,8 @@ PROCESS_THREAD(transmitter_process, ev, data)
   static float frac;
   static uint8_t i = 0;
   static uint8_t j = 0;
-  static uint16_t destAddr = 0xffff;
+  static uint16_t destAddr = 0x2323;
+  static uint16_t hopcnt = 0;
   static uint8_t found = 0;
 
   PROCESS_BEGIN();
@@ -183,16 +199,17 @@ PROCESS_THREAD(transmitter_process, ev, data)
   /* initialise routing table */
   for (i = 0; i < TABLELENGTH; i++)
   {
-    txRoutingTable[i].destAddr = 0x0000;
+    txRoutingTable[i].destAddr = 0xffff;
     txRoutingTable[i].nextHop = 0xffff;
     txRoutingTable[i].batteryLevel = 0;
     txRoutingTable[i].RSSI = 0;
   }
 
-  putstring("========================\n\r");
-  putstring("     Transmitter.\n\r");
+  putstring("\n\r========================\n\r");
+  putstring("     Transmitter\n\r");
   putstring("========================\n\r");
 
+  broadcast_open(&bc, 134, &broadcast_callbacks);
   unicast_open(&uc, 135, &unicast_callbacks);
 
   /* Set an etimer. We take sensor readings when it expires and reset it. */
@@ -216,24 +233,25 @@ PROCESS_THREAD(transmitter_process, ev, data)
         tempReading1 = dec;
         tempReading2 = (unsigned int)(frac * 100);
       }
-    }
 
-    rv = sensor->value(ADC_SENSOR_TYPE_VDD);
-    if (rv != -1)
-    {
-      sane = rv * 3.75 / 2047;
-      battery = sane * 1000;
+      rv = sensor->value(ADC_SENSOR_TYPE_VDD);
+      if (rv != -1)
+      {
+        sane = rv * 3.75 / 2047;
+        battery = sane * 1000;
 
-      /* build route request packet (RREQ) */
-      txDataBuffer[0] = CMD_RREQ; // Type of message (i.e. RREQ message)
-      txDataBuffer[1] = destAddr >> 8;
-      txDataBuffer[2] = destAddr;
-      txDataBuffer[3] = brdcastCounter; //broadcast counter
-      txDataBuffer[4] = brdcastLimit;   //broadcast limit
-      txDataBuffer[5] = brdcastId;      //broadcast id
-      brdcastId++;
-      packetbuf_copyfrom(txDataBuffer, 6);
-      broadcast_send(&bc);
+        /* build route request packet (RREQ) */
+        txDataBuffer[0] = CMD_RREQ; // Type of message (i.e. RREQ message)
+        txDataBuffer[1] = destAddr >> 8;
+        txDataBuffer[2] = destAddr;
+        txDataBuffer[3] = brdcastCounter; //broadcast counter
+        txDataBuffer[4] = brdcastLimit;   //broadcast limit
+        txDataBuffer[5] = brdcastId;      //broadcast id
+        txDataBuffer[6] = hopcnt;
+        brdcastId++;
+        packetbuf_copyfrom(txDataBuffer, 7);
+        broadcast_send(&bc);
+      }
     }
     else
     {
@@ -263,6 +281,7 @@ PROCESS_THREAD(transmitter_process, ev, data)
         addr.u8[0] = txRoutingTable[j].nextHop;
         addr.u8[1] = txRoutingTable[j].nextHop >> 8;
         unicast_send(&uc, &addr);
+        printf("Received Route Reply sending data...");
       }
     }
 

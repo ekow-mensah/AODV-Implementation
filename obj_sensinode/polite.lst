@@ -1,0 +1,1632 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:25:05 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module polite
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _IRCON2_P2IF
+                             13 	.globl _IRCON2_UTX0IF
+                             14 	.globl _IRCON2_UTX1IF
+                             15 	.globl _IRCON2_P1IF
+                             16 	.globl _IRCON2_WDTIF
+                             17 	.globl _CY
+                             18 	.globl _AC
+                             19 	.globl _F0
+                             20 	.globl _RS1
+                             21 	.globl _RS0
+                             22 	.globl _OV
+                             23 	.globl _F1
+                             24 	.globl _P
+                             25 	.globl _IRCON_DMAIF
+                             26 	.globl _IRCON_T1IF
+                             27 	.globl _IRCON_T2IF
+                             28 	.globl _IRCON_T3IF
+                             29 	.globl _IRCON_T4IF
+                             30 	.globl _IRCON_P0IF
+                             31 	.globl _IRCON_STIF
+                             32 	.globl _IEN1_DMAIE
+                             33 	.globl _IEN1_T1IE
+                             34 	.globl _IEN1_T2IE
+                             35 	.globl _IEN1_T3IE
+                             36 	.globl _IEN1_T4IE
+                             37 	.globl _IEN1_P0IE
+                             38 	.globl _IEN0_RFERRIE
+                             39 	.globl _IEN0_ADCIE
+                             40 	.globl _IEN0_URX0IE
+                             41 	.globl _IEN0_URX1IE
+                             42 	.globl _IEN0_ENCIE
+                             43 	.globl _IEN0_STIE
+                             44 	.globl _IEN0_EA
+                             45 	.globl _EA
+                             46 	.globl _P2_4
+                             47 	.globl _P2_3
+                             48 	.globl _P2_2
+                             49 	.globl _P2_1
+                             50 	.globl _P2_0
+                             51 	.globl _S0CON_ENCIF_0
+                             52 	.globl _S0CON_ENCIF_1
+                             53 	.globl _P1_7
+                             54 	.globl _P1_6
+                             55 	.globl _P1_5
+                             56 	.globl _P1_4
+                             57 	.globl _P1_3
+                             58 	.globl _P1_2
+                             59 	.globl _P1_1
+                             60 	.globl _P1_0
+                             61 	.globl _TCON_IT0
+                             62 	.globl _TCON_RFERRIF
+                             63 	.globl _TCON_IT1
+                             64 	.globl _TCON_URX0IF
+                             65 	.globl _TCON_ADCIF
+                             66 	.globl _TCON_URX1IF
+                             67 	.globl _P0_0
+                             68 	.globl _P0_1
+                             69 	.globl _P0_2
+                             70 	.globl _P0_3
+                             71 	.globl _P0_4
+                             72 	.globl _P0_5
+                             73 	.globl _P0_6
+                             74 	.globl _P0_7
+                             75 	.globl _P2DIR
+                             76 	.globl _P1DIR
+                             77 	.globl _P0DIR
+                             78 	.globl _U1GCR
+                             79 	.globl _U1UCR
+                             80 	.globl _U1BAUD
+                             81 	.globl _U1BUF
+                             82 	.globl _U1CSR
+                             83 	.globl _P2INP
+                             84 	.globl _P1INP
+                             85 	.globl _P2SEL
+                             86 	.globl _P1SEL
+                             87 	.globl _P0SEL
+                             88 	.globl _ADCCFG
+                             89 	.globl _PERCFG
+                             90 	.globl _B
+                             91 	.globl _T4CC1
+                             92 	.globl _T4CCTL1
+                             93 	.globl _T4CC0
+                             94 	.globl _T4CCTL0
+                             95 	.globl _T4CTL
+                             96 	.globl _T4CNT
+                             97 	.globl _RFIF
+                             98 	.globl _IRCON2
+                             99 	.globl _T1CCTL2
+                            100 	.globl _T1CCTL1
+                            101 	.globl _T1CCTL0
+                            102 	.globl _T1CTL
+                            103 	.globl _T1CNTH
+                            104 	.globl _T1CNTL
+                            105 	.globl _RFST
+                            106 	.globl _ACC
+                            107 	.globl _T1CC2H
+                            108 	.globl _T1CC2L
+                            109 	.globl _T1CC1H
+                            110 	.globl _T1CC1L
+                            111 	.globl _T1CC0H
+                            112 	.globl _T1CC0L
+                            113 	.globl _RFD
+                            114 	.globl _TIMIF
+                            115 	.globl _DMAREQ
+                            116 	.globl _DMAARM
+                            117 	.globl _DMA0CFGH
+                            118 	.globl _DMA0CFGL
+                            119 	.globl _DMA1CFGH
+                            120 	.globl _DMA1CFGL
+                            121 	.globl _DMAIRQ
+                            122 	.globl _PSW
+                            123 	.globl _T3CC1
+                            124 	.globl _T3CCTL1
+                            125 	.globl _T3CC0
+                            126 	.globl _T3CCTL0
+                            127 	.globl _T3CTL
+                            128 	.globl _T3CNT
+                            129 	.globl _WDCTL
+                            130 	.globl _T2CON
+                            131 	.globl _MEMCTR
+                            132 	.globl _CLKCON
+                            133 	.globl _U0GCR
+                            134 	.globl _U0UCR
+                            135 	.globl _T2CNF
+                            136 	.globl _U0BAUD
+                            137 	.globl _U0BUF
+                            138 	.globl _IRCON
+                            139 	.globl _SLEEP
+                            140 	.globl _RNDH
+                            141 	.globl _RNDL
+                            142 	.globl _ADCH
+                            143 	.globl _ADCL
+                            144 	.globl _IP1
+                            145 	.globl _IEN1
+                            146 	.globl _RCCTL
+                            147 	.globl _ADCCON3
+                            148 	.globl _ADCCON2
+                            149 	.globl _ADCCON1
+                            150 	.globl _ENCCS
+                            151 	.globl _ENCDO
+                            152 	.globl _ENCDI
+                            153 	.globl _FWDATA
+                            154 	.globl _FCTL
+                            155 	.globl _FADDRH
+                            156 	.globl _FADDRL
+                            157 	.globl _FWT
+                            158 	.globl _IP0
+                            159 	.globl _IEN0
+                            160 	.globl _IE
+                            161 	.globl _T2THD
+                            162 	.globl _T2TLD
+                            163 	.globl _T2CAPHPH
+                            164 	.globl _T2CAPLPL
+                            165 	.globl _T2OF2
+                            166 	.globl _T2OF1
+                            167 	.globl _T2OF0
+                            168 	.globl _P2
+                            169 	.globl _PSBANK
+                            170 	.globl _FMAP
+                            171 	.globl _T2PEROF2
+                            172 	.globl _T2PEROF1
+                            173 	.globl _T2PEROF0
+                            174 	.globl _S1CON
+                            175 	.globl _IEN2
+                            176 	.globl _HSRC
+                            177 	.globl _S0CON
+                            178 	.globl _ST2
+                            179 	.globl _ST1
+                            180 	.globl _ST0
+                            181 	.globl _T2CMP
+                            182 	.globl __XPAGE
+                            183 	.globl _DPS
+                            184 	.globl _RFIM
+                            185 	.globl _P1
+                            186 	.globl _P0INP
+                            187 	.globl _P1IEN
+                            188 	.globl _PICTL
+                            189 	.globl _P2IFG
+                            190 	.globl _P1IFG
+                            191 	.globl _P0IFG
+                            192 	.globl _TCON
+                            193 	.globl _PCON
+                            194 	.globl _U0CSR
+                            195 	.globl _DPH1
+                            196 	.globl _DPL1
+                            197 	.globl _DPH0
+                            198 	.globl _DPL0
+                            199 	.globl _SP
+                            200 	.globl _P0
+                            201 	.globl _ADC_SHADOW
+                            202 	.globl _U1BUF_SHADOW
+                            203 	.globl _RFD_SHADOW
+                            204 	.globl _U0BUF_SHADOW
+                            205 	.globl _RFSTATUS
+                            206 	.globl _CHIPID
+                            207 	.globl _CHVER
+                            208 	.globl _FSMTC1
+                            209 	.globl _RXFIFOCNT
+                            210 	.globl _IOCFG3
+                            211 	.globl _IOCFG2
+                            212 	.globl _IOCFG1
+                            213 	.globl _IOCFG0
+                            214 	.globl _SHORTADDRL
+                            215 	.globl _SHORTADDRH
+                            216 	.globl _PANIDL
+                            217 	.globl _PANIDH
+                            218 	.globl _IEEE_ADDR7
+                            219 	.globl _IEEE_ADDR6
+                            220 	.globl _IEEE_ADDR5
+                            221 	.globl _IEEE_ADDR4
+                            222 	.globl _IEEE_ADDR3
+                            223 	.globl _IEEE_ADDR2
+                            224 	.globl _IEEE_ADDR1
+                            225 	.globl _IEEE_ADDR0
+                            226 	.globl _DACTSTL
+                            227 	.globl _DACTSTH
+                            228 	.globl _ADCTSTL
+                            229 	.globl _ADCTSTH
+                            230 	.globl _FSMSTATE
+                            231 	.globl _AGCCTRLL
+                            232 	.globl _AGCCTRLH
+                            233 	.globl _MANORL
+                            234 	.globl _MANORH
+                            235 	.globl _MANANDL
+                            236 	.globl _MANANDH
+                            237 	.globl _FSMTCL
+                            238 	.globl _FSMTCH
+                            239 	.globl _RFPWR
+                            240 	.globl _CSPT
+                            241 	.globl _CSPCTRL
+                            242 	.globl _CSPZ
+                            243 	.globl _CSPY
+                            244 	.globl _CSPX
+                            245 	.globl _FSCTRLL
+                            246 	.globl _FSCTRLH
+                            247 	.globl _RXCTRL1L
+                            248 	.globl _RXCTRL1H
+                            249 	.globl _RXCTRL0L
+                            250 	.globl _RXCTRL0H
+                            251 	.globl _TXCTRLL
+                            252 	.globl _TXCTRLH
+                            253 	.globl _SYNCWORDL
+                            254 	.globl _SYNCWORDH
+                            255 	.globl _RSSIL
+                            256 	.globl _RSSIH
+                            257 	.globl _MDMCTRL1L
+                            258 	.globl _MDMCTRL1H
+                            259 	.globl _MDMCTRL0L
+                            260 	.globl _MDMCTRL0H
+                            261 	.globl _polite_open
+                            262 	.globl _polite_close
+                            263 	.globl _polite_send
+                            264 	.globl _polite_cancel
+                            265 ;--------------------------------------------------------
+                            266 ; special function registers
+                            267 ;--------------------------------------------------------
+                            268 	.area RSEG    (ABS,DATA)
+   0000                     269 	.org 0x0000
+                    0080    270 _P0	=	0x0080
+                    0081    271 _SP	=	0x0081
+                    0082    272 _DPL0	=	0x0082
+                    0083    273 _DPH0	=	0x0083
+                    0084    274 _DPL1	=	0x0084
+                    0085    275 _DPH1	=	0x0085
+                    0086    276 _U0CSR	=	0x0086
+                    0087    277 _PCON	=	0x0087
+                    0088    278 _TCON	=	0x0088
+                    0089    279 _P0IFG	=	0x0089
+                    008A    280 _P1IFG	=	0x008a
+                    008B    281 _P2IFG	=	0x008b
+                    008C    282 _PICTL	=	0x008c
+                    008D    283 _P1IEN	=	0x008d
+                    008F    284 _P0INP	=	0x008f
+                    0090    285 _P1	=	0x0090
+                    0091    286 _RFIM	=	0x0091
+                    0092    287 _DPS	=	0x0092
+                    0093    288 __XPAGE	=	0x0093
+                    0094    289 _T2CMP	=	0x0094
+                    0095    290 _ST0	=	0x0095
+                    0096    291 _ST1	=	0x0096
+                    0097    292 _ST2	=	0x0097
+                    0098    293 _S0CON	=	0x0098
+                    0099    294 _HSRC	=	0x0099
+                    009A    295 _IEN2	=	0x009a
+                    009B    296 _S1CON	=	0x009b
+                    009C    297 _T2PEROF0	=	0x009c
+                    009D    298 _T2PEROF1	=	0x009d
+                    009E    299 _T2PEROF2	=	0x009e
+                    009F    300 _FMAP	=	0x009f
+                    009F    301 _PSBANK	=	0x009f
+                    00A0    302 _P2	=	0x00a0
+                    00A1    303 _T2OF0	=	0x00a1
+                    00A2    304 _T2OF1	=	0x00a2
+                    00A3    305 _T2OF2	=	0x00a3
+                    00A4    306 _T2CAPLPL	=	0x00a4
+                    00A5    307 _T2CAPHPH	=	0x00a5
+                    00A6    308 _T2TLD	=	0x00a6
+                    00A7    309 _T2THD	=	0x00a7
+                    00A8    310 _IE	=	0x00a8
+                    00A8    311 _IEN0	=	0x00a8
+                    00A9    312 _IP0	=	0x00a9
+                    00AB    313 _FWT	=	0x00ab
+                    00AC    314 _FADDRL	=	0x00ac
+                    00AD    315 _FADDRH	=	0x00ad
+                    00AE    316 _FCTL	=	0x00ae
+                    00AF    317 _FWDATA	=	0x00af
+                    00B1    318 _ENCDI	=	0x00b1
+                    00B2    319 _ENCDO	=	0x00b2
+                    00B3    320 _ENCCS	=	0x00b3
+                    00B4    321 _ADCCON1	=	0x00b4
+                    00B5    322 _ADCCON2	=	0x00b5
+                    00B6    323 _ADCCON3	=	0x00b6
+                    00B7    324 _RCCTL	=	0x00b7
+                    00B8    325 _IEN1	=	0x00b8
+                    00B9    326 _IP1	=	0x00b9
+                    00BA    327 _ADCL	=	0x00ba
+                    00BB    328 _ADCH	=	0x00bb
+                    00BC    329 _RNDL	=	0x00bc
+                    00BD    330 _RNDH	=	0x00bd
+                    00BE    331 _SLEEP	=	0x00be
+                    00C0    332 _IRCON	=	0x00c0
+                    00C1    333 _U0BUF	=	0x00c1
+                    00C2    334 _U0BAUD	=	0x00c2
+                    00C3    335 _T2CNF	=	0x00c3
+                    00C4    336 _U0UCR	=	0x00c4
+                    00C5    337 _U0GCR	=	0x00c5
+                    00C6    338 _CLKCON	=	0x00c6
+                    00C7    339 _MEMCTR	=	0x00c7
+                    00C8    340 _T2CON	=	0x00c8
+                    00C9    341 _WDCTL	=	0x00c9
+                    00CA    342 _T3CNT	=	0x00ca
+                    00CB    343 _T3CTL	=	0x00cb
+                    00CC    344 _T3CCTL0	=	0x00cc
+                    00CD    345 _T3CC0	=	0x00cd
+                    00CE    346 _T3CCTL1	=	0x00ce
+                    00CF    347 _T3CC1	=	0x00cf
+                    00D0    348 _PSW	=	0x00d0
+                    00D1    349 _DMAIRQ	=	0x00d1
+                    00D2    350 _DMA1CFGL	=	0x00d2
+                    00D3    351 _DMA1CFGH	=	0x00d3
+                    00D4    352 _DMA0CFGL	=	0x00d4
+                    00D5    353 _DMA0CFGH	=	0x00d5
+                    00D6    354 _DMAARM	=	0x00d6
+                    00D7    355 _DMAREQ	=	0x00d7
+                    00D8    356 _TIMIF	=	0x00d8
+                    00D9    357 _RFD	=	0x00d9
+                    00DA    358 _T1CC0L	=	0x00da
+                    00DB    359 _T1CC0H	=	0x00db
+                    00DC    360 _T1CC1L	=	0x00dc
+                    00DD    361 _T1CC1H	=	0x00dd
+                    00DE    362 _T1CC2L	=	0x00de
+                    00DF    363 _T1CC2H	=	0x00df
+                    00E0    364 _ACC	=	0x00e0
+                    00E1    365 _RFST	=	0x00e1
+                    00E2    366 _T1CNTL	=	0x00e2
+                    00E3    367 _T1CNTH	=	0x00e3
+                    00E4    368 _T1CTL	=	0x00e4
+                    00E5    369 _T1CCTL0	=	0x00e5
+                    00E6    370 _T1CCTL1	=	0x00e6
+                    00E7    371 _T1CCTL2	=	0x00e7
+                    00E8    372 _IRCON2	=	0x00e8
+                    00E9    373 _RFIF	=	0x00e9
+                    00EA    374 _T4CNT	=	0x00ea
+                    00EB    375 _T4CTL	=	0x00eb
+                    00EC    376 _T4CCTL0	=	0x00ec
+                    00ED    377 _T4CC0	=	0x00ed
+                    00EE    378 _T4CCTL1	=	0x00ee
+                    00EF    379 _T4CC1	=	0x00ef
+                    00F0    380 _B	=	0x00f0
+                    00F1    381 _PERCFG	=	0x00f1
+                    00F2    382 _ADCCFG	=	0x00f2
+                    00F3    383 _P0SEL	=	0x00f3
+                    00F4    384 _P1SEL	=	0x00f4
+                    00F5    385 _P2SEL	=	0x00f5
+                    00F6    386 _P1INP	=	0x00f6
+                    00F7    387 _P2INP	=	0x00f7
+                    00F8    388 _U1CSR	=	0x00f8
+                    00F9    389 _U1BUF	=	0x00f9
+                    00FA    390 _U1BAUD	=	0x00fa
+                    00FB    391 _U1UCR	=	0x00fb
+                    00FC    392 _U1GCR	=	0x00fc
+                    00FD    393 _P0DIR	=	0x00fd
+                    00FE    394 _P1DIR	=	0x00fe
+                    00FF    395 _P2DIR	=	0x00ff
+                            396 ;--------------------------------------------------------
+                            397 ; special function bits
+                            398 ;--------------------------------------------------------
+                            399 	.area RSEG    (ABS,DATA)
+   0000                     400 	.org 0x0000
+                    0087    401 _P0_7	=	0x0087
+                    0086    402 _P0_6	=	0x0086
+                    0085    403 _P0_5	=	0x0085
+                    0084    404 _P0_4	=	0x0084
+                    0083    405 _P0_3	=	0x0083
+                    0082    406 _P0_2	=	0x0082
+                    0081    407 _P0_1	=	0x0081
+                    0080    408 _P0_0	=	0x0080
+                    008F    409 _TCON_URX1IF	=	0x008f
+                    008D    410 _TCON_ADCIF	=	0x008d
+                    008B    411 _TCON_URX0IF	=	0x008b
+                    008A    412 _TCON_IT1	=	0x008a
+                    0089    413 _TCON_RFERRIF	=	0x0089
+                    0088    414 _TCON_IT0	=	0x0088
+                    0090    415 _P1_0	=	0x0090
+                    0091    416 _P1_1	=	0x0091
+                    0092    417 _P1_2	=	0x0092
+                    0093    418 _P1_3	=	0x0093
+                    0094    419 _P1_4	=	0x0094
+                    0095    420 _P1_5	=	0x0095
+                    0096    421 _P1_6	=	0x0096
+                    0097    422 _P1_7	=	0x0097
+                    0099    423 _S0CON_ENCIF_1	=	0x0099
+                    0098    424 _S0CON_ENCIF_0	=	0x0098
+                    00A0    425 _P2_0	=	0x00a0
+                    00A1    426 _P2_1	=	0x00a1
+                    00A2    427 _P2_2	=	0x00a2
+                    00A3    428 _P2_3	=	0x00a3
+                    00A4    429 _P2_4	=	0x00a4
+                    00AF    430 _EA	=	0x00af
+                    00AF    431 _IEN0_EA	=	0x00af
+                    00AD    432 _IEN0_STIE	=	0x00ad
+                    00AC    433 _IEN0_ENCIE	=	0x00ac
+                    00AB    434 _IEN0_URX1IE	=	0x00ab
+                    00AA    435 _IEN0_URX0IE	=	0x00aa
+                    00A9    436 _IEN0_ADCIE	=	0x00a9
+                    00A8    437 _IEN0_RFERRIE	=	0x00a8
+                    00BD    438 _IEN1_P0IE	=	0x00bd
+                    00BC    439 _IEN1_T4IE	=	0x00bc
+                    00BB    440 _IEN1_T3IE	=	0x00bb
+                    00BA    441 _IEN1_T2IE	=	0x00ba
+                    00B9    442 _IEN1_T1IE	=	0x00b9
+                    00B8    443 _IEN1_DMAIE	=	0x00b8
+                    00C7    444 _IRCON_STIF	=	0x00c7
+                    00C5    445 _IRCON_P0IF	=	0x00c5
+                    00C4    446 _IRCON_T4IF	=	0x00c4
+                    00C3    447 _IRCON_T3IF	=	0x00c3
+                    00C2    448 _IRCON_T2IF	=	0x00c2
+                    00C1    449 _IRCON_T1IF	=	0x00c1
+                    00C0    450 _IRCON_DMAIF	=	0x00c0
+                    00D0    451 _P	=	0x00d0
+                    00D1    452 _F1	=	0x00d1
+                    00D2    453 _OV	=	0x00d2
+                    00D3    454 _RS0	=	0x00d3
+                    00D4    455 _RS1	=	0x00d4
+                    00D5    456 _F0	=	0x00d5
+                    00D6    457 _AC	=	0x00d6
+                    00D7    458 _CY	=	0x00d7
+                    00EC    459 _IRCON2_WDTIF	=	0x00ec
+                    00EB    460 _IRCON2_P1IF	=	0x00eb
+                    00EA    461 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    462 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    463 _IRCON2_P2IF	=	0x00e8
+                            464 ;--------------------------------------------------------
+                            465 ; overlayable register banks
+                            466 ;--------------------------------------------------------
+                            467 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     468 	.ds 8
+                            469 ;--------------------------------------------------------
+                            470 ; internal ram data
+                            471 ;--------------------------------------------------------
+                            472 	.area DSEG    (DATA)
+                            473 ;--------------------------------------------------------
+                            474 ; overlayable items in internal ram 
+                            475 ;--------------------------------------------------------
+                            476 	.area OSEG    (OVR,DATA)
+                            477 ;--------------------------------------------------------
+                            478 ; indirectly addressable internal ram data
+                            479 ;--------------------------------------------------------
+                            480 	.area ISEG    (DATA)
+                            481 ;--------------------------------------------------------
+                            482 ; absolute internal ram data
+                            483 ;--------------------------------------------------------
+                            484 	.area IABS    (ABS,DATA)
+                            485 	.area IABS    (ABS,DATA)
+                            486 ;--------------------------------------------------------
+                            487 ; bit data
+                            488 ;--------------------------------------------------------
+                            489 	.area BSEG    (BIT)
+                            490 ;--------------------------------------------------------
+                            491 ; paged external ram data
+                            492 ;--------------------------------------------------------
+                            493 	.area PSEG    (PAG,XDATA)
+                            494 ;--------------------------------------------------------
+                            495 ; external ram data
+                            496 ;--------------------------------------------------------
+                            497 	.area XSEG    (XDATA)
+                    DF02    498 _MDMCTRL0H	=	0xdf02
+                    DF03    499 _MDMCTRL0L	=	0xdf03
+                    DF04    500 _MDMCTRL1H	=	0xdf04
+                    DF05    501 _MDMCTRL1L	=	0xdf05
+                    DF06    502 _RSSIH	=	0xdf06
+                    DF07    503 _RSSIL	=	0xdf07
+                    DF08    504 _SYNCWORDH	=	0xdf08
+                    DF09    505 _SYNCWORDL	=	0xdf09
+                    DF0A    506 _TXCTRLH	=	0xdf0a
+                    DF0B    507 _TXCTRLL	=	0xdf0b
+                    DF0C    508 _RXCTRL0H	=	0xdf0c
+                    DF0D    509 _RXCTRL0L	=	0xdf0d
+                    DF0E    510 _RXCTRL1H	=	0xdf0e
+                    DF0F    511 _RXCTRL1L	=	0xdf0f
+                    DF10    512 _FSCTRLH	=	0xdf10
+                    DF11    513 _FSCTRLL	=	0xdf11
+                    DF12    514 _CSPX	=	0xdf12
+                    DF13    515 _CSPY	=	0xdf13
+                    DF14    516 _CSPZ	=	0xdf14
+                    DF15    517 _CSPCTRL	=	0xdf15
+                    DF16    518 _CSPT	=	0xdf16
+                    DF17    519 _RFPWR	=	0xdf17
+                    DF20    520 _FSMTCH	=	0xdf20
+                    DF21    521 _FSMTCL	=	0xdf21
+                    DF22    522 _MANANDH	=	0xdf22
+                    DF23    523 _MANANDL	=	0xdf23
+                    DF24    524 _MANORH	=	0xdf24
+                    DF25    525 _MANORL	=	0xdf25
+                    DF26    526 _AGCCTRLH	=	0xdf26
+                    DF27    527 _AGCCTRLL	=	0xdf27
+                    DF39    528 _FSMSTATE	=	0xdf39
+                    DF3A    529 _ADCTSTH	=	0xdf3a
+                    DF3B    530 _ADCTSTL	=	0xdf3b
+                    DF3C    531 _DACTSTH	=	0xdf3c
+                    DF3D    532 _DACTSTL	=	0xdf3d
+                    DF43    533 _IEEE_ADDR0	=	0xdf43
+                    DF44    534 _IEEE_ADDR1	=	0xdf44
+                    DF45    535 _IEEE_ADDR2	=	0xdf45
+                    DF46    536 _IEEE_ADDR3	=	0xdf46
+                    DF47    537 _IEEE_ADDR4	=	0xdf47
+                    DF48    538 _IEEE_ADDR5	=	0xdf48
+                    DF49    539 _IEEE_ADDR6	=	0xdf49
+                    DF4A    540 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    541 _PANIDH	=	0xdf4b
+                    DF4C    542 _PANIDL	=	0xdf4c
+                    DF4D    543 _SHORTADDRH	=	0xdf4d
+                    DF4E    544 _SHORTADDRL	=	0xdf4e
+                    DF4F    545 _IOCFG0	=	0xdf4f
+                    DF50    546 _IOCFG1	=	0xdf50
+                    DF51    547 _IOCFG2	=	0xdf51
+                    DF52    548 _IOCFG3	=	0xdf52
+                    DF53    549 _RXFIFOCNT	=	0xdf53
+                    DF54    550 _FSMTC1	=	0xdf54
+                    DF60    551 _CHVER	=	0xdf60
+                    DF61    552 _CHIPID	=	0xdf61
+                    DF62    553 _RFSTATUS	=	0xdf62
+                    DFC1    554 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    555 _RFD_SHADOW	=	0xdfd9
+                    DFF9    556 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    557 _ADC_SHADOW	=	0xdfba
+                            558 ;--------------------------------------------------------
+                            559 ; absolute external ram data
+                            560 ;--------------------------------------------------------
+                            561 	.area XABS    (ABS,XDATA)
+                            562 ;--------------------------------------------------------
+                            563 ; external initialized ram data
+                            564 ;--------------------------------------------------------
+                            565 	.area XISEG   (XDATA)
+                            566 	.area HOME    (CODE)
+                            567 	.area GSINIT0 (CODE)
+                            568 	.area GSINIT1 (CODE)
+                            569 	.area GSINIT2 (CODE)
+                            570 	.area GSINIT3 (CODE)
+                            571 	.area GSINIT4 (CODE)
+                            572 	.area GSINIT5 (CODE)
+                            573 	.area GSINIT  (CODE)
+                            574 	.area GSFINAL (CODE)
+                            575 	.area CSEG    (CODE)
+                            576 ;--------------------------------------------------------
+                            577 ; global & static initialisations
+                            578 ;--------------------------------------------------------
+                            579 	.area HOME    (CODE)
+                            580 	.area GSINIT  (CODE)
+                            581 	.area GSFINAL (CODE)
+                            582 	.area GSINIT  (CODE)
+                            583 ;--------------------------------------------------------
+                            584 ; Home
+                            585 ;--------------------------------------------------------
+                            586 	.area HOME    (CODE)
+                            587 	.area HOME    (CODE)
+                            588 ;--------------------------------------------------------
+                            589 ; code
+                            590 ;--------------------------------------------------------
+                            591 	.area CSEG    (CODE)
+                            592 ;------------------------------------------------------------
+                            593 ;Allocation info for local variables in function 'recv'
+                            594 ;------------------------------------------------------------
+                            595 ;abc                       Allocated to stack - offset 1
+                            596 ;c                         Allocated to stack - offset 4
+                            597 ;sloc0                     Allocated to stack - offset 7
+                            598 ;sloc1                     Allocated to stack - offset 9
+                            599 ;------------------------------------------------------------
+                            600 ;	../../../core/net/rime/polite.c:63: recv(struct abc_conn *abc)
+                            601 ;	-----------------------------------------
+                            602 ;	 function recv
+                            603 ;	-----------------------------------------
+   0000                     604 _recv:
+                    0002    605 	ar2 = 0x02
+                    0003    606 	ar3 = 0x03
+                    0004    607 	ar4 = 0x04
+                    0005    608 	ar5 = 0x05
+                    0006    609 	ar6 = 0x06
+                    0007    610 	ar7 = 0x07
+                    0000    611 	ar0 = 0x00
+                    0001    612 	ar1 = 0x01
+   0000 C0*00               613 	push	_bp
+   0002 85 81*00            614 	mov	_bp,sp
+   0005 C0 82               615 	push	dpl
+   0007 C0 83               616 	push	dph
+   0009 C0 F0               617 	push	b
+   000B E5 81               618 	mov	a,sp
+   000D 24 0B               619 	add	a,#0x0b
+   000F F5 81               620 	mov	sp,a
+                            621 ;	../../../core/net/rime/polite.c:65: struct polite_conn *c = (struct polite_conn *)abc;
+   0011 A8*00               622 	mov	r0,_bp
+   0013 08                  623 	inc	r0
+   0014 E5*00               624 	mov	a,_bp
+   0016 24 04               625 	add	a,#0x04
+   0018 F9                  626 	mov	r1,a
+   0019 E6                  627 	mov	a,@r0
+   001A F7                  628 	mov	@r1,a
+   001B 08                  629 	inc	r0
+   001C 09                  630 	inc	r1
+   001D E6                  631 	mov	a,@r0
+   001E F7                  632 	mov	@r1,a
+   001F 08                  633 	inc	r0
+   0020 09                  634 	inc	r1
+   0021 E6                  635 	mov	a,@r0
+   0022 F7                  636 	mov	@r1,a
+                            637 ;	../../../core/net/rime/polite.c:66: if(c->q != NULL &&
+   0023 A8*00               638 	mov	r0,_bp
+   0025 08                  639 	inc	r0
+   0026 74 24               640 	mov	a,#0x24
+   0028 26                  641 	add	a,@r0
+   0029 FA                  642 	mov	r2,a
+   002A E4                  643 	clr	a
+   002B 08                  644 	inc	r0
+   002C 36                  645 	addc	a,@r0
+   002D FB                  646 	mov	r3,a
+   002E 08                  647 	inc	r0
+   002F 86 04               648 	mov	ar4,@r0
+   0031 8A 82               649 	mov	dpl,r2
+   0033 8B 83               650 	mov	dph,r3
+   0035 8C F0               651 	mov	b,r4
+   0037 12s00r00            652 	lcall	__gptrget
+   003A FD                  653 	mov	r5,a
+   003B A3                  654 	inc	dptr
+   003C 12s00r00            655 	lcall	__gptrget
+   003F FE                  656 	mov	r6,a
+   0040 A3                  657 	inc	dptr
+   0041 12s00r00            658 	lcall	__gptrget
+   0044 FF                  659 	mov	r7,a
+   0045 ED                  660 	mov	a,r5
+   0046 4E                  661 	orl	a,r6
+   0047 4F                  662 	orl	a,r7
+   0048 70 03               663 	jnz	00119$
+   004A 02s02r3A            664 	ljmp	00104$
+   004D                     665 00119$:
+                            666 ;	../../../core/net/rime/polite.c:67: packetbuf_datalen() == queuebuf_datalen(c->q) &&
+   004D C0 02               667 	push	ar2
+   004F C0 03               668 	push	ar3
+   0051 C0 04               669 	push	ar4
+   0053 12s00r00            670 	lcall	_packetbuf_datalen
+   0056 AD 82               671 	mov	r5,dpl
+   0058 AE 83               672 	mov	r6,dph
+   005A D0 04               673 	pop	ar4
+   005C D0 03               674 	pop	ar3
+   005E D0 02               675 	pop	ar2
+   0060 8A 82               676 	mov	dpl,r2
+   0062 8B 83               677 	mov	dph,r3
+   0064 8C F0               678 	mov	b,r4
+   0066 12s00r00            679 	lcall	__gptrget
+   0069 FA                  680 	mov	r2,a
+   006A A3                  681 	inc	dptr
+   006B 12s00r00            682 	lcall	__gptrget
+   006E FB                  683 	mov	r3,a
+   006F A3                  684 	inc	dptr
+   0070 12s00r00            685 	lcall	__gptrget
+   0073 FC                  686 	mov	r4,a
+   0074 8A 82               687 	mov	dpl,r2
+   0076 8B 83               688 	mov	dph,r3
+   0078 8C F0               689 	mov	b,r4
+   007A C0 05               690 	push	ar5
+   007C C0 06               691 	push	ar6
+   007E 12s00r00            692 	lcall	_queuebuf_datalen
+   0081 AA 82               693 	mov	r2,dpl
+   0083 AB 83               694 	mov	r3,dph
+   0085 D0 06               695 	pop	ar6
+   0087 D0 05               696 	pop	ar5
+   0089 ED                  697 	mov	a,r5
+   008A B5 02 06            698 	cjne	a,ar2,00120$
+   008D EE                  699 	mov	a,r6
+   008E B5 03 02            700 	cjne	a,ar3,00120$
+   0091 80 03               701 	sjmp	00121$
+   0093                     702 00120$:
+   0093 02s02r3A            703 	ljmp	00104$
+   0096                     704 00121$:
+                            705 ;	../../../core/net/rime/polite.c:69: MIN(c->hdrsize, packetbuf_datalen())) == 0) {
+   0096 A8*00               706 	mov	r0,_bp
+   0098 08                  707 	inc	r0
+   0099 74 27               708 	mov	a,#0x27
+   009B 26                  709 	add	a,@r0
+   009C FA                  710 	mov	r2,a
+   009D E4                  711 	clr	a
+   009E 08                  712 	inc	r0
+   009F 36                  713 	addc	a,@r0
+   00A0 FB                  714 	mov	r3,a
+   00A1 08                  715 	inc	r0
+   00A2 86 04               716 	mov	ar4,@r0
+   00A4 8A 82               717 	mov	dpl,r2
+   00A6 8B 83               718 	mov	dph,r3
+   00A8 8C F0               719 	mov	b,r4
+   00AA 12s00r00            720 	lcall	__gptrget
+   00AD FD                  721 	mov	r5,a
+   00AE C0 02               722 	push	ar2
+   00B0 C0 03               723 	push	ar3
+   00B2 C0 04               724 	push	ar4
+   00B4 C0 05               725 	push	ar5
+   00B6 12s00r00            726 	lcall	_packetbuf_datalen
+   00B9 C8                  727 	xch	a,r0
+   00BA E5*00               728 	mov	a,_bp
+   00BC 24 07               729 	add	a,#0x07
+   00BE C8                  730 	xch	a,r0
+   00BF A6 82               731 	mov	@r0,dpl
+   00C1 08                  732 	inc	r0
+   00C2 A6 83               733 	mov	@r0,dph
+   00C4 D0 05               734 	pop	ar5
+   00C6 D0 04               735 	pop	ar4
+   00C8 D0 03               736 	pop	ar3
+   00CA D0 02               737 	pop	ar2
+   00CC 7E 00               738 	mov	r6,#0x00
+   00CE E5*00               739 	mov	a,_bp
+   00D0 24 07               740 	add	a,#0x07
+   00D2 F8                  741 	mov	r0,a
+   00D3 C3                  742 	clr	c
+   00D4 ED                  743 	mov	a,r5
+   00D5 96                  744 	subb	a,@r0
+   00D6 EE                  745 	mov	a,r6
+   00D7 08                  746 	inc	r0
+   00D8 96                  747 	subb	a,@r0
+   00D9 50 16               748 	jnc	00111$
+   00DB 8A 82               749 	mov	dpl,r2
+   00DD 8B 83               750 	mov	dph,r3
+   00DF 8C F0               751 	mov	b,r4
+   00E1 12s00r00            752 	lcall	__gptrget
+   00E4 FA                  753 	mov	r2,a
+   00E5 E5*00               754 	mov	a,_bp
+   00E7 24 07               755 	add	a,#0x07
+   00E9 F8                  756 	mov	r0,a
+   00EA A6 02               757 	mov	@r0,ar2
+   00EC 08                  758 	inc	r0
+   00ED 76 00               759 	mov	@r0,#0x00
+   00EF 80 0E               760 	sjmp	00112$
+   00F1                     761 00111$:
+   00F1 12s00r00            762 	lcall	_packetbuf_datalen
+   00F4 C8                  763 	xch	a,r0
+   00F5 E5*00               764 	mov	a,_bp
+   00F7 24 07               765 	add	a,#0x07
+   00F9 C8                  766 	xch	a,r0
+   00FA A6 82               767 	mov	@r0,dpl
+   00FC 08                  768 	inc	r0
+   00FD A6 83               769 	mov	@r0,dph
+   00FF                     770 00112$:
+                            771 ;	../../../core/net/rime/polite.c:68: memcmp(packetbuf_dataptr(), queuebuf_dataptr(c->q),
+   00FF E5*00               772 	mov	a,_bp
+   0101 24 04               773 	add	a,#0x04
+   0103 F8                  774 	mov	r0,a
+   0104 74 24               775 	mov	a,#0x24
+   0106 26                  776 	add	a,@r0
+   0107 FC                  777 	mov	r4,a
+   0108 E4                  778 	clr	a
+   0109 08                  779 	inc	r0
+   010A 36                  780 	addc	a,@r0
+   010B FD                  781 	mov	r5,a
+   010C 08                  782 	inc	r0
+   010D 86 06               783 	mov	ar6,@r0
+   010F 8C 82               784 	mov	dpl,r4
+   0111 8D 83               785 	mov	dph,r5
+   0113 8E F0               786 	mov	b,r6
+   0115 12s00r00            787 	lcall	__gptrget
+   0118 FF                  788 	mov	r7,a
+   0119 A3                  789 	inc	dptr
+   011A 12s00r00            790 	lcall	__gptrget
+   011D FA                  791 	mov	r2,a
+   011E A3                  792 	inc	dptr
+   011F 12s00r00            793 	lcall	__gptrget
+   0122 FB                  794 	mov	r3,a
+   0123 8F 82               795 	mov	dpl,r7
+   0125 8A 83               796 	mov	dph,r2
+   0127 8B F0               797 	mov	b,r3
+   0129 C0 04               798 	push	ar4
+   012B C0 05               799 	push	ar5
+   012D C0 06               800 	push	ar6
+   012F 12s00r00            801 	lcall	_queuebuf_dataptr
+   0132 C8                  802 	xch	a,r0
+   0133 E5*00               803 	mov	a,_bp
+   0135 24 09               804 	add	a,#0x09
+   0137 C8                  805 	xch	a,r0
+   0138 A6 82               806 	mov	@r0,dpl
+   013A 08                  807 	inc	r0
+   013B A6 83               808 	mov	@r0,dph
+   013D 08                  809 	inc	r0
+   013E A6 F0               810 	mov	@r0,b
+   0140 12s00r00            811 	lcall	_packetbuf_dataptr
+   0143 AA 82               812 	mov	r2,dpl
+   0145 AB 83               813 	mov	r3,dph
+   0147 AF F0               814 	mov	r7,b
+   0149 E5*00               815 	mov	a,_bp
+   014B 24 07               816 	add	a,#0x07
+   014D F8                  817 	mov	r0,a
+   014E E6                  818 	mov	a,@r0
+   014F C0 E0               819 	push	acc
+   0151 08                  820 	inc	r0
+   0152 E6                  821 	mov	a,@r0
+   0153 C0 E0               822 	push	acc
+   0155 E5*00               823 	mov	a,_bp
+   0157 24 09               824 	add	a,#0x09
+   0159 F8                  825 	mov	r0,a
+   015A E6                  826 	mov	a,@r0
+   015B C0 E0               827 	push	acc
+   015D 08                  828 	inc	r0
+   015E E6                  829 	mov	a,@r0
+   015F C0 E0               830 	push	acc
+   0161 08                  831 	inc	r0
+   0162 E6                  832 	mov	a,@r0
+   0163 C0 E0               833 	push	acc
+   0165 8A 82               834 	mov	dpl,r2
+   0167 8B 83               835 	mov	dph,r3
+   0169 8F F0               836 	mov	b,r7
+   016B 12s00r00            837 	lcall	_memcmp
+   016E AA 82               838 	mov	r2,dpl
+   0170 AB 83               839 	mov	r3,dph
+   0172 E5 81               840 	mov	a,sp
+   0174 24 FB               841 	add	a,#0xfb
+   0176 F5 81               842 	mov	sp,a
+   0178 D0 06               843 	pop	ar6
+   017A D0 05               844 	pop	ar5
+   017C D0 04               845 	pop	ar4
+   017E EA                  846 	mov	a,r2
+   017F 4B                  847 	orl	a,r3
+   0180 60 03               848 	jz	00123$
+   0182 02s02r3A            849 	ljmp	00104$
+   0185                     850 00123$:
+                            851 ;	../../../core/net/rime/polite.c:72: queuebuf_free(c->q);
+   0185 8C 82               852 	mov	dpl,r4
+   0187 8D 83               853 	mov	dph,r5
+   0189 8E F0               854 	mov	b,r6
+   018B 12s00r00            855 	lcall	__gptrget
+   018E FA                  856 	mov	r2,a
+   018F A3                  857 	inc	dptr
+   0190 12s00r00            858 	lcall	__gptrget
+   0193 FB                  859 	mov	r3,a
+   0194 A3                  860 	inc	dptr
+   0195 12s00r00            861 	lcall	__gptrget
+   0198 FF                  862 	mov	r7,a
+   0199 8A 82               863 	mov	dpl,r2
+   019B 8B 83               864 	mov	dph,r3
+   019D 8F F0               865 	mov	b,r7
+   019F C0 04               866 	push	ar4
+   01A1 C0 05               867 	push	ar5
+   01A3 C0 06               868 	push	ar6
+   01A5 12s00r00            869 	lcall	_queuebuf_free
+   01A8 D0 06               870 	pop	ar6
+   01AA D0 05               871 	pop	ar5
+   01AC D0 04               872 	pop	ar4
+                            873 ;	../../../core/net/rime/polite.c:73: c->q = NULL;
+   01AE 8C 82               874 	mov	dpl,r4
+   01B0 8D 83               875 	mov	dph,r5
+   01B2 8E F0               876 	mov	b,r6
+   01B4 E4                  877 	clr	a
+   01B5 12s00r00            878 	lcall	__gptrput
+   01B8 A3                  879 	inc	dptr
+   01B9 E4                  880 	clr	a
+   01BA 12s00r00            881 	lcall	__gptrput
+   01BD A3                  882 	inc	dptr
+   01BE E4                  883 	clr	a
+   01BF 12s00r00            884 	lcall	__gptrput
+                            885 ;	../../../core/net/rime/polite.c:74: ctimer_stop(&c->t);
+   01C2 E5*00               886 	mov	a,_bp
+   01C4 24 04               887 	add	a,#0x04
+   01C6 F8                  888 	mov	r0,a
+   01C7 74 0F               889 	mov	a,#0x0F
+   01C9 26                  890 	add	a,@r0
+   01CA FA                  891 	mov	r2,a
+   01CB E4                  892 	clr	a
+   01CC 08                  893 	inc	r0
+   01CD 36                  894 	addc	a,@r0
+   01CE FB                  895 	mov	r3,a
+   01CF 08                  896 	inc	r0
+   01D0 86 04               897 	mov	ar4,@r0
+   01D2 8A 82               898 	mov	dpl,r2
+   01D4 8B 83               899 	mov	dph,r3
+   01D6 8C F0               900 	mov	b,r4
+   01D8 12s00r00            901 	lcall	_ctimer_stop
+                            902 ;	../../../core/net/rime/polite.c:75: if(c->cb->dropped) {
+   01DB E5*00               903 	mov	a,_bp
+   01DD 24 04               904 	add	a,#0x04
+   01DF F8                  905 	mov	r0,a
+   01E0 74 0C               906 	mov	a,#0x0C
+   01E2 26                  907 	add	a,@r0
+   01E3 FA                  908 	mov	r2,a
+   01E4 E4                  909 	clr	a
+   01E5 08                  910 	inc	r0
+   01E6 36                  911 	addc	a,@r0
+   01E7 FB                  912 	mov	r3,a
+   01E8 08                  913 	inc	r0
+   01E9 86 04               914 	mov	ar4,@r0
+   01EB 8A 82               915 	mov	dpl,r2
+   01ED 8B 83               916 	mov	dph,r3
+   01EF 8C F0               917 	mov	b,r4
+   01F1 12s00r00            918 	lcall	__gptrget
+   01F4 FA                  919 	mov	r2,a
+   01F5 A3                  920 	inc	dptr
+   01F6 12s00r00            921 	lcall	__gptrget
+   01F9 FB                  922 	mov	r3,a
+   01FA A3                  923 	inc	dptr
+   01FB 12s00r00            924 	lcall	__gptrget
+   01FE FC                  925 	mov	r4,a
+   01FF 74 04               926 	mov	a,#0x04
+   0201 2A                  927 	add	a,r2
+   0202 FA                  928 	mov	r2,a
+   0203 E4                  929 	clr	a
+   0204 3B                  930 	addc	a,r3
+   0205 FB                  931 	mov	r3,a
+   0206 8A 82               932 	mov	dpl,r2
+   0208 8B 83               933 	mov	dph,r3
+   020A 8C F0               934 	mov	b,r4
+   020C 12s00r00            935 	lcall	__gptrget
+   020F FA                  936 	mov	r2,a
+   0210 A3                  937 	inc	dptr
+   0211 12s00r00            938 	lcall	__gptrget
+   0214 FB                  939 	mov	r3,a
+   0215 4A                  940 	orl	a,r2
+   0216 60 22               941 	jz	00104$
+                            942 ;	../../../core/net/rime/polite.c:76: c->cb->dropped(c);
+   0218 C0 02               943 	push	ar2
+   021A C0 03               944 	push	ar3
+   021C 74r36               945 	mov	a,#00125$
+   021E C0 E0               946 	push	acc
+   0220 74s02               947 	mov	a,#(00125$ >> 8)
+   0222 C0 E0               948 	push	acc
+   0224 C0 02               949 	push	ar2
+   0226 C0 03               950 	push	ar3
+   0228 E5*00               951 	mov	a,_bp
+   022A 24 04               952 	add	a,#0x04
+   022C F8                  953 	mov	r0,a
+   022D 86 82               954 	mov	dpl,@r0
+   022F 08                  955 	inc	r0
+   0230 86 83               956 	mov	dph,@r0
+   0232 08                  957 	inc	r0
+   0233 86 F0               958 	mov	b,@r0
+   0235 22                  959 	ret
+   0236                     960 00125$:
+   0236 D0 03               961 	pop	ar3
+   0238 D0 02               962 	pop	ar2
+   023A                     963 00104$:
+                            964 ;	../../../core/net/rime/polite.c:79: if(c->cb->recv) {
+   023A E5*00               965 	mov	a,_bp
+   023C 24 04               966 	add	a,#0x04
+   023E F8                  967 	mov	r0,a
+   023F 74 0C               968 	mov	a,#0x0C
+   0241 26                  969 	add	a,@r0
+   0242 FA                  970 	mov	r2,a
+   0243 E4                  971 	clr	a
+   0244 08                  972 	inc	r0
+   0245 36                  973 	addc	a,@r0
+   0246 FB                  974 	mov	r3,a
+   0247 08                  975 	inc	r0
+   0248 86 04               976 	mov	ar4,@r0
+   024A 8A 82               977 	mov	dpl,r2
+   024C 8B 83               978 	mov	dph,r3
+   024E 8C F0               979 	mov	b,r4
+   0250 12s00r00            980 	lcall	__gptrget
+   0253 FA                  981 	mov	r2,a
+   0254 A3                  982 	inc	dptr
+   0255 12s00r00            983 	lcall	__gptrget
+   0258 FB                  984 	mov	r3,a
+   0259 A3                  985 	inc	dptr
+   025A 12s00r00            986 	lcall	__gptrget
+   025D FC                  987 	mov	r4,a
+   025E 8A 82               988 	mov	dpl,r2
+   0260 8B 83               989 	mov	dph,r3
+   0262 8C F0               990 	mov	b,r4
+   0264 12s00r00            991 	lcall	__gptrget
+   0267 FA                  992 	mov	r2,a
+   0268 A3                  993 	inc	dptr
+   0269 12s00r00            994 	lcall	__gptrget
+   026C FB                  995 	mov	r3,a
+   026D 4A                  996 	orl	a,r2
+   026E 60 22               997 	jz	00109$
+                            998 ;	../../../core/net/rime/polite.c:80: c->cb->recv(c);
+   0270 C0 02               999 	push	ar2
+   0272 C0 03              1000 	push	ar3
+   0274 74r8E              1001 	mov	a,#00127$
+   0276 C0 E0              1002 	push	acc
+   0278 74s02              1003 	mov	a,#(00127$ >> 8)
+   027A C0 E0              1004 	push	acc
+   027C C0 02              1005 	push	ar2
+   027E C0 03              1006 	push	ar3
+   0280 E5*00              1007 	mov	a,_bp
+   0282 24 04              1008 	add	a,#0x04
+   0284 F8                 1009 	mov	r0,a
+   0285 86 82              1010 	mov	dpl,@r0
+   0287 08                 1011 	inc	r0
+   0288 86 83              1012 	mov	dph,@r0
+   028A 08                 1013 	inc	r0
+   028B 86 F0              1014 	mov	b,@r0
+   028D 22                 1015 	ret
+   028E                    1016 00127$:
+   028E D0 03              1017 	pop	ar3
+   0290 D0 02              1018 	pop	ar2
+   0292                    1019 00109$:
+   0292 85*00 81           1020 	mov	sp,_bp
+   0295 D0*00              1021 	pop	_bp
+   0297 22                 1022 	ret
+                           1023 ;------------------------------------------------------------
+                           1024 ;Allocation info for local variables in function 'sent'
+                           1025 ;------------------------------------------------------------
+                           1026 ;status                    Allocated to stack - offset -4
+                           1027 ;num_tx                    Allocated to stack - offset -6
+                           1028 ;c                         Allocated to registers 
+                           1029 ;------------------------------------------------------------
+                           1030 ;	../../../core/net/rime/polite.c:85: sent(struct abc_conn *c, int status, int num_tx)
+                           1031 ;	-----------------------------------------
+                           1032 ;	 function sent
+                           1033 ;	-----------------------------------------
+   0298                    1034 _sent:
+   0298 C0*00              1035 	push	_bp
+   029A 85 81*00           1036 	mov	_bp,sp
+                           1037 ;	../../../core/net/rime/polite.c:88: }
+   029D D0*00              1038 	pop	_bp
+   029F 22                 1039 	ret
+                           1040 ;------------------------------------------------------------
+                           1041 ;Allocation info for local variables in function 'send'
+                           1042 ;------------------------------------------------------------
+                           1043 ;ptr                       Allocated to stack - offset 1
+                           1044 ;c                         Allocated to registers 
+                           1045 ;sloc0                     Allocated to stack - offset 7
+                           1046 ;------------------------------------------------------------
+                           1047 ;	../../../core/net/rime/polite.c:91: send(void *ptr)
+                           1048 ;	-----------------------------------------
+                           1049 ;	 function send
+                           1050 ;	-----------------------------------------
+   02A0                    1051 _send:
+   02A0 C0*00              1052 	push	_bp
+   02A2 85 81*00           1053 	mov	_bp,sp
+   02A5 C0 82              1054 	push	dpl
+   02A7 C0 83              1055 	push	dph
+   02A9 C0 F0              1056 	push	b
+                           1057 ;	../../../core/net/rime/polite.c:95: if(c->q != NULL) {
+   02AB A8*00              1058 	mov	r0,_bp
+   02AD 08                 1059 	inc	r0
+   02AE 74 24              1060 	mov	a,#0x24
+   02B0 26                 1061 	add	a,@r0
+   02B1 FD                 1062 	mov	r5,a
+   02B2 E4                 1063 	clr	a
+   02B3 08                 1064 	inc	r0
+   02B4 36                 1065 	addc	a,@r0
+   02B5 FE                 1066 	mov	r6,a
+   02B6 08                 1067 	inc	r0
+   02B7 86 07              1068 	mov	ar7,@r0
+   02B9 8D 82              1069 	mov	dpl,r5
+   02BB 8E 83              1070 	mov	dph,r6
+   02BD 8F F0              1071 	mov	b,r7
+   02BF 12s00r00           1072 	lcall	__gptrget
+   02C2 FA                 1073 	mov	r2,a
+   02C3 A3                 1074 	inc	dptr
+   02C4 12s00r00           1075 	lcall	__gptrget
+   02C7 FB                 1076 	mov	r3,a
+   02C8 A3                 1077 	inc	dptr
+   02C9 12s00r00           1078 	lcall	__gptrget
+   02CC FC                 1079 	mov	r4,a
+   02CD EA                 1080 	mov	a,r2
+   02CE 4B                 1081 	orl	a,r3
+   02CF 4C                 1082 	orl	a,r4
+   02D0 70 03              1083 	jnz	00109$
+   02D2 02s03r90           1084 	ljmp	00105$
+   02D5                    1085 00109$:
+                           1086 ;	../../../core/net/rime/polite.c:96: queuebuf_to_packetbuf(c->q);
+   02D5 8A 82              1087 	mov	dpl,r2
+   02D7 8B 83              1088 	mov	dph,r3
+   02D9 8C F0              1089 	mov	b,r4
+   02DB C0 05              1090 	push	ar5
+   02DD C0 06              1091 	push	ar6
+   02DF C0 07              1092 	push	ar7
+   02E1 12s00r00           1093 	lcall	_queuebuf_to_packetbuf
+   02E4 D0 07              1094 	pop	ar7
+   02E6 D0 06              1095 	pop	ar6
+   02E8 D0 05              1096 	pop	ar5
+                           1097 ;	../../../core/net/rime/polite.c:97: queuebuf_free(c->q);
+   02EA 8D 82              1098 	mov	dpl,r5
+   02EC 8E 83              1099 	mov	dph,r6
+   02EE 8F F0              1100 	mov	b,r7
+   02F0 12s00r00           1101 	lcall	__gptrget
+   02F3 FA                 1102 	mov	r2,a
+   02F4 A3                 1103 	inc	dptr
+   02F5 12s00r00           1104 	lcall	__gptrget
+   02F8 FB                 1105 	mov	r3,a
+   02F9 A3                 1106 	inc	dptr
+   02FA 12s00r00           1107 	lcall	__gptrget
+   02FD FC                 1108 	mov	r4,a
+   02FE 8A 82              1109 	mov	dpl,r2
+   0300 8B 83              1110 	mov	dph,r3
+   0302 8C F0              1111 	mov	b,r4
+   0304 C0 05              1112 	push	ar5
+   0306 C0 06              1113 	push	ar6
+   0308 C0 07              1114 	push	ar7
+   030A 12s00r00           1115 	lcall	_queuebuf_free
+   030D D0 07              1116 	pop	ar7
+   030F D0 06              1117 	pop	ar6
+   0311 D0 05              1118 	pop	ar5
+                           1119 ;	../../../core/net/rime/polite.c:98: c->q = NULL;
+   0313 8D 82              1120 	mov	dpl,r5
+   0315 8E 83              1121 	mov	dph,r6
+   0317 8F F0              1122 	mov	b,r7
+   0319 E4                 1123 	clr	a
+   031A 12s00r00           1124 	lcall	__gptrput
+   031D A3                 1125 	inc	dptr
+   031E E4                 1126 	clr	a
+   031F 12s00r00           1127 	lcall	__gptrput
+   0322 A3                 1128 	inc	dptr
+   0323 E4                 1129 	clr	a
+   0324 12s00r00           1130 	lcall	__gptrput
+                           1131 ;	../../../core/net/rime/polite.c:99: abc_send(&c->c);
+   0327 A8*00              1132 	mov	r0,_bp
+   0329 08                 1133 	inc	r0
+   032A 86 82              1134 	mov	dpl,@r0
+   032C 08                 1135 	inc	r0
+   032D 86 83              1136 	mov	dph,@r0
+   032F 08                 1137 	inc	r0
+   0330 86 F0              1138 	mov	b,@r0
+   0332 12s00r00           1139 	lcall	_abc_send
+                           1140 ;	../../../core/net/rime/polite.c:100: if(c->cb->sent) {
+   0335 A8*00              1141 	mov	r0,_bp
+   0337 08                 1142 	inc	r0
+   0338 74 0C              1143 	mov	a,#0x0C
+   033A 26                 1144 	add	a,@r0
+   033B FA                 1145 	mov	r2,a
+   033C E4                 1146 	clr	a
+   033D 08                 1147 	inc	r0
+   033E 36                 1148 	addc	a,@r0
+   033F FB                 1149 	mov	r3,a
+   0340 08                 1150 	inc	r0
+   0341 86 04              1151 	mov	ar4,@r0
+   0343 8A 82              1152 	mov	dpl,r2
+   0345 8B 83              1153 	mov	dph,r3
+   0347 8C F0              1154 	mov	b,r4
+   0349 12s00r00           1155 	lcall	__gptrget
+   034C FA                 1156 	mov	r2,a
+   034D A3                 1157 	inc	dptr
+   034E 12s00r00           1158 	lcall	__gptrget
+   0351 FB                 1159 	mov	r3,a
+   0352 A3                 1160 	inc	dptr
+   0353 12s00r00           1161 	lcall	__gptrget
+   0356 FC                 1162 	mov	r4,a
+   0357 74 02              1163 	mov	a,#0x02
+   0359 2A                 1164 	add	a,r2
+   035A FA                 1165 	mov	r2,a
+   035B E4                 1166 	clr	a
+   035C 3B                 1167 	addc	a,r3
+   035D FB                 1168 	mov	r3,a
+   035E 8A 82              1169 	mov	dpl,r2
+   0360 8B 83              1170 	mov	dph,r3
+   0362 8C F0              1171 	mov	b,r4
+   0364 12s00r00           1172 	lcall	__gptrget
+   0367 FA                 1173 	mov	r2,a
+   0368 A3                 1174 	inc	dptr
+   0369 12s00r00           1175 	lcall	__gptrget
+   036C FB                 1176 	mov	r3,a
+   036D 4A                 1177 	orl	a,r2
+   036E 60 20              1178 	jz	00105$
+                           1179 ;	../../../core/net/rime/polite.c:101: c->cb->sent(c);
+   0370 C0 02              1180 	push	ar2
+   0372 C0 03              1181 	push	ar3
+   0374 74r8C              1182 	mov	a,#00111$
+   0376 C0 E0              1183 	push	acc
+   0378 74s03              1184 	mov	a,#(00111$ >> 8)
+   037A C0 E0              1185 	push	acc
+   037C C0 02              1186 	push	ar2
+   037E C0 03              1187 	push	ar3
+   0380 A8*00              1188 	mov	r0,_bp
+   0382 08                 1189 	inc	r0
+   0383 86 82              1190 	mov	dpl,@r0
+   0385 08                 1191 	inc	r0
+   0386 86 83              1192 	mov	dph,@r0
+   0388 08                 1193 	inc	r0
+   0389 86 F0              1194 	mov	b,@r0
+   038B 22                 1195 	ret
+   038C                    1196 00111$:
+   038C D0 03              1197 	pop	ar3
+   038E D0 02              1198 	pop	ar2
+   0390                    1199 00105$:
+   0390 85*00 81           1200 	mov	sp,_bp
+   0393 D0*00              1201 	pop	_bp
+   0395 22                 1202 	ret
+                           1203 ;------------------------------------------------------------
+                           1204 ;Allocation info for local variables in function 'polite_open'
+                           1205 ;------------------------------------------------------------
+                           1206 ;channel                   Allocated to stack - offset -4
+                           1207 ;cb                        Allocated to stack - offset -7
+                           1208 ;c                         Allocated to registers r2 r3 r4 
+                           1209 ;------------------------------------------------------------
+                           1210 ;	../../../core/net/rime/polite.c:109: polite_open(struct polite_conn *c, uint16_t channel,
+                           1211 ;	-----------------------------------------
+                           1212 ;	 function polite_open
+                           1213 ;	-----------------------------------------
+   0396                    1214 _polite_open:
+   0396 C0*00              1215 	push	_bp
+   0398 85 81*00           1216 	mov	_bp,sp
+   039B AA 82              1217 	mov	r2,dpl
+   039D AB 83              1218 	mov	r3,dph
+   039F AC F0              1219 	mov	r4,b
+                           1220 ;	../../../core/net/rime/polite.c:112: abc_open(&c->c, channel, &abc);
+   03A1 C0 02              1221 	push	ar2
+   03A3 C0 03              1222 	push	ar3
+   03A5 C0 04              1223 	push	ar4
+   03A7 74r00              1224 	mov	a,#_abc
+   03A9 C0 E0              1225 	push	acc
+   03AB 74s00              1226 	mov	a,#(_abc >> 8)
+   03AD C0 E0              1227 	push	acc
+   03AF 74 80              1228 	mov	a,#0x80
+   03B1 C0 E0              1229 	push	acc
+   03B3 E5*00              1230 	mov	a,_bp
+   03B5 24 FC              1231 	add	a,#0xfc
+   03B7 F8                 1232 	mov	r0,a
+   03B8 E6                 1233 	mov	a,@r0
+   03B9 C0 E0              1234 	push	acc
+   03BB 08                 1235 	inc	r0
+   03BC E6                 1236 	mov	a,@r0
+   03BD C0 E0              1237 	push	acc
+   03BF 8A 82              1238 	mov	dpl,r2
+   03C1 8B 83              1239 	mov	dph,r3
+   03C3 8C F0              1240 	mov	b,r4
+   03C5 12s00r00           1241 	lcall	_abc_open
+   03C8 E5 81              1242 	mov	a,sp
+   03CA 24 FB              1243 	add	a,#0xfb
+   03CC F5 81              1244 	mov	sp,a
+   03CE D0 04              1245 	pop	ar4
+   03D0 D0 03              1246 	pop	ar3
+   03D2 D0 02              1247 	pop	ar2
+                           1248 ;	../../../core/net/rime/polite.c:113: c->cb = cb;
+   03D4 74 0C              1249 	mov	a,#0x0C
+   03D6 2A                 1250 	add	a,r2
+   03D7 FA                 1251 	mov	r2,a
+   03D8 E4                 1252 	clr	a
+   03D9 3B                 1253 	addc	a,r3
+   03DA FB                 1254 	mov	r3,a
+   03DB 8A 82              1255 	mov	dpl,r2
+   03DD 8B 83              1256 	mov	dph,r3
+   03DF 8C F0              1257 	mov	b,r4
+   03E1 E5*00              1258 	mov	a,_bp
+   03E3 24 F9              1259 	add	a,#0xf9
+   03E5 F8                 1260 	mov	r0,a
+   03E6 E6                 1261 	mov	a,@r0
+   03E7 12s00r00           1262 	lcall	__gptrput
+   03EA A3                 1263 	inc	dptr
+   03EB 08                 1264 	inc	r0
+   03EC E6                 1265 	mov	a,@r0
+   03ED 12s00r00           1266 	lcall	__gptrput
+   03F0 A3                 1267 	inc	dptr
+   03F1 08                 1268 	inc	r0
+   03F2 E6                 1269 	mov	a,@r0
+   03F3 12s00r00           1270 	lcall	__gptrput
+   03F6 D0*00              1271 	pop	_bp
+   03F8 22                 1272 	ret
+                           1273 ;------------------------------------------------------------
+                           1274 ;Allocation info for local variables in function 'polite_close'
+                           1275 ;------------------------------------------------------------
+                           1276 ;c                         Allocated to registers r2 r3 r4 
+                           1277 ;------------------------------------------------------------
+                           1278 ;	../../../core/net/rime/polite.c:117: polite_close(struct polite_conn *c)
+                           1279 ;	-----------------------------------------
+                           1280 ;	 function polite_close
+                           1281 ;	-----------------------------------------
+   03F9                    1282 _polite_close:
+                           1283 ;	../../../core/net/rime/polite.c:119: abc_close(&c->c);
+   03F9 AA 82              1284 	mov	r2,dpl
+   03FB AB 83              1285 	mov	r3,dph
+   03FD AC F0              1286 	mov	r4,b
+   03FF C0 02              1287 	push	ar2
+   0401 C0 03              1288 	push	ar3
+   0403 C0 04              1289 	push	ar4
+   0405 12s00r00           1290 	lcall	_abc_close
+   0408 D0 04              1291 	pop	ar4
+   040A D0 03              1292 	pop	ar3
+   040C D0 02              1293 	pop	ar2
+                           1294 ;	../../../core/net/rime/polite.c:120: ctimer_stop(&c->t);
+   040E 74 0F              1295 	mov	a,#0x0F
+   0410 2A                 1296 	add	a,r2
+   0411 FD                 1297 	mov	r5,a
+   0412 E4                 1298 	clr	a
+   0413 3B                 1299 	addc	a,r3
+   0414 FE                 1300 	mov	r6,a
+   0415 8C 07              1301 	mov	ar7,r4
+   0417 8D 82              1302 	mov	dpl,r5
+   0419 8E 83              1303 	mov	dph,r6
+   041B 8F F0              1304 	mov	b,r7
+   041D C0 02              1305 	push	ar2
+   041F C0 03              1306 	push	ar3
+   0421 C0 04              1307 	push	ar4
+   0423 12s00r00           1308 	lcall	_ctimer_stop
+   0426 D0 04              1309 	pop	ar4
+   0428 D0 03              1310 	pop	ar3
+   042A D0 02              1311 	pop	ar2
+                           1312 ;	../../../core/net/rime/polite.c:121: if(c->q != NULL) {
+   042C 74 24              1313 	mov	a,#0x24
+   042E 2A                 1314 	add	a,r2
+   042F FA                 1315 	mov	r2,a
+   0430 E4                 1316 	clr	a
+   0431 3B                 1317 	addc	a,r3
+   0432 FB                 1318 	mov	r3,a
+   0433 8A 82              1319 	mov	dpl,r2
+   0435 8B 83              1320 	mov	dph,r3
+   0437 8C F0              1321 	mov	b,r4
+   0439 12s00r00           1322 	lcall	__gptrget
+   043C FD                 1323 	mov	r5,a
+   043D A3                 1324 	inc	dptr
+   043E 12s00r00           1325 	lcall	__gptrget
+   0441 FE                 1326 	mov	r6,a
+   0442 A3                 1327 	inc	dptr
+   0443 12s00r00           1328 	lcall	__gptrget
+   0446 FF                 1329 	mov	r7,a
+   0447 ED                 1330 	mov	a,r5
+   0448 4E                 1331 	orl	a,r6
+   0449 4F                 1332 	orl	a,r7
+   044A 60 29              1333 	jz	00103$
+                           1334 ;	../../../core/net/rime/polite.c:122: queuebuf_free(c->q);
+   044C 8D 82              1335 	mov	dpl,r5
+   044E 8E 83              1336 	mov	dph,r6
+   0450 8F F0              1337 	mov	b,r7
+   0452 C0 02              1338 	push	ar2
+   0454 C0 03              1339 	push	ar3
+   0456 C0 04              1340 	push	ar4
+   0458 12s00r00           1341 	lcall	_queuebuf_free
+   045B D0 04              1342 	pop	ar4
+   045D D0 03              1343 	pop	ar3
+   045F D0 02              1344 	pop	ar2
+                           1345 ;	../../../core/net/rime/polite.c:123: c->q = NULL;
+   0461 8A 82              1346 	mov	dpl,r2
+   0463 8B 83              1347 	mov	dph,r3
+   0465 8C F0              1348 	mov	b,r4
+   0467 E4                 1349 	clr	a
+   0468 12s00r00           1350 	lcall	__gptrput
+   046B A3                 1351 	inc	dptr
+   046C E4                 1352 	clr	a
+   046D 12s00r00           1353 	lcall	__gptrput
+   0470 A3                 1354 	inc	dptr
+   0471 E4                 1355 	clr	a
+   0472 02s00r00           1356 	ljmp	__gptrput
+   0475                    1357 00103$:
+   0475 22                 1358 	ret
+                           1359 ;------------------------------------------------------------
+                           1360 ;Allocation info for local variables in function 'polite_send'
+                           1361 ;------------------------------------------------------------
+                           1362 ;interval                  Allocated to stack - offset -4
+                           1363 ;hdrsize                   Allocated to stack - offset -5
+                           1364 ;c                         Allocated to stack - offset 1
+                           1365 ;sloc0                     Allocated to stack - offset 4
+                           1366 ;------------------------------------------------------------
+                           1367 ;	../../../core/net/rime/polite.c:128: polite_send(struct polite_conn *c, clock_time_t interval, uint8_t hdrsize)
+                           1368 ;	-----------------------------------------
+                           1369 ;	 function polite_send
+                           1370 ;	-----------------------------------------
+   0476                    1371 _polite_send:
+   0476 C0*00              1372 	push	_bp
+   0478 85 81*00           1373 	mov	_bp,sp
+   047B C0 82              1374 	push	dpl
+   047D C0 83              1375 	push	dph
+   047F C0 F0              1376 	push	b
+                           1377 ;	../../../core/net/rime/polite.c:130: if(c->q != NULL) {
+   0481 A8*00              1378 	mov	r0,_bp
+   0483 08                 1379 	inc	r0
+   0484 74 24              1380 	mov	a,#0x24
+   0486 26                 1381 	add	a,@r0
+   0487 FD                 1382 	mov	r5,a
+   0488 E4                 1383 	clr	a
+   0489 08                 1384 	inc	r0
+   048A 36                 1385 	addc	a,@r0
+   048B FE                 1386 	mov	r6,a
+   048C 08                 1387 	inc	r0
+   048D 86 07              1388 	mov	ar7,@r0
+   048F 8D 82              1389 	mov	dpl,r5
+   0491 8E 83              1390 	mov	dph,r6
+   0493 8F F0              1391 	mov	b,r7
+   0495 12s00r00           1392 	lcall	__gptrget
+   0498 FA                 1393 	mov	r2,a
+   0499 A3                 1394 	inc	dptr
+   049A 12s00r00           1395 	lcall	__gptrget
+   049D FB                 1396 	mov	r3,a
+   049E A3                 1397 	inc	dptr
+   049F 12s00r00           1398 	lcall	__gptrget
+   04A2 FC                 1399 	mov	r4,a
+   04A3 EA                 1400 	mov	a,r2
+   04A4 4B                 1401 	orl	a,r3
+   04A5 4C                 1402 	orl	a,r4
+   04A6 60 15              1403 	jz	00102$
+                           1404 ;	../../../core/net/rime/polite.c:132: queuebuf_free(c->q);
+   04A8 8A 82              1405 	mov	dpl,r2
+   04AA 8B 83              1406 	mov	dph,r3
+   04AC 8C F0              1407 	mov	b,r4
+   04AE C0 05              1408 	push	ar5
+   04B0 C0 06              1409 	push	ar6
+   04B2 C0 07              1410 	push	ar7
+   04B4 12s00r00           1411 	lcall	_queuebuf_free
+   04B7 D0 07              1412 	pop	ar7
+   04B9 D0 06              1413 	pop	ar6
+   04BB D0 05              1414 	pop	ar5
+   04BD                    1415 00102$:
+                           1416 ;	../../../core/net/rime/polite.c:134: c->hdrsize = hdrsize;
+   04BD A8*00              1417 	mov	r0,_bp
+   04BF 08                 1418 	inc	r0
+   04C0 74 27              1419 	mov	a,#0x27
+   04C2 26                 1420 	add	a,@r0
+   04C3 FA                 1421 	mov	r2,a
+   04C4 E4                 1422 	clr	a
+   04C5 08                 1423 	inc	r0
+   04C6 36                 1424 	addc	a,@r0
+   04C7 FB                 1425 	mov	r3,a
+   04C8 08                 1426 	inc	r0
+   04C9 86 04              1427 	mov	ar4,@r0
+   04CB 8A 82              1428 	mov	dpl,r2
+   04CD 8B 83              1429 	mov	dph,r3
+   04CF 8C F0              1430 	mov	b,r4
+   04D1 E5*00              1431 	mov	a,_bp
+   04D3 24 FB              1432 	add	a,#0xfb
+   04D5 F8                 1433 	mov	r0,a
+   04D6 E6                 1434 	mov	a,@r0
+   04D7 12s00r00           1435 	lcall	__gptrput
+                           1436 ;	../../../core/net/rime/polite.c:135: c->q = queuebuf_new_from_packetbuf();
+   04DA C0 05              1437 	push	ar5
+   04DC C0 06              1438 	push	ar6
+   04DE C0 07              1439 	push	ar7
+   04E0 12s00r00           1440 	lcall	_queuebuf_new_from_packetbuf
+   04E3 AA 82              1441 	mov	r2,dpl
+   04E5 AB 83              1442 	mov	r3,dph
+   04E7 AC F0              1443 	mov	r4,b
+   04E9 D0 07              1444 	pop	ar7
+   04EB D0 06              1445 	pop	ar6
+   04ED D0 05              1446 	pop	ar5
+   04EF 8D 82              1447 	mov	dpl,r5
+   04F1 8E 83              1448 	mov	dph,r6
+   04F3 8F F0              1449 	mov	b,r7
+   04F5 EA                 1450 	mov	a,r2
+   04F6 12s00r00           1451 	lcall	__gptrput
+   04F9 A3                 1452 	inc	dptr
+   04FA EB                 1453 	mov	a,r3
+   04FB 12s00r00           1454 	lcall	__gptrput
+   04FE A3                 1455 	inc	dptr
+   04FF EC                 1456 	mov	a,r4
+   0500 12s00r00           1457 	lcall	__gptrput
+                           1458 ;	../../../core/net/rime/polite.c:136: if(c->q != NULL) {
+   0503 EA                 1459 	mov	a,r2
+   0504 4B                 1460 	orl	a,r3
+   0505 4C                 1461 	orl	a,r4
+   0506 70 03              1462 	jnz	00110$
+   0508 02s05r86           1463 	ljmp	00104$
+   050B                    1464 00110$:
+                           1465 ;	../../../core/net/rime/polite.c:137: ctimer_set(&c->t, interval / 2 + (random_rand() % (interval / 2)), send, c);
+   050B E5*00              1466 	mov	a,_bp
+   050D 24 FC              1467 	add	a,#0xfc
+   050F F8                 1468 	mov	r0,a
+   0510 86 02              1469 	mov	ar2,@r0
+   0512 08                 1470 	inc	r0
+   0513 E6                 1471 	mov	a,@r0
+   0514 C3                 1472 	clr	c
+   0515 13                 1473 	rrc	a
+   0516 CA                 1474 	xch	a,r2
+   0517 13                 1475 	rrc	a
+   0518 CA                 1476 	xch	a,r2
+   0519 FB                 1477 	mov	r3,a
+   051A C0 02              1478 	push	ar2
+   051C C0 03              1479 	push	ar3
+   051E 12s00r00           1480 	lcall	_random_rand
+   0521 AC 82              1481 	mov	r4,dpl
+   0523 AD 83              1482 	mov	r5,dph
+   0525 D0 03              1483 	pop	ar3
+   0527 D0 02              1484 	pop	ar2
+   0529 C0 02              1485 	push	ar2
+   052B C0 03              1486 	push	ar3
+   052D C0 02              1487 	push	ar2
+   052F C0 03              1488 	push	ar3
+   0531 8C 82              1489 	mov	dpl,r4
+   0533 8D 83              1490 	mov	dph,r5
+   0535 12s00r00           1491 	lcall	__moduint
+   0538 AC 82              1492 	mov	r4,dpl
+   053A AD 83              1493 	mov	r5,dph
+   053C 15 81              1494 	dec	sp
+   053E 15 81              1495 	dec	sp
+   0540 D0 03              1496 	pop	ar3
+   0542 D0 02              1497 	pop	ar2
+   0544 EC                 1498 	mov	a,r4
+   0545 2A                 1499 	add	a,r2
+   0546 FA                 1500 	mov	r2,a
+   0547 ED                 1501 	mov	a,r5
+   0548 3B                 1502 	addc	a,r3
+   0549 FB                 1503 	mov	r3,a
+   054A A8*00              1504 	mov	r0,_bp
+   054C 08                 1505 	inc	r0
+   054D 74 0F              1506 	mov	a,#0x0F
+   054F 26                 1507 	add	a,@r0
+   0550 FC                 1508 	mov	r4,a
+   0551 E4                 1509 	clr	a
+   0552 08                 1510 	inc	r0
+   0553 36                 1511 	addc	a,@r0
+   0554 FD                 1512 	mov	r5,a
+   0555 08                 1513 	inc	r0
+   0556 86 06              1514 	mov	ar6,@r0
+   0558 A8*00              1515 	mov	r0,_bp
+   055A 08                 1516 	inc	r0
+   055B E6                 1517 	mov	a,@r0
+   055C C0 E0              1518 	push	acc
+   055E 08                 1519 	inc	r0
+   055F E6                 1520 	mov	a,@r0
+   0560 C0 E0              1521 	push	acc
+   0562 08                 1522 	inc	r0
+   0563 E6                 1523 	mov	a,@r0
+   0564 C0 E0              1524 	push	acc
+   0566 74rA0              1525 	mov	a,#_send
+   0568 C0 E0              1526 	push	acc
+   056A 74s02              1527 	mov	a,#(_send >> 8)
+   056C C0 E0              1528 	push	acc
+   056E C0 02              1529 	push	ar2
+   0570 C0 03              1530 	push	ar3
+   0572 8C 82              1531 	mov	dpl,r4
+   0574 8D 83              1532 	mov	dph,r5
+   0576 8E F0              1533 	mov	b,r6
+   0578 12s00r00           1534 	lcall	_ctimer_set
+   057B E5 81              1535 	mov	a,sp
+   057D 24 F9              1536 	add	a,#0xf9
+   057F F5 81              1537 	mov	sp,a
+                           1538 ;	../../../core/net/rime/polite.c:138: return 1;
+   0581 90 00 01           1539 	mov	dptr,#0x0001
+   0584 80 03              1540 	sjmp	00105$
+   0586                    1541 00104$:
+                           1542 ;	../../../core/net/rime/polite.c:140: return 0;
+   0586 90 00 00           1543 	mov	dptr,#0x0000
+   0589                    1544 00105$:
+   0589 85*00 81           1545 	mov	sp,_bp
+   058C D0*00              1546 	pop	_bp
+   058E 22                 1547 	ret
+                           1548 ;------------------------------------------------------------
+                           1549 ;Allocation info for local variables in function 'polite_cancel'
+                           1550 ;------------------------------------------------------------
+                           1551 ;c                         Allocated to registers r2 r3 r4 
+                           1552 ;------------------------------------------------------------
+                           1553 ;	../../../core/net/rime/polite.c:144: polite_cancel(struct polite_conn *c)
+                           1554 ;	-----------------------------------------
+                           1555 ;	 function polite_cancel
+                           1556 ;	-----------------------------------------
+   058F                    1557 _polite_cancel:
+   058F AA 82              1558 	mov	r2,dpl
+   0591 AB 83              1559 	mov	r3,dph
+   0593 AC F0              1560 	mov	r4,b
+                           1561 ;	../../../core/net/rime/polite.c:146: ctimer_stop(&c->t);
+   0595 74 0F              1562 	mov	a,#0x0F
+   0597 2A                 1563 	add	a,r2
+   0598 FD                 1564 	mov	r5,a
+   0599 E4                 1565 	clr	a
+   059A 3B                 1566 	addc	a,r3
+   059B FE                 1567 	mov	r6,a
+   059C 8C 07              1568 	mov	ar7,r4
+   059E 8D 82              1569 	mov	dpl,r5
+   05A0 8E 83              1570 	mov	dph,r6
+   05A2 8F F0              1571 	mov	b,r7
+   05A4 C0 02              1572 	push	ar2
+   05A6 C0 03              1573 	push	ar3
+   05A8 C0 04              1574 	push	ar4
+   05AA 12s00r00           1575 	lcall	_ctimer_stop
+   05AD D0 04              1576 	pop	ar4
+   05AF D0 03              1577 	pop	ar3
+   05B1 D0 02              1578 	pop	ar2
+                           1579 ;	../../../core/net/rime/polite.c:147: if(c->q != NULL) {
+   05B3 74 24              1580 	mov	a,#0x24
+   05B5 2A                 1581 	add	a,r2
+   05B6 FA                 1582 	mov	r2,a
+   05B7 E4                 1583 	clr	a
+   05B8 3B                 1584 	addc	a,r3
+   05B9 FB                 1585 	mov	r3,a
+   05BA 8A 82              1586 	mov	dpl,r2
+   05BC 8B 83              1587 	mov	dph,r3
+   05BE 8C F0              1588 	mov	b,r4
+   05C0 12s00r00           1589 	lcall	__gptrget
+   05C3 FD                 1590 	mov	r5,a
+   05C4 A3                 1591 	inc	dptr
+   05C5 12s00r00           1592 	lcall	__gptrget
+   05C8 FE                 1593 	mov	r6,a
+   05C9 A3                 1594 	inc	dptr
+   05CA 12s00r00           1595 	lcall	__gptrget
+   05CD FF                 1596 	mov	r7,a
+   05CE ED                 1597 	mov	a,r5
+   05CF 4E                 1598 	orl	a,r6
+   05D0 4F                 1599 	orl	a,r7
+   05D1 60 29              1600 	jz	00103$
+                           1601 ;	../../../core/net/rime/polite.c:148: queuebuf_free(c->q);
+   05D3 8D 82              1602 	mov	dpl,r5
+   05D5 8E 83              1603 	mov	dph,r6
+   05D7 8F F0              1604 	mov	b,r7
+   05D9 C0 02              1605 	push	ar2
+   05DB C0 03              1606 	push	ar3
+   05DD C0 04              1607 	push	ar4
+   05DF 12s00r00           1608 	lcall	_queuebuf_free
+   05E2 D0 04              1609 	pop	ar4
+   05E4 D0 03              1610 	pop	ar3
+   05E6 D0 02              1611 	pop	ar2
+                           1612 ;	../../../core/net/rime/polite.c:149: c->q = NULL;
+   05E8 8A 82              1613 	mov	dpl,r2
+   05EA 8B 83              1614 	mov	dph,r3
+   05EC 8C F0              1615 	mov	b,r4
+   05EE E4                 1616 	clr	a
+   05EF 12s00r00           1617 	lcall	__gptrput
+   05F2 A3                 1618 	inc	dptr
+   05F3 E4                 1619 	clr	a
+   05F4 12s00r00           1620 	lcall	__gptrput
+   05F7 A3                 1621 	inc	dptr
+   05F8 E4                 1622 	clr	a
+   05F9 02s00r00           1623 	ljmp	__gptrput
+   05FC                    1624 00103$:
+   05FC 22                 1625 	ret
+                           1626 	.area CSEG    (CODE)
+                           1627 	.area CONST   (CODE)
+   0000                    1628 _abc:
+   0000r00s00              1629 	.byte _recv,(_recv >> 8)
+   0002r98s02              1630 	.byte _sent,(_sent >> 8)
+                           1631 	.area XINIT   (CODE)
+                           1632 	.area CABS    (ABS,CODE)

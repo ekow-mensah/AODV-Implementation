@@ -1,0 +1,1633 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:27:42 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module button_sensor
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _button_2_sensor
+                             13 	.globl _button_1_sensor
+                             14 	.globl _IRCON2_P2IF
+                             15 	.globl _IRCON2_UTX0IF
+                             16 	.globl _IRCON2_UTX1IF
+                             17 	.globl _IRCON2_P1IF
+                             18 	.globl _IRCON2_WDTIF
+                             19 	.globl _CY
+                             20 	.globl _AC
+                             21 	.globl _F0
+                             22 	.globl _RS1
+                             23 	.globl _RS0
+                             24 	.globl _OV
+                             25 	.globl _F1
+                             26 	.globl _P
+                             27 	.globl _IRCON_DMAIF
+                             28 	.globl _IRCON_T1IF
+                             29 	.globl _IRCON_T2IF
+                             30 	.globl _IRCON_T3IF
+                             31 	.globl _IRCON_T4IF
+                             32 	.globl _IRCON_P0IF
+                             33 	.globl _IRCON_STIF
+                             34 	.globl _IEN1_DMAIE
+                             35 	.globl _IEN1_T1IE
+                             36 	.globl _IEN1_T2IE
+                             37 	.globl _IEN1_T3IE
+                             38 	.globl _IEN1_T4IE
+                             39 	.globl _IEN1_P0IE
+                             40 	.globl _IEN0_RFERRIE
+                             41 	.globl _IEN0_ADCIE
+                             42 	.globl _IEN0_URX0IE
+                             43 	.globl _IEN0_URX1IE
+                             44 	.globl _IEN0_ENCIE
+                             45 	.globl _IEN0_STIE
+                             46 	.globl _IEN0_EA
+                             47 	.globl _EA
+                             48 	.globl _P2_4
+                             49 	.globl _P2_3
+                             50 	.globl _P2_2
+                             51 	.globl _P2_1
+                             52 	.globl _P2_0
+                             53 	.globl _S0CON_ENCIF_0
+                             54 	.globl _S0CON_ENCIF_1
+                             55 	.globl _P1_7
+                             56 	.globl _P1_6
+                             57 	.globl _P1_5
+                             58 	.globl _P1_4
+                             59 	.globl _P1_3
+                             60 	.globl _P1_2
+                             61 	.globl _P1_1
+                             62 	.globl _P1_0
+                             63 	.globl _TCON_IT0
+                             64 	.globl _TCON_RFERRIF
+                             65 	.globl _TCON_IT1
+                             66 	.globl _TCON_URX0IF
+                             67 	.globl _TCON_ADCIF
+                             68 	.globl _TCON_URX1IF
+                             69 	.globl _P0_0
+                             70 	.globl _P0_1
+                             71 	.globl _P0_2
+                             72 	.globl _P0_3
+                             73 	.globl _P0_4
+                             74 	.globl _P0_5
+                             75 	.globl _P0_6
+                             76 	.globl _P0_7
+                             77 	.globl _P2DIR
+                             78 	.globl _P1DIR
+                             79 	.globl _P0DIR
+                             80 	.globl _U1GCR
+                             81 	.globl _U1UCR
+                             82 	.globl _U1BAUD
+                             83 	.globl _U1BUF
+                             84 	.globl _U1CSR
+                             85 	.globl _P2INP
+                             86 	.globl _P1INP
+                             87 	.globl _P2SEL
+                             88 	.globl _P1SEL
+                             89 	.globl _P0SEL
+                             90 	.globl _ADCCFG
+                             91 	.globl _PERCFG
+                             92 	.globl _B
+                             93 	.globl _T4CC1
+                             94 	.globl _T4CCTL1
+                             95 	.globl _T4CC0
+                             96 	.globl _T4CCTL0
+                             97 	.globl _T4CTL
+                             98 	.globl _T4CNT
+                             99 	.globl _RFIF
+                            100 	.globl _IRCON2
+                            101 	.globl _T1CCTL2
+                            102 	.globl _T1CCTL1
+                            103 	.globl _T1CCTL0
+                            104 	.globl _T1CTL
+                            105 	.globl _T1CNTH
+                            106 	.globl _T1CNTL
+                            107 	.globl _RFST
+                            108 	.globl _ACC
+                            109 	.globl _T1CC2H
+                            110 	.globl _T1CC2L
+                            111 	.globl _T1CC1H
+                            112 	.globl _T1CC1L
+                            113 	.globl _T1CC0H
+                            114 	.globl _T1CC0L
+                            115 	.globl _RFD
+                            116 	.globl _TIMIF
+                            117 	.globl _DMAREQ
+                            118 	.globl _DMAARM
+                            119 	.globl _DMA0CFGH
+                            120 	.globl _DMA0CFGL
+                            121 	.globl _DMA1CFGH
+                            122 	.globl _DMA1CFGL
+                            123 	.globl _DMAIRQ
+                            124 	.globl _PSW
+                            125 	.globl _T3CC1
+                            126 	.globl _T3CCTL1
+                            127 	.globl _T3CC0
+                            128 	.globl _T3CCTL0
+                            129 	.globl _T3CTL
+                            130 	.globl _T3CNT
+                            131 	.globl _WDCTL
+                            132 	.globl _T2CON
+                            133 	.globl _MEMCTR
+                            134 	.globl _CLKCON
+                            135 	.globl _U0GCR
+                            136 	.globl _U0UCR
+                            137 	.globl _T2CNF
+                            138 	.globl _U0BAUD
+                            139 	.globl _U0BUF
+                            140 	.globl _IRCON
+                            141 	.globl _SLEEP
+                            142 	.globl _RNDH
+                            143 	.globl _RNDL
+                            144 	.globl _ADCH
+                            145 	.globl _ADCL
+                            146 	.globl _IP1
+                            147 	.globl _IEN1
+                            148 	.globl _RCCTL
+                            149 	.globl _ADCCON3
+                            150 	.globl _ADCCON2
+                            151 	.globl _ADCCON1
+                            152 	.globl _ENCCS
+                            153 	.globl _ENCDO
+                            154 	.globl _ENCDI
+                            155 	.globl _FWDATA
+                            156 	.globl _FCTL
+                            157 	.globl _FADDRH
+                            158 	.globl _FADDRL
+                            159 	.globl _FWT
+                            160 	.globl _IP0
+                            161 	.globl _IEN0
+                            162 	.globl _IE
+                            163 	.globl _T2THD
+                            164 	.globl _T2TLD
+                            165 	.globl _T2CAPHPH
+                            166 	.globl _T2CAPLPL
+                            167 	.globl _T2OF2
+                            168 	.globl _T2OF1
+                            169 	.globl _T2OF0
+                            170 	.globl _P2
+                            171 	.globl _PSBANK
+                            172 	.globl _FMAP
+                            173 	.globl _T2PEROF2
+                            174 	.globl _T2PEROF1
+                            175 	.globl _T2PEROF0
+                            176 	.globl _S1CON
+                            177 	.globl _IEN2
+                            178 	.globl _HSRC
+                            179 	.globl _S0CON
+                            180 	.globl _ST2
+                            181 	.globl _ST1
+                            182 	.globl _ST0
+                            183 	.globl _T2CMP
+                            184 	.globl __XPAGE
+                            185 	.globl _DPS
+                            186 	.globl _RFIM
+                            187 	.globl _P1
+                            188 	.globl _P0INP
+                            189 	.globl _P1IEN
+                            190 	.globl _PICTL
+                            191 	.globl _P2IFG
+                            192 	.globl _P1IFG
+                            193 	.globl _P0IFG
+                            194 	.globl _TCON
+                            195 	.globl _PCON
+                            196 	.globl _U0CSR
+                            197 	.globl _DPH1
+                            198 	.globl _DPL1
+                            199 	.globl _DPH0
+                            200 	.globl _DPL0
+                            201 	.globl _SP
+                            202 	.globl _P0
+                            203 	.globl _ADC_SHADOW
+                            204 	.globl _U1BUF_SHADOW
+                            205 	.globl _RFD_SHADOW
+                            206 	.globl _U0BUF_SHADOW
+                            207 	.globl _RFSTATUS
+                            208 	.globl _CHIPID
+                            209 	.globl _CHVER
+                            210 	.globl _FSMTC1
+                            211 	.globl _RXFIFOCNT
+                            212 	.globl _IOCFG3
+                            213 	.globl _IOCFG2
+                            214 	.globl _IOCFG1
+                            215 	.globl _IOCFG0
+                            216 	.globl _SHORTADDRL
+                            217 	.globl _SHORTADDRH
+                            218 	.globl _PANIDL
+                            219 	.globl _PANIDH
+                            220 	.globl _IEEE_ADDR7
+                            221 	.globl _IEEE_ADDR6
+                            222 	.globl _IEEE_ADDR5
+                            223 	.globl _IEEE_ADDR4
+                            224 	.globl _IEEE_ADDR3
+                            225 	.globl _IEEE_ADDR2
+                            226 	.globl _IEEE_ADDR1
+                            227 	.globl _IEEE_ADDR0
+                            228 	.globl _DACTSTL
+                            229 	.globl _DACTSTH
+                            230 	.globl _ADCTSTL
+                            231 	.globl _ADCTSTH
+                            232 	.globl _FSMSTATE
+                            233 	.globl _AGCCTRLL
+                            234 	.globl _AGCCTRLH
+                            235 	.globl _MANORL
+                            236 	.globl _MANORH
+                            237 	.globl _MANANDL
+                            238 	.globl _MANANDH
+                            239 	.globl _FSMTCL
+                            240 	.globl _FSMTCH
+                            241 	.globl _RFPWR
+                            242 	.globl _CSPT
+                            243 	.globl _CSPCTRL
+                            244 	.globl _CSPZ
+                            245 	.globl _CSPY
+                            246 	.globl _CSPX
+                            247 	.globl _FSCTRLL
+                            248 	.globl _FSCTRLH
+                            249 	.globl _RXCTRL1L
+                            250 	.globl _RXCTRL1H
+                            251 	.globl _RXCTRL0L
+                            252 	.globl _RXCTRL0H
+                            253 	.globl _TXCTRLL
+                            254 	.globl _TXCTRLH
+                            255 	.globl _SYNCWORDL
+                            256 	.globl _SYNCWORDH
+                            257 	.globl _RSSIL
+                            258 	.globl _RSSIH
+                            259 	.globl _MDMCTRL1L
+                            260 	.globl _MDMCTRL1H
+                            261 	.globl _MDMCTRL0L
+                            262 	.globl _MDMCTRL0H
+                            263 	.globl _port_0_ISR
+                            264 	.globl _port_1_ISR
+                            265 ;--------------------------------------------------------
+                            266 ; special function registers
+                            267 ;--------------------------------------------------------
+                            268 	.area RSEG    (ABS,DATA)
+   0000                     269 	.org 0x0000
+                    0080    270 _P0	=	0x0080
+                    0081    271 _SP	=	0x0081
+                    0082    272 _DPL0	=	0x0082
+                    0083    273 _DPH0	=	0x0083
+                    0084    274 _DPL1	=	0x0084
+                    0085    275 _DPH1	=	0x0085
+                    0086    276 _U0CSR	=	0x0086
+                    0087    277 _PCON	=	0x0087
+                    0088    278 _TCON	=	0x0088
+                    0089    279 _P0IFG	=	0x0089
+                    008A    280 _P1IFG	=	0x008a
+                    008B    281 _P2IFG	=	0x008b
+                    008C    282 _PICTL	=	0x008c
+                    008D    283 _P1IEN	=	0x008d
+                    008F    284 _P0INP	=	0x008f
+                    0090    285 _P1	=	0x0090
+                    0091    286 _RFIM	=	0x0091
+                    0092    287 _DPS	=	0x0092
+                    0093    288 __XPAGE	=	0x0093
+                    0094    289 _T2CMP	=	0x0094
+                    0095    290 _ST0	=	0x0095
+                    0096    291 _ST1	=	0x0096
+                    0097    292 _ST2	=	0x0097
+                    0098    293 _S0CON	=	0x0098
+                    0099    294 _HSRC	=	0x0099
+                    009A    295 _IEN2	=	0x009a
+                    009B    296 _S1CON	=	0x009b
+                    009C    297 _T2PEROF0	=	0x009c
+                    009D    298 _T2PEROF1	=	0x009d
+                    009E    299 _T2PEROF2	=	0x009e
+                    009F    300 _FMAP	=	0x009f
+                    009F    301 _PSBANK	=	0x009f
+                    00A0    302 _P2	=	0x00a0
+                    00A1    303 _T2OF0	=	0x00a1
+                    00A2    304 _T2OF1	=	0x00a2
+                    00A3    305 _T2OF2	=	0x00a3
+                    00A4    306 _T2CAPLPL	=	0x00a4
+                    00A5    307 _T2CAPHPH	=	0x00a5
+                    00A6    308 _T2TLD	=	0x00a6
+                    00A7    309 _T2THD	=	0x00a7
+                    00A8    310 _IE	=	0x00a8
+                    00A8    311 _IEN0	=	0x00a8
+                    00A9    312 _IP0	=	0x00a9
+                    00AB    313 _FWT	=	0x00ab
+                    00AC    314 _FADDRL	=	0x00ac
+                    00AD    315 _FADDRH	=	0x00ad
+                    00AE    316 _FCTL	=	0x00ae
+                    00AF    317 _FWDATA	=	0x00af
+                    00B1    318 _ENCDI	=	0x00b1
+                    00B2    319 _ENCDO	=	0x00b2
+                    00B3    320 _ENCCS	=	0x00b3
+                    00B4    321 _ADCCON1	=	0x00b4
+                    00B5    322 _ADCCON2	=	0x00b5
+                    00B6    323 _ADCCON3	=	0x00b6
+                    00B7    324 _RCCTL	=	0x00b7
+                    00B8    325 _IEN1	=	0x00b8
+                    00B9    326 _IP1	=	0x00b9
+                    00BA    327 _ADCL	=	0x00ba
+                    00BB    328 _ADCH	=	0x00bb
+                    00BC    329 _RNDL	=	0x00bc
+                    00BD    330 _RNDH	=	0x00bd
+                    00BE    331 _SLEEP	=	0x00be
+                    00C0    332 _IRCON	=	0x00c0
+                    00C1    333 _U0BUF	=	0x00c1
+                    00C2    334 _U0BAUD	=	0x00c2
+                    00C3    335 _T2CNF	=	0x00c3
+                    00C4    336 _U0UCR	=	0x00c4
+                    00C5    337 _U0GCR	=	0x00c5
+                    00C6    338 _CLKCON	=	0x00c6
+                    00C7    339 _MEMCTR	=	0x00c7
+                    00C8    340 _T2CON	=	0x00c8
+                    00C9    341 _WDCTL	=	0x00c9
+                    00CA    342 _T3CNT	=	0x00ca
+                    00CB    343 _T3CTL	=	0x00cb
+                    00CC    344 _T3CCTL0	=	0x00cc
+                    00CD    345 _T3CC0	=	0x00cd
+                    00CE    346 _T3CCTL1	=	0x00ce
+                    00CF    347 _T3CC1	=	0x00cf
+                    00D0    348 _PSW	=	0x00d0
+                    00D1    349 _DMAIRQ	=	0x00d1
+                    00D2    350 _DMA1CFGL	=	0x00d2
+                    00D3    351 _DMA1CFGH	=	0x00d3
+                    00D4    352 _DMA0CFGL	=	0x00d4
+                    00D5    353 _DMA0CFGH	=	0x00d5
+                    00D6    354 _DMAARM	=	0x00d6
+                    00D7    355 _DMAREQ	=	0x00d7
+                    00D8    356 _TIMIF	=	0x00d8
+                    00D9    357 _RFD	=	0x00d9
+                    00DA    358 _T1CC0L	=	0x00da
+                    00DB    359 _T1CC0H	=	0x00db
+                    00DC    360 _T1CC1L	=	0x00dc
+                    00DD    361 _T1CC1H	=	0x00dd
+                    00DE    362 _T1CC2L	=	0x00de
+                    00DF    363 _T1CC2H	=	0x00df
+                    00E0    364 _ACC	=	0x00e0
+                    00E1    365 _RFST	=	0x00e1
+                    00E2    366 _T1CNTL	=	0x00e2
+                    00E3    367 _T1CNTH	=	0x00e3
+                    00E4    368 _T1CTL	=	0x00e4
+                    00E5    369 _T1CCTL0	=	0x00e5
+                    00E6    370 _T1CCTL1	=	0x00e6
+                    00E7    371 _T1CCTL2	=	0x00e7
+                    00E8    372 _IRCON2	=	0x00e8
+                    00E9    373 _RFIF	=	0x00e9
+                    00EA    374 _T4CNT	=	0x00ea
+                    00EB    375 _T4CTL	=	0x00eb
+                    00EC    376 _T4CCTL0	=	0x00ec
+                    00ED    377 _T4CC0	=	0x00ed
+                    00EE    378 _T4CCTL1	=	0x00ee
+                    00EF    379 _T4CC1	=	0x00ef
+                    00F0    380 _B	=	0x00f0
+                    00F1    381 _PERCFG	=	0x00f1
+                    00F2    382 _ADCCFG	=	0x00f2
+                    00F3    383 _P0SEL	=	0x00f3
+                    00F4    384 _P1SEL	=	0x00f4
+                    00F5    385 _P2SEL	=	0x00f5
+                    00F6    386 _P1INP	=	0x00f6
+                    00F7    387 _P2INP	=	0x00f7
+                    00F8    388 _U1CSR	=	0x00f8
+                    00F9    389 _U1BUF	=	0x00f9
+                    00FA    390 _U1BAUD	=	0x00fa
+                    00FB    391 _U1UCR	=	0x00fb
+                    00FC    392 _U1GCR	=	0x00fc
+                    00FD    393 _P0DIR	=	0x00fd
+                    00FE    394 _P1DIR	=	0x00fe
+                    00FF    395 _P2DIR	=	0x00ff
+                            396 ;--------------------------------------------------------
+                            397 ; special function bits
+                            398 ;--------------------------------------------------------
+                            399 	.area RSEG    (ABS,DATA)
+   0000                     400 	.org 0x0000
+                    0087    401 _P0_7	=	0x0087
+                    0086    402 _P0_6	=	0x0086
+                    0085    403 _P0_5	=	0x0085
+                    0084    404 _P0_4	=	0x0084
+                    0083    405 _P0_3	=	0x0083
+                    0082    406 _P0_2	=	0x0082
+                    0081    407 _P0_1	=	0x0081
+                    0080    408 _P0_0	=	0x0080
+                    008F    409 _TCON_URX1IF	=	0x008f
+                    008D    410 _TCON_ADCIF	=	0x008d
+                    008B    411 _TCON_URX0IF	=	0x008b
+                    008A    412 _TCON_IT1	=	0x008a
+                    0089    413 _TCON_RFERRIF	=	0x0089
+                    0088    414 _TCON_IT0	=	0x0088
+                    0090    415 _P1_0	=	0x0090
+                    0091    416 _P1_1	=	0x0091
+                    0092    417 _P1_2	=	0x0092
+                    0093    418 _P1_3	=	0x0093
+                    0094    419 _P1_4	=	0x0094
+                    0095    420 _P1_5	=	0x0095
+                    0096    421 _P1_6	=	0x0096
+                    0097    422 _P1_7	=	0x0097
+                    0099    423 _S0CON_ENCIF_1	=	0x0099
+                    0098    424 _S0CON_ENCIF_0	=	0x0098
+                    00A0    425 _P2_0	=	0x00a0
+                    00A1    426 _P2_1	=	0x00a1
+                    00A2    427 _P2_2	=	0x00a2
+                    00A3    428 _P2_3	=	0x00a3
+                    00A4    429 _P2_4	=	0x00a4
+                    00AF    430 _EA	=	0x00af
+                    00AF    431 _IEN0_EA	=	0x00af
+                    00AD    432 _IEN0_STIE	=	0x00ad
+                    00AC    433 _IEN0_ENCIE	=	0x00ac
+                    00AB    434 _IEN0_URX1IE	=	0x00ab
+                    00AA    435 _IEN0_URX0IE	=	0x00aa
+                    00A9    436 _IEN0_ADCIE	=	0x00a9
+                    00A8    437 _IEN0_RFERRIE	=	0x00a8
+                    00BD    438 _IEN1_P0IE	=	0x00bd
+                    00BC    439 _IEN1_T4IE	=	0x00bc
+                    00BB    440 _IEN1_T3IE	=	0x00bb
+                    00BA    441 _IEN1_T2IE	=	0x00ba
+                    00B9    442 _IEN1_T1IE	=	0x00b9
+                    00B8    443 _IEN1_DMAIE	=	0x00b8
+                    00C7    444 _IRCON_STIF	=	0x00c7
+                    00C5    445 _IRCON_P0IF	=	0x00c5
+                    00C4    446 _IRCON_T4IF	=	0x00c4
+                    00C3    447 _IRCON_T3IF	=	0x00c3
+                    00C2    448 _IRCON_T2IF	=	0x00c2
+                    00C1    449 _IRCON_T1IF	=	0x00c1
+                    00C0    450 _IRCON_DMAIF	=	0x00c0
+                    00D0    451 _P	=	0x00d0
+                    00D1    452 _F1	=	0x00d1
+                    00D2    453 _OV	=	0x00d2
+                    00D3    454 _RS0	=	0x00d3
+                    00D4    455 _RS1	=	0x00d4
+                    00D5    456 _F0	=	0x00d5
+                    00D6    457 _AC	=	0x00d6
+                    00D7    458 _CY	=	0x00d7
+                    00EC    459 _IRCON2_WDTIF	=	0x00ec
+                    00EB    460 _IRCON2_P1IF	=	0x00eb
+                    00EA    461 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    462 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    463 _IRCON2_P2IF	=	0x00e8
+                            464 ;--------------------------------------------------------
+                            465 ; overlayable register banks
+                            466 ;--------------------------------------------------------
+                            467 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     468 	.ds 8
+                            469 ;--------------------------------------------------------
+                            470 ; overlayable bit register bank
+                            471 ;--------------------------------------------------------
+                            472 	.area BIT_BANK	(REL,OVR,DATA)
+   0000                     473 bits:
+   0000                     474 	.ds 1
+                    8000    475 	b0 = bits[0]
+                    8100    476 	b1 = bits[1]
+                    8200    477 	b2 = bits[2]
+                    8300    478 	b3 = bits[3]
+                    8400    479 	b4 = bits[4]
+                    8500    480 	b5 = bits[5]
+                    8600    481 	b6 = bits[6]
+                    8700    482 	b7 = bits[7]
+                            483 ;--------------------------------------------------------
+                            484 ; internal ram data
+                            485 ;--------------------------------------------------------
+                            486 	.area DSEG    (DATA)
+                            487 ;--------------------------------------------------------
+                            488 ; overlayable items in internal ram 
+                            489 ;--------------------------------------------------------
+                            490 	.area OSEG    (OVR,DATA)
+                            491 ;--------------------------------------------------------
+                            492 ; indirectly addressable internal ram data
+                            493 ;--------------------------------------------------------
+                            494 	.area ISEG    (DATA)
+                            495 ;--------------------------------------------------------
+                            496 ; absolute internal ram data
+                            497 ;--------------------------------------------------------
+                            498 	.area IABS    (ABS,DATA)
+                            499 	.area IABS    (ABS,DATA)
+                            500 ;--------------------------------------------------------
+                            501 ; bit data
+                            502 ;--------------------------------------------------------
+                            503 	.area BSEG    (BIT)
+                            504 ;--------------------------------------------------------
+                            505 ; paged external ram data
+                            506 ;--------------------------------------------------------
+                            507 	.area PSEG    (PAG,XDATA)
+                            508 ;--------------------------------------------------------
+                            509 ; external ram data
+                            510 ;--------------------------------------------------------
+                            511 	.area XSEG    (XDATA)
+                    DF02    512 _MDMCTRL0H	=	0xdf02
+                    DF03    513 _MDMCTRL0L	=	0xdf03
+                    DF04    514 _MDMCTRL1H	=	0xdf04
+                    DF05    515 _MDMCTRL1L	=	0xdf05
+                    DF06    516 _RSSIH	=	0xdf06
+                    DF07    517 _RSSIL	=	0xdf07
+                    DF08    518 _SYNCWORDH	=	0xdf08
+                    DF09    519 _SYNCWORDL	=	0xdf09
+                    DF0A    520 _TXCTRLH	=	0xdf0a
+                    DF0B    521 _TXCTRLL	=	0xdf0b
+                    DF0C    522 _RXCTRL0H	=	0xdf0c
+                    DF0D    523 _RXCTRL0L	=	0xdf0d
+                    DF0E    524 _RXCTRL1H	=	0xdf0e
+                    DF0F    525 _RXCTRL1L	=	0xdf0f
+                    DF10    526 _FSCTRLH	=	0xdf10
+                    DF11    527 _FSCTRLL	=	0xdf11
+                    DF12    528 _CSPX	=	0xdf12
+                    DF13    529 _CSPY	=	0xdf13
+                    DF14    530 _CSPZ	=	0xdf14
+                    DF15    531 _CSPCTRL	=	0xdf15
+                    DF16    532 _CSPT	=	0xdf16
+                    DF17    533 _RFPWR	=	0xdf17
+                    DF20    534 _FSMTCH	=	0xdf20
+                    DF21    535 _FSMTCL	=	0xdf21
+                    DF22    536 _MANANDH	=	0xdf22
+                    DF23    537 _MANANDL	=	0xdf23
+                    DF24    538 _MANORH	=	0xdf24
+                    DF25    539 _MANORL	=	0xdf25
+                    DF26    540 _AGCCTRLH	=	0xdf26
+                    DF27    541 _AGCCTRLL	=	0xdf27
+                    DF39    542 _FSMSTATE	=	0xdf39
+                    DF3A    543 _ADCTSTH	=	0xdf3a
+                    DF3B    544 _ADCTSTL	=	0xdf3b
+                    DF3C    545 _DACTSTH	=	0xdf3c
+                    DF3D    546 _DACTSTL	=	0xdf3d
+                    DF43    547 _IEEE_ADDR0	=	0xdf43
+                    DF44    548 _IEEE_ADDR1	=	0xdf44
+                    DF45    549 _IEEE_ADDR2	=	0xdf45
+                    DF46    550 _IEEE_ADDR3	=	0xdf46
+                    DF47    551 _IEEE_ADDR4	=	0xdf47
+                    DF48    552 _IEEE_ADDR5	=	0xdf48
+                    DF49    553 _IEEE_ADDR6	=	0xdf49
+                    DF4A    554 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    555 _PANIDH	=	0xdf4b
+                    DF4C    556 _PANIDL	=	0xdf4c
+                    DF4D    557 _SHORTADDRH	=	0xdf4d
+                    DF4E    558 _SHORTADDRL	=	0xdf4e
+                    DF4F    559 _IOCFG0	=	0xdf4f
+                    DF50    560 _IOCFG1	=	0xdf50
+                    DF51    561 _IOCFG2	=	0xdf51
+                    DF52    562 _IOCFG3	=	0xdf52
+                    DF53    563 _RXFIFOCNT	=	0xdf53
+                    DF54    564 _FSMTC1	=	0xdf54
+                    DF60    565 _CHVER	=	0xdf60
+                    DF61    566 _CHIPID	=	0xdf61
+                    DF62    567 _RFSTATUS	=	0xdf62
+                    DFC1    568 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    569 _RFD_SHADOW	=	0xdfd9
+                    DFF9    570 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    571 _ADC_SHADOW	=	0xdfba
+   0000                     572 _p0ien:
+   0000                     573 	.ds 1
+   0001                     574 _p2ien:
+   0001                     575 	.ds 1
+   0002                     576 _debouncetimer:
+   0002                     577 	.ds 8
+                            578 ;--------------------------------------------------------
+                            579 ; absolute external ram data
+                            580 ;--------------------------------------------------------
+                            581 	.area XABS    (ABS,XDATA)
+                            582 ;--------------------------------------------------------
+                            583 ; external initialized ram data
+                            584 ;--------------------------------------------------------
+                            585 	.area XISEG   (XDATA)
+                            586 	.area HOME    (CODE)
+                            587 	.area GSINIT0 (CODE)
+                            588 	.area GSINIT1 (CODE)
+                            589 	.area GSINIT2 (CODE)
+                            590 	.area GSINIT3 (CODE)
+                            591 	.area GSINIT4 (CODE)
+                            592 	.area GSINIT5 (CODE)
+                            593 	.area GSINIT  (CODE)
+                            594 	.area GSFINAL (CODE)
+                            595 	.area CSEG    (CODE)
+                            596 ;--------------------------------------------------------
+                            597 ; global & static initialisations
+                            598 ;--------------------------------------------------------
+                            599 	.area HOME    (CODE)
+                            600 	.area GSINIT  (CODE)
+                            601 	.area GSFINAL (CODE)
+                            602 	.area GSINIT  (CODE)
+                            603 ;--------------------------------------------------------
+                            604 ; Home
+                            605 ;--------------------------------------------------------
+                            606 	.area HOME    (CODE)
+                            607 	.area HOME    (CODE)
+                            608 ;--------------------------------------------------------
+                            609 ; code
+                            610 ;--------------------------------------------------------
+                            611 	.area CSEG    (CODE)
+                            612 ;------------------------------------------------------------
+                            613 ;Allocation info for local variables in function 'BUTTON_1_SELECT'
+                            614 ;------------------------------------------------------------
+                            615 ;------------------------------------------------------------
+                            616 ;	../../../platform/sensinode/dev/button-sensor.c:50: HWCONF_PIN(BUTTON_1, 1, 0)
+                            617 ;	-----------------------------------------
+                            618 ;	 function BUTTON_1_SELECT
+                            619 ;	-----------------------------------------
+   0000                     620 _BUTTON_1_SELECT:
+                    0002    621 	ar2 = 0x02
+                    0003    622 	ar3 = 0x03
+                    0004    623 	ar4 = 0x04
+                    0005    624 	ar5 = 0x05
+                    0006    625 	ar6 = 0x06
+                    0007    626 	ar7 = 0x07
+                    0000    627 	ar0 = 0x00
+                    0001    628 	ar1 = 0x01
+   0000 53 F4 FE            629 	anl	_P1SEL,#0xFE
+   0003 22                  630 	ret
+                            631 ;------------------------------------------------------------
+                            632 ;Allocation info for local variables in function 'BUTTON_1_SELECT_IO'
+                            633 ;------------------------------------------------------------
+                            634 ;------------------------------------------------------------
+                            635 ;	../../../platform/sensinode/dev/button-sensor.c:50: HWCONF_PORT_1_IRQ(BUTTON_1, 0)
+                            636 ;	-----------------------------------------
+                            637 ;	 function BUTTON_1_SELECT_IO
+                            638 ;	-----------------------------------------
+   0004                     639 _BUTTON_1_SELECT_IO:
+   0004 53 F4 FE            640 	anl	_P1SEL,#0xFE
+   0007 22                  641 	ret
+                            642 ;------------------------------------------------------------
+                            643 ;Allocation info for local variables in function 'BUTTON_1_SELECT_PM'
+                            644 ;------------------------------------------------------------
+                            645 ;------------------------------------------------------------
+                            646 ;	../../../platform/sensinode/dev/button-sensor.c:50: HWCONF_PIN(BUTTON_1, 1, 0)
+                            647 ;	-----------------------------------------
+                            648 ;	 function BUTTON_1_SELECT_PM
+                            649 ;	-----------------------------------------
+   0008                     650 _BUTTON_1_SELECT_PM:
+   0008 43 F4 01            651 	orl	_P1SEL,#0x01
+   000B 22                  652 	ret
+                            653 ;------------------------------------------------------------
+                            654 ;Allocation info for local variables in function 'BUTTON_1_SET'
+                            655 ;------------------------------------------------------------
+                            656 ;------------------------------------------------------------
+                            657 ;	../../../platform/sensinode/dev/button-sensor.c:50: HWCONF_PORT_1_IRQ(BUTTON_1, 0)
+                            658 ;	-----------------------------------------
+                            659 ;	 function BUTTON_1_SET
+                            660 ;	-----------------------------------------
+   000C                     661 _BUTTON_1_SET:
+   000C D2 90               662 	setb	_P1_0
+   000E 22                  663 	ret
+                            664 ;------------------------------------------------------------
+                            665 ;Allocation info for local variables in function 'BUTTON_1_CLEAR'
+                            666 ;------------------------------------------------------------
+                            667 ;------------------------------------------------------------
+                            668 ;	../../../platform/sensinode/dev/button-sensor.c:50: HWCONF_PIN(BUTTON_1, 1, 0)
+                            669 ;	-----------------------------------------
+                            670 ;	 function BUTTON_1_CLEAR
+                            671 ;	-----------------------------------------
+   000F                     672 _BUTTON_1_CLEAR:
+   000F C2 90               673 	clr	_P1_0
+   0011 22                  674 	ret
+                            675 ;------------------------------------------------------------
+                            676 ;Allocation info for local variables in function 'BUTTON_1_READ'
+                            677 ;------------------------------------------------------------
+                            678 ;------------------------------------------------------------
+                            679 ;	../../../platform/sensinode/dev/button-sensor.c:50: HWCONF_PORT_1_IRQ(BUTTON_1, 0)
+                            680 ;	-----------------------------------------
+                            681 ;	 function BUTTON_1_READ
+                            682 ;	-----------------------------------------
+   0012                     683 _BUTTON_1_READ:
+   0012 A2 90               684 	mov	c,_P1_0
+   0014 E4                  685 	clr	a
+   0015 33                  686 	rlc	a
+   0016 F5 82               687 	mov	dpl,a
+   0018 22                  688 	ret
+                            689 ;------------------------------------------------------------
+                            690 ;Allocation info for local variables in function 'BUTTON_1_MAKE_OUTPUT'
+                            691 ;------------------------------------------------------------
+                            692 ;------------------------------------------------------------
+                            693 ;	../../../platform/sensinode/dev/button-sensor.c:50: HWCONF_PIN(BUTTON_1, 1, 0)
+                            694 ;	-----------------------------------------
+                            695 ;	 function BUTTON_1_MAKE_OUTPUT
+                            696 ;	-----------------------------------------
+   0019                     697 _BUTTON_1_MAKE_OUTPUT:
+   0019 43 FE 01            698 	orl	_P1DIR,#0x01
+   001C 22                  699 	ret
+                            700 ;------------------------------------------------------------
+                            701 ;Allocation info for local variables in function 'BUTTON_1_MAKE_INPUT'
+                            702 ;------------------------------------------------------------
+                            703 ;------------------------------------------------------------
+                            704 ;	../../../platform/sensinode/dev/button-sensor.c:50: HWCONF_PORT_1_IRQ(BUTTON_1, 0)
+                            705 ;	-----------------------------------------
+                            706 ;	 function BUTTON_1_MAKE_INPUT
+                            707 ;	-----------------------------------------
+   001D                     708 _BUTTON_1_MAKE_INPUT:
+   001D 53 FE FE            709 	anl	_P1DIR,#0xFE
+   0020 22                  710 	ret
+                            711 ;------------------------------------------------------------
+                            712 ;Allocation info for local variables in function 'BUTTON_1_ENABLE_IRQ'
+                            713 ;------------------------------------------------------------
+                            714 ;------------------------------------------------------------
+                            715 ;	../../../platform/sensinode/dev/button-sensor.c:51: HWCONF_PIN(BUTTON_2, 0, 4)
+                            716 ;	-----------------------------------------
+                            717 ;	 function BUTTON_1_ENABLE_IRQ
+                            718 ;	-----------------------------------------
+   0021                     719 _BUTTON_1_ENABLE_IRQ:
+   0021 43 8D 01            720 	orl	_P1IEN,#0x01
+   0024 43 9A 10            721 	orl	_IEN2,#0x10
+   0027 22                  722 	ret
+                            723 ;------------------------------------------------------------
+                            724 ;Allocation info for local variables in function 'BUTTON_1_DISABLE_IRQ'
+                            725 ;------------------------------------------------------------
+                            726 ;------------------------------------------------------------
+                            727 ;	../../../platform/sensinode/dev/button-sensor.c:51: HWCONF_PORT_1_IRQ(BUTTON_1, 0)
+                            728 ;	-----------------------------------------
+                            729 ;	 function BUTTON_1_DISABLE_IRQ
+                            730 ;	-----------------------------------------
+   0028                     731 _BUTTON_1_DISABLE_IRQ:
+   0028 53 8D FE            732 	anl	_P1IEN,#0xFE
+   002B E5 8D               733 	mov	a,_P1IEN
+   002D 70 03               734 	jnz	00103$
+   002F 53 9A EF            735 	anl	_IEN2,#0xEF
+   0032                     736 00103$:
+   0032 22                  737 	ret
+                            738 ;------------------------------------------------------------
+                            739 ;Allocation info for local variables in function 'BUTTON_1_IRQ_ENABLED'
+                            740 ;------------------------------------------------------------
+                            741 ;------------------------------------------------------------
+                            742 ;	../../../platform/sensinode/dev/button-sensor.c:51: HWCONF_PIN(BUTTON_2, 0, 4)
+                            743 ;	-----------------------------------------
+                            744 ;	 function BUTTON_1_IRQ_ENABLED
+                            745 ;	-----------------------------------------
+   0033                     746 _BUTTON_1_IRQ_ENABLED:
+   0033 74 01               747 	mov	a,#0x01
+   0035 55 8D               748 	anl	a,_P1IEN
+   0037 FA                  749 	mov	r2,a
+   0038 7B 00               750 	mov	r3,#0x00
+   003A 8A 82               751 	mov	dpl,r2
+   003C 8B 83               752 	mov	dph,r3
+   003E 22                  753 	ret
+                            754 ;------------------------------------------------------------
+                            755 ;Allocation info for local variables in function 'BUTTON_1_IRQ_EDGE_SELECTD'
+                            756 ;------------------------------------------------------------
+                            757 ;------------------------------------------------------------
+                            758 ;	../../../platform/sensinode/dev/button-sensor.c:51: HWCONF_PORT_1_IRQ(BUTTON_1, 0)
+                            759 ;	-----------------------------------------
+                            760 ;	 function BUTTON_1_IRQ_EDGE_SELECTD
+                            761 ;	-----------------------------------------
+   003F                     762 _BUTTON_1_IRQ_EDGE_SELECTD:
+   003F 43 8C 02            763 	orl	_PICTL,#0x02
+   0042 22                  764 	ret
+                            765 ;------------------------------------------------------------
+                            766 ;Allocation info for local variables in function 'BUTTON_1_IRQ_EDGE_SELECTU'
+                            767 ;------------------------------------------------------------
+                            768 ;------------------------------------------------------------
+                            769 ;	../../../platform/sensinode/dev/button-sensor.c:51: HWCONF_PIN(BUTTON_2, 0, 4)
+                            770 ;	-----------------------------------------
+                            771 ;	 function BUTTON_1_IRQ_EDGE_SELECTU
+                            772 ;	-----------------------------------------
+   0043                     773 _BUTTON_1_IRQ_EDGE_SELECTU:
+   0043 53 8C FD            774 	anl	_PICTL,#0xFD
+   0046 22                  775 	ret
+                            776 ;------------------------------------------------------------
+                            777 ;Allocation info for local variables in function 'BUTTON_1_CHECK_IRQ'
+                            778 ;------------------------------------------------------------
+                            779 ;------------------------------------------------------------
+                            780 ;	../../../platform/sensinode/dev/button-sensor.c:51: HWCONF_PORT_1_IRQ(BUTTON_1, 0)
+                            781 ;	-----------------------------------------
+                            782 ;	 function BUTTON_1_CHECK_IRQ
+                            783 ;	-----------------------------------------
+   0047                     784 _BUTTON_1_CHECK_IRQ:
+   0047 74 01               785 	mov	a,#0x01
+   0049 55 8A               786 	anl	a,_P1IFG
+   004B FA                  787 	mov	r2,a
+   004C 7B 00               788 	mov	r3,#0x00
+   004E 8A 82               789 	mov	dpl,r2
+   0050 8B 83               790 	mov	dph,r3
+   0052 22                  791 	ret
+                            792 ;------------------------------------------------------------
+                            793 ;Allocation info for local variables in function 'BUTTON_1_IRQ_FLAG_OFF'
+                            794 ;------------------------------------------------------------
+                            795 ;------------------------------------------------------------
+                            796 ;	../../../platform/sensinode/dev/button-sensor.c:51: HWCONF_PIN(BUTTON_2, 0, 4)
+                            797 ;	-----------------------------------------
+                            798 ;	 function BUTTON_1_IRQ_FLAG_OFF
+                            799 ;	-----------------------------------------
+   0053                     800 _BUTTON_1_IRQ_FLAG_OFF:
+   0053 C2 EB               801 	clr	_IRCON2_P1IF
+   0055 75 8A 00            802 	mov	_P1IFG,#0x00
+   0058 22                  803 	ret
+                            804 ;------------------------------------------------------------
+                            805 ;Allocation info for local variables in function 'BUTTON_2_SELECT'
+                            806 ;------------------------------------------------------------
+                            807 ;------------------------------------------------------------
+                            808 ;	../../../platform/sensinode/dev/button-sensor.c:52: HWCONF_PORT_0_IRQ(BUTTON_2, 4)
+                            809 ;	-----------------------------------------
+                            810 ;	 function BUTTON_2_SELECT
+                            811 ;	-----------------------------------------
+   0059                     812 _BUTTON_2_SELECT:
+   0059 53 F3 EF            813 	anl	_P0SEL,#0xEF
+   005C 22                  814 	ret
+                            815 ;------------------------------------------------------------
+                            816 ;Allocation info for local variables in function 'BUTTON_2_SELECT_IO'
+                            817 ;------------------------------------------------------------
+                            818 ;------------------------------------------------------------
+                            819 ;	../../../platform/sensinode/dev/button-sensor.c:52: HWCONF_PIN(BUTTON_2, 0, 4)
+                            820 ;	-----------------------------------------
+                            821 ;	 function BUTTON_2_SELECT_IO
+                            822 ;	-----------------------------------------
+   005D                     823 _BUTTON_2_SELECT_IO:
+   005D 53 F3 EF            824 	anl	_P0SEL,#0xEF
+   0060 22                  825 	ret
+                            826 ;------------------------------------------------------------
+                            827 ;Allocation info for local variables in function 'BUTTON_2_SELECT_PM'
+                            828 ;------------------------------------------------------------
+                            829 ;------------------------------------------------------------
+                            830 ;	../../../platform/sensinode/dev/button-sensor.c:52: HWCONF_PORT_0_IRQ(BUTTON_2, 4)
+                            831 ;	-----------------------------------------
+                            832 ;	 function BUTTON_2_SELECT_PM
+                            833 ;	-----------------------------------------
+   0061                     834 _BUTTON_2_SELECT_PM:
+   0061 43 F3 10            835 	orl	_P0SEL,#0x10
+   0064 22                  836 	ret
+                            837 ;------------------------------------------------------------
+                            838 ;Allocation info for local variables in function 'BUTTON_2_SET'
+                            839 ;------------------------------------------------------------
+                            840 ;------------------------------------------------------------
+                            841 ;	../../../platform/sensinode/dev/button-sensor.c:52: HWCONF_PIN(BUTTON_2, 0, 4)
+                            842 ;	-----------------------------------------
+                            843 ;	 function BUTTON_2_SET
+                            844 ;	-----------------------------------------
+   0065                     845 _BUTTON_2_SET:
+   0065 D2 84               846 	setb	_P0_4
+   0067 22                  847 	ret
+                            848 ;------------------------------------------------------------
+                            849 ;Allocation info for local variables in function 'BUTTON_2_CLEAR'
+                            850 ;------------------------------------------------------------
+                            851 ;------------------------------------------------------------
+                            852 ;	../../../platform/sensinode/dev/button-sensor.c:52: HWCONF_PORT_0_IRQ(BUTTON_2, 4)
+                            853 ;	-----------------------------------------
+                            854 ;	 function BUTTON_2_CLEAR
+                            855 ;	-----------------------------------------
+   0068                     856 _BUTTON_2_CLEAR:
+   0068 C2 84               857 	clr	_P0_4
+   006A 22                  858 	ret
+                            859 ;------------------------------------------------------------
+                            860 ;Allocation info for local variables in function 'BUTTON_2_READ'
+                            861 ;------------------------------------------------------------
+                            862 ;------------------------------------------------------------
+                            863 ;	../../../platform/sensinode/dev/button-sensor.c:52: HWCONF_PIN(BUTTON_2, 0, 4)
+                            864 ;	-----------------------------------------
+                            865 ;	 function BUTTON_2_READ
+                            866 ;	-----------------------------------------
+   006B                     867 _BUTTON_2_READ:
+   006B A2 84               868 	mov	c,_P0_4
+   006D E4                  869 	clr	a
+   006E 33                  870 	rlc	a
+   006F F5 82               871 	mov	dpl,a
+   0071 22                  872 	ret
+                            873 ;------------------------------------------------------------
+                            874 ;Allocation info for local variables in function 'BUTTON_2_MAKE_OUTPUT'
+                            875 ;------------------------------------------------------------
+                            876 ;------------------------------------------------------------
+                            877 ;	../../../platform/sensinode/dev/button-sensor.c:52: HWCONF_PORT_0_IRQ(BUTTON_2, 4)
+                            878 ;	-----------------------------------------
+                            879 ;	 function BUTTON_2_MAKE_OUTPUT
+                            880 ;	-----------------------------------------
+   0072                     881 _BUTTON_2_MAKE_OUTPUT:
+   0072 43 FD 10            882 	orl	_P0DIR,#0x10
+   0075 22                  883 	ret
+                            884 ;------------------------------------------------------------
+                            885 ;Allocation info for local variables in function 'BUTTON_2_MAKE_INPUT'
+                            886 ;------------------------------------------------------------
+                            887 ;------------------------------------------------------------
+                            888 ;	../../../platform/sensinode/dev/button-sensor.c:52: HWCONF_PIN(BUTTON_2, 0, 4)
+                            889 ;	-----------------------------------------
+                            890 ;	 function BUTTON_2_MAKE_INPUT
+                            891 ;	-----------------------------------------
+   0076                     892 _BUTTON_2_MAKE_INPUT:
+   0076 53 FD EF            893 	anl	_P0DIR,#0xEF
+   0079 22                  894 	ret
+                            895 ;------------------------------------------------------------
+                            896 ;Allocation info for local variables in function 'BUTTON_2_ENABLE_IRQ'
+                            897 ;------------------------------------------------------------
+                            898 ;------------------------------------------------------------
+                            899 ;	../../../platform/sensinode/dev/button-sensor.c:53: HWCONF_PORT_0_IRQ(BUTTON_2, 4)
+                            900 ;	-----------------------------------------
+                            901 ;	 function BUTTON_2_ENABLE_IRQ
+                            902 ;	-----------------------------------------
+   007A                     903 _BUTTON_2_ENABLE_IRQ:
+   007A 43 8C 10            904 	orl	_PICTL,#0x10
+   007D 90s00r00            905 	mov	dptr,#_p0ien
+   0080 E0                  906 	movx	a,@dptr
+   0081 44 10               907 	orl	a,#0x10
+   0083 F0                  908 	movx	@dptr,a
+   0084 43 B8 20            909 	orl	_IEN1,#0x20
+   0087 22                  910 	ret
+                            911 ;------------------------------------------------------------
+                            912 ;Allocation info for local variables in function 'BUTTON_2_DISABLE_IRQ'
+                            913 ;------------------------------------------------------------
+                            914 ;------------------------------------------------------------
+                            915 ;	../../../platform/sensinode/dev/button-sensor.c:53: #endif /* MODEL_N740 */
+                            916 ;	-----------------------------------------
+                            917 ;	 function BUTTON_2_DISABLE_IRQ
+                            918 ;	-----------------------------------------
+   0088                     919 _BUTTON_2_DISABLE_IRQ:
+   0088 90s00r00            920 	mov	dptr,#_p0ien
+   008B E0                  921 	movx	a,@dptr
+   008C 54 EF               922 	anl	a,#0xEF
+   008E F0                  923 	movx	@dptr,a
+   008F 90s00r00            924 	mov	dptr,#_p0ien
+   0092 E0                  925 	movx	a,@dptr
+   0093 FA                  926 	mov	r2,a
+   0094 54 F0               927 	anl	a,#0xF0
+   0096 60 01               928 	jz	00113$
+   0098 22                  929 	ret
+   0099                     930 00113$:
+   0099 53 8C EF            931 	anl	_PICTL,#0xEF
+   009C 22                  932 	ret
+                            933 ;------------------------------------------------------------
+                            934 ;Allocation info for local variables in function 'BUTTON_2_IRQ_ENABLED'
+                            935 ;------------------------------------------------------------
+                            936 ;------------------------------------------------------------
+                            937 ;	../../../platform/sensinode/dev/button-sensor.c:53: HWCONF_PORT_0_IRQ(BUTTON_2, 4)
+                            938 ;	-----------------------------------------
+                            939 ;	 function BUTTON_2_IRQ_ENABLED
+                            940 ;	-----------------------------------------
+   009D                     941 _BUTTON_2_IRQ_ENABLED:
+   009D 90s00r00            942 	mov	dptr,#_p0ien
+   00A0 E0                  943 	movx	a,@dptr
+   00A1 FA                  944 	mov	r2,a
+   00A2 53 02 10            945 	anl	ar2,#0x10
+   00A5 7B 00               946 	mov	r3,#0x00
+   00A7 8A 82               947 	mov	dpl,r2
+   00A9 8B 83               948 	mov	dph,r3
+   00AB 22                  949 	ret
+                            950 ;------------------------------------------------------------
+                            951 ;Allocation info for local variables in function 'BUTTON_2_IRQ_EDGE_SELECTD'
+                            952 ;------------------------------------------------------------
+                            953 ;------------------------------------------------------------
+                            954 ;	../../../platform/sensinode/dev/button-sensor.c:53: #endif /* MODEL_N740 */
+                            955 ;	-----------------------------------------
+                            956 ;	 function BUTTON_2_IRQ_EDGE_SELECTD
+                            957 ;	-----------------------------------------
+   00AC                     958 _BUTTON_2_IRQ_EDGE_SELECTD:
+   00AC 43 8C 01            959 	orl	_PICTL,#0x01
+   00AF 22                  960 	ret
+                            961 ;------------------------------------------------------------
+                            962 ;Allocation info for local variables in function 'BUTTON_2_IRQ_EDGE_SELECTU'
+                            963 ;------------------------------------------------------------
+                            964 ;------------------------------------------------------------
+                            965 ;	../../../platform/sensinode/dev/button-sensor.c:53: HWCONF_PORT_0_IRQ(BUTTON_2, 4)
+                            966 ;	-----------------------------------------
+                            967 ;	 function BUTTON_2_IRQ_EDGE_SELECTU
+                            968 ;	-----------------------------------------
+   00B0                     969 _BUTTON_2_IRQ_EDGE_SELECTU:
+   00B0 53 8C FE            970 	anl	_PICTL,#0xFE
+   00B3 22                  971 	ret
+                            972 ;------------------------------------------------------------
+                            973 ;Allocation info for local variables in function 'BUTTON_2_CHECK_IRQ'
+                            974 ;------------------------------------------------------------
+                            975 ;------------------------------------------------------------
+                            976 ;	../../../platform/sensinode/dev/button-sensor.c:53: #endif /* MODEL_N740 */
+                            977 ;	-----------------------------------------
+                            978 ;	 function BUTTON_2_CHECK_IRQ
+                            979 ;	-----------------------------------------
+   00B4                     980 _BUTTON_2_CHECK_IRQ:
+   00B4 74 10               981 	mov	a,#0x10
+   00B6 55 89               982 	anl	a,_P0IFG
+   00B8 FA                  983 	mov	r2,a
+   00B9 7B 00               984 	mov	r3,#0x00
+   00BB 8A 82               985 	mov	dpl,r2
+   00BD 8B 83               986 	mov	dph,r3
+   00BF 22                  987 	ret
+                            988 ;------------------------------------------------------------
+                            989 ;Allocation info for local variables in function 'BUTTON_2_IRQ_FLAG_OFF'
+                            990 ;------------------------------------------------------------
+                            991 ;------------------------------------------------------------
+                            992 ;	../../../platform/sensinode/dev/button-sensor.c:53: HWCONF_PORT_0_IRQ(BUTTON_2, 4)
+                            993 ;	-----------------------------------------
+                            994 ;	 function BUTTON_2_IRQ_FLAG_OFF
+                            995 ;	-----------------------------------------
+   00C0                     996 _BUTTON_2_IRQ_FLAG_OFF:
+   00C0 C2 C5               997 	clr	_IRCON_P0IF
+   00C2 75 89 00            998 	mov	_P0IFG,#0x00
+   00C5 22                  999 	ret
+                           1000 ;------------------------------------------------------------
+                           1001 ;Allocation info for local variables in function 'value_b1'
+                           1002 ;------------------------------------------------------------
+                           1003 ;type                      Allocated to registers 
+                           1004 ;------------------------------------------------------------
+                           1005 ;	../../../platform/sensinode/dev/button-sensor.c:65: int value_b1(int type)
+                           1006 ;	-----------------------------------------
+                           1007 ;	 function value_b1
+                           1008 ;	-----------------------------------------
+   00C6                    1009 _value_b1:
+                           1010 ;	../../../platform/sensinode/dev/button-sensor.c:67: return BUTTON_1_READ() || !timer_expired(&debouncetimer[0]);
+   00C6 12s00r12           1011 	lcall	_BUTTON_1_READ
+   00C9 E5 82              1012 	mov	a,dpl
+   00CB 70 19              1013 	jnz	00104$
+   00CD 90s00r02           1014 	mov	dptr,#_debouncetimer
+   00D0 F5 F0              1015 	mov	b,a
+   00D2 12s00r00           1016 	lcall	_timer_expired
+   00D5 AA 82              1017 	mov	r2,dpl
+   00D7 AB 83              1018 	mov	r3,dph
+   00D9 EA                 1019 	mov	a,r2
+   00DA 4B                 1020 	orl	a,r3
+   00DB B4 01 00           1021 	cjne	a,#0x01,00109$
+   00DE                    1022 00109$:
+   00DE E4                 1023 	clr	a
+   00DF 33                 1024 	rlc	a
+   00E0 FA                 1025 	mov	r2,a
+   00E1 70 03              1026 	jnz	00104$
+   00E3 FA                 1027 	mov	r2,a
+   00E4 80 02              1028 	sjmp	00105$
+   00E6                    1029 00104$:
+   00E6 7A 01              1030 	mov	r2,#0x01
+   00E8                    1031 00105$:
+   00E8 EA                 1032 	mov	a,r2
+   00E9 33                 1033 	rlc	a
+   00EA 95 E0              1034 	subb	a,acc
+   00EC 8A 82              1035 	mov	dpl,r2
+   00EE F5 83              1036 	mov	dph,a
+   00F0 22                 1037 	ret
+                           1038 ;------------------------------------------------------------
+                           1039 ;Allocation info for local variables in function 'status_b1'
+                           1040 ;------------------------------------------------------------
+                           1041 ;type                      Allocated to registers r2 r3 
+                           1042 ;------------------------------------------------------------
+                           1043 ;	../../../platform/sensinode/dev/button-sensor.c:71: int status_b1(int type)
+                           1044 ;	-----------------------------------------
+                           1045 ;	 function status_b1
+                           1046 ;	-----------------------------------------
+   00F1                    1047 _status_b1:
+   00F1 AA 82              1048 	mov	r2,dpl
+   00F3 AB 83              1049 	mov	r3,dph
+                           1050 ;	../../../platform/sensinode/dev/button-sensor.c:73: switch (type) {
+   00F5 BA 81 05           1051 	cjne	r2,#0x81,00107$
+   00F8 BB 00 02           1052 	cjne	r3,#0x00,00107$
+   00FB 80 06              1053 	sjmp	00102$
+   00FD                    1054 00107$:
+   00FD BA 82 06           1055 	cjne	r2,#0x82,00103$
+   0100 BB 00 03           1056 	cjne	r3,#0x00,00103$
+                           1057 ;	../../../platform/sensinode/dev/button-sensor.c:75: case SENSORS_READY:
+   0103                    1058 00102$:
+                           1059 ;	../../../platform/sensinode/dev/button-sensor.c:76: return BUTTON_1_IRQ_ENABLED();
+                           1060 ;	../../../platform/sensinode/dev/button-sensor.c:77: }
+                           1061 ;	../../../platform/sensinode/dev/button-sensor.c:78: return 0;
+   0103 02s00r33           1062 	ljmp	_BUTTON_1_IRQ_ENABLED
+   0106                    1063 00103$:
+   0106 90 00 00           1064 	mov	dptr,#0x0000
+   0109 22                 1065 	ret
+                           1066 ;------------------------------------------------------------
+                           1067 ;Allocation info for local variables in function 'configure_b1'
+                           1068 ;------------------------------------------------------------
+                           1069 ;value                     Allocated to stack - offset -4
+                           1070 ;type                      Allocated to registers r2 r3 
+                           1071 ;------------------------------------------------------------
+                           1072 ;	../../../platform/sensinode/dev/button-sensor.c:82: int configure_b1(int type, int value)
+                           1073 ;	-----------------------------------------
+                           1074 ;	 function configure_b1
+                           1075 ;	-----------------------------------------
+   010A                    1076 _configure_b1:
+   010A C0*00              1077 	push	_bp
+   010C 85 81*00           1078 	mov	_bp,sp
+   010F AA 82              1079 	mov	r2,dpl
+   0111 AB 83              1080 	mov	r3,dph
+                           1081 ;	../../../platform/sensinode/dev/button-sensor.c:84: switch(type) {
+   0113 BA 80 05           1082 	cjne	r2,#0x80,00115$
+   0116 BB 00 02           1083 	cjne	r3,#0x00,00115$
+   0119 80 08              1084 	sjmp	00101$
+   011B                    1085 00115$:
+                           1086 ;	../../../platform/sensinode/dev/button-sensor.c:85: case SENSORS_HW_INIT:
+   011B BA 81 4A           1087 	cjne	r2,#0x81,00108$
+   011E BB 00 47           1088 	cjne	r3,#0x00,00108$
+   0121 80 0E              1089 	sjmp	00102$
+   0123                    1090 00101$:
+                           1091 ;	../../../platform/sensinode/dev/button-sensor.c:87: BUTTON_1_IRQ_EDGE_SELECTD();
+   0123 12s00r3F           1092 	lcall	_BUTTON_1_IRQ_EDGE_SELECTD
+                           1093 ;	../../../platform/sensinode/dev/button-sensor.c:88: BUTTON_1_SELECT();
+   0126 12s00r00           1094 	lcall	_BUTTON_1_SELECT
+                           1095 ;	../../../platform/sensinode/dev/button-sensor.c:89: BUTTON_1_MAKE_INPUT();
+   0129 12s00r1D           1096 	lcall	_BUTTON_1_MAKE_INPUT
+                           1097 ;	../../../platform/sensinode/dev/button-sensor.c:90: return 1;
+   012C 90 00 01           1098 	mov	dptr,#0x0001
+                           1099 ;	../../../platform/sensinode/dev/button-sensor.c:91: case SENSORS_ACTIVE:
+   012F 80 3A              1100 	sjmp	00109$
+   0131                    1101 00102$:
+                           1102 ;	../../../platform/sensinode/dev/button-sensor.c:92: if(value) {
+   0131 E5*00              1103 	mov	a,_bp
+   0133 24 FC              1104 	add	a,#0xfc
+   0135 F8                 1105 	mov	r0,a
+   0136 E6                 1106 	mov	a,@r0
+   0137 08                 1107 	inc	r0
+   0138 46                 1108 	orl	a,@r0
+   0139 60 25              1109 	jz	00106$
+                           1110 ;	../../../platform/sensinode/dev/button-sensor.c:93: if(!BUTTON_1_IRQ_ENABLED()) {
+   013B 12s00r33           1111 	lcall	_BUTTON_1_IRQ_ENABLED
+   013E E5 82              1112 	mov	a,dpl
+   0140 85 83 F0           1113 	mov	b,dph
+   0143 45 F0              1114 	orl	a,b
+                           1115 ;	../../../platform/sensinode/dev/button-sensor.c:94: timer_set(&debouncetimer[0], 0);
+   0145 70 1C              1116 	jnz	00107$
+   0147 C0 E0              1117 	push	acc
+   0149 C0 E0              1118 	push	acc
+   014B 90s00r02           1119 	mov	dptr,#_debouncetimer
+   014E 75 F0 00           1120 	mov	b,#0x00
+   0151 12s00r00           1121 	lcall	_timer_set
+   0154 15 81              1122 	dec	sp
+   0156 15 81              1123 	dec	sp
+                           1124 ;	../../../platform/sensinode/dev/button-sensor.c:95: BUTTON_1_IRQ_FLAG_OFF();
+   0158 12s00r53           1125 	lcall	_BUTTON_1_IRQ_FLAG_OFF
+                           1126 ;	../../../platform/sensinode/dev/button-sensor.c:96: BUTTON_1_ENABLE_IRQ();
+   015B 12s00r21           1127 	lcall	_BUTTON_1_ENABLE_IRQ
+   015E 80 03              1128 	sjmp	00107$
+   0160                    1129 00106$:
+                           1130 ;	../../../platform/sensinode/dev/button-sensor.c:99: BUTTON_1_DISABLE_IRQ();
+   0160 12s00r28           1131 	lcall	_BUTTON_1_DISABLE_IRQ
+   0163                    1132 00107$:
+                           1133 ;	../../../platform/sensinode/dev/button-sensor.c:101: return 1;
+   0163 90 00 01           1134 	mov	dptr,#0x0001
+                           1135 ;	../../../platform/sensinode/dev/button-sensor.c:102: }
+   0166 80 03              1136 	sjmp	00109$
+   0168                    1137 00108$:
+                           1138 ;	../../../platform/sensinode/dev/button-sensor.c:103: return 0;
+   0168 90 00 00           1139 	mov	dptr,#0x0000
+   016B                    1140 00109$:
+   016B D0*00              1141 	pop	_bp
+   016D 22                 1142 	ret
+                           1143 ;------------------------------------------------------------
+                           1144 ;Allocation info for local variables in function 'value_b2'
+                           1145 ;------------------------------------------------------------
+                           1146 ;type                      Allocated to registers 
+                           1147 ;------------------------------------------------------------
+                           1148 ;	../../../platform/sensinode/dev/button-sensor.c:107: int value_b2(int type)
+                           1149 ;	-----------------------------------------
+                           1150 ;	 function value_b2
+                           1151 ;	-----------------------------------------
+   016E                    1152 _value_b2:
+                           1153 ;	../../../platform/sensinode/dev/button-sensor.c:109: return BUTTON_2_READ() || !timer_expired(&debouncetimer[1]);
+   016E 12s00r6B           1154 	lcall	_BUTTON_2_READ
+   0171 E5 82              1155 	mov	a,dpl
+   0173 70 19              1156 	jnz	00104$
+   0175 90s00r06           1157 	mov	dptr,#(_debouncetimer + 0x0004)
+   0178 F5 F0              1158 	mov	b,a
+   017A 12s00r00           1159 	lcall	_timer_expired
+   017D AA 82              1160 	mov	r2,dpl
+   017F AB 83              1161 	mov	r3,dph
+   0181 EA                 1162 	mov	a,r2
+   0182 4B                 1163 	orl	a,r3
+   0183 B4 01 00           1164 	cjne	a,#0x01,00109$
+   0186                    1165 00109$:
+   0186 E4                 1166 	clr	a
+   0187 33                 1167 	rlc	a
+   0188 FA                 1168 	mov	r2,a
+   0189 70 03              1169 	jnz	00104$
+   018B FA                 1170 	mov	r2,a
+   018C 80 02              1171 	sjmp	00105$
+   018E                    1172 00104$:
+   018E 7A 01              1173 	mov	r2,#0x01
+   0190                    1174 00105$:
+   0190 EA                 1175 	mov	a,r2
+   0191 33                 1176 	rlc	a
+   0192 95 E0              1177 	subb	a,acc
+   0194 8A 82              1178 	mov	dpl,r2
+   0196 F5 83              1179 	mov	dph,a
+   0198 22                 1180 	ret
+                           1181 ;------------------------------------------------------------
+                           1182 ;Allocation info for local variables in function 'status_b2'
+                           1183 ;------------------------------------------------------------
+                           1184 ;type                      Allocated to registers r2 r3 
+                           1185 ;------------------------------------------------------------
+                           1186 ;	../../../platform/sensinode/dev/button-sensor.c:113: int status_b2(int type)
+                           1187 ;	-----------------------------------------
+                           1188 ;	 function status_b2
+                           1189 ;	-----------------------------------------
+   0199                    1190 _status_b2:
+   0199 AA 82              1191 	mov	r2,dpl
+   019B AB 83              1192 	mov	r3,dph
+                           1193 ;	../../../platform/sensinode/dev/button-sensor.c:115: switch (type) {
+   019D BA 81 05           1194 	cjne	r2,#0x81,00107$
+   01A0 BB 00 02           1195 	cjne	r3,#0x00,00107$
+   01A3 80 06              1196 	sjmp	00102$
+   01A5                    1197 00107$:
+   01A5 BA 82 06           1198 	cjne	r2,#0x82,00103$
+   01A8 BB 00 03           1199 	cjne	r3,#0x00,00103$
+                           1200 ;	../../../platform/sensinode/dev/button-sensor.c:117: case SENSORS_READY:
+   01AB                    1201 00102$:
+                           1202 ;	../../../platform/sensinode/dev/button-sensor.c:118: return BUTTON_2_IRQ_ENABLED();
+                           1203 ;	../../../platform/sensinode/dev/button-sensor.c:119: }
+                           1204 ;	../../../platform/sensinode/dev/button-sensor.c:120: return 0;
+   01AB 02s00r9D           1205 	ljmp	_BUTTON_2_IRQ_ENABLED
+   01AE                    1206 00103$:
+   01AE 90 00 00           1207 	mov	dptr,#0x0000
+   01B1 22                 1208 	ret
+                           1209 ;------------------------------------------------------------
+                           1210 ;Allocation info for local variables in function 'configure_b2'
+                           1211 ;------------------------------------------------------------
+                           1212 ;value                     Allocated to stack - offset -4
+                           1213 ;type                      Allocated to registers r2 r3 
+                           1214 ;------------------------------------------------------------
+                           1215 ;	../../../platform/sensinode/dev/button-sensor.c:124: int configure_b2(int type, int value)
+                           1216 ;	-----------------------------------------
+                           1217 ;	 function configure_b2
+                           1218 ;	-----------------------------------------
+   01B2                    1219 _configure_b2:
+   01B2 C0*00              1220 	push	_bp
+   01B4 85 81*00           1221 	mov	_bp,sp
+   01B7 AA 82              1222 	mov	r2,dpl
+   01B9 AB 83              1223 	mov	r3,dph
+                           1224 ;	../../../platform/sensinode/dev/button-sensor.c:126: switch(type) {
+   01BB BA 80 05           1225 	cjne	r2,#0x80,00115$
+   01BE BB 00 02           1226 	cjne	r3,#0x00,00115$
+   01C1 80 08              1227 	sjmp	00101$
+   01C3                    1228 00115$:
+                           1229 ;	../../../platform/sensinode/dev/button-sensor.c:127: case SENSORS_HW_INIT:
+   01C3 BA 81 47           1230 	cjne	r2,#0x81,00108$
+   01C6 BB 00 44           1231 	cjne	r3,#0x00,00108$
+   01C9 80 0B              1232 	sjmp	00102$
+   01CB                    1233 00101$:
+                           1234 ;	../../../platform/sensinode/dev/button-sensor.c:130: BUTTON_2_SELECT();
+   01CB 12s00r59           1235 	lcall	_BUTTON_2_SELECT
+                           1236 ;	../../../platform/sensinode/dev/button-sensor.c:131: BUTTON_2_MAKE_INPUT();
+   01CE 12s00r76           1237 	lcall	_BUTTON_2_MAKE_INPUT
+                           1238 ;	../../../platform/sensinode/dev/button-sensor.c:132: return 1;
+   01D1 90 00 01           1239 	mov	dptr,#0x0001
+                           1240 ;	../../../platform/sensinode/dev/button-sensor.c:133: case SENSORS_ACTIVE:
+   01D4 80 3A              1241 	sjmp	00109$
+   01D6                    1242 00102$:
+                           1243 ;	../../../platform/sensinode/dev/button-sensor.c:134: if(value) {
+   01D6 E5*00              1244 	mov	a,_bp
+   01D8 24 FC              1245 	add	a,#0xfc
+   01DA F8                 1246 	mov	r0,a
+   01DB E6                 1247 	mov	a,@r0
+   01DC 08                 1248 	inc	r0
+   01DD 46                 1249 	orl	a,@r0
+   01DE 60 25              1250 	jz	00106$
+                           1251 ;	../../../platform/sensinode/dev/button-sensor.c:135: if(!BUTTON_2_IRQ_ENABLED()) {
+   01E0 12s00r9D           1252 	lcall	_BUTTON_2_IRQ_ENABLED
+   01E3 E5 82              1253 	mov	a,dpl
+   01E5 85 83 F0           1254 	mov	b,dph
+   01E8 45 F0              1255 	orl	a,b
+                           1256 ;	../../../platform/sensinode/dev/button-sensor.c:136: timer_set(&debouncetimer[1], 0);
+   01EA 70 1C              1257 	jnz	00107$
+   01EC C0 E0              1258 	push	acc
+   01EE C0 E0              1259 	push	acc
+   01F0 90s00r06           1260 	mov	dptr,#(_debouncetimer + 0x0004)
+   01F3 75 F0 00           1261 	mov	b,#0x00
+   01F6 12s00r00           1262 	lcall	_timer_set
+   01F9 15 81              1263 	dec	sp
+   01FB 15 81              1264 	dec	sp
+                           1265 ;	../../../platform/sensinode/dev/button-sensor.c:137: BUTTON_2_IRQ_FLAG_OFF();
+   01FD 12s00rC0           1266 	lcall	_BUTTON_2_IRQ_FLAG_OFF
+                           1267 ;	../../../platform/sensinode/dev/button-sensor.c:138: BUTTON_2_ENABLE_IRQ();
+   0200 12s00r7A           1268 	lcall	_BUTTON_2_ENABLE_IRQ
+   0203 80 03              1269 	sjmp	00107$
+   0205                    1270 00106$:
+                           1271 ;	../../../platform/sensinode/dev/button-sensor.c:141: BUTTON_2_DISABLE_IRQ();
+   0205 12s00r88           1272 	lcall	_BUTTON_2_DISABLE_IRQ
+   0208                    1273 00107$:
+                           1274 ;	../../../platform/sensinode/dev/button-sensor.c:143: return 1;
+   0208 90 00 01           1275 	mov	dptr,#0x0001
+                           1276 ;	../../../platform/sensinode/dev/button-sensor.c:144: }
+   020B 80 03              1277 	sjmp	00109$
+   020D                    1278 00108$:
+                           1279 ;	../../../platform/sensinode/dev/button-sensor.c:145: return 0;
+   020D 90 00 00           1280 	mov	dptr,#0x0000
+   0210                    1281 00109$:
+   0210 D0*00              1282 	pop	_bp
+   0212 22                 1283 	ret
+                           1284 ;------------------------------------------------------------
+                           1285 ;Allocation info for local variables in function 'port_0_ISR'
+                           1286 ;------------------------------------------------------------
+                           1287 ;------------------------------------------------------------
+                           1288 ;	../../../platform/sensinode/dev/button-sensor.c:149: port_0_ISR(void) __interrupt (P0INT_VECTOR)
+                           1289 ;	-----------------------------------------
+                           1290 ;	 function port_0_ISR
+                           1291 ;	-----------------------------------------
+   0213                    1292 _port_0_ISR:
+   0213 C0*00              1293 	push	bits
+   0215 C0 E0              1294 	push	acc
+   0217 C0 F0              1295 	push	b
+   0219 C0 82              1296 	push	dpl
+   021B C0 83              1297 	push	dph
+   021D C0 02              1298 	push	(0+2)
+   021F C0 03              1299 	push	(0+3)
+   0221 C0 04              1300 	push	(0+4)
+   0223 C0 05              1301 	push	(0+5)
+   0225 C0 06              1302 	push	(0+6)
+   0227 C0 07              1303 	push	(0+7)
+   0229 C0 00              1304 	push	(0+0)
+   022B C0 01              1305 	push	(0+1)
+   022D C0 D0              1306 	push	psw
+   022F 75 D0 00           1307 	mov	psw,#0x00
+                           1308 ;	../../../platform/sensinode/dev/button-sensor.c:151: EA = 0;
+   0232 C2 AF              1309 	clr	_EA
+                           1310 ;	../../../platform/sensinode/dev/button-sensor.c:152: ENERGEST_ON(ENERGEST_TYPE_IRQ);
+   0234 AA E2              1311 	mov	r2,_T1CNTL
+   0236 7B 00              1312 	mov	r3,#0x00
+   0238 AD E3              1313 	mov	r5,_T1CNTH
+   023A E4                 1314 	clr	a
+   023B 2A                 1315 	add	a,r2
+   023C FA                 1316 	mov	r2,a
+   023D ED                 1317 	mov	a,r5
+   023E 3B                 1318 	addc	a,r3
+   023F FB                 1319 	mov	r3,a
+   0240 90s00r04           1320 	mov	dptr,#(_energest_current_time + 0x0004)
+   0243 EA                 1321 	mov	a,r2
+   0244 F0                 1322 	movx	@dptr,a
+   0245 A3                 1323 	inc	dptr
+   0246 EB                 1324 	mov	a,r3
+   0247 F0                 1325 	movx	@dptr,a
+   0248 90s00r02           1326 	mov	dptr,#(_energest_current_mode + 0x0002)
+   024B 74 01              1327 	mov	a,#0x01
+   024D F0                 1328 	movx	@dptr,a
+                           1329 ;	../../../platform/sensinode/dev/button-sensor.c:165: if(BUTTON_2_CHECK_IRQ()) {
+   024E 12s00rB4           1330 	lcall	_BUTTON_2_CHECK_IRQ
+   0251 E5 82              1331 	mov	a,dpl
+   0253 85 83 F0           1332 	mov	b,dph
+   0256 45 F0              1333 	orl	a,b
+   0258 60 2F              1334 	jz	00107$
+                           1335 ;	../../../platform/sensinode/dev/button-sensor.c:166: if(timer_expired(&debouncetimer[1])) {
+   025A 90s00r06           1336 	mov	dptr,#(_debouncetimer + 0x0004)
+   025D 75 F0 00           1337 	mov	b,#0x00
+   0260 12s00r00           1338 	lcall	_timer_expired
+   0263 E5 82              1339 	mov	a,dpl
+   0265 85 83 F0           1340 	mov	b,dph
+   0268 45 F0              1341 	orl	a,b
+   026A 60 1D              1342 	jz	00107$
+                           1343 ;	../../../platform/sensinode/dev/button-sensor.c:167: timer_set(&debouncetimer[1], CLOCK_SECOND / 4);
+   026C 74 20              1344 	mov	a,#0x20
+   026E C0 E0              1345 	push	acc
+   0270 E4                 1346 	clr	a
+   0271 C0 E0              1347 	push	acc
+   0273 90s00r06           1348 	mov	dptr,#(_debouncetimer + 0x0004)
+   0276 75 F0 00           1349 	mov	b,#0x00
+   0279 12s00r00           1350 	lcall	_timer_set
+   027C 15 81              1351 	dec	sp
+   027E 15 81              1352 	dec	sp
+                           1353 ;	../../../platform/sensinode/dev/button-sensor.c:168: sensors_changed(&button_2_sensor);
+   0280 90s00r09           1354 	mov	dptr,#_button_2_sensor
+   0283 75 F0 80           1355 	mov	b,#0x80
+   0286 12s00r00           1356 	lcall	_sensors_changed
+   0289                    1357 00107$:
+                           1358 ;	../../../platform/sensinode/dev/button-sensor.c:171: P0IFG = 0;
+   0289 75 89 00           1359 	mov	_P0IFG,#0x00
+                           1360 ;	../../../platform/sensinode/dev/button-sensor.c:172: IRCON_P0IF = 0;
+   028C C2 C5              1361 	clr	_IRCON_P0IF
+                           1362 ;	../../../platform/sensinode/dev/button-sensor.c:173: ENERGEST_OFF(ENERGEST_TYPE_IRQ);
+   028E 90s00r02           1363 	mov	dptr,#(_energest_current_mode + 0x0002)
+   0291 E0                 1364 	movx	a,@dptr
+   0292 60 4B              1365 	jz	00112$
+   0294 90s00r08           1366 	mov	dptr,#(_energest_total_time + 0x0008)
+   0297 E0                 1367 	movx	a,@dptr
+   0298 FA                 1368 	mov	r2,a
+   0299 A3                 1369 	inc	dptr
+   029A E0                 1370 	movx	a,@dptr
+   029B FB                 1371 	mov	r3,a
+   029C A3                 1372 	inc	dptr
+   029D E0                 1373 	movx	a,@dptr
+   029E FC                 1374 	mov	r4,a
+   029F A3                 1375 	inc	dptr
+   02A0 E0                 1376 	movx	a,@dptr
+   02A1 FD                 1377 	mov	r5,a
+   02A2 AE E2              1378 	mov	r6,_T1CNTL
+   02A4 7F 00              1379 	mov	r7,#0x00
+   02A6 A9 E3              1380 	mov	r1,_T1CNTH
+   02A8 E4                 1381 	clr	a
+   02A9 2E                 1382 	add	a,r6
+   02AA FE                 1383 	mov	r6,a
+   02AB E9                 1384 	mov	a,r1
+   02AC 3F                 1385 	addc	a,r7
+   02AD FF                 1386 	mov	r7,a
+   02AE 90s00r04           1387 	mov	dptr,#(_energest_current_time + 0x0004)
+   02B1 E0                 1388 	movx	a,@dptr
+   02B2 F8                 1389 	mov	r0,a
+   02B3 A3                 1390 	inc	dptr
+   02B4 E0                 1391 	movx	a,@dptr
+   02B5 F9                 1392 	mov	r1,a
+   02B6 EE                 1393 	mov	a,r6
+   02B7 C3                 1394 	clr	c
+   02B8 98                 1395 	subb	a,r0
+   02B9 FE                 1396 	mov	r6,a
+   02BA EF                 1397 	mov	a,r7
+   02BB 99                 1398 	subb	a,r1
+   02BC FF                 1399 	mov	r7,a
+   02BD E4                 1400 	clr	a
+   02BE F8                 1401 	mov	r0,a
+   02BF F9                 1402 	mov	r1,a
+   02C0 EE                 1403 	mov	a,r6
+   02C1 2A                 1404 	add	a,r2
+   02C2 FA                 1405 	mov	r2,a
+   02C3 EF                 1406 	mov	a,r7
+   02C4 3B                 1407 	addc	a,r3
+   02C5 FB                 1408 	mov	r3,a
+   02C6 E8                 1409 	mov	a,r0
+   02C7 3C                 1410 	addc	a,r4
+   02C8 FC                 1411 	mov	r4,a
+   02C9 E9                 1412 	mov	a,r1
+   02CA 3D                 1413 	addc	a,r5
+   02CB FD                 1414 	mov	r5,a
+   02CC 90s00r08           1415 	mov	dptr,#(_energest_total_time + 0x0008)
+   02CF EA                 1416 	mov	a,r2
+   02D0 F0                 1417 	movx	@dptr,a
+   02D1 A3                 1418 	inc	dptr
+   02D2 EB                 1419 	mov	a,r3
+   02D3 F0                 1420 	movx	@dptr,a
+   02D4 A3                 1421 	inc	dptr
+   02D5 EC                 1422 	mov	a,r4
+   02D6 F0                 1423 	movx	@dptr,a
+   02D7 A3                 1424 	inc	dptr
+   02D8 ED                 1425 	mov	a,r5
+   02D9 F0                 1426 	movx	@dptr,a
+   02DA 90s00r02           1427 	mov	dptr,#(_energest_current_mode + 0x0002)
+   02DD E4                 1428 	clr	a
+   02DE F0                 1429 	movx	@dptr,a
+   02DF                    1430 00112$:
+                           1431 ;	../../../platform/sensinode/dev/button-sensor.c:174: EA = 1;
+   02DF D2 AF              1432 	setb	_EA
+   02E1 D0 D0              1433 	pop	psw
+   02E3 D0 01              1434 	pop	(0+1)
+   02E5 D0 00              1435 	pop	(0+0)
+   02E7 D0 07              1436 	pop	(0+7)
+   02E9 D0 06              1437 	pop	(0+6)
+   02EB D0 05              1438 	pop	(0+5)
+   02ED D0 04              1439 	pop	(0+4)
+   02EF D0 03              1440 	pop	(0+3)
+   02F1 D0 02              1441 	pop	(0+2)
+   02F3 D0 83              1442 	pop	dph
+   02F5 D0 82              1443 	pop	dpl
+   02F7 D0 F0              1444 	pop	b
+   02F9 D0 E0              1445 	pop	acc
+   02FB D0*00              1446 	pop	bits
+   02FD 32                 1447 	reti
+                           1448 ;------------------------------------------------------------
+                           1449 ;Allocation info for local variables in function 'port_1_ISR'
+                           1450 ;------------------------------------------------------------
+                           1451 ;------------------------------------------------------------
+                           1452 ;	../../../platform/sensinode/dev/button-sensor.c:180: port_1_ISR(void) __interrupt (P1INT_VECTOR)
+                           1453 ;	-----------------------------------------
+                           1454 ;	 function port_1_ISR
+                           1455 ;	-----------------------------------------
+   02FE                    1456 _port_1_ISR:
+   02FE C0*00              1457 	push	bits
+   0300 C0 E0              1458 	push	acc
+   0302 C0 F0              1459 	push	b
+   0304 C0 82              1460 	push	dpl
+   0306 C0 83              1461 	push	dph
+   0308 C0 02              1462 	push	(0+2)
+   030A C0 03              1463 	push	(0+3)
+   030C C0 04              1464 	push	(0+4)
+   030E C0 05              1465 	push	(0+5)
+   0310 C0 06              1466 	push	(0+6)
+   0312 C0 07              1467 	push	(0+7)
+   0314 C0 00              1468 	push	(0+0)
+   0316 C0 01              1469 	push	(0+1)
+   0318 C0 D0              1470 	push	psw
+   031A 75 D0 00           1471 	mov	psw,#0x00
+                           1472 ;	../../../platform/sensinode/dev/button-sensor.c:182: EA = 0;
+   031D C2 AF              1473 	clr	_EA
+                           1474 ;	../../../platform/sensinode/dev/button-sensor.c:183: ENERGEST_ON(ENERGEST_TYPE_IRQ);
+   031F AA E2              1475 	mov	r2,_T1CNTL
+   0321 7B 00              1476 	mov	r3,#0x00
+   0323 AD E3              1477 	mov	r5,_T1CNTH
+   0325 E4                 1478 	clr	a
+   0326 2A                 1479 	add	a,r2
+   0327 FA                 1480 	mov	r2,a
+   0328 ED                 1481 	mov	a,r5
+   0329 3B                 1482 	addc	a,r3
+   032A FB                 1483 	mov	r3,a
+   032B 90s00r04           1484 	mov	dptr,#(_energest_current_time + 0x0004)
+   032E EA                 1485 	mov	a,r2
+   032F F0                 1486 	movx	@dptr,a
+   0330 A3                 1487 	inc	dptr
+   0331 EB                 1488 	mov	a,r3
+   0332 F0                 1489 	movx	@dptr,a
+   0333 90s00r02           1490 	mov	dptr,#(_energest_current_mode + 0x0002)
+   0336 74 01              1491 	mov	a,#0x01
+   0338 F0                 1492 	movx	@dptr,a
+                           1493 ;	../../../platform/sensinode/dev/button-sensor.c:187: if(BUTTON_1_CHECK_IRQ()) {
+   0339 12s00r47           1494 	lcall	_BUTTON_1_CHECK_IRQ
+   033C E5 82              1495 	mov	a,dpl
+   033E 85 83 F0           1496 	mov	b,dph
+   0341 45 F0              1497 	orl	a,b
+   0343 60 2F              1498 	jz	00107$
+                           1499 ;	../../../platform/sensinode/dev/button-sensor.c:188: if(timer_expired(&debouncetimer[0])) {
+   0345 90s00r02           1500 	mov	dptr,#_debouncetimer
+   0348 75 F0 00           1501 	mov	b,#0x00
+   034B 12s00r00           1502 	lcall	_timer_expired
+   034E E5 82              1503 	mov	a,dpl
+   0350 85 83 F0           1504 	mov	b,dph
+   0353 45 F0              1505 	orl	a,b
+   0355 60 1D              1506 	jz	00107$
+                           1507 ;	../../../platform/sensinode/dev/button-sensor.c:189: timer_set(&debouncetimer[0], CLOCK_SECOND / 4);
+   0357 74 20              1508 	mov	a,#0x20
+   0359 C0 E0              1509 	push	acc
+   035B E4                 1510 	clr	a
+   035C C0 E0              1511 	push	acc
+   035E 90s00r02           1512 	mov	dptr,#_debouncetimer
+   0361 75 F0 00           1513 	mov	b,#0x00
+   0364 12s00r00           1514 	lcall	_timer_set
+   0367 15 81              1515 	dec	sp
+   0369 15 81              1516 	dec	sp
+                           1517 ;	../../../platform/sensinode/dev/button-sensor.c:190: sensors_changed(&button_1_sensor);
+   036B 90s00r00           1518 	mov	dptr,#_button_1_sensor
+   036E 75 F0 80           1519 	mov	b,#0x80
+   0371 12s00r00           1520 	lcall	_sensors_changed
+   0374                    1521 00107$:
+                           1522 ;	../../../platform/sensinode/dev/button-sensor.c:193: P1IFG = 0;
+   0374 75 8A 00           1523 	mov	_P1IFG,#0x00
+                           1524 ;	../../../platform/sensinode/dev/button-sensor.c:194: IRCON2_P1IF = 0;
+   0377 C2 EB              1525 	clr	_IRCON2_P1IF
+                           1526 ;	../../../platform/sensinode/dev/button-sensor.c:195: ENERGEST_OFF(ENERGEST_TYPE_IRQ);
+   0379 90s00r02           1527 	mov	dptr,#(_energest_current_mode + 0x0002)
+   037C E0                 1528 	movx	a,@dptr
+   037D 60 4B              1529 	jz	00112$
+   037F 90s00r08           1530 	mov	dptr,#(_energest_total_time + 0x0008)
+   0382 E0                 1531 	movx	a,@dptr
+   0383 FA                 1532 	mov	r2,a
+   0384 A3                 1533 	inc	dptr
+   0385 E0                 1534 	movx	a,@dptr
+   0386 FB                 1535 	mov	r3,a
+   0387 A3                 1536 	inc	dptr
+   0388 E0                 1537 	movx	a,@dptr
+   0389 FC                 1538 	mov	r4,a
+   038A A3                 1539 	inc	dptr
+   038B E0                 1540 	movx	a,@dptr
+   038C FD                 1541 	mov	r5,a
+   038D AE E2              1542 	mov	r6,_T1CNTL
+   038F 7F 00              1543 	mov	r7,#0x00
+   0391 A9 E3              1544 	mov	r1,_T1CNTH
+   0393 E4                 1545 	clr	a
+   0394 2E                 1546 	add	a,r6
+   0395 FE                 1547 	mov	r6,a
+   0396 E9                 1548 	mov	a,r1
+   0397 3F                 1549 	addc	a,r7
+   0398 FF                 1550 	mov	r7,a
+   0399 90s00r04           1551 	mov	dptr,#(_energest_current_time + 0x0004)
+   039C E0                 1552 	movx	a,@dptr
+   039D F8                 1553 	mov	r0,a
+   039E A3                 1554 	inc	dptr
+   039F E0                 1555 	movx	a,@dptr
+   03A0 F9                 1556 	mov	r1,a
+   03A1 EE                 1557 	mov	a,r6
+   03A2 C3                 1558 	clr	c
+   03A3 98                 1559 	subb	a,r0
+   03A4 FE                 1560 	mov	r6,a
+   03A5 EF                 1561 	mov	a,r7
+   03A6 99                 1562 	subb	a,r1
+   03A7 FF                 1563 	mov	r7,a
+   03A8 E4                 1564 	clr	a
+   03A9 F8                 1565 	mov	r0,a
+   03AA F9                 1566 	mov	r1,a
+   03AB EE                 1567 	mov	a,r6
+   03AC 2A                 1568 	add	a,r2
+   03AD FA                 1569 	mov	r2,a
+   03AE EF                 1570 	mov	a,r7
+   03AF 3B                 1571 	addc	a,r3
+   03B0 FB                 1572 	mov	r3,a
+   03B1 E8                 1573 	mov	a,r0
+   03B2 3C                 1574 	addc	a,r4
+   03B3 FC                 1575 	mov	r4,a
+   03B4 E9                 1576 	mov	a,r1
+   03B5 3D                 1577 	addc	a,r5
+   03B6 FD                 1578 	mov	r5,a
+   03B7 90s00r08           1579 	mov	dptr,#(_energest_total_time + 0x0008)
+   03BA EA                 1580 	mov	a,r2
+   03BB F0                 1581 	movx	@dptr,a
+   03BC A3                 1582 	inc	dptr
+   03BD EB                 1583 	mov	a,r3
+   03BE F0                 1584 	movx	@dptr,a
+   03BF A3                 1585 	inc	dptr
+   03C0 EC                 1586 	mov	a,r4
+   03C1 F0                 1587 	movx	@dptr,a
+   03C2 A3                 1588 	inc	dptr
+   03C3 ED                 1589 	mov	a,r5
+   03C4 F0                 1590 	movx	@dptr,a
+   03C5 90s00r02           1591 	mov	dptr,#(_energest_current_mode + 0x0002)
+   03C8 E4                 1592 	clr	a
+   03C9 F0                 1593 	movx	@dptr,a
+   03CA                    1594 00112$:
+                           1595 ;	../../../platform/sensinode/dev/button-sensor.c:196: EA = 1;
+   03CA D2 AF              1596 	setb	_EA
+   03CC D0 D0              1597 	pop	psw
+   03CE D0 01              1598 	pop	(0+1)
+   03D0 D0 00              1599 	pop	(0+0)
+   03D2 D0 07              1600 	pop	(0+7)
+   03D4 D0 06              1601 	pop	(0+6)
+   03D6 D0 05              1602 	pop	(0+5)
+   03D8 D0 04              1603 	pop	(0+4)
+   03DA D0 03              1604 	pop	(0+3)
+   03DC D0 02              1605 	pop	(0+2)
+   03DE D0 83              1606 	pop	dph
+   03E0 D0 82              1607 	pop	dpl
+   03E2 D0 F0              1608 	pop	b
+   03E4 D0 E0              1609 	pop	acc
+   03E6 D0*00              1610 	pop	bits
+   03E8 32                 1611 	reti
+                           1612 	.area CSEG    (CODE)
+                           1613 	.area CONST   (CODE)
+   0000                    1614 _button_1_sensor:
+   0000r12s00 80           1615 	.byte _str_0,(_str_0 >> 8),#0x80
+   0003rC6s00              1616 	.byte _value_b1,(_value_b1 >> 8)
+   0005r0As01              1617 	.byte _configure_b1,(_configure_b1 >> 8)
+   0007rF1s00              1618 	.byte _status_b1,(_status_b1 >> 8)
+   0009                    1619 _button_2_sensor:
+   0009r1Bs00 80           1620 	.byte _str_1,(_str_1 >> 8),#0x80
+   000Cr6Es01              1621 	.byte _value_b2,(_value_b2 >> 8)
+   000ErB2s01              1622 	.byte _configure_b2,(_configure_b2 >> 8)
+   0010r99s01              1623 	.byte _status_b2,(_status_b2 >> 8)
+   0012                    1624 _str_0:
+   0012 42 75 74 74 6F 6E  1625 	.ascii "Button 1"
+        20 31
+   001A 00                 1626 	.db 0x00
+   001B                    1627 _str_1:
+   001B 42 75 74 74 6F 6E  1628 	.ascii "Button 2"
+        20 32
+   0023 00                 1629 	.db 0x00
+                           1630 	.area XINIT   (CODE)
+                           1631 	.area CABS    (ABS,CODE)
