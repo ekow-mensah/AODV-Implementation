@@ -1,0 +1,1296 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:26:24 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module compower
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _IRCON2_P2IF
+                             13 	.globl _IRCON2_UTX0IF
+                             14 	.globl _IRCON2_UTX1IF
+                             15 	.globl _IRCON2_P1IF
+                             16 	.globl _IRCON2_WDTIF
+                             17 	.globl _CY
+                             18 	.globl _AC
+                             19 	.globl _F0
+                             20 	.globl _RS1
+                             21 	.globl _RS0
+                             22 	.globl _OV
+                             23 	.globl _F1
+                             24 	.globl _P
+                             25 	.globl _IRCON_DMAIF
+                             26 	.globl _IRCON_T1IF
+                             27 	.globl _IRCON_T2IF
+                             28 	.globl _IRCON_T3IF
+                             29 	.globl _IRCON_T4IF
+                             30 	.globl _IRCON_P0IF
+                             31 	.globl _IRCON_STIF
+                             32 	.globl _IEN1_DMAIE
+                             33 	.globl _IEN1_T1IE
+                             34 	.globl _IEN1_T2IE
+                             35 	.globl _IEN1_T3IE
+                             36 	.globl _IEN1_T4IE
+                             37 	.globl _IEN1_P0IE
+                             38 	.globl _IEN0_RFERRIE
+                             39 	.globl _IEN0_ADCIE
+                             40 	.globl _IEN0_URX0IE
+                             41 	.globl _IEN0_URX1IE
+                             42 	.globl _IEN0_ENCIE
+                             43 	.globl _IEN0_STIE
+                             44 	.globl _IEN0_EA
+                             45 	.globl _EA
+                             46 	.globl _P2_4
+                             47 	.globl _P2_3
+                             48 	.globl _P2_2
+                             49 	.globl _P2_1
+                             50 	.globl _P2_0
+                             51 	.globl _S0CON_ENCIF_0
+                             52 	.globl _S0CON_ENCIF_1
+                             53 	.globl _P1_7
+                             54 	.globl _P1_6
+                             55 	.globl _P1_5
+                             56 	.globl _P1_4
+                             57 	.globl _P1_3
+                             58 	.globl _P1_2
+                             59 	.globl _P1_1
+                             60 	.globl _P1_0
+                             61 	.globl _TCON_IT0
+                             62 	.globl _TCON_RFERRIF
+                             63 	.globl _TCON_IT1
+                             64 	.globl _TCON_URX0IF
+                             65 	.globl _TCON_ADCIF
+                             66 	.globl _TCON_URX1IF
+                             67 	.globl _P0_0
+                             68 	.globl _P0_1
+                             69 	.globl _P0_2
+                             70 	.globl _P0_3
+                             71 	.globl _P0_4
+                             72 	.globl _P0_5
+                             73 	.globl _P0_6
+                             74 	.globl _P0_7
+                             75 	.globl _P2DIR
+                             76 	.globl _P1DIR
+                             77 	.globl _P0DIR
+                             78 	.globl _U1GCR
+                             79 	.globl _U1UCR
+                             80 	.globl _U1BAUD
+                             81 	.globl _U1BUF
+                             82 	.globl _U1CSR
+                             83 	.globl _P2INP
+                             84 	.globl _P1INP
+                             85 	.globl _P2SEL
+                             86 	.globl _P1SEL
+                             87 	.globl _P0SEL
+                             88 	.globl _ADCCFG
+                             89 	.globl _PERCFG
+                             90 	.globl _B
+                             91 	.globl _T4CC1
+                             92 	.globl _T4CCTL1
+                             93 	.globl _T4CC0
+                             94 	.globl _T4CCTL0
+                             95 	.globl _T4CTL
+                             96 	.globl _T4CNT
+                             97 	.globl _RFIF
+                             98 	.globl _IRCON2
+                             99 	.globl _T1CCTL2
+                            100 	.globl _T1CCTL1
+                            101 	.globl _T1CCTL0
+                            102 	.globl _T1CTL
+                            103 	.globl _T1CNTH
+                            104 	.globl _T1CNTL
+                            105 	.globl _RFST
+                            106 	.globl _ACC
+                            107 	.globl _T1CC2H
+                            108 	.globl _T1CC2L
+                            109 	.globl _T1CC1H
+                            110 	.globl _T1CC1L
+                            111 	.globl _T1CC0H
+                            112 	.globl _T1CC0L
+                            113 	.globl _RFD
+                            114 	.globl _TIMIF
+                            115 	.globl _DMAREQ
+                            116 	.globl _DMAARM
+                            117 	.globl _DMA0CFGH
+                            118 	.globl _DMA0CFGL
+                            119 	.globl _DMA1CFGH
+                            120 	.globl _DMA1CFGL
+                            121 	.globl _DMAIRQ
+                            122 	.globl _PSW
+                            123 	.globl _T3CC1
+                            124 	.globl _T3CCTL1
+                            125 	.globl _T3CC0
+                            126 	.globl _T3CCTL0
+                            127 	.globl _T3CTL
+                            128 	.globl _T3CNT
+                            129 	.globl _WDCTL
+                            130 	.globl _T2CON
+                            131 	.globl _MEMCTR
+                            132 	.globl _CLKCON
+                            133 	.globl _U0GCR
+                            134 	.globl _U0UCR
+                            135 	.globl _T2CNF
+                            136 	.globl _U0BAUD
+                            137 	.globl _U0BUF
+                            138 	.globl _IRCON
+                            139 	.globl _SLEEP
+                            140 	.globl _RNDH
+                            141 	.globl _RNDL
+                            142 	.globl _ADCH
+                            143 	.globl _ADCL
+                            144 	.globl _IP1
+                            145 	.globl _IEN1
+                            146 	.globl _RCCTL
+                            147 	.globl _ADCCON3
+                            148 	.globl _ADCCON2
+                            149 	.globl _ADCCON1
+                            150 	.globl _ENCCS
+                            151 	.globl _ENCDO
+                            152 	.globl _ENCDI
+                            153 	.globl _FWDATA
+                            154 	.globl _FCTL
+                            155 	.globl _FADDRH
+                            156 	.globl _FADDRL
+                            157 	.globl _FWT
+                            158 	.globl _IP0
+                            159 	.globl _IEN0
+                            160 	.globl _IE
+                            161 	.globl _T2THD
+                            162 	.globl _T2TLD
+                            163 	.globl _T2CAPHPH
+                            164 	.globl _T2CAPLPL
+                            165 	.globl _T2OF2
+                            166 	.globl _T2OF1
+                            167 	.globl _T2OF0
+                            168 	.globl _P2
+                            169 	.globl _PSBANK
+                            170 	.globl _FMAP
+                            171 	.globl _T2PEROF2
+                            172 	.globl _T2PEROF1
+                            173 	.globl _T2PEROF0
+                            174 	.globl _S1CON
+                            175 	.globl _IEN2
+                            176 	.globl _HSRC
+                            177 	.globl _S0CON
+                            178 	.globl _ST2
+                            179 	.globl _ST1
+                            180 	.globl _ST0
+                            181 	.globl _T2CMP
+                            182 	.globl __XPAGE
+                            183 	.globl _DPS
+                            184 	.globl _RFIM
+                            185 	.globl _P1
+                            186 	.globl _P0INP
+                            187 	.globl _P1IEN
+                            188 	.globl _PICTL
+                            189 	.globl _P2IFG
+                            190 	.globl _P1IFG
+                            191 	.globl _P0IFG
+                            192 	.globl _TCON
+                            193 	.globl _PCON
+                            194 	.globl _U0CSR
+                            195 	.globl _DPH1
+                            196 	.globl _DPL1
+                            197 	.globl _DPH0
+                            198 	.globl _DPL0
+                            199 	.globl _SP
+                            200 	.globl _P0
+                            201 	.globl _compower_idle_activity
+                            202 	.globl _ADC_SHADOW
+                            203 	.globl _U1BUF_SHADOW
+                            204 	.globl _RFD_SHADOW
+                            205 	.globl _U0BUF_SHADOW
+                            206 	.globl _RFSTATUS
+                            207 	.globl _CHIPID
+                            208 	.globl _CHVER
+                            209 	.globl _FSMTC1
+                            210 	.globl _RXFIFOCNT
+                            211 	.globl _IOCFG3
+                            212 	.globl _IOCFG2
+                            213 	.globl _IOCFG1
+                            214 	.globl _IOCFG0
+                            215 	.globl _SHORTADDRL
+                            216 	.globl _SHORTADDRH
+                            217 	.globl _PANIDL
+                            218 	.globl _PANIDH
+                            219 	.globl _IEEE_ADDR7
+                            220 	.globl _IEEE_ADDR6
+                            221 	.globl _IEEE_ADDR5
+                            222 	.globl _IEEE_ADDR4
+                            223 	.globl _IEEE_ADDR3
+                            224 	.globl _IEEE_ADDR2
+                            225 	.globl _IEEE_ADDR1
+                            226 	.globl _IEEE_ADDR0
+                            227 	.globl _DACTSTL
+                            228 	.globl _DACTSTH
+                            229 	.globl _ADCTSTL
+                            230 	.globl _ADCTSTH
+                            231 	.globl _FSMSTATE
+                            232 	.globl _AGCCTRLL
+                            233 	.globl _AGCCTRLH
+                            234 	.globl _MANORL
+                            235 	.globl _MANORH
+                            236 	.globl _MANANDL
+                            237 	.globl _MANANDH
+                            238 	.globl _FSMTCL
+                            239 	.globl _FSMTCH
+                            240 	.globl _RFPWR
+                            241 	.globl _CSPT
+                            242 	.globl _CSPCTRL
+                            243 	.globl _CSPZ
+                            244 	.globl _CSPY
+                            245 	.globl _CSPX
+                            246 	.globl _FSCTRLL
+                            247 	.globl _FSCTRLH
+                            248 	.globl _RXCTRL1L
+                            249 	.globl _RXCTRL1H
+                            250 	.globl _RXCTRL0L
+                            251 	.globl _RXCTRL0H
+                            252 	.globl _TXCTRLL
+                            253 	.globl _TXCTRLH
+                            254 	.globl _SYNCWORDL
+                            255 	.globl _SYNCWORDH
+                            256 	.globl _RSSIL
+                            257 	.globl _RSSIH
+                            258 	.globl _MDMCTRL1L
+                            259 	.globl _MDMCTRL1H
+                            260 	.globl _MDMCTRL0L
+                            261 	.globl _MDMCTRL0H
+                            262 	.globl _compower_init
+                            263 	.globl _compower_accumulate
+                            264 	.globl _compower_clear
+                            265 	.globl _compower_attrconv
+                            266 	.globl _compower_accumulate_attrs
+                            267 ;--------------------------------------------------------
+                            268 ; special function registers
+                            269 ;--------------------------------------------------------
+                            270 	.area RSEG    (ABS,DATA)
+   0000                     271 	.org 0x0000
+                    0080    272 _P0	=	0x0080
+                    0081    273 _SP	=	0x0081
+                    0082    274 _DPL0	=	0x0082
+                    0083    275 _DPH0	=	0x0083
+                    0084    276 _DPL1	=	0x0084
+                    0085    277 _DPH1	=	0x0085
+                    0086    278 _U0CSR	=	0x0086
+                    0087    279 _PCON	=	0x0087
+                    0088    280 _TCON	=	0x0088
+                    0089    281 _P0IFG	=	0x0089
+                    008A    282 _P1IFG	=	0x008a
+                    008B    283 _P2IFG	=	0x008b
+                    008C    284 _PICTL	=	0x008c
+                    008D    285 _P1IEN	=	0x008d
+                    008F    286 _P0INP	=	0x008f
+                    0090    287 _P1	=	0x0090
+                    0091    288 _RFIM	=	0x0091
+                    0092    289 _DPS	=	0x0092
+                    0093    290 __XPAGE	=	0x0093
+                    0094    291 _T2CMP	=	0x0094
+                    0095    292 _ST0	=	0x0095
+                    0096    293 _ST1	=	0x0096
+                    0097    294 _ST2	=	0x0097
+                    0098    295 _S0CON	=	0x0098
+                    0099    296 _HSRC	=	0x0099
+                    009A    297 _IEN2	=	0x009a
+                    009B    298 _S1CON	=	0x009b
+                    009C    299 _T2PEROF0	=	0x009c
+                    009D    300 _T2PEROF1	=	0x009d
+                    009E    301 _T2PEROF2	=	0x009e
+                    009F    302 _FMAP	=	0x009f
+                    009F    303 _PSBANK	=	0x009f
+                    00A0    304 _P2	=	0x00a0
+                    00A1    305 _T2OF0	=	0x00a1
+                    00A2    306 _T2OF1	=	0x00a2
+                    00A3    307 _T2OF2	=	0x00a3
+                    00A4    308 _T2CAPLPL	=	0x00a4
+                    00A5    309 _T2CAPHPH	=	0x00a5
+                    00A6    310 _T2TLD	=	0x00a6
+                    00A7    311 _T2THD	=	0x00a7
+                    00A8    312 _IE	=	0x00a8
+                    00A8    313 _IEN0	=	0x00a8
+                    00A9    314 _IP0	=	0x00a9
+                    00AB    315 _FWT	=	0x00ab
+                    00AC    316 _FADDRL	=	0x00ac
+                    00AD    317 _FADDRH	=	0x00ad
+                    00AE    318 _FCTL	=	0x00ae
+                    00AF    319 _FWDATA	=	0x00af
+                    00B1    320 _ENCDI	=	0x00b1
+                    00B2    321 _ENCDO	=	0x00b2
+                    00B3    322 _ENCCS	=	0x00b3
+                    00B4    323 _ADCCON1	=	0x00b4
+                    00B5    324 _ADCCON2	=	0x00b5
+                    00B6    325 _ADCCON3	=	0x00b6
+                    00B7    326 _RCCTL	=	0x00b7
+                    00B8    327 _IEN1	=	0x00b8
+                    00B9    328 _IP1	=	0x00b9
+                    00BA    329 _ADCL	=	0x00ba
+                    00BB    330 _ADCH	=	0x00bb
+                    00BC    331 _RNDL	=	0x00bc
+                    00BD    332 _RNDH	=	0x00bd
+                    00BE    333 _SLEEP	=	0x00be
+                    00C0    334 _IRCON	=	0x00c0
+                    00C1    335 _U0BUF	=	0x00c1
+                    00C2    336 _U0BAUD	=	0x00c2
+                    00C3    337 _T2CNF	=	0x00c3
+                    00C4    338 _U0UCR	=	0x00c4
+                    00C5    339 _U0GCR	=	0x00c5
+                    00C6    340 _CLKCON	=	0x00c6
+                    00C7    341 _MEMCTR	=	0x00c7
+                    00C8    342 _T2CON	=	0x00c8
+                    00C9    343 _WDCTL	=	0x00c9
+                    00CA    344 _T3CNT	=	0x00ca
+                    00CB    345 _T3CTL	=	0x00cb
+                    00CC    346 _T3CCTL0	=	0x00cc
+                    00CD    347 _T3CC0	=	0x00cd
+                    00CE    348 _T3CCTL1	=	0x00ce
+                    00CF    349 _T3CC1	=	0x00cf
+                    00D0    350 _PSW	=	0x00d0
+                    00D1    351 _DMAIRQ	=	0x00d1
+                    00D2    352 _DMA1CFGL	=	0x00d2
+                    00D3    353 _DMA1CFGH	=	0x00d3
+                    00D4    354 _DMA0CFGL	=	0x00d4
+                    00D5    355 _DMA0CFGH	=	0x00d5
+                    00D6    356 _DMAARM	=	0x00d6
+                    00D7    357 _DMAREQ	=	0x00d7
+                    00D8    358 _TIMIF	=	0x00d8
+                    00D9    359 _RFD	=	0x00d9
+                    00DA    360 _T1CC0L	=	0x00da
+                    00DB    361 _T1CC0H	=	0x00db
+                    00DC    362 _T1CC1L	=	0x00dc
+                    00DD    363 _T1CC1H	=	0x00dd
+                    00DE    364 _T1CC2L	=	0x00de
+                    00DF    365 _T1CC2H	=	0x00df
+                    00E0    366 _ACC	=	0x00e0
+                    00E1    367 _RFST	=	0x00e1
+                    00E2    368 _T1CNTL	=	0x00e2
+                    00E3    369 _T1CNTH	=	0x00e3
+                    00E4    370 _T1CTL	=	0x00e4
+                    00E5    371 _T1CCTL0	=	0x00e5
+                    00E6    372 _T1CCTL1	=	0x00e6
+                    00E7    373 _T1CCTL2	=	0x00e7
+                    00E8    374 _IRCON2	=	0x00e8
+                    00E9    375 _RFIF	=	0x00e9
+                    00EA    376 _T4CNT	=	0x00ea
+                    00EB    377 _T4CTL	=	0x00eb
+                    00EC    378 _T4CCTL0	=	0x00ec
+                    00ED    379 _T4CC0	=	0x00ed
+                    00EE    380 _T4CCTL1	=	0x00ee
+                    00EF    381 _T4CC1	=	0x00ef
+                    00F0    382 _B	=	0x00f0
+                    00F1    383 _PERCFG	=	0x00f1
+                    00F2    384 _ADCCFG	=	0x00f2
+                    00F3    385 _P0SEL	=	0x00f3
+                    00F4    386 _P1SEL	=	0x00f4
+                    00F5    387 _P2SEL	=	0x00f5
+                    00F6    388 _P1INP	=	0x00f6
+                    00F7    389 _P2INP	=	0x00f7
+                    00F8    390 _U1CSR	=	0x00f8
+                    00F9    391 _U1BUF	=	0x00f9
+                    00FA    392 _U1BAUD	=	0x00fa
+                    00FB    393 _U1UCR	=	0x00fb
+                    00FC    394 _U1GCR	=	0x00fc
+                    00FD    395 _P0DIR	=	0x00fd
+                    00FE    396 _P1DIR	=	0x00fe
+                    00FF    397 _P2DIR	=	0x00ff
+                            398 ;--------------------------------------------------------
+                            399 ; special function bits
+                            400 ;--------------------------------------------------------
+                            401 	.area RSEG    (ABS,DATA)
+   0000                     402 	.org 0x0000
+                    0087    403 _P0_7	=	0x0087
+                    0086    404 _P0_6	=	0x0086
+                    0085    405 _P0_5	=	0x0085
+                    0084    406 _P0_4	=	0x0084
+                    0083    407 _P0_3	=	0x0083
+                    0082    408 _P0_2	=	0x0082
+                    0081    409 _P0_1	=	0x0081
+                    0080    410 _P0_0	=	0x0080
+                    008F    411 _TCON_URX1IF	=	0x008f
+                    008D    412 _TCON_ADCIF	=	0x008d
+                    008B    413 _TCON_URX0IF	=	0x008b
+                    008A    414 _TCON_IT1	=	0x008a
+                    0089    415 _TCON_RFERRIF	=	0x0089
+                    0088    416 _TCON_IT0	=	0x0088
+                    0090    417 _P1_0	=	0x0090
+                    0091    418 _P1_1	=	0x0091
+                    0092    419 _P1_2	=	0x0092
+                    0093    420 _P1_3	=	0x0093
+                    0094    421 _P1_4	=	0x0094
+                    0095    422 _P1_5	=	0x0095
+                    0096    423 _P1_6	=	0x0096
+                    0097    424 _P1_7	=	0x0097
+                    0099    425 _S0CON_ENCIF_1	=	0x0099
+                    0098    426 _S0CON_ENCIF_0	=	0x0098
+                    00A0    427 _P2_0	=	0x00a0
+                    00A1    428 _P2_1	=	0x00a1
+                    00A2    429 _P2_2	=	0x00a2
+                    00A3    430 _P2_3	=	0x00a3
+                    00A4    431 _P2_4	=	0x00a4
+                    00AF    432 _EA	=	0x00af
+                    00AF    433 _IEN0_EA	=	0x00af
+                    00AD    434 _IEN0_STIE	=	0x00ad
+                    00AC    435 _IEN0_ENCIE	=	0x00ac
+                    00AB    436 _IEN0_URX1IE	=	0x00ab
+                    00AA    437 _IEN0_URX0IE	=	0x00aa
+                    00A9    438 _IEN0_ADCIE	=	0x00a9
+                    00A8    439 _IEN0_RFERRIE	=	0x00a8
+                    00BD    440 _IEN1_P0IE	=	0x00bd
+                    00BC    441 _IEN1_T4IE	=	0x00bc
+                    00BB    442 _IEN1_T3IE	=	0x00bb
+                    00BA    443 _IEN1_T2IE	=	0x00ba
+                    00B9    444 _IEN1_T1IE	=	0x00b9
+                    00B8    445 _IEN1_DMAIE	=	0x00b8
+                    00C7    446 _IRCON_STIF	=	0x00c7
+                    00C5    447 _IRCON_P0IF	=	0x00c5
+                    00C4    448 _IRCON_T4IF	=	0x00c4
+                    00C3    449 _IRCON_T3IF	=	0x00c3
+                    00C2    450 _IRCON_T2IF	=	0x00c2
+                    00C1    451 _IRCON_T1IF	=	0x00c1
+                    00C0    452 _IRCON_DMAIF	=	0x00c0
+                    00D0    453 _P	=	0x00d0
+                    00D1    454 _F1	=	0x00d1
+                    00D2    455 _OV	=	0x00d2
+                    00D3    456 _RS0	=	0x00d3
+                    00D4    457 _RS1	=	0x00d4
+                    00D5    458 _F0	=	0x00d5
+                    00D6    459 _AC	=	0x00d6
+                    00D7    460 _CY	=	0x00d7
+                    00EC    461 _IRCON2_WDTIF	=	0x00ec
+                    00EB    462 _IRCON2_P1IF	=	0x00eb
+                    00EA    463 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    464 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    465 _IRCON2_P2IF	=	0x00e8
+                            466 ;--------------------------------------------------------
+                            467 ; overlayable register banks
+                            468 ;--------------------------------------------------------
+                            469 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     470 	.ds 8
+                            471 ;--------------------------------------------------------
+                            472 ; internal ram data
+                            473 ;--------------------------------------------------------
+                            474 	.area DSEG    (DATA)
+                            475 ;--------------------------------------------------------
+                            476 ; overlayable items in internal ram 
+                            477 ;--------------------------------------------------------
+                            478 	.area OSEG    (OVR,DATA)
+                            479 ;--------------------------------------------------------
+                            480 ; indirectly addressable internal ram data
+                            481 ;--------------------------------------------------------
+                            482 	.area ISEG    (DATA)
+                            483 ;--------------------------------------------------------
+                            484 ; absolute internal ram data
+                            485 ;--------------------------------------------------------
+                            486 	.area IABS    (ABS,DATA)
+                            487 	.area IABS    (ABS,DATA)
+                            488 ;--------------------------------------------------------
+                            489 ; bit data
+                            490 ;--------------------------------------------------------
+                            491 	.area BSEG    (BIT)
+                            492 ;--------------------------------------------------------
+                            493 ; paged external ram data
+                            494 ;--------------------------------------------------------
+                            495 	.area PSEG    (PAG,XDATA)
+                            496 ;--------------------------------------------------------
+                            497 ; external ram data
+                            498 ;--------------------------------------------------------
+                            499 	.area XSEG    (XDATA)
+                    DF02    500 _MDMCTRL0H	=	0xdf02
+                    DF03    501 _MDMCTRL0L	=	0xdf03
+                    DF04    502 _MDMCTRL1H	=	0xdf04
+                    DF05    503 _MDMCTRL1L	=	0xdf05
+                    DF06    504 _RSSIH	=	0xdf06
+                    DF07    505 _RSSIL	=	0xdf07
+                    DF08    506 _SYNCWORDH	=	0xdf08
+                    DF09    507 _SYNCWORDL	=	0xdf09
+                    DF0A    508 _TXCTRLH	=	0xdf0a
+                    DF0B    509 _TXCTRLL	=	0xdf0b
+                    DF0C    510 _RXCTRL0H	=	0xdf0c
+                    DF0D    511 _RXCTRL0L	=	0xdf0d
+                    DF0E    512 _RXCTRL1H	=	0xdf0e
+                    DF0F    513 _RXCTRL1L	=	0xdf0f
+                    DF10    514 _FSCTRLH	=	0xdf10
+                    DF11    515 _FSCTRLL	=	0xdf11
+                    DF12    516 _CSPX	=	0xdf12
+                    DF13    517 _CSPY	=	0xdf13
+                    DF14    518 _CSPZ	=	0xdf14
+                    DF15    519 _CSPCTRL	=	0xdf15
+                    DF16    520 _CSPT	=	0xdf16
+                    DF17    521 _RFPWR	=	0xdf17
+                    DF20    522 _FSMTCH	=	0xdf20
+                    DF21    523 _FSMTCL	=	0xdf21
+                    DF22    524 _MANANDH	=	0xdf22
+                    DF23    525 _MANANDL	=	0xdf23
+                    DF24    526 _MANORH	=	0xdf24
+                    DF25    527 _MANORL	=	0xdf25
+                    DF26    528 _AGCCTRLH	=	0xdf26
+                    DF27    529 _AGCCTRLL	=	0xdf27
+                    DF39    530 _FSMSTATE	=	0xdf39
+                    DF3A    531 _ADCTSTH	=	0xdf3a
+                    DF3B    532 _ADCTSTL	=	0xdf3b
+                    DF3C    533 _DACTSTH	=	0xdf3c
+                    DF3D    534 _DACTSTL	=	0xdf3d
+                    DF43    535 _IEEE_ADDR0	=	0xdf43
+                    DF44    536 _IEEE_ADDR1	=	0xdf44
+                    DF45    537 _IEEE_ADDR2	=	0xdf45
+                    DF46    538 _IEEE_ADDR3	=	0xdf46
+                    DF47    539 _IEEE_ADDR4	=	0xdf47
+                    DF48    540 _IEEE_ADDR5	=	0xdf48
+                    DF49    541 _IEEE_ADDR6	=	0xdf49
+                    DF4A    542 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    543 _PANIDH	=	0xdf4b
+                    DF4C    544 _PANIDL	=	0xdf4c
+                    DF4D    545 _SHORTADDRH	=	0xdf4d
+                    DF4E    546 _SHORTADDRL	=	0xdf4e
+                    DF4F    547 _IOCFG0	=	0xdf4f
+                    DF50    548 _IOCFG1	=	0xdf50
+                    DF51    549 _IOCFG2	=	0xdf51
+                    DF52    550 _IOCFG3	=	0xdf52
+                    DF53    551 _RXFIFOCNT	=	0xdf53
+                    DF54    552 _FSMTC1	=	0xdf54
+                    DF60    553 _CHVER	=	0xdf60
+                    DF61    554 _CHIPID	=	0xdf61
+                    DF62    555 _RFSTATUS	=	0xdf62
+                    DFC1    556 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    557 _RFD_SHADOW	=	0xdfd9
+                    DFF9    558 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    559 _ADC_SHADOW	=	0xdfba
+   0000                     560 _compower_idle_activity::
+   0000                     561 	.ds 8
+   0008                     562 _compower_accumulate_last_listen_1_1:
+   0008                     563 	.ds 4
+   000C                     564 _compower_accumulate_last_transmit_1_1:
+   000C                     565 	.ds 4
+                            566 ;--------------------------------------------------------
+                            567 ; absolute external ram data
+                            568 ;--------------------------------------------------------
+                            569 	.area XABS    (ABS,XDATA)
+                            570 ;--------------------------------------------------------
+                            571 ; external initialized ram data
+                            572 ;--------------------------------------------------------
+                            573 	.area XISEG   (XDATA)
+                            574 	.area HOME    (CODE)
+                            575 	.area GSINIT0 (CODE)
+                            576 	.area GSINIT1 (CODE)
+                            577 	.area GSINIT2 (CODE)
+                            578 	.area GSINIT3 (CODE)
+                            579 	.area GSINIT4 (CODE)
+                            580 	.area GSINIT5 (CODE)
+                            581 	.area GSINIT  (CODE)
+                            582 	.area GSFINAL (CODE)
+                            583 	.area CSEG    (CODE)
+                            584 ;--------------------------------------------------------
+                            585 ; global & static initialisations
+                            586 ;--------------------------------------------------------
+                            587 	.area HOME    (CODE)
+                            588 	.area GSINIT  (CODE)
+                            589 	.area GSFINAL (CODE)
+                            590 	.area GSINIT  (CODE)
+                            591 ;--------------------------------------------------------
+                            592 ; Home
+                            593 ;--------------------------------------------------------
+                            594 	.area HOME    (CODE)
+                            595 	.area HOME    (CODE)
+                            596 ;--------------------------------------------------------
+                            597 ; code
+                            598 ;--------------------------------------------------------
+                            599 	.area CSEG    (CODE)
+                            600 ;------------------------------------------------------------
+                            601 ;Allocation info for local variables in function 'compower_init'
+                            602 ;------------------------------------------------------------
+                            603 ;------------------------------------------------------------
+                            604 ;	../../../core/sys/compower.c:55: compower_init(void)
+                            605 ;	-----------------------------------------
+                            606 ;	 function compower_init
+                            607 ;	-----------------------------------------
+   0000                     608 _compower_init:
+                    0002    609 	ar2 = 0x02
+                    0003    610 	ar3 = 0x03
+                    0004    611 	ar4 = 0x04
+                    0005    612 	ar5 = 0x05
+                    0006    613 	ar6 = 0x06
+                    0007    614 	ar7 = 0x07
+                    0000    615 	ar0 = 0x00
+                    0001    616 	ar1 = 0x01
+                            617 ;	../../../core/sys/compower.c:57: compower_clear(&compower_idle_activity);
+   0000 90s00r00            618 	mov	dptr,#_compower_idle_activity
+   0003 75 F0 00            619 	mov	b,#0x00
+   0006 02s01r95            620 	ljmp	_compower_clear
+                            621 ;------------------------------------------------------------
+                            622 ;Allocation info for local variables in function 'compower_accumulate'
+                            623 ;------------------------------------------------------------
+                            624 ;e                         Allocated to stack - offset 1
+                            625 ;listen                    Allocated to stack - offset 4
+                            626 ;transmit                  Allocated to stack - offset 8
+                            627 ;sloc0                     Allocated to stack - offset 12
+                            628 ;sloc1                     Allocated to stack - offset 16
+                            629 ;last_listen               Allocated with name '_compower_accumulate_last_listen_1_1'
+                            630 ;last_transmit             Allocated with name '_compower_accumulate_last_transmit_1_1'
+                            631 ;------------------------------------------------------------
+                            632 ;	../../../core/sys/compower.c:61: compower_accumulate(struct compower_activity *e)
+                            633 ;	-----------------------------------------
+                            634 ;	 function compower_accumulate
+                            635 ;	-----------------------------------------
+   0009                     636 _compower_accumulate:
+   0009 C0*00               637 	push	_bp
+   000B 85 81*00            638 	mov	_bp,sp
+   000E C0 82               639 	push	dpl
+   0010 C0 83               640 	push	dph
+   0012 C0 F0               641 	push	b
+   0014 E5 81               642 	mov	a,sp
+   0016 24 13               643 	add	a,#0x13
+   0018 F5 81               644 	mov	sp,a
+                            645 ;	../../../core/sys/compower.c:66: listen = energest_type_time(ENERGEST_TYPE_LISTEN);
+   001A 90 00 07            646 	mov	dptr,#0x0007
+   001D 12s00r00            647 	lcall	_energest_type_time
+   0020 AA 82               648 	mov	r2,dpl
+   0022 AB 83               649 	mov	r3,dph
+   0024 AC F0               650 	mov	r4,b
+   0026 FD                  651 	mov	r5,a
+   0027 E5*00               652 	mov	a,_bp
+   0029 24 04               653 	add	a,#0x04
+   002B F8                  654 	mov	r0,a
+   002C A6 02               655 	mov	@r0,ar2
+   002E 08                  656 	inc	r0
+   002F A6 03               657 	mov	@r0,ar3
+   0031 08                  658 	inc	r0
+   0032 A6 04               659 	mov	@r0,ar4
+   0034 08                  660 	inc	r0
+   0035 A6 05               661 	mov	@r0,ar5
+                            662 ;	../../../core/sys/compower.c:67: e->listen += listen - last_listen;
+   0037 A8*00               663 	mov	r0,_bp
+   0039 08                  664 	inc	r0
+   003A 86 82               665 	mov	dpl,@r0
+   003C 08                  666 	inc	r0
+   003D 86 83               667 	mov	dph,@r0
+   003F 08                  668 	inc	r0
+   0040 86 F0               669 	mov	b,@r0
+   0042 E5*00               670 	mov	a,_bp
+   0044 24 0C               671 	add	a,#0x0c
+   0046 F9                  672 	mov	r1,a
+   0047 12s00r00            673 	lcall	__gptrget
+   004A F7                  674 	mov	@r1,a
+   004B A3                  675 	inc	dptr
+   004C 12s00r00            676 	lcall	__gptrget
+   004F 09                  677 	inc	r1
+   0050 F7                  678 	mov	@r1,a
+   0051 A3                  679 	inc	dptr
+   0052 12s00r00            680 	lcall	__gptrget
+   0055 09                  681 	inc	r1
+   0056 F7                  682 	mov	@r1,a
+   0057 A3                  683 	inc	dptr
+   0058 12s00r00            684 	lcall	__gptrget
+   005B 09                  685 	inc	r1
+   005C F7                  686 	mov	@r1,a
+   005D 90s00r08            687 	mov	dptr,#_compower_accumulate_last_listen_1_1
+   0060 E0                  688 	movx	a,@dptr
+   0061 FB                  689 	mov	r3,a
+   0062 A3                  690 	inc	dptr
+   0063 E0                  691 	movx	a,@dptr
+   0064 FC                  692 	mov	r4,a
+   0065 A3                  693 	inc	dptr
+   0066 E0                  694 	movx	a,@dptr
+   0067 FA                  695 	mov	r2,a
+   0068 A3                  696 	inc	dptr
+   0069 E0                  697 	movx	a,@dptr
+   006A FD                  698 	mov	r5,a
+   006B E5*00               699 	mov	a,_bp
+   006D 24 04               700 	add	a,#0x04
+   006F F8                  701 	mov	r0,a
+   0070 E6                  702 	mov	a,@r0
+   0071 C3                  703 	clr	c
+   0072 9B                  704 	subb	a,r3
+   0073 FB                  705 	mov	r3,a
+   0074 08                  706 	inc	r0
+   0075 E6                  707 	mov	a,@r0
+   0076 9C                  708 	subb	a,r4
+   0077 FC                  709 	mov	r4,a
+   0078 08                  710 	inc	r0
+   0079 E6                  711 	mov	a,@r0
+   007A 9A                  712 	subb	a,r2
+   007B FA                  713 	mov	r2,a
+   007C 08                  714 	inc	r0
+   007D E6                  715 	mov	a,@r0
+   007E 9D                  716 	subb	a,r5
+   007F FD                  717 	mov	r5,a
+   0080 E5*00               718 	mov	a,_bp
+   0082 24 0C               719 	add	a,#0x0c
+   0084 F8                  720 	mov	r0,a
+   0085 EB                  721 	mov	a,r3
+   0086 26                  722 	add	a,@r0
+   0087 FB                  723 	mov	r3,a
+   0088 EC                  724 	mov	a,r4
+   0089 08                  725 	inc	r0
+   008A 36                  726 	addc	a,@r0
+   008B FC                  727 	mov	r4,a
+   008C EA                  728 	mov	a,r2
+   008D 08                  729 	inc	r0
+   008E 36                  730 	addc	a,@r0
+   008F FA                  731 	mov	r2,a
+   0090 ED                  732 	mov	a,r5
+   0091 08                  733 	inc	r0
+   0092 36                  734 	addc	a,@r0
+   0093 FD                  735 	mov	r5,a
+   0094 A8*00               736 	mov	r0,_bp
+   0096 08                  737 	inc	r0
+   0097 86 82               738 	mov	dpl,@r0
+   0099 08                  739 	inc	r0
+   009A 86 83               740 	mov	dph,@r0
+   009C 08                  741 	inc	r0
+   009D 86 F0               742 	mov	b,@r0
+   009F EB                  743 	mov	a,r3
+   00A0 12s00r00            744 	lcall	__gptrput
+   00A3 A3                  745 	inc	dptr
+   00A4 EC                  746 	mov	a,r4
+   00A5 12s00r00            747 	lcall	__gptrput
+   00A8 A3                  748 	inc	dptr
+   00A9 EA                  749 	mov	a,r2
+   00AA 12s00r00            750 	lcall	__gptrput
+   00AD A3                  751 	inc	dptr
+   00AE ED                  752 	mov	a,r5
+   00AF 12s00r00            753 	lcall	__gptrput
+                            754 ;	../../../core/sys/compower.c:68: last_listen = listen;
+   00B2 E5*00               755 	mov	a,_bp
+   00B4 24 04               756 	add	a,#0x04
+   00B6 F8                  757 	mov	r0,a
+   00B7 90s00r08            758 	mov	dptr,#_compower_accumulate_last_listen_1_1
+   00BA E6                  759 	mov	a,@r0
+   00BB F0                  760 	movx	@dptr,a
+   00BC 08                  761 	inc	r0
+   00BD A3                  762 	inc	dptr
+   00BE E6                  763 	mov	a,@r0
+   00BF F0                  764 	movx	@dptr,a
+   00C0 08                  765 	inc	r0
+   00C1 A3                  766 	inc	dptr
+   00C2 E6                  767 	mov	a,@r0
+   00C3 F0                  768 	movx	@dptr,a
+   00C4 08                  769 	inc	r0
+   00C5 A3                  770 	inc	dptr
+   00C6 E6                  771 	mov	a,@r0
+   00C7 F0                  772 	movx	@dptr,a
+                            773 ;	../../../core/sys/compower.c:70: transmit = energest_type_time(ENERGEST_TYPE_TRANSMIT);
+   00C8 90 00 06            774 	mov	dptr,#0x0006
+   00CB 12s00r00            775 	lcall	_energest_type_time
+   00CE AA 82               776 	mov	r2,dpl
+   00D0 AB 83               777 	mov	r3,dph
+   00D2 AC F0               778 	mov	r4,b
+   00D4 FD                  779 	mov	r5,a
+   00D5 E5*00               780 	mov	a,_bp
+   00D7 24 08               781 	add	a,#0x08
+   00D9 F8                  782 	mov	r0,a
+   00DA A6 02               783 	mov	@r0,ar2
+   00DC 08                  784 	inc	r0
+   00DD A6 03               785 	mov	@r0,ar3
+   00DF 08                  786 	inc	r0
+   00E0 A6 04               787 	mov	@r0,ar4
+   00E2 08                  788 	inc	r0
+   00E3 A6 05               789 	mov	@r0,ar5
+                            790 ;	../../../core/sys/compower.c:71: e->transmit += transmit - last_transmit;
+   00E5 A8*00               791 	mov	r0,_bp
+   00E7 08                  792 	inc	r0
+   00E8 E5*00               793 	mov	a,_bp
+   00EA 24 0C               794 	add	a,#0x0c
+   00EC F9                  795 	mov	r1,a
+   00ED 74 04               796 	mov	a,#0x04
+   00EF 26                  797 	add	a,@r0
+   00F0 F7                  798 	mov	@r1,a
+   00F1 E4                  799 	clr	a
+   00F2 08                  800 	inc	r0
+   00F3 36                  801 	addc	a,@r0
+   00F4 09                  802 	inc	r1
+   00F5 F7                  803 	mov	@r1,a
+   00F6 08                  804 	inc	r0
+   00F7 09                  805 	inc	r1
+   00F8 E6                  806 	mov	a,@r0
+   00F9 F7                  807 	mov	@r1,a
+   00FA E5*00               808 	mov	a,_bp
+   00FC 24 0C               809 	add	a,#0x0c
+   00FE F8                  810 	mov	r0,a
+   00FF 86 82               811 	mov	dpl,@r0
+   0101 08                  812 	inc	r0
+   0102 86 83               813 	mov	dph,@r0
+   0104 08                  814 	inc	r0
+   0105 86 F0               815 	mov	b,@r0
+   0107 E5*00               816 	mov	a,_bp
+   0109 24 10               817 	add	a,#0x10
+   010B F9                  818 	mov	r1,a
+   010C 12s00r00            819 	lcall	__gptrget
+   010F F7                  820 	mov	@r1,a
+   0110 A3                  821 	inc	dptr
+   0111 12s00r00            822 	lcall	__gptrget
+   0114 09                  823 	inc	r1
+   0115 F7                  824 	mov	@r1,a
+   0116 A3                  825 	inc	dptr
+   0117 12s00r00            826 	lcall	__gptrget
+   011A 09                  827 	inc	r1
+   011B F7                  828 	mov	@r1,a
+   011C A3                  829 	inc	dptr
+   011D 12s00r00            830 	lcall	__gptrget
+   0120 09                  831 	inc	r1
+   0121 F7                  832 	mov	@r1,a
+   0122 90s00r0C            833 	mov	dptr,#_compower_accumulate_last_transmit_1_1
+   0125 E0                  834 	movx	a,@dptr
+   0126 FE                  835 	mov	r6,a
+   0127 A3                  836 	inc	dptr
+   0128 E0                  837 	movx	a,@dptr
+   0129 FF                  838 	mov	r7,a
+   012A A3                  839 	inc	dptr
+   012B E0                  840 	movx	a,@dptr
+   012C FA                  841 	mov	r2,a
+   012D A3                  842 	inc	dptr
+   012E E0                  843 	movx	a,@dptr
+   012F FB                  844 	mov	r3,a
+   0130 E5*00               845 	mov	a,_bp
+   0132 24 08               846 	add	a,#0x08
+   0134 F8                  847 	mov	r0,a
+   0135 E6                  848 	mov	a,@r0
+   0136 C3                  849 	clr	c
+   0137 9E                  850 	subb	a,r6
+   0138 FE                  851 	mov	r6,a
+   0139 08                  852 	inc	r0
+   013A E6                  853 	mov	a,@r0
+   013B 9F                  854 	subb	a,r7
+   013C FF                  855 	mov	r7,a
+   013D 08                  856 	inc	r0
+   013E E6                  857 	mov	a,@r0
+   013F 9A                  858 	subb	a,r2
+   0140 FA                  859 	mov	r2,a
+   0141 08                  860 	inc	r0
+   0142 E6                  861 	mov	a,@r0
+   0143 9B                  862 	subb	a,r3
+   0144 FB                  863 	mov	r3,a
+   0145 E5*00               864 	mov	a,_bp
+   0147 24 10               865 	add	a,#0x10
+   0149 F8                  866 	mov	r0,a
+   014A EE                  867 	mov	a,r6
+   014B 26                  868 	add	a,@r0
+   014C FE                  869 	mov	r6,a
+   014D EF                  870 	mov	a,r7
+   014E 08                  871 	inc	r0
+   014F 36                  872 	addc	a,@r0
+   0150 FF                  873 	mov	r7,a
+   0151 EA                  874 	mov	a,r2
+   0152 08                  875 	inc	r0
+   0153 36                  876 	addc	a,@r0
+   0154 FA                  877 	mov	r2,a
+   0155 EB                  878 	mov	a,r3
+   0156 08                  879 	inc	r0
+   0157 36                  880 	addc	a,@r0
+   0158 FB                  881 	mov	r3,a
+   0159 E5*00               882 	mov	a,_bp
+   015B 24 0C               883 	add	a,#0x0c
+   015D F8                  884 	mov	r0,a
+   015E 86 82               885 	mov	dpl,@r0
+   0160 08                  886 	inc	r0
+   0161 86 83               887 	mov	dph,@r0
+   0163 08                  888 	inc	r0
+   0164 86 F0               889 	mov	b,@r0
+   0166 EE                  890 	mov	a,r6
+   0167 12s00r00            891 	lcall	__gptrput
+   016A A3                  892 	inc	dptr
+   016B EF                  893 	mov	a,r7
+   016C 12s00r00            894 	lcall	__gptrput
+   016F A3                  895 	inc	dptr
+   0170 EA                  896 	mov	a,r2
+   0171 12s00r00            897 	lcall	__gptrput
+   0174 A3                  898 	inc	dptr
+   0175 EB                  899 	mov	a,r3
+   0176 12s00r00            900 	lcall	__gptrput
+                            901 ;	../../../core/sys/compower.c:72: last_transmit = transmit;
+   0179 E5*00               902 	mov	a,_bp
+   017B 24 08               903 	add	a,#0x08
+   017D F8                  904 	mov	r0,a
+   017E 90s00r0C            905 	mov	dptr,#_compower_accumulate_last_transmit_1_1
+   0181 E6                  906 	mov	a,@r0
+   0182 F0                  907 	movx	@dptr,a
+   0183 08                  908 	inc	r0
+   0184 A3                  909 	inc	dptr
+   0185 E6                  910 	mov	a,@r0
+   0186 F0                  911 	movx	@dptr,a
+   0187 08                  912 	inc	r0
+   0188 A3                  913 	inc	dptr
+   0189 E6                  914 	mov	a,@r0
+   018A F0                  915 	movx	@dptr,a
+   018B 08                  916 	inc	r0
+   018C A3                  917 	inc	dptr
+   018D E6                  918 	mov	a,@r0
+   018E F0                  919 	movx	@dptr,a
+   018F 85*00 81            920 	mov	sp,_bp
+   0192 D0*00               921 	pop	_bp
+   0194 22                  922 	ret
+                            923 ;------------------------------------------------------------
+                            924 ;Allocation info for local variables in function 'compower_clear'
+                            925 ;------------------------------------------------------------
+                            926 ;e                         Allocated to registers r2 r3 r4 
+                            927 ;------------------------------------------------------------
+                            928 ;	../../../core/sys/compower.c:76: compower_clear(struct compower_activity *e)
+                            929 ;	-----------------------------------------
+                            930 ;	 function compower_clear
+                            931 ;	-----------------------------------------
+   0195                     932 _compower_clear:
+   0195 AA 82               933 	mov	r2,dpl
+   0197 AB 83               934 	mov	r3,dph
+   0199 AC F0               935 	mov	r4,b
+                            936 ;	../../../core/sys/compower.c:78: e->listen = e->transmit = 0;
+   019B 74 04               937 	mov	a,#0x04
+   019D 2A                  938 	add	a,r2
+   019E FD                  939 	mov	r5,a
+   019F E4                  940 	clr	a
+   01A0 3B                  941 	addc	a,r3
+   01A1 FE                  942 	mov	r6,a
+   01A2 8C 07               943 	mov	ar7,r4
+   01A4 8D 82               944 	mov	dpl,r5
+   01A6 8E 83               945 	mov	dph,r6
+   01A8 8F F0               946 	mov	b,r7
+   01AA E4                  947 	clr	a
+   01AB 12s00r00            948 	lcall	__gptrput
+   01AE A3                  949 	inc	dptr
+   01AF E4                  950 	clr	a
+   01B0 12s00r00            951 	lcall	__gptrput
+   01B3 A3                  952 	inc	dptr
+   01B4 E4                  953 	clr	a
+   01B5 12s00r00            954 	lcall	__gptrput
+   01B8 A3                  955 	inc	dptr
+   01B9 E4                  956 	clr	a
+   01BA 12s00r00            957 	lcall	__gptrput
+   01BD 8A 82               958 	mov	dpl,r2
+   01BF 8B 83               959 	mov	dph,r3
+   01C1 8C F0               960 	mov	b,r4
+   01C3 E4                  961 	clr	a
+   01C4 12s00r00            962 	lcall	__gptrput
+   01C7 A3                  963 	inc	dptr
+   01C8 E4                  964 	clr	a
+   01C9 12s00r00            965 	lcall	__gptrput
+   01CC A3                  966 	inc	dptr
+   01CD E4                  967 	clr	a
+   01CE 12s00r00            968 	lcall	__gptrput
+   01D1 A3                  969 	inc	dptr
+   01D2 E4                  970 	clr	a
+   01D3 02s00r00            971 	ljmp	__gptrput
+                            972 ;------------------------------------------------------------
+                            973 ;Allocation info for local variables in function 'compower_attrconv'
+                            974 ;------------------------------------------------------------
+                            975 ;e                         Allocated to stack - offset 1
+                            976 ;sloc0                     Allocated to stack - offset 4
+                            977 ;sloc1                     Allocated to stack - offset 8
+                            978 ;------------------------------------------------------------
+                            979 ;	../../../core/sys/compower.c:82: compower_attrconv(struct compower_activity *e)
+                            980 ;	-----------------------------------------
+                            981 ;	 function compower_attrconv
+                            982 ;	-----------------------------------------
+   01D6                     983 _compower_attrconv:
+   01D6 C0*00               984 	push	_bp
+   01D8 85 81*00            985 	mov	_bp,sp
+   01DB C0 82               986 	push	dpl
+   01DD C0 83               987 	push	dph
+   01DF C0 F0               988 	push	b
+   01E1 E5 81               989 	mov	a,sp
+   01E3 24 0B               990 	add	a,#0x0b
+   01E5 F5 81               991 	mov	sp,a
+                            992 ;	../../../core/sys/compower.c:85: packetbuf_attr(PACKETBUF_ATTR_LISTEN_TIME) + e->listen);
+   01E7 75 82 07            993 	mov	dpl,#0x07
+   01EA 12s00r00            994 	lcall	_packetbuf_attr
+   01ED AD 82               995 	mov	r5,dpl
+   01EF AE 83               996 	mov	r6,dph
+   01F1 A8*00               997 	mov	r0,_bp
+   01F3 08                  998 	inc	r0
+   01F4 86 82               999 	mov	dpl,@r0
+   01F6 08                 1000 	inc	r0
+   01F7 86 83              1001 	mov	dph,@r0
+   01F9 08                 1002 	inc	r0
+   01FA 86 F0              1003 	mov	b,@r0
+   01FC E5*00              1004 	mov	a,_bp
+   01FE 24 04              1005 	add	a,#0x04
+   0200 F9                 1006 	mov	r1,a
+   0201 12s00r00           1007 	lcall	__gptrget
+   0204 F7                 1008 	mov	@r1,a
+   0205 A3                 1009 	inc	dptr
+   0206 12s00r00           1010 	lcall	__gptrget
+   0209 09                 1011 	inc	r1
+   020A F7                 1012 	mov	@r1,a
+   020B A3                 1013 	inc	dptr
+   020C 12s00r00           1014 	lcall	__gptrget
+   020F 09                 1015 	inc	r1
+   0210 F7                 1016 	mov	@r1,a
+   0211 A3                 1017 	inc	dptr
+   0212 12s00r00           1018 	lcall	__gptrget
+   0215 09                 1019 	inc	r1
+   0216 F7                 1020 	mov	@r1,a
+   0217 E4                 1021 	clr	a
+   0218 FB                 1022 	mov	r3,a
+   0219 FC                 1023 	mov	r4,a
+   021A E5*00              1024 	mov	a,_bp
+   021C 24 04              1025 	add	a,#0x04
+   021E F8                 1026 	mov	r0,a
+   021F E6                 1027 	mov	a,@r0
+   0220 2D                 1028 	add	a,r5
+   0221 FD                 1029 	mov	r5,a
+   0222 08                 1030 	inc	r0
+   0223 E6                 1031 	mov	a,@r0
+   0224 3E                 1032 	addc	a,r6
+   0225 FE                 1033 	mov	r6,a
+   0226 08                 1034 	inc	r0
+   0227 E6                 1035 	mov	a,@r0
+   0228 3B                 1036 	addc	a,r3
+   0229 08                 1037 	inc	r0
+   022A E6                 1038 	mov	a,@r0
+   022B 3C                 1039 	addc	a,r4
+                           1040 ;	../../../core/sys/compower.c:84: packetbuf_set_attr(PACKETBUF_ATTR_LISTEN_TIME,
+   022C C0 05              1041 	push	ar5
+   022E C0 06              1042 	push	ar6
+   0230 75 82 07           1043 	mov	dpl,#0x07
+   0233 12s00r00           1044 	lcall	_packetbuf_set_attr
+   0236 15 81              1045 	dec	sp
+   0238 15 81              1046 	dec	sp
+                           1047 ;	../../../core/sys/compower.c:87: packetbuf_attr(PACKETBUF_ATTR_TRANSMIT_TIME) + e->transmit);
+   023A 75 82 08           1048 	mov	dpl,#0x08
+   023D 12s00r00           1049 	lcall	_packetbuf_attr
+   0240 AA 82              1050 	mov	r2,dpl
+   0242 AB 83              1051 	mov	r3,dph
+   0244 A8*00              1052 	mov	r0,_bp
+   0246 08                 1053 	inc	r0
+   0247 74 04              1054 	mov	a,#0x04
+   0249 26                 1055 	add	a,@r0
+   024A FD                 1056 	mov	r5,a
+   024B E4                 1057 	clr	a
+   024C 08                 1058 	inc	r0
+   024D 36                 1059 	addc	a,@r0
+   024E FE                 1060 	mov	r6,a
+   024F 08                 1061 	inc	r0
+   0250 86 07              1062 	mov	ar7,@r0
+   0252 8D 82              1063 	mov	dpl,r5
+   0254 8E 83              1064 	mov	dph,r6
+   0256 8F F0              1065 	mov	b,r7
+   0258 E5*00              1066 	mov	a,_bp
+   025A 24 08              1067 	add	a,#0x08
+   025C F8                 1068 	mov	r0,a
+   025D 12s00r00           1069 	lcall	__gptrget
+   0260 F6                 1070 	mov	@r0,a
+   0261 A3                 1071 	inc	dptr
+   0262 12s00r00           1072 	lcall	__gptrget
+   0265 08                 1073 	inc	r0
+   0266 F6                 1074 	mov	@r0,a
+   0267 A3                 1075 	inc	dptr
+   0268 12s00r00           1076 	lcall	__gptrget
+   026B 08                 1077 	inc	r0
+   026C F6                 1078 	mov	@r0,a
+   026D A3                 1079 	inc	dptr
+   026E 12s00r00           1080 	lcall	__gptrget
+   0271 08                 1081 	inc	r0
+   0272 F6                 1082 	mov	@r0,a
+   0273 8A 04              1083 	mov	ar4,r2
+   0275 E4                 1084 	clr	a
+   0276 FD                 1085 	mov	r5,a
+   0277 FE                 1086 	mov	r6,a
+   0278 E5*00              1087 	mov	a,_bp
+   027A 24 08              1088 	add	a,#0x08
+   027C F8                 1089 	mov	r0,a
+   027D E6                 1090 	mov	a,@r0
+   027E 2C                 1091 	add	a,r4
+   027F FC                 1092 	mov	r4,a
+   0280 08                 1093 	inc	r0
+   0281 E6                 1094 	mov	a,@r0
+   0282 3B                 1095 	addc	a,r3
+   0283 FB                 1096 	mov	r3,a
+   0284 08                 1097 	inc	r0
+   0285 E6                 1098 	mov	a,@r0
+   0286 3D                 1099 	addc	a,r5
+   0287 08                 1100 	inc	r0
+   0288 E6                 1101 	mov	a,@r0
+   0289 3E                 1102 	addc	a,r6
+                           1103 ;	../../../core/sys/compower.c:86: packetbuf_set_attr(PACKETBUF_ATTR_TRANSMIT_TIME,
+   028A C0 04              1104 	push	ar4
+   028C C0 03              1105 	push	ar3
+   028E 75 82 08           1106 	mov	dpl,#0x08
+   0291 12s00r00           1107 	lcall	_packetbuf_set_attr
+   0294 15 81              1108 	dec	sp
+   0296 15 81              1109 	dec	sp
+   0298 85*00 81           1110 	mov	sp,_bp
+   029B D0*00              1111 	pop	_bp
+   029D 22                 1112 	ret
+                           1113 ;------------------------------------------------------------
+                           1114 ;Allocation info for local variables in function 'compower_accumulate_attrs'
+                           1115 ;------------------------------------------------------------
+                           1116 ;e                         Allocated to stack - offset 1
+                           1117 ;sloc0                     Allocated to stack - offset 4
+                           1118 ;sloc1                     Allocated to stack - offset 8
+                           1119 ;sloc2                     Allocated to stack - offset 8
+                           1120 ;------------------------------------------------------------
+                           1121 ;	../../../core/sys/compower.c:91: compower_accumulate_attrs(struct compower_activity *e)
+                           1122 ;	-----------------------------------------
+                           1123 ;	 function compower_accumulate_attrs
+                           1124 ;	-----------------------------------------
+   029E                    1125 _compower_accumulate_attrs:
+   029E C0*00              1126 	push	_bp
+   02A0 85 81*00           1127 	mov	_bp,sp
+   02A3 C0 82              1128 	push	dpl
+   02A5 C0 83              1129 	push	dph
+   02A7 C0 F0              1130 	push	b
+   02A9 E5 81              1131 	mov	a,sp
+   02AB 24 0B              1132 	add	a,#0x0b
+   02AD F5 81              1133 	mov	sp,a
+                           1134 ;	../../../core/sys/compower.c:93: e->listen += packetbuf_attr(PACKETBUF_ATTR_LISTEN_TIME);
+   02AF A8*00              1135 	mov	r0,_bp
+   02B1 08                 1136 	inc	r0
+   02B2 86 82              1137 	mov	dpl,@r0
+   02B4 08                 1138 	inc	r0
+   02B5 86 83              1139 	mov	dph,@r0
+   02B7 08                 1140 	inc	r0
+   02B8 86 F0              1141 	mov	b,@r0
+   02BA E5*00              1142 	mov	a,_bp
+   02BC 24 04              1143 	add	a,#0x04
+   02BE F9                 1144 	mov	r1,a
+   02BF 12s00r00           1145 	lcall	__gptrget
+   02C2 F7                 1146 	mov	@r1,a
+   02C3 A3                 1147 	inc	dptr
+   02C4 12s00r00           1148 	lcall	__gptrget
+   02C7 09                 1149 	inc	r1
+   02C8 F7                 1150 	mov	@r1,a
+   02C9 A3                 1151 	inc	dptr
+   02CA 12s00r00           1152 	lcall	__gptrget
+   02CD 09                 1153 	inc	r1
+   02CE F7                 1154 	mov	@r1,a
+   02CF A3                 1155 	inc	dptr
+   02D0 12s00r00           1156 	lcall	__gptrget
+   02D3 09                 1157 	inc	r1
+   02D4 F7                 1158 	mov	@r1,a
+   02D5 75 82 07           1159 	mov	dpl,#0x07
+   02D8 12s00r00           1160 	lcall	_packetbuf_attr
+   02DB AB 82              1161 	mov	r3,dpl
+   02DD AA 83              1162 	mov	r2,dph
+   02DF 8A 04              1163 	mov	ar4,r2
+   02E1 E4                 1164 	clr	a
+   02E2 FD                 1165 	mov	r5,a
+   02E3 FE                 1166 	mov	r6,a
+   02E4 E5*00              1167 	mov	a,_bp
+   02E6 24 04              1168 	add	a,#0x04
+   02E8 F8                 1169 	mov	r0,a
+   02E9 EB                 1170 	mov	a,r3
+   02EA 26                 1171 	add	a,@r0
+   02EB FB                 1172 	mov	r3,a
+   02EC EC                 1173 	mov	a,r4
+   02ED 08                 1174 	inc	r0
+   02EE 36                 1175 	addc	a,@r0
+   02EF FC                 1176 	mov	r4,a
+   02F0 ED                 1177 	mov	a,r5
+   02F1 08                 1178 	inc	r0
+   02F2 36                 1179 	addc	a,@r0
+   02F3 FD                 1180 	mov	r5,a
+   02F4 EE                 1181 	mov	a,r6
+   02F5 08                 1182 	inc	r0
+   02F6 36                 1183 	addc	a,@r0
+   02F7 FE                 1184 	mov	r6,a
+   02F8 A8*00              1185 	mov	r0,_bp
+   02FA 08                 1186 	inc	r0
+   02FB 86 82              1187 	mov	dpl,@r0
+   02FD 08                 1188 	inc	r0
+   02FE 86 83              1189 	mov	dph,@r0
+   0300 08                 1190 	inc	r0
+   0301 86 F0              1191 	mov	b,@r0
+   0303 EB                 1192 	mov	a,r3
+   0304 12s00r00           1193 	lcall	__gptrput
+   0307 A3                 1194 	inc	dptr
+   0308 EC                 1195 	mov	a,r4
+   0309 12s00r00           1196 	lcall	__gptrput
+   030C A3                 1197 	inc	dptr
+   030D ED                 1198 	mov	a,r5
+   030E 12s00r00           1199 	lcall	__gptrput
+   0311 A3                 1200 	inc	dptr
+   0312 EE                 1201 	mov	a,r6
+   0313 12s00r00           1202 	lcall	__gptrput
+                           1203 ;	../../../core/sys/compower.c:94: e->transmit += packetbuf_attr(PACKETBUF_ATTR_TRANSMIT_TIME);
+   0316 A8*00              1204 	mov	r0,_bp
+   0318 08                 1205 	inc	r0
+   0319 E5*00              1206 	mov	a,_bp
+   031B 24 04              1207 	add	a,#0x04
+   031D F9                 1208 	mov	r1,a
+   031E 74 04              1209 	mov	a,#0x04
+   0320 26                 1210 	add	a,@r0
+   0321 F7                 1211 	mov	@r1,a
+   0322 E4                 1212 	clr	a
+   0323 08                 1213 	inc	r0
+   0324 36                 1214 	addc	a,@r0
+   0325 09                 1215 	inc	r1
+   0326 F7                 1216 	mov	@r1,a
+   0327 08                 1217 	inc	r0
+   0328 09                 1218 	inc	r1
+   0329 E6                 1219 	mov	a,@r0
+   032A F7                 1220 	mov	@r1,a
+   032B E5*00              1221 	mov	a,_bp
+   032D 24 04              1222 	add	a,#0x04
+   032F F8                 1223 	mov	r0,a
+   0330 86 82              1224 	mov	dpl,@r0
+   0332 08                 1225 	inc	r0
+   0333 86 83              1226 	mov	dph,@r0
+   0335 08                 1227 	inc	r0
+   0336 86 F0              1228 	mov	b,@r0
+   0338 E5*00              1229 	mov	a,_bp
+   033A 24 08              1230 	add	a,#0x08
+   033C F9                 1231 	mov	r1,a
+   033D 12s00r00           1232 	lcall	__gptrget
+   0340 F7                 1233 	mov	@r1,a
+   0341 A3                 1234 	inc	dptr
+   0342 12s00r00           1235 	lcall	__gptrget
+   0345 09                 1236 	inc	r1
+   0346 F7                 1237 	mov	@r1,a
+   0347 A3                 1238 	inc	dptr
+   0348 12s00r00           1239 	lcall	__gptrget
+   034B 09                 1240 	inc	r1
+   034C F7                 1241 	mov	@r1,a
+   034D A3                 1242 	inc	dptr
+   034E 12s00r00           1243 	lcall	__gptrget
+   0351 09                 1244 	inc	r1
+   0352 F7                 1245 	mov	@r1,a
+   0353 75 82 08           1246 	mov	dpl,#0x08
+   0356 12s00r00           1247 	lcall	_packetbuf_attr
+   0359 AD 82              1248 	mov	r5,dpl
+   035B AB 83              1249 	mov	r3,dph
+   035D E4                 1250 	clr	a
+   035E FC                 1251 	mov	r4,a
+   035F FE                 1252 	mov	r6,a
+   0360 E5*00              1253 	mov	a,_bp
+   0362 24 08              1254 	add	a,#0x08
+   0364 F8                 1255 	mov	r0,a
+   0365 ED                 1256 	mov	a,r5
+   0366 26                 1257 	add	a,@r0
+   0367 FD                 1258 	mov	r5,a
+   0368 EB                 1259 	mov	a,r3
+   0369 08                 1260 	inc	r0
+   036A 36                 1261 	addc	a,@r0
+   036B FB                 1262 	mov	r3,a
+   036C EC                 1263 	mov	a,r4
+   036D 08                 1264 	inc	r0
+   036E 36                 1265 	addc	a,@r0
+   036F FC                 1266 	mov	r4,a
+   0370 EE                 1267 	mov	a,r6
+   0371 08                 1268 	inc	r0
+   0372 36                 1269 	addc	a,@r0
+   0373 FE                 1270 	mov	r6,a
+   0374 E5*00              1271 	mov	a,_bp
+   0376 24 04              1272 	add	a,#0x04
+   0378 F8                 1273 	mov	r0,a
+   0379 86 82              1274 	mov	dpl,@r0
+   037B 08                 1275 	inc	r0
+   037C 86 83              1276 	mov	dph,@r0
+   037E 08                 1277 	inc	r0
+   037F 86 F0              1278 	mov	b,@r0
+   0381 ED                 1279 	mov	a,r5
+   0382 12s00r00           1280 	lcall	__gptrput
+   0385 A3                 1281 	inc	dptr
+   0386 EB                 1282 	mov	a,r3
+   0387 12s00r00           1283 	lcall	__gptrput
+   038A A3                 1284 	inc	dptr
+   038B EC                 1285 	mov	a,r4
+   038C 12s00r00           1286 	lcall	__gptrput
+   038F A3                 1287 	inc	dptr
+   0390 EE                 1288 	mov	a,r6
+   0391 12s00r00           1289 	lcall	__gptrput
+   0394 85*00 81           1290 	mov	sp,_bp
+   0397 D0*00              1291 	pop	_bp
+   0399 22                 1292 	ret
+                           1293 	.area CSEG    (CODE)
+                           1294 	.area CONST   (CODE)
+                           1295 	.area XINIT   (CODE)
+                           1296 	.area CABS    (ABS,CODE)

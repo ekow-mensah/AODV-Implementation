@@ -1,0 +1,2230 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:27:52 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module cc2430_rf
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _cc2430_rf_send_ack
+                             13 	.globl _IRCON2_P2IF
+                             14 	.globl _IRCON2_UTX0IF
+                             15 	.globl _IRCON2_UTX1IF
+                             16 	.globl _IRCON2_P1IF
+                             17 	.globl _IRCON2_WDTIF
+                             18 	.globl _CY
+                             19 	.globl _AC
+                             20 	.globl _F0
+                             21 	.globl _RS1
+                             22 	.globl _RS0
+                             23 	.globl _OV
+                             24 	.globl _F1
+                             25 	.globl _P
+                             26 	.globl _IRCON_DMAIF
+                             27 	.globl _IRCON_T1IF
+                             28 	.globl _IRCON_T2IF
+                             29 	.globl _IRCON_T3IF
+                             30 	.globl _IRCON_T4IF
+                             31 	.globl _IRCON_P0IF
+                             32 	.globl _IRCON_STIF
+                             33 	.globl _IEN1_DMAIE
+                             34 	.globl _IEN1_T1IE
+                             35 	.globl _IEN1_T2IE
+                             36 	.globl _IEN1_T3IE
+                             37 	.globl _IEN1_T4IE
+                             38 	.globl _IEN1_P0IE
+                             39 	.globl _IEN0_RFERRIE
+                             40 	.globl _IEN0_ADCIE
+                             41 	.globl _IEN0_URX0IE
+                             42 	.globl _IEN0_URX1IE
+                             43 	.globl _IEN0_ENCIE
+                             44 	.globl _IEN0_STIE
+                             45 	.globl _IEN0_EA
+                             46 	.globl _EA
+                             47 	.globl _P2_4
+                             48 	.globl _P2_3
+                             49 	.globl _P2_2
+                             50 	.globl _P2_1
+                             51 	.globl _P2_0
+                             52 	.globl _S0CON_ENCIF_0
+                             53 	.globl _S0CON_ENCIF_1
+                             54 	.globl _P1_7
+                             55 	.globl _P1_6
+                             56 	.globl _P1_5
+                             57 	.globl _P1_4
+                             58 	.globl _P1_3
+                             59 	.globl _P1_2
+                             60 	.globl _P1_1
+                             61 	.globl _P1_0
+                             62 	.globl _TCON_IT0
+                             63 	.globl _TCON_RFERRIF
+                             64 	.globl _TCON_IT1
+                             65 	.globl _TCON_URX0IF
+                             66 	.globl _TCON_ADCIF
+                             67 	.globl _TCON_URX1IF
+                             68 	.globl _P0_0
+                             69 	.globl _P0_1
+                             70 	.globl _P0_2
+                             71 	.globl _P0_3
+                             72 	.globl _P0_4
+                             73 	.globl _P0_5
+                             74 	.globl _P0_6
+                             75 	.globl _P0_7
+                             76 	.globl _P2DIR
+                             77 	.globl _P1DIR
+                             78 	.globl _P0DIR
+                             79 	.globl _U1GCR
+                             80 	.globl _U1UCR
+                             81 	.globl _U1BAUD
+                             82 	.globl _U1BUF
+                             83 	.globl _U1CSR
+                             84 	.globl _P2INP
+                             85 	.globl _P1INP
+                             86 	.globl _P2SEL
+                             87 	.globl _P1SEL
+                             88 	.globl _P0SEL
+                             89 	.globl _ADCCFG
+                             90 	.globl _PERCFG
+                             91 	.globl _B
+                             92 	.globl _T4CC1
+                             93 	.globl _T4CCTL1
+                             94 	.globl _T4CC0
+                             95 	.globl _T4CCTL0
+                             96 	.globl _T4CTL
+                             97 	.globl _T4CNT
+                             98 	.globl _RFIF
+                             99 	.globl _IRCON2
+                            100 	.globl _T1CCTL2
+                            101 	.globl _T1CCTL1
+                            102 	.globl _T1CCTL0
+                            103 	.globl _T1CTL
+                            104 	.globl _T1CNTH
+                            105 	.globl _T1CNTL
+                            106 	.globl _RFST
+                            107 	.globl _ACC
+                            108 	.globl _T1CC2H
+                            109 	.globl _T1CC2L
+                            110 	.globl _T1CC1H
+                            111 	.globl _T1CC1L
+                            112 	.globl _T1CC0H
+                            113 	.globl _T1CC0L
+                            114 	.globl _RFD
+                            115 	.globl _TIMIF
+                            116 	.globl _DMAREQ
+                            117 	.globl _DMAARM
+                            118 	.globl _DMA0CFGH
+                            119 	.globl _DMA0CFGL
+                            120 	.globl _DMA1CFGH
+                            121 	.globl _DMA1CFGL
+                            122 	.globl _DMAIRQ
+                            123 	.globl _PSW
+                            124 	.globl _T3CC1
+                            125 	.globl _T3CCTL1
+                            126 	.globl _T3CC0
+                            127 	.globl _T3CCTL0
+                            128 	.globl _T3CTL
+                            129 	.globl _T3CNT
+                            130 	.globl _WDCTL
+                            131 	.globl _T2CON
+                            132 	.globl _MEMCTR
+                            133 	.globl _CLKCON
+                            134 	.globl _U0GCR
+                            135 	.globl _U0UCR
+                            136 	.globl _T2CNF
+                            137 	.globl _U0BAUD
+                            138 	.globl _U0BUF
+                            139 	.globl _IRCON
+                            140 	.globl _SLEEP
+                            141 	.globl _RNDH
+                            142 	.globl _RNDL
+                            143 	.globl _ADCH
+                            144 	.globl _ADCL
+                            145 	.globl _IP1
+                            146 	.globl _IEN1
+                            147 	.globl _RCCTL
+                            148 	.globl _ADCCON3
+                            149 	.globl _ADCCON2
+                            150 	.globl _ADCCON1
+                            151 	.globl _ENCCS
+                            152 	.globl _ENCDO
+                            153 	.globl _ENCDI
+                            154 	.globl _FWDATA
+                            155 	.globl _FCTL
+                            156 	.globl _FADDRH
+                            157 	.globl _FADDRL
+                            158 	.globl _FWT
+                            159 	.globl _IP0
+                            160 	.globl _IEN0
+                            161 	.globl _IE
+                            162 	.globl _T2THD
+                            163 	.globl _T2TLD
+                            164 	.globl _T2CAPHPH
+                            165 	.globl _T2CAPLPL
+                            166 	.globl _T2OF2
+                            167 	.globl _T2OF1
+                            168 	.globl _T2OF0
+                            169 	.globl _P2
+                            170 	.globl _PSBANK
+                            171 	.globl _FMAP
+                            172 	.globl _T2PEROF2
+                            173 	.globl _T2PEROF1
+                            174 	.globl _T2PEROF0
+                            175 	.globl _S1CON
+                            176 	.globl _IEN2
+                            177 	.globl _HSRC
+                            178 	.globl _S0CON
+                            179 	.globl _ST2
+                            180 	.globl _ST1
+                            181 	.globl _ST0
+                            182 	.globl _T2CMP
+                            183 	.globl __XPAGE
+                            184 	.globl _DPS
+                            185 	.globl _RFIM
+                            186 	.globl _P1
+                            187 	.globl _P0INP
+                            188 	.globl _P1IEN
+                            189 	.globl _PICTL
+                            190 	.globl _P2IFG
+                            191 	.globl _P1IFG
+                            192 	.globl _P0IFG
+                            193 	.globl _TCON
+                            194 	.globl _PCON
+                            195 	.globl _U0CSR
+                            196 	.globl _DPH1
+                            197 	.globl _DPL1
+                            198 	.globl _DPH0
+                            199 	.globl _DPL0
+                            200 	.globl _SP
+                            201 	.globl _P0
+                            202 	.globl _ADC_SHADOW
+                            203 	.globl _U1BUF_SHADOW
+                            204 	.globl _RFD_SHADOW
+                            205 	.globl _U0BUF_SHADOW
+                            206 	.globl _RFSTATUS
+                            207 	.globl _CHIPID
+                            208 	.globl _CHVER
+                            209 	.globl _FSMTC1
+                            210 	.globl _RXFIFOCNT
+                            211 	.globl _IOCFG3
+                            212 	.globl _IOCFG2
+                            213 	.globl _IOCFG1
+                            214 	.globl _IOCFG0
+                            215 	.globl _SHORTADDRL
+                            216 	.globl _SHORTADDRH
+                            217 	.globl _PANIDL
+                            218 	.globl _PANIDH
+                            219 	.globl _IEEE_ADDR7
+                            220 	.globl _IEEE_ADDR6
+                            221 	.globl _IEEE_ADDR5
+                            222 	.globl _IEEE_ADDR4
+                            223 	.globl _IEEE_ADDR3
+                            224 	.globl _IEEE_ADDR2
+                            225 	.globl _IEEE_ADDR1
+                            226 	.globl _IEEE_ADDR0
+                            227 	.globl _DACTSTL
+                            228 	.globl _DACTSTH
+                            229 	.globl _ADCTSTL
+                            230 	.globl _ADCTSTH
+                            231 	.globl _FSMSTATE
+                            232 	.globl _AGCCTRLL
+                            233 	.globl _AGCCTRLH
+                            234 	.globl _MANORL
+                            235 	.globl _MANORH
+                            236 	.globl _MANANDL
+                            237 	.globl _MANANDH
+                            238 	.globl _FSMTCL
+                            239 	.globl _FSMTCH
+                            240 	.globl _RFPWR
+                            241 	.globl _CSPT
+                            242 	.globl _CSPCTRL
+                            243 	.globl _CSPZ
+                            244 	.globl _CSPY
+                            245 	.globl _CSPX
+                            246 	.globl _FSCTRLL
+                            247 	.globl _FSCTRLH
+                            248 	.globl _RXCTRL1L
+                            249 	.globl _RXCTRL1H
+                            250 	.globl _RXCTRL0L
+                            251 	.globl _RXCTRL0H
+                            252 	.globl _TXCTRLL
+                            253 	.globl _TXCTRLH
+                            254 	.globl _SYNCWORDL
+                            255 	.globl _SYNCWORDH
+                            256 	.globl _RSSIL
+                            257 	.globl _RSSIH
+                            258 	.globl _MDMCTRL1L
+                            259 	.globl _MDMCTRL1H
+                            260 	.globl _MDMCTRL0L
+                            261 	.globl _MDMCTRL0H
+                            262 	.globl _cc2430_rf_prepare
+                            263 	.globl _cc2430_rf_receiving_packet
+                            264 	.globl _cc2430_rf_pending_packet
+                            265 	.globl _cc2430_rf_init
+                            266 	.globl _cc2430_rf_transmit
+                            267 	.globl _cc2430_rf_read
+                            268 	.globl _cc2430_rf_channel_set
+                            269 	.globl _cc2430_rf_power_set
+                            270 	.globl _cc2430_rf_rx_enable
+                            271 	.globl _cc2430_rf_rx_disable
+                            272 	.globl _cc2430_rf_set_addr
+                            273 	.globl _cc2430_rf_cca_check
+                            274 ;--------------------------------------------------------
+                            275 ; special function registers
+                            276 ;--------------------------------------------------------
+                            277 	.area RSEG    (ABS,DATA)
+   0000                     278 	.org 0x0000
+                    0080    279 _P0	=	0x0080
+                    0081    280 _SP	=	0x0081
+                    0082    281 _DPL0	=	0x0082
+                    0083    282 _DPH0	=	0x0083
+                    0084    283 _DPL1	=	0x0084
+                    0085    284 _DPH1	=	0x0085
+                    0086    285 _U0CSR	=	0x0086
+                    0087    286 _PCON	=	0x0087
+                    0088    287 _TCON	=	0x0088
+                    0089    288 _P0IFG	=	0x0089
+                    008A    289 _P1IFG	=	0x008a
+                    008B    290 _P2IFG	=	0x008b
+                    008C    291 _PICTL	=	0x008c
+                    008D    292 _P1IEN	=	0x008d
+                    008F    293 _P0INP	=	0x008f
+                    0090    294 _P1	=	0x0090
+                    0091    295 _RFIM	=	0x0091
+                    0092    296 _DPS	=	0x0092
+                    0093    297 __XPAGE	=	0x0093
+                    0094    298 _T2CMP	=	0x0094
+                    0095    299 _ST0	=	0x0095
+                    0096    300 _ST1	=	0x0096
+                    0097    301 _ST2	=	0x0097
+                    0098    302 _S0CON	=	0x0098
+                    0099    303 _HSRC	=	0x0099
+                    009A    304 _IEN2	=	0x009a
+                    009B    305 _S1CON	=	0x009b
+                    009C    306 _T2PEROF0	=	0x009c
+                    009D    307 _T2PEROF1	=	0x009d
+                    009E    308 _T2PEROF2	=	0x009e
+                    009F    309 _FMAP	=	0x009f
+                    009F    310 _PSBANK	=	0x009f
+                    00A0    311 _P2	=	0x00a0
+                    00A1    312 _T2OF0	=	0x00a1
+                    00A2    313 _T2OF1	=	0x00a2
+                    00A3    314 _T2OF2	=	0x00a3
+                    00A4    315 _T2CAPLPL	=	0x00a4
+                    00A5    316 _T2CAPHPH	=	0x00a5
+                    00A6    317 _T2TLD	=	0x00a6
+                    00A7    318 _T2THD	=	0x00a7
+                    00A8    319 _IE	=	0x00a8
+                    00A8    320 _IEN0	=	0x00a8
+                    00A9    321 _IP0	=	0x00a9
+                    00AB    322 _FWT	=	0x00ab
+                    00AC    323 _FADDRL	=	0x00ac
+                    00AD    324 _FADDRH	=	0x00ad
+                    00AE    325 _FCTL	=	0x00ae
+                    00AF    326 _FWDATA	=	0x00af
+                    00B1    327 _ENCDI	=	0x00b1
+                    00B2    328 _ENCDO	=	0x00b2
+                    00B3    329 _ENCCS	=	0x00b3
+                    00B4    330 _ADCCON1	=	0x00b4
+                    00B5    331 _ADCCON2	=	0x00b5
+                    00B6    332 _ADCCON3	=	0x00b6
+                    00B7    333 _RCCTL	=	0x00b7
+                    00B8    334 _IEN1	=	0x00b8
+                    00B9    335 _IP1	=	0x00b9
+                    00BA    336 _ADCL	=	0x00ba
+                    00BB    337 _ADCH	=	0x00bb
+                    00BC    338 _RNDL	=	0x00bc
+                    00BD    339 _RNDH	=	0x00bd
+                    00BE    340 _SLEEP	=	0x00be
+                    00C0    341 _IRCON	=	0x00c0
+                    00C1    342 _U0BUF	=	0x00c1
+                    00C2    343 _U0BAUD	=	0x00c2
+                    00C3    344 _T2CNF	=	0x00c3
+                    00C4    345 _U0UCR	=	0x00c4
+                    00C5    346 _U0GCR	=	0x00c5
+                    00C6    347 _CLKCON	=	0x00c6
+                    00C7    348 _MEMCTR	=	0x00c7
+                    00C8    349 _T2CON	=	0x00c8
+                    00C9    350 _WDCTL	=	0x00c9
+                    00CA    351 _T3CNT	=	0x00ca
+                    00CB    352 _T3CTL	=	0x00cb
+                    00CC    353 _T3CCTL0	=	0x00cc
+                    00CD    354 _T3CC0	=	0x00cd
+                    00CE    355 _T3CCTL1	=	0x00ce
+                    00CF    356 _T3CC1	=	0x00cf
+                    00D0    357 _PSW	=	0x00d0
+                    00D1    358 _DMAIRQ	=	0x00d1
+                    00D2    359 _DMA1CFGL	=	0x00d2
+                    00D3    360 _DMA1CFGH	=	0x00d3
+                    00D4    361 _DMA0CFGL	=	0x00d4
+                    00D5    362 _DMA0CFGH	=	0x00d5
+                    00D6    363 _DMAARM	=	0x00d6
+                    00D7    364 _DMAREQ	=	0x00d7
+                    00D8    365 _TIMIF	=	0x00d8
+                    00D9    366 _RFD	=	0x00d9
+                    00DA    367 _T1CC0L	=	0x00da
+                    00DB    368 _T1CC0H	=	0x00db
+                    00DC    369 _T1CC1L	=	0x00dc
+                    00DD    370 _T1CC1H	=	0x00dd
+                    00DE    371 _T1CC2L	=	0x00de
+                    00DF    372 _T1CC2H	=	0x00df
+                    00E0    373 _ACC	=	0x00e0
+                    00E1    374 _RFST	=	0x00e1
+                    00E2    375 _T1CNTL	=	0x00e2
+                    00E3    376 _T1CNTH	=	0x00e3
+                    00E4    377 _T1CTL	=	0x00e4
+                    00E5    378 _T1CCTL0	=	0x00e5
+                    00E6    379 _T1CCTL1	=	0x00e6
+                    00E7    380 _T1CCTL2	=	0x00e7
+                    00E8    381 _IRCON2	=	0x00e8
+                    00E9    382 _RFIF	=	0x00e9
+                    00EA    383 _T4CNT	=	0x00ea
+                    00EB    384 _T4CTL	=	0x00eb
+                    00EC    385 _T4CCTL0	=	0x00ec
+                    00ED    386 _T4CC0	=	0x00ed
+                    00EE    387 _T4CCTL1	=	0x00ee
+                    00EF    388 _T4CC1	=	0x00ef
+                    00F0    389 _B	=	0x00f0
+                    00F1    390 _PERCFG	=	0x00f1
+                    00F2    391 _ADCCFG	=	0x00f2
+                    00F3    392 _P0SEL	=	0x00f3
+                    00F4    393 _P1SEL	=	0x00f4
+                    00F5    394 _P2SEL	=	0x00f5
+                    00F6    395 _P1INP	=	0x00f6
+                    00F7    396 _P2INP	=	0x00f7
+                    00F8    397 _U1CSR	=	0x00f8
+                    00F9    398 _U1BUF	=	0x00f9
+                    00FA    399 _U1BAUD	=	0x00fa
+                    00FB    400 _U1UCR	=	0x00fb
+                    00FC    401 _U1GCR	=	0x00fc
+                    00FD    402 _P0DIR	=	0x00fd
+                    00FE    403 _P1DIR	=	0x00fe
+                    00FF    404 _P2DIR	=	0x00ff
+                            405 ;--------------------------------------------------------
+                            406 ; special function bits
+                            407 ;--------------------------------------------------------
+                            408 	.area RSEG    (ABS,DATA)
+   0000                     409 	.org 0x0000
+                    0087    410 _P0_7	=	0x0087
+                    0086    411 _P0_6	=	0x0086
+                    0085    412 _P0_5	=	0x0085
+                    0084    413 _P0_4	=	0x0084
+                    0083    414 _P0_3	=	0x0083
+                    0082    415 _P0_2	=	0x0082
+                    0081    416 _P0_1	=	0x0081
+                    0080    417 _P0_0	=	0x0080
+                    008F    418 _TCON_URX1IF	=	0x008f
+                    008D    419 _TCON_ADCIF	=	0x008d
+                    008B    420 _TCON_URX0IF	=	0x008b
+                    008A    421 _TCON_IT1	=	0x008a
+                    0089    422 _TCON_RFERRIF	=	0x0089
+                    0088    423 _TCON_IT0	=	0x0088
+                    0090    424 _P1_0	=	0x0090
+                    0091    425 _P1_1	=	0x0091
+                    0092    426 _P1_2	=	0x0092
+                    0093    427 _P1_3	=	0x0093
+                    0094    428 _P1_4	=	0x0094
+                    0095    429 _P1_5	=	0x0095
+                    0096    430 _P1_6	=	0x0096
+                    0097    431 _P1_7	=	0x0097
+                    0099    432 _S0CON_ENCIF_1	=	0x0099
+                    0098    433 _S0CON_ENCIF_0	=	0x0098
+                    00A0    434 _P2_0	=	0x00a0
+                    00A1    435 _P2_1	=	0x00a1
+                    00A2    436 _P2_2	=	0x00a2
+                    00A3    437 _P2_3	=	0x00a3
+                    00A4    438 _P2_4	=	0x00a4
+                    00AF    439 _EA	=	0x00af
+                    00AF    440 _IEN0_EA	=	0x00af
+                    00AD    441 _IEN0_STIE	=	0x00ad
+                    00AC    442 _IEN0_ENCIE	=	0x00ac
+                    00AB    443 _IEN0_URX1IE	=	0x00ab
+                    00AA    444 _IEN0_URX0IE	=	0x00aa
+                    00A9    445 _IEN0_ADCIE	=	0x00a9
+                    00A8    446 _IEN0_RFERRIE	=	0x00a8
+                    00BD    447 _IEN1_P0IE	=	0x00bd
+                    00BC    448 _IEN1_T4IE	=	0x00bc
+                    00BB    449 _IEN1_T3IE	=	0x00bb
+                    00BA    450 _IEN1_T2IE	=	0x00ba
+                    00B9    451 _IEN1_T1IE	=	0x00b9
+                    00B8    452 _IEN1_DMAIE	=	0x00b8
+                    00C7    453 _IRCON_STIF	=	0x00c7
+                    00C5    454 _IRCON_P0IF	=	0x00c5
+                    00C4    455 _IRCON_T4IF	=	0x00c4
+                    00C3    456 _IRCON_T3IF	=	0x00c3
+                    00C2    457 _IRCON_T2IF	=	0x00c2
+                    00C1    458 _IRCON_T1IF	=	0x00c1
+                    00C0    459 _IRCON_DMAIF	=	0x00c0
+                    00D0    460 _P	=	0x00d0
+                    00D1    461 _F1	=	0x00d1
+                    00D2    462 _OV	=	0x00d2
+                    00D3    463 _RS0	=	0x00d3
+                    00D4    464 _RS1	=	0x00d4
+                    00D5    465 _F0	=	0x00d5
+                    00D6    466 _AC	=	0x00d6
+                    00D7    467 _CY	=	0x00d7
+                    00EC    468 _IRCON2_WDTIF	=	0x00ec
+                    00EB    469 _IRCON2_P1IF	=	0x00eb
+                    00EA    470 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    471 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    472 _IRCON2_P2IF	=	0x00e8
+                            473 ;--------------------------------------------------------
+                            474 ; overlayable register banks
+                            475 ;--------------------------------------------------------
+                            476 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     477 	.ds 8
+                            478 ;--------------------------------------------------------
+                            479 ; internal ram data
+                            480 ;--------------------------------------------------------
+                            481 	.area DSEG    (DATA)
+                            482 ;--------------------------------------------------------
+                            483 ; overlayable items in internal ram 
+                            484 ;--------------------------------------------------------
+                            485 	.area OSEG    (OVR,DATA)
+                            486 ;--------------------------------------------------------
+                            487 ; indirectly addressable internal ram data
+                            488 ;--------------------------------------------------------
+                            489 	.area ISEG    (DATA)
+                            490 ;--------------------------------------------------------
+                            491 ; absolute internal ram data
+                            492 ;--------------------------------------------------------
+                            493 	.area IABS    (ABS,DATA)
+                            494 	.area IABS    (ABS,DATA)
+                            495 ;--------------------------------------------------------
+                            496 ; bit data
+                            497 ;--------------------------------------------------------
+                            498 	.area BSEG    (BIT)
+                            499 ;--------------------------------------------------------
+                            500 ; paged external ram data
+                            501 ;--------------------------------------------------------
+                            502 	.area PSEG    (PAG,XDATA)
+                            503 ;--------------------------------------------------------
+                            504 ; external ram data
+                            505 ;--------------------------------------------------------
+                            506 	.area XSEG    (XDATA)
+                    DF02    507 _MDMCTRL0H	=	0xdf02
+                    DF03    508 _MDMCTRL0L	=	0xdf03
+                    DF04    509 _MDMCTRL1H	=	0xdf04
+                    DF05    510 _MDMCTRL1L	=	0xdf05
+                    DF06    511 _RSSIH	=	0xdf06
+                    DF07    512 _RSSIL	=	0xdf07
+                    DF08    513 _SYNCWORDH	=	0xdf08
+                    DF09    514 _SYNCWORDL	=	0xdf09
+                    DF0A    515 _TXCTRLH	=	0xdf0a
+                    DF0B    516 _TXCTRLL	=	0xdf0b
+                    DF0C    517 _RXCTRL0H	=	0xdf0c
+                    DF0D    518 _RXCTRL0L	=	0xdf0d
+                    DF0E    519 _RXCTRL1H	=	0xdf0e
+                    DF0F    520 _RXCTRL1L	=	0xdf0f
+                    DF10    521 _FSCTRLH	=	0xdf10
+                    DF11    522 _FSCTRLL	=	0xdf11
+                    DF12    523 _CSPX	=	0xdf12
+                    DF13    524 _CSPY	=	0xdf13
+                    DF14    525 _CSPZ	=	0xdf14
+                    DF15    526 _CSPCTRL	=	0xdf15
+                    DF16    527 _CSPT	=	0xdf16
+                    DF17    528 _RFPWR	=	0xdf17
+                    DF20    529 _FSMTCH	=	0xdf20
+                    DF21    530 _FSMTCL	=	0xdf21
+                    DF22    531 _MANANDH	=	0xdf22
+                    DF23    532 _MANANDL	=	0xdf23
+                    DF24    533 _MANORH	=	0xdf24
+                    DF25    534 _MANORL	=	0xdf25
+                    DF26    535 _AGCCTRLH	=	0xdf26
+                    DF27    536 _AGCCTRLL	=	0xdf27
+                    DF39    537 _FSMSTATE	=	0xdf39
+                    DF3A    538 _ADCTSTH	=	0xdf3a
+                    DF3B    539 _ADCTSTL	=	0xdf3b
+                    DF3C    540 _DACTSTH	=	0xdf3c
+                    DF3D    541 _DACTSTL	=	0xdf3d
+                    DF43    542 _IEEE_ADDR0	=	0xdf43
+                    DF44    543 _IEEE_ADDR1	=	0xdf44
+                    DF45    544 _IEEE_ADDR2	=	0xdf45
+                    DF46    545 _IEEE_ADDR3	=	0xdf46
+                    DF47    546 _IEEE_ADDR4	=	0xdf47
+                    DF48    547 _IEEE_ADDR5	=	0xdf48
+                    DF49    548 _IEEE_ADDR6	=	0xdf49
+                    DF4A    549 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    550 _PANIDH	=	0xdf4b
+                    DF4C    551 _PANIDL	=	0xdf4c
+                    DF4D    552 _SHORTADDRH	=	0xdf4d
+                    DF4E    553 _SHORTADDRL	=	0xdf4e
+                    DF4F    554 _IOCFG0	=	0xdf4f
+                    DF50    555 _IOCFG1	=	0xdf50
+                    DF51    556 _IOCFG2	=	0xdf51
+                    DF52    557 _IOCFG3	=	0xdf52
+                    DF53    558 _RXFIFOCNT	=	0xdf53
+                    DF54    559 _FSMTC1	=	0xdf54
+                    DF60    560 _CHVER	=	0xdf60
+                    DF61    561 _CHIPID	=	0xdf61
+                    DF62    562 _RFSTATUS	=	0xdf62
+                    DFC1    563 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    564 _RFD_SHADOW	=	0xdfd9
+                    DFF9    565 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    566 _ADC_SHADOW	=	0xdfba
+   0000                     567 _rf_tx_power:
+   0000                     568 	.ds 1
+   0001                     569 _rf_flags:
+   0001                     570 	.ds 1
+                            571 ;--------------------------------------------------------
+                            572 ; absolute external ram data
+                            573 ;--------------------------------------------------------
+                            574 	.area XABS    (ABS,XDATA)
+                            575 ;--------------------------------------------------------
+                            576 ; external initialized ram data
+                            577 ;--------------------------------------------------------
+                            578 	.area XISEG   (XDATA)
+   0000                     579 _rf_initialized:
+   0000                     580 	.ds 1
+                            581 	.area HOME    (CODE)
+                            582 	.area GSINIT0 (CODE)
+                            583 	.area GSINIT1 (CODE)
+                            584 	.area GSINIT2 (CODE)
+                            585 	.area GSINIT3 (CODE)
+                            586 	.area GSINIT4 (CODE)
+                            587 	.area GSINIT5 (CODE)
+                            588 	.area GSINIT  (CODE)
+                            589 	.area GSFINAL (CODE)
+                            590 	.area CSEG    (CODE)
+                            591 ;--------------------------------------------------------
+                            592 ; global & static initialisations
+                            593 ;--------------------------------------------------------
+                            594 	.area HOME    (CODE)
+                            595 	.area GSINIT  (CODE)
+                            596 	.area GSFINAL (CODE)
+                            597 	.area GSINIT  (CODE)
+                            598 ;--------------------------------------------------------
+                            599 ; Home
+                            600 ;--------------------------------------------------------
+                            601 	.area HOME    (CODE)
+                            602 	.area HOME    (CODE)
+                            603 ;--------------------------------------------------------
+                            604 ; code
+                            605 ;--------------------------------------------------------
+                            606 	.area CSEG    (CODE)
+                            607 ;------------------------------------------------------------
+                            608 ;Allocation info for local variables in function 'flush_rx'
+                            609 ;------------------------------------------------------------
+                            610 ;------------------------------------------------------------
+                            611 ;	../../../cpu/cc2430/dev/cc2430_rf.c:81: flush_rx()
+                            612 ;	-----------------------------------------
+                            613 ;	 function flush_rx
+                            614 ;	-----------------------------------------
+   0000                     615 _flush_rx:
+                    0002    616 	ar2 = 0x02
+                    0003    617 	ar3 = 0x03
+                    0004    618 	ar4 = 0x04
+                    0005    619 	ar5 = 0x05
+                    0006    620 	ar6 = 0x06
+                    0007    621 	ar7 = 0x07
+                    0000    622 	ar0 = 0x00
+                    0001    623 	ar1 = 0x01
+                            624 ;	../../../cpu/cc2430/dev/cc2430_rf.c:83: cc2430_rf_command(ISFLUSHRX);
+   0000 75 82 E6            625 	mov	dpl,#0xE6
+   0003 12s00r00            626 	lcall	_cc2430_rf_command
+                            627 ;	../../../cpu/cc2430/dev/cc2430_rf.c:84: cc2430_rf_command(ISFLUSHRX);
+   0006 75 82 E6            628 	mov	dpl,#0xE6
+   0009 12s00r00            629 	lcall	_cc2430_rf_command
+                            630 ;	../../../cpu/cc2430/dev/cc2430_rf.c:93: RFIF &= ~IRQ_FIFOP;
+   000C 53 E9 DF            631 	anl	_RFIF,#0xDF
+   000F 22                  632 	ret
+                            633 ;------------------------------------------------------------
+                            634 ;Allocation info for local variables in function 'address_decoder_mode'
+                            635 ;------------------------------------------------------------
+                            636 ;mode                      Allocated to registers r2 
+                            637 ;------------------------------------------------------------
+                            638 ;	../../../cpu/cc2430/dev/cc2430_rf.c:103: address_decoder_mode(rf_address_mode_t mode)
+                            639 ;	-----------------------------------------
+                            640 ;	 function address_decoder_mode
+                            641 ;	-----------------------------------------
+   0010                     642 _address_decoder_mode:
+   0010 AA 82               643 	mov	r2,dpl
+                            644 ;	../../../cpu/cc2430/dev/cc2430_rf.c:107: switch(mode) {
+   0012 BA 01 02            645 	cjne	r2,#0x01,00113$
+   0015 80 20               646 	sjmp	00103$
+   0017                     647 00113$:
+   0017 BA 02 02            648 	cjne	r2,#0x02,00114$
+   001A 80 0A               649 	sjmp	00102$
+   001C                     650 00114$:
+   001C BA 03 02            651 	cjne	r2,#0x03,00115$
+   001F 80 05               652 	sjmp	00102$
+   0021                     653 00115$:
+                            654 ;	../../../cpu/cc2430/dev/cc2430_rf.c:109: case RF_MONITOR:
+   0021 BA 05 35            655 	cjne	r2,#0x05,00105$
+   0024 80 22               656 	sjmp	00104$
+   0026                     657 00102$:
+                            658 ;	../../../cpu/cc2430/dev/cc2430_rf.c:110: MDMCTRL0H |= 0x10;   /*Address-decode off , coordinator*/
+   0026 90 DF 02            659 	mov	dptr,#_MDMCTRL0H
+   0029 E0                  660 	movx	a,@dptr
+   002A 44 10               661 	orl	a,#0x10
+   002C F0                  662 	movx	@dptr,a
+                            663 ;	../../../cpu/cc2430/dev/cc2430_rf.c:111: MDMCTRL0L &= ~0x10;  /*no automatic ACK */
+   002D 90 DF 03            664 	mov	dptr,#_MDMCTRL0L
+   0030 E0                  665 	movx	a,@dptr
+   0031 FA                  666 	mov	r2,a
+   0032 54 EF               667 	anl	a,#0xEF
+   0034 F0                  668 	movx	@dptr,a
+                            669 ;	../../../cpu/cc2430/dev/cc2430_rf.c:112: break;
+                            670 ;	../../../cpu/cc2430/dev/cc2430_rf.c:114: case RF_DECODER_COORDINATOR:
+   0035 80 31               671 	sjmp	00106$
+   0037                     672 00103$:
+                            673 ;	../../../cpu/cc2430/dev/cc2430_rf.c:115: MDMCTRL0H |= 0x18;   /*Address-decode on , coordinator*/
+   0037 90 DF 02            674 	mov	dptr,#_MDMCTRL0H
+   003A E0                  675 	movx	a,@dptr
+   003B 44 18               676 	orl	a,#0x18
+   003D F0                  677 	movx	@dptr,a
+                            678 ;	../../../cpu/cc2430/dev/cc2430_rf.c:116: MDMCTRL0L |= 0x10;   /*automatic ACK */
+   003E 90 DF 03            679 	mov	dptr,#_MDMCTRL0L
+   0041 E0                  680 	movx	a,@dptr
+   0042 FA                  681 	mov	r2,a
+   0043 44 10               682 	orl	a,#0x10
+   0045 F0                  683 	movx	@dptr,a
+                            684 ;	../../../cpu/cc2430/dev/cc2430_rf.c:117: break;
+                            685 ;	../../../cpu/cc2430/dev/cc2430_rf.c:119: case RF_DECODER_ON:
+   0046 80 20               686 	sjmp	00106$
+   0048                     687 00104$:
+                            688 ;	../../../cpu/cc2430/dev/cc2430_rf.c:120: MDMCTRL0H |= 0x08;   /*Address-decode on */
+   0048 90 DF 02            689 	mov	dptr,#_MDMCTRL0H
+   004B E0                  690 	movx	a,@dptr
+   004C 44 08               691 	orl	a,#0x08
+   004E F0                  692 	movx	@dptr,a
+                            693 ;	../../../cpu/cc2430/dev/cc2430_rf.c:121: MDMCTRL0L &= ~0x10;  /* no automatic ACK */
+   004F 90 DF 03            694 	mov	dptr,#_MDMCTRL0L
+   0052 E0                  695 	movx	a,@dptr
+   0053 FA                  696 	mov	r2,a
+   0054 54 EF               697 	anl	a,#0xEF
+   0056 F0                  698 	movx	@dptr,a
+                            699 ;	../../../cpu/cc2430/dev/cc2430_rf.c:122: break;
+                            700 ;	../../../cpu/cc2430/dev/cc2430_rf.c:124: default:
+   0057 80 0F               701 	sjmp	00106$
+   0059                     702 00105$:
+                            703 ;	../../../cpu/cc2430/dev/cc2430_rf.c:125: MDMCTRL0H &= ~0x18;  /* Generic client */
+   0059 90 DF 02            704 	mov	dptr,#_MDMCTRL0H
+   005C E0                  705 	movx	a,@dptr
+   005D 54 E7               706 	anl	a,#0xE7
+   005F F0                  707 	movx	@dptr,a
+                            708 ;	../../../cpu/cc2430/dev/cc2430_rf.c:126: MDMCTRL0L &= ~0x10;  /* no automatic ACK */
+   0060 90 DF 03            709 	mov	dptr,#_MDMCTRL0L
+   0063 E0                  710 	movx	a,@dptr
+   0064 FA                  711 	mov	r2,a
+   0065 54 EF               712 	anl	a,#0xEF
+   0067 F0                  713 	movx	@dptr,a
+                            714 ;	../../../cpu/cc2430/dev/cc2430_rf.c:128: }
+   0068                     715 00106$:
+                            716 ;	../../../cpu/cc2430/dev/cc2430_rf.c:130: return 1;
+   0068 75 82 01            717 	mov	dpl,#0x01
+   006B 22                  718 	ret
+                            719 ;------------------------------------------------------------
+                            720 ;Allocation info for local variables in function 'cc2430_rf_prepare'
+                            721 ;------------------------------------------------------------
+                            722 ;payload_len               Allocated to stack - offset -4
+                            723 ;payload                   Allocated to stack - offset 1
+                            724 ;i                         Allocated to registers r5 
+                            725 ;------------------------------------------------------------
+                            726 ;	../../../cpu/cc2430/dev/cc2430_rf.c:134: cc2430_rf_prepare(const void *payload, unsigned short payload_len) __banked
+                            727 ;	-----------------------------------------
+                            728 ;	 function cc2430_rf_prepare
+                            729 ;	-----------------------------------------
+   006C                     730 _cc2430_rf_prepare:
+   006C C0*00               731 	push	_bp
+   006E 85 81*00            732 	mov	_bp,sp
+   0071 C0 82               733 	push	dpl
+   0073 C0 83               734 	push	dph
+   0075 C0 F0               735 	push	b
+                            736 ;	../../../cpu/cc2430/dev/cc2430_rf.c:141: while(RFSTATUS & TX_ACTIVE);
+   0077                     737 00101$:
+   0077 90 DF 62            738 	mov	dptr,#_RFSTATUS
+   007A E0                  739 	movx	a,@dptr
+   007B FD                  740 	mov	r5,a
+   007C 20 E4 F8            741 	jb	acc.4,00101$
+                            742 ;	../../../cpu/cc2430/dev/cc2430_rf.c:143: if(rf_flags & TX_ACK) {
+   007F 90s00r01            743 	mov	dptr,#_rf_flags
+   0082 E0                  744 	movx	a,@dptr
+   0083 FD                  745 	mov	r5,a
+   0084 30 E6 05            746 	jnb	acc.6,00105$
+                            747 ;	../../../cpu/cc2430/dev/cc2430_rf.c:144: return -1;
+   0087 90 FF FF            748 	mov	dptr,#0xFFFF
+   008A 80 50               749 	sjmp	00122$
+   008C                     750 00105$:
+                            751 ;	../../../cpu/cc2430/dev/cc2430_rf.c:147: if((rf_flags & RX_ACTIVE) == 0) {
+   008C ED                  752 	mov	a,r5
+   008D 20 E7 03            753 	jb	acc.7,00108$
+                            754 ;	../../../cpu/cc2430/dev/cc2430_rf.c:148: cc2430_rf_rx_enable();
+   0090 12s05rF3            755 	lcall	_cc2430_rf_rx_enable
+                            756 ;	../../../cpu/cc2430/dev/cc2430_rf.c:154: PRINTF("cc2430_rf: sending %u byte payload\n", payload_len);
+   0093                     757 00108$:
+                            758 ;	../../../cpu/cc2430/dev/cc2430_rf.c:156: cc2430_rf_command(ISFLUSHTX);
+   0093 75 82 E7            759 	mov	dpl,#0xE7
+   0096 12s00r00            760 	lcall	_cc2430_rf_command
+                            761 ;	../../../cpu/cc2430/dev/cc2430_rf.c:159: RFD = payload_len+CHECKSUM_LEN;   /* Payload plus FCS */
+   0099 E5*00               762 	mov	a,_bp
+   009B 24 FC               763 	add	a,#0xfc
+   009D F8                  764 	mov	r0,a
+   009E 86 05               765 	mov	ar5,@r0
+   00A0 74 02               766 	mov	a,#0x02
+   00A2 2D                  767 	add	a,r5
+   00A3 F5 D9               768 	mov	_RFD,a
+                            769 ;	../../../cpu/cc2430/dev/cc2430_rf.c:161: for(i = 0 ; i < payload_len; i++) {
+   00A5 7D 00               770 	mov	r5,#0x00
+   00A7                     771 00118$:
+   00A7 8D 06               772 	mov	ar6,r5
+   00A9 7F 00               773 	mov	r7,#0x00
+   00AB E5*00               774 	mov	a,_bp
+   00AD 24 FC               775 	add	a,#0xfc
+   00AF F8                  776 	mov	r0,a
+   00B0 C3                  777 	clr	c
+   00B1 EE                  778 	mov	a,r6
+   00B2 96                  779 	subb	a,@r0
+   00B3 EF                  780 	mov	a,r7
+   00B4 08                  781 	inc	r0
+   00B5 96                  782 	subb	a,@r0
+   00B6 50 1B               783 	jnc	00116$
+                            784 ;	../../../cpu/cc2430/dev/cc2430_rf.c:162: RFD = ((unsigned char*)(payload))[i];
+   00B8 A8*00               785 	mov	r0,_bp
+   00BA 08                  786 	inc	r0
+   00BB ED                  787 	mov	a,r5
+   00BC 26                  788 	add	a,@r0
+   00BD FE                  789 	mov	r6,a
+   00BE E4                  790 	clr	a
+   00BF 08                  791 	inc	r0
+   00C0 36                  792 	addc	a,@r0
+   00C1 FF                  793 	mov	r7,a
+   00C2 08                  794 	inc	r0
+   00C3 86 02               795 	mov	ar2,@r0
+   00C5 8E 82               796 	mov	dpl,r6
+   00C7 8F 83               797 	mov	dph,r7
+   00C9 8A F0               798 	mov	b,r2
+   00CB 12s00r00            799 	lcall	__gptrget
+   00CE F5 D9               800 	mov	_RFD,a
+                            801 ;	../../../cpu/cc2430/dev/cc2430_rf.c:161: for(i = 0 ; i < payload_len; i++) {
+   00D0 0D                  802 	inc	r5
+                            803 ;	../../../cpu/cc2430/dev/cc2430_rf.c:165: PRINTF("\n");
+   00D1 80 D4               804 	sjmp	00118$
+   00D3                     805 00116$:
+                            806 ;	../../../cpu/cc2430/dev/cc2430_rf.c:168: RFD = 0;
+   00D3 75 D9 00            807 	mov	_RFD,#0x00
+                            808 ;	../../../cpu/cc2430/dev/cc2430_rf.c:169: RFD = 0;
+   00D6 75 D9 00            809 	mov	_RFD,#0x00
+                            810 ;	../../../cpu/cc2430/dev/cc2430_rf.c:171: return 0;
+   00D9 90 00 00            811 	mov	dptr,#0x0000
+   00DC                     812 00122$:
+   00DC 85*00 81            813 	mov	sp,_bp
+   00DF D0*00               814 	pop	_bp
+   00E1 22                  815 	ret
+                            816 ;------------------------------------------------------------
+                            817 ;Allocation info for local variables in function 'cc2430_rf_receiving_packet'
+                            818 ;------------------------------------------------------------
+                            819 ;------------------------------------------------------------
+                            820 ;	../../../cpu/cc2430/dev/cc2430_rf.c:175: cc2430_rf_receiving_packet(void) __banked
+                            821 ;	-----------------------------------------
+                            822 ;	 function cc2430_rf_receiving_packet
+                            823 ;	-----------------------------------------
+   00E2                     824 _cc2430_rf_receiving_packet:
+                            825 ;	../../../cpu/cc2430/dev/cc2430_rf.c:183: return (RFSTATUS & (TX_ACTIVE | SFD) == SFD);
+   00E2 90 DF 62            826 	mov	dptr,#_RFSTATUS
+   00E5 E0                  827 	movx	a,@dptr
+   00E6 90 00 00            828 	mov	dptr,#0x0000
+   00E9 22                  829 	ret
+                            830 ;------------------------------------------------------------
+                            831 ;Allocation info for local variables in function 'cc2430_rf_pending_packet'
+                            832 ;------------------------------------------------------------
+                            833 ;------------------------------------------------------------
+                            834 ;	../../../cpu/cc2430/dev/cc2430_rf.c:187: cc2430_rf_pending_packet(void) __banked
+                            835 ;	-----------------------------------------
+                            836 ;	 function cc2430_rf_pending_packet
+                            837 ;	-----------------------------------------
+   00EA                     838 _cc2430_rf_pending_packet:
+                            839 ;	../../../cpu/cc2430/dev/cc2430_rf.c:189: return (RFSTATUS & FIFOP);
+   00EA 90 DF 62            840 	mov	dptr,#_RFSTATUS
+   00ED E0                  841 	movx	a,@dptr
+   00EE FA                  842 	mov	r2,a
+   00EF 53 02 04            843 	anl	ar2,#0x04
+   00F2 7B 00               844 	mov	r3,#0x00
+   00F4 8A 82               845 	mov	dpl,r2
+   00F6 8B 83               846 	mov	dph,r3
+   00F8 22                  847 	ret
+                            848 ;------------------------------------------------------------
+                            849 ;Allocation info for local variables in function 'cc2430_rf_init'
+                            850 ;------------------------------------------------------------
+                            851 ;------------------------------------------------------------
+                            852 ;	../../../cpu/cc2430/dev/cc2430_rf.c:193: cc2430_rf_init(void) __banked
+                            853 ;	-----------------------------------------
+                            854 ;	 function cc2430_rf_init
+                            855 ;	-----------------------------------------
+   00F9                     856 _cc2430_rf_init:
+                            857 ;	../../../cpu/cc2430/dev/cc2430_rf.c:195: if(rf_initialized) {
+   00F9 90s00r00            858 	mov	dptr,#_rf_initialized
+   00FC E0                  859 	movx	a,@dptr
+   00FD FA                  860 	mov	r2,a
+   00FE 60 04               861 	jz	00103$
+                            862 ;	../../../cpu/cc2430/dev/cc2430_rf.c:196: return 0;
+   0100 90 00 00            863 	mov	dptr,#0x0000
+   0103 22                  864 	ret
+                            865 ;	../../../cpu/cc2430/dev/cc2430_rf.c:199: PRINTF("cc2430_rf_init called\n");
+   0104                     866 00103$:
+                            867 ;	../../../cpu/cc2430/dev/cc2430_rf.c:201: RFPWR &= ~RREG_RADIO_PD;	/*make sure it's powered*/
+   0104 90 DF 17            868 	mov	dptr,#_RFPWR
+   0107 E0                  869 	movx	a,@dptr
+   0108 FA                  870 	mov	r2,a
+   0109 54 F7               871 	anl	a,#0xF7
+   010B F0                  872 	movx	@dptr,a
+                            873 ;	../../../cpu/cc2430/dev/cc2430_rf.c:202: while((RFPWR & ADI_RADIO_PD) == 1);
+   010C                     874 00105$:
+   010C 90 DF 17            875 	mov	dptr,#_RFPWR
+   010F E0                  876 	movx	a,@dptr
+   0110 FA                  877 	mov	r2,a
+   0111 53 02 10            878 	anl	ar2,#0x10
+   0114 BA 01 02            879 	cjne	r2,#0x01,00123$
+   0117 80 F3               880 	sjmp	00105$
+   0119                     881 00123$:
+                            882 ;	../../../cpu/cc2430/dev/cc2430_rf.c:203: while((RFIF & IRQ_RREG_ON) == 0);	/*wait for power up*/
+   0119                     883 00108$:
+   0119 E5 E9               884 	mov	a,_RFIF
+   011B 30 E7 FB            885 	jnb	acc.7,00108$
+                            886 ;	../../../cpu/cc2430/dev/cc2430_rf.c:204: SLEEP &= ~OSC_PD; /*Osc on*/
+   011E 53 BE FB            887 	anl	_SLEEP,#0xFB
+                            888 ;	../../../cpu/cc2430/dev/cc2430_rf.c:205: while((SLEEP & XOSC_STB) == 0);	/*wait for power up*/
+   0121                     889 00111$:
+   0121 E5 BE               890 	mov	a,_SLEEP
+   0123 30 E6 FB            891 	jnb	acc.6,00111$
+                            892 ;	../../../cpu/cc2430/dev/cc2430_rf.c:207: rf_flags = 0;
+   0126 90s00r01            893 	mov	dptr,#_rf_flags
+   0129 E4                  894 	clr	a
+   012A F0                  895 	movx	@dptr,a
+                            896 ;	../../../cpu/cc2430/dev/cc2430_rf.c:209: FSMTC1 = 1;	/*don't abort reception, if enable called, accept ack, auto rx after tx*/
+   012B 90 DF 54            897 	mov	dptr,#_FSMTC1
+   012E 74 01               898 	mov	a,#0x01
+   0130 F0                  899 	movx	@dptr,a
+                            900 ;	../../../cpu/cc2430/dev/cc2430_rf.c:211: MDMCTRL0H = 0x02;	 /* Generic client, standard hysteresis, decoder on 0x0a */
+   0131 90 DF 02            901 	mov	dptr,#_MDMCTRL0H
+   0134 74 02               902 	mov	a,#0x02
+   0136 F0                  903 	movx	@dptr,a
+                            904 ;	../../../cpu/cc2430/dev/cc2430_rf.c:212: MDMCTRL0L = 0xE2;	 /* automatic ACK and CRC, standard CCA and preamble 0xf2 */
+   0137 90 DF 03            905 	mov	dptr,#_MDMCTRL0L
+   013A 74 E2               906 	mov	a,#0xE2
+   013C F0                  907 	movx	@dptr,a
+                            908 ;	../../../cpu/cc2430/dev/cc2430_rf.c:214: MDMCTRL1H = 0x30;			/* Defaults */
+   013D 90 DF 04            909 	mov	dptr,#_MDMCTRL1H
+   0140 74 30               910 	mov	a,#0x30
+   0142 F0                  911 	movx	@dptr,a
+                            912 ;	../../../cpu/cc2430/dev/cc2430_rf.c:215: MDMCTRL1L = 0x0;
+   0143 90 DF 05            913 	mov	dptr,#_MDMCTRL1L
+   0146 E4                  914 	clr	a
+   0147 F0                  915 	movx	@dptr,a
+                            916 ;	../../../cpu/cc2430/dev/cc2430_rf.c:217: RXCTRL0H = 0x32;			/* RX tuning optimized */
+   0148 90 DF 0C            917 	mov	dptr,#_RXCTRL0H
+   014B 74 32               918 	mov	a,#0x32
+   014D F0                  919 	movx	@dptr,a
+                            920 ;	../../../cpu/cc2430/dev/cc2430_rf.c:218: RXCTRL0L = 0xf5;
+   014E 90 DF 0D            921 	mov	dptr,#_RXCTRL0L
+   0151 74 F5               922 	mov	a,#0xF5
+   0153 F0                  923 	movx	@dptr,a
+                            924 ;	../../../cpu/cc2430/dev/cc2430_rf.c:220: cc2430_rf_channel_set(RF_DEFAULT_CHANNEL);
+   0154 75 82 12            925 	mov	dpl,#0x12
+   0157 12s05r42            926 	lcall	_cc2430_rf_channel_set
+                            927 ;	../../../cpu/cc2430/dev/cc2430_rf.c:221: cc2430_rf_command(ISFLUSHTX);
+   015A 75 82 E7            928 	mov	dpl,#0xE7
+   015D 12s00r00            929 	lcall	_cc2430_rf_command
+                            930 ;	../../../cpu/cc2430/dev/cc2430_rf.c:222: cc2430_rf_command(ISFLUSHRX);
+   0160 75 82 E6            931 	mov	dpl,#0xE6
+   0163 12s00r00            932 	lcall	_cc2430_rf_command
+                            933 ;	../../../cpu/cc2430/dev/cc2430_rf.c:224: cc2430_rf_set_addr(0xffff, 0x0000, NULL);
+   0166 E4                  934 	clr	a
+   0167 C0 E0               935 	push	acc
+   0169 C0 E0               936 	push	acc
+   016B C0 E0               937 	push	acc
+   016D E4                  938 	clr	a
+   016E C0 E0               939 	push	acc
+   0170 C0 E0               940 	push	acc
+   0172 90 FF FF            941 	mov	dptr,#0xFFFF
+   0175 12s06rBD            942 	lcall	_cc2430_rf_set_addr
+   0178 E5 81               943 	mov	a,sp
+   017A 24 FB               944 	add	a,#0xfb
+   017C F5 81               945 	mov	sp,a
+                            946 ;	../../../cpu/cc2430/dev/cc2430_rf.c:225: address_decoder_mode(RF_DECODER_NONE);
+   017E 75 82 00            947 	mov	dpl,#0x00
+   0181 12s00r10            948 	lcall	_address_decoder_mode
+                            949 ;	../../../cpu/cc2430/dev/cc2430_rf.c:227: RFIM = IRQ_FIFOP;
+   0184 75 91 20            950 	mov	_RFIM,#0x20
+                            951 ;	../../../cpu/cc2430/dev/cc2430_rf.c:228: RFIF &= ~(IRQ_FIFOP);
+   0187 53 E9 DF            952 	anl	_RFIF,#0xDF
+                            953 ;	../../../cpu/cc2430/dev/cc2430_rf.c:230: S1CON &= ~(RFIF_0 | RFIF_1);
+   018A 53 9B FC            954 	anl	_S1CON,#0xFC
+                            955 ;	../../../cpu/cc2430/dev/cc2430_rf.c:242: rf_initialized = 1;
+   018D 90s00r00            956 	mov	dptr,#_rf_initialized
+   0190 74 01               957 	mov	a,#0x01
+   0192 F0                  958 	movx	@dptr,a
+                            959 ;	../../../cpu/cc2430/dev/cc2430_rf.c:244: return 1;
+   0193 90 00 01            960 	mov	dptr,#0x0001
+   0196 22                  961 	ret
+                            962 ;------------------------------------------------------------
+                            963 ;Allocation info for local variables in function 'cc2430_rf_transmit'
+                            964 ;------------------------------------------------------------
+                            965 ;counter                   Allocated to registers r2 
+                            966 ;ret                       Allocated to registers r2 r3 
+                            967 ;sloc0                     Allocated to stack - offset 4
+                            968 ;sloc1                     Allocated to stack - offset 1
+                            969 ;sloc2                     Allocated to stack - offset 5
+                            970 ;------------------------------------------------------------
+                            971 ;	../../../cpu/cc2430/dev/cc2430_rf.c:248: cc2430_rf_transmit(void) __banked
+                            972 ;	-----------------------------------------
+                            973 ;	 function cc2430_rf_transmit
+                            974 ;	-----------------------------------------
+   0197                     975 _cc2430_rf_transmit:
+   0197 C0*00               976 	push	_bp
+   0199 E5 81               977 	mov	a,sp
+   019B F5*00               978 	mov	_bp,a
+   019D 24 08               979 	add	a,#0x08
+   019F F5 81               980 	mov	sp,a
+                            981 ;	../../../cpu/cc2430/dev/cc2430_rf.c:253: if(cc2430_rf_cca_check(0,0) == CC2430_CCA_BUSY) {
+   01A1 E4                  982 	clr	a
+   01A2 C0 E0               983 	push	acc
+   01A4 75 82 00            984 	mov	dpl,#0x00
+   01A7 12s07r2F            985 	lcall	_cc2430_rf_cca_check
+   01AA AA 82               986 	mov	r2,dpl
+   01AC AB 83               987 	mov	r3,dph
+   01AE 15 81               988 	dec	sp
+   01B0 BA 01 32            989 	cjne	r2,#0x01,00102$
+   01B3 BB 00 2F            990 	cjne	r3,#0x00,00102$
+                            991 ;	../../../cpu/cc2430/dev/cc2430_rf.c:254: RIMESTATS_ADD(contentiondrop);
+   01B6 90s00r38            992 	mov	dptr,#(_rimestats + 0x0038)
+   01B9 E0                  993 	movx	a,@dptr
+   01BA FA                  994 	mov	r2,a
+   01BB A3                  995 	inc	dptr
+   01BC E0                  996 	movx	a,@dptr
+   01BD FB                  997 	mov	r3,a
+   01BE A3                  998 	inc	dptr
+   01BF E0                  999 	movx	a,@dptr
+   01C0 FC                 1000 	mov	r4,a
+   01C1 A3                 1001 	inc	dptr
+   01C2 E0                 1002 	movx	a,@dptr
+   01C3 FD                 1003 	mov	r5,a
+   01C4 0A                 1004 	inc	r2
+   01C5 BA 00 09           1005 	cjne	r2,#0x00,00148$
+   01C8 0B                 1006 	inc	r3
+   01C9 BB 00 05           1007 	cjne	r3,#0x00,00148$
+   01CC 0C                 1008 	inc	r4
+   01CD BC 00 01           1009 	cjne	r4,#0x00,00148$
+   01D0 0D                 1010 	inc	r5
+   01D1                    1011 00148$:
+   01D1 90s00r38           1012 	mov	dptr,#(_rimestats + 0x0038)
+   01D4 EA                 1013 	mov	a,r2
+   01D5 F0                 1014 	movx	@dptr,a
+   01D6 A3                 1015 	inc	dptr
+   01D7 EB                 1016 	mov	a,r3
+   01D8 F0                 1017 	movx	@dptr,a
+   01D9 A3                 1018 	inc	dptr
+   01DA EC                 1019 	mov	a,r4
+   01DB F0                 1020 	movx	@dptr,a
+   01DC A3                 1021 	inc	dptr
+   01DD ED                 1022 	mov	a,r5
+   01DE F0                 1023 	movx	@dptr,a
+                           1024 ;	../../../cpu/cc2430/dev/cc2430_rf.c:255: return RADIO_TX_COLLISION;
+   01DF 90 00 02           1025 	mov	dptr,#0x0002
+   01E2 02s03r88           1026 	ljmp	00133$
+   01E5                    1027 00102$:
+                           1028 ;	../../../cpu/cc2430/dev/cc2430_rf.c:262: if(RFSTATUS & SFD) {
+   01E5 90 DF 62           1029 	mov	dptr,#_RFSTATUS
+   01E8 E0                 1030 	movx	a,@dptr
+   01E9 FA                 1031 	mov	r2,a
+   01EA 30 E1 2F           1032 	jnb	acc.1,00104$
+                           1033 ;	../../../cpu/cc2430/dev/cc2430_rf.c:263: RIMESTATS_ADD(contentiondrop);
+   01ED 90s00r38           1034 	mov	dptr,#(_rimestats + 0x0038)
+   01F0 E0                 1035 	movx	a,@dptr
+   01F1 FA                 1036 	mov	r2,a
+   01F2 A3                 1037 	inc	dptr
+   01F3 E0                 1038 	movx	a,@dptr
+   01F4 FB                 1039 	mov	r3,a
+   01F5 A3                 1040 	inc	dptr
+   01F6 E0                 1041 	movx	a,@dptr
+   01F7 FC                 1042 	mov	r4,a
+   01F8 A3                 1043 	inc	dptr
+   01F9 E0                 1044 	movx	a,@dptr
+   01FA FD                 1045 	mov	r5,a
+   01FB 0A                 1046 	inc	r2
+   01FC BA 00 09           1047 	cjne	r2,#0x00,00150$
+   01FF 0B                 1048 	inc	r3
+   0200 BB 00 05           1049 	cjne	r3,#0x00,00150$
+   0203 0C                 1050 	inc	r4
+   0204 BC 00 01           1051 	cjne	r4,#0x00,00150$
+   0207 0D                 1052 	inc	r5
+   0208                    1053 00150$:
+   0208 90s00r38           1054 	mov	dptr,#(_rimestats + 0x0038)
+   020B EA                 1055 	mov	a,r2
+   020C F0                 1056 	movx	@dptr,a
+   020D A3                 1057 	inc	dptr
+   020E EB                 1058 	mov	a,r3
+   020F F0                 1059 	movx	@dptr,a
+   0210 A3                 1060 	inc	dptr
+   0211 EC                 1061 	mov	a,r4
+   0212 F0                 1062 	movx	@dptr,a
+   0213 A3                 1063 	inc	dptr
+   0214 ED                 1064 	mov	a,r5
+   0215 F0                 1065 	movx	@dptr,a
+                           1066 ;	../../../cpu/cc2430/dev/cc2430_rf.c:264: return RADIO_TX_COLLISION;
+   0216 90 00 02           1067 	mov	dptr,#0x0002
+   0219 02s03r88           1068 	ljmp	00133$
+   021C                    1069 00104$:
+                           1070 ;	../../../cpu/cc2430/dev/cc2430_rf.c:268: ENERGEST_OFF(ENERGEST_TYPE_LISTEN);
+   021C 90s00r07           1071 	mov	dptr,#(_energest_current_mode + 0x0007)
+   021F E0                 1072 	movx	a,@dptr
+   0220 60 58              1073 	jz	00110$
+   0222 90s00r1C           1074 	mov	dptr,#(_energest_total_time + 0x001c)
+   0225 A8*00              1075 	mov	r0,_bp
+   0227 08                 1076 	inc	r0
+   0228 E0                 1077 	movx	a,@dptr
+   0229 F6                 1078 	mov	@r0,a
+   022A A3                 1079 	inc	dptr
+   022B E0                 1080 	movx	a,@dptr
+   022C 08                 1081 	inc	r0
+   022D F6                 1082 	mov	@r0,a
+   022E A3                 1083 	inc	dptr
+   022F E0                 1084 	movx	a,@dptr
+   0230 08                 1085 	inc	r0
+   0231 F6                 1086 	mov	@r0,a
+   0232 A3                 1087 	inc	dptr
+   0233 E0                 1088 	movx	a,@dptr
+   0234 08                 1089 	inc	r0
+   0235 F6                 1090 	mov	@r0,a
+   0236 AA E2              1091 	mov	r2,_T1CNTL
+   0238 7B 00              1092 	mov	r3,#0x00
+   023A AF E3              1093 	mov	r7,_T1CNTH
+   023C E4                 1094 	clr	a
+   023D 2A                 1095 	add	a,r2
+   023E FA                 1096 	mov	r2,a
+   023F EF                 1097 	mov	a,r7
+   0240 3B                 1098 	addc	a,r3
+   0241 FB                 1099 	mov	r3,a
+   0242 90s00r0E           1100 	mov	dptr,#(_energest_current_time + 0x000e)
+   0245 E0                 1101 	movx	a,@dptr
+   0246 FE                 1102 	mov	r6,a
+   0247 A3                 1103 	inc	dptr
+   0248 E0                 1104 	movx	a,@dptr
+   0249 FF                 1105 	mov	r7,a
+   024A EA                 1106 	mov	a,r2
+   024B C3                 1107 	clr	c
+   024C 9E                 1108 	subb	a,r6
+   024D FE                 1109 	mov	r6,a
+   024E EB                 1110 	mov	a,r3
+   024F 9F                 1111 	subb	a,r7
+   0250 FF                 1112 	mov	r7,a
+   0251 7A 00              1113 	mov	r2,#0x00
+   0253 7B 00              1114 	mov	r3,#0x00
+   0255 A8*00              1115 	mov	r0,_bp
+   0257 08                 1116 	inc	r0
+   0258 EE                 1117 	mov	a,r6
+   0259 26                 1118 	add	a,@r0
+   025A FE                 1119 	mov	r6,a
+   025B EF                 1120 	mov	a,r7
+   025C 08                 1121 	inc	r0
+   025D 36                 1122 	addc	a,@r0
+   025E FF                 1123 	mov	r7,a
+   025F EA                 1124 	mov	a,r2
+   0260 08                 1125 	inc	r0
+   0261 36                 1126 	addc	a,@r0
+   0262 FA                 1127 	mov	r2,a
+   0263 EB                 1128 	mov	a,r3
+   0264 08                 1129 	inc	r0
+   0265 36                 1130 	addc	a,@r0
+   0266 FB                 1131 	mov	r3,a
+   0267 90s00r1C           1132 	mov	dptr,#(_energest_total_time + 0x001c)
+   026A EE                 1133 	mov	a,r6
+   026B F0                 1134 	movx	@dptr,a
+   026C A3                 1135 	inc	dptr
+   026D EF                 1136 	mov	a,r7
+   026E F0                 1137 	movx	@dptr,a
+   026F A3                 1138 	inc	dptr
+   0270 EA                 1139 	mov	a,r2
+   0271 F0                 1140 	movx	@dptr,a
+   0272 A3                 1141 	inc	dptr
+   0273 EB                 1142 	mov	a,r3
+   0274 F0                 1143 	movx	@dptr,a
+   0275 90s00r07           1144 	mov	dptr,#(_energest_current_mode + 0x0007)
+   0278 E4                 1145 	clr	a
+   0279 F0                 1146 	movx	@dptr,a
+                           1147 ;	../../../cpu/cc2430/dev/cc2430_rf.c:269: ENERGEST_ON(ENERGEST_TYPE_TRANSMIT);
+   027A                    1148 00110$:
+   027A AA E2              1149 	mov	r2,_T1CNTL
+   027C 7B 00              1150 	mov	r3,#0x00
+   027E AD E3              1151 	mov	r5,_T1CNTH
+   0280 E4                 1152 	clr	a
+   0281 2A                 1153 	add	a,r2
+   0282 FA                 1154 	mov	r2,a
+   0283 ED                 1155 	mov	a,r5
+   0284 3B                 1156 	addc	a,r3
+   0285 FB                 1157 	mov	r3,a
+   0286 90s00r0C           1158 	mov	dptr,#(_energest_current_time + 0x000c)
+   0289 EA                 1159 	mov	a,r2
+   028A F0                 1160 	movx	@dptr,a
+   028B A3                 1161 	inc	dptr
+   028C EB                 1162 	mov	a,r3
+   028D F0                 1163 	movx	@dptr,a
+   028E 90s00r06           1164 	mov	dptr,#(_energest_current_mode + 0x0006)
+   0291 74 01              1165 	mov	a,#0x01
+   0293 F0                 1166 	movx	@dptr,a
+                           1167 ;	../../../cpu/cc2430/dev/cc2430_rf.c:271: cc2430_rf_command(ISTXON);
+   0294 75 82 E3           1168 	mov	dpl,#0xE3
+   0297 12s00r00           1169 	lcall	_cc2430_rf_command
+                           1170 ;	../../../cpu/cc2430/dev/cc2430_rf.c:273: while(!(RFSTATUS & TX_ACTIVE) && (counter++ < 3)) {
+   029A 7A 00              1171 	mov	r2,#0x00
+   029C                    1172 00114$:
+   029C 90 DF 62           1173 	mov	dptr,#_RFSTATUS
+   029F E0                 1174 	movx	a,@dptr
+   02A0 FB                 1175 	mov	r3,a
+   02A1 20 E4 14           1176 	jb	acc.4,00116$
+   02A4 8A 03              1177 	mov	ar3,r2
+   02A6 0A                 1178 	inc	r2
+   02A7 BB 03 00           1179 	cjne	r3,#0x03,00153$
+   02AA                    1180 00153$:
+   02AA 50 0C              1181 	jnc	00116$
+                           1182 ;	../../../cpu/cc2430/dev/cc2430_rf.c:274: clock_delay(10);
+   02AC 90 00 0A           1183 	mov	dptr,#0x000A
+   02AF C0 02              1184 	push	ar2
+   02B1 12s00r00           1185 	lcall	_clock_delay
+   02B4 D0 02              1186 	pop	ar2
+   02B6 80 E4              1187 	sjmp	00114$
+   02B8                    1188 00116$:
+                           1189 ;	../../../cpu/cc2430/dev/cc2430_rf.c:277: if(!(RFSTATUS & TX_ACTIVE)) {
+   02B8 90 DF 62           1190 	mov	dptr,#_RFSTATUS
+   02BB E0                 1191 	movx	a,@dptr
+   02BC FA                 1192 	mov	r2,a
+   02BD 20 E4 0C           1193 	jb	acc.4,00119$
+                           1194 ;	../../../cpu/cc2430/dev/cc2430_rf.c:279: cc2430_rf_command(ISFLUSHTX);
+   02C0 75 82 E7           1195 	mov	dpl,#0xE7
+   02C3 12s00r00           1196 	lcall	_cc2430_rf_command
+                           1197 ;	../../../cpu/cc2430/dev/cc2430_rf.c:280: ret = RADIO_TX_ERR;
+   02C6 7A 01              1198 	mov	r2,#0x01
+   02C8 7B 00              1199 	mov	r3,#0x00
+                           1200 ;	../../../cpu/cc2430/dev/cc2430_rf.c:283: while(RFSTATUS & TX_ACTIVE);
+   02CA 80 0C              1201 	sjmp	00124$
+   02CC                    1202 00119$:
+   02CC 90 DF 62           1203 	mov	dptr,#_RFSTATUS
+   02CF E0                 1204 	movx	a,@dptr
+   02D0 FC                 1205 	mov	r4,a
+   02D1 20 E4 F8           1206 	jb	acc.4,00119$
+                           1207 ;	../../../cpu/cc2430/dev/cc2430_rf.c:286: ret = RADIO_TX_OK;
+   02D4 7A 00              1208 	mov	r2,#0x00
+   02D6 7B 00              1209 	mov	r3,#0x00
+   02D8                    1210 00124$:
+                           1211 ;	../../../cpu/cc2430/dev/cc2430_rf.c:289: ENERGEST_OFF(ENERGEST_TYPE_TRANSMIT);
+   02D8 90s00r06           1212 	mov	dptr,#(_energest_current_mode + 0x0006)
+   02DB E0                 1213 	movx	a,@dptr
+   02DC 60 63              1214 	jz	00130$
+   02DE C0 02              1215 	push	ar2
+   02E0 C0 03              1216 	push	ar3
+   02E2 90s00r18           1217 	mov	dptr,#(_energest_total_time + 0x0018)
+   02E5 E5*00              1218 	mov	a,_bp
+   02E7 24 05              1219 	add	a,#0x05
+   02E9 F8                 1220 	mov	r0,a
+   02EA E0                 1221 	movx	a,@dptr
+   02EB F6                 1222 	mov	@r0,a
+   02EC A3                 1223 	inc	dptr
+   02ED E0                 1224 	movx	a,@dptr
+   02EE 08                 1225 	inc	r0
+   02EF F6                 1226 	mov	@r0,a
+   02F0 A3                 1227 	inc	dptr
+   02F1 E0                 1228 	movx	a,@dptr
+   02F2 08                 1229 	inc	r0
+   02F3 F6                 1230 	mov	@r0,a
+   02F4 A3                 1231 	inc	dptr
+   02F5 E0                 1232 	movx	a,@dptr
+   02F6 08                 1233 	inc	r0
+   02F7 F6                 1234 	mov	@r0,a
+   02F8 AC E2              1235 	mov	r4,_T1CNTL
+   02FA 7D 00              1236 	mov	r5,#0x00
+   02FC AB E3              1237 	mov	r3,_T1CNTH
+   02FE E4                 1238 	clr	a
+   02FF 2C                 1239 	add	a,r4
+   0300 FC                 1240 	mov	r4,a
+   0301 EB                 1241 	mov	a,r3
+   0302 3D                 1242 	addc	a,r5
+   0303 FD                 1243 	mov	r5,a
+   0304 90s00r0C           1244 	mov	dptr,#(_energest_current_time + 0x000c)
+   0307 E0                 1245 	movx	a,@dptr
+   0308 FA                 1246 	mov	r2,a
+   0309 A3                 1247 	inc	dptr
+   030A E0                 1248 	movx	a,@dptr
+   030B FB                 1249 	mov	r3,a
+   030C EC                 1250 	mov	a,r4
+   030D C3                 1251 	clr	c
+   030E 9A                 1252 	subb	a,r2
+   030F FA                 1253 	mov	r2,a
+   0310 ED                 1254 	mov	a,r5
+   0311 9B                 1255 	subb	a,r3
+   0312 FB                 1256 	mov	r3,a
+   0313 E4                 1257 	clr	a
+   0314 FC                 1258 	mov	r4,a
+   0315 FD                 1259 	mov	r5,a
+   0316 E5*00              1260 	mov	a,_bp
+   0318 24 05              1261 	add	a,#0x05
+   031A F8                 1262 	mov	r0,a
+   031B EA                 1263 	mov	a,r2
+   031C 26                 1264 	add	a,@r0
+   031D FA                 1265 	mov	r2,a
+   031E EB                 1266 	mov	a,r3
+   031F 08                 1267 	inc	r0
+   0320 36                 1268 	addc	a,@r0
+   0321 FB                 1269 	mov	r3,a
+   0322 EC                 1270 	mov	a,r4
+   0323 08                 1271 	inc	r0
+   0324 36                 1272 	addc	a,@r0
+   0325 FC                 1273 	mov	r4,a
+   0326 ED                 1274 	mov	a,r5
+   0327 08                 1275 	inc	r0
+   0328 36                 1276 	addc	a,@r0
+   0329 FD                 1277 	mov	r5,a
+   032A 90s00r18           1278 	mov	dptr,#(_energest_total_time + 0x0018)
+   032D EA                 1279 	mov	a,r2
+   032E F0                 1280 	movx	@dptr,a
+   032F A3                 1281 	inc	dptr
+   0330 EB                 1282 	mov	a,r3
+   0331 F0                 1283 	movx	@dptr,a
+   0332 A3                 1284 	inc	dptr
+   0333 EC                 1285 	mov	a,r4
+   0334 F0                 1286 	movx	@dptr,a
+   0335 A3                 1287 	inc	dptr
+   0336 ED                 1288 	mov	a,r5
+   0337 F0                 1289 	movx	@dptr,a
+   0338 90s00r06           1290 	mov	dptr,#(_energest_current_mode + 0x0006)
+   033B E4                 1291 	clr	a
+   033C F0                 1292 	movx	@dptr,a
+                           1293 ;	../../../cpu/cc2430/dev/cc2430_rf.c:294: return ret;
+   033D D0 03              1294 	pop	ar3
+   033F D0 02              1295 	pop	ar2
+                           1296 ;	../../../cpu/cc2430/dev/cc2430_rf.c:290: ENERGEST_ON(ENERGEST_TYPE_LISTEN);
+   0341                    1297 00130$:
+   0341 AC E2              1298 	mov	r4,_T1CNTL
+   0343 7D 00              1299 	mov	r5,#0x00
+   0345 AF E3              1300 	mov	r7,_T1CNTH
+   0347 E4                 1301 	clr	a
+   0348 2C                 1302 	add	a,r4
+   0349 FC                 1303 	mov	r4,a
+   034A EF                 1304 	mov	a,r7
+   034B 3D                 1305 	addc	a,r5
+   034C FD                 1306 	mov	r5,a
+   034D 90s00r0E           1307 	mov	dptr,#(_energest_current_time + 0x000e)
+   0350 EC                 1308 	mov	a,r4
+   0351 F0                 1309 	movx	@dptr,a
+   0352 A3                 1310 	inc	dptr
+   0353 ED                 1311 	mov	a,r5
+   0354 F0                 1312 	movx	@dptr,a
+   0355 90s00r07           1313 	mov	dptr,#(_energest_current_mode + 0x0007)
+   0358 74 01              1314 	mov	a,#0x01
+   035A F0                 1315 	movx	@dptr,a
+                           1316 ;	../../../cpu/cc2430/dev/cc2430_rf.c:292: RIMESTATS_ADD(lltx);
+   035B 90s00r40           1317 	mov	dptr,#(_rimestats + 0x0040)
+   035E E0                 1318 	movx	a,@dptr
+   035F FC                 1319 	mov	r4,a
+   0360 A3                 1320 	inc	dptr
+   0361 E0                 1321 	movx	a,@dptr
+   0362 FD                 1322 	mov	r5,a
+   0363 A3                 1323 	inc	dptr
+   0364 E0                 1324 	movx	a,@dptr
+   0365 FE                 1325 	mov	r6,a
+   0366 A3                 1326 	inc	dptr
+   0367 E0                 1327 	movx	a,@dptr
+   0368 FF                 1328 	mov	r7,a
+   0369 0C                 1329 	inc	r4
+   036A BC 00 09           1330 	cjne	r4,#0x00,00158$
+   036D 0D                 1331 	inc	r5
+   036E BD 00 05           1332 	cjne	r5,#0x00,00158$
+   0371 0E                 1333 	inc	r6
+   0372 BE 00 01           1334 	cjne	r6,#0x00,00158$
+   0375 0F                 1335 	inc	r7
+   0376                    1336 00158$:
+   0376 90s00r40           1337 	mov	dptr,#(_rimestats + 0x0040)
+   0379 EC                 1338 	mov	a,r4
+   037A F0                 1339 	movx	@dptr,a
+   037B A3                 1340 	inc	dptr
+   037C ED                 1341 	mov	a,r5
+   037D F0                 1342 	movx	@dptr,a
+   037E A3                 1343 	inc	dptr
+   037F EE                 1344 	mov	a,r6
+   0380 F0                 1345 	movx	@dptr,a
+   0381 A3                 1346 	inc	dptr
+   0382 EF                 1347 	mov	a,r7
+   0383 F0                 1348 	movx	@dptr,a
+                           1349 ;	../../../cpu/cc2430/dev/cc2430_rf.c:294: return ret;
+   0384 8A 82              1350 	mov	dpl,r2
+   0386 8B 83              1351 	mov	dph,r3
+   0388                    1352 00133$:
+   0388 85*00 81           1353 	mov	sp,_bp
+   038B D0*00              1354 	pop	_bp
+   038D 22                 1355 	ret
+                           1356 ;------------------------------------------------------------
+                           1357 ;Allocation info for local variables in function 'cc2430_rf_read'
+                           1358 ;------------------------------------------------------------
+                           1359 ;bufsize                   Allocated to stack - offset -4
+                           1360 ;buf                       Allocated to stack - offset 1
+                           1361 ;i                         Allocated to registers r6 
+                           1362 ;len                       Allocated to registers r5 
+                           1363 ;crc_corr                  Allocated to registers r3 
+                           1364 ;rssi                      Allocated to registers r2 
+                           1365 ;sloc0                     Allocated to stack - offset 8
+                           1366 ;------------------------------------------------------------
+                           1367 ;	../../../cpu/cc2430/dev/cc2430_rf.c:298: cc2430_rf_read(void *buf, unsigned short bufsize) __banked
+                           1368 ;	-----------------------------------------
+                           1369 ;	 function cc2430_rf_read
+                           1370 ;	-----------------------------------------
+   038E                    1371 _cc2430_rf_read:
+   038E C0*00              1372 	push	_bp
+   0390 85 81*00           1373 	mov	_bp,sp
+   0393 C0 82              1374 	push	dpl
+   0395 C0 83              1375 	push	dph
+   0397 C0 F0              1376 	push	b
+                           1377 ;	../../../cpu/cc2430/dev/cc2430_rf.c:318: len = RFD;
+   0399 AD D9              1378 	mov	r5,_RFD
+                           1379 ;	../../../cpu/cc2430/dev/cc2430_rf.c:321: if(len > CC2430_MAX_PACKET_LEN) {
+   039B 74 7F              1380 	mov	a,#0x7F
+   039D B5 05 00           1381 	cjne	a,ar5,00143$
+   03A0                    1382 00143$:
+   03A0 50 32              1383 	jnc	00104$
+                           1384 ;	../../../cpu/cc2430/dev/cc2430_rf.c:325: RIMESTATS_ADD(badsynch);
+   03A2 90s00r30           1385 	mov	dptr,#(_rimestats + 0x0030)
+   03A5 E0                 1386 	movx	a,@dptr
+   03A6 FA                 1387 	mov	r2,a
+   03A7 A3                 1388 	inc	dptr
+   03A8 E0                 1389 	movx	a,@dptr
+   03A9 FB                 1390 	mov	r3,a
+   03AA A3                 1391 	inc	dptr
+   03AB E0                 1392 	movx	a,@dptr
+   03AC FC                 1393 	mov	r4,a
+   03AD A3                 1394 	inc	dptr
+   03AE E0                 1395 	movx	a,@dptr
+   03AF FD                 1396 	mov	r5,a
+   03B0 0A                 1397 	inc	r2
+   03B1 BA 00 09           1398 	cjne	r2,#0x00,00145$
+   03B4 0B                 1399 	inc	r3
+   03B5 BB 00 05           1400 	cjne	r3,#0x00,00145$
+   03B8 0C                 1401 	inc	r4
+   03B9 BC 00 01           1402 	cjne	r4,#0x00,00145$
+   03BC 0D                 1403 	inc	r5
+   03BD                    1404 00145$:
+   03BD 90s00r30           1405 	mov	dptr,#(_rimestats + 0x0030)
+   03C0 EA                 1406 	mov	a,r2
+   03C1 F0                 1407 	movx	@dptr,a
+   03C2 A3                 1408 	inc	dptr
+   03C3 EB                 1409 	mov	a,r3
+   03C4 F0                 1410 	movx	@dptr,a
+   03C5 A3                 1411 	inc	dptr
+   03C6 EC                 1412 	mov	a,r4
+   03C7 F0                 1413 	movx	@dptr,a
+   03C8 A3                 1414 	inc	dptr
+   03C9 ED                 1415 	mov	a,r5
+   03CA F0                 1416 	movx	@dptr,a
+                           1417 ;	../../../cpu/cc2430/dev/cc2430_rf.c:326: flush_rx();
+   03CB 12s00r00           1418 	lcall	_flush_rx
+                           1419 ;	../../../cpu/cc2430/dev/cc2430_rf.c:327: return 0;
+   03CE 90 00 00           1420 	mov	dptr,#0x0000
+   03D1 02s05r3C           1421 	ljmp	00132$
+   03D4                    1422 00104$:
+                           1423 ;	../../../cpu/cc2430/dev/cc2430_rf.c:330: if(len <= CC2430_MIN_PACKET_LEN) {
+   03D4 74 04              1424 	mov	a,#0x04
+   03D6 B5 05 00           1425 	cjne	a,ar5,00146$
+   03D9                    1426 00146$:
+   03D9 40 32              1427 	jc	00108$
+                           1428 ;	../../../cpu/cc2430/dev/cc2430_rf.c:333: RIMESTATS_ADD(tooshort);
+   03DB 90s00r2C           1429 	mov	dptr,#(_rimestats + 0x002c)
+   03DE E0                 1430 	movx	a,@dptr
+   03DF FA                 1431 	mov	r2,a
+   03E0 A3                 1432 	inc	dptr
+   03E1 E0                 1433 	movx	a,@dptr
+   03E2 FB                 1434 	mov	r3,a
+   03E3 A3                 1435 	inc	dptr
+   03E4 E0                 1436 	movx	a,@dptr
+   03E5 FC                 1437 	mov	r4,a
+   03E6 A3                 1438 	inc	dptr
+   03E7 E0                 1439 	movx	a,@dptr
+   03E8 FD                 1440 	mov	r5,a
+   03E9 0A                 1441 	inc	r2
+   03EA BA 00 09           1442 	cjne	r2,#0x00,00148$
+   03ED 0B                 1443 	inc	r3
+   03EE BB 00 05           1444 	cjne	r3,#0x00,00148$
+   03F1 0C                 1445 	inc	r4
+   03F2 BC 00 01           1446 	cjne	r4,#0x00,00148$
+   03F5 0D                 1447 	inc	r5
+   03F6                    1448 00148$:
+   03F6 90s00r2C           1449 	mov	dptr,#(_rimestats + 0x002c)
+   03F9 EA                 1450 	mov	a,r2
+   03FA F0                 1451 	movx	@dptr,a
+   03FB A3                 1452 	inc	dptr
+   03FC EB                 1453 	mov	a,r3
+   03FD F0                 1454 	movx	@dptr,a
+   03FE A3                 1455 	inc	dptr
+   03FF EC                 1456 	mov	a,r4
+   0400 F0                 1457 	movx	@dptr,a
+   0401 A3                 1458 	inc	dptr
+   0402 ED                 1459 	mov	a,r5
+   0403 F0                 1460 	movx	@dptr,a
+                           1461 ;	../../../cpu/cc2430/dev/cc2430_rf.c:334: flush_rx();
+   0404 12s00r00           1462 	lcall	_flush_rx
+                           1463 ;	../../../cpu/cc2430/dev/cc2430_rf.c:335: return 0;
+   0407 90 00 00           1464 	mov	dptr,#0x0000
+   040A 02s05r3C           1465 	ljmp	00132$
+   040D                    1466 00108$:
+                           1467 ;	../../../cpu/cc2430/dev/cc2430_rf.c:338: if(len - CHECKSUM_LEN > bufsize) {
+   040D 8D 06              1468 	mov	ar6,r5
+   040F 7F 00              1469 	mov	r7,#0x00
+   0411 EE                 1470 	mov	a,r6
+   0412 24 FE              1471 	add	a,#0xfe
+   0414 FE                 1472 	mov	r6,a
+   0415 EF                 1473 	mov	a,r7
+   0416 34 FF              1474 	addc	a,#0xff
+   0418 FF                 1475 	mov	r7,a
+   0419 E5*00              1476 	mov	a,_bp
+   041B 24 FC              1477 	add	a,#0xfc
+   041D F8                 1478 	mov	r0,a
+   041E C3                 1479 	clr	c
+   041F E6                 1480 	mov	a,@r0
+   0420 9E                 1481 	subb	a,r6
+   0421 08                 1482 	inc	r0
+   0422 E6                 1483 	mov	a,@r0
+   0423 9F                 1484 	subb	a,r7
+   0424 50 32              1485 	jnc	00113$
+                           1486 ;	../../../cpu/cc2430/dev/cc2430_rf.c:341: RIMESTATS_ADD(toolong);
+   0426 90s00r28           1487 	mov	dptr,#(_rimestats + 0x0028)
+   0429 E0                 1488 	movx	a,@dptr
+   042A FA                 1489 	mov	r2,a
+   042B A3                 1490 	inc	dptr
+   042C E0                 1491 	movx	a,@dptr
+   042D FB                 1492 	mov	r3,a
+   042E A3                 1493 	inc	dptr
+   042F E0                 1494 	movx	a,@dptr
+   0430 FC                 1495 	mov	r4,a
+   0431 A3                 1496 	inc	dptr
+   0432 E0                 1497 	movx	a,@dptr
+   0433 FD                 1498 	mov	r5,a
+   0434 0A                 1499 	inc	r2
+   0435 BA 00 09           1500 	cjne	r2,#0x00,00150$
+   0438 0B                 1501 	inc	r3
+   0439 BB 00 05           1502 	cjne	r3,#0x00,00150$
+   043C 0C                 1503 	inc	r4
+   043D BC 00 01           1504 	cjne	r4,#0x00,00150$
+   0440 0D                 1505 	inc	r5
+   0441                    1506 00150$:
+   0441 90s00r28           1507 	mov	dptr,#(_rimestats + 0x0028)
+   0444 EA                 1508 	mov	a,r2
+   0445 F0                 1509 	movx	@dptr,a
+   0446 A3                 1510 	inc	dptr
+   0447 EB                 1511 	mov	a,r3
+   0448 F0                 1512 	movx	@dptr,a
+   0449 A3                 1513 	inc	dptr
+   044A EC                 1514 	mov	a,r4
+   044B F0                 1515 	movx	@dptr,a
+   044C A3                 1516 	inc	dptr
+   044D ED                 1517 	mov	a,r5
+   044E F0                 1518 	movx	@dptr,a
+                           1519 ;	../../../cpu/cc2430/dev/cc2430_rf.c:342: flush_rx();
+   044F 12s00r00           1520 	lcall	_flush_rx
+                           1521 ;	../../../cpu/cc2430/dev/cc2430_rf.c:343: return 0;
+   0452 90 00 00           1522 	mov	dptr,#0x0000
+   0455 02s05r3C           1523 	ljmp	00132$
+                           1524 ;	../../../cpu/cc2430/dev/cc2430_rf.c:346: PRINTF("cc2430_rf: read = ");
+   0458                    1525 00113$:
+                           1526 ;	../../../cpu/cc2430/dev/cc2430_rf.c:348: len -= CHECKSUM_LEN;
+   0458 1D                 1527 	dec	r5
+   0459 1D                 1528 	dec	r5
+                           1529 ;	../../../cpu/cc2430/dev/cc2430_rf.c:349: for(i = 0; i < len; ++i) {
+   045A 7E 00              1530 	mov	r6,#0x00
+   045C                    1531 00128$:
+   045C EE                 1532 	mov	a,r6
+   045D B5 05 00           1533 	cjne	a,ar5,00151$
+   0460                    1534 00151$:
+   0460 50 1F              1535 	jnc	00119$
+                           1536 ;	../../../cpu/cc2430/dev/cc2430_rf.c:350: ((unsigned char*)(buf))[i] = RFD;
+   0462 C0 05              1537 	push	ar5
+   0464 A8*00              1538 	mov	r0,_bp
+   0466 08                 1539 	inc	r0
+   0467 EE                 1540 	mov	a,r6
+   0468 26                 1541 	add	a,@r0
+   0469 FF                 1542 	mov	r7,a
+   046A E4                 1543 	clr	a
+   046B 08                 1544 	inc	r0
+   046C 36                 1545 	addc	a,@r0
+   046D FD                 1546 	mov	r5,a
+   046E 08                 1547 	inc	r0
+   046F 86 02              1548 	mov	ar2,@r0
+   0471 8F 82              1549 	mov	dpl,r7
+   0473 8D 83              1550 	mov	dph,r5
+   0475 8A F0              1551 	mov	b,r2
+   0477 E5 D9              1552 	mov	a,_RFD
+   0479 12s00r00           1553 	lcall	__gptrput
+                           1554 ;	../../../cpu/cc2430/dev/cc2430_rf.c:349: for(i = 0; i < len; ++i) {
+   047C 0E                 1555 	inc	r6
+   047D D0 05              1556 	pop	ar5
+                           1557 ;	../../../cpu/cc2430/dev/cc2430_rf.c:353: PRINTF("\n");
+   047F 80 DB              1558 	sjmp	00128$
+   0481                    1559 00119$:
+                           1560 ;	../../../cpu/cc2430/dev/cc2430_rf.c:362: rssi = ((int8_t) RFD) - 45;
+   0481 E5 D9              1561 	mov	a,_RFD
+   0483 24 D3              1562 	add	a,#0xd3
+   0485 FA                 1563 	mov	r2,a
+                           1564 ;	../../../cpu/cc2430/dev/cc2430_rf.c:363: crc_corr = RFD;
+                           1565 ;	../../../cpu/cc2430/dev/cc2430_rf.c:366: if(crc_corr & CRC_BIT_MASK) {
+   0486 E5 D9              1566 	mov	a,_RFD
+   0488 FB                 1567 	mov	r3,a
+   0489 30 E7 5D           1568 	jnb	acc.7,00122$
+                           1569 ;	../../../cpu/cc2430/dev/cc2430_rf.c:367: packetbuf_set_attr(PACKETBUF_ATTR_RSSI, rssi);
+   048C EA                 1570 	mov	a,r2
+   048D 33                 1571 	rlc	a
+   048E 95 E0              1572 	subb	a,acc
+   0490 FC                 1573 	mov	r4,a
+   0491 C0 03              1574 	push	ar3
+   0493 C0 05              1575 	push	ar5
+   0495 C0 02              1576 	push	ar2
+   0497 C0 04              1577 	push	ar4
+   0499 75 82 04           1578 	mov	dpl,#0x04
+   049C 12s00r00           1579 	lcall	_packetbuf_set_attr
+   049F 15 81              1580 	dec	sp
+   04A1 15 81              1581 	dec	sp
+   04A3 D0 05              1582 	pop	ar5
+   04A5 D0 03              1583 	pop	ar3
+                           1584 ;	../../../cpu/cc2430/dev/cc2430_rf.c:368: packetbuf_set_attr(PACKETBUF_ATTR_LINK_QUALITY, crc_corr & LQI_BIT_MASK);
+   04A7 53 03 7F           1585 	anl	ar3,#0x7F
+   04AA 7A 00              1586 	mov	r2,#0x00
+   04AC C0 05              1587 	push	ar5
+   04AE C0 03              1588 	push	ar3
+   04B0 C0 02              1589 	push	ar2
+   04B2 75 82 03           1590 	mov	dpl,#0x03
+   04B5 12s00r00           1591 	lcall	_packetbuf_set_attr
+   04B8 15 81              1592 	dec	sp
+   04BA 15 81              1593 	dec	sp
+   04BC D0 05              1594 	pop	ar5
+                           1595 ;	../../../cpu/cc2430/dev/cc2430_rf.c:369: RIMESTATS_ADD(llrx);
+   04BE 90s00r44           1596 	mov	dptr,#(_rimestats + 0x0044)
+   04C1 E0                 1597 	movx	a,@dptr
+   04C2 FA                 1598 	mov	r2,a
+   04C3 A3                 1599 	inc	dptr
+   04C4 E0                 1600 	movx	a,@dptr
+   04C5 FB                 1601 	mov	r3,a
+   04C6 A3                 1602 	inc	dptr
+   04C7 E0                 1603 	movx	a,@dptr
+   04C8 FC                 1604 	mov	r4,a
+   04C9 A3                 1605 	inc	dptr
+   04CA E0                 1606 	movx	a,@dptr
+   04CB FE                 1607 	mov	r6,a
+   04CC 0A                 1608 	inc	r2
+   04CD BA 00 09           1609 	cjne	r2,#0x00,00154$
+   04D0 0B                 1610 	inc	r3
+   04D1 BB 00 05           1611 	cjne	r3,#0x00,00154$
+   04D4 0C                 1612 	inc	r4
+   04D5 BC 00 01           1613 	cjne	r4,#0x00,00154$
+   04D8 0E                 1614 	inc	r6
+   04D9                    1615 00154$:
+   04D9 90s00r44           1616 	mov	dptr,#(_rimestats + 0x0044)
+   04DC EA                 1617 	mov	a,r2
+   04DD F0                 1618 	movx	@dptr,a
+   04DE A3                 1619 	inc	dptr
+   04DF EB                 1620 	mov	a,r3
+   04E0 F0                 1621 	movx	@dptr,a
+   04E1 A3                 1622 	inc	dptr
+   04E2 EC                 1623 	mov	a,r4
+   04E3 F0                 1624 	movx	@dptr,a
+   04E4 A3                 1625 	inc	dptr
+   04E5 EE                 1626 	mov	a,r6
+   04E6 F0                 1627 	movx	@dptr,a
+   04E7 80 31              1628 	sjmp	00123$
+   04E9                    1629 00122$:
+                           1630 ;	../../../cpu/cc2430/dev/cc2430_rf.c:371: RIMESTATS_ADD(badcrc);
+   04E9 90s00r34           1631 	mov	dptr,#(_rimestats + 0x0034)
+   04EC E0                 1632 	movx	a,@dptr
+   04ED FA                 1633 	mov	r2,a
+   04EE A3                 1634 	inc	dptr
+   04EF E0                 1635 	movx	a,@dptr
+   04F0 FB                 1636 	mov	r3,a
+   04F1 A3                 1637 	inc	dptr
+   04F2 E0                 1638 	movx	a,@dptr
+   04F3 FC                 1639 	mov	r4,a
+   04F4 A3                 1640 	inc	dptr
+   04F5 E0                 1641 	movx	a,@dptr
+   04F6 FE                 1642 	mov	r6,a
+   04F7 0A                 1643 	inc	r2
+   04F8 BA 00 09           1644 	cjne	r2,#0x00,00155$
+   04FB 0B                 1645 	inc	r3
+   04FC BB 00 05           1646 	cjne	r3,#0x00,00155$
+   04FF 0C                 1647 	inc	r4
+   0500 BC 00 01           1648 	cjne	r4,#0x00,00155$
+   0503 0E                 1649 	inc	r6
+   0504                    1650 00155$:
+   0504 90s00r34           1651 	mov	dptr,#(_rimestats + 0x0034)
+   0507 EA                 1652 	mov	a,r2
+   0508 F0                 1653 	movx	@dptr,a
+   0509 A3                 1654 	inc	dptr
+   050A EB                 1655 	mov	a,r3
+   050B F0                 1656 	movx	@dptr,a
+   050C A3                 1657 	inc	dptr
+   050D EC                 1658 	mov	a,r4
+   050E F0                 1659 	movx	@dptr,a
+   050F A3                 1660 	inc	dptr
+   0510 EE                 1661 	mov	a,r6
+   0511 F0                 1662 	movx	@dptr,a
+                           1663 ;	../../../cpu/cc2430/dev/cc2430_rf.c:372: flush_rx();
+   0512 12s00r00           1664 	lcall	_flush_rx
+                           1665 ;	../../../cpu/cc2430/dev/cc2430_rf.c:373: return 0;
+   0515 90 00 00           1666 	mov	dptr,#0x0000
+   0518 80 22              1667 	sjmp	00132$
+   051A                    1668 00123$:
+                           1669 ;	../../../cpu/cc2430/dev/cc2430_rf.c:377: if((RFSTATUS & (FIFO | FIFOP)) == FIFOP) {
+   051A 90 DF 62           1670 	mov	dptr,#_RFSTATUS
+   051D E0                 1671 	movx	a,@dptr
+   051E FA                 1672 	mov	r2,a
+   051F 53 02 0C           1673 	anl	ar2,#0x0C
+   0522 BA 04 0E           1674 	cjne	r2,#0x04,00127$
+                           1675 ;	../../../cpu/cc2430/dev/cc2430_rf.c:385: if(!RXFIFOCNT) {
+   0525 90 DF 53           1676 	mov	dptr,#_RXFIFOCNT
+   0528 E0                 1677 	movx	a,@dptr
+   0529 FA                 1678 	mov	r2,a
+   052A 70 07              1679 	jnz	00127$
+                           1680 ;	../../../cpu/cc2430/dev/cc2430_rf.c:386: flush_rx();
+   052C C0 05              1681 	push	ar5
+   052E 12s00r00           1682 	lcall	_flush_rx
+   0531 D0 05              1683 	pop	ar5
+   0533                    1684 00127$:
+                           1685 ;	../../../cpu/cc2430/dev/cc2430_rf.c:399: RFIF &= ~IRQ_FIFOP;
+   0533 53 E9 DF           1686 	anl	_RFIF,#0xDF
+                           1687 ;	../../../cpu/cc2430/dev/cc2430_rf.c:401: return (len);
+   0536 7A 00              1688 	mov	r2,#0x00
+   0538 8D 82              1689 	mov	dpl,r5
+   053A 8A 83              1690 	mov	dph,r2
+   053C                    1691 00132$:
+   053C 85*00 81           1692 	mov	sp,_bp
+   053F D0*00              1693 	pop	_bp
+   0541 22                 1694 	ret
+                           1695 ;------------------------------------------------------------
+                           1696 ;Allocation info for local variables in function 'cc2430_rf_channel_set'
+                           1697 ;------------------------------------------------------------
+                           1698 ;channel                   Allocated to registers r2 
+                           1699 ;freq                      Allocated to registers r3 r4 
+                           1700 ;------------------------------------------------------------
+                           1701 ;	../../../cpu/cc2430/dev/cc2430_rf.c:417: cc2430_rf_channel_set(uint8_t channel) __banked
+                           1702 ;	-----------------------------------------
+                           1703 ;	 function cc2430_rf_channel_set
+                           1704 ;	-----------------------------------------
+   0542                    1705 _cc2430_rf_channel_set:
+   0542 AA 82              1706 	mov	r2,dpl
+                           1707 ;	../../../cpu/cc2430/dev/cc2430_rf.c:421: if((channel < 11) || (channel > 26)) {
+   0544 BA 0B 00           1708 	cjne	r2,#0x0B,00107$
+   0547                    1709 00107$:
+   0547 40 07              1710 	jc	00101$
+   0549 74 1A              1711 	mov	a,#0x1A
+   054B B5 02 00           1712 	cjne	a,ar2,00109$
+   054E                    1713 00109$:
+   054E 50 04              1714 	jnc	00102$
+   0550                    1715 00101$:
+                           1716 ;	../../../cpu/cc2430/dev/cc2430_rf.c:422: return -1;
+   0550 75 82 FF           1717 	mov	dpl,#0xFF
+   0553 22                 1718 	ret
+   0554                    1719 00102$:
+                           1720 ;	../../../cpu/cc2430/dev/cc2430_rf.c:425: cc2430_rf_command(ISSTOP);	/*make sure CSP is not running*/
+   0554 75 82 FF           1721 	mov	dpl,#0xFF
+   0557 C0 02              1722 	push	ar2
+   0559 12s00r00           1723 	lcall	_cc2430_rf_command
+                           1724 ;	../../../cpu/cc2430/dev/cc2430_rf.c:426: cc2430_rf_command(ISRFOFF);
+   055C 75 82 E5           1725 	mov	dpl,#0xE5
+   055F 12s00r00           1726 	lcall	_cc2430_rf_command
+   0562 D0 02              1727 	pop	ar2
+                           1728 ;	../../../cpu/cc2430/dev/cc2430_rf.c:428: freq = (uint16_t) channel - 11;
+   0564 8A 03              1729 	mov	ar3,r2
+   0566 7C 00              1730 	mov	r4,#0x00
+   0568 EB                 1731 	mov	a,r3
+   0569 24 F5              1732 	add	a,#0xf5
+   056B FB                 1733 	mov	r3,a
+   056C EC                 1734 	mov	a,r4
+   056D 34 FF              1735 	addc	a,#0xff
+   056F FC                 1736 	mov	r4,a
+                           1737 ;	../../../cpu/cc2430/dev/cc2430_rf.c:429: freq *= 5;	/*channel spacing*/
+   0570 C0 02              1738 	push	ar2
+   0572 C0 03              1739 	push	ar3
+   0574 C0 04              1740 	push	ar4
+   0576 90 00 05           1741 	mov	dptr,#0x0005
+   0579 12s00r00           1742 	lcall	__mulint
+   057C AD 82              1743 	mov	r5,dpl
+   057E AE 83              1744 	mov	r6,dph
+   0580 15 81              1745 	dec	sp
+   0582 15 81              1746 	dec	sp
+   0584 8D 03              1747 	mov	ar3,r5
+   0586 8E 04              1748 	mov	ar4,r6
+                           1749 ;	../../../cpu/cc2430/dev/cc2430_rf.c:430: freq += 357; /*correct channel range*/
+   0588 74 65              1750 	mov	a,#0x65
+   058A 2B                 1751 	add	a,r3
+   058B FB                 1752 	mov	r3,a
+   058C 74 01              1753 	mov	a,#0x01
+   058E 3C                 1754 	addc	a,r4
+   058F FC                 1755 	mov	r4,a
+                           1756 ;	../../../cpu/cc2430/dev/cc2430_rf.c:431: freq |= 0x4000; /*LOCK_THR = 1*/
+   0590 43 04 40           1757 	orl	ar4,#0x40
+                           1758 ;	../../../cpu/cc2430/dev/cc2430_rf.c:432: FSCTRLH = (freq >> 8);
+   0593 90 DF 10           1759 	mov	dptr,#_FSCTRLH
+   0596 EC                 1760 	mov	a,r4
+   0597 F0                 1761 	movx	@dptr,a
+                           1762 ;	../../../cpu/cc2430/dev/cc2430_rf.c:433: FSCTRLL = (uint8_t)freq;
+   0598 90 DF 11           1763 	mov	dptr,#_FSCTRLL
+   059B EB                 1764 	mov	a,r3
+   059C F0                 1765 	movx	@dptr,a
+                           1766 ;	../../../cpu/cc2430/dev/cc2430_rf.c:435: cc2430_rf_command(ISRXON);
+   059D 75 82 E2           1767 	mov	dpl,#0xE2
+   05A0 12s00r00           1768 	lcall	_cc2430_rf_command
+   05A3 D0 02              1769 	pop	ar2
+                           1770 ;	../../../cpu/cc2430/dev/cc2430_rf.c:437: return (int8_t) channel;
+   05A5 8A 82              1771 	mov	dpl,r2
+   05A7 22                 1772 	ret
+                           1773 ;------------------------------------------------------------
+                           1774 ;Allocation info for local variables in function 'cc2430_rf_power_set'
+                           1775 ;------------------------------------------------------------
+                           1776 ;new_power                 Allocated to registers r2 
+                           1777 ;power                     Allocated to registers r3 r4 
+                           1778 ;------------------------------------------------------------
+                           1779 ;	../../../cpu/cc2430/dev/cc2430_rf.c:459: cc2430_rf_power_set(uint8_t new_power) __banked
+                           1780 ;	-----------------------------------------
+                           1781 ;	 function cc2430_rf_power_set
+                           1782 ;	-----------------------------------------
+   05A8                    1783 _cc2430_rf_power_set:
+   05A8 AA 82              1784 	mov	r2,dpl
+                           1785 ;	../../../cpu/cc2430/dev/cc2430_rf.c:463: if(new_power > 100) {
+   05AA 74 64              1786 	mov	a,#0x64
+   05AC B5 02 00           1787 	cjne	a,ar2,00106$
+   05AF                    1788 00106$:
+   05AF 50 04              1789 	jnc	00102$
+                           1790 ;	../../../cpu/cc2430/dev/cc2430_rf.c:464: return -1;
+   05B1 75 82 FF           1791 	mov	dpl,#0xFF
+   05B4 22                 1792 	ret
+   05B5                    1793 00102$:
+                           1794 ;	../../../cpu/cc2430/dev/cc2430_rf.c:467: power = 31 * new_power;
+   05B5 EA                 1795 	mov	a,r2
+   05B6 75 F0 1F           1796 	mov	b,#0x1F
+   05B9 A4                 1797 	mul	ab
+   05BA FB                 1798 	mov	r3,a
+   05BB AC F0              1799 	mov	r4,b
+                           1800 ;	../../../cpu/cc2430/dev/cc2430_rf.c:468: power /= 100;
+   05BD C0 02              1801 	push	ar2
+   05BF 74 64              1802 	mov	a,#0x64
+   05C1 C0 E0              1803 	push	acc
+   05C3 E4                 1804 	clr	a
+   05C4 C0 E0              1805 	push	acc
+   05C6 8B 82              1806 	mov	dpl,r3
+   05C8 8C 83              1807 	mov	dph,r4
+   05CA 12s00r00           1808 	lcall	__divuint
+   05CD AD 82              1809 	mov	r5,dpl
+   05CF AE 83              1810 	mov	r6,dph
+   05D1 15 81              1811 	dec	sp
+   05D3 15 81              1812 	dec	sp
+   05D5 D0 02              1813 	pop	ar2
+   05D7 8D 03              1814 	mov	ar3,r5
+   05D9 8E 04              1815 	mov	ar4,r6
+                           1816 ;	../../../cpu/cc2430/dev/cc2430_rf.c:469: power += 0xA160;
+   05DB 74 60              1817 	mov	a,#0x60
+   05DD 2B                 1818 	add	a,r3
+   05DE FB                 1819 	mov	r3,a
+   05DF 74 A1              1820 	mov	a,#0xA1
+   05E1 3C                 1821 	addc	a,r4
+                           1822 ;	../../../cpu/cc2430/dev/cc2430_rf.c:472: TXCTRLH = (power >> 8);
+   05E2 90 DF 0A           1823 	mov	dptr,#_TXCTRLH
+   05E5 F0                 1824 	movx	@dptr,a
+                           1825 ;	../../../cpu/cc2430/dev/cc2430_rf.c:473: TXCTRLL = (uint8_t)power;
+   05E6 90 DF 0B           1826 	mov	dptr,#_TXCTRLL
+   05E9 EB                 1827 	mov	a,r3
+   05EA F0                 1828 	movx	@dptr,a
+                           1829 ;	../../../cpu/cc2430/dev/cc2430_rf.c:475: rf_tx_power = (int8_t) new_power;
+   05EB 90s00r00           1830 	mov	dptr,#_rf_tx_power
+   05EE EA                 1831 	mov	a,r2
+   05EF F0                 1832 	movx	@dptr,a
+                           1833 ;	../../../cpu/cc2430/dev/cc2430_rf.c:476: return rf_tx_power;
+   05F0 8A 82              1834 	mov	dpl,r2
+   05F2 22                 1835 	ret
+                           1836 ;------------------------------------------------------------
+                           1837 ;Allocation info for local variables in function 'cc2430_rf_rx_enable'
+                           1838 ;------------------------------------------------------------
+                           1839 ;------------------------------------------------------------
+                           1840 ;	../../../cpu/cc2430/dev/cc2430_rf.c:487: cc2430_rf_rx_enable(void) __banked
+                           1841 ;	-----------------------------------------
+                           1842 ;	 function cc2430_rf_rx_enable
+                           1843 ;	-----------------------------------------
+   05F3                    1844 _cc2430_rf_rx_enable:
+                           1845 ;	../../../cpu/cc2430/dev/cc2430_rf.c:490: if(!(rf_flags & RX_ACTIVE)) {
+   05F3 90s00r01           1846 	mov	dptr,#_rf_flags
+   05F6 E0                 1847 	movx	a,@dptr
+   05F7 FA                 1848 	mov	r2,a
+   05F8 20 E7 34           1849 	jb	acc.7,00111$
+                           1850 ;	../../../cpu/cc2430/dev/cc2430_rf.c:491: IOCFG0 = 0x7f;   // Set the FIFOP threshold 127
+   05FB 90 DF 4F           1851 	mov	dptr,#_IOCFG0
+   05FE 74 7F              1852 	mov	a,#0x7F
+   0600 F0                 1853 	movx	@dptr,a
+                           1854 ;	../../../cpu/cc2430/dev/cc2430_rf.c:492: RSSIH = 0xd2; /* -84dbm = 0xd2 default, 0xe0 -70 dbm */
+   0601 90 DF 06           1855 	mov	dptr,#_RSSIH
+   0604 74 D2              1856 	mov	a,#0xD2
+   0606 F0                 1857 	movx	@dptr,a
+                           1858 ;	../../../cpu/cc2430/dev/cc2430_rf.c:493: rf_flags |= RX_ACTIVE;
+   0607 90s00r01           1859 	mov	dptr,#_rf_flags
+   060A 74 80              1860 	mov	a,#0x80
+   060C 4A                 1861 	orl	a,r2
+   060D F0                 1862 	movx	@dptr,a
+                           1863 ;	../../../cpu/cc2430/dev/cc2430_rf.c:495: RFPWR &= ~RREG_RADIO_PD;	/*make sure it's powered*/
+   060E 90 DF 17           1864 	mov	dptr,#_RFPWR
+   0611 E0                 1865 	movx	a,@dptr
+   0612 FA                 1866 	mov	r2,a
+   0613 54 F7              1867 	anl	a,#0xF7
+   0615 F0                 1868 	movx	@dptr,a
+                           1869 ;	../../../cpu/cc2430/dev/cc2430_rf.c:496: while((RFIF & IRQ_RREG_ON) == 0);	/*wait for power up*/
+   0616                    1870 00103$:
+   0616 E5 E9              1871 	mov	a,_RFIF
+   0618 30 E7 FB           1872 	jnb	acc.7,00103$
+                           1873 ;	../../../cpu/cc2430/dev/cc2430_rf.c:497: SLEEP &= ~OSC_PD; /*Osc on*/
+   061B 53 BE FB           1874 	anl	_SLEEP,#0xFB
+                           1875 ;	../../../cpu/cc2430/dev/cc2430_rf.c:498: while((SLEEP & XOSC_STB) == 0);	/*wait for power up*/
+   061E                    1876 00106$:
+   061E E5 BE              1877 	mov	a,_SLEEP
+   0620 30 E6 FB           1878 	jnb	acc.6,00106$
+                           1879 ;	../../../cpu/cc2430/dev/cc2430_rf.c:500: cc2430_rf_command(ISRXON);
+   0623 75 82 E2           1880 	mov	dpl,#0xE2
+   0626 12s00r00           1881 	lcall	_cc2430_rf_command
+                           1882 ;	../../../cpu/cc2430/dev/cc2430_rf.c:501: cc2430_rf_command(ISFLUSHRX);
+   0629 75 82 E6           1883 	mov	dpl,#0xE6
+   062C 12s00r00           1884 	lcall	_cc2430_rf_command
+                           1885 ;	../../../cpu/cc2430/dev/cc2430_rf.c:503: PRINTF("cc2430_rf_rx_enable done\n");
+   062F                    1886 00111$:
+                           1887 ;	../../../cpu/cc2430/dev/cc2430_rf.c:504: ENERGEST_ON(ENERGEST_TYPE_LISTEN);
+   062F AA E2              1888 	mov	r2,_T1CNTL
+   0631 7B 00              1889 	mov	r3,#0x00
+   0633 AD E3              1890 	mov	r5,_T1CNTH
+   0635 7C 00              1891 	mov	r4,#0x00
+   0637 EC                 1892 	mov	a,r4
+   0638 2A                 1893 	add	a,r2
+   0639 FA                 1894 	mov	r2,a
+   063A ED                 1895 	mov	a,r5
+   063B 3B                 1896 	addc	a,r3
+   063C FB                 1897 	mov	r3,a
+   063D 90s00r0E           1898 	mov	dptr,#(_energest_current_time + 0x000e)
+   0640 EA                 1899 	mov	a,r2
+   0641 F0                 1900 	movx	@dptr,a
+   0642 A3                 1901 	inc	dptr
+   0643 EB                 1902 	mov	a,r3
+   0644 F0                 1903 	movx	@dptr,a
+   0645 90s00r07           1904 	mov	dptr,#(_energest_current_mode + 0x0007)
+   0648 74 01              1905 	mov	a,#0x01
+   064A F0                 1906 	movx	@dptr,a
+                           1907 ;	../../../cpu/cc2430/dev/cc2430_rf.c:505: return 1;
+   064B 90 00 01           1908 	mov	dptr,#0x0001
+   064E 22                 1909 	ret
+                           1910 ;------------------------------------------------------------
+                           1911 ;Allocation info for local variables in function 'cc2430_rf_rx_disable'
+                           1912 ;------------------------------------------------------------
+                           1913 ;------------------------------------------------------------
+                           1914 ;	../../../cpu/cc2430/dev/cc2430_rf.c:517: cc2430_rf_rx_disable(void) __banked
+                           1915 ;	-----------------------------------------
+                           1916 ;	 function cc2430_rf_rx_disable
+                           1917 ;	-----------------------------------------
+   064F                    1918 _cc2430_rf_rx_disable:
+                           1919 ;	../../../cpu/cc2430/dev/cc2430_rf.c:519: cc2430_rf_command(ISSTOP);	/*make sure CSP is not running*/
+   064F 75 82 FF           1920 	mov	dpl,#0xFF
+   0652 12s00r00           1921 	lcall	_cc2430_rf_command
+                           1922 ;	../../../cpu/cc2430/dev/cc2430_rf.c:520: cc2430_rf_command(ISRFOFF);
+   0655 75 82 E5           1923 	mov	dpl,#0xE5
+   0658 12s00r00           1924 	lcall	_cc2430_rf_command
+                           1925 ;	../../../cpu/cc2430/dev/cc2430_rf.c:522: RFPWR |= RREG_RADIO_PD;		/*RF powerdown*/
+   065B 90 DF 17           1926 	mov	dptr,#_RFPWR
+   065E E0                 1927 	movx	a,@dptr
+   065F FA                 1928 	mov	r2,a
+   0660 44 08              1929 	orl	a,#0x08
+   0662 F0                 1930 	movx	@dptr,a
+                           1931 ;	../../../cpu/cc2430/dev/cc2430_rf.c:524: rf_flags = 0;
+   0663 90s00r01           1932 	mov	dptr,#_rf_flags
+   0666 E4                 1933 	clr	a
+   0667 F0                 1934 	movx	@dptr,a
+                           1935 ;	../../../cpu/cc2430/dev/cc2430_rf.c:525: ENERGEST_OFF(ENERGEST_TYPE_LISTEN);
+   0668 90s00r07           1936 	mov	dptr,#(_energest_current_mode + 0x0007)
+   066B E0                 1937 	movx	a,@dptr
+   066C 60 4B              1938 	jz	00105$
+   066E 90s00r1C           1939 	mov	dptr,#(_energest_total_time + 0x001c)
+   0671 E0                 1940 	movx	a,@dptr
+   0672 FA                 1941 	mov	r2,a
+   0673 A3                 1942 	inc	dptr
+   0674 E0                 1943 	movx	a,@dptr
+   0675 FB                 1944 	mov	r3,a
+   0676 A3                 1945 	inc	dptr
+   0677 E0                 1946 	movx	a,@dptr
+   0678 FC                 1947 	mov	r4,a
+   0679 A3                 1948 	inc	dptr
+   067A E0                 1949 	movx	a,@dptr
+   067B FD                 1950 	mov	r5,a
+   067C AE E2              1951 	mov	r6,_T1CNTL
+   067E 7F 00              1952 	mov	r7,#0x00
+   0680 A9 E3              1953 	mov	r1,_T1CNTH
+   0682 E4                 1954 	clr	a
+   0683 2E                 1955 	add	a,r6
+   0684 FE                 1956 	mov	r6,a
+   0685 E9                 1957 	mov	a,r1
+   0686 3F                 1958 	addc	a,r7
+   0687 FF                 1959 	mov	r7,a
+   0688 90s00r0E           1960 	mov	dptr,#(_energest_current_time + 0x000e)
+   068B E0                 1961 	movx	a,@dptr
+   068C F8                 1962 	mov	r0,a
+   068D A3                 1963 	inc	dptr
+   068E E0                 1964 	movx	a,@dptr
+   068F F9                 1965 	mov	r1,a
+   0690 EE                 1966 	mov	a,r6
+   0691 C3                 1967 	clr	c
+   0692 98                 1968 	subb	a,r0
+   0693 FE                 1969 	mov	r6,a
+   0694 EF                 1970 	mov	a,r7
+   0695 99                 1971 	subb	a,r1
+   0696 FF                 1972 	mov	r7,a
+   0697 E4                 1973 	clr	a
+   0698 F8                 1974 	mov	r0,a
+   0699 F9                 1975 	mov	r1,a
+   069A EE                 1976 	mov	a,r6
+   069B 2A                 1977 	add	a,r2
+   069C FA                 1978 	mov	r2,a
+   069D EF                 1979 	mov	a,r7
+   069E 3B                 1980 	addc	a,r3
+   069F FB                 1981 	mov	r3,a
+   06A0 E8                 1982 	mov	a,r0
+   06A1 3C                 1983 	addc	a,r4
+   06A2 FC                 1984 	mov	r4,a
+   06A3 E9                 1985 	mov	a,r1
+   06A4 3D                 1986 	addc	a,r5
+   06A5 FD                 1987 	mov	r5,a
+   06A6 90s00r1C           1988 	mov	dptr,#(_energest_total_time + 0x001c)
+   06A9 EA                 1989 	mov	a,r2
+   06AA F0                 1990 	movx	@dptr,a
+   06AB A3                 1991 	inc	dptr
+   06AC EB                 1992 	mov	a,r3
+   06AD F0                 1993 	movx	@dptr,a
+   06AE A3                 1994 	inc	dptr
+   06AF EC                 1995 	mov	a,r4
+   06B0 F0                 1996 	movx	@dptr,a
+   06B1 A3                 1997 	inc	dptr
+   06B2 ED                 1998 	mov	a,r5
+   06B3 F0                 1999 	movx	@dptr,a
+   06B4 90s00r07           2000 	mov	dptr,#(_energest_current_mode + 0x0007)
+   06B7 E4                 2001 	clr	a
+   06B8 F0                 2002 	movx	@dptr,a
+   06B9                    2003 00105$:
+                           2004 ;	../../../cpu/cc2430/dev/cc2430_rf.c:526: return 1;
+   06B9 90 00 01           2005 	mov	dptr,#0x0001
+   06BC 22                 2006 	ret
+                           2007 ;------------------------------------------------------------
+                           2008 ;Allocation info for local variables in function 'cc2430_rf_set_addr'
+                           2009 ;------------------------------------------------------------
+                           2010 ;addr                      Allocated to stack - offset -4
+                           2011 ;ieee_addr                 Allocated to stack - offset -7
+                           2012 ;pan                       Allocated to registers r2 r3 
+                           2013 ;f                         Allocated to registers r7 
+                           2014 ;ptr                       Allocated to registers 
+                           2015 ;------------------------------------------------------------
+                           2016 ;	../../../cpu/cc2430/dev/cc2430_rf.c:554: cc2430_rf_set_addr(unsigned pan, unsigned addr, const uint8_t *ieee_addr) __banked
+                           2017 ;	-----------------------------------------
+                           2018 ;	 function cc2430_rf_set_addr
+                           2019 ;	-----------------------------------------
+   06BD                    2020 _cc2430_rf_set_addr:
+   06BD C0*00              2021 	push	_bp
+   06BF 85 81*00           2022 	mov	_bp,sp
+   06C2 AA 82              2023 	mov	r2,dpl
+   06C4 AB 83              2024 	mov	r3,dph
+                           2025 ;	../../../cpu/cc2430/dev/cc2430_rf.c:559: PANIDH = pan >> 8;
+   06C6 90 DF 4B           2026 	mov	dptr,#_PANIDH
+   06C9 EB                 2027 	mov	a,r3
+   06CA F0                 2028 	movx	@dptr,a
+                           2029 ;	../../../cpu/cc2430/dev/cc2430_rf.c:560: PANIDL = pan & 0xff;
+   06CB 90 DF 4C           2030 	mov	dptr,#_PANIDL
+   06CE EA                 2031 	mov	a,r2
+   06CF F0                 2032 	movx	@dptr,a
+                           2033 ;	../../../cpu/cc2430/dev/cc2430_rf.c:562: SHORTADDRH = addr >> 8;
+   06D0 E5*00              2034 	mov	a,_bp
+   06D2 24 FC              2035 	add	a,#0xfc
+   06D4 F8                 2036 	mov	r0,a
+   06D5 90 DF 4D           2037 	mov	dptr,#_SHORTADDRH
+   06D8 08                 2038 	inc	r0
+   06D9 E6                 2039 	mov	a,@r0
+   06DA F0                 2040 	movx	@dptr,a
+                           2041 ;	../../../cpu/cc2430/dev/cc2430_rf.c:563: SHORTADDRL = addr & 0xff;
+   06DB E5*00              2042 	mov	a,_bp
+   06DD 24 FC              2043 	add	a,#0xfc
+   06DF F8                 2044 	mov	r0,a
+   06E0 86 02              2045 	mov	ar2,@r0
+   06E2 7B 00              2046 	mov	r3,#0x00
+   06E4 90 DF 4E           2047 	mov	dptr,#_SHORTADDRL
+   06E7 EA                 2048 	mov	a,r2
+   06E8 F0                 2049 	movx	@dptr,a
+                           2050 ;	../../../cpu/cc2430/dev/cc2430_rf.c:565: if(ieee_addr != NULL) {
+   06E9 E5*00              2051 	mov	a,_bp
+   06EB 24 F9              2052 	add	a,#0xf9
+   06ED F8                 2053 	mov	r0,a
+   06EE B6 00 0A           2054 	cjne	@r0,#0x00,00113$
+   06F1 08                 2055 	inc	r0
+   06F2 B6 00 06           2056 	cjne	@r0,#0x00,00113$
+   06F5 08                 2057 	inc	r0
+   06F6 B6 00 02           2058 	cjne	@r0,#0x00,00113$
+   06F9 80 31              2059 	sjmp	00107$
+   06FB                    2060 00113$:
+                           2061 ;	../../../cpu/cc2430/dev/cc2430_rf.c:566: ptr = &IEEE_ADDR0;
+                           2062 ;	../../../cpu/cc2430/dev/cc2430_rf.c:568: for (f = 0; f < 8; f++) {
+   06FB 7D 43              2063 	mov	r5,#_IEEE_ADDR0
+   06FD 7E DF              2064 	mov	r6,#(_IEEE_ADDR0 >> 8)
+   06FF 7F 00              2065 	mov	r7,#0x00
+   0701                    2066 00103$:
+   0701 BF 08 00           2067 	cjne	r7,#0x08,00114$
+   0704                    2068 00114$:
+   0704 50 26              2069 	jnc	00107$
+                           2070 ;	../../../cpu/cc2430/dev/cc2430_rf.c:569: *ptr++ = ieee_addr[f];
+   0706 E5*00              2071 	mov	a,_bp
+   0708 24 F9              2072 	add	a,#0xf9
+   070A F8                 2073 	mov	r0,a
+   070B EF                 2074 	mov	a,r7
+   070C 26                 2075 	add	a,@r0
+   070D FA                 2076 	mov	r2,a
+   070E E4                 2077 	clr	a
+   070F 08                 2078 	inc	r0
+   0710 36                 2079 	addc	a,@r0
+   0711 FB                 2080 	mov	r3,a
+   0712 08                 2081 	inc	r0
+   0713 86 04              2082 	mov	ar4,@r0
+   0715 8A 82              2083 	mov	dpl,r2
+   0717 8B 83              2084 	mov	dph,r3
+   0719 8C F0              2085 	mov	b,r4
+   071B 12s00r00           2086 	lcall	__gptrget
+   071E FA                 2087 	mov	r2,a
+   071F 8D 82              2088 	mov	dpl,r5
+   0721 8E 83              2089 	mov	dph,r6
+   0723 F0                 2090 	movx	@dptr,a
+   0724 A3                 2091 	inc	dptr
+   0725 AD 82              2092 	mov	r5,dpl
+   0727 AE 83              2093 	mov	r6,dph
+                           2094 ;	../../../cpu/cc2430/dev/cc2430_rf.c:568: for (f = 0; f < 8; f++) {
+   0729 0F                 2095 	inc	r7
+   072A 80 D5              2096 	sjmp	00103$
+   072C                    2097 00107$:
+   072C D0*00              2098 	pop	_bp
+   072E 22                 2099 	ret
+                           2100 ;------------------------------------------------------------
+                           2101 ;Allocation info for local variables in function 'cc2430_rf_cca_check'
+                           2102 ;------------------------------------------------------------
+                           2103 ;slotted                   Allocated to stack - offset -3
+                           2104 ;backoff_count             Allocated to registers 
+                           2105 ;counter                   Allocated to registers r4 
+                           2106 ;cca                       Allocated to registers r3 
+                           2107 ;retval                    Allocated to registers r2 
+                           2108 ;------------------------------------------------------------
+                           2109 ;	../../../cpu/cc2430/dev/cc2430_rf.c:602: cc2430_rf_cca_check(uint8_t backoff_count, uint8_t slotted) __banked
+                           2110 ;	-----------------------------------------
+                           2111 ;	 function cc2430_rf_cca_check
+                           2112 ;	-----------------------------------------
+   072F                    2113 _cc2430_rf_cca_check:
+   072F C0*00              2114 	push	_bp
+   0731 85 81*00           2115 	mov	_bp,sp
+                           2116 ;	../../../cpu/cc2430/dev/cc2430_rf.c:605: int8_t retval = CC2430_CCA_CLEAR;
+   0734 7A 00              2117 	mov	r2,#0x00
+                           2118 ;	../../../cpu/cc2430/dev/cc2430_rf.c:607: cc2430_rf_command(ISRXON);
+   0736 75 82 E2           2119 	mov	dpl,#0xE2
+   0739 C0 02              2120 	push	ar2
+   073B 12s00r00           2121 	lcall	_cc2430_rf_command
+                           2122 ;	../../../cpu/cc2430/dev/cc2430_rf.c:609: clock_delay(64);
+   073E 90 00 40           2123 	mov	dptr,#0x0040
+   0741 12s00r00           2124 	lcall	_clock_delay
+   0744 D0 02              2125 	pop	ar2
+                           2126 ;	../../../cpu/cc2430/dev/cc2430_rf.c:610: switch(slotted) {
+   0746 E5*00              2127 	mov	a,_bp
+   0748 24 FD              2128 	add	a,#0xfd
+   074A F8                 2129 	mov	r0,a
+   074B B6 00 02           2130 	cjne	@r0,#0x00,00127$
+   074E 80 45              2131 	sjmp	00112$
+   0750                    2132 00127$:
+   0750 E5*00              2133 	mov	a,_bp
+   0752 24 FD              2134 	add	a,#0xfd
+   0754 F8                 2135 	mov	r0,a
+   0755 B6 01 47           2136 	cjne	@r0,#0x01,00115$
+                           2137 ;	../../../cpu/cc2430/dev/cc2430_rf.c:613: if(RFSTATUS & CCA) {
+   0758 90 DF 62           2138 	mov	dptr,#_RFSTATUS
+   075B E0                 2139 	movx	a,@dptr
+   075C FB                 2140 	mov	r3,a
+   075D 30 E0 31           2141 	jnb	acc.0,00110$
+                           2142 ;	../../../cpu/cc2430/dev/cc2430_rf.c:615: cca = 1;
+   0760 7B 01              2143 	mov	r3,#0x01
+                           2144 ;	../../../cpu/cc2430/dev/cc2430_rf.c:616: while(cca != 0) {
+   0762 7C 00              2145 	mov	r4,#0x00
+   0764                    2146 00106$:
+   0764 EB                 2147 	mov	a,r3
+   0765 60 38              2148 	jz	00115$
+                           2149 ;	../../../cpu/cc2430/dev/cc2430_rf.c:617: if(counter > 1) {
+   0767 74 01              2150 	mov	a,#0x01
+   0769 B5 04 00           2151 	cjne	a,ar4,00132$
+   076C                    2152 00132$:
+   076C 50 02              2153 	jnc	00103$
+                           2154 ;	../../../cpu/cc2430/dev/cc2430_rf.c:618: cca = 0;
+   076E 7B 00              2155 	mov	r3,#0x00
+   0770                    2156 00103$:
+                           2157 ;	../../../cpu/cc2430/dev/cc2430_rf.c:620: clock_delay(256);
+   0770 90 01 00           2158 	mov	dptr,#0x0100
+   0773 C0 02              2159 	push	ar2
+   0775 C0 03              2160 	push	ar3
+   0777 C0 04              2161 	push	ar4
+   0779 12s00r00           2162 	lcall	_clock_delay
+   077C D0 04              2163 	pop	ar4
+   077E D0 03              2164 	pop	ar3
+   0780 D0 02              2165 	pop	ar2
+                           2166 ;	../../../cpu/cc2430/dev/cc2430_rf.c:621: if(!(RFSTATUS & CCA)) {
+   0782 90 DF 62           2167 	mov	dptr,#_RFSTATUS
+   0785 E0                 2168 	movx	a,@dptr
+   0786 FD                 2169 	mov	r5,a
+   0787 20 E0 04           2170 	jb	acc.0,00105$
+                           2171 ;	../../../cpu/cc2430/dev/cc2430_rf.c:622: cca = 0;
+   078A 7B 00              2172 	mov	r3,#0x00
+                           2173 ;	../../../cpu/cc2430/dev/cc2430_rf.c:623: retval = CC2430_CCA_BUSY;
+   078C 7A 01              2174 	mov	r2,#0x01
+   078E                    2175 00105$:
+                           2176 ;	../../../cpu/cc2430/dev/cc2430_rf.c:625: counter++;
+   078E 0C                 2177 	inc	r4
+   078F 80 D3              2178 	sjmp	00106$
+   0791                    2179 00110$:
+                           2180 ;	../../../cpu/cc2430/dev/cc2430_rf.c:628: retval = CC2430_CCA_BUSY;
+   0791 7A 01              2181 	mov	r2,#0x01
+                           2182 ;	../../../cpu/cc2430/dev/cc2430_rf.c:630: break;
+                           2183 ;	../../../cpu/cc2430/dev/cc2430_rf.c:632: case 0:
+   0793 80 0A              2184 	sjmp	00115$
+   0795                    2185 00112$:
+                           2186 ;	../../../cpu/cc2430/dev/cc2430_rf.c:633: if(!(RFSTATUS & CCA)) {
+   0795 90 DF 62           2187 	mov	dptr,#_RFSTATUS
+   0798 E0                 2188 	movx	a,@dptr
+   0799 FB                 2189 	mov	r3,a
+   079A 20 E0 02           2190 	jb	acc.0,00115$
+                           2191 ;	../../../cpu/cc2430/dev/cc2430_rf.c:634: retval = -1;
+   079D 7A FF              2192 	mov	r2,#0xFF
+                           2193 ;	../../../cpu/cc2430/dev/cc2430_rf.c:639: }
+   079F                    2194 00115$:
+                           2195 ;	../../../cpu/cc2430/dev/cc2430_rf.c:640: return retval;
+   079F EA                 2196 	mov	a,r2
+   07A0 33                 2197 	rlc	a
+   07A1 95 E0              2198 	subb	a,acc
+   07A3 FB                 2199 	mov	r3,a
+   07A4 8A 82              2200 	mov	dpl,r2
+   07A6 8B 83              2201 	mov	dph,r3
+   07A8 D0*00              2202 	pop	_bp
+   07AA 22                 2203 	ret
+                           2204 ;------------------------------------------------------------
+                           2205 ;Allocation info for local variables in function 'cc2430_rf_send_ack'
+                           2206 ;------------------------------------------------------------
+                           2207 ;pending                   Allocated to registers r2 
+                           2208 ;------------------------------------------------------------
+                           2209 ;	../../../cpu/cc2430/dev/cc2430_rf.c:649: cc2430_rf_send_ack(uint8_t pending) __banked
+                           2210 ;	-----------------------------------------
+                           2211 ;	 function cc2430_rf_send_ack
+                           2212 ;	-----------------------------------------
+   07AB                    2213 _cc2430_rf_send_ack:
+                           2214 ;	../../../cpu/cc2430/dev/cc2430_rf.c:651: if(pending) {
+   07AB E5 82              2215 	mov	a,dpl
+   07AD FA                 2216 	mov	r2,a
+   07AE 60 06              2217 	jz	00102$
+                           2218 ;	../../../cpu/cc2430/dev/cc2430_rf.c:652: cc2430_rf_command(ISACKPEND);
+   07B0 75 82 E9           2219 	mov	dpl,#0xE9
+   07B3 02s00r00           2220 	ljmp	_cc2430_rf_command
+   07B6                    2221 00102$:
+                           2222 ;	../../../cpu/cc2430/dev/cc2430_rf.c:654: cc2430_rf_command(ISACK);
+   07B6 75 82 E8           2223 	mov	dpl,#0xE8
+   07B9 02s00r00           2224 	ljmp	_cc2430_rf_command
+                           2225 	.area CSEG    (CODE)
+                           2226 	.area CONST   (CODE)
+                           2227 	.area XINIT   (CODE)
+   0000                    2228 __xinit__rf_initialized:
+   0000 00                 2229 	.db #0x00	; 0
+                           2230 	.area CABS    (ABS,CODE)

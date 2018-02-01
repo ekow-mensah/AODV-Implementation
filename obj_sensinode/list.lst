@@ -1,0 +1,1163 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:26:30 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module list
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _list_init
+                             13 	.globl _list_head
+                             14 	.globl _list_copy
+                             15 	.globl _list_tail
+                             16 	.globl _list_add
+                             17 	.globl _list_push
+                             18 	.globl _list_chop
+                             19 	.globl _list_pop
+                             20 	.globl _list_remove
+                             21 	.globl _list_length
+                             22 	.globl _list_insert
+                             23 	.globl _list_item_next
+                             24 ;--------------------------------------------------------
+                             25 ; special function registers
+                             26 ;--------------------------------------------------------
+                             27 	.area RSEG    (ABS,DATA)
+   0000                      28 	.org 0x0000
+                             29 ;--------------------------------------------------------
+                             30 ; special function bits
+                             31 ;--------------------------------------------------------
+                             32 	.area RSEG    (ABS,DATA)
+   0000                      33 	.org 0x0000
+                             34 ;--------------------------------------------------------
+                             35 ; overlayable register banks
+                             36 ;--------------------------------------------------------
+                             37 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      38 	.ds 8
+                             39 ;--------------------------------------------------------
+                             40 ; internal ram data
+                             41 ;--------------------------------------------------------
+                             42 	.area DSEG    (DATA)
+                             43 ;--------------------------------------------------------
+                             44 ; overlayable items in internal ram 
+                             45 ;--------------------------------------------------------
+                             46 	.area OSEG    (OVR,DATA)
+                             47 ;--------------------------------------------------------
+                             48 ; indirectly addressable internal ram data
+                             49 ;--------------------------------------------------------
+                             50 	.area ISEG    (DATA)
+                             51 ;--------------------------------------------------------
+                             52 ; absolute internal ram data
+                             53 ;--------------------------------------------------------
+                             54 	.area IABS    (ABS,DATA)
+                             55 	.area IABS    (ABS,DATA)
+                             56 ;--------------------------------------------------------
+                             57 ; bit data
+                             58 ;--------------------------------------------------------
+                             59 	.area BSEG    (BIT)
+                             60 ;--------------------------------------------------------
+                             61 ; paged external ram data
+                             62 ;--------------------------------------------------------
+                             63 	.area PSEG    (PAG,XDATA)
+                             64 ;--------------------------------------------------------
+                             65 ; external ram data
+                             66 ;--------------------------------------------------------
+                             67 	.area XSEG    (XDATA)
+                             68 ;--------------------------------------------------------
+                             69 ; absolute external ram data
+                             70 ;--------------------------------------------------------
+                             71 	.area XABS    (ABS,XDATA)
+                             72 ;--------------------------------------------------------
+                             73 ; external initialized ram data
+                             74 ;--------------------------------------------------------
+                             75 	.area XISEG   (XDATA)
+                             76 	.area HOME    (CODE)
+                             77 	.area GSINIT0 (CODE)
+                             78 	.area GSINIT1 (CODE)
+                             79 	.area GSINIT2 (CODE)
+                             80 	.area GSINIT3 (CODE)
+                             81 	.area GSINIT4 (CODE)
+                             82 	.area GSINIT5 (CODE)
+                             83 	.area GSINIT  (CODE)
+                             84 	.area GSFINAL (CODE)
+                             85 	.area CSEG    (CODE)
+                             86 ;--------------------------------------------------------
+                             87 ; global & static initialisations
+                             88 ;--------------------------------------------------------
+                             89 	.area HOME    (CODE)
+                             90 	.area GSINIT  (CODE)
+                             91 	.area GSFINAL (CODE)
+                             92 	.area GSINIT  (CODE)
+                             93 ;--------------------------------------------------------
+                             94 ; Home
+                             95 ;--------------------------------------------------------
+                             96 	.area HOME    (CODE)
+                             97 	.area HOME    (CODE)
+                             98 ;--------------------------------------------------------
+                             99 ; code
+                            100 ;--------------------------------------------------------
+                            101 	.area CSEG    (CODE)
+                            102 ;------------------------------------------------------------
+                            103 ;Allocation info for local variables in function 'list_init'
+                            104 ;------------------------------------------------------------
+                            105 ;list                      Allocated to registers r2 r3 r4 
+                            106 ;------------------------------------------------------------
+                            107 ;	../../../core/lib/list.c:66: list_init(list_t list)
+                            108 ;	-----------------------------------------
+                            109 ;	 function list_init
+                            110 ;	-----------------------------------------
+   0000                     111 _list_init:
+                    0002    112 	ar2 = 0x02
+                    0003    113 	ar3 = 0x03
+                    0004    114 	ar4 = 0x04
+                    0005    115 	ar5 = 0x05
+                    0006    116 	ar6 = 0x06
+                    0007    117 	ar7 = 0x07
+                    0000    118 	ar0 = 0x00
+                    0001    119 	ar1 = 0x01
+                            120 ;	../../../core/lib/list.c:68: *list = NULL;
+   0000 E4                  121 	clr	a
+   0001 12s00r00            122 	lcall	__gptrput
+   0004 A3                  123 	inc	dptr
+   0005 E4                  124 	clr	a
+   0006 12s00r00            125 	lcall	__gptrput
+   0009 A3                  126 	inc	dptr
+   000A E4                  127 	clr	a
+   000B 02s00r00            128 	ljmp	__gptrput
+                            129 ;------------------------------------------------------------
+                            130 ;Allocation info for local variables in function 'list_head'
+                            131 ;------------------------------------------------------------
+                            132 ;list                      Allocated to registers r2 r3 r4 
+                            133 ;------------------------------------------------------------
+                            134 ;	../../../core/lib/list.c:83: list_head(list_t list)
+                            135 ;	-----------------------------------------
+                            136 ;	 function list_head
+                            137 ;	-----------------------------------------
+   000E                     138 _list_head:
+                            139 ;	../../../core/lib/list.c:85: return *list;
+   000E 12s00r00            140 	lcall	__gptrget
+   0011 FA                  141 	mov	r2,a
+   0012 A3                  142 	inc	dptr
+   0013 12s00r00            143 	lcall	__gptrget
+   0016 FB                  144 	mov	r3,a
+   0017 A3                  145 	inc	dptr
+   0018 12s00r00            146 	lcall	__gptrget
+   001B FC                  147 	mov	r4,a
+   001C 8A 82               148 	mov	dpl,r2
+   001E 8B 83               149 	mov	dph,r3
+   0020 8C F0               150 	mov	b,r4
+   0022 22                  151 	ret
+                            152 ;------------------------------------------------------------
+                            153 ;Allocation info for local variables in function 'list_copy'
+                            154 ;------------------------------------------------------------
+                            155 ;src                       Allocated to stack - offset -5
+                            156 ;dest                      Allocated to registers r2 r3 r4 
+                            157 ;------------------------------------------------------------
+                            158 ;	../../../core/lib/list.c:101: list_copy(list_t dest, list_t src)
+                            159 ;	-----------------------------------------
+                            160 ;	 function list_copy
+                            161 ;	-----------------------------------------
+   0023                     162 _list_copy:
+   0023 C0*00               163 	push	_bp
+   0025 85 81*00            164 	mov	_bp,sp
+   0028 AA 82               165 	mov	r2,dpl
+   002A AB 83               166 	mov	r3,dph
+   002C AC F0               167 	mov	r4,b
+                            168 ;	../../../core/lib/list.c:103: *dest = *src;
+   002E E5*00               169 	mov	a,_bp
+   0030 24 FB               170 	add	a,#0xfb
+   0032 F8                  171 	mov	r0,a
+   0033 86 05               172 	mov	ar5,@r0
+   0035 08                  173 	inc	r0
+   0036 86 06               174 	mov	ar6,@r0
+   0038 08                  175 	inc	r0
+   0039 86 07               176 	mov	ar7,@r0
+   003B 8D 82               177 	mov	dpl,r5
+   003D 8E 83               178 	mov	dph,r6
+   003F 8F F0               179 	mov	b,r7
+   0041 12s00r00            180 	lcall	__gptrget
+   0044 FD                  181 	mov	r5,a
+   0045 A3                  182 	inc	dptr
+   0046 12s00r00            183 	lcall	__gptrget
+   0049 FE                  184 	mov	r6,a
+   004A A3                  185 	inc	dptr
+   004B 12s00r00            186 	lcall	__gptrget
+   004E FF                  187 	mov	r7,a
+   004F 8A 82               188 	mov	dpl,r2
+   0051 8B 83               189 	mov	dph,r3
+   0053 8C F0               190 	mov	b,r4
+   0055 ED                  191 	mov	a,r5
+   0056 12s00r00            192 	lcall	__gptrput
+   0059 A3                  193 	inc	dptr
+   005A EE                  194 	mov	a,r6
+   005B 12s00r00            195 	lcall	__gptrput
+   005E A3                  196 	inc	dptr
+   005F EF                  197 	mov	a,r7
+   0060 12s00r00            198 	lcall	__gptrput
+   0063 D0*00               199 	pop	_bp
+   0065 22                  200 	ret
+                            201 ;------------------------------------------------------------
+                            202 ;Allocation info for local variables in function 'list_tail'
+                            203 ;------------------------------------------------------------
+                            204 ;list                      Allocated to registers r2 r3 r4 
+                            205 ;l                         Allocated to registers r2 r3 r4 
+                            206 ;------------------------------------------------------------
+                            207 ;	../../../core/lib/list.c:118: list_tail(list_t list)
+                            208 ;	-----------------------------------------
+                            209 ;	 function list_tail
+                            210 ;	-----------------------------------------
+   0066                     211 _list_tail:
+                            212 ;	../../../core/lib/list.c:122: if(*list == NULL) {
+   0066 12s00r00            213 	lcall	__gptrget
+   0069 FA                  214 	mov	r2,a
+   006A A3                  215 	inc	dptr
+   006B 12s00r00            216 	lcall	__gptrget
+   006E FB                  217 	mov	r3,a
+   006F A3                  218 	inc	dptr
+   0070 12s00r00            219 	lcall	__gptrget
+   0073 FC                  220 	mov	r4,a
+   0074 EA                  221 	mov	a,r2
+   0075 4B                  222 	orl	a,r3
+   0076 4C                  223 	orl	a,r4
+                            224 ;	../../../core/lib/list.c:123: return NULL;
+   0077 70 06               225 	jnz	00102$
+   0079 90 00 00            226 	mov	dptr,#0x0000
+   007C F5 F0               227 	mov	b,a
+   007E 22                  228 	ret
+   007F                     229 00102$:
+                            230 ;	../../../core/lib/list.c:126: for(l = *list; l->next != NULL; l = l->next);
+   007F                     231 00103$:
+   007F 8A 82               232 	mov	dpl,r2
+   0081 8B 83               233 	mov	dph,r3
+   0083 8C F0               234 	mov	b,r4
+   0085 12s00r00            235 	lcall	__gptrget
+   0088 FD                  236 	mov	r5,a
+   0089 A3                  237 	inc	dptr
+   008A 12s00r00            238 	lcall	__gptrget
+   008D FE                  239 	mov	r6,a
+   008E A3                  240 	inc	dptr
+   008F 12s00r00            241 	lcall	__gptrget
+   0092 FF                  242 	mov	r7,a
+   0093 BD 00 08            243 	cjne	r5,#0x00,00113$
+   0096 BE 00 05            244 	cjne	r6,#0x00,00113$
+   0099 BF 00 02            245 	cjne	r7,#0x00,00113$
+   009C 80 08               246 	sjmp	00106$
+   009E                     247 00113$:
+   009E 8D 02               248 	mov	ar2,r5
+   00A0 8E 03               249 	mov	ar3,r6
+   00A2 8F 04               250 	mov	ar4,r7
+   00A4 80 D9               251 	sjmp	00103$
+   00A6                     252 00106$:
+                            253 ;	../../../core/lib/list.c:128: return l;
+   00A6 8A 82               254 	mov	dpl,r2
+   00A8 8B 83               255 	mov	dph,r3
+   00AA 8C F0               256 	mov	b,r4
+   00AC 22                  257 	ret
+                            258 ;------------------------------------------------------------
+                            259 ;Allocation info for local variables in function 'list_add'
+                            260 ;------------------------------------------------------------
+                            261 ;item                      Allocated to stack - offset -5
+                            262 ;list                      Allocated to registers r2 r3 r4 
+                            263 ;l                         Allocated to stack - offset 1
+                            264 ;------------------------------------------------------------
+                            265 ;	../../../core/lib/list.c:143: list_add(list_t list, void *item)
+                            266 ;	-----------------------------------------
+                            267 ;	 function list_add
+                            268 ;	-----------------------------------------
+   00AD                     269 _list_add:
+   00AD C0*00               270 	push	_bp
+   00AF 85 81*00            271 	mov	_bp,sp
+   00B2 05 81               272 	inc	sp
+   00B4 05 81               273 	inc	sp
+   00B6 05 81               274 	inc	sp
+   00B8 AA 82               275 	mov	r2,dpl
+   00BA AB 83               276 	mov	r3,dph
+   00BC AC F0               277 	mov	r4,b
+                            278 ;	../../../core/lib/list.c:148: list_remove(list, item);
+   00BE C0 02               279 	push	ar2
+   00C0 C0 03               280 	push	ar3
+   00C2 C0 04               281 	push	ar4
+   00C4 E5*00               282 	mov	a,_bp
+   00C6 24 FB               283 	add	a,#0xfb
+   00C8 F8                  284 	mov	r0,a
+   00C9 E6                  285 	mov	a,@r0
+   00CA C0 E0               286 	push	acc
+   00CC 08                  287 	inc	r0
+   00CD E6                  288 	mov	a,@r0
+   00CE C0 E0               289 	push	acc
+   00D0 08                  290 	inc	r0
+   00D1 E6                  291 	mov	a,@r0
+   00D2 C0 E0               292 	push	acc
+   00D4 8A 82               293 	mov	dpl,r2
+   00D6 8B 83               294 	mov	dph,r3
+   00D8 8C F0               295 	mov	b,r4
+   00DA 12s03r5B            296 	lcall	_list_remove
+   00DD 15 81               297 	dec	sp
+   00DF 15 81               298 	dec	sp
+   00E1 15 81               299 	dec	sp
+   00E3 D0 04               300 	pop	ar4
+   00E5 D0 03               301 	pop	ar3
+   00E7 D0 02               302 	pop	ar2
+                            303 ;	../../../core/lib/list.c:150: ((struct list *)item)->next = NULL;
+   00E9 E5*00               304 	mov	a,_bp
+   00EB 24 FB               305 	add	a,#0xfb
+   00ED F8                  306 	mov	r0,a
+   00EE 86 05               307 	mov	ar5,@r0
+   00F0 08                  308 	inc	r0
+   00F1 86 06               309 	mov	ar6,@r0
+   00F3 08                  310 	inc	r0
+   00F4 86 07               311 	mov	ar7,@r0
+   00F6 8D 82               312 	mov	dpl,r5
+   00F8 8E 83               313 	mov	dph,r6
+   00FA 8F F0               314 	mov	b,r7
+   00FC E4                  315 	clr	a
+   00FD 12s00r00            316 	lcall	__gptrput
+   0100 A3                  317 	inc	dptr
+   0101 E4                  318 	clr	a
+   0102 12s00r00            319 	lcall	__gptrput
+   0105 A3                  320 	inc	dptr
+   0106 E4                  321 	clr	a
+   0107 12s00r00            322 	lcall	__gptrput
+                            323 ;	../../../core/lib/list.c:152: l = list_tail(list);
+   010A 8A 82               324 	mov	dpl,r2
+   010C 8B 83               325 	mov	dph,r3
+   010E 8C F0               326 	mov	b,r4
+   0110 C0 02               327 	push	ar2
+   0112 C0 03               328 	push	ar3
+   0114 C0 04               329 	push	ar4
+   0116 C0 05               330 	push	ar5
+   0118 C0 06               331 	push	ar6
+   011A C0 07               332 	push	ar7
+   011C 12s00r66            333 	lcall	_list_tail
+   011F A8*00               334 	mov	r0,_bp
+   0121 08                  335 	inc	r0
+   0122 A6 82               336 	mov	@r0,dpl
+   0124 08                  337 	inc	r0
+   0125 A6 83               338 	mov	@r0,dph
+   0127 08                  339 	inc	r0
+   0128 A6 F0               340 	mov	@r0,b
+   012A D0 07               341 	pop	ar7
+   012C D0 06               342 	pop	ar6
+   012E D0 05               343 	pop	ar5
+   0130 D0 04               344 	pop	ar4
+   0132 D0 03               345 	pop	ar3
+   0134 D0 02               346 	pop	ar2
+   0136 A8*00               347 	mov	r0,_bp
+   0138 08                  348 	inc	r0
+                            349 ;	../../../core/lib/list.c:154: if(l == NULL) {
+   0139 A8*00               350 	mov	r0,_bp
+   013B 08                  351 	inc	r0
+   013C E6                  352 	mov	a,@r0
+   013D 08                  353 	inc	r0
+   013E 46                  354 	orl	a,@r0
+   013F 08                  355 	inc	r0
+   0140 46                  356 	orl	a,@r0
+   0141 70 16               357 	jnz	00102$
+                            358 ;	../../../core/lib/list.c:155: *list = item;
+   0143 8A 82               359 	mov	dpl,r2
+   0145 8B 83               360 	mov	dph,r3
+   0147 8C F0               361 	mov	b,r4
+   0149 ED                  362 	mov	a,r5
+   014A 12s00r00            363 	lcall	__gptrput
+   014D A3                  364 	inc	dptr
+   014E EE                  365 	mov	a,r6
+   014F 12s00r00            366 	lcall	__gptrput
+   0152 A3                  367 	inc	dptr
+   0153 EF                  368 	mov	a,r7
+   0154 12s00r00            369 	lcall	__gptrput
+   0157 80 19               370 	sjmp	00104$
+   0159                     371 00102$:
+                            372 ;	../../../core/lib/list.c:157: l->next = item;
+   0159 A8*00               373 	mov	r0,_bp
+   015B 08                  374 	inc	r0
+   015C 86 82               375 	mov	dpl,@r0
+   015E 08                  376 	inc	r0
+   015F 86 83               377 	mov	dph,@r0
+   0161 08                  378 	inc	r0
+   0162 86 F0               379 	mov	b,@r0
+   0164 ED                  380 	mov	a,r5
+   0165 12s00r00            381 	lcall	__gptrput
+   0168 A3                  382 	inc	dptr
+   0169 EE                  383 	mov	a,r6
+   016A 12s00r00            384 	lcall	__gptrput
+   016D A3                  385 	inc	dptr
+   016E EF                  386 	mov	a,r7
+   016F 12s00r00            387 	lcall	__gptrput
+   0172                     388 00104$:
+   0172 85*00 81            389 	mov	sp,_bp
+   0175 D0*00               390 	pop	_bp
+   0177 22                  391 	ret
+                            392 ;------------------------------------------------------------
+                            393 ;Allocation info for local variables in function 'list_push'
+                            394 ;------------------------------------------------------------
+                            395 ;item                      Allocated to stack - offset -5
+                            396 ;list                      Allocated to registers r2 r3 r4 
+                            397 ;------------------------------------------------------------
+                            398 ;	../../../core/lib/list.c:165: list_push(list_t list, void *item)
+                            399 ;	-----------------------------------------
+                            400 ;	 function list_push
+                            401 ;	-----------------------------------------
+   0178                     402 _list_push:
+   0178 C0*00               403 	push	_bp
+   017A 85 81*00            404 	mov	_bp,sp
+   017D AA 82               405 	mov	r2,dpl
+   017F AB 83               406 	mov	r3,dph
+   0181 AC F0               407 	mov	r4,b
+                            408 ;	../../../core/lib/list.c:170: list_remove(list, item);
+   0183 C0 02               409 	push	ar2
+   0185 C0 03               410 	push	ar3
+   0187 C0 04               411 	push	ar4
+   0189 E5*00               412 	mov	a,_bp
+   018B 24 FB               413 	add	a,#0xfb
+   018D F8                  414 	mov	r0,a
+   018E E6                  415 	mov	a,@r0
+   018F C0 E0               416 	push	acc
+   0191 08                  417 	inc	r0
+   0192 E6                  418 	mov	a,@r0
+   0193 C0 E0               419 	push	acc
+   0195 08                  420 	inc	r0
+   0196 E6                  421 	mov	a,@r0
+   0197 C0 E0               422 	push	acc
+   0199 8A 82               423 	mov	dpl,r2
+   019B 8B 83               424 	mov	dph,r3
+   019D 8C F0               425 	mov	b,r4
+   019F 12s03r5B            426 	lcall	_list_remove
+   01A2 15 81               427 	dec	sp
+   01A4 15 81               428 	dec	sp
+   01A6 15 81               429 	dec	sp
+   01A8 D0 04               430 	pop	ar4
+   01AA D0 03               431 	pop	ar3
+   01AC D0 02               432 	pop	ar2
+                            433 ;	../../../core/lib/list.c:172: ((struct list *)item)->next = *list;
+   01AE 8A 82               434 	mov	dpl,r2
+   01B0 8B 83               435 	mov	dph,r3
+   01B2 8C F0               436 	mov	b,r4
+   01B4 12s00r00            437 	lcall	__gptrget
+   01B7 FD                  438 	mov	r5,a
+   01B8 A3                  439 	inc	dptr
+   01B9 12s00r00            440 	lcall	__gptrget
+   01BC FE                  441 	mov	r6,a
+   01BD A3                  442 	inc	dptr
+   01BE 12s00r00            443 	lcall	__gptrget
+   01C1 FF                  444 	mov	r7,a
+   01C2 E5*00               445 	mov	a,_bp
+   01C4 24 FB               446 	add	a,#0xfb
+   01C6 F8                  447 	mov	r0,a
+   01C7 86 82               448 	mov	dpl,@r0
+   01C9 08                  449 	inc	r0
+   01CA 86 83               450 	mov	dph,@r0
+   01CC 08                  451 	inc	r0
+   01CD 86 F0               452 	mov	b,@r0
+   01CF ED                  453 	mov	a,r5
+   01D0 12s00r00            454 	lcall	__gptrput
+   01D3 A3                  455 	inc	dptr
+   01D4 EE                  456 	mov	a,r6
+   01D5 12s00r00            457 	lcall	__gptrput
+   01D8 A3                  458 	inc	dptr
+   01D9 EF                  459 	mov	a,r7
+   01DA 12s00r00            460 	lcall	__gptrput
+                            461 ;	../../../core/lib/list.c:173: *list = item;
+   01DD 8A 82               462 	mov	dpl,r2
+   01DF 8B 83               463 	mov	dph,r3
+   01E1 8C F0               464 	mov	b,r4
+   01E3 E5*00               465 	mov	a,_bp
+   01E5 24 FB               466 	add	a,#0xfb
+   01E7 F8                  467 	mov	r0,a
+   01E8 E6                  468 	mov	a,@r0
+   01E9 12s00r00            469 	lcall	__gptrput
+   01EC A3                  470 	inc	dptr
+   01ED 08                  471 	inc	r0
+   01EE E6                  472 	mov	a,@r0
+   01EF 12s00r00            473 	lcall	__gptrput
+   01F2 A3                  474 	inc	dptr
+   01F3 08                  475 	inc	r0
+   01F4 E6                  476 	mov	a,@r0
+   01F5 12s00r00            477 	lcall	__gptrput
+   01F8 D0*00               478 	pop	_bp
+   01FA 22                  479 	ret
+                            480 ;------------------------------------------------------------
+                            481 ;Allocation info for local variables in function 'list_chop'
+                            482 ;------------------------------------------------------------
+                            483 ;list                      Allocated to stack - offset 1
+                            484 ;l                         Allocated to registers r2 r3 r4 
+                            485 ;r                         Allocated to registers r5 r6 r7 
+                            486 ;------------------------------------------------------------
+                            487 ;	../../../core/lib/list.c:186: list_chop(list_t list)
+                            488 ;	-----------------------------------------
+                            489 ;	 function list_chop
+                            490 ;	-----------------------------------------
+   01FB                     491 _list_chop:
+   01FB C0*00               492 	push	_bp
+   01FD 85 81*00            493 	mov	_bp,sp
+   0200 C0 82               494 	push	dpl
+   0202 C0 83               495 	push	dph
+   0204 C0 F0               496 	push	b
+                            497 ;	../../../core/lib/list.c:190: if(*list == NULL) {
+   0206 A8*00               498 	mov	r0,_bp
+   0208 08                  499 	inc	r0
+   0209 86 82               500 	mov	dpl,@r0
+   020B 08                  501 	inc	r0
+   020C 86 83               502 	mov	dph,@r0
+   020E 08                  503 	inc	r0
+   020F 86 F0               504 	mov	b,@r0
+   0211 12s00r00            505 	lcall	__gptrget
+   0214 FD                  506 	mov	r5,a
+   0215 A3                  507 	inc	dptr
+   0216 12s00r00            508 	lcall	__gptrget
+   0219 FE                  509 	mov	r6,a
+   021A A3                  510 	inc	dptr
+   021B 12s00r00            511 	lcall	__gptrget
+   021E FF                  512 	mov	r7,a
+   021F ED                  513 	mov	a,r5
+   0220 4E                  514 	orl	a,r6
+   0221 4F                  515 	orl	a,r7
+                            516 ;	../../../core/lib/list.c:191: return NULL;
+   0222 70 08               517 	jnz	00102$
+   0224 90 00 00            518 	mov	dptr,#0x0000
+   0227 F5 F0               519 	mov	b,a
+   0229 02s02rEA            520 	ljmp	00109$
+   022C                     521 00102$:
+                            522 ;	../../../core/lib/list.c:193: if(((struct list *)*list)->next == NULL) {
+   022C 8D 82               523 	mov	dpl,r5
+   022E 8E 83               524 	mov	dph,r6
+   0230 8F F0               525 	mov	b,r7
+   0232 12s00r00            526 	lcall	__gptrget
+   0235 FA                  527 	mov	r2,a
+   0236 A3                  528 	inc	dptr
+   0237 12s00r00            529 	lcall	__gptrget
+   023A FB                  530 	mov	r3,a
+   023B A3                  531 	inc	dptr
+   023C 12s00r00            532 	lcall	__gptrget
+   023F FC                  533 	mov	r4,a
+   0240 EA                  534 	mov	a,r2
+   0241 4B                  535 	orl	a,r3
+   0242 4C                  536 	orl	a,r4
+   0243 70 28               537 	jnz	00104$
+                            538 ;	../../../core/lib/list.c:194: l = *list;
+   0245 8D 02               539 	mov	ar2,r5
+   0247 8E 03               540 	mov	ar3,r6
+   0249 8F 04               541 	mov	ar4,r7
+                            542 ;	../../../core/lib/list.c:195: *list = NULL;
+   024B A8*00               543 	mov	r0,_bp
+   024D 08                  544 	inc	r0
+   024E 86 82               545 	mov	dpl,@r0
+   0250 08                  546 	inc	r0
+   0251 86 83               547 	mov	dph,@r0
+   0253 08                  548 	inc	r0
+   0254 86 F0               549 	mov	b,@r0
+   0256 E4                  550 	clr	a
+   0257 12s00r00            551 	lcall	__gptrput
+   025A A3                  552 	inc	dptr
+   025B E4                  553 	clr	a
+   025C 12s00r00            554 	lcall	__gptrput
+   025F A3                  555 	inc	dptr
+   0260 E4                  556 	clr	a
+   0261 12s00r00            557 	lcall	__gptrput
+                            558 ;	../../../core/lib/list.c:196: return l;
+   0264 8A 82               559 	mov	dpl,r2
+   0266 8B 83               560 	mov	dph,r3
+   0268 8C F0               561 	mov	b,r4
+   026A 02s02rEA            562 	ljmp	00109$
+   026D                     563 00104$:
+                            564 ;	../../../core/lib/list.c:199: for(l = *list; l->next->next != NULL; l = l->next);
+   026D 8D 02               565 	mov	ar2,r5
+   026F 8E 03               566 	mov	ar3,r6
+   0271 8F 04               567 	mov	ar4,r7
+   0273                     568 00105$:
+   0273 8A 82               569 	mov	dpl,r2
+   0275 8B 83               570 	mov	dph,r3
+   0277 8C F0               571 	mov	b,r4
+   0279 12s00r00            572 	lcall	__gptrget
+   027C FD                  573 	mov	r5,a
+   027D A3                  574 	inc	dptr
+   027E 12s00r00            575 	lcall	__gptrget
+   0281 FE                  576 	mov	r6,a
+   0282 A3                  577 	inc	dptr
+   0283 12s00r00            578 	lcall	__gptrget
+   0286 FF                  579 	mov	r7,a
+   0287 8D 82               580 	mov	dpl,r5
+   0289 8E 83               581 	mov	dph,r6
+   028B 8F F0               582 	mov	b,r7
+   028D 12s00r00            583 	lcall	__gptrget
+   0290 FD                  584 	mov	r5,a
+   0291 A3                  585 	inc	dptr
+   0292 12s00r00            586 	lcall	__gptrget
+   0295 FE                  587 	mov	r6,a
+   0296 A3                  588 	inc	dptr
+   0297 12s00r00            589 	lcall	__gptrget
+   029A FF                  590 	mov	r7,a
+   029B BD 00 08            591 	cjne	r5,#0x00,00117$
+   029E BE 00 05            592 	cjne	r6,#0x00,00117$
+   02A1 BF 00 02            593 	cjne	r7,#0x00,00117$
+   02A4 80 16               594 	sjmp	00108$
+   02A6                     595 00117$:
+   02A6 8A 82               596 	mov	dpl,r2
+   02A8 8B 83               597 	mov	dph,r3
+   02AA 8C F0               598 	mov	b,r4
+   02AC 12s00r00            599 	lcall	__gptrget
+   02AF FA                  600 	mov	r2,a
+   02B0 A3                  601 	inc	dptr
+   02B1 12s00r00            602 	lcall	__gptrget
+   02B4 FB                  603 	mov	r3,a
+   02B5 A3                  604 	inc	dptr
+   02B6 12s00r00            605 	lcall	__gptrget
+   02B9 FC                  606 	mov	r4,a
+   02BA 80 B7               607 	sjmp	00105$
+   02BC                     608 00108$:
+                            609 ;	../../../core/lib/list.c:201: r = l->next;
+   02BC 8A 82               610 	mov	dpl,r2
+   02BE 8B 83               611 	mov	dph,r3
+   02C0 8C F0               612 	mov	b,r4
+   02C2 12s00r00            613 	lcall	__gptrget
+   02C5 FD                  614 	mov	r5,a
+   02C6 A3                  615 	inc	dptr
+   02C7 12s00r00            616 	lcall	__gptrget
+   02CA FE                  617 	mov	r6,a
+   02CB A3                  618 	inc	dptr
+   02CC 12s00r00            619 	lcall	__gptrget
+   02CF FF                  620 	mov	r7,a
+                            621 ;	../../../core/lib/list.c:202: l->next = NULL;
+   02D0 8A 82               622 	mov	dpl,r2
+   02D2 8B 83               623 	mov	dph,r3
+   02D4 8C F0               624 	mov	b,r4
+   02D6 E4                  625 	clr	a
+   02D7 12s00r00            626 	lcall	__gptrput
+   02DA A3                  627 	inc	dptr
+   02DB E4                  628 	clr	a
+   02DC 12s00r00            629 	lcall	__gptrput
+   02DF A3                  630 	inc	dptr
+   02E0 E4                  631 	clr	a
+   02E1 12s00r00            632 	lcall	__gptrput
+                            633 ;	../../../core/lib/list.c:204: return r;
+   02E4 8D 82               634 	mov	dpl,r5
+   02E6 8E 83               635 	mov	dph,r6
+   02E8 8F F0               636 	mov	b,r7
+   02EA                     637 00109$:
+   02EA 85*00 81            638 	mov	sp,_bp
+   02ED D0*00               639 	pop	_bp
+   02EF 22                  640 	ret
+                            641 ;------------------------------------------------------------
+                            642 ;Allocation info for local variables in function 'list_pop'
+                            643 ;------------------------------------------------------------
+                            644 ;list                      Allocated to registers r2 r3 r4 
+                            645 ;l                         Allocated to stack - offset 1
+                            646 ;------------------------------------------------------------
+                            647 ;	../../../core/lib/list.c:218: list_pop(list_t list)
+                            648 ;	-----------------------------------------
+                            649 ;	 function list_pop
+                            650 ;	-----------------------------------------
+   02F0                     651 _list_pop:
+   02F0 C0*00               652 	push	_bp
+   02F2 85 81*00            653 	mov	_bp,sp
+   02F5 05 81               654 	inc	sp
+   02F7 05 81               655 	inc	sp
+   02F9 05 81               656 	inc	sp
+                            657 ;	../../../core/lib/list.c:221: l = *list;
+   02FB AA 82               658 	mov	r2,dpl
+   02FD AB 83               659 	mov	r3,dph
+   02FF AC F0               660 	mov	r4,b
+   0301 12s00r00            661 	lcall	__gptrget
+   0304 FD                  662 	mov	r5,a
+   0305 A3                  663 	inc	dptr
+   0306 12s00r00            664 	lcall	__gptrget
+   0309 FE                  665 	mov	r6,a
+   030A A3                  666 	inc	dptr
+   030B 12s00r00            667 	lcall	__gptrget
+   030E FF                  668 	mov	r7,a
+   030F A8*00               669 	mov	r0,_bp
+   0311 08                  670 	inc	r0
+   0312 A6 05               671 	mov	@r0,ar5
+   0314 08                  672 	inc	r0
+   0315 A6 06               673 	mov	@r0,ar6
+   0317 08                  674 	inc	r0
+   0318 A6 07               675 	mov	@r0,ar7
+   031A A8*00               676 	mov	r0,_bp
+   031C 08                  677 	inc	r0
+                            678 ;	../../../core/lib/list.c:222: if(*list != NULL) {
+   031D ED                  679 	mov	a,r5
+   031E 4E                  680 	orl	a,r6
+   031F 4F                  681 	orl	a,r7
+   0320 60 28               682 	jz	00102$
+                            683 ;	../../../core/lib/list.c:223: *list = ((struct list *)*list)->next;
+   0322 8D 82               684 	mov	dpl,r5
+   0324 8E 83               685 	mov	dph,r6
+   0326 8F F0               686 	mov	b,r7
+   0328 12s00r00            687 	lcall	__gptrget
+   032B FD                  688 	mov	r5,a
+   032C A3                  689 	inc	dptr
+   032D 12s00r00            690 	lcall	__gptrget
+   0330 FE                  691 	mov	r6,a
+   0331 A3                  692 	inc	dptr
+   0332 12s00r00            693 	lcall	__gptrget
+   0335 FF                  694 	mov	r7,a
+   0336 8A 82               695 	mov	dpl,r2
+   0338 8B 83               696 	mov	dph,r3
+   033A 8C F0               697 	mov	b,r4
+   033C ED                  698 	mov	a,r5
+   033D 12s00r00            699 	lcall	__gptrput
+   0340 A3                  700 	inc	dptr
+   0341 EE                  701 	mov	a,r6
+   0342 12s00r00            702 	lcall	__gptrput
+   0345 A3                  703 	inc	dptr
+   0346 EF                  704 	mov	a,r7
+   0347 12s00r00            705 	lcall	__gptrput
+   034A                     706 00102$:
+                            707 ;	../../../core/lib/list.c:226: return l;
+   034A A8*00               708 	mov	r0,_bp
+   034C 08                  709 	inc	r0
+   034D 86 82               710 	mov	dpl,@r0
+   034F 08                  711 	inc	r0
+   0350 86 83               712 	mov	dph,@r0
+   0352 08                  713 	inc	r0
+   0353 86 F0               714 	mov	b,@r0
+   0355 85*00 81            715 	mov	sp,_bp
+   0358 D0*00               716 	pop	_bp
+   035A 22                  717 	ret
+                            718 ;------------------------------------------------------------
+                            719 ;Allocation info for local variables in function 'list_remove'
+                            720 ;------------------------------------------------------------
+                            721 ;item                      Allocated to stack - offset -5
+                            722 ;list                      Allocated to stack - offset 1
+                            723 ;l                         Allocated to stack - offset 4
+                            724 ;r                         Allocated to stack - offset 7
+                            725 ;------------------------------------------------------------
+                            726 ;	../../../core/lib/list.c:240: list_remove(list_t list, void *item)
+                            727 ;	-----------------------------------------
+                            728 ;	 function list_remove
+                            729 ;	-----------------------------------------
+   035B                     730 _list_remove:
+   035B C0*00               731 	push	_bp
+   035D 85 81*00            732 	mov	_bp,sp
+   0360 C0 82               733 	push	dpl
+   0362 C0 83               734 	push	dph
+   0364 C0 F0               735 	push	b
+   0366 E5 81               736 	mov	a,sp
+   0368 24 09               737 	add	a,#0x09
+   036A F5 81               738 	mov	sp,a
+                            739 ;	../../../core/lib/list.c:244: if(*list == NULL) {
+   036C A8*00               740 	mov	r0,_bp
+   036E 08                  741 	inc	r0
+   036F 86 82               742 	mov	dpl,@r0
+   0371 08                  743 	inc	r0
+   0372 86 83               744 	mov	dph,@r0
+   0374 08                  745 	inc	r0
+   0375 86 F0               746 	mov	b,@r0
+   0377 12s00r00            747 	lcall	__gptrget
+   037A FD                  748 	mov	r5,a
+   037B A3                  749 	inc	dptr
+   037C 12s00r00            750 	lcall	__gptrget
+   037F FE                  751 	mov	r6,a
+   0380 A3                  752 	inc	dptr
+   0381 12s00r00            753 	lcall	__gptrget
+   0384 FF                  754 	mov	r7,a
+   0385 ED                  755 	mov	a,r5
+   0386 4E                  756 	orl	a,r6
+   0387 4F                  757 	orl	a,r7
+   0388 70 03               758 	jnz	00102$
+                            759 ;	../../../core/lib/list.c:245: return;
+   038A 02s04rA9            760 	ljmp	00112$
+   038D                     761 00102$:
+                            762 ;	../../../core/lib/list.c:248: r = NULL;
+   038D E5*00               763 	mov	a,_bp
+   038F 24 07               764 	add	a,#0x07
+   0391 F8                  765 	mov	r0,a
+   0392 E4                  766 	clr	a
+   0393 F6                  767 	mov	@r0,a
+   0394 08                  768 	inc	r0
+   0395 F6                  769 	mov	@r0,a
+   0396 08                  770 	inc	r0
+   0397 76 00               771 	mov	@r0,#0x00
+                            772 ;	../../../core/lib/list.c:249: for(l = *list; l != NULL; l = l->next) {
+   0399 E5*00               773 	mov	a,_bp
+   039B 24 04               774 	add	a,#0x04
+   039D F8                  775 	mov	r0,a
+   039E A6 05               776 	mov	@r0,ar5
+   03A0 08                  777 	inc	r0
+   03A1 A6 06               778 	mov	@r0,ar6
+   03A3 08                  779 	inc	r0
+   03A4 A6 07               780 	mov	@r0,ar7
+   03A6 E5*00               781 	mov	a,_bp
+   03A8 24 FB               782 	add	a,#0xfb
+   03AA F8                  783 	mov	r0,a
+   03AB 86 02               784 	mov	ar2,@r0
+   03AD 08                  785 	inc	r0
+   03AE 86 03               786 	mov	ar3,@r0
+   03B0 08                  787 	inc	r0
+   03B1 86 04               788 	mov	ar4,@r0
+   03B3                     789 00108$:
+   03B3 E5*00               790 	mov	a,_bp
+   03B5 24 04               791 	add	a,#0x04
+   03B7 F8                  792 	mov	r0,a
+   03B8 B6 00 0B            793 	cjne	@r0,#0x00,00120$
+   03BB 08                  794 	inc	r0
+   03BC B6 00 07            795 	cjne	@r0,#0x00,00120$
+   03BF 08                  796 	inc	r0
+   03C0 B6 00 03            797 	cjne	@r0,#0x00,00120$
+   03C3 02s04rA9            798 	ljmp	00112$
+   03C6                     799 00120$:
+                            800 ;	../../../core/lib/list.c:250: if(l == item) {
+   03C6 E5*00               801 	mov	a,_bp
+   03C8 24 04               802 	add	a,#0x04
+   03CA F8                  803 	mov	r0,a
+   03CB E6                  804 	mov	a,@r0
+   03CC B5 02 0C            805 	cjne	a,ar2,00121$
+   03CF 08                  806 	inc	r0
+   03D0 E6                  807 	mov	a,@r0
+   03D1 B5 03 07            808 	cjne	a,ar3,00121$
+   03D4 08                  809 	inc	r0
+   03D5 E6                  810 	mov	a,@r0
+   03D6 B5 04 02            811 	cjne	a,ar4,00121$
+   03D9 80 03               812 	sjmp	00122$
+   03DB                     813 00121$:
+   03DB 02s04r73            814 	ljmp	00107$
+   03DE                     815 00122$:
+                            816 ;	../../../core/lib/list.c:251: if(r == NULL) {
+   03DE E5*00               817 	mov	a,_bp
+   03E0 24 07               818 	add	a,#0x07
+   03E2 F8                  819 	mov	r0,a
+   03E3 E6                  820 	mov	a,@r0
+   03E4 08                  821 	inc	r0
+   03E5 46                  822 	orl	a,@r0
+   03E6 08                  823 	inc	r0
+   03E7 46                  824 	orl	a,@r0
+   03E8 70 36               825 	jnz	00104$
+                            826 ;	../../../core/lib/list.c:253: *list = l->next;
+   03EA E5*00               827 	mov	a,_bp
+   03EC 24 04               828 	add	a,#0x04
+   03EE F8                  829 	mov	r0,a
+   03EF 86 82               830 	mov	dpl,@r0
+   03F1 08                  831 	inc	r0
+   03F2 86 83               832 	mov	dph,@r0
+   03F4 08                  833 	inc	r0
+   03F5 86 F0               834 	mov	b,@r0
+   03F7 12s00r00            835 	lcall	__gptrget
+   03FA FD                  836 	mov	r5,a
+   03FB A3                  837 	inc	dptr
+   03FC 12s00r00            838 	lcall	__gptrget
+   03FF FE                  839 	mov	r6,a
+   0400 A3                  840 	inc	dptr
+   0401 12s00r00            841 	lcall	__gptrget
+   0404 FF                  842 	mov	r7,a
+   0405 A8*00               843 	mov	r0,_bp
+   0407 08                  844 	inc	r0
+   0408 86 82               845 	mov	dpl,@r0
+   040A 08                  846 	inc	r0
+   040B 86 83               847 	mov	dph,@r0
+   040D 08                  848 	inc	r0
+   040E 86 F0               849 	mov	b,@r0
+   0410 ED                  850 	mov	a,r5
+   0411 12s00r00            851 	lcall	__gptrput
+   0414 A3                  852 	inc	dptr
+   0415 EE                  853 	mov	a,r6
+   0416 12s00r00            854 	lcall	__gptrput
+   0419 A3                  855 	inc	dptr
+   041A EF                  856 	mov	a,r7
+   041B 12s00r00            857 	lcall	__gptrput
+   041E 80 36               858 	sjmp	00105$
+   0420                     859 00104$:
+                            860 ;	../../../core/lib/list.c:256: r->next = l->next;
+   0420 E5*00               861 	mov	a,_bp
+   0422 24 04               862 	add	a,#0x04
+   0424 F8                  863 	mov	r0,a
+   0425 86 82               864 	mov	dpl,@r0
+   0427 08                  865 	inc	r0
+   0428 86 83               866 	mov	dph,@r0
+   042A 08                  867 	inc	r0
+   042B 86 F0               868 	mov	b,@r0
+   042D 12s00r00            869 	lcall	__gptrget
+   0430 FD                  870 	mov	r5,a
+   0431 A3                  871 	inc	dptr
+   0432 12s00r00            872 	lcall	__gptrget
+   0435 FE                  873 	mov	r6,a
+   0436 A3                  874 	inc	dptr
+   0437 12s00r00            875 	lcall	__gptrget
+   043A FF                  876 	mov	r7,a
+   043B E5*00               877 	mov	a,_bp
+   043D 24 07               878 	add	a,#0x07
+   043F F8                  879 	mov	r0,a
+   0440 86 82               880 	mov	dpl,@r0
+   0442 08                  881 	inc	r0
+   0443 86 83               882 	mov	dph,@r0
+   0445 08                  883 	inc	r0
+   0446 86 F0               884 	mov	b,@r0
+   0448 ED                  885 	mov	a,r5
+   0449 12s00r00            886 	lcall	__gptrput
+   044C A3                  887 	inc	dptr
+   044D EE                  888 	mov	a,r6
+   044E 12s00r00            889 	lcall	__gptrput
+   0451 A3                  890 	inc	dptr
+   0452 EF                  891 	mov	a,r7
+   0453 12s00r00            892 	lcall	__gptrput
+   0456                     893 00105$:
+                            894 ;	../../../core/lib/list.c:258: l->next = NULL;
+   0456 E5*00               895 	mov	a,_bp
+   0458 24 04               896 	add	a,#0x04
+   045A F8                  897 	mov	r0,a
+   045B 86 82               898 	mov	dpl,@r0
+   045D 08                  899 	inc	r0
+   045E 86 83               900 	mov	dph,@r0
+   0460 08                  901 	inc	r0
+   0461 86 F0               902 	mov	b,@r0
+   0463 E4                  903 	clr	a
+   0464 12s00r00            904 	lcall	__gptrput
+   0467 A3                  905 	inc	dptr
+   0468 E4                  906 	clr	a
+   0469 12s00r00            907 	lcall	__gptrput
+   046C A3                  908 	inc	dptr
+   046D E4                  909 	clr	a
+   046E 12s00r00            910 	lcall	__gptrput
+                            911 ;	../../../core/lib/list.c:259: return;
+   0471 80 36               912 	sjmp	00112$
+   0473                     913 00107$:
+                            914 ;	../../../core/lib/list.c:261: r = l;
+   0473 E5*00               915 	mov	a,_bp
+   0475 24 04               916 	add	a,#0x04
+   0477 F8                  917 	mov	r0,a
+   0478 E5*00               918 	mov	a,_bp
+   047A 24 07               919 	add	a,#0x07
+   047C F9                  920 	mov	r1,a
+   047D E6                  921 	mov	a,@r0
+   047E F7                  922 	mov	@r1,a
+   047F 08                  923 	inc	r0
+   0480 09                  924 	inc	r1
+   0481 E6                  925 	mov	a,@r0
+   0482 F7                  926 	mov	@r1,a
+   0483 08                  927 	inc	r0
+   0484 09                  928 	inc	r1
+   0485 E6                  929 	mov	a,@r0
+   0486 F7                  930 	mov	@r1,a
+                            931 ;	../../../core/lib/list.c:249: for(l = *list; l != NULL; l = l->next) {
+   0487 E5*00               932 	mov	a,_bp
+   0489 24 04               933 	add	a,#0x04
+   048B F8                  934 	mov	r0,a
+   048C 86 82               935 	mov	dpl,@r0
+   048E 08                  936 	inc	r0
+   048F 86 83               937 	mov	dph,@r0
+   0491 08                  938 	inc	r0
+   0492 86 F0               939 	mov	b,@r0
+   0494 12s00r00            940 	lcall	__gptrget
+   0497 18                  941 	dec	r0
+   0498 18                  942 	dec	r0
+   0499 F6                  943 	mov	@r0,a
+   049A A3                  944 	inc	dptr
+   049B 12s00r00            945 	lcall	__gptrget
+   049E 08                  946 	inc	r0
+   049F F6                  947 	mov	@r0,a
+   04A0 A3                  948 	inc	dptr
+   04A1 12s00r00            949 	lcall	__gptrget
+   04A4 08                  950 	inc	r0
+   04A5 F6                  951 	mov	@r0,a
+   04A6 02s03rB3            952 	ljmp	00108$
+   04A9                     953 00112$:
+   04A9 85*00 81            954 	mov	sp,_bp
+   04AC D0*00               955 	pop	_bp
+   04AE 22                  956 	ret
+                            957 ;------------------------------------------------------------
+                            958 ;Allocation info for local variables in function 'list_length'
+                            959 ;------------------------------------------------------------
+                            960 ;list                      Allocated to registers r2 r3 r4 
+                            961 ;l                         Allocated to registers r2 r3 r4 
+                            962 ;n                         Allocated to registers r5 r6 
+                            963 ;------------------------------------------------------------
+                            964 ;	../../../core/lib/list.c:275: list_length(list_t list)
+                            965 ;	-----------------------------------------
+                            966 ;	 function list_length
+                            967 ;	-----------------------------------------
+   04AF                     968 _list_length:
+                            969 ;	../../../core/lib/list.c:280: for(l = *list; l != NULL; l = l->next) {
+   04AF 12s00r00            970 	lcall	__gptrget
+   04B2 FA                  971 	mov	r2,a
+   04B3 A3                  972 	inc	dptr
+   04B4 12s00r00            973 	lcall	__gptrget
+   04B7 FB                  974 	mov	r3,a
+   04B8 A3                  975 	inc	dptr
+   04B9 12s00r00            976 	lcall	__gptrget
+   04BC FC                  977 	mov	r4,a
+   04BD 7D 00               978 	mov	r5,#0x00
+   04BF 7E 00               979 	mov	r6,#0x00
+   04C1                     980 00101$:
+   04C1 BA 00 08            981 	cjne	r2,#0x00,00110$
+   04C4 BB 00 05            982 	cjne	r3,#0x00,00110$
+   04C7 BC 00 02            983 	cjne	r4,#0x00,00110$
+   04CA 80 1B               984 	sjmp	00104$
+   04CC                     985 00110$:
+                            986 ;	../../../core/lib/list.c:281: ++n;
+   04CC 0D                  987 	inc	r5
+   04CD BD 00 01            988 	cjne	r5,#0x00,00111$
+   04D0 0E                  989 	inc	r6
+   04D1                     990 00111$:
+                            991 ;	../../../core/lib/list.c:280: for(l = *list; l != NULL; l = l->next) {
+   04D1 8A 82               992 	mov	dpl,r2
+   04D3 8B 83               993 	mov	dph,r3
+   04D5 8C F0               994 	mov	b,r4
+   04D7 12s00r00            995 	lcall	__gptrget
+   04DA FA                  996 	mov	r2,a
+   04DB A3                  997 	inc	dptr
+   04DC 12s00r00            998 	lcall	__gptrget
+   04DF FB                  999 	mov	r3,a
+   04E0 A3                 1000 	inc	dptr
+   04E1 12s00r00           1001 	lcall	__gptrget
+   04E4 FC                 1002 	mov	r4,a
+   04E5 80 DA              1003 	sjmp	00101$
+   04E7                    1004 00104$:
+                           1005 ;	../../../core/lib/list.c:284: return n;
+   04E7 8D 82              1006 	mov	dpl,r5
+   04E9 8E 83              1007 	mov	dph,r6
+   04EB 22                 1008 	ret
+                           1009 ;------------------------------------------------------------
+                           1010 ;Allocation info for local variables in function 'list_insert'
+                           1011 ;------------------------------------------------------------
+                           1012 ;previtem                  Allocated to stack - offset -5
+                           1013 ;newitem                   Allocated to stack - offset -8
+                           1014 ;list                      Allocated to registers r2 r3 r4 
+                           1015 ;------------------------------------------------------------
+                           1016 ;	../../../core/lib/list.c:303: list_insert(list_t list, void *previtem, void *newitem)
+                           1017 ;	-----------------------------------------
+                           1018 ;	 function list_insert
+                           1019 ;	-----------------------------------------
+   04EC                    1020 _list_insert:
+   04EC C0*00              1021 	push	_bp
+   04EE 85 81*00           1022 	mov	_bp,sp
+   04F1 AA 82              1023 	mov	r2,dpl
+   04F3 AB 83              1024 	mov	r3,dph
+   04F5 AC F0              1025 	mov	r4,b
+                           1026 ;	../../../core/lib/list.c:305: if(previtem == NULL) {
+   04F7 E5*00              1027 	mov	a,_bp
+   04F9 24 FB              1028 	add	a,#0xfb
+   04FB F8                 1029 	mov	r0,a
+   04FC E6                 1030 	mov	a,@r0
+   04FD 08                 1031 	inc	r0
+   04FE 46                 1032 	orl	a,@r0
+   04FF 08                 1033 	inc	r0
+   0500 46                 1034 	orl	a,@r0
+   0501 70 21              1035 	jnz	00102$
+                           1036 ;	../../../core/lib/list.c:306: list_push(list, newitem);
+   0503 E5*00              1037 	mov	a,_bp
+   0505 24 F8              1038 	add	a,#0xf8
+   0507 F8                 1039 	mov	r0,a
+   0508 E6                 1040 	mov	a,@r0
+   0509 C0 E0              1041 	push	acc
+   050B 08                 1042 	inc	r0
+   050C E6                 1043 	mov	a,@r0
+   050D C0 E0              1044 	push	acc
+   050F 08                 1045 	inc	r0
+   0510 E6                 1046 	mov	a,@r0
+   0511 C0 E0              1047 	push	acc
+   0513 8A 82              1048 	mov	dpl,r2
+   0515 8B 83              1049 	mov	dph,r3
+   0517 8C F0              1050 	mov	b,r4
+   0519 12s01r78           1051 	lcall	_list_push
+   051C 15 81              1052 	dec	sp
+   051E 15 81              1053 	dec	sp
+   0520 15 81              1054 	dec	sp
+   0522 80 5D              1055 	sjmp	00104$
+   0524                    1056 00102$:
+                           1057 ;	../../../core/lib/list.c:309: ((struct list *)newitem)->next = ((struct list *)previtem)->next;
+   0524 E5*00              1058 	mov	a,_bp
+   0526 24 F8              1059 	add	a,#0xf8
+   0528 F8                 1060 	mov	r0,a
+   0529 86 02              1061 	mov	ar2,@r0
+   052B 08                 1062 	inc	r0
+   052C 86 03              1063 	mov	ar3,@r0
+   052E 08                 1064 	inc	r0
+   052F 86 04              1065 	mov	ar4,@r0
+   0531 E5*00              1066 	mov	a,_bp
+   0533 24 FB              1067 	add	a,#0xfb
+   0535 F8                 1068 	mov	r0,a
+   0536 86 82              1069 	mov	dpl,@r0
+   0538 08                 1070 	inc	r0
+   0539 86 83              1071 	mov	dph,@r0
+   053B 08                 1072 	inc	r0
+   053C 86 F0              1073 	mov	b,@r0
+   053E 12s00r00           1074 	lcall	__gptrget
+   0541 FD                 1075 	mov	r5,a
+   0542 A3                 1076 	inc	dptr
+   0543 12s00r00           1077 	lcall	__gptrget
+   0546 FE                 1078 	mov	r6,a
+   0547 A3                 1079 	inc	dptr
+   0548 12s00r00           1080 	lcall	__gptrget
+   054B FF                 1081 	mov	r7,a
+   054C 8A 82              1082 	mov	dpl,r2
+   054E 8B 83              1083 	mov	dph,r3
+   0550 8C F0              1084 	mov	b,r4
+   0552 ED                 1085 	mov	a,r5
+   0553 12s00r00           1086 	lcall	__gptrput
+   0556 A3                 1087 	inc	dptr
+   0557 EE                 1088 	mov	a,r6
+   0558 12s00r00           1089 	lcall	__gptrput
+   055B A3                 1090 	inc	dptr
+   055C EF                 1091 	mov	a,r7
+   055D 12s00r00           1092 	lcall	__gptrput
+                           1093 ;	../../../core/lib/list.c:310: ((struct list *)previtem)->next = newitem;
+   0560 E5*00              1094 	mov	a,_bp
+   0562 24 FB              1095 	add	a,#0xfb
+   0564 F8                 1096 	mov	r0,a
+   0565 86 05              1097 	mov	ar5,@r0
+   0567 08                 1098 	inc	r0
+   0568 86 06              1099 	mov	ar6,@r0
+   056A 08                 1100 	inc	r0
+   056B 86 07              1101 	mov	ar7,@r0
+   056D 8D 82              1102 	mov	dpl,r5
+   056F 8E 83              1103 	mov	dph,r6
+   0571 8F F0              1104 	mov	b,r7
+   0573 EA                 1105 	mov	a,r2
+   0574 12s00r00           1106 	lcall	__gptrput
+   0577 A3                 1107 	inc	dptr
+   0578 EB                 1108 	mov	a,r3
+   0579 12s00r00           1109 	lcall	__gptrput
+   057C A3                 1110 	inc	dptr
+   057D EC                 1111 	mov	a,r4
+   057E 12s00r00           1112 	lcall	__gptrput
+   0581                    1113 00104$:
+   0581 D0*00              1114 	pop	_bp
+   0583 22                 1115 	ret
+                           1116 ;------------------------------------------------------------
+                           1117 ;Allocation info for local variables in function 'list_item_next'
+                           1118 ;------------------------------------------------------------
+                           1119 ;item                      Allocated to registers r2 r3 r4 
+                           1120 ;------------------------------------------------------------
+                           1121 ;	../../../core/lib/list.c:325: list_item_next(void *item)
+                           1122 ;	-----------------------------------------
+                           1123 ;	 function list_item_next
+                           1124 ;	-----------------------------------------
+   0584                    1125 _list_item_next:
+   0584 AA 82              1126 	mov	r2,dpl
+   0586 AB 83              1127 	mov	r3,dph
+   0588 AC F0              1128 	mov	r4,b
+                           1129 ;	../../../core/lib/list.c:327: return item == NULL? NULL: ((struct list *)item)->next;
+   058A EA                 1130 	mov	a,r2
+   058B 4B                 1131 	orl	a,r3
+   058C 4C                 1132 	orl	a,r4
+   058D B4 01 00           1133 	cjne	a,#0x01,00106$
+   0590                    1134 00106$:
+   0590 E4                 1135 	clr	a
+   0591 33                 1136 	rlc	a
+   0592 FD                 1137 	mov	r5,a
+   0593 60 08              1138 	jz	00103$
+   0595 7D 00              1139 	mov	r5,#0x00
+   0597 7E 00              1140 	mov	r6,#0x00
+   0599 7F 00              1141 	mov	r7,#0x00
+   059B 80 14              1142 	sjmp	00104$
+   059D                    1143 00103$:
+   059D 8A 82              1144 	mov	dpl,r2
+   059F 8B 83              1145 	mov	dph,r3
+   05A1 8C F0              1146 	mov	b,r4
+   05A3 12s00r00           1147 	lcall	__gptrget
+   05A6 FD                 1148 	mov	r5,a
+   05A7 A3                 1149 	inc	dptr
+   05A8 12s00r00           1150 	lcall	__gptrget
+   05AB FE                 1151 	mov	r6,a
+   05AC A3                 1152 	inc	dptr
+   05AD 12s00r00           1153 	lcall	__gptrget
+   05B0 FF                 1154 	mov	r7,a
+   05B1                    1155 00104$:
+   05B1 8D 82              1156 	mov	dpl,r5
+   05B3 8E 83              1157 	mov	dph,r6
+   05B5 8F F0              1158 	mov	b,r7
+   05B7 22                 1159 	ret
+                           1160 	.area CSEG    (CODE)
+                           1161 	.area CONST   (CODE)
+                           1162 	.area XINIT   (CODE)
+                           1163 	.area CABS    (ABS,CODE)

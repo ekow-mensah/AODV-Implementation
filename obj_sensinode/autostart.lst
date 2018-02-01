@@ -1,0 +1,352 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:26:13 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module autostart
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _autostart_start
+                             13 	.globl _autostart_exit
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (ABS,DATA)
+   0000                      18 	.org 0x0000
+                             19 ;--------------------------------------------------------
+                             20 ; special function bits
+                             21 ;--------------------------------------------------------
+                             22 	.area RSEG    (ABS,DATA)
+   0000                      23 	.org 0x0000
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable register banks
+                             26 ;--------------------------------------------------------
+                             27 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      28 	.ds 8
+                             29 ;--------------------------------------------------------
+                             30 ; internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area DSEG    (DATA)
+                             33 ;--------------------------------------------------------
+                             34 ; overlayable items in internal ram 
+                             35 ;--------------------------------------------------------
+                             36 	.area OSEG    (OVR,DATA)
+                             37 ;--------------------------------------------------------
+                             38 ; indirectly addressable internal ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area ISEG    (DATA)
+                             41 ;--------------------------------------------------------
+                             42 ; absolute internal ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area IABS    (ABS,DATA)
+                             45 	.area IABS    (ABS,DATA)
+                             46 ;--------------------------------------------------------
+                             47 ; bit data
+                             48 ;--------------------------------------------------------
+                             49 	.area BSEG    (BIT)
+                             50 ;--------------------------------------------------------
+                             51 ; paged external ram data
+                             52 ;--------------------------------------------------------
+                             53 	.area PSEG    (PAG,XDATA)
+                             54 ;--------------------------------------------------------
+                             55 ; external ram data
+                             56 ;--------------------------------------------------------
+                             57 	.area XSEG    (XDATA)
+                             58 ;--------------------------------------------------------
+                             59 ; absolute external ram data
+                             60 ;--------------------------------------------------------
+                             61 	.area XABS    (ABS,XDATA)
+                             62 ;--------------------------------------------------------
+                             63 ; external initialized ram data
+                             64 ;--------------------------------------------------------
+                             65 	.area XISEG   (XDATA)
+                             66 	.area HOME    (CODE)
+                             67 	.area GSINIT0 (CODE)
+                             68 	.area GSINIT1 (CODE)
+                             69 	.area GSINIT2 (CODE)
+                             70 	.area GSINIT3 (CODE)
+                             71 	.area GSINIT4 (CODE)
+                             72 	.area GSINIT5 (CODE)
+                             73 	.area GSINIT  (CODE)
+                             74 	.area GSFINAL (CODE)
+                             75 	.area CSEG    (CODE)
+                             76 ;--------------------------------------------------------
+                             77 ; global & static initialisations
+                             78 ;--------------------------------------------------------
+                             79 	.area HOME    (CODE)
+                             80 	.area GSINIT  (CODE)
+                             81 	.area GSFINAL (CODE)
+                             82 	.area GSINIT  (CODE)
+                             83 ;--------------------------------------------------------
+                             84 ; Home
+                             85 ;--------------------------------------------------------
+                             86 	.area HOME    (CODE)
+                             87 	.area HOME    (CODE)
+                             88 ;--------------------------------------------------------
+                             89 ; code
+                             90 ;--------------------------------------------------------
+                             91 	.area CSEG    (CODE)
+                             92 ;------------------------------------------------------------
+                             93 ;Allocation info for local variables in function 'autostart_start'
+                             94 ;------------------------------------------------------------
+                             95 ;processes                 Allocated to registers r2 r3 r4 
+                             96 ;i                         Allocated to registers r5 r6 
+                             97 ;sloc0                     Allocated to stack - offset 1
+                             98 ;sloc1                     Allocated to stack - offset 3
+                             99 ;------------------------------------------------------------
+                            100 ;	../../../core/sys/autostart.c:53: autostart_start(struct process * const processes[])
+                            101 ;	-----------------------------------------
+                            102 ;	 function autostart_start
+                            103 ;	-----------------------------------------
+   0000                     104 _autostart_start:
+                    0002    105 	ar2 = 0x02
+                    0003    106 	ar3 = 0x03
+                    0004    107 	ar4 = 0x04
+                    0005    108 	ar5 = 0x05
+                    0006    109 	ar6 = 0x06
+                    0007    110 	ar7 = 0x07
+                    0000    111 	ar0 = 0x00
+                    0001    112 	ar1 = 0x01
+   0000 C0*00               113 	push	_bp
+   0002 E5 81               114 	mov	a,sp
+   0004 F5*00               115 	mov	_bp,a
+   0006 24 05               116 	add	a,#0x05
+   0008 F5 81               117 	mov	sp,a
+   000A AA 82               118 	mov	r2,dpl
+   000C AB 83               119 	mov	r3,dph
+   000E AC F0               120 	mov	r4,b
+                            121 ;	../../../core/sys/autostart.c:57: for(i = 0; processes[i] != NULL; ++i) {
+   0010 7D 00               122 	mov	r5,#0x00
+   0012 7E 00               123 	mov	r6,#0x00
+   0014 A8*00               124 	mov	r0,_bp
+   0016 08                  125 	inc	r0
+   0017 E4                  126 	clr	a
+   0018 F6                  127 	mov	@r0,a
+   0019 08                  128 	inc	r0
+   001A F6                  129 	mov	@r0,a
+   001B                     130 00101$:
+   001B C0 05               131 	push	ar5
+   001D C0 06               132 	push	ar6
+   001F A8*00               133 	mov	r0,_bp
+   0021 08                  134 	inc	r0
+   0022 E5*00               135 	mov	a,_bp
+   0024 24 03               136 	add	a,#0x03
+   0026 F9                  137 	mov	r1,a
+   0027 E6                  138 	mov	a,@r0
+   0028 2A                  139 	add	a,r2
+   0029 F7                  140 	mov	@r1,a
+   002A 08                  141 	inc	r0
+   002B E6                  142 	mov	a,@r0
+   002C 3B                  143 	addc	a,r3
+   002D 09                  144 	inc	r1
+   002E F7                  145 	mov	@r1,a
+   002F 09                  146 	inc	r1
+   0030 A7 04               147 	mov	@r1,ar4
+   0032 E5*00               148 	mov	a,_bp
+   0034 24 03               149 	add	a,#0x03
+   0036 F8                  150 	mov	r0,a
+   0037 86 82               151 	mov	dpl,@r0
+   0039 08                  152 	inc	r0
+   003A 86 83               153 	mov	dph,@r0
+   003C 08                  154 	inc	r0
+   003D 86 F0               155 	mov	b,@r0
+   003F 12s00r00            156 	lcall	__gptrget
+   0042 18                  157 	dec	r0
+   0043 18                  158 	dec	r0
+   0044 F6                  159 	mov	@r0,a
+   0045 A3                  160 	inc	dptr
+   0046 12s00r00            161 	lcall	__gptrget
+   0049 08                  162 	inc	r0
+   004A F6                  163 	mov	@r0,a
+   004B A3                  164 	inc	dptr
+   004C 12s00r00            165 	lcall	__gptrget
+   004F 08                  166 	inc	r0
+   0050 F6                  167 	mov	@r0,a
+   0051 E5*00               168 	mov	a,_bp
+   0053 24 03               169 	add	a,#0x03
+   0055 F8                  170 	mov	r0,a
+   0056 B6 00 0E            171 	cjne	@r0,#0x00,00110$
+   0059 08                  172 	inc	r0
+   005A B6 00 0A            173 	cjne	@r0,#0x00,00110$
+   005D 08                  174 	inc	r0
+   005E B6 00 06            175 	cjne	@r0,#0x00,00110$
+   0061 D0 06               176 	pop	ar6
+   0063 D0 05               177 	pop	ar5
+   0065 80 48               178 	sjmp	00105$
+   0067                     179 00110$:
+   0067 D0 06               180 	pop	ar6
+   0069 D0 05               181 	pop	ar5
+                            182 ;	../../../core/sys/autostart.c:58: process_start(processes[i], NULL);
+   006B C0 02               183 	push	ar2
+   006D C0 03               184 	push	ar3
+   006F C0 04               185 	push	ar4
+   0071 C0 05               186 	push	ar5
+   0073 C0 06               187 	push	ar6
+   0075 E4                  188 	clr	a
+   0076 C0 E0               189 	push	acc
+   0078 C0 E0               190 	push	acc
+   007A C0 E0               191 	push	acc
+   007C E5*00               192 	mov	a,_bp
+   007E 24 03               193 	add	a,#0x03
+   0080 F8                  194 	mov	r0,a
+   0081 86 82               195 	mov	dpl,@r0
+   0083 08                  196 	inc	r0
+   0084 86 83               197 	mov	dph,@r0
+   0086 08                  198 	inc	r0
+   0087 86 F0               199 	mov	b,@r0
+   0089 12s00r00            200 	lcall	_process_start
+   008C 15 81               201 	dec	sp
+   008E 15 81               202 	dec	sp
+   0090 15 81               203 	dec	sp
+   0092 D0 06               204 	pop	ar6
+   0094 D0 05               205 	pop	ar5
+   0096 D0 04               206 	pop	ar4
+   0098 D0 03               207 	pop	ar3
+   009A D0 02               208 	pop	ar2
+                            209 ;	../../../core/sys/autostart.c:57: for(i = 0; processes[i] != NULL; ++i) {
+   009C A8*00               210 	mov	r0,_bp
+   009E 08                  211 	inc	r0
+   009F 74 03               212 	mov	a,#0x03
+   00A1 26                  213 	add	a,@r0
+   00A2 F6                  214 	mov	@r0,a
+   00A3 E4                  215 	clr	a
+   00A4 08                  216 	inc	r0
+   00A5 36                  217 	addc	a,@r0
+   00A6 F6                  218 	mov	@r0,a
+   00A7 0D                  219 	inc	r5
+   00A8 BD 00 01            220 	cjne	r5,#0x00,00111$
+   00AB 0E                  221 	inc	r6
+   00AC                     222 00111$:
+   00AC 02s00r1B            223 	ljmp	00101$
+   00AF                     224 00105$:
+   00AF 85*00 81            225 	mov	sp,_bp
+   00B2 D0*00               226 	pop	_bp
+   00B4 22                  227 	ret
+                            228 ;------------------------------------------------------------
+                            229 ;Allocation info for local variables in function 'autostart_exit'
+                            230 ;------------------------------------------------------------
+                            231 ;processes                 Allocated to registers r2 r3 r4 
+                            232 ;i                         Allocated to registers r5 r6 
+                            233 ;sloc0                     Allocated to stack - offset 1
+                            234 ;sloc1                     Allocated to stack - offset 3
+                            235 ;------------------------------------------------------------
+                            236 ;	../../../core/sys/autostart.c:64: autostart_exit(struct process * const processes[])
+                            237 ;	-----------------------------------------
+                            238 ;	 function autostart_exit
+                            239 ;	-----------------------------------------
+   00B5                     240 _autostart_exit:
+   00B5 C0*00               241 	push	_bp
+   00B7 E5 81               242 	mov	a,sp
+   00B9 F5*00               243 	mov	_bp,a
+   00BB 24 05               244 	add	a,#0x05
+   00BD F5 81               245 	mov	sp,a
+   00BF AA 82               246 	mov	r2,dpl
+   00C1 AB 83               247 	mov	r3,dph
+   00C3 AC F0               248 	mov	r4,b
+                            249 ;	../../../core/sys/autostart.c:68: for(i = 0; processes[i] != NULL; ++i) {
+   00C5 7D 00               250 	mov	r5,#0x00
+   00C7 7E 00               251 	mov	r6,#0x00
+   00C9 A8*00               252 	mov	r0,_bp
+   00CB 08                  253 	inc	r0
+   00CC E4                  254 	clr	a
+   00CD F6                  255 	mov	@r0,a
+   00CE 08                  256 	inc	r0
+   00CF F6                  257 	mov	@r0,a
+   00D0                     258 00101$:
+   00D0 C0 05               259 	push	ar5
+   00D2 C0 06               260 	push	ar6
+   00D4 A8*00               261 	mov	r0,_bp
+   00D6 08                  262 	inc	r0
+   00D7 E5*00               263 	mov	a,_bp
+   00D9 24 03               264 	add	a,#0x03
+   00DB F9                  265 	mov	r1,a
+   00DC E6                  266 	mov	a,@r0
+   00DD 2A                  267 	add	a,r2
+   00DE F7                  268 	mov	@r1,a
+   00DF 08                  269 	inc	r0
+   00E0 E6                  270 	mov	a,@r0
+   00E1 3B                  271 	addc	a,r3
+   00E2 09                  272 	inc	r1
+   00E3 F7                  273 	mov	@r1,a
+   00E4 09                  274 	inc	r1
+   00E5 A7 04               275 	mov	@r1,ar4
+   00E7 E5*00               276 	mov	a,_bp
+   00E9 24 03               277 	add	a,#0x03
+   00EB F8                  278 	mov	r0,a
+   00EC 86 82               279 	mov	dpl,@r0
+   00EE 08                  280 	inc	r0
+   00EF 86 83               281 	mov	dph,@r0
+   00F1 08                  282 	inc	r0
+   00F2 86 F0               283 	mov	b,@r0
+   00F4 12s00r00            284 	lcall	__gptrget
+   00F7 18                  285 	dec	r0
+   00F8 18                  286 	dec	r0
+   00F9 F6                  287 	mov	@r0,a
+   00FA A3                  288 	inc	dptr
+   00FB 12s00r00            289 	lcall	__gptrget
+   00FE 08                  290 	inc	r0
+   00FF F6                  291 	mov	@r0,a
+   0100 A3                  292 	inc	dptr
+   0101 12s00r00            293 	lcall	__gptrget
+   0104 08                  294 	inc	r0
+   0105 F6                  295 	mov	@r0,a
+   0106 E5*00               296 	mov	a,_bp
+   0108 24 03               297 	add	a,#0x03
+   010A F8                  298 	mov	r0,a
+   010B B6 00 0E            299 	cjne	@r0,#0x00,00110$
+   010E 08                  300 	inc	r0
+   010F B6 00 0A            301 	cjne	@r0,#0x00,00110$
+   0112 08                  302 	inc	r0
+   0113 B6 00 06            303 	cjne	@r0,#0x00,00110$
+   0116 D0 06               304 	pop	ar6
+   0118 D0 05               305 	pop	ar5
+   011A 80 3B               306 	sjmp	00105$
+   011C                     307 00110$:
+   011C D0 06               308 	pop	ar6
+   011E D0 05               309 	pop	ar5
+                            310 ;	../../../core/sys/autostart.c:69: process_exit(processes[i]);
+   0120 E5*00               311 	mov	a,_bp
+   0122 24 03               312 	add	a,#0x03
+   0124 F8                  313 	mov	r0,a
+   0125 86 82               314 	mov	dpl,@r0
+   0127 08                  315 	inc	r0
+   0128 86 83               316 	mov	dph,@r0
+   012A 08                  317 	inc	r0
+   012B 86 F0               318 	mov	b,@r0
+   012D C0 02               319 	push	ar2
+   012F C0 03               320 	push	ar3
+   0131 C0 04               321 	push	ar4
+   0133 C0 05               322 	push	ar5
+   0135 C0 06               323 	push	ar6
+   0137 12s00r00            324 	lcall	_process_exit
+   013A D0 06               325 	pop	ar6
+   013C D0 05               326 	pop	ar5
+   013E D0 04               327 	pop	ar4
+   0140 D0 03               328 	pop	ar3
+   0142 D0 02               329 	pop	ar2
+                            330 ;	../../../core/sys/autostart.c:68: for(i = 0; processes[i] != NULL; ++i) {
+   0144 A8*00               331 	mov	r0,_bp
+   0146 08                  332 	inc	r0
+   0147 74 03               333 	mov	a,#0x03
+   0149 26                  334 	add	a,@r0
+   014A F6                  335 	mov	@r0,a
+   014B E4                  336 	clr	a
+   014C 08                  337 	inc	r0
+   014D 36                  338 	addc	a,@r0
+   014E F6                  339 	mov	@r0,a
+   014F 0D                  340 	inc	r5
+   0150 BD 00 01            341 	cjne	r5,#0x00,00111$
+   0153 0E                  342 	inc	r6
+   0154                     343 00111$:
+   0154 02s00rD0            344 	ljmp	00101$
+   0157                     345 00105$:
+   0157 85*00 81            346 	mov	sp,_bp
+   015A D0*00               347 	pop	_bp
+   015C 22                  348 	ret
+                            349 	.area CSEG    (CODE)
+                            350 	.area CONST   (CODE)
+                            351 	.area XINIT   (CODE)
+                            352 	.area CABS    (ABS,CODE)

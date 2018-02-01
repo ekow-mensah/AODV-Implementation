@@ -1,0 +1,2876 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:25:43 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module chameleon_bitopt
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _set_bits
+                             13 	.globl _set_bits_in_byte
+                             14 	.globl _get_bits
+                             15 	.globl _get_bits_in_byte
+                             16 	.globl _IRCON2_P2IF
+                             17 	.globl _IRCON2_UTX0IF
+                             18 	.globl _IRCON2_UTX1IF
+                             19 	.globl _IRCON2_P1IF
+                             20 	.globl _IRCON2_WDTIF
+                             21 	.globl _CY
+                             22 	.globl _AC
+                             23 	.globl _F0
+                             24 	.globl _RS1
+                             25 	.globl _RS0
+                             26 	.globl _OV
+                             27 	.globl _F1
+                             28 	.globl _P
+                             29 	.globl _IRCON_DMAIF
+                             30 	.globl _IRCON_T1IF
+                             31 	.globl _IRCON_T2IF
+                             32 	.globl _IRCON_T3IF
+                             33 	.globl _IRCON_T4IF
+                             34 	.globl _IRCON_P0IF
+                             35 	.globl _IRCON_STIF
+                             36 	.globl _IEN1_DMAIE
+                             37 	.globl _IEN1_T1IE
+                             38 	.globl _IEN1_T2IE
+                             39 	.globl _IEN1_T3IE
+                             40 	.globl _IEN1_T4IE
+                             41 	.globl _IEN1_P0IE
+                             42 	.globl _IEN0_RFERRIE
+                             43 	.globl _IEN0_ADCIE
+                             44 	.globl _IEN0_URX0IE
+                             45 	.globl _IEN0_URX1IE
+                             46 	.globl _IEN0_ENCIE
+                             47 	.globl _IEN0_STIE
+                             48 	.globl _IEN0_EA
+                             49 	.globl _EA
+                             50 	.globl _P2_4
+                             51 	.globl _P2_3
+                             52 	.globl _P2_2
+                             53 	.globl _P2_1
+                             54 	.globl _P2_0
+                             55 	.globl _S0CON_ENCIF_0
+                             56 	.globl _S0CON_ENCIF_1
+                             57 	.globl _P1_7
+                             58 	.globl _P1_6
+                             59 	.globl _P1_5
+                             60 	.globl _P1_4
+                             61 	.globl _P1_3
+                             62 	.globl _P1_2
+                             63 	.globl _P1_1
+                             64 	.globl _P1_0
+                             65 	.globl _TCON_IT0
+                             66 	.globl _TCON_RFERRIF
+                             67 	.globl _TCON_IT1
+                             68 	.globl _TCON_URX0IF
+                             69 	.globl _TCON_ADCIF
+                             70 	.globl _TCON_URX1IF
+                             71 	.globl _P0_0
+                             72 	.globl _P0_1
+                             73 	.globl _P0_2
+                             74 	.globl _P0_3
+                             75 	.globl _P0_4
+                             76 	.globl _P0_5
+                             77 	.globl _P0_6
+                             78 	.globl _P0_7
+                             79 	.globl _P2DIR
+                             80 	.globl _P1DIR
+                             81 	.globl _P0DIR
+                             82 	.globl _U1GCR
+                             83 	.globl _U1UCR
+                             84 	.globl _U1BAUD
+                             85 	.globl _U1BUF
+                             86 	.globl _U1CSR
+                             87 	.globl _P2INP
+                             88 	.globl _P1INP
+                             89 	.globl _P2SEL
+                             90 	.globl _P1SEL
+                             91 	.globl _P0SEL
+                             92 	.globl _ADCCFG
+                             93 	.globl _PERCFG
+                             94 	.globl _B
+                             95 	.globl _T4CC1
+                             96 	.globl _T4CCTL1
+                             97 	.globl _T4CC0
+                             98 	.globl _T4CCTL0
+                             99 	.globl _T4CTL
+                            100 	.globl _T4CNT
+                            101 	.globl _RFIF
+                            102 	.globl _IRCON2
+                            103 	.globl _T1CCTL2
+                            104 	.globl _T1CCTL1
+                            105 	.globl _T1CCTL0
+                            106 	.globl _T1CTL
+                            107 	.globl _T1CNTH
+                            108 	.globl _T1CNTL
+                            109 	.globl _RFST
+                            110 	.globl _ACC
+                            111 	.globl _T1CC2H
+                            112 	.globl _T1CC2L
+                            113 	.globl _T1CC1H
+                            114 	.globl _T1CC1L
+                            115 	.globl _T1CC0H
+                            116 	.globl _T1CC0L
+                            117 	.globl _RFD
+                            118 	.globl _TIMIF
+                            119 	.globl _DMAREQ
+                            120 	.globl _DMAARM
+                            121 	.globl _DMA0CFGH
+                            122 	.globl _DMA0CFGL
+                            123 	.globl _DMA1CFGH
+                            124 	.globl _DMA1CFGL
+                            125 	.globl _DMAIRQ
+                            126 	.globl _PSW
+                            127 	.globl _T3CC1
+                            128 	.globl _T3CCTL1
+                            129 	.globl _T3CC0
+                            130 	.globl _T3CCTL0
+                            131 	.globl _T3CTL
+                            132 	.globl _T3CNT
+                            133 	.globl _WDCTL
+                            134 	.globl _T2CON
+                            135 	.globl _MEMCTR
+                            136 	.globl _CLKCON
+                            137 	.globl _U0GCR
+                            138 	.globl _U0UCR
+                            139 	.globl _T2CNF
+                            140 	.globl _U0BAUD
+                            141 	.globl _U0BUF
+                            142 	.globl _IRCON
+                            143 	.globl _SLEEP
+                            144 	.globl _RNDH
+                            145 	.globl _RNDL
+                            146 	.globl _ADCH
+                            147 	.globl _ADCL
+                            148 	.globl _IP1
+                            149 	.globl _IEN1
+                            150 	.globl _RCCTL
+                            151 	.globl _ADCCON3
+                            152 	.globl _ADCCON2
+                            153 	.globl _ADCCON1
+                            154 	.globl _ENCCS
+                            155 	.globl _ENCDO
+                            156 	.globl _ENCDI
+                            157 	.globl _FWDATA
+                            158 	.globl _FCTL
+                            159 	.globl _FADDRH
+                            160 	.globl _FADDRL
+                            161 	.globl _FWT
+                            162 	.globl _IP0
+                            163 	.globl _IEN0
+                            164 	.globl _IE
+                            165 	.globl _T2THD
+                            166 	.globl _T2TLD
+                            167 	.globl _T2CAPHPH
+                            168 	.globl _T2CAPLPL
+                            169 	.globl _T2OF2
+                            170 	.globl _T2OF1
+                            171 	.globl _T2OF0
+                            172 	.globl _P2
+                            173 	.globl _PSBANK
+                            174 	.globl _FMAP
+                            175 	.globl _T2PEROF2
+                            176 	.globl _T2PEROF1
+                            177 	.globl _T2PEROF0
+                            178 	.globl _S1CON
+                            179 	.globl _IEN2
+                            180 	.globl _HSRC
+                            181 	.globl _S0CON
+                            182 	.globl _ST2
+                            183 	.globl _ST1
+                            184 	.globl _ST0
+                            185 	.globl _T2CMP
+                            186 	.globl __XPAGE
+                            187 	.globl _DPS
+                            188 	.globl _RFIM
+                            189 	.globl _P1
+                            190 	.globl _P0INP
+                            191 	.globl _P1IEN
+                            192 	.globl _PICTL
+                            193 	.globl _P2IFG
+                            194 	.globl _P1IFG
+                            195 	.globl _P0IFG
+                            196 	.globl _TCON
+                            197 	.globl _PCON
+                            198 	.globl _U0CSR
+                            199 	.globl _DPH1
+                            200 	.globl _DPL1
+                            201 	.globl _DPH0
+                            202 	.globl _DPL0
+                            203 	.globl _SP
+                            204 	.globl _P0
+                            205 	.globl _chameleon_bitopt
+                            206 	.globl _ADC_SHADOW
+                            207 	.globl _U1BUF_SHADOW
+                            208 	.globl _RFD_SHADOW
+                            209 	.globl _U0BUF_SHADOW
+                            210 	.globl _RFSTATUS
+                            211 	.globl _CHIPID
+                            212 	.globl _CHVER
+                            213 	.globl _FSMTC1
+                            214 	.globl _RXFIFOCNT
+                            215 	.globl _IOCFG3
+                            216 	.globl _IOCFG2
+                            217 	.globl _IOCFG1
+                            218 	.globl _IOCFG0
+                            219 	.globl _SHORTADDRL
+                            220 	.globl _SHORTADDRH
+                            221 	.globl _PANIDL
+                            222 	.globl _PANIDH
+                            223 	.globl _IEEE_ADDR7
+                            224 	.globl _IEEE_ADDR6
+                            225 	.globl _IEEE_ADDR5
+                            226 	.globl _IEEE_ADDR4
+                            227 	.globl _IEEE_ADDR3
+                            228 	.globl _IEEE_ADDR2
+                            229 	.globl _IEEE_ADDR1
+                            230 	.globl _IEEE_ADDR0
+                            231 	.globl _DACTSTL
+                            232 	.globl _DACTSTH
+                            233 	.globl _ADCTSTL
+                            234 	.globl _ADCTSTH
+                            235 	.globl _FSMSTATE
+                            236 	.globl _AGCCTRLL
+                            237 	.globl _AGCCTRLH
+                            238 	.globl _MANORL
+                            239 	.globl _MANORH
+                            240 	.globl _MANANDL
+                            241 	.globl _MANANDH
+                            242 	.globl _FSMTCL
+                            243 	.globl _FSMTCH
+                            244 	.globl _RFPWR
+                            245 	.globl _CSPT
+                            246 	.globl _CSPCTRL
+                            247 	.globl _CSPZ
+                            248 	.globl _CSPY
+                            249 	.globl _CSPX
+                            250 	.globl _FSCTRLL
+                            251 	.globl _FSCTRLH
+                            252 	.globl _RXCTRL1L
+                            253 	.globl _RXCTRL1H
+                            254 	.globl _RXCTRL0L
+                            255 	.globl _RXCTRL0H
+                            256 	.globl _TXCTRLL
+                            257 	.globl _TXCTRLH
+                            258 	.globl _SYNCWORDL
+                            259 	.globl _SYNCWORDH
+                            260 	.globl _RSSIL
+                            261 	.globl _RSSIH
+                            262 	.globl _MDMCTRL1L
+                            263 	.globl _MDMCTRL1H
+                            264 	.globl _MDMCTRL0L
+                            265 	.globl _MDMCTRL0H
+                            266 ;--------------------------------------------------------
+                            267 ; special function registers
+                            268 ;--------------------------------------------------------
+                            269 	.area RSEG    (ABS,DATA)
+   0000                     270 	.org 0x0000
+                    0080    271 _P0	=	0x0080
+                    0081    272 _SP	=	0x0081
+                    0082    273 _DPL0	=	0x0082
+                    0083    274 _DPH0	=	0x0083
+                    0084    275 _DPL1	=	0x0084
+                    0085    276 _DPH1	=	0x0085
+                    0086    277 _U0CSR	=	0x0086
+                    0087    278 _PCON	=	0x0087
+                    0088    279 _TCON	=	0x0088
+                    0089    280 _P0IFG	=	0x0089
+                    008A    281 _P1IFG	=	0x008a
+                    008B    282 _P2IFG	=	0x008b
+                    008C    283 _PICTL	=	0x008c
+                    008D    284 _P1IEN	=	0x008d
+                    008F    285 _P0INP	=	0x008f
+                    0090    286 _P1	=	0x0090
+                    0091    287 _RFIM	=	0x0091
+                    0092    288 _DPS	=	0x0092
+                    0093    289 __XPAGE	=	0x0093
+                    0094    290 _T2CMP	=	0x0094
+                    0095    291 _ST0	=	0x0095
+                    0096    292 _ST1	=	0x0096
+                    0097    293 _ST2	=	0x0097
+                    0098    294 _S0CON	=	0x0098
+                    0099    295 _HSRC	=	0x0099
+                    009A    296 _IEN2	=	0x009a
+                    009B    297 _S1CON	=	0x009b
+                    009C    298 _T2PEROF0	=	0x009c
+                    009D    299 _T2PEROF1	=	0x009d
+                    009E    300 _T2PEROF2	=	0x009e
+                    009F    301 _FMAP	=	0x009f
+                    009F    302 _PSBANK	=	0x009f
+                    00A0    303 _P2	=	0x00a0
+                    00A1    304 _T2OF0	=	0x00a1
+                    00A2    305 _T2OF1	=	0x00a2
+                    00A3    306 _T2OF2	=	0x00a3
+                    00A4    307 _T2CAPLPL	=	0x00a4
+                    00A5    308 _T2CAPHPH	=	0x00a5
+                    00A6    309 _T2TLD	=	0x00a6
+                    00A7    310 _T2THD	=	0x00a7
+                    00A8    311 _IE	=	0x00a8
+                    00A8    312 _IEN0	=	0x00a8
+                    00A9    313 _IP0	=	0x00a9
+                    00AB    314 _FWT	=	0x00ab
+                    00AC    315 _FADDRL	=	0x00ac
+                    00AD    316 _FADDRH	=	0x00ad
+                    00AE    317 _FCTL	=	0x00ae
+                    00AF    318 _FWDATA	=	0x00af
+                    00B1    319 _ENCDI	=	0x00b1
+                    00B2    320 _ENCDO	=	0x00b2
+                    00B3    321 _ENCCS	=	0x00b3
+                    00B4    322 _ADCCON1	=	0x00b4
+                    00B5    323 _ADCCON2	=	0x00b5
+                    00B6    324 _ADCCON3	=	0x00b6
+                    00B7    325 _RCCTL	=	0x00b7
+                    00B8    326 _IEN1	=	0x00b8
+                    00B9    327 _IP1	=	0x00b9
+                    00BA    328 _ADCL	=	0x00ba
+                    00BB    329 _ADCH	=	0x00bb
+                    00BC    330 _RNDL	=	0x00bc
+                    00BD    331 _RNDH	=	0x00bd
+                    00BE    332 _SLEEP	=	0x00be
+                    00C0    333 _IRCON	=	0x00c0
+                    00C1    334 _U0BUF	=	0x00c1
+                    00C2    335 _U0BAUD	=	0x00c2
+                    00C3    336 _T2CNF	=	0x00c3
+                    00C4    337 _U0UCR	=	0x00c4
+                    00C5    338 _U0GCR	=	0x00c5
+                    00C6    339 _CLKCON	=	0x00c6
+                    00C7    340 _MEMCTR	=	0x00c7
+                    00C8    341 _T2CON	=	0x00c8
+                    00C9    342 _WDCTL	=	0x00c9
+                    00CA    343 _T3CNT	=	0x00ca
+                    00CB    344 _T3CTL	=	0x00cb
+                    00CC    345 _T3CCTL0	=	0x00cc
+                    00CD    346 _T3CC0	=	0x00cd
+                    00CE    347 _T3CCTL1	=	0x00ce
+                    00CF    348 _T3CC1	=	0x00cf
+                    00D0    349 _PSW	=	0x00d0
+                    00D1    350 _DMAIRQ	=	0x00d1
+                    00D2    351 _DMA1CFGL	=	0x00d2
+                    00D3    352 _DMA1CFGH	=	0x00d3
+                    00D4    353 _DMA0CFGL	=	0x00d4
+                    00D5    354 _DMA0CFGH	=	0x00d5
+                    00D6    355 _DMAARM	=	0x00d6
+                    00D7    356 _DMAREQ	=	0x00d7
+                    00D8    357 _TIMIF	=	0x00d8
+                    00D9    358 _RFD	=	0x00d9
+                    00DA    359 _T1CC0L	=	0x00da
+                    00DB    360 _T1CC0H	=	0x00db
+                    00DC    361 _T1CC1L	=	0x00dc
+                    00DD    362 _T1CC1H	=	0x00dd
+                    00DE    363 _T1CC2L	=	0x00de
+                    00DF    364 _T1CC2H	=	0x00df
+                    00E0    365 _ACC	=	0x00e0
+                    00E1    366 _RFST	=	0x00e1
+                    00E2    367 _T1CNTL	=	0x00e2
+                    00E3    368 _T1CNTH	=	0x00e3
+                    00E4    369 _T1CTL	=	0x00e4
+                    00E5    370 _T1CCTL0	=	0x00e5
+                    00E6    371 _T1CCTL1	=	0x00e6
+                    00E7    372 _T1CCTL2	=	0x00e7
+                    00E8    373 _IRCON2	=	0x00e8
+                    00E9    374 _RFIF	=	0x00e9
+                    00EA    375 _T4CNT	=	0x00ea
+                    00EB    376 _T4CTL	=	0x00eb
+                    00EC    377 _T4CCTL0	=	0x00ec
+                    00ED    378 _T4CC0	=	0x00ed
+                    00EE    379 _T4CCTL1	=	0x00ee
+                    00EF    380 _T4CC1	=	0x00ef
+                    00F0    381 _B	=	0x00f0
+                    00F1    382 _PERCFG	=	0x00f1
+                    00F2    383 _ADCCFG	=	0x00f2
+                    00F3    384 _P0SEL	=	0x00f3
+                    00F4    385 _P1SEL	=	0x00f4
+                    00F5    386 _P2SEL	=	0x00f5
+                    00F6    387 _P1INP	=	0x00f6
+                    00F7    388 _P2INP	=	0x00f7
+                    00F8    389 _U1CSR	=	0x00f8
+                    00F9    390 _U1BUF	=	0x00f9
+                    00FA    391 _U1BAUD	=	0x00fa
+                    00FB    392 _U1UCR	=	0x00fb
+                    00FC    393 _U1GCR	=	0x00fc
+                    00FD    394 _P0DIR	=	0x00fd
+                    00FE    395 _P1DIR	=	0x00fe
+                    00FF    396 _P2DIR	=	0x00ff
+                            397 ;--------------------------------------------------------
+                            398 ; special function bits
+                            399 ;--------------------------------------------------------
+                            400 	.area RSEG    (ABS,DATA)
+   0000                     401 	.org 0x0000
+                    0087    402 _P0_7	=	0x0087
+                    0086    403 _P0_6	=	0x0086
+                    0085    404 _P0_5	=	0x0085
+                    0084    405 _P0_4	=	0x0084
+                    0083    406 _P0_3	=	0x0083
+                    0082    407 _P0_2	=	0x0082
+                    0081    408 _P0_1	=	0x0081
+                    0080    409 _P0_0	=	0x0080
+                    008F    410 _TCON_URX1IF	=	0x008f
+                    008D    411 _TCON_ADCIF	=	0x008d
+                    008B    412 _TCON_URX0IF	=	0x008b
+                    008A    413 _TCON_IT1	=	0x008a
+                    0089    414 _TCON_RFERRIF	=	0x0089
+                    0088    415 _TCON_IT0	=	0x0088
+                    0090    416 _P1_0	=	0x0090
+                    0091    417 _P1_1	=	0x0091
+                    0092    418 _P1_2	=	0x0092
+                    0093    419 _P1_3	=	0x0093
+                    0094    420 _P1_4	=	0x0094
+                    0095    421 _P1_5	=	0x0095
+                    0096    422 _P1_6	=	0x0096
+                    0097    423 _P1_7	=	0x0097
+                    0099    424 _S0CON_ENCIF_1	=	0x0099
+                    0098    425 _S0CON_ENCIF_0	=	0x0098
+                    00A0    426 _P2_0	=	0x00a0
+                    00A1    427 _P2_1	=	0x00a1
+                    00A2    428 _P2_2	=	0x00a2
+                    00A3    429 _P2_3	=	0x00a3
+                    00A4    430 _P2_4	=	0x00a4
+                    00AF    431 _EA	=	0x00af
+                    00AF    432 _IEN0_EA	=	0x00af
+                    00AD    433 _IEN0_STIE	=	0x00ad
+                    00AC    434 _IEN0_ENCIE	=	0x00ac
+                    00AB    435 _IEN0_URX1IE	=	0x00ab
+                    00AA    436 _IEN0_URX0IE	=	0x00aa
+                    00A9    437 _IEN0_ADCIE	=	0x00a9
+                    00A8    438 _IEN0_RFERRIE	=	0x00a8
+                    00BD    439 _IEN1_P0IE	=	0x00bd
+                    00BC    440 _IEN1_T4IE	=	0x00bc
+                    00BB    441 _IEN1_T3IE	=	0x00bb
+                    00BA    442 _IEN1_T2IE	=	0x00ba
+                    00B9    443 _IEN1_T1IE	=	0x00b9
+                    00B8    444 _IEN1_DMAIE	=	0x00b8
+                    00C7    445 _IRCON_STIF	=	0x00c7
+                    00C5    446 _IRCON_P0IF	=	0x00c5
+                    00C4    447 _IRCON_T4IF	=	0x00c4
+                    00C3    448 _IRCON_T3IF	=	0x00c3
+                    00C2    449 _IRCON_T2IF	=	0x00c2
+                    00C1    450 _IRCON_T1IF	=	0x00c1
+                    00C0    451 _IRCON_DMAIF	=	0x00c0
+                    00D0    452 _P	=	0x00d0
+                    00D1    453 _F1	=	0x00d1
+                    00D2    454 _OV	=	0x00d2
+                    00D3    455 _RS0	=	0x00d3
+                    00D4    456 _RS1	=	0x00d4
+                    00D5    457 _F0	=	0x00d5
+                    00D6    458 _AC	=	0x00d6
+                    00D7    459 _CY	=	0x00d7
+                    00EC    460 _IRCON2_WDTIF	=	0x00ec
+                    00EB    461 _IRCON2_P1IF	=	0x00eb
+                    00EA    462 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    463 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    464 _IRCON2_P2IF	=	0x00e8
+                            465 ;--------------------------------------------------------
+                            466 ; overlayable register banks
+                            467 ;--------------------------------------------------------
+                            468 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     469 	.ds 8
+                            470 ;--------------------------------------------------------
+                            471 ; internal ram data
+                            472 ;--------------------------------------------------------
+                            473 	.area DSEG    (DATA)
+                            474 ;--------------------------------------------------------
+                            475 ; overlayable items in internal ram 
+                            476 ;--------------------------------------------------------
+                            477 	.area OSEG    (OVR,DATA)
+                            478 ;--------------------------------------------------------
+                            479 ; indirectly addressable internal ram data
+                            480 ;--------------------------------------------------------
+                            481 	.area ISEG    (DATA)
+                            482 ;--------------------------------------------------------
+                            483 ; absolute internal ram data
+                            484 ;--------------------------------------------------------
+                            485 	.area IABS    (ABS,DATA)
+                            486 	.area IABS    (ABS,DATA)
+                            487 ;--------------------------------------------------------
+                            488 ; bit data
+                            489 ;--------------------------------------------------------
+                            490 	.area BSEG    (BIT)
+                            491 ;--------------------------------------------------------
+                            492 ; paged external ram data
+                            493 ;--------------------------------------------------------
+                            494 	.area PSEG    (PAG,XDATA)
+                            495 ;--------------------------------------------------------
+                            496 ; external ram data
+                            497 ;--------------------------------------------------------
+                            498 	.area XSEG    (XDATA)
+                    DF02    499 _MDMCTRL0H	=	0xdf02
+                    DF03    500 _MDMCTRL0L	=	0xdf03
+                    DF04    501 _MDMCTRL1H	=	0xdf04
+                    DF05    502 _MDMCTRL1L	=	0xdf05
+                    DF06    503 _RSSIH	=	0xdf06
+                    DF07    504 _RSSIL	=	0xdf07
+                    DF08    505 _SYNCWORDH	=	0xdf08
+                    DF09    506 _SYNCWORDL	=	0xdf09
+                    DF0A    507 _TXCTRLH	=	0xdf0a
+                    DF0B    508 _TXCTRLL	=	0xdf0b
+                    DF0C    509 _RXCTRL0H	=	0xdf0c
+                    DF0D    510 _RXCTRL0L	=	0xdf0d
+                    DF0E    511 _RXCTRL1H	=	0xdf0e
+                    DF0F    512 _RXCTRL1L	=	0xdf0f
+                    DF10    513 _FSCTRLH	=	0xdf10
+                    DF11    514 _FSCTRLL	=	0xdf11
+                    DF12    515 _CSPX	=	0xdf12
+                    DF13    516 _CSPY	=	0xdf13
+                    DF14    517 _CSPZ	=	0xdf14
+                    DF15    518 _CSPCTRL	=	0xdf15
+                    DF16    519 _CSPT	=	0xdf16
+                    DF17    520 _RFPWR	=	0xdf17
+                    DF20    521 _FSMTCH	=	0xdf20
+                    DF21    522 _FSMTCL	=	0xdf21
+                    DF22    523 _MANANDH	=	0xdf22
+                    DF23    524 _MANANDL	=	0xdf23
+                    DF24    525 _MANORH	=	0xdf24
+                    DF25    526 _MANORL	=	0xdf25
+                    DF26    527 _AGCCTRLH	=	0xdf26
+                    DF27    528 _AGCCTRLL	=	0xdf27
+                    DF39    529 _FSMSTATE	=	0xdf39
+                    DF3A    530 _ADCTSTH	=	0xdf3a
+                    DF3B    531 _ADCTSTL	=	0xdf3b
+                    DF3C    532 _DACTSTH	=	0xdf3c
+                    DF3D    533 _DACTSTL	=	0xdf3d
+                    DF43    534 _IEEE_ADDR0	=	0xdf43
+                    DF44    535 _IEEE_ADDR1	=	0xdf44
+                    DF45    536 _IEEE_ADDR2	=	0xdf45
+                    DF46    537 _IEEE_ADDR3	=	0xdf46
+                    DF47    538 _IEEE_ADDR4	=	0xdf47
+                    DF48    539 _IEEE_ADDR5	=	0xdf48
+                    DF49    540 _IEEE_ADDR6	=	0xdf49
+                    DF4A    541 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    542 _PANIDH	=	0xdf4b
+                    DF4C    543 _PANIDL	=	0xdf4c
+                    DF4D    544 _SHORTADDRH	=	0xdf4d
+                    DF4E    545 _SHORTADDRL	=	0xdf4e
+                    DF4F    546 _IOCFG0	=	0xdf4f
+                    DF50    547 _IOCFG1	=	0xdf50
+                    DF51    548 _IOCFG2	=	0xdf51
+                    DF52    549 _IOCFG3	=	0xdf52
+                    DF53    550 _RXFIFOCNT	=	0xdf53
+                    DF54    551 _FSMTC1	=	0xdf54
+                    DF60    552 _CHVER	=	0xdf60
+                    DF61    553 _CHIPID	=	0xdf61
+                    DF62    554 _RFSTATUS	=	0xdf62
+                    DFC1    555 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    556 _RFD_SHADOW	=	0xdfd9
+                    DFF9    557 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    558 _ADC_SHADOW	=	0xdfba
+                            559 ;--------------------------------------------------------
+                            560 ; absolute external ram data
+                            561 ;--------------------------------------------------------
+                            562 	.area XABS    (ABS,XDATA)
+                            563 ;--------------------------------------------------------
+                            564 ; external initialized ram data
+                            565 ;--------------------------------------------------------
+                            566 	.area XISEG   (XDATA)
+   0000                     567 _chameleon_bitopt::
+   0000                     568 	.ds 6
+                            569 	.area HOME    (CODE)
+                            570 	.area GSINIT0 (CODE)
+                            571 	.area GSINIT1 (CODE)
+                            572 	.area GSINIT2 (CODE)
+                            573 	.area GSINIT3 (CODE)
+                            574 	.area GSINIT4 (CODE)
+                            575 	.area GSINIT5 (CODE)
+                            576 	.area GSINIT  (CODE)
+                            577 	.area GSFINAL (CODE)
+                            578 	.area CSEG    (CODE)
+                            579 ;--------------------------------------------------------
+                            580 ; global & static initialisations
+                            581 ;--------------------------------------------------------
+                            582 	.area HOME    (CODE)
+                            583 	.area GSINIT  (CODE)
+                            584 	.area GSFINAL (CODE)
+                            585 	.area GSINIT  (CODE)
+                            586 ;--------------------------------------------------------
+                            587 ; Home
+                            588 ;--------------------------------------------------------
+                            589 	.area HOME    (CODE)
+                            590 	.area HOME    (CODE)
+                            591 ;--------------------------------------------------------
+                            592 ; code
+                            593 ;--------------------------------------------------------
+                            594 	.area CSEG    (CODE)
+                            595 ;------------------------------------------------------------
+                            596 ;Allocation info for local variables in function 'get_bits_in_byte'
+                            597 ;------------------------------------------------------------
+                            598 ;bitpos                    Allocated to stack - offset -4
+                            599 ;vallen                    Allocated to stack - offset -6
+                            600 ;from                      Allocated to registers r2 r3 r4 
+                            601 ;shifted_val               Allocated to registers r5 r6 
+                            602 ;------------------------------------------------------------
+                            603 ;	../../../core/net/rime/chameleon-bitopt.c:75: get_bits_in_byte(uint8_t *from, int bitpos, int vallen)
+                            604 ;	-----------------------------------------
+                            605 ;	 function get_bits_in_byte
+                            606 ;	-----------------------------------------
+   0000                     607 _get_bits_in_byte:
+                    0002    608 	ar2 = 0x02
+                    0003    609 	ar3 = 0x03
+                    0004    610 	ar4 = 0x04
+                    0005    611 	ar5 = 0x05
+                    0006    612 	ar6 = 0x06
+                    0007    613 	ar7 = 0x07
+                    0000    614 	ar0 = 0x00
+                    0001    615 	ar1 = 0x01
+   0000 C0*00               616 	push	_bp
+   0002 85 81*00            617 	mov	_bp,sp
+                            618 ;	../../../core/net/rime/chameleon-bitopt.c:79: shifted_val = (from[0] << 8) | from[1];
+   0005 AA 82               619 	mov	r2,dpl
+   0007 AB 83               620 	mov	r3,dph
+   0009 AC F0               621 	mov	r4,b
+   000B 12s00r00            622 	lcall	__gptrget
+   000E FE                  623 	mov	r6,a
+   000F 7D 00               624 	mov	r5,#0x00
+   0011 0A                  625 	inc	r2
+   0012 BA 00 01            626 	cjne	r2,#0x00,00103$
+   0015 0B                  627 	inc	r3
+   0016                     628 00103$:
+   0016 8A 82               629 	mov	dpl,r2
+   0018 8B 83               630 	mov	dph,r3
+   001A 8C F0               631 	mov	b,r4
+   001C 12s00r00            632 	lcall	__gptrget
+   001F FA                  633 	mov	r2,a
+   0020 7B 00               634 	mov	r3,#0x00
+   0022 42 05               635 	orl	ar5,a
+   0024 EB                  636 	mov	a,r3
+   0025 42 06               637 	orl	ar6,a
+                            638 ;	../../../core/net/rime/chameleon-bitopt.c:87: return (((shifted_val << bitpos) >> 8) & bitmask[vallen]) >> (8 - vallen);
+   0027 E5*00               639 	mov	a,_bp
+   0029 24 FC               640 	add	a,#0xfc
+   002B F8                  641 	mov	r0,a
+   002C 86 F0               642 	mov	b,@r0
+   002E 05 F0               643 	inc	b
+   0030 80 06               644 	sjmp	00105$
+   0032                     645 00104$:
+   0032 ED                  646 	mov	a,r5
+   0033 2D                  647 	add	a,r5
+   0034 FD                  648 	mov	r5,a
+   0035 EE                  649 	mov	a,r6
+   0036 33                  650 	rlc	a
+   0037 FE                  651 	mov	r6,a
+   0038                     652 00105$:
+   0038 D5 F0 F7            653 	djnz	b,00104$
+   003B 8E 05               654 	mov	ar5,r6
+   003D 7E 00               655 	mov	r6,#0x00
+   003F E5*00               656 	mov	a,_bp
+   0041 24 FA               657 	add	a,#0xfa
+   0043 F8                  658 	mov	r0,a
+   0044 E6                  659 	mov	a,@r0
+   0045 24r00               660 	add	a,#_bitmask
+   0047 F5 82               661 	mov	dpl,a
+   0049 08                  662 	inc	r0
+   004A E6                  663 	mov	a,@r0
+   004B 34s00               664 	addc	a,#(_bitmask >> 8)
+   004D F5 83               665 	mov	dph,a
+   004F E4                  666 	clr	a
+   0050 93                  667 	movc	a,@a+dptr
+   0051 7B 00               668 	mov	r3,#0x00
+   0053 52 05               669 	anl	ar5,a
+   0055 EB                  670 	mov	a,r3
+   0056 52 06               671 	anl	ar6,a
+   0058 E5*00               672 	mov	a,_bp
+   005A 24 FA               673 	add	a,#0xfa
+   005C F8                  674 	mov	r0,a
+   005D 74 08               675 	mov	a,#0x08
+   005F C3                  676 	clr	c
+   0060 96                  677 	subb	a,@r0
+   0061 FA                  678 	mov	r2,a
+   0062 E4                  679 	clr	a
+   0063 08                  680 	inc	r0
+   0064 96                  681 	subb	a,@r0
+   0065 FB                  682 	mov	r3,a
+   0066 8A F0               683 	mov	b,r2
+   0068 05 F0               684 	inc	b
+   006A 80 07               685 	sjmp	00107$
+   006C                     686 00106$:
+   006C C3                  687 	clr	c
+   006D EE                  688 	mov	a,r6
+   006E 13                  689 	rrc	a
+   006F FE                  690 	mov	r6,a
+   0070 ED                  691 	mov	a,r5
+   0071 13                  692 	rrc	a
+   0072 FD                  693 	mov	r5,a
+   0073                     694 00107$:
+   0073 D5 F0 F6            695 	djnz	b,00106$
+   0076 8D 82               696 	mov	dpl,r5
+   0078 D0*00               697 	pop	_bp
+   007A 22                  698 	ret
+                            699 ;------------------------------------------------------------
+                            700 ;Allocation info for local variables in function 'get_bits'
+                            701 ;------------------------------------------------------------
+                            702 ;from                      Allocated to stack - offset -5
+                            703 ;bitpos                    Allocated to stack - offset -7
+                            704 ;vallen                    Allocated to stack - offset -9
+                            705 ;to                        Allocated to stack - offset 1
+                            706 ;i                         Allocated to stack - offset 4
+                            707 ;bits                      Allocated to stack - offset 6
+                            708 ;------------------------------------------------------------
+                            709 ;	../../../core/net/rime/chameleon-bitopt.c:91: get_bits(uint8_t *to, uint8_t *from, int bitpos, int vallen)
+                            710 ;	-----------------------------------------
+                            711 ;	 function get_bits
+                            712 ;	-----------------------------------------
+   007B                     713 _get_bits:
+   007B C0*00               714 	push	_bp
+   007D 85 81*00            715 	mov	_bp,sp
+   0080 C0 82               716 	push	dpl
+   0082 C0 83               717 	push	dph
+   0084 C0 F0               718 	push	b
+   0086 E5 81               719 	mov	a,sp
+   0088 24 07               720 	add	a,#0x07
+   008A F5 81               721 	mov	sp,a
+                            722 ;	../../../core/net/rime/chameleon-bitopt.c:96: if(vallen < 8) {
+   008C E5*00               723 	mov	a,_bp
+   008E 24 F7               724 	add	a,#0xf7
+   0090 F8                  725 	mov	r0,a
+   0091 C3                  726 	clr	c
+   0092 E6                  727 	mov	a,@r0
+   0093 94 08               728 	subb	a,#0x08
+   0095 08                  729 	inc	r0
+   0096 E6                  730 	mov	a,@r0
+   0097 64 80               731 	xrl	a,#0x80
+   0099 94 80               732 	subb	a,#0x80
+   009B 50 42               733 	jnc	00109$
+                            734 ;	../../../core/net/rime/chameleon-bitopt.c:97: *to = get_bits_in_byte(from, bitpos, vallen);
+   009D E5*00               735 	mov	a,_bp
+   009F 24 F7               736 	add	a,#0xf7
+   00A1 F8                  737 	mov	r0,a
+   00A2 E6                  738 	mov	a,@r0
+   00A3 C0 E0               739 	push	acc
+   00A5 08                  740 	inc	r0
+   00A6 E6                  741 	mov	a,@r0
+   00A7 C0 E0               742 	push	acc
+   00A9 E5*00               743 	mov	a,_bp
+   00AB 24 F9               744 	add	a,#0xf9
+   00AD F8                  745 	mov	r0,a
+   00AE E6                  746 	mov	a,@r0
+   00AF C0 E0               747 	push	acc
+   00B1 08                  748 	inc	r0
+   00B2 E6                  749 	mov	a,@r0
+   00B3 C0 E0               750 	push	acc
+   00B5 E5*00               751 	mov	a,_bp
+   00B7 24 FB               752 	add	a,#0xfb
+   00B9 F8                  753 	mov	r0,a
+   00BA 86 82               754 	mov	dpl,@r0
+   00BC 08                  755 	inc	r0
+   00BD 86 83               756 	mov	dph,@r0
+   00BF 08                  757 	inc	r0
+   00C0 86 F0               758 	mov	b,@r0
+   00C2 12s00r00            759 	lcall	_get_bits_in_byte
+   00C5 AD 82               760 	mov	r5,dpl
+   00C7 E5 81               761 	mov	a,sp
+   00C9 24 FC               762 	add	a,#0xfc
+   00CB F5 81               763 	mov	sp,a
+   00CD A8*00               764 	mov	r0,_bp
+   00CF 08                  765 	inc	r0
+   00D0 86 82               766 	mov	dpl,@r0
+   00D2 08                  767 	inc	r0
+   00D3 86 83               768 	mov	dph,@r0
+   00D5 08                  769 	inc	r0
+   00D6 86 F0               770 	mov	b,@r0
+   00D8 ED                  771 	mov	a,r5
+   00D9 12s00r00            772 	lcall	__gptrput
+   00DC 02s03r2B            773 	ljmp	00119$
+   00DF                     774 00109$:
+                            775 ;	../../../core/net/rime/chameleon-bitopt.c:99: if(bitpos == 0) {
+   00DF E5*00               776 	mov	a,_bp
+   00E1 24 F9               777 	add	a,#0xf9
+   00E3 F8                  778 	mov	r0,a
+   00E4 E6                  779 	mov	a,@r0
+   00E5 08                  780 	inc	r0
+   00E6 46                  781 	orl	a,@r0
+   00E7 60 03               782 	jz	00132$
+   00E9 02s01rF7            783 	ljmp	00127$
+   00EC                     784 00132$:
+                            785 ;	../../../core/net/rime/chameleon-bitopt.c:100: for(i = 0; i < vallen / 8; ++i) {
+   00EC 74 08               786 	mov	a,#0x08
+   00EE C0 E0               787 	push	acc
+   00F0 E4                  788 	clr	a
+   00F1 C0 E0               789 	push	acc
+   00F3 E5*00               790 	mov	a,_bp
+   00F5 24 F7               791 	add	a,#0xf7
+   00F7 F8                  792 	mov	r0,a
+   00F8 86 82               793 	mov	dpl,@r0
+   00FA 08                  794 	inc	r0
+   00FB 86 83               795 	mov	dph,@r0
+   00FD 12s00r00            796 	lcall	__divsint
+   0100 AD 82               797 	mov	r5,dpl
+   0102 AE 83               798 	mov	r6,dph
+   0104 15 81               799 	dec	sp
+   0106 15 81               800 	dec	sp
+   0108 E5*00               801 	mov	a,_bp
+   010A 24 04               802 	add	a,#0x04
+   010C F8                  803 	mov	r0,a
+   010D E4                  804 	clr	a
+   010E F6                  805 	mov	@r0,a
+   010F 08                  806 	inc	r0
+   0110 F6                  807 	mov	@r0,a
+   0111                     808 00111$:
+   0111 E5*00               809 	mov	a,_bp
+   0113 24 04               810 	add	a,#0x04
+   0115 F8                  811 	mov	r0,a
+   0116 C3                  812 	clr	c
+   0117 E6                  813 	mov	a,@r0
+   0118 9D                  814 	subb	a,r5
+   0119 08                  815 	inc	r0
+   011A E6                  816 	mov	a,@r0
+   011B 64 80               817 	xrl	a,#0x80
+   011D 8E F0               818 	mov	b,r6
+   011F 63 F0 80            819 	xrl	b,#0x80
+   0122 95 F0               820 	subb	a,b
+   0124 50 50               821 	jnc	00114$
+                            822 ;	../../../core/net/rime/chameleon-bitopt.c:103: to[i] = from[i];
+   0126 C0 05               823 	push	ar5
+   0128 C0 06               824 	push	ar6
+   012A A8*00               825 	mov	r0,_bp
+   012C 08                  826 	inc	r0
+   012D E5*00               827 	mov	a,_bp
+   012F 24 04               828 	add	a,#0x04
+   0131 F9                  829 	mov	r1,a
+   0132 E7                  830 	mov	a,@r1
+   0133 26                  831 	add	a,@r0
+   0134 FB                  832 	mov	r3,a
+   0135 09                  833 	inc	r1
+   0136 E7                  834 	mov	a,@r1
+   0137 08                  835 	inc	r0
+   0138 36                  836 	addc	a,@r0
+   0139 FC                  837 	mov	r4,a
+   013A 08                  838 	inc	r0
+   013B 86 05               839 	mov	ar5,@r0
+   013D E5*00               840 	mov	a,_bp
+   013F 24 FB               841 	add	a,#0xfb
+   0141 F8                  842 	mov	r0,a
+   0142 E5*00               843 	mov	a,_bp
+   0144 24 04               844 	add	a,#0x04
+   0146 F9                  845 	mov	r1,a
+   0147 E7                  846 	mov	a,@r1
+   0148 26                  847 	add	a,@r0
+   0149 FE                  848 	mov	r6,a
+   014A 09                  849 	inc	r1
+   014B E7                  850 	mov	a,@r1
+   014C 08                  851 	inc	r0
+   014D 36                  852 	addc	a,@r0
+   014E FA                  853 	mov	r2,a
+   014F 08                  854 	inc	r0
+   0150 86 07               855 	mov	ar7,@r0
+   0152 8E 82               856 	mov	dpl,r6
+   0154 8A 83               857 	mov	dph,r2
+   0156 8F F0               858 	mov	b,r7
+   0158 12s00r00            859 	lcall	__gptrget
+   015B FE                  860 	mov	r6,a
+   015C 8B 82               861 	mov	dpl,r3
+   015E 8C 83               862 	mov	dph,r4
+   0160 8D F0               863 	mov	b,r5
+   0162 12s00r00            864 	lcall	__gptrput
+                            865 ;	../../../core/net/rime/chameleon-bitopt.c:100: for(i = 0; i < vallen / 8; ++i) {
+   0165 E5*00               866 	mov	a,_bp
+   0167 24 04               867 	add	a,#0x04
+   0169 F8                  868 	mov	r0,a
+   016A 06                  869 	inc	@r0
+   016B B6 00 02            870 	cjne	@r0,#0x00,00134$
+   016E 08                  871 	inc	r0
+   016F 06                  872 	inc	@r0
+   0170                     873 00134$:
+   0170 D0 06               874 	pop	ar6
+   0172 D0 05               875 	pop	ar5
+   0174 80 9B               876 	sjmp	00111$
+   0176                     877 00114$:
+                            878 ;	../../../core/net/rime/chameleon-bitopt.c:105: bits = vallen & 7;
+   0176 E5*00               879 	mov	a,_bp
+   0178 24 F7               880 	add	a,#0xf7
+   017A F8                  881 	mov	r0,a
+   017B E5*00               882 	mov	a,_bp
+   017D 24 06               883 	add	a,#0x06
+   017F F9                  884 	mov	r1,a
+   0180 74 07               885 	mov	a,#0x07
+   0182 56                  886 	anl	a,@r0
+   0183 F7                  887 	mov	@r1,a
+   0184 09                  888 	inc	r1
+   0185 77 00               889 	mov	@r1,#0x00
+                            890 ;	../../../core/net/rime/chameleon-bitopt.c:106: if(bits) {
+   0187 E5*00               891 	mov	a,_bp
+   0189 24 06               892 	add	a,#0x06
+   018B F8                  893 	mov	r0,a
+   018C E6                  894 	mov	a,@r0
+   018D 08                  895 	inc	r0
+   018E 46                  896 	orl	a,@r0
+   018F 70 03               897 	jnz	00135$
+   0191 02s03r2B            898 	ljmp	00119$
+   0194                     899 00135$:
+                            900 ;	../../../core/net/rime/chameleon-bitopt.c:107: to[i] = get_bits_in_byte(&from[i], 0, bits);
+   0194 A8*00               901 	mov	r0,_bp
+   0196 08                  902 	inc	r0
+   0197 E5*00               903 	mov	a,_bp
+   0199 24 04               904 	add	a,#0x04
+   019B F9                  905 	mov	r1,a
+   019C E7                  906 	mov	a,@r1
+   019D 26                  907 	add	a,@r0
+   019E FC                  908 	mov	r4,a
+   019F 09                  909 	inc	r1
+   01A0 E7                  910 	mov	a,@r1
+   01A1 08                  911 	inc	r0
+   01A2 36                  912 	addc	a,@r0
+   01A3 FD                  913 	mov	r5,a
+   01A4 08                  914 	inc	r0
+   01A5 86 06               915 	mov	ar6,@r0
+   01A7 E5*00               916 	mov	a,_bp
+   01A9 24 FB               917 	add	a,#0xfb
+   01AB F8                  918 	mov	r0,a
+   01AC E5*00               919 	mov	a,_bp
+   01AE 24 04               920 	add	a,#0x04
+   01B0 F9                  921 	mov	r1,a
+   01B1 E7                  922 	mov	a,@r1
+   01B2 26                  923 	add	a,@r0
+   01B3 FF                  924 	mov	r7,a
+   01B4 09                  925 	inc	r1
+   01B5 E7                  926 	mov	a,@r1
+   01B6 08                  927 	inc	r0
+   01B7 36                  928 	addc	a,@r0
+   01B8 FA                  929 	mov	r2,a
+   01B9 08                  930 	inc	r0
+   01BA 86 03               931 	mov	ar3,@r0
+   01BC C0 04               932 	push	ar4
+   01BE C0 05               933 	push	ar5
+   01C0 C0 06               934 	push	ar6
+   01C2 E5*00               935 	mov	a,_bp
+   01C4 24 06               936 	add	a,#0x06
+   01C6 F8                  937 	mov	r0,a
+   01C7 E6                  938 	mov	a,@r0
+   01C8 C0 E0               939 	push	acc
+   01CA 08                  940 	inc	r0
+   01CB E6                  941 	mov	a,@r0
+   01CC C0 E0               942 	push	acc
+   01CE E4                  943 	clr	a
+   01CF C0 E0               944 	push	acc
+   01D1 C0 E0               945 	push	acc
+   01D3 8F 82               946 	mov	dpl,r7
+   01D5 8A 83               947 	mov	dph,r2
+   01D7 8B F0               948 	mov	b,r3
+   01D9 12s00r00            949 	lcall	_get_bits_in_byte
+   01DC AA 82               950 	mov	r2,dpl
+   01DE E5 81               951 	mov	a,sp
+   01E0 24 FC               952 	add	a,#0xfc
+   01E2 F5 81               953 	mov	sp,a
+   01E4 D0 06               954 	pop	ar6
+   01E6 D0 05               955 	pop	ar5
+   01E8 D0 04               956 	pop	ar4
+   01EA 8C 82               957 	mov	dpl,r4
+   01EC 8D 83               958 	mov	dph,r5
+   01EE 8E F0               959 	mov	b,r6
+   01F0 EA                  960 	mov	a,r2
+   01F1 12s00r00            961 	lcall	__gptrput
+   01F4 02s03r2B            962 	ljmp	00119$
+                            963 ;	../../../core/net/rime/chameleon-bitopt.c:110: for(i = 0; i < vallen / 8; ++i) {
+   01F7                     964 00127$:
+   01F7 74 08               965 	mov	a,#0x08
+   01F9 C0 E0               966 	push	acc
+   01FB E4                  967 	clr	a
+   01FC C0 E0               968 	push	acc
+   01FE E5*00               969 	mov	a,_bp
+   0200 24 F7               970 	add	a,#0xf7
+   0202 F8                  971 	mov	r0,a
+   0203 86 82               972 	mov	dpl,@r0
+   0205 08                  973 	inc	r0
+   0206 86 83               974 	mov	dph,@r0
+   0208 12s00r00            975 	lcall	__divsint
+   020B AA 82               976 	mov	r2,dpl
+   020D AB 83               977 	mov	r3,dph
+   020F 15 81               978 	dec	sp
+   0211 15 81               979 	dec	sp
+   0213 E5*00               980 	mov	a,_bp
+   0215 24 04               981 	add	a,#0x04
+   0217 F8                  982 	mov	r0,a
+   0218 E4                  983 	clr	a
+   0219 F6                  984 	mov	@r0,a
+   021A 08                  985 	inc	r0
+   021B F6                  986 	mov	@r0,a
+   021C                     987 00115$:
+   021C E5*00               988 	mov	a,_bp
+   021E 24 04               989 	add	a,#0x04
+   0220 F8                  990 	mov	r0,a
+   0221 C3                  991 	clr	c
+   0222 E6                  992 	mov	a,@r0
+   0223 9A                  993 	subb	a,r2
+   0224 08                  994 	inc	r0
+   0225 E6                  995 	mov	a,@r0
+   0226 64 80               996 	xrl	a,#0x80
+   0228 8B F0               997 	mov	b,r3
+   022A 63 F0 80            998 	xrl	b,#0x80
+   022D 95 F0               999 	subb	a,b
+   022F 50 78              1000 	jnc	00118$
+                           1001 ;	../../../core/net/rime/chameleon-bitopt.c:113: to[i] = get_bits_in_byte(&from[i], bitpos, 8);
+   0231 C0 02              1002 	push	ar2
+   0233 C0 03              1003 	push	ar3
+   0235 A8*00              1004 	mov	r0,_bp
+   0237 08                 1005 	inc	r0
+   0238 E5*00              1006 	mov	a,_bp
+   023A 24 04              1007 	add	a,#0x04
+   023C F9                 1008 	mov	r1,a
+   023D E7                 1009 	mov	a,@r1
+   023E 26                 1010 	add	a,@r0
+   023F FE                 1011 	mov	r6,a
+   0240 09                 1012 	inc	r1
+   0241 E7                 1013 	mov	a,@r1
+   0242 08                 1014 	inc	r0
+   0243 36                 1015 	addc	a,@r0
+   0244 FF                 1016 	mov	r7,a
+   0245 08                 1017 	inc	r0
+   0246 86 02              1018 	mov	ar2,@r0
+   0248 E5*00              1019 	mov	a,_bp
+   024A 24 FB              1020 	add	a,#0xfb
+   024C F8                 1021 	mov	r0,a
+   024D E5*00              1022 	mov	a,_bp
+   024F 24 04              1023 	add	a,#0x04
+   0251 F9                 1024 	mov	r1,a
+   0252 E7                 1025 	mov	a,@r1
+   0253 26                 1026 	add	a,@r0
+   0254 FB                 1027 	mov	r3,a
+   0255 09                 1028 	inc	r1
+   0256 E7                 1029 	mov	a,@r1
+   0257 08                 1030 	inc	r0
+   0258 36                 1031 	addc	a,@r0
+   0259 FC                 1032 	mov	r4,a
+   025A 08                 1033 	inc	r0
+   025B 86 05              1034 	mov	ar5,@r0
+   025D C0 02              1035 	push	ar2
+   025F C0 06              1036 	push	ar6
+   0261 C0 07              1037 	push	ar7
+   0263 74 08              1038 	mov	a,#0x08
+   0265 C0 E0              1039 	push	acc
+   0267 E4                 1040 	clr	a
+   0268 C0 E0              1041 	push	acc
+   026A E5*00              1042 	mov	a,_bp
+   026C 24 F9              1043 	add	a,#0xf9
+   026E F8                 1044 	mov	r0,a
+   026F E6                 1045 	mov	a,@r0
+   0270 C0 E0              1046 	push	acc
+   0272 08                 1047 	inc	r0
+   0273 E6                 1048 	mov	a,@r0
+   0274 C0 E0              1049 	push	acc
+   0276 8B 82              1050 	mov	dpl,r3
+   0278 8C 83              1051 	mov	dph,r4
+   027A 8D F0              1052 	mov	b,r5
+   027C 12s00r00           1053 	lcall	_get_bits_in_byte
+   027F AB 82              1054 	mov	r3,dpl
+   0281 E5 81              1055 	mov	a,sp
+   0283 24 FC              1056 	add	a,#0xfc
+   0285 F5 81              1057 	mov	sp,a
+   0287 D0 07              1058 	pop	ar7
+   0289 D0 06              1059 	pop	ar6
+   028B D0 02              1060 	pop	ar2
+   028D 8E 82              1061 	mov	dpl,r6
+   028F 8F 83              1062 	mov	dph,r7
+   0291 8A F0              1063 	mov	b,r2
+   0293 EB                 1064 	mov	a,r3
+   0294 12s00r00           1065 	lcall	__gptrput
+                           1066 ;	../../../core/net/rime/chameleon-bitopt.c:110: for(i = 0; i < vallen / 8; ++i) {
+   0297 E5*00              1067 	mov	a,_bp
+   0299 24 04              1068 	add	a,#0x04
+   029B F8                 1069 	mov	r0,a
+   029C 06                 1070 	inc	@r0
+   029D B6 00 02           1071 	cjne	@r0,#0x00,00137$
+   02A0 08                 1072 	inc	r0
+   02A1 06                 1073 	inc	@r0
+   02A2                    1074 00137$:
+   02A2 D0 03              1075 	pop	ar3
+   02A4 D0 02              1076 	pop	ar2
+   02A6 02s02r1C           1077 	ljmp	00115$
+   02A9                    1078 00118$:
+                           1079 ;	../../../core/net/rime/chameleon-bitopt.c:115: bits = vallen & 7;
+   02A9 E5*00              1080 	mov	a,_bp
+   02AB 24 F7              1081 	add	a,#0xf7
+   02AD F8                 1082 	mov	r0,a
+   02AE E5*00              1083 	mov	a,_bp
+   02B0 24 06              1084 	add	a,#0x06
+   02B2 F9                 1085 	mov	r1,a
+   02B3 74 07              1086 	mov	a,#0x07
+   02B5 56                 1087 	anl	a,@r0
+   02B6 F7                 1088 	mov	@r1,a
+   02B7 09                 1089 	inc	r1
+   02B8 77 00              1090 	mov	@r1,#0x00
+                           1091 ;	../../../core/net/rime/chameleon-bitopt.c:116: if(bits) {
+   02BA E5*00              1092 	mov	a,_bp
+   02BC 24 06              1093 	add	a,#0x06
+   02BE F8                 1094 	mov	r0,a
+   02BF E6                 1095 	mov	a,@r0
+   02C0 08                 1096 	inc	r0
+   02C1 46                 1097 	orl	a,@r0
+   02C2 60 67              1098 	jz	00119$
+                           1099 ;	../../../core/net/rime/chameleon-bitopt.c:117: to[i] = get_bits_in_byte(&from[i], bitpos, bits);
+   02C4 A8*00              1100 	mov	r0,_bp
+   02C6 08                 1101 	inc	r0
+   02C7 E5*00              1102 	mov	a,_bp
+   02C9 24 04              1103 	add	a,#0x04
+   02CB F9                 1104 	mov	r1,a
+   02CC E7                 1105 	mov	a,@r1
+   02CD 26                 1106 	add	a,@r0
+   02CE FA                 1107 	mov	r2,a
+   02CF 09                 1108 	inc	r1
+   02D0 E7                 1109 	mov	a,@r1
+   02D1 08                 1110 	inc	r0
+   02D2 36                 1111 	addc	a,@r0
+   02D3 FB                 1112 	mov	r3,a
+   02D4 08                 1113 	inc	r0
+   02D5 86 04              1114 	mov	ar4,@r0
+   02D7 E5*00              1115 	mov	a,_bp
+   02D9 24 FB              1116 	add	a,#0xfb
+   02DB F8                 1117 	mov	r0,a
+   02DC E5*00              1118 	mov	a,_bp
+   02DE 24 04              1119 	add	a,#0x04
+   02E0 F9                 1120 	mov	r1,a
+   02E1 E7                 1121 	mov	a,@r1
+   02E2 26                 1122 	add	a,@r0
+   02E3 FD                 1123 	mov	r5,a
+   02E4 09                 1124 	inc	r1
+   02E5 E7                 1125 	mov	a,@r1
+   02E6 08                 1126 	inc	r0
+   02E7 36                 1127 	addc	a,@r0
+   02E8 FE                 1128 	mov	r6,a
+   02E9 08                 1129 	inc	r0
+   02EA 86 07              1130 	mov	ar7,@r0
+   02EC C0 02              1131 	push	ar2
+   02EE C0 03              1132 	push	ar3
+   02F0 C0 04              1133 	push	ar4
+   02F2 E5*00              1134 	mov	a,_bp
+   02F4 24 06              1135 	add	a,#0x06
+   02F6 F8                 1136 	mov	r0,a
+   02F7 E6                 1137 	mov	a,@r0
+   02F8 C0 E0              1138 	push	acc
+   02FA 08                 1139 	inc	r0
+   02FB E6                 1140 	mov	a,@r0
+   02FC C0 E0              1141 	push	acc
+   02FE E5*00              1142 	mov	a,_bp
+   0300 24 F9              1143 	add	a,#0xf9
+   0302 F8                 1144 	mov	r0,a
+   0303 E6                 1145 	mov	a,@r0
+   0304 C0 E0              1146 	push	acc
+   0306 08                 1147 	inc	r0
+   0307 E6                 1148 	mov	a,@r0
+   0308 C0 E0              1149 	push	acc
+   030A 8D 82              1150 	mov	dpl,r5
+   030C 8E 83              1151 	mov	dph,r6
+   030E 8F F0              1152 	mov	b,r7
+   0310 12s00r00           1153 	lcall	_get_bits_in_byte
+   0313 AD 82              1154 	mov	r5,dpl
+   0315 E5 81              1155 	mov	a,sp
+   0317 24 FC              1156 	add	a,#0xfc
+   0319 F5 81              1157 	mov	sp,a
+   031B D0 04              1158 	pop	ar4
+   031D D0 03              1159 	pop	ar3
+   031F D0 02              1160 	pop	ar2
+   0321 8A 82              1161 	mov	dpl,r2
+   0323 8B 83              1162 	mov	dph,r3
+   0325 8C F0              1163 	mov	b,r4
+   0327 ED                 1164 	mov	a,r5
+   0328 12s00r00           1165 	lcall	__gptrput
+   032B                    1166 00119$:
+   032B 85*00 81           1167 	mov	sp,_bp
+   032E D0*00              1168 	pop	_bp
+   0330 22                 1169 	ret
+                           1170 ;------------------------------------------------------------
+                           1171 ;Allocation info for local variables in function 'header_size'
+                           1172 ;------------------------------------------------------------
+                           1173 ;a                         Allocated to registers r2 r3 r4 
+                           1174 ;size                      Allocated to stack - offset 1
+                           1175 ;len                       Allocated to registers r7 r5 
+                           1176 ;------------------------------------------------------------
+                           1177 ;	../../../core/net/rime/chameleon-bitopt.c:124: header_size(const struct packetbuf_attrlist *a)
+                           1178 ;	-----------------------------------------
+                           1179 ;	 function header_size
+                           1180 ;	-----------------------------------------
+   0331                    1181 _header_size:
+   0331 C0*00              1182 	push	_bp
+   0333 85 81*00           1183 	mov	_bp,sp
+   0336 05 81              1184 	inc	sp
+   0338 05 81              1185 	inc	sp
+   033A AA 82              1186 	mov	r2,dpl
+   033C AB 83              1187 	mov	r3,dph
+   033E AC F0              1188 	mov	r4,b
+                           1189 ;	../../../core/net/rime/chameleon-bitopt.c:131: size = 0;
+   0340 A8*00              1190 	mov	r0,_bp
+   0342 08                 1191 	inc	r0
+   0343 E4                 1192 	clr	a
+   0344 F6                 1193 	mov	@r0,a
+   0345 08                 1194 	inc	r0
+   0346 F6                 1195 	mov	@r0,a
+   0347                    1196 00101$:
+                           1197 ;	../../../core/net/rime/chameleon-bitopt.c:132: for(; a->type != PACKETBUF_ATTR_NONE; ++a) {
+   0347 8A 82              1198 	mov	dpl,r2
+   0349 8B 83              1199 	mov	dph,r3
+   034B 8C F0              1200 	mov	b,r4
+   034D 12s00r00           1201 	lcall	__gptrget
+   0350 FF                 1202 	mov	r7,a
+   0351 7D 00              1203 	mov	r5,#0x00
+   0353 BF 00 05           1204 	cjne	r7,#0x00,00110$
+   0356 BD 00 02           1205 	cjne	r5,#0x00,00110$
+   0359 80 28              1206 	sjmp	00104$
+   035B                    1207 00110$:
+                           1208 ;	../../../core/net/rime/chameleon-bitopt.c:144: len = a->len;
+   035B 74 01              1209 	mov	a,#0x01
+   035D 2A                 1210 	add	a,r2
+   035E FF                 1211 	mov	r7,a
+   035F E4                 1212 	clr	a
+   0360 3B                 1213 	addc	a,r3
+   0361 FD                 1214 	mov	r5,a
+   0362 8C 06              1215 	mov	ar6,r4
+   0364 8F 82              1216 	mov	dpl,r7
+   0366 8D 83              1217 	mov	dph,r5
+   0368 8E F0              1218 	mov	b,r6
+   036A 12s00r00           1219 	lcall	__gptrget
+   036D FF                 1220 	mov	r7,a
+   036E 7D 00              1221 	mov	r5,#0x00
+                           1222 ;	../../../core/net/rime/chameleon-bitopt.c:148: size += len;
+   0370 A8*00              1223 	mov	r0,_bp
+   0372 08                 1224 	inc	r0
+   0373 EF                 1225 	mov	a,r7
+   0374 26                 1226 	add	a,@r0
+   0375 F6                 1227 	mov	@r0,a
+   0376 ED                 1228 	mov	a,r5
+   0377 08                 1229 	inc	r0
+   0378 36                 1230 	addc	a,@r0
+   0379 F6                 1231 	mov	@r0,a
+                           1232 ;	../../../core/net/rime/chameleon-bitopt.c:132: for(; a->type != PACKETBUF_ATTR_NONE; ++a) {
+   037A 74 02              1233 	mov	a,#0x02
+   037C 2A                 1234 	add	a,r2
+   037D FA                 1235 	mov	r2,a
+   037E E4                 1236 	clr	a
+   037F 3B                 1237 	addc	a,r3
+   0380 FB                 1238 	mov	r3,a
+   0381 80 C4              1239 	sjmp	00101$
+   0383                    1240 00104$:
+                           1241 ;	../../../core/net/rime/chameleon-bitopt.c:150: return size;
+   0383 A8*00              1242 	mov	r0,_bp
+   0385 08                 1243 	inc	r0
+   0386 86 82              1244 	mov	dpl,@r0
+   0388 08                 1245 	inc	r0
+   0389 86 83              1246 	mov	dph,@r0
+   038B 85*00 81           1247 	mov	sp,_bp
+   038E D0*00              1248 	pop	_bp
+   0390 22                 1249 	ret
+                           1250 ;------------------------------------------------------------
+                           1251 ;Allocation info for local variables in function 'set_bits_in_byte'
+                           1252 ;------------------------------------------------------------
+                           1253 ;bitpos                    Allocated to stack - offset -4
+                           1254 ;val                       Allocated to stack - offset -5
+                           1255 ;vallen                    Allocated to stack - offset -7
+                           1256 ;target                    Allocated to stack - offset 1
+                           1257 ;shifted_val               Allocated to registers r5 r6 
+                           1258 ;sloc0                     Allocated to stack - offset 4
+                           1259 ;------------------------------------------------------------
+                           1260 ;	../../../core/net/rime/chameleon-bitopt.c:154: set_bits_in_byte(uint8_t *target, int bitpos, uint8_t val, int vallen)
+                           1261 ;	-----------------------------------------
+                           1262 ;	 function set_bits_in_byte
+                           1263 ;	-----------------------------------------
+   0391                    1264 _set_bits_in_byte:
+   0391 C0*00              1265 	push	_bp
+   0393 85 81*00           1266 	mov	_bp,sp
+   0396 C0 82              1267 	push	dpl
+   0398 C0 83              1268 	push	dph
+   039A C0 F0              1269 	push	b
+   039C 05 81              1270 	inc	sp
+   039E 05 81              1271 	inc	sp
+                           1272 ;	../../../core/net/rime/chameleon-bitopt.c:157: shifted_val = val << (8 - bitpos + 8 - vallen);
+   03A0 E5*00              1273 	mov	a,_bp
+   03A2 24 FB              1274 	add	a,#0xfb
+   03A4 F8                 1275 	mov	r0,a
+   03A5 86 05              1276 	mov	ar5,@r0
+   03A7 7E 00              1277 	mov	r6,#0x00
+   03A9 E5*00              1278 	mov	a,_bp
+   03AB 24 FC              1279 	add	a,#0xfc
+   03AD F8                 1280 	mov	r0,a
+   03AE 74 10              1281 	mov	a,#0x10
+   03B0 C3                 1282 	clr	c
+   03B1 96                 1283 	subb	a,@r0
+   03B2 FF                 1284 	mov	r7,a
+   03B3 E4                 1285 	clr	a
+   03B4 08                 1286 	inc	r0
+   03B5 96                 1287 	subb	a,@r0
+   03B6 FA                 1288 	mov	r2,a
+   03B7 E5*00              1289 	mov	a,_bp
+   03B9 24 F9              1290 	add	a,#0xf9
+   03BB F8                 1291 	mov	r0,a
+   03BC EF                 1292 	mov	a,r7
+   03BD C3                 1293 	clr	c
+   03BE 96                 1294 	subb	a,@r0
+   03BF FF                 1295 	mov	r7,a
+   03C0 EA                 1296 	mov	a,r2
+   03C1 08                 1297 	inc	r0
+   03C2 96                 1298 	subb	a,@r0
+   03C3 FA                 1299 	mov	r2,a
+   03C4 8F F0              1300 	mov	b,r7
+   03C6 05 F0              1301 	inc	b
+   03C8 80 06              1302 	sjmp	00104$
+   03CA                    1303 00103$:
+   03CA ED                 1304 	mov	a,r5
+   03CB 2D                 1305 	add	a,r5
+   03CC FD                 1306 	mov	r5,a
+   03CD EE                 1307 	mov	a,r6
+   03CE 33                 1308 	rlc	a
+   03CF FE                 1309 	mov	r6,a
+   03D0                    1310 00104$:
+   03D0 D5 F0 F7           1311 	djnz	b,00103$
+                           1312 ;	../../../core/net/rime/chameleon-bitopt.c:160: target[0] |= shifted_val >> 8;
+   03D3 A8*00              1313 	mov	r0,_bp
+   03D5 08                 1314 	inc	r0
+   03D6 86 82              1315 	mov	dpl,@r0
+   03D8 08                 1316 	inc	r0
+   03D9 86 83              1317 	mov	dph,@r0
+   03DB 08                 1318 	inc	r0
+   03DC 86 F0              1319 	mov	b,@r0
+   03DE 12s00r00           1320 	lcall	__gptrget
+   03E1 FA                 1321 	mov	r2,a
+   03E2 8E 03              1322 	mov	ar3,r6
+   03E4 EB                 1323 	mov	a,r3
+   03E5 42 02              1324 	orl	ar2,a
+   03E7 A8*00              1325 	mov	r0,_bp
+   03E9 08                 1326 	inc	r0
+   03EA 86 82              1327 	mov	dpl,@r0
+   03EC 08                 1328 	inc	r0
+   03ED 86 83              1329 	mov	dph,@r0
+   03EF 08                 1330 	inc	r0
+   03F0 86 F0              1331 	mov	b,@r0
+   03F2 EA                 1332 	mov	a,r2
+   03F3 12s00r00           1333 	lcall	__gptrput
+                           1334 ;	../../../core/net/rime/chameleon-bitopt.c:161: target[1] |= shifted_val & 0xff;
+   03F6 A8*00              1335 	mov	r0,_bp
+   03F8 08                 1336 	inc	r0
+   03F9 74 01              1337 	mov	a,#0x01
+   03FB 26                 1338 	add	a,@r0
+   03FC FA                 1339 	mov	r2,a
+   03FD E4                 1340 	clr	a
+   03FE 08                 1341 	inc	r0
+   03FF 36                 1342 	addc	a,@r0
+   0400 FB                 1343 	mov	r3,a
+   0401 08                 1344 	inc	r0
+   0402 86 04              1345 	mov	ar4,@r0
+   0404 8A 82              1346 	mov	dpl,r2
+   0406 8B 83              1347 	mov	dph,r3
+   0408 8C F0              1348 	mov	b,r4
+   040A 12s00r00           1349 	lcall	__gptrget
+   040D FF                 1350 	mov	r7,a
+   040E E5*00              1351 	mov	a,_bp
+   0410 24 04              1352 	add	a,#0x04
+   0412 F8                 1353 	mov	r0,a
+   0413 A6 05              1354 	mov	@r0,ar5
+   0415 08                 1355 	inc	r0
+   0416 E4                 1356 	clr	a
+   0417 F6                 1357 	mov	@r0,a
+   0418 FD                 1358 	mov	r5,a
+   0419 E5*00              1359 	mov	a,_bp
+   041B 24 04              1360 	add	a,#0x04
+   041D F8                 1361 	mov	r0,a
+   041E E6                 1362 	mov	a,@r0
+   041F 42 07              1363 	orl	ar7,a
+   0421 08                 1364 	inc	r0
+   0422 E6                 1365 	mov	a,@r0
+   0423 42 05              1366 	orl	ar5,a
+   0425 8A 82              1367 	mov	dpl,r2
+   0427 8B 83              1368 	mov	dph,r3
+   0429 8C F0              1369 	mov	b,r4
+   042B EF                 1370 	mov	a,r7
+   042C 12s00r00           1371 	lcall	__gptrput
+   042F 85*00 81           1372 	mov	sp,_bp
+   0432 D0*00              1373 	pop	_bp
+   0434 22                 1374 	ret
+                           1375 ;------------------------------------------------------------
+                           1376 ;Allocation info for local variables in function 'set_bits'
+                           1377 ;------------------------------------------------------------
+                           1378 ;bitpos                    Allocated to stack - offset -4
+                           1379 ;val                       Allocated to stack - offset -7
+                           1380 ;vallen                    Allocated to stack - offset -9
+                           1381 ;ptr                       Allocated to stack - offset 1
+                           1382 ;i                         Allocated to stack - offset 4
+                           1383 ;bits                      Allocated to registers r2 r3 
+                           1384 ;------------------------------------------------------------
+                           1385 ;	../../../core/net/rime/chameleon-bitopt.c:165: set_bits(uint8_t *ptr, int bitpos, uint8_t *val, int vallen)
+                           1386 ;	-----------------------------------------
+                           1387 ;	 function set_bits
+                           1388 ;	-----------------------------------------
+   0435                    1389 _set_bits:
+   0435 C0*00              1390 	push	_bp
+   0437 85 81*00           1391 	mov	_bp,sp
+   043A C0 82              1392 	push	dpl
+   043C C0 83              1393 	push	dph
+   043E C0 F0              1394 	push	b
+   0440 05 81              1395 	inc	sp
+   0442 05 81              1396 	inc	sp
+                           1397 ;	../../../core/net/rime/chameleon-bitopt.c:172: if(vallen < 8) {
+   0444 E5*00              1398 	mov	a,_bp
+   0446 24 F7              1399 	add	a,#0xf7
+   0448 F8                 1400 	mov	r0,a
+   0449 C3                 1401 	clr	c
+   044A E6                 1402 	mov	a,@r0
+   044B 94 08              1403 	subb	a,#0x08
+   044D 08                 1404 	inc	r0
+   044E E6                 1405 	mov	a,@r0
+   044F 64 80              1406 	xrl	a,#0x80
+   0451 94 80              1407 	subb	a,#0x80
+   0453 50 48              1408 	jnc	00109$
+                           1409 ;	../../../core/net/rime/chameleon-bitopt.c:173: set_bits_in_byte(ptr, bitpos, *val /*>> (8 - vallen)*/, vallen);
+   0455 E5*00              1410 	mov	a,_bp
+   0457 24 F9              1411 	add	a,#0xf9
+   0459 F8                 1412 	mov	r0,a
+   045A 86 05              1413 	mov	ar5,@r0
+   045C 08                 1414 	inc	r0
+   045D 86 06              1415 	mov	ar6,@r0
+   045F 08                 1416 	inc	r0
+   0460 86 07              1417 	mov	ar7,@r0
+   0462 8D 82              1418 	mov	dpl,r5
+   0464 8E 83              1419 	mov	dph,r6
+   0466 8F F0              1420 	mov	b,r7
+   0468 12s00r00           1421 	lcall	__gptrget
+   046B FD                 1422 	mov	r5,a
+   046C E5*00              1423 	mov	a,_bp
+   046E 24 F7              1424 	add	a,#0xf7
+   0470 F8                 1425 	mov	r0,a
+   0471 E6                 1426 	mov	a,@r0
+   0472 C0 E0              1427 	push	acc
+   0474 08                 1428 	inc	r0
+   0475 E6                 1429 	mov	a,@r0
+   0476 C0 E0              1430 	push	acc
+   0478 C0 05              1431 	push	ar5
+   047A E5*00              1432 	mov	a,_bp
+   047C 24 FC              1433 	add	a,#0xfc
+   047E F8                 1434 	mov	r0,a
+   047F E6                 1435 	mov	a,@r0
+   0480 C0 E0              1436 	push	acc
+   0482 08                 1437 	inc	r0
+   0483 E6                 1438 	mov	a,@r0
+   0484 C0 E0              1439 	push	acc
+   0486 A8*00              1440 	mov	r0,_bp
+   0488 08                 1441 	inc	r0
+   0489 86 82              1442 	mov	dpl,@r0
+   048B 08                 1443 	inc	r0
+   048C 86 83              1444 	mov	dph,@r0
+   048E 08                 1445 	inc	r0
+   048F 86 F0              1446 	mov	b,@r0
+   0491 12s03r91           1447 	lcall	_set_bits_in_byte
+   0494 E5 81              1448 	mov	a,sp
+   0496 24 FB              1449 	add	a,#0xfb
+   0498 F5 81              1450 	mov	sp,a
+   049A 02s06rD2           1451 	ljmp	00119$
+   049D                    1452 00109$:
+                           1453 ;	../../../core/net/rime/chameleon-bitopt.c:175: if(bitpos == 0) {
+   049D E5*00              1454 	mov	a,_bp
+   049F 24 FC              1455 	add	a,#0xfc
+   04A1 F8                 1456 	mov	r0,a
+   04A2 E6                 1457 	mov	a,@r0
+   04A3 08                 1458 	inc	r0
+   04A4 46                 1459 	orl	a,@r0
+   04A5 60 03              1460 	jz	00132$
+   04A7 02s05rA9           1461 	ljmp	00127$
+   04AA                    1462 00132$:
+                           1463 ;	../../../core/net/rime/chameleon-bitopt.c:176: for(i = 0; i < vallen / 8; ++i) {
+   04AA 74 08              1464 	mov	a,#0x08
+   04AC C0 E0              1465 	push	acc
+   04AE E4                 1466 	clr	a
+   04AF C0 E0              1467 	push	acc
+   04B1 E5*00              1468 	mov	a,_bp
+   04B3 24 F7              1469 	add	a,#0xf7
+   04B5 F8                 1470 	mov	r0,a
+   04B6 86 82              1471 	mov	dpl,@r0
+   04B8 08                 1472 	inc	r0
+   04B9 86 83              1473 	mov	dph,@r0
+   04BB 12s00r00           1474 	lcall	__divsint
+   04BE AD 82              1475 	mov	r5,dpl
+   04C0 AE 83              1476 	mov	r6,dph
+   04C2 15 81              1477 	dec	sp
+   04C4 15 81              1478 	dec	sp
+   04C6 E5*00              1479 	mov	a,_bp
+   04C8 24 04              1480 	add	a,#0x04
+   04CA F8                 1481 	mov	r0,a
+   04CB E4                 1482 	clr	a
+   04CC F6                 1483 	mov	@r0,a
+   04CD 08                 1484 	inc	r0
+   04CE F6                 1485 	mov	@r0,a
+   04CF                    1486 00111$:
+   04CF E5*00              1487 	mov	a,_bp
+   04D1 24 04              1488 	add	a,#0x04
+   04D3 F8                 1489 	mov	r0,a
+   04D4 C3                 1490 	clr	c
+   04D5 E6                 1491 	mov	a,@r0
+   04D6 9D                 1492 	subb	a,r5
+   04D7 08                 1493 	inc	r0
+   04D8 E6                 1494 	mov	a,@r0
+   04D9 64 80              1495 	xrl	a,#0x80
+   04DB 8E F0              1496 	mov	b,r6
+   04DD 63 F0 80           1497 	xrl	b,#0x80
+   04E0 95 F0              1498 	subb	a,b
+   04E2 50 50              1499 	jnc	00114$
+                           1500 ;	../../../core/net/rime/chameleon-bitopt.c:179: ptr[i] = val[i];
+   04E4 C0 05              1501 	push	ar5
+   04E6 C0 06              1502 	push	ar6
+   04E8 A8*00              1503 	mov	r0,_bp
+   04EA 08                 1504 	inc	r0
+   04EB E5*00              1505 	mov	a,_bp
+   04ED 24 04              1506 	add	a,#0x04
+   04EF F9                 1507 	mov	r1,a
+   04F0 E7                 1508 	mov	a,@r1
+   04F1 26                 1509 	add	a,@r0
+   04F2 FB                 1510 	mov	r3,a
+   04F3 09                 1511 	inc	r1
+   04F4 E7                 1512 	mov	a,@r1
+   04F5 08                 1513 	inc	r0
+   04F6 36                 1514 	addc	a,@r0
+   04F7 FC                 1515 	mov	r4,a
+   04F8 08                 1516 	inc	r0
+   04F9 86 05              1517 	mov	ar5,@r0
+   04FB E5*00              1518 	mov	a,_bp
+   04FD 24 F9              1519 	add	a,#0xf9
+   04FF F8                 1520 	mov	r0,a
+   0500 E5*00              1521 	mov	a,_bp
+   0502 24 04              1522 	add	a,#0x04
+   0504 F9                 1523 	mov	r1,a
+   0505 E7                 1524 	mov	a,@r1
+   0506 26                 1525 	add	a,@r0
+   0507 FE                 1526 	mov	r6,a
+   0508 09                 1527 	inc	r1
+   0509 E7                 1528 	mov	a,@r1
+   050A 08                 1529 	inc	r0
+   050B 36                 1530 	addc	a,@r0
+   050C FA                 1531 	mov	r2,a
+   050D 08                 1532 	inc	r0
+   050E 86 07              1533 	mov	ar7,@r0
+   0510 8E 82              1534 	mov	dpl,r6
+   0512 8A 83              1535 	mov	dph,r2
+   0514 8F F0              1536 	mov	b,r7
+   0516 12s00r00           1537 	lcall	__gptrget
+   0519 FE                 1538 	mov	r6,a
+   051A 8B 82              1539 	mov	dpl,r3
+   051C 8C 83              1540 	mov	dph,r4
+   051E 8D F0              1541 	mov	b,r5
+   0520 12s00r00           1542 	lcall	__gptrput
+                           1543 ;	../../../core/net/rime/chameleon-bitopt.c:176: for(i = 0; i < vallen / 8; ++i) {
+   0523 E5*00              1544 	mov	a,_bp
+   0525 24 04              1545 	add	a,#0x04
+   0527 F8                 1546 	mov	r0,a
+   0528 06                 1547 	inc	@r0
+   0529 B6 00 02           1548 	cjne	@r0,#0x00,00134$
+   052C 08                 1549 	inc	r0
+   052D 06                 1550 	inc	@r0
+   052E                    1551 00134$:
+   052E D0 06              1552 	pop	ar6
+   0530 D0 05              1553 	pop	ar5
+   0532 80 9B              1554 	sjmp	00111$
+   0534                    1555 00114$:
+                           1556 ;	../../../core/net/rime/chameleon-bitopt.c:181: bits = vallen & 7;
+   0534 E5*00              1557 	mov	a,_bp
+   0536 24 F7              1558 	add	a,#0xf7
+   0538 F8                 1559 	mov	r0,a
+   0539 74 07              1560 	mov	a,#0x07
+   053B 56                 1561 	anl	a,@r0
+                           1562 ;	../../../core/net/rime/chameleon-bitopt.c:182: if(bits) {
+   053C FA                 1563 	mov	r2,a
+   053D 7B 00              1564 	mov	r3,#0x00
+   053F 4B                 1565 	orl	a,r3
+   0540 70 03              1566 	jnz	00135$
+   0542 02s06rD2           1567 	ljmp	00119$
+   0545                    1568 00135$:
+                           1569 ;	../../../core/net/rime/chameleon-bitopt.c:183: set_bits_in_byte(&ptr[i], 0, val[i] >> (8 - bits), bits);
+   0545 E5*00              1570 	mov	a,_bp
+   0547 24 F9              1571 	add	a,#0xf9
+   0549 F8                 1572 	mov	r0,a
+   054A E5*00              1573 	mov	a,_bp
+   054C 24 04              1574 	add	a,#0x04
+   054E F9                 1575 	mov	r1,a
+   054F E7                 1576 	mov	a,@r1
+   0550 26                 1577 	add	a,@r0
+   0551 FC                 1578 	mov	r4,a
+   0552 09                 1579 	inc	r1
+   0553 E7                 1580 	mov	a,@r1
+   0554 08                 1581 	inc	r0
+   0555 36                 1582 	addc	a,@r0
+   0556 FD                 1583 	mov	r5,a
+   0557 08                 1584 	inc	r0
+   0558 86 06              1585 	mov	ar6,@r0
+   055A 8C 82              1586 	mov	dpl,r4
+   055C 8D 83              1587 	mov	dph,r5
+   055E 8E F0              1588 	mov	b,r6
+   0560 12s00r00           1589 	lcall	__gptrget
+   0563 FC                 1590 	mov	r4,a
+   0564 74 08              1591 	mov	a,#0x08
+   0566 C3                 1592 	clr	c
+   0567 9A                 1593 	subb	a,r2
+   0568 FD                 1594 	mov	r5,a
+   0569 E4                 1595 	clr	a
+   056A 9B                 1596 	subb	a,r3
+   056B FE                 1597 	mov	r6,a
+   056C 8D F0              1598 	mov	b,r5
+   056E 05 F0              1599 	inc	b
+   0570 EC                 1600 	mov	a,r4
+   0571 80 02              1601 	sjmp	00137$
+   0573                    1602 00136$:
+   0573 C3                 1603 	clr	c
+   0574 13                 1604 	rrc	a
+   0575                    1605 00137$:
+   0575 D5 F0 FB           1606 	djnz	b,00136$
+   0578 FC                 1607 	mov	r4,a
+   0579 A8*00              1608 	mov	r0,_bp
+   057B 08                 1609 	inc	r0
+   057C E5*00              1610 	mov	a,_bp
+   057E 24 04              1611 	add	a,#0x04
+   0580 F9                 1612 	mov	r1,a
+   0581 E7                 1613 	mov	a,@r1
+   0582 26                 1614 	add	a,@r0
+   0583 FD                 1615 	mov	r5,a
+   0584 09                 1616 	inc	r1
+   0585 E7                 1617 	mov	a,@r1
+   0586 08                 1618 	inc	r0
+   0587 36                 1619 	addc	a,@r0
+   0588 FE                 1620 	mov	r6,a
+   0589 08                 1621 	inc	r0
+   058A 86 07              1622 	mov	ar7,@r0
+   058C C0 02              1623 	push	ar2
+   058E C0 03              1624 	push	ar3
+   0590 C0 04              1625 	push	ar4
+   0592 E4                 1626 	clr	a
+   0593 C0 E0              1627 	push	acc
+   0595 C0 E0              1628 	push	acc
+   0597 8D 82              1629 	mov	dpl,r5
+   0599 8E 83              1630 	mov	dph,r6
+   059B 8F F0              1631 	mov	b,r7
+   059D 12s03r91           1632 	lcall	_set_bits_in_byte
+   05A0 E5 81              1633 	mov	a,sp
+   05A2 24 FB              1634 	add	a,#0xfb
+   05A4 F5 81              1635 	mov	sp,a
+   05A6 02s06rD2           1636 	ljmp	00119$
+                           1637 ;	../../../core/net/rime/chameleon-bitopt.c:186: for(i = 0; i < vallen / 8; ++i) {
+   05A9                    1638 00127$:
+   05A9 74 08              1639 	mov	a,#0x08
+   05AB C0 E0              1640 	push	acc
+   05AD E4                 1641 	clr	a
+   05AE C0 E0              1642 	push	acc
+   05B0 E5*00              1643 	mov	a,_bp
+   05B2 24 F7              1644 	add	a,#0xf7
+   05B4 F8                 1645 	mov	r0,a
+   05B5 86 82              1646 	mov	dpl,@r0
+   05B7 08                 1647 	inc	r0
+   05B8 86 83              1648 	mov	dph,@r0
+   05BA 12s00r00           1649 	lcall	__divsint
+   05BD AC 82              1650 	mov	r4,dpl
+   05BF AD 83              1651 	mov	r5,dph
+   05C1 15 81              1652 	dec	sp
+   05C3 15 81              1653 	dec	sp
+   05C5 E5*00              1654 	mov	a,_bp
+   05C7 24 04              1655 	add	a,#0x04
+   05C9 F8                 1656 	mov	r0,a
+   05CA E4                 1657 	clr	a
+   05CB F6                 1658 	mov	@r0,a
+   05CC 08                 1659 	inc	r0
+   05CD F6                 1660 	mov	@r0,a
+   05CE                    1661 00115$:
+   05CE E5*00              1662 	mov	a,_bp
+   05D0 24 04              1663 	add	a,#0x04
+   05D2 F8                 1664 	mov	r0,a
+   05D3 C3                 1665 	clr	c
+   05D4 E6                 1666 	mov	a,@r0
+   05D5 9C                 1667 	subb	a,r4
+   05D6 08                 1668 	inc	r0
+   05D7 E6                 1669 	mov	a,@r0
+   05D8 64 80              1670 	xrl	a,#0x80
+   05DA 8D F0              1671 	mov	b,r5
+   05DC 63 F0 80           1672 	xrl	b,#0x80
+   05DF 95 F0              1673 	subb	a,b
+   05E1 50 74              1674 	jnc	00118$
+                           1675 ;	../../../core/net/rime/chameleon-bitopt.c:189: set_bits_in_byte(&ptr[i], bitpos, val[i], 8);
+   05E3 C0 04              1676 	push	ar4
+   05E5 C0 05              1677 	push	ar5
+   05E7 E5*00              1678 	mov	a,_bp
+   05E9 24 F9              1679 	add	a,#0xf9
+   05EB F8                 1680 	mov	r0,a
+   05EC E5*00              1681 	mov	a,_bp
+   05EE 24 04              1682 	add	a,#0x04
+   05F0 F9                 1683 	mov	r1,a
+   05F1 E7                 1684 	mov	a,@r1
+   05F2 26                 1685 	add	a,@r0
+   05F3 FC                 1686 	mov	r4,a
+   05F4 09                 1687 	inc	r1
+   05F5 E7                 1688 	mov	a,@r1
+   05F6 08                 1689 	inc	r0
+   05F7 36                 1690 	addc	a,@r0
+   05F8 FD                 1691 	mov	r5,a
+   05F9 08                 1692 	inc	r0
+   05FA 86 06              1693 	mov	ar6,@r0
+   05FC 8C 82              1694 	mov	dpl,r4
+   05FE 8D 83              1695 	mov	dph,r5
+   0600 8E F0              1696 	mov	b,r6
+   0602 12s00r00           1697 	lcall	__gptrget
+   0605 FC                 1698 	mov	r4,a
+   0606 A8*00              1699 	mov	r0,_bp
+   0608 08                 1700 	inc	r0
+   0609 E5*00              1701 	mov	a,_bp
+   060B 24 04              1702 	add	a,#0x04
+   060D F9                 1703 	mov	r1,a
+   060E E7                 1704 	mov	a,@r1
+   060F 26                 1705 	add	a,@r0
+   0610 FD                 1706 	mov	r5,a
+   0611 09                 1707 	inc	r1
+   0612 E7                 1708 	mov	a,@r1
+   0613 08                 1709 	inc	r0
+   0614 36                 1710 	addc	a,@r0
+   0615 FE                 1711 	mov	r6,a
+   0616 08                 1712 	inc	r0
+   0617 86 07              1713 	mov	ar7,@r0
+   0619 C0 04              1714 	push	ar4
+   061B C0 05              1715 	push	ar5
+   061D 74 08              1716 	mov	a,#0x08
+   061F C0 E0              1717 	push	acc
+   0621 E4                 1718 	clr	a
+   0622 C0 E0              1719 	push	acc
+   0624 C0 04              1720 	push	ar4
+   0626 E5*00              1721 	mov	a,_bp
+   0628 24 FC              1722 	add	a,#0xfc
+   062A F8                 1723 	mov	r0,a
+   062B E6                 1724 	mov	a,@r0
+   062C C0 E0              1725 	push	acc
+   062E 08                 1726 	inc	r0
+   062F E6                 1727 	mov	a,@r0
+   0630 C0 E0              1728 	push	acc
+   0632 8D 82              1729 	mov	dpl,r5
+   0634 8E 83              1730 	mov	dph,r6
+   0636 8F F0              1731 	mov	b,r7
+   0638 12s03r91           1732 	lcall	_set_bits_in_byte
+   063B E5 81              1733 	mov	a,sp
+   063D 24 FB              1734 	add	a,#0xfb
+   063F F5 81              1735 	mov	sp,a
+   0641 D0 05              1736 	pop	ar5
+   0643 D0 04              1737 	pop	ar4
+                           1738 ;	../../../core/net/rime/chameleon-bitopt.c:186: for(i = 0; i < vallen / 8; ++i) {
+   0645 E5*00              1739 	mov	a,_bp
+   0647 24 04              1740 	add	a,#0x04
+   0649 F8                 1741 	mov	r0,a
+   064A 06                 1742 	inc	@r0
+   064B B6 00 02           1743 	cjne	@r0,#0x00,00139$
+   064E 08                 1744 	inc	r0
+   064F 06                 1745 	inc	@r0
+   0650                    1746 00139$:
+   0650 D0 05              1747 	pop	ar5
+   0652 D0 04              1748 	pop	ar4
+   0654 02s05rCE           1749 	ljmp	00115$
+   0657                    1750 00118$:
+                           1751 ;	../../../core/net/rime/chameleon-bitopt.c:191: bits = vallen & 7;
+   0657 E5*00              1752 	mov	a,_bp
+   0659 24 F7              1753 	add	a,#0xf7
+   065B F8                 1754 	mov	r0,a
+   065C 74 07              1755 	mov	a,#0x07
+   065E 56                 1756 	anl	a,@r0
+                           1757 ;	../../../core/net/rime/chameleon-bitopt.c:192: if(bits) {
+   065F FA                 1758 	mov	r2,a
+   0660 7B 00              1759 	mov	r3,#0x00
+   0662 4B                 1760 	orl	a,r3
+   0663 60 6D              1761 	jz	00119$
+                           1762 ;	../../../core/net/rime/chameleon-bitopt.c:193: set_bits_in_byte(&ptr[i], 0, val[i] >> (8 - bits + bitpos), bits);
+   0665 E5*00              1763 	mov	a,_bp
+   0667 24 F9              1764 	add	a,#0xf9
+   0669 F8                 1765 	mov	r0,a
+   066A E5*00              1766 	mov	a,_bp
+   066C 24 04              1767 	add	a,#0x04
+   066E F9                 1768 	mov	r1,a
+   066F E7                 1769 	mov	a,@r1
+   0670 26                 1770 	add	a,@r0
+   0671 FC                 1771 	mov	r4,a
+   0672 09                 1772 	inc	r1
+   0673 E7                 1773 	mov	a,@r1
+   0674 08                 1774 	inc	r0
+   0675 36                 1775 	addc	a,@r0
+   0676 FD                 1776 	mov	r5,a
+   0677 08                 1777 	inc	r0
+   0678 86 06              1778 	mov	ar6,@r0
+   067A 8C 82              1779 	mov	dpl,r4
+   067C 8D 83              1780 	mov	dph,r5
+   067E 8E F0              1781 	mov	b,r6
+   0680 12s00r00           1782 	lcall	__gptrget
+   0683 FC                 1783 	mov	r4,a
+   0684 74 08              1784 	mov	a,#0x08
+   0686 C3                 1785 	clr	c
+   0687 9A                 1786 	subb	a,r2
+   0688 FD                 1787 	mov	r5,a
+   0689 E4                 1788 	clr	a
+   068A 9B                 1789 	subb	a,r3
+   068B FE                 1790 	mov	r6,a
+   068C E5*00              1791 	mov	a,_bp
+   068E 24 FC              1792 	add	a,#0xfc
+   0690 F8                 1793 	mov	r0,a
+   0691 E6                 1794 	mov	a,@r0
+   0692 2D                 1795 	add	a,r5
+   0693 FD                 1796 	mov	r5,a
+   0694 08                 1797 	inc	r0
+   0695 E6                 1798 	mov	a,@r0
+   0696 3E                 1799 	addc	a,r6
+   0697 FE                 1800 	mov	r6,a
+   0698 8D F0              1801 	mov	b,r5
+   069A 05 F0              1802 	inc	b
+   069C EC                 1803 	mov	a,r4
+   069D 80 02              1804 	sjmp	00142$
+   069F                    1805 00141$:
+   069F C3                 1806 	clr	c
+   06A0 13                 1807 	rrc	a
+   06A1                    1808 00142$:
+   06A1 D5 F0 FB           1809 	djnz	b,00141$
+   06A4 FC                 1810 	mov	r4,a
+   06A5 A8*00              1811 	mov	r0,_bp
+   06A7 08                 1812 	inc	r0
+   06A8 E5*00              1813 	mov	a,_bp
+   06AA 24 04              1814 	add	a,#0x04
+   06AC F9                 1815 	mov	r1,a
+   06AD E7                 1816 	mov	a,@r1
+   06AE 26                 1817 	add	a,@r0
+   06AF FD                 1818 	mov	r5,a
+   06B0 09                 1819 	inc	r1
+   06B1 E7                 1820 	mov	a,@r1
+   06B2 08                 1821 	inc	r0
+   06B3 36                 1822 	addc	a,@r0
+   06B4 FE                 1823 	mov	r6,a
+   06B5 08                 1824 	inc	r0
+   06B6 86 07              1825 	mov	ar7,@r0
+   06B8 C0 02              1826 	push	ar2
+   06BA C0 03              1827 	push	ar3
+   06BC C0 04              1828 	push	ar4
+   06BE E4                 1829 	clr	a
+   06BF C0 E0              1830 	push	acc
+   06C1 C0 E0              1831 	push	acc
+   06C3 8D 82              1832 	mov	dpl,r5
+   06C5 8E 83              1833 	mov	dph,r6
+   06C7 8F F0              1834 	mov	b,r7
+   06C9 12s03r91           1835 	lcall	_set_bits_in_byte
+   06CC E5 81              1836 	mov	a,sp
+   06CE 24 FB              1837 	add	a,#0xfb
+   06D0 F5 81              1838 	mov	sp,a
+   06D2                    1839 00119$:
+   06D2 85*00 81           1840 	mov	sp,_bp
+   06D5 D0*00              1841 	pop	_bp
+   06D7 22                 1842 	ret
+                           1843 ;------------------------------------------------------------
+                           1844 ;Allocation info for local variables in function 'pack_header'
+                           1845 ;------------------------------------------------------------
+                           1846 ;c                         Allocated to stack - offset 1
+                           1847 ;a                         Allocated to registers r4 r2 r3 
+                           1848 ;hdrbytesize               Allocated to stack - offset 4
+                           1849 ;byteptr                   Allocated to stack - offset 6
+                           1850 ;bitptr                    Allocated to stack - offset 8
+                           1851 ;len                       Allocated to stack - offset 10
+                           1852 ;hdrptr                    Allocated to stack - offset 12
+                           1853 ;hdr                       Allocated to stack - offset 15
+                           1854 ;val                       Allocated to stack - offset 18
+                           1855 ;sloc0                     Allocated to stack - offset 20
+                           1856 ;sloc1                     Allocated to stack - offset 23
+                           1857 ;sloc2                     Allocated to stack - offset 25
+                           1858 ;------------------------------------------------------------
+                           1859 ;	../../../core/net/rime/chameleon-bitopt.c:238: pack_header(struct channel *c)
+                           1860 ;	-----------------------------------------
+                           1861 ;	 function pack_header
+                           1862 ;	-----------------------------------------
+   06D8                    1863 _pack_header:
+   06D8 C0*00              1864 	push	_bp
+   06DA 85 81*00           1865 	mov	_bp,sp
+   06DD C0 82              1866 	push	dpl
+   06DF C0 83              1867 	push	dph
+   06E1 C0 F0              1868 	push	b
+   06E3 E5 81              1869 	mov	a,sp
+   06E5 24 1B              1870 	add	a,#0x1b
+   06E7 F5 81              1871 	mov	sp,a
+                           1872 ;	../../../core/net/rime/chameleon-bitopt.c:249: hdrbytesize = c->hdrsize / 8 + ((c->hdrsize & 7) == 0? 0: 1);
+   06E9 A8*00              1873 	mov	r0,_bp
+   06EB 08                 1874 	inc	r0
+   06EC 74 08              1875 	mov	a,#0x08
+   06EE 26                 1876 	add	a,@r0
+   06EF FD                 1877 	mov	r5,a
+   06F0 E4                 1878 	clr	a
+   06F1 08                 1879 	inc	r0
+   06F2 36                 1880 	addc	a,@r0
+   06F3 FE                 1881 	mov	r6,a
+   06F4 08                 1882 	inc	r0
+   06F5 86 07              1883 	mov	ar7,@r0
+   06F7 8D 82              1884 	mov	dpl,r5
+   06F9 8E 83              1885 	mov	dph,r6
+   06FB 8F F0              1886 	mov	b,r7
+   06FD 12s00r00           1887 	lcall	__gptrget
+   0700 FD                 1888 	mov	r5,a
+   0701 C4                 1889 	swap	a
+   0702 23                 1890 	rl	a
+   0703 54 1F              1891 	anl	a,#0x1f
+   0705 FE                 1892 	mov	r6,a
+   0706 7F 00              1893 	mov	r7,#0x00
+   0708 53 05 07           1894 	anl	ar5,#0x07
+   070B ED                 1895 	mov	a,r5
+   070C B4 01 00           1896 	cjne	a,#0x01,00120$
+   070F                    1897 00120$:
+   070F E4                 1898 	clr	a
+   0710 33                 1899 	rlc	a
+   0711 FD                 1900 	mov	r5,a
+   0712 60 04              1901 	jz	00112$
+   0714 7D 00              1902 	mov	r5,#0x00
+   0716 80 02              1903 	sjmp	00113$
+   0718                    1904 00112$:
+   0718 7D 01              1905 	mov	r5,#0x01
+   071A                    1906 00113$:
+   071A 7A 00              1907 	mov	r2,#0x00
+   071C ED                 1908 	mov	a,r5
+   071D 2E                 1909 	add	a,r6
+   071E FE                 1910 	mov	r6,a
+   071F EA                 1911 	mov	a,r2
+   0720 3F                 1912 	addc	a,r7
+   0721 FF                 1913 	mov	r7,a
+   0722 E5*00              1914 	mov	a,_bp
+   0724 24 04              1915 	add	a,#0x04
+   0726 F8                 1916 	mov	r0,a
+   0727 A6 06              1917 	mov	@r0,ar6
+   0729 08                 1918 	inc	r0
+   072A A6 07              1919 	mov	@r0,ar7
+                           1920 ;	../../../core/net/rime/chameleon-bitopt.c:250: if(packetbuf_hdralloc(hdrbytesize + sizeof(struct bitopt_hdr)) == 0) {
+   072C E5*00              1921 	mov	a,_bp
+   072E 24 04              1922 	add	a,#0x04
+   0730 F8                 1923 	mov	r0,a
+   0731 74 02              1924 	mov	a,#0x02
+   0733 26                 1925 	add	a,@r0
+   0734 FA                 1926 	mov	r2,a
+   0735 E4                 1927 	clr	a
+   0736 08                 1928 	inc	r0
+   0737 36                 1929 	addc	a,@r0
+   0738 FB                 1930 	mov	r3,a
+   0739 8A 82              1931 	mov	dpl,r2
+   073B 8B 83              1932 	mov	dph,r3
+   073D 12s00r00           1933 	lcall	_packetbuf_hdralloc
+   0740 E5 82              1934 	mov	a,dpl
+   0742 85 83 F0           1935 	mov	b,dph
+   0745 45 F0              1936 	orl	a,b
+   0747 70 06              1937 	jnz	00102$
+                           1938 ;	../../../core/net/rime/chameleon-bitopt.c:252: return 0;
+   0749 90 00 00           1939 	mov	dptr,#0x0000
+   074C 02s09r8D           1940 	ljmp	00110$
+   074F                    1941 00102$:
+                           1942 ;	../../../core/net/rime/chameleon-bitopt.c:254: hdr = (struct bitopt_hdr *)packetbuf_hdrptr();
+   074F 12s00r00           1943 	lcall	_packetbuf_hdrptr
+   0752 AD 82              1944 	mov	r5,dpl
+   0754 AE 83              1945 	mov	r6,dph
+   0756 AF F0              1946 	mov	r7,b
+   0758 E5*00              1947 	mov	a,_bp
+   075A 24 0F              1948 	add	a,#0x0f
+   075C F8                 1949 	mov	r0,a
+   075D A6 05              1950 	mov	@r0,ar5
+   075F 08                 1951 	inc	r0
+   0760 A6 06              1952 	mov	@r0,ar6
+   0762 08                 1953 	inc	r0
+   0763 A6 07              1954 	mov	@r0,ar7
+                           1955 ;	../../../core/net/rime/chameleon-bitopt.c:255: hdr->channel[0] = c->channelno & 0xff;
+   0765 A8*00              1956 	mov	r0,_bp
+   0767 08                 1957 	inc	r0
+   0768 74 03              1958 	mov	a,#0x03
+   076A 26                 1959 	add	a,@r0
+   076B FA                 1960 	mov	r2,a
+   076C E4                 1961 	clr	a
+   076D 08                 1962 	inc	r0
+   076E 36                 1963 	addc	a,@r0
+   076F FB                 1964 	mov	r3,a
+   0770 08                 1965 	inc	r0
+   0771 86 04              1966 	mov	ar4,@r0
+   0773 8A 82              1967 	mov	dpl,r2
+   0775 8B 83              1968 	mov	dph,r3
+   0777 8C F0              1969 	mov	b,r4
+   0779 12s00r00           1970 	lcall	__gptrget
+   077C FA                 1971 	mov	r2,a
+   077D A3                 1972 	inc	dptr
+   077E 12s00r00           1973 	lcall	__gptrget
+   0781 FB                 1974 	mov	r3,a
+   0782 8A 04              1975 	mov	ar4,r2
+   0784 E5*00              1976 	mov	a,_bp
+   0786 24 0F              1977 	add	a,#0x0f
+   0788 F8                 1978 	mov	r0,a
+   0789 86 82              1979 	mov	dpl,@r0
+   078B 08                 1980 	inc	r0
+   078C 86 83              1981 	mov	dph,@r0
+   078E 08                 1982 	inc	r0
+   078F 86 F0              1983 	mov	b,@r0
+   0791 EC                 1984 	mov	a,r4
+   0792 12s00r00           1985 	lcall	__gptrput
+                           1986 ;	../../../core/net/rime/chameleon-bitopt.c:256: hdr->channel[1] = (c->channelno >> 8) & 0xff;
+   0795 E5*00              1987 	mov	a,_bp
+   0797 24 0F              1988 	add	a,#0x0f
+   0799 F8                 1989 	mov	r0,a
+   079A 74 01              1990 	mov	a,#0x01
+   079C 26                 1991 	add	a,@r0
+   079D FC                 1992 	mov	r4,a
+   079E E4                 1993 	clr	a
+   079F 08                 1994 	inc	r0
+   07A0 36                 1995 	addc	a,@r0
+   07A1 FD                 1996 	mov	r5,a
+   07A2 08                 1997 	inc	r0
+   07A3 86 06              1998 	mov	ar6,@r0
+   07A5 8B 02              1999 	mov	ar2,r3
+   07A7 8C 82              2000 	mov	dpl,r4
+   07A9 8D 83              2001 	mov	dph,r5
+   07AB 8E F0              2002 	mov	b,r6
+   07AD EA                 2003 	mov	a,r2
+   07AE 12s00r00           2004 	lcall	__gptrput
+                           2005 ;	../../../core/net/rime/chameleon-bitopt.c:258: hdrptr = ((uint8_t *)packetbuf_hdrptr()) + sizeof(struct bitopt_hdr);
+   07B1 12s00r00           2006 	lcall	_packetbuf_hdrptr
+   07B4 AA 82              2007 	mov	r2,dpl
+   07B6 AB 83              2008 	mov	r3,dph
+   07B8 AC F0              2009 	mov	r4,b
+   07BA E5*00              2010 	mov	a,_bp
+   07BC 24 0C              2011 	add	a,#0x0c
+   07BE F8                 2012 	mov	r0,a
+   07BF 74 02              2013 	mov	a,#0x02
+   07C1 2A                 2014 	add	a,r2
+   07C2 F6                 2015 	mov	@r0,a
+   07C3 E4                 2016 	clr	a
+   07C4 3B                 2017 	addc	a,r3
+   07C5 08                 2018 	inc	r0
+   07C6 F6                 2019 	mov	@r0,a
+   07C7 08                 2020 	inc	r0
+   07C8 A6 04              2021 	mov	@r0,ar4
+                           2022 ;	../../../core/net/rime/chameleon-bitopt.c:259: memset(hdrptr, 0, hdrbytesize);
+   07CA E5*00              2023 	mov	a,_bp
+   07CC 24 04              2024 	add	a,#0x04
+   07CE F8                 2025 	mov	r0,a
+   07CF E6                 2026 	mov	a,@r0
+   07D0 C0 E0              2027 	push	acc
+   07D2 08                 2028 	inc	r0
+   07D3 E6                 2029 	mov	a,@r0
+   07D4 C0 E0              2030 	push	acc
+   07D6 E4                 2031 	clr	a
+   07D7 C0 E0              2032 	push	acc
+   07D9 E5*00              2033 	mov	a,_bp
+   07DB 24 0C              2034 	add	a,#0x0c
+   07DD F8                 2035 	mov	r0,a
+   07DE 86 82              2036 	mov	dpl,@r0
+   07E0 08                 2037 	inc	r0
+   07E1 86 83              2038 	mov	dph,@r0
+   07E3 08                 2039 	inc	r0
+   07E4 86 F0              2040 	mov	b,@r0
+   07E6 12s00r00           2041 	lcall	_memset
+   07E9 15 81              2042 	dec	sp
+   07EB 15 81              2043 	dec	sp
+   07ED 15 81              2044 	dec	sp
+                           2045 ;	../../../core/net/rime/chameleon-bitopt.c:261: byteptr = bitptr = 0;
+   07EF E5*00              2046 	mov	a,_bp
+   07F1 24 08              2047 	add	a,#0x08
+   07F3 F8                 2048 	mov	r0,a
+   07F4 E4                 2049 	clr	a
+   07F5 F6                 2050 	mov	@r0,a
+   07F6 08                 2051 	inc	r0
+   07F7 F6                 2052 	mov	@r0,a
+                           2053 ;	../../../core/net/rime/chameleon-bitopt.c:263: for(a = c->attrlist; a->type != PACKETBUF_ATTR_NONE; ++a) {
+   07F8 A8*00              2054 	mov	r0,_bp
+   07FA 08                 2055 	inc	r0
+   07FB 74 05              2056 	mov	a,#0x05
+   07FD 26                 2057 	add	a,@r0
+   07FE FF                 2058 	mov	r7,a
+   07FF E4                 2059 	clr	a
+   0800 08                 2060 	inc	r0
+   0801 36                 2061 	addc	a,@r0
+   0802 FA                 2062 	mov	r2,a
+   0803 08                 2063 	inc	r0
+   0804 86 03              2064 	mov	ar3,@r0
+   0806 8F 82              2065 	mov	dpl,r7
+   0808 8A 83              2066 	mov	dph,r2
+   080A 8B F0              2067 	mov	b,r3
+   080C 12s00r00           2068 	lcall	__gptrget
+   080F FF                 2069 	mov	r7,a
+   0810 A3                 2070 	inc	dptr
+   0811 12s00r00           2071 	lcall	__gptrget
+   0814 FA                 2072 	mov	r2,a
+   0815 A3                 2073 	inc	dptr
+   0816 12s00r00           2074 	lcall	__gptrget
+   0819 FB                 2075 	mov	r3,a
+   081A 8F 04              2076 	mov	ar4,r7
+   081C E5*00              2077 	mov	a,_bp
+   081E 24 14              2078 	add	a,#0x14
+   0820 F8                 2079 	mov	r0,a
+   0821 A6 04              2080 	mov	@r0,ar4
+   0823 08                 2081 	inc	r0
+   0824 A6 02              2082 	mov	@r0,ar2
+   0826 08                 2083 	inc	r0
+   0827 A6 03              2084 	mov	@r0,ar3
+   0829                    2085 00106$:
+   0829 E5*00              2086 	mov	a,_bp
+   082B 24 14              2087 	add	a,#0x14
+   082D F8                 2088 	mov	r0,a
+   082E 86 82              2089 	mov	dpl,@r0
+   0830 08                 2090 	inc	r0
+   0831 86 83              2091 	mov	dph,@r0
+   0833 08                 2092 	inc	r0
+   0834 86 F0              2093 	mov	b,@r0
+   0836 12s00r00           2094 	lcall	__gptrget
+   0839 FF                 2095 	mov	r7,a
+   083A FD                 2096 	mov	r5,a
+   083B 7E 00              2097 	mov	r6,#0x00
+   083D BD 00 06           2098 	cjne	r5,#0x00,00123$
+   0840 BE 00 03           2099 	cjne	r6,#0x00,00123$
+   0843 02s09r8A           2100 	ljmp	00109$
+   0846                    2101 00123$:
+                           2102 ;	../../../core/net/rime/chameleon-bitopt.c:276: len = a->len;
+   0846 E5*00              2103 	mov	a,_bp
+   0848 24 14              2104 	add	a,#0x14
+   084A F8                 2105 	mov	r0,a
+   084B 74 01              2106 	mov	a,#0x01
+   084D 26                 2107 	add	a,@r0
+   084E FD                 2108 	mov	r5,a
+   084F E4                 2109 	clr	a
+   0850 08                 2110 	inc	r0
+   0851 36                 2111 	addc	a,@r0
+   0852 FE                 2112 	mov	r6,a
+   0853 08                 2113 	inc	r0
+   0854 86 02              2114 	mov	ar2,@r0
+   0856 8D 82              2115 	mov	dpl,r5
+   0858 8E 83              2116 	mov	dph,r6
+   085A 8A F0              2117 	mov	b,r2
+   085C 12s00r00           2118 	lcall	__gptrget
+   085F FD                 2119 	mov	r5,a
+   0860 E5*00              2120 	mov	a,_bp
+   0862 24 0A              2121 	add	a,#0x0a
+   0864 F8                 2122 	mov	r0,a
+   0865 A6 05              2123 	mov	@r0,ar5
+   0867 08                 2124 	inc	r0
+   0868 76 00              2125 	mov	@r0,#0x00
+                           2126 ;	../../../core/net/rime/chameleon-bitopt.c:277: byteptr = bitptr / 8;
+   086A C0 07              2127 	push	ar7
+   086C 74 08              2128 	mov	a,#0x08
+   086E C0 E0              2129 	push	acc
+   0870 E4                 2130 	clr	a
+   0871 C0 E0              2131 	push	acc
+   0873 E5*00              2132 	mov	a,_bp
+   0875 24 08              2133 	add	a,#0x08
+   0877 F8                 2134 	mov	r0,a
+   0878 86 82              2135 	mov	dpl,@r0
+   087A 08                 2136 	inc	r0
+   087B 86 83              2137 	mov	dph,@r0
+   087D 12s00r00           2138 	lcall	__divsint
+   0880 AB 82              2139 	mov	r3,dpl
+   0882 AC 83              2140 	mov	r4,dph
+   0884 15 81              2141 	dec	sp
+   0886 15 81              2142 	dec	sp
+   0888 D0 07              2143 	pop	ar7
+   088A E5*00              2144 	mov	a,_bp
+   088C 24 06              2145 	add	a,#0x06
+   088E F8                 2146 	mov	r0,a
+   088F A6 03              2147 	mov	@r0,ar3
+   0891 08                 2148 	inc	r0
+   0892 A6 04              2149 	mov	@r0,ar4
+                           2150 ;	../../../core/net/rime/chameleon-bitopt.c:278: if(PACKETBUF_IS_ADDR(a->type)) {
+   0894 BF 18 00           2151 	cjne	r7,#0x18,00124$
+   0897                    2152 00124$:
+   0897 40 60              2153 	jc	00104$
+                           2154 ;	../../../core/net/rime/chameleon-bitopt.c:280: (uint8_t *)packetbuf_addr(a->type), len);
+   0899 8F 82              2155 	mov	dpl,r7
+   089B 12s00r00           2156 	lcall	_packetbuf_addr
+   089E AC 82              2157 	mov	r4,dpl
+   08A0 AE 83              2158 	mov	r6,dph
+   08A2 AF F0              2159 	mov	r7,b
+                           2160 ;	../../../core/net/rime/chameleon-bitopt.c:279: set_bits(&hdrptr[byteptr], bitptr & 7,
+   08A4 E5*00              2161 	mov	a,_bp
+   08A6 24 08              2162 	add	a,#0x08
+   08A8 F8                 2163 	mov	r0,a
+   08A9 E5*00              2164 	mov	a,_bp
+   08AB 24 17              2165 	add	a,#0x17
+   08AD F9                 2166 	mov	r1,a
+   08AE 74 07              2167 	mov	a,#0x07
+   08B0 56                 2168 	anl	a,@r0
+   08B1 F7                 2169 	mov	@r1,a
+   08B2 09                 2170 	inc	r1
+   08B3 77 00              2171 	mov	@r1,#0x00
+   08B5 E5*00              2172 	mov	a,_bp
+   08B7 24 0C              2173 	add	a,#0x0c
+   08B9 F8                 2174 	mov	r0,a
+   08BA E5*00              2175 	mov	a,_bp
+   08BC 24 06              2176 	add	a,#0x06
+   08BE F9                 2177 	mov	r1,a
+   08BF E7                 2178 	mov	a,@r1
+   08C0 26                 2179 	add	a,@r0
+   08C1 FA                 2180 	mov	r2,a
+   08C2 09                 2181 	inc	r1
+   08C3 E7                 2182 	mov	a,@r1
+   08C4 08                 2183 	inc	r0
+   08C5 36                 2184 	addc	a,@r0
+   08C6 FD                 2185 	mov	r5,a
+   08C7 08                 2186 	inc	r0
+   08C8 86 03              2187 	mov	ar3,@r0
+   08CA E5*00              2188 	mov	a,_bp
+   08CC 24 0A              2189 	add	a,#0x0a
+   08CE F8                 2190 	mov	r0,a
+   08CF E6                 2191 	mov	a,@r0
+   08D0 C0 E0              2192 	push	acc
+   08D2 08                 2193 	inc	r0
+   08D3 E6                 2194 	mov	a,@r0
+   08D4 C0 E0              2195 	push	acc
+   08D6 C0 04              2196 	push	ar4
+   08D8 C0 06              2197 	push	ar6
+   08DA C0 07              2198 	push	ar7
+   08DC E5*00              2199 	mov	a,_bp
+   08DE 24 17              2200 	add	a,#0x17
+   08E0 F8                 2201 	mov	r0,a
+   08E1 E6                 2202 	mov	a,@r0
+   08E2 C0 E0              2203 	push	acc
+   08E4 08                 2204 	inc	r0
+   08E5 E6                 2205 	mov	a,@r0
+   08E6 C0 E0              2206 	push	acc
+   08E8 8A 82              2207 	mov	dpl,r2
+   08EA 8D 83              2208 	mov	dph,r5
+   08EC 8B F0              2209 	mov	b,r3
+   08EE 12s04r35           2210 	lcall	_set_bits
+   08F1 E5 81              2211 	mov	a,sp
+   08F3 24 F9              2212 	add	a,#0xf9
+   08F5 F5 81              2213 	mov	sp,a
+   08F7 80 6F              2214 	sjmp	00105$
+   08F9                    2215 00104$:
+                           2216 ;	../../../core/net/rime/chameleon-bitopt.c:287: val = packetbuf_attr(a->type);
+   08F9 8F 82              2217 	mov	dpl,r7
+   08FB 12s00r00           2218 	lcall	_packetbuf_attr
+   08FE AA 82              2219 	mov	r2,dpl
+   0900 AB 83              2220 	mov	r3,dph
+   0902 E5*00              2221 	mov	a,_bp
+   0904 24 12              2222 	add	a,#0x12
+   0906 F8                 2223 	mov	r0,a
+   0907 A6 02              2224 	mov	@r0,ar2
+   0909 08                 2225 	inc	r0
+   090A A6 03              2226 	mov	@r0,ar3
+                           2227 ;	../../../core/net/rime/chameleon-bitopt.c:289: (uint8_t *)&val, len);
+   090C E5*00              2228 	mov	a,_bp
+   090E 24 12              2229 	add	a,#0x12
+   0910 FA                 2230 	mov	r2,a
+   0911 7B 00              2231 	mov	r3,#0x00
+   0913 7C 40              2232 	mov	r4,#0x40
+                           2233 ;	../../../core/net/rime/chameleon-bitopt.c:288: set_bits(&hdrptr[byteptr], bitptr & 7,
+   0915 E5*00              2234 	mov	a,_bp
+   0917 24 08              2235 	add	a,#0x08
+   0919 F8                 2236 	mov	r0,a
+   091A E5*00              2237 	mov	a,_bp
+   091C 24 19              2238 	add	a,#0x19
+   091E F9                 2239 	mov	r1,a
+   091F 74 07              2240 	mov	a,#0x07
+   0921 56                 2241 	anl	a,@r0
+   0922 F7                 2242 	mov	@r1,a
+   0923 09                 2243 	inc	r1
+   0924 77 00              2244 	mov	@r1,#0x00
+   0926 E5*00              2245 	mov	a,_bp
+   0928 24 0C              2246 	add	a,#0x0c
+   092A F8                 2247 	mov	r0,a
+   092B E5*00              2248 	mov	a,_bp
+   092D 24 06              2249 	add	a,#0x06
+   092F F9                 2250 	mov	r1,a
+   0930 E7                 2251 	mov	a,@r1
+   0931 26                 2252 	add	a,@r0
+   0932 FF                 2253 	mov	r7,a
+   0933 09                 2254 	inc	r1
+   0934 E7                 2255 	mov	a,@r1
+   0935 08                 2256 	inc	r0
+   0936 36                 2257 	addc	a,@r0
+   0937 FD                 2258 	mov	r5,a
+   0938 08                 2259 	inc	r0
+   0939 86 06              2260 	mov	ar6,@r0
+   093B E5*00              2261 	mov	a,_bp
+   093D 24 0A              2262 	add	a,#0x0a
+   093F F8                 2263 	mov	r0,a
+   0940 E6                 2264 	mov	a,@r0
+   0941 C0 E0              2265 	push	acc
+   0943 08                 2266 	inc	r0
+   0944 E6                 2267 	mov	a,@r0
+   0945 C0 E0              2268 	push	acc
+   0947 C0 02              2269 	push	ar2
+   0949 C0 03              2270 	push	ar3
+   094B C0 04              2271 	push	ar4
+   094D E5*00              2272 	mov	a,_bp
+   094F 24 19              2273 	add	a,#0x19
+   0951 F8                 2274 	mov	r0,a
+   0952 E6                 2275 	mov	a,@r0
+   0953 C0 E0              2276 	push	acc
+   0955 08                 2277 	inc	r0
+   0956 E6                 2278 	mov	a,@r0
+   0957 C0 E0              2279 	push	acc
+   0959 8F 82              2280 	mov	dpl,r7
+   095B 8D 83              2281 	mov	dph,r5
+   095D 8E F0              2282 	mov	b,r6
+   095F 12s04r35           2283 	lcall	_set_bits
+   0962 E5 81              2284 	mov	a,sp
+   0964 24 F9              2285 	add	a,#0xf9
+   0966 F5 81              2286 	mov	sp,a
+   0968                    2287 00105$:
+                           2288 ;	../../../core/net/rime/chameleon-bitopt.c:295: bitptr += len;
+   0968 E5*00              2289 	mov	a,_bp
+   096A 24 08              2290 	add	a,#0x08
+   096C F8                 2291 	mov	r0,a
+   096D E5*00              2292 	mov	a,_bp
+   096F 24 0A              2293 	add	a,#0x0a
+   0971 F9                 2294 	mov	r1,a
+   0972 E7                 2295 	mov	a,@r1
+   0973 26                 2296 	add	a,@r0
+   0974 F6                 2297 	mov	@r0,a
+   0975 09                 2298 	inc	r1
+   0976 E7                 2299 	mov	a,@r1
+   0977 08                 2300 	inc	r0
+   0978 36                 2301 	addc	a,@r0
+   0979 F6                 2302 	mov	@r0,a
+                           2303 ;	../../../core/net/rime/chameleon-bitopt.c:263: for(a = c->attrlist; a->type != PACKETBUF_ATTR_NONE; ++a) {
+   097A E5*00              2304 	mov	a,_bp
+   097C 24 14              2305 	add	a,#0x14
+   097E F8                 2306 	mov	r0,a
+   097F 74 02              2307 	mov	a,#0x02
+   0981 26                 2308 	add	a,@r0
+   0982 F6                 2309 	mov	@r0,a
+   0983 E4                 2310 	clr	a
+   0984 08                 2311 	inc	r0
+   0985 36                 2312 	addc	a,@r0
+   0986 F6                 2313 	mov	@r0,a
+   0987 02s08r29           2314 	ljmp	00106$
+   098A                    2315 00109$:
+                           2316 ;	../../../core/net/rime/chameleon-bitopt.c:299: return 1; /* Send out packet */
+   098A 90 00 01           2317 	mov	dptr,#0x0001
+   098D                    2318 00110$:
+   098D 85*00 81           2319 	mov	sp,_bp
+   0990 D0*00              2320 	pop	_bp
+   0992 22                 2321 	ret
+                           2322 ;------------------------------------------------------------
+                           2323 ;Allocation info for local variables in function 'unpack_header'
+                           2324 ;------------------------------------------------------------
+                           2325 ;a                         Allocated to registers r4 r3 r2 
+                           2326 ;byteptr                   Allocated to registers r2 r3 
+                           2327 ;bitptr                    Allocated to stack - offset 1
+                           2328 ;len                       Allocated to stack - offset 3
+                           2329 ;hdrbytesize               Allocated to registers r3 r4 
+                           2330 ;hdrptr                    Allocated to stack - offset 5
+                           2331 ;hdr                       Allocated to registers r2 r3 r4 
+                           2332 ;c                         Allocated to stack - offset 8
+                           2333 ;addr                      Allocated to stack - offset 11
+                           2334 ;val                       Allocated to stack - offset 13
+                           2335 ;sloc0                     Allocated to stack - offset 15
+                           2336 ;sloc1                     Allocated to stack - offset 16
+                           2337 ;sloc2                     Allocated to stack - offset 18
+                           2338 ;sloc3                     Allocated to stack - offset 21
+                           2339 ;------------------------------------------------------------
+                           2340 ;	../../../core/net/rime/chameleon-bitopt.c:303: unpack_header(void)
+                           2341 ;	-----------------------------------------
+                           2342 ;	 function unpack_header
+                           2343 ;	-----------------------------------------
+   0993                    2344 _unpack_header:
+   0993 C0*00              2345 	push	_bp
+   0995 E5 81              2346 	mov	a,sp
+   0997 F5*00              2347 	mov	_bp,a
+   0999 24 17              2348 	add	a,#0x17
+   099B F5 81              2349 	mov	sp,a
+                           2350 ;	../../../core/net/rime/chameleon-bitopt.c:315: hdr = (struct bitopt_hdr *)packetbuf_dataptr();
+   099D 12s00r00           2351 	lcall	_packetbuf_dataptr
+   09A0 AA 82              2352 	mov	r2,dpl
+   09A2 AB 83              2353 	mov	r3,dph
+   09A4 AC F0              2354 	mov	r4,b
+                           2355 ;	../../../core/net/rime/chameleon-bitopt.c:316: if(packetbuf_hdrreduce(sizeof(struct bitopt_hdr)) == 0) {
+   09A6 90 00 02           2356 	mov	dptr,#0x0002
+   09A9 C0 02              2357 	push	ar2
+   09AB C0 03              2358 	push	ar3
+   09AD C0 04              2359 	push	ar4
+   09AF 12s00r00           2360 	lcall	_packetbuf_hdrreduce
+   09B2 E5 82              2361 	mov	a,dpl
+   09B4 85 83 F0           2362 	mov	b,dph
+   09B7 D0 04              2363 	pop	ar4
+   09B9 D0 03              2364 	pop	ar3
+   09BB D0 02              2365 	pop	ar2
+   09BD 45 F0              2366 	orl	a,b
+                           2367 ;	../../../core/net/rime/chameleon-bitopt.c:318: return NULL;
+   09BF 70 08              2368 	jnz	00102$
+   09C1 90 00 00           2369 	mov	dptr,#0x0000
+   09C4 F5 F0              2370 	mov	b,a
+   09C6 02s0CrAE           2371 	ljmp	00114$
+   09C9                    2372 00102$:
+                           2373 ;	../../../core/net/rime/chameleon-bitopt.c:320: c = channel_lookup((hdr->channel[1] << 8) + hdr->channel[0]);
+   09C9 74 01              2374 	mov	a,#0x01
+   09CB 2A                 2375 	add	a,r2
+   09CC FD                 2376 	mov	r5,a
+   09CD E4                 2377 	clr	a
+   09CE 3B                 2378 	addc	a,r3
+   09CF FE                 2379 	mov	r6,a
+   09D0 8C 07              2380 	mov	ar7,r4
+   09D2 8D 82              2381 	mov	dpl,r5
+   09D4 8E 83              2382 	mov	dph,r6
+   09D6 8F F0              2383 	mov	b,r7
+   09D8 12s00r00           2384 	lcall	__gptrget
+   09DB FE                 2385 	mov	r6,a
+   09DC 7D 00              2386 	mov	r5,#0x00
+   09DE 8A 82              2387 	mov	dpl,r2
+   09E0 8B 83              2388 	mov	dph,r3
+   09E2 8C F0              2389 	mov	b,r4
+   09E4 12s00r00           2390 	lcall	__gptrget
+   09E7 FA                 2391 	mov	r2,a
+   09E8 7B 00              2392 	mov	r3,#0x00
+   09EA EA                 2393 	mov	a,r2
+   09EB 2D                 2394 	add	a,r5
+   09EC FD                 2395 	mov	r5,a
+   09ED EB                 2396 	mov	a,r3
+   09EE 3E                 2397 	addc	a,r6
+   09EF FE                 2398 	mov	r6,a
+   09F0 8D 82              2399 	mov	dpl,r5
+   09F2 8E 83              2400 	mov	dph,r6
+   09F4 12s00r00           2401 	lcall	_channel_lookup
+   09F7 AA 82              2402 	mov	r2,dpl
+   09F9 AB 83              2403 	mov	r3,dph
+   09FB AC F0              2404 	mov	r4,b
+   09FD E5*00              2405 	mov	a,_bp
+   09FF 24 08              2406 	add	a,#0x08
+   0A01 F8                 2407 	mov	r0,a
+   0A02 A6 02              2408 	mov	@r0,ar2
+   0A04 08                 2409 	inc	r0
+   0A05 A6 03              2410 	mov	@r0,ar3
+   0A07 08                 2411 	inc	r0
+   0A08 A6 04              2412 	mov	@r0,ar4
+                           2413 ;	../../../core/net/rime/chameleon-bitopt.c:321: if(c == NULL) {
+   0A0A E5*00              2414 	mov	a,_bp
+   0A0C 24 08              2415 	add	a,#0x08
+   0A0E F8                 2416 	mov	r0,a
+   0A0F E6                 2417 	mov	a,@r0
+   0A10 08                 2418 	inc	r0
+   0A11 46                 2419 	orl	a,@r0
+   0A12 08                 2420 	inc	r0
+   0A13 46                 2421 	orl	a,@r0
+                           2422 ;	../../../core/net/rime/chameleon-bitopt.c:324: return NULL;
+   0A14 70 08              2423 	jnz	00104$
+   0A16 90 00 00           2424 	mov	dptr,#0x0000
+   0A19 F5 F0              2425 	mov	b,a
+   0A1B 02s0CrAE           2426 	ljmp	00114$
+   0A1E                    2427 00104$:
+                           2428 ;	../../../core/net/rime/chameleon-bitopt.c:327: hdrptr = packetbuf_dataptr();
+   0A1E 12s00r00           2429 	lcall	_packetbuf_dataptr
+   0A21 AD 82              2430 	mov	r5,dpl
+   0A23 AE 83              2431 	mov	r6,dph
+   0A25 AF F0              2432 	mov	r7,b
+   0A27 E5*00              2433 	mov	a,_bp
+   0A29 24 05              2434 	add	a,#0x05
+   0A2B F8                 2435 	mov	r0,a
+   0A2C A6 05              2436 	mov	@r0,ar5
+   0A2E 08                 2437 	inc	r0
+   0A2F A6 06              2438 	mov	@r0,ar6
+   0A31 08                 2439 	inc	r0
+   0A32 A6 07              2440 	mov	@r0,ar7
+                           2441 ;	../../../core/net/rime/chameleon-bitopt.c:328: hdrbytesize = c->hdrsize / 8 + ((c->hdrsize & 7) == 0? 0: 1);
+   0A34 E5*00              2442 	mov	a,_bp
+   0A36 24 08              2443 	add	a,#0x08
+   0A38 F8                 2444 	mov	r0,a
+   0A39 74 08              2445 	mov	a,#0x08
+   0A3B 26                 2446 	add	a,@r0
+   0A3C FA                 2447 	mov	r2,a
+   0A3D E4                 2448 	clr	a
+   0A3E 08                 2449 	inc	r0
+   0A3F 36                 2450 	addc	a,@r0
+   0A40 FB                 2451 	mov	r3,a
+   0A41 08                 2452 	inc	r0
+   0A42 86 04              2453 	mov	ar4,@r0
+   0A44 8A 82              2454 	mov	dpl,r2
+   0A46 8B 83              2455 	mov	dph,r3
+   0A48 8C F0              2456 	mov	b,r4
+   0A4A 12s00r00           2457 	lcall	__gptrget
+   0A4D FA                 2458 	mov	r2,a
+   0A4E C4                 2459 	swap	a
+   0A4F 23                 2460 	rl	a
+   0A50 54 1F              2461 	anl	a,#0x1f
+   0A52 FB                 2462 	mov	r3,a
+   0A53 7C 00              2463 	mov	r4,#0x00
+   0A55 53 02 07           2464 	anl	ar2,#0x07
+   0A58 EA                 2465 	mov	a,r2
+   0A59 B4 01 00           2466 	cjne	a,#0x01,00128$
+   0A5C                    2467 00128$:
+   0A5C E4                 2468 	clr	a
+   0A5D 33                 2469 	rlc	a
+   0A5E FA                 2470 	mov	r2,a
+   0A5F 60 04              2471 	jz	00116$
+   0A61 7A 00              2472 	mov	r2,#0x00
+   0A63 80 02              2473 	sjmp	00117$
+   0A65                    2474 00116$:
+   0A65 7A 01              2475 	mov	r2,#0x01
+   0A67                    2476 00117$:
+   0A67 7D 00              2477 	mov	r5,#0x00
+   0A69 EA                 2478 	mov	a,r2
+   0A6A 2B                 2479 	add	a,r3
+   0A6B FB                 2480 	mov	r3,a
+   0A6C ED                 2481 	mov	a,r5
+   0A6D 3C                 2482 	addc	a,r4
+   0A6E FC                 2483 	mov	r4,a
+                           2484 ;	../../../core/net/rime/chameleon-bitopt.c:329: if(packetbuf_hdrreduce(hdrbytesize) == 0) {
+   0A6F 8B 82              2485 	mov	dpl,r3
+   0A71 8C 83              2486 	mov	dph,r4
+   0A73 12s00r00           2487 	lcall	_packetbuf_hdrreduce
+   0A76 E5 82              2488 	mov	a,dpl
+   0A78 85 83 F0           2489 	mov	b,dph
+   0A7B 45 F0              2490 	orl	a,b
+                           2491 ;	../../../core/net/rime/chameleon-bitopt.c:331: return NULL;
+   0A7D 70 08              2492 	jnz	00106$
+   0A7F 90 00 00           2493 	mov	dptr,#0x0000
+   0A82 F5 F0              2494 	mov	b,a
+   0A84 02s0CrAE           2495 	ljmp	00114$
+   0A87                    2496 00106$:
+                           2497 ;	../../../core/net/rime/chameleon-bitopt.c:333: byteptr = bitptr = 0;
+   0A87 A8*00              2498 	mov	r0,_bp
+   0A89 08                 2499 	inc	r0
+   0A8A E4                 2500 	clr	a
+   0A8B F6                 2501 	mov	@r0,a
+   0A8C 08                 2502 	inc	r0
+   0A8D F6                 2503 	mov	@r0,a
+                           2504 ;	../../../core/net/rime/chameleon-bitopt.c:334: for(a = c->attrlist; a->type != PACKETBUF_ATTR_NONE; ++a) {
+   0A8E E5*00              2505 	mov	a,_bp
+   0A90 24 08              2506 	add	a,#0x08
+   0A92 F8                 2507 	mov	r0,a
+   0A93 74 05              2508 	mov	a,#0x05
+   0A95 26                 2509 	add	a,@r0
+   0A96 FC                 2510 	mov	r4,a
+   0A97 E4                 2511 	clr	a
+   0A98 08                 2512 	inc	r0
+   0A99 36                 2513 	addc	a,@r0
+   0A9A FD                 2514 	mov	r5,a
+   0A9B 08                 2515 	inc	r0
+   0A9C 86 06              2516 	mov	ar6,@r0
+   0A9E 8C 82              2517 	mov	dpl,r4
+   0AA0 8D 83              2518 	mov	dph,r5
+   0AA2 8E F0              2519 	mov	b,r6
+   0AA4 12s00r00           2520 	lcall	__gptrget
+   0AA7 FC                 2521 	mov	r4,a
+   0AA8 A3                 2522 	inc	dptr
+   0AA9 12s00r00           2523 	lcall	__gptrget
+   0AAC FD                 2524 	mov	r5,a
+   0AAD A3                 2525 	inc	dptr
+   0AAE 12s00r00           2526 	lcall	__gptrget
+   0AB1 FE                 2527 	mov	r6,a
+   0AB2 8D 03              2528 	mov	ar3,r5
+   0AB4 8E 02              2529 	mov	ar2,r6
+                           2530 ;	../../../core/net/rime/chameleon-bitopt.c:369: return c;
+                           2531 ;	../../../core/net/rime/chameleon-bitopt.c:334: for(a = c->attrlist; a->type != PACKETBUF_ATTR_NONE; ++a) {
+   0AB6 8B 05              2532 	mov	ar5,r3
+   0AB8 8A 06              2533 	mov	ar6,r2
+   0ABA                    2534 00110$:
+   0ABA 8C 82              2535 	mov	dpl,r4
+   0ABC 8D 83              2536 	mov	dph,r5
+   0ABE 8E F0              2537 	mov	b,r6
+   0AC0 E5*00              2538 	mov	a,_bp
+   0AC2 24 0F              2539 	add	a,#0x0f
+   0AC4 F8                 2540 	mov	r0,a
+   0AC5 12s00r00           2541 	lcall	__gptrget
+   0AC8 F6                 2542 	mov	@r0,a
+   0AC9 E5*00              2543 	mov	a,_bp
+   0ACB 24 0F              2544 	add	a,#0x0f
+   0ACD F8                 2545 	mov	r0,a
+   0ACE 86 02              2546 	mov	ar2,@r0
+   0AD0 7B 00              2547 	mov	r3,#0x00
+   0AD2 BA 00 06           2548 	cjne	r2,#0x00,00131$
+   0AD5 BB 00 03           2549 	cjne	r3,#0x00,00131$
+   0AD8 02s0CrA1           2550 	ljmp	00113$
+   0ADB                    2551 00131$:
+                           2552 ;	../../../core/net/rime/chameleon-bitopt.c:346: len = a->len;
+   0ADB 74 01              2553 	mov	a,#0x01
+   0ADD 2C                 2554 	add	a,r4
+   0ADE FA                 2555 	mov	r2,a
+   0ADF E4                 2556 	clr	a
+   0AE0 3D                 2557 	addc	a,r5
+   0AE1 FB                 2558 	mov	r3,a
+   0AE2 8E 07              2559 	mov	ar7,r6
+   0AE4 8A 82              2560 	mov	dpl,r2
+   0AE6 8B 83              2561 	mov	dph,r3
+   0AE8 8F F0              2562 	mov	b,r7
+   0AEA 12s00r00           2563 	lcall	__gptrget
+   0AED FA                 2564 	mov	r2,a
+   0AEE E5*00              2565 	mov	a,_bp
+   0AF0 24 03              2566 	add	a,#0x03
+   0AF2 F8                 2567 	mov	r0,a
+   0AF3 A6 02              2568 	mov	@r0,ar2
+   0AF5 08                 2569 	inc	r0
+   0AF6 76 00              2570 	mov	@r0,#0x00
+                           2571 ;	../../../core/net/rime/chameleon-bitopt.c:347: byteptr = bitptr / 8;
+   0AF8 C0 04              2572 	push	ar4
+   0AFA C0 05              2573 	push	ar5
+   0AFC C0 06              2574 	push	ar6
+   0AFE 74 08              2575 	mov	a,#0x08
+   0B00 C0 E0              2576 	push	acc
+   0B02 E4                 2577 	clr	a
+   0B03 C0 E0              2578 	push	acc
+   0B05 A8*00              2579 	mov	r0,_bp
+   0B07 08                 2580 	inc	r0
+   0B08 86 82              2581 	mov	dpl,@r0
+   0B0A 08                 2582 	inc	r0
+   0B0B 86 83              2583 	mov	dph,@r0
+   0B0D 12s00r00           2584 	lcall	__divsint
+   0B10 AA 82              2585 	mov	r2,dpl
+   0B12 AB 83              2586 	mov	r3,dph
+   0B14 15 81              2587 	dec	sp
+   0B16 15 81              2588 	dec	sp
+   0B18 D0 06              2589 	pop	ar6
+   0B1A D0 05              2590 	pop	ar5
+   0B1C D0 04              2591 	pop	ar4
+                           2592 ;	../../../core/net/rime/chameleon-bitopt.c:348: if(PACKETBUF_IS_ADDR(a->type)) {
+   0B1E E5*00              2593 	mov	a,_bp
+   0B20 24 0F              2594 	add	a,#0x0f
+   0B22 F8                 2595 	mov	r0,a
+   0B23 B6 18 00           2596 	cjne	@r0,#0x18,00132$
+   0B26                    2597 00132$:
+   0B26 50 03              2598 	jnc	00133$
+   0B28 02s0BrE2           2599 	ljmp	00108$
+   0B2B                    2600 00133$:
+                           2601 ;	../../../core/net/rime/chameleon-bitopt.c:350: get_bits((uint8_t *)&addr, &hdrptr[byteptr], bitptr & 7, len);
+   0B2B A8*00              2602 	mov	r0,_bp
+   0B2D 08                 2603 	inc	r0
+   0B2E E5*00              2604 	mov	a,_bp
+   0B30 24 10              2605 	add	a,#0x10
+   0B32 F9                 2606 	mov	r1,a
+   0B33 74 07              2607 	mov	a,#0x07
+   0B35 56                 2608 	anl	a,@r0
+   0B36 F7                 2609 	mov	@r1,a
+   0B37 09                 2610 	inc	r1
+   0B38 77 00              2611 	mov	@r1,#0x00
+   0B3A E5*00              2612 	mov	a,_bp
+   0B3C 24 05              2613 	add	a,#0x05
+   0B3E F8                 2614 	mov	r0,a
+   0B3F E5*00              2615 	mov	a,_bp
+   0B41 24 12              2616 	add	a,#0x12
+   0B43 F9                 2617 	mov	r1,a
+   0B44 EA                 2618 	mov	a,r2
+   0B45 26                 2619 	add	a,@r0
+   0B46 F7                 2620 	mov	@r1,a
+   0B47 EB                 2621 	mov	a,r3
+   0B48 08                 2622 	inc	r0
+   0B49 36                 2623 	addc	a,@r0
+   0B4A 09                 2624 	inc	r1
+   0B4B F7                 2625 	mov	@r1,a
+   0B4C 08                 2626 	inc	r0
+   0B4D 09                 2627 	inc	r1
+   0B4E E6                 2628 	mov	a,@r0
+   0B4F F7                 2629 	mov	@r1,a
+   0B50 E5*00              2630 	mov	a,_bp
+   0B52 24 0B              2631 	add	a,#0x0b
+   0B54 FA                 2632 	mov	r2,a
+   0B55 7B 00              2633 	mov	r3,#0x00
+   0B57 7F 40              2634 	mov	r7,#0x40
+   0B59 C0 04              2635 	push	ar4
+   0B5B C0 05              2636 	push	ar5
+   0B5D C0 06              2637 	push	ar6
+   0B5F E5*00              2638 	mov	a,_bp
+   0B61 24 03              2639 	add	a,#0x03
+   0B63 F8                 2640 	mov	r0,a
+   0B64 E6                 2641 	mov	a,@r0
+   0B65 C0 E0              2642 	push	acc
+   0B67 08                 2643 	inc	r0
+   0B68 E6                 2644 	mov	a,@r0
+   0B69 C0 E0              2645 	push	acc
+   0B6B E5*00              2646 	mov	a,_bp
+   0B6D 24 10              2647 	add	a,#0x10
+   0B6F F8                 2648 	mov	r0,a
+   0B70 E6                 2649 	mov	a,@r0
+   0B71 C0 E0              2650 	push	acc
+   0B73 08                 2651 	inc	r0
+   0B74 E6                 2652 	mov	a,@r0
+   0B75 C0 E0              2653 	push	acc
+   0B77 E5*00              2654 	mov	a,_bp
+   0B79 24 12              2655 	add	a,#0x12
+   0B7B F8                 2656 	mov	r0,a
+   0B7C E6                 2657 	mov	a,@r0
+   0B7D C0 E0              2658 	push	acc
+   0B7F 08                 2659 	inc	r0
+   0B80 E6                 2660 	mov	a,@r0
+   0B81 C0 E0              2661 	push	acc
+   0B83 08                 2662 	inc	r0
+   0B84 E6                 2663 	mov	a,@r0
+   0B85 C0 E0              2664 	push	acc
+   0B87 8A 82              2665 	mov	dpl,r2
+   0B89 8B 83              2666 	mov	dph,r3
+   0B8B 8F F0              2667 	mov	b,r7
+   0B8D 12s00r7B           2668 	lcall	_get_bits
+   0B90 E5 81              2669 	mov	a,sp
+   0B92 24 F9              2670 	add	a,#0xf9
+   0B94 F5 81              2671 	mov	sp,a
+   0B96 D0 06              2672 	pop	ar6
+   0B98 D0 05              2673 	pop	ar5
+   0B9A D0 04              2674 	pop	ar4
+                           2675 ;	../../../core/net/rime/chameleon-bitopt.c:355: packetbuf_set_addr(a->type, &addr);
+   0B9C E5*00              2676 	mov	a,_bp
+   0B9E 24 0B              2677 	add	a,#0x0b
+   0BA0 FA                 2678 	mov	r2,a
+   0BA1 E5*00              2679 	mov	a,_bp
+   0BA3 24 12              2680 	add	a,#0x12
+   0BA5 F8                 2681 	mov	r0,a
+   0BA6 A6 02              2682 	mov	@r0,ar2
+   0BA8 08                 2683 	inc	r0
+   0BA9 76 00              2684 	mov	@r0,#0x00
+   0BAB 08                 2685 	inc	r0
+   0BAC 76 40              2686 	mov	@r0,#0x40
+   0BAE 8C 82              2687 	mov	dpl,r4
+   0BB0 8D 83              2688 	mov	dph,r5
+   0BB2 8E F0              2689 	mov	b,r6
+   0BB4 12s00r00           2690 	lcall	__gptrget
+   0BB7 FA                 2691 	mov	r2,a
+   0BB8 C0 04              2692 	push	ar4
+   0BBA C0 05              2693 	push	ar5
+   0BBC C0 06              2694 	push	ar6
+   0BBE E5*00              2695 	mov	a,_bp
+   0BC0 24 12              2696 	add	a,#0x12
+   0BC2 F8                 2697 	mov	r0,a
+   0BC3 E6                 2698 	mov	a,@r0
+   0BC4 C0 E0              2699 	push	acc
+   0BC6 08                 2700 	inc	r0
+   0BC7 E6                 2701 	mov	a,@r0
+   0BC8 C0 E0              2702 	push	acc
+   0BCA 08                 2703 	inc	r0
+   0BCB E6                 2704 	mov	a,@r0
+   0BCC C0 E0              2705 	push	acc
+   0BCE 8A 82              2706 	mov	dpl,r2
+   0BD0 12s00r00           2707 	lcall	_packetbuf_set_addr
+   0BD3 15 81              2708 	dec	sp
+   0BD5 15 81              2709 	dec	sp
+   0BD7 15 81              2710 	dec	sp
+   0BD9 D0 06              2711 	pop	ar6
+   0BDB D0 05              2712 	pop	ar5
+   0BDD D0 04              2713 	pop	ar4
+   0BDF 02s0Cr87           2714 	ljmp	00109$
+   0BE2                    2715 00108$:
+                           2716 ;	../../../core/net/rime/chameleon-bitopt.c:357: packetbuf_attr_t val = 0;
+   0BE2 E5*00              2717 	mov	a,_bp
+   0BE4 24 0D              2718 	add	a,#0x0d
+   0BE6 F8                 2719 	mov	r0,a
+   0BE7 E4                 2720 	clr	a
+   0BE8 F6                 2721 	mov	@r0,a
+   0BE9 08                 2722 	inc	r0
+   0BEA F6                 2723 	mov	@r0,a
+                           2724 ;	../../../core/net/rime/chameleon-bitopt.c:358: get_bits((uint8_t *)&val, &hdrptr[byteptr], bitptr & 7, len);
+   0BEB A8*00              2725 	mov	r0,_bp
+   0BED 08                 2726 	inc	r0
+   0BEE E5*00              2727 	mov	a,_bp
+   0BF0 24 12              2728 	add	a,#0x12
+   0BF2 F9                 2729 	mov	r1,a
+   0BF3 74 07              2730 	mov	a,#0x07
+   0BF5 56                 2731 	anl	a,@r0
+   0BF6 F7                 2732 	mov	@r1,a
+   0BF7 09                 2733 	inc	r1
+   0BF8 77 00              2734 	mov	@r1,#0x00
+   0BFA E5*00              2735 	mov	a,_bp
+   0BFC 24 05              2736 	add	a,#0x05
+   0BFE F8                 2737 	mov	r0,a
+   0BFF E5*00              2738 	mov	a,_bp
+   0C01 24 15              2739 	add	a,#0x15
+   0C03 F9                 2740 	mov	r1,a
+   0C04 EA                 2741 	mov	a,r2
+   0C05 26                 2742 	add	a,@r0
+   0C06 F7                 2743 	mov	@r1,a
+   0C07 EB                 2744 	mov	a,r3
+   0C08 08                 2745 	inc	r0
+   0C09 36                 2746 	addc	a,@r0
+   0C0A 09                 2747 	inc	r1
+   0C0B F7                 2748 	mov	@r1,a
+   0C0C 08                 2749 	inc	r0
+   0C0D 09                 2750 	inc	r1
+   0C0E E6                 2751 	mov	a,@r0
+   0C0F F7                 2752 	mov	@r1,a
+   0C10 E5*00              2753 	mov	a,_bp
+   0C12 24 0D              2754 	add	a,#0x0d
+   0C14 FA                 2755 	mov	r2,a
+   0C15 7B 00              2756 	mov	r3,#0x00
+   0C17 7F 40              2757 	mov	r7,#0x40
+   0C19 C0 04              2758 	push	ar4
+   0C1B C0 05              2759 	push	ar5
+   0C1D C0 06              2760 	push	ar6
+   0C1F E5*00              2761 	mov	a,_bp
+   0C21 24 03              2762 	add	a,#0x03
+   0C23 F8                 2763 	mov	r0,a
+   0C24 E6                 2764 	mov	a,@r0
+   0C25 C0 E0              2765 	push	acc
+   0C27 08                 2766 	inc	r0
+   0C28 E6                 2767 	mov	a,@r0
+   0C29 C0 E0              2768 	push	acc
+   0C2B E5*00              2769 	mov	a,_bp
+   0C2D 24 12              2770 	add	a,#0x12
+   0C2F F8                 2771 	mov	r0,a
+   0C30 E6                 2772 	mov	a,@r0
+   0C31 C0 E0              2773 	push	acc
+   0C33 08                 2774 	inc	r0
+   0C34 E6                 2775 	mov	a,@r0
+   0C35 C0 E0              2776 	push	acc
+   0C37 E5*00              2777 	mov	a,_bp
+   0C39 24 15              2778 	add	a,#0x15
+   0C3B F8                 2779 	mov	r0,a
+   0C3C E6                 2780 	mov	a,@r0
+   0C3D C0 E0              2781 	push	acc
+   0C3F 08                 2782 	inc	r0
+   0C40 E6                 2783 	mov	a,@r0
+   0C41 C0 E0              2784 	push	acc
+   0C43 08                 2785 	inc	r0
+   0C44 E6                 2786 	mov	a,@r0
+   0C45 C0 E0              2787 	push	acc
+   0C47 8A 82              2788 	mov	dpl,r2
+   0C49 8B 83              2789 	mov	dph,r3
+   0C4B 8F F0              2790 	mov	b,r7
+   0C4D 12s00r7B           2791 	lcall	_get_bits
+   0C50 E5 81              2792 	mov	a,sp
+   0C52 24 F9              2793 	add	a,#0xf9
+   0C54 F5 81              2794 	mov	sp,a
+   0C56 D0 06              2795 	pop	ar6
+   0C58 D0 05              2796 	pop	ar5
+   0C5A D0 04              2797 	pop	ar4
+                           2798 ;	../../../core/net/rime/chameleon-bitopt.c:360: packetbuf_set_attr(a->type, val);
+   0C5C 8C 82              2799 	mov	dpl,r4
+   0C5E 8D 83              2800 	mov	dph,r5
+   0C60 8E F0              2801 	mov	b,r6
+   0C62 12s00r00           2802 	lcall	__gptrget
+   0C65 FA                 2803 	mov	r2,a
+   0C66 C0 04              2804 	push	ar4
+   0C68 C0 05              2805 	push	ar5
+   0C6A C0 06              2806 	push	ar6
+   0C6C E5*00              2807 	mov	a,_bp
+   0C6E 24 0D              2808 	add	a,#0x0d
+   0C70 F8                 2809 	mov	r0,a
+   0C71 E6                 2810 	mov	a,@r0
+   0C72 C0 E0              2811 	push	acc
+   0C74 08                 2812 	inc	r0
+   0C75 E6                 2813 	mov	a,@r0
+   0C76 C0 E0              2814 	push	acc
+   0C78 8A 82              2815 	mov	dpl,r2
+   0C7A 12s00r00           2816 	lcall	_packetbuf_set_attr
+   0C7D 15 81              2817 	dec	sp
+   0C7F 15 81              2818 	dec	sp
+   0C81 D0 06              2819 	pop	ar6
+   0C83 D0 05              2820 	pop	ar5
+   0C85 D0 04              2821 	pop	ar4
+   0C87                    2822 00109$:
+                           2823 ;	../../../core/net/rime/chameleon-bitopt.c:367: bitptr += len;
+   0C87 A8*00              2824 	mov	r0,_bp
+   0C89 08                 2825 	inc	r0
+   0C8A E5*00              2826 	mov	a,_bp
+   0C8C 24 03              2827 	add	a,#0x03
+   0C8E F9                 2828 	mov	r1,a
+   0C8F E7                 2829 	mov	a,@r1
+   0C90 26                 2830 	add	a,@r0
+   0C91 F6                 2831 	mov	@r0,a
+   0C92 09                 2832 	inc	r1
+   0C93 E7                 2833 	mov	a,@r1
+   0C94 08                 2834 	inc	r0
+   0C95 36                 2835 	addc	a,@r0
+   0C96 F6                 2836 	mov	@r0,a
+                           2837 ;	../../../core/net/rime/chameleon-bitopt.c:334: for(a = c->attrlist; a->type != PACKETBUF_ATTR_NONE; ++a) {
+   0C97 74 02              2838 	mov	a,#0x02
+   0C99 2C                 2839 	add	a,r4
+   0C9A FC                 2840 	mov	r4,a
+   0C9B E4                 2841 	clr	a
+   0C9C 3D                 2842 	addc	a,r5
+   0C9D FD                 2843 	mov	r5,a
+   0C9E 02s0ArBA           2844 	ljmp	00110$
+   0CA1                    2845 00113$:
+                           2846 ;	../../../core/net/rime/chameleon-bitopt.c:369: return c;
+   0CA1 E5*00              2847 	mov	a,_bp
+   0CA3 24 08              2848 	add	a,#0x08
+   0CA5 F8                 2849 	mov	r0,a
+   0CA6 86 82              2850 	mov	dpl,@r0
+   0CA8 08                 2851 	inc	r0
+   0CA9 86 83              2852 	mov	dph,@r0
+   0CAB 08                 2853 	inc	r0
+   0CAC 86 F0              2854 	mov	b,@r0
+   0CAE                    2855 00114$:
+   0CAE 85*00 81           2856 	mov	sp,_bp
+   0CB1 D0*00              2857 	pop	_bp
+   0CB3 22                 2858 	ret
+                           2859 	.area CSEG    (CODE)
+                           2860 	.area CONST   (CODE)
+   0000                    2861 _bitmask:
+   0000 00                 2862 	.db #0x00	; 0
+   0001 80                 2863 	.db #0x80	; 128
+   0002 C0                 2864 	.db #0xC0	; 192
+   0003 E0                 2865 	.db #0xE0	; 224
+   0004 F0                 2866 	.db #0xF0	; 240
+   0005 F8                 2867 	.db #0xF8	; 248
+   0006 FC                 2868 	.db #0xFC	; 252
+   0007 FE                 2869 	.db #0xFE	; 254
+   0008 FF                 2870 	.db #0xFF	; 255
+                           2871 	.area XINIT   (CODE)
+   0000                    2872 __xinit__chameleon_bitopt:
+   0000r93s09              2873 	.byte _unpack_header,(_unpack_header >> 8)
+   0002rD8s06              2874 	.byte _pack_header,(_pack_header >> 8)
+   0004r31s03              2875 	.byte _header_size,(_header_size >> 8)
+                           2876 	.area CABS    (ABS,CODE)

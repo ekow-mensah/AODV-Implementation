@@ -1,0 +1,915 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6121 (Nov 17 2015) (CYGWIN)
+                              4 ; This file was generated Sat Jan 27 13:27:12 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module uip_split
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _IRCON2_P2IF
+                             13 	.globl _IRCON2_UTX0IF
+                             14 	.globl _IRCON2_UTX1IF
+                             15 	.globl _IRCON2_P1IF
+                             16 	.globl _IRCON2_WDTIF
+                             17 	.globl _CY
+                             18 	.globl _AC
+                             19 	.globl _F0
+                             20 	.globl _RS1
+                             21 	.globl _RS0
+                             22 	.globl _OV
+                             23 	.globl _F1
+                             24 	.globl _P
+                             25 	.globl _IRCON_DMAIF
+                             26 	.globl _IRCON_T1IF
+                             27 	.globl _IRCON_T2IF
+                             28 	.globl _IRCON_T3IF
+                             29 	.globl _IRCON_T4IF
+                             30 	.globl _IRCON_P0IF
+                             31 	.globl _IRCON_STIF
+                             32 	.globl _IEN1_DMAIE
+                             33 	.globl _IEN1_T1IE
+                             34 	.globl _IEN1_T2IE
+                             35 	.globl _IEN1_T3IE
+                             36 	.globl _IEN1_T4IE
+                             37 	.globl _IEN1_P0IE
+                             38 	.globl _IEN0_RFERRIE
+                             39 	.globl _IEN0_ADCIE
+                             40 	.globl _IEN0_URX0IE
+                             41 	.globl _IEN0_URX1IE
+                             42 	.globl _IEN0_ENCIE
+                             43 	.globl _IEN0_STIE
+                             44 	.globl _IEN0_EA
+                             45 	.globl _EA
+                             46 	.globl _P2_4
+                             47 	.globl _P2_3
+                             48 	.globl _P2_2
+                             49 	.globl _P2_1
+                             50 	.globl _P2_0
+                             51 	.globl _S0CON_ENCIF_0
+                             52 	.globl _S0CON_ENCIF_1
+                             53 	.globl _P1_7
+                             54 	.globl _P1_6
+                             55 	.globl _P1_5
+                             56 	.globl _P1_4
+                             57 	.globl _P1_3
+                             58 	.globl _P1_2
+                             59 	.globl _P1_1
+                             60 	.globl _P1_0
+                             61 	.globl _TCON_IT0
+                             62 	.globl _TCON_RFERRIF
+                             63 	.globl _TCON_IT1
+                             64 	.globl _TCON_URX0IF
+                             65 	.globl _TCON_ADCIF
+                             66 	.globl _TCON_URX1IF
+                             67 	.globl _P0_0
+                             68 	.globl _P0_1
+                             69 	.globl _P0_2
+                             70 	.globl _P0_3
+                             71 	.globl _P0_4
+                             72 	.globl _P0_5
+                             73 	.globl _P0_6
+                             74 	.globl _P0_7
+                             75 	.globl _P2DIR
+                             76 	.globl _P1DIR
+                             77 	.globl _P0DIR
+                             78 	.globl _U1GCR
+                             79 	.globl _U1UCR
+                             80 	.globl _U1BAUD
+                             81 	.globl _U1BUF
+                             82 	.globl _U1CSR
+                             83 	.globl _P2INP
+                             84 	.globl _P1INP
+                             85 	.globl _P2SEL
+                             86 	.globl _P1SEL
+                             87 	.globl _P0SEL
+                             88 	.globl _ADCCFG
+                             89 	.globl _PERCFG
+                             90 	.globl _B
+                             91 	.globl _T4CC1
+                             92 	.globl _T4CCTL1
+                             93 	.globl _T4CC0
+                             94 	.globl _T4CCTL0
+                             95 	.globl _T4CTL
+                             96 	.globl _T4CNT
+                             97 	.globl _RFIF
+                             98 	.globl _IRCON2
+                             99 	.globl _T1CCTL2
+                            100 	.globl _T1CCTL1
+                            101 	.globl _T1CCTL0
+                            102 	.globl _T1CTL
+                            103 	.globl _T1CNTH
+                            104 	.globl _T1CNTL
+                            105 	.globl _RFST
+                            106 	.globl _ACC
+                            107 	.globl _T1CC2H
+                            108 	.globl _T1CC2L
+                            109 	.globl _T1CC1H
+                            110 	.globl _T1CC1L
+                            111 	.globl _T1CC0H
+                            112 	.globl _T1CC0L
+                            113 	.globl _RFD
+                            114 	.globl _TIMIF
+                            115 	.globl _DMAREQ
+                            116 	.globl _DMAARM
+                            117 	.globl _DMA0CFGH
+                            118 	.globl _DMA0CFGL
+                            119 	.globl _DMA1CFGH
+                            120 	.globl _DMA1CFGL
+                            121 	.globl _DMAIRQ
+                            122 	.globl _PSW
+                            123 	.globl _T3CC1
+                            124 	.globl _T3CCTL1
+                            125 	.globl _T3CC0
+                            126 	.globl _T3CCTL0
+                            127 	.globl _T3CTL
+                            128 	.globl _T3CNT
+                            129 	.globl _WDCTL
+                            130 	.globl _T2CON
+                            131 	.globl _MEMCTR
+                            132 	.globl _CLKCON
+                            133 	.globl _U0GCR
+                            134 	.globl _U0UCR
+                            135 	.globl _T2CNF
+                            136 	.globl _U0BAUD
+                            137 	.globl _U0BUF
+                            138 	.globl _IRCON
+                            139 	.globl _SLEEP
+                            140 	.globl _RNDH
+                            141 	.globl _RNDL
+                            142 	.globl _ADCH
+                            143 	.globl _ADCL
+                            144 	.globl _IP1
+                            145 	.globl _IEN1
+                            146 	.globl _RCCTL
+                            147 	.globl _ADCCON3
+                            148 	.globl _ADCCON2
+                            149 	.globl _ADCCON1
+                            150 	.globl _ENCCS
+                            151 	.globl _ENCDO
+                            152 	.globl _ENCDI
+                            153 	.globl _FWDATA
+                            154 	.globl _FCTL
+                            155 	.globl _FADDRH
+                            156 	.globl _FADDRL
+                            157 	.globl _FWT
+                            158 	.globl _IP0
+                            159 	.globl _IEN0
+                            160 	.globl _IE
+                            161 	.globl _T2THD
+                            162 	.globl _T2TLD
+                            163 	.globl _T2CAPHPH
+                            164 	.globl _T2CAPLPL
+                            165 	.globl _T2OF2
+                            166 	.globl _T2OF1
+                            167 	.globl _T2OF0
+                            168 	.globl _P2
+                            169 	.globl _PSBANK
+                            170 	.globl _FMAP
+                            171 	.globl _T2PEROF2
+                            172 	.globl _T2PEROF1
+                            173 	.globl _T2PEROF0
+                            174 	.globl _S1CON
+                            175 	.globl _IEN2
+                            176 	.globl _HSRC
+                            177 	.globl _S0CON
+                            178 	.globl _ST2
+                            179 	.globl _ST1
+                            180 	.globl _ST0
+                            181 	.globl _T2CMP
+                            182 	.globl __XPAGE
+                            183 	.globl _DPS
+                            184 	.globl _RFIM
+                            185 	.globl _P1
+                            186 	.globl _P0INP
+                            187 	.globl _P1IEN
+                            188 	.globl _PICTL
+                            189 	.globl _P2IFG
+                            190 	.globl _P1IFG
+                            191 	.globl _P0IFG
+                            192 	.globl _TCON
+                            193 	.globl _PCON
+                            194 	.globl _U0CSR
+                            195 	.globl _DPH1
+                            196 	.globl _DPL1
+                            197 	.globl _DPH0
+                            198 	.globl _DPL0
+                            199 	.globl _SP
+                            200 	.globl _P0
+                            201 	.globl _ADC_SHADOW
+                            202 	.globl _U1BUF_SHADOW
+                            203 	.globl _RFD_SHADOW
+                            204 	.globl _U0BUF_SHADOW
+                            205 	.globl _RFSTATUS
+                            206 	.globl _CHIPID
+                            207 	.globl _CHVER
+                            208 	.globl _FSMTC1
+                            209 	.globl _RXFIFOCNT
+                            210 	.globl _IOCFG3
+                            211 	.globl _IOCFG2
+                            212 	.globl _IOCFG1
+                            213 	.globl _IOCFG0
+                            214 	.globl _SHORTADDRL
+                            215 	.globl _SHORTADDRH
+                            216 	.globl _PANIDL
+                            217 	.globl _PANIDH
+                            218 	.globl _IEEE_ADDR7
+                            219 	.globl _IEEE_ADDR6
+                            220 	.globl _IEEE_ADDR5
+                            221 	.globl _IEEE_ADDR4
+                            222 	.globl _IEEE_ADDR3
+                            223 	.globl _IEEE_ADDR2
+                            224 	.globl _IEEE_ADDR1
+                            225 	.globl _IEEE_ADDR0
+                            226 	.globl _DACTSTL
+                            227 	.globl _DACTSTH
+                            228 	.globl _ADCTSTL
+                            229 	.globl _ADCTSTH
+                            230 	.globl _FSMSTATE
+                            231 	.globl _AGCCTRLL
+                            232 	.globl _AGCCTRLH
+                            233 	.globl _MANORL
+                            234 	.globl _MANORH
+                            235 	.globl _MANANDL
+                            236 	.globl _MANANDH
+                            237 	.globl _FSMTCL
+                            238 	.globl _FSMTCH
+                            239 	.globl _RFPWR
+                            240 	.globl _CSPT
+                            241 	.globl _CSPCTRL
+                            242 	.globl _CSPZ
+                            243 	.globl _CSPY
+                            244 	.globl _CSPX
+                            245 	.globl _FSCTRLL
+                            246 	.globl _FSCTRLH
+                            247 	.globl _RXCTRL1L
+                            248 	.globl _RXCTRL1H
+                            249 	.globl _RXCTRL0L
+                            250 	.globl _RXCTRL0H
+                            251 	.globl _TXCTRLL
+                            252 	.globl _TXCTRLH
+                            253 	.globl _SYNCWORDL
+                            254 	.globl _SYNCWORDH
+                            255 	.globl _RSSIL
+                            256 	.globl _RSSIH
+                            257 	.globl _MDMCTRL1L
+                            258 	.globl _MDMCTRL1H
+                            259 	.globl _MDMCTRL0L
+                            260 	.globl _MDMCTRL0H
+                            261 	.globl _uip_split_output
+                            262 ;--------------------------------------------------------
+                            263 ; special function registers
+                            264 ;--------------------------------------------------------
+                            265 	.area RSEG    (ABS,DATA)
+   0000                     266 	.org 0x0000
+                    0080    267 _P0	=	0x0080
+                    0081    268 _SP	=	0x0081
+                    0082    269 _DPL0	=	0x0082
+                    0083    270 _DPH0	=	0x0083
+                    0084    271 _DPL1	=	0x0084
+                    0085    272 _DPH1	=	0x0085
+                    0086    273 _U0CSR	=	0x0086
+                    0087    274 _PCON	=	0x0087
+                    0088    275 _TCON	=	0x0088
+                    0089    276 _P0IFG	=	0x0089
+                    008A    277 _P1IFG	=	0x008a
+                    008B    278 _P2IFG	=	0x008b
+                    008C    279 _PICTL	=	0x008c
+                    008D    280 _P1IEN	=	0x008d
+                    008F    281 _P0INP	=	0x008f
+                    0090    282 _P1	=	0x0090
+                    0091    283 _RFIM	=	0x0091
+                    0092    284 _DPS	=	0x0092
+                    0093    285 __XPAGE	=	0x0093
+                    0094    286 _T2CMP	=	0x0094
+                    0095    287 _ST0	=	0x0095
+                    0096    288 _ST1	=	0x0096
+                    0097    289 _ST2	=	0x0097
+                    0098    290 _S0CON	=	0x0098
+                    0099    291 _HSRC	=	0x0099
+                    009A    292 _IEN2	=	0x009a
+                    009B    293 _S1CON	=	0x009b
+                    009C    294 _T2PEROF0	=	0x009c
+                    009D    295 _T2PEROF1	=	0x009d
+                    009E    296 _T2PEROF2	=	0x009e
+                    009F    297 _FMAP	=	0x009f
+                    009F    298 _PSBANK	=	0x009f
+                    00A0    299 _P2	=	0x00a0
+                    00A1    300 _T2OF0	=	0x00a1
+                    00A2    301 _T2OF1	=	0x00a2
+                    00A3    302 _T2OF2	=	0x00a3
+                    00A4    303 _T2CAPLPL	=	0x00a4
+                    00A5    304 _T2CAPHPH	=	0x00a5
+                    00A6    305 _T2TLD	=	0x00a6
+                    00A7    306 _T2THD	=	0x00a7
+                    00A8    307 _IE	=	0x00a8
+                    00A8    308 _IEN0	=	0x00a8
+                    00A9    309 _IP0	=	0x00a9
+                    00AB    310 _FWT	=	0x00ab
+                    00AC    311 _FADDRL	=	0x00ac
+                    00AD    312 _FADDRH	=	0x00ad
+                    00AE    313 _FCTL	=	0x00ae
+                    00AF    314 _FWDATA	=	0x00af
+                    00B1    315 _ENCDI	=	0x00b1
+                    00B2    316 _ENCDO	=	0x00b2
+                    00B3    317 _ENCCS	=	0x00b3
+                    00B4    318 _ADCCON1	=	0x00b4
+                    00B5    319 _ADCCON2	=	0x00b5
+                    00B6    320 _ADCCON3	=	0x00b6
+                    00B7    321 _RCCTL	=	0x00b7
+                    00B8    322 _IEN1	=	0x00b8
+                    00B9    323 _IP1	=	0x00b9
+                    00BA    324 _ADCL	=	0x00ba
+                    00BB    325 _ADCH	=	0x00bb
+                    00BC    326 _RNDL	=	0x00bc
+                    00BD    327 _RNDH	=	0x00bd
+                    00BE    328 _SLEEP	=	0x00be
+                    00C0    329 _IRCON	=	0x00c0
+                    00C1    330 _U0BUF	=	0x00c1
+                    00C2    331 _U0BAUD	=	0x00c2
+                    00C3    332 _T2CNF	=	0x00c3
+                    00C4    333 _U0UCR	=	0x00c4
+                    00C5    334 _U0GCR	=	0x00c5
+                    00C6    335 _CLKCON	=	0x00c6
+                    00C7    336 _MEMCTR	=	0x00c7
+                    00C8    337 _T2CON	=	0x00c8
+                    00C9    338 _WDCTL	=	0x00c9
+                    00CA    339 _T3CNT	=	0x00ca
+                    00CB    340 _T3CTL	=	0x00cb
+                    00CC    341 _T3CCTL0	=	0x00cc
+                    00CD    342 _T3CC0	=	0x00cd
+                    00CE    343 _T3CCTL1	=	0x00ce
+                    00CF    344 _T3CC1	=	0x00cf
+                    00D0    345 _PSW	=	0x00d0
+                    00D1    346 _DMAIRQ	=	0x00d1
+                    00D2    347 _DMA1CFGL	=	0x00d2
+                    00D3    348 _DMA1CFGH	=	0x00d3
+                    00D4    349 _DMA0CFGL	=	0x00d4
+                    00D5    350 _DMA0CFGH	=	0x00d5
+                    00D6    351 _DMAARM	=	0x00d6
+                    00D7    352 _DMAREQ	=	0x00d7
+                    00D8    353 _TIMIF	=	0x00d8
+                    00D9    354 _RFD	=	0x00d9
+                    00DA    355 _T1CC0L	=	0x00da
+                    00DB    356 _T1CC0H	=	0x00db
+                    00DC    357 _T1CC1L	=	0x00dc
+                    00DD    358 _T1CC1H	=	0x00dd
+                    00DE    359 _T1CC2L	=	0x00de
+                    00DF    360 _T1CC2H	=	0x00df
+                    00E0    361 _ACC	=	0x00e0
+                    00E1    362 _RFST	=	0x00e1
+                    00E2    363 _T1CNTL	=	0x00e2
+                    00E3    364 _T1CNTH	=	0x00e3
+                    00E4    365 _T1CTL	=	0x00e4
+                    00E5    366 _T1CCTL0	=	0x00e5
+                    00E6    367 _T1CCTL1	=	0x00e6
+                    00E7    368 _T1CCTL2	=	0x00e7
+                    00E8    369 _IRCON2	=	0x00e8
+                    00E9    370 _RFIF	=	0x00e9
+                    00EA    371 _T4CNT	=	0x00ea
+                    00EB    372 _T4CTL	=	0x00eb
+                    00EC    373 _T4CCTL0	=	0x00ec
+                    00ED    374 _T4CC0	=	0x00ed
+                    00EE    375 _T4CCTL1	=	0x00ee
+                    00EF    376 _T4CC1	=	0x00ef
+                    00F0    377 _B	=	0x00f0
+                    00F1    378 _PERCFG	=	0x00f1
+                    00F2    379 _ADCCFG	=	0x00f2
+                    00F3    380 _P0SEL	=	0x00f3
+                    00F4    381 _P1SEL	=	0x00f4
+                    00F5    382 _P2SEL	=	0x00f5
+                    00F6    383 _P1INP	=	0x00f6
+                    00F7    384 _P2INP	=	0x00f7
+                    00F8    385 _U1CSR	=	0x00f8
+                    00F9    386 _U1BUF	=	0x00f9
+                    00FA    387 _U1BAUD	=	0x00fa
+                    00FB    388 _U1UCR	=	0x00fb
+                    00FC    389 _U1GCR	=	0x00fc
+                    00FD    390 _P0DIR	=	0x00fd
+                    00FE    391 _P1DIR	=	0x00fe
+                    00FF    392 _P2DIR	=	0x00ff
+                            393 ;--------------------------------------------------------
+                            394 ; special function bits
+                            395 ;--------------------------------------------------------
+                            396 	.area RSEG    (ABS,DATA)
+   0000                     397 	.org 0x0000
+                    0087    398 _P0_7	=	0x0087
+                    0086    399 _P0_6	=	0x0086
+                    0085    400 _P0_5	=	0x0085
+                    0084    401 _P0_4	=	0x0084
+                    0083    402 _P0_3	=	0x0083
+                    0082    403 _P0_2	=	0x0082
+                    0081    404 _P0_1	=	0x0081
+                    0080    405 _P0_0	=	0x0080
+                    008F    406 _TCON_URX1IF	=	0x008f
+                    008D    407 _TCON_ADCIF	=	0x008d
+                    008B    408 _TCON_URX0IF	=	0x008b
+                    008A    409 _TCON_IT1	=	0x008a
+                    0089    410 _TCON_RFERRIF	=	0x0089
+                    0088    411 _TCON_IT0	=	0x0088
+                    0090    412 _P1_0	=	0x0090
+                    0091    413 _P1_1	=	0x0091
+                    0092    414 _P1_2	=	0x0092
+                    0093    415 _P1_3	=	0x0093
+                    0094    416 _P1_4	=	0x0094
+                    0095    417 _P1_5	=	0x0095
+                    0096    418 _P1_6	=	0x0096
+                    0097    419 _P1_7	=	0x0097
+                    0099    420 _S0CON_ENCIF_1	=	0x0099
+                    0098    421 _S0CON_ENCIF_0	=	0x0098
+                    00A0    422 _P2_0	=	0x00a0
+                    00A1    423 _P2_1	=	0x00a1
+                    00A2    424 _P2_2	=	0x00a2
+                    00A3    425 _P2_3	=	0x00a3
+                    00A4    426 _P2_4	=	0x00a4
+                    00AF    427 _EA	=	0x00af
+                    00AF    428 _IEN0_EA	=	0x00af
+                    00AD    429 _IEN0_STIE	=	0x00ad
+                    00AC    430 _IEN0_ENCIE	=	0x00ac
+                    00AB    431 _IEN0_URX1IE	=	0x00ab
+                    00AA    432 _IEN0_URX0IE	=	0x00aa
+                    00A9    433 _IEN0_ADCIE	=	0x00a9
+                    00A8    434 _IEN0_RFERRIE	=	0x00a8
+                    00BD    435 _IEN1_P0IE	=	0x00bd
+                    00BC    436 _IEN1_T4IE	=	0x00bc
+                    00BB    437 _IEN1_T3IE	=	0x00bb
+                    00BA    438 _IEN1_T2IE	=	0x00ba
+                    00B9    439 _IEN1_T1IE	=	0x00b9
+                    00B8    440 _IEN1_DMAIE	=	0x00b8
+                    00C7    441 _IRCON_STIF	=	0x00c7
+                    00C5    442 _IRCON_P0IF	=	0x00c5
+                    00C4    443 _IRCON_T4IF	=	0x00c4
+                    00C3    444 _IRCON_T3IF	=	0x00c3
+                    00C2    445 _IRCON_T2IF	=	0x00c2
+                    00C1    446 _IRCON_T1IF	=	0x00c1
+                    00C0    447 _IRCON_DMAIF	=	0x00c0
+                    00D0    448 _P	=	0x00d0
+                    00D1    449 _F1	=	0x00d1
+                    00D2    450 _OV	=	0x00d2
+                    00D3    451 _RS0	=	0x00d3
+                    00D4    452 _RS1	=	0x00d4
+                    00D5    453 _F0	=	0x00d5
+                    00D6    454 _AC	=	0x00d6
+                    00D7    455 _CY	=	0x00d7
+                    00EC    456 _IRCON2_WDTIF	=	0x00ec
+                    00EB    457 _IRCON2_P1IF	=	0x00eb
+                    00EA    458 _IRCON2_UTX1IF	=	0x00ea
+                    00E9    459 _IRCON2_UTX0IF	=	0x00e9
+                    00E8    460 _IRCON2_P2IF	=	0x00e8
+                            461 ;--------------------------------------------------------
+                            462 ; overlayable register banks
+                            463 ;--------------------------------------------------------
+                            464 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     465 	.ds 8
+                            466 ;--------------------------------------------------------
+                            467 ; internal ram data
+                            468 ;--------------------------------------------------------
+                            469 	.area DSEG    (DATA)
+                            470 ;--------------------------------------------------------
+                            471 ; overlayable items in internal ram 
+                            472 ;--------------------------------------------------------
+                            473 	.area OSEG    (OVR,DATA)
+                            474 ;--------------------------------------------------------
+                            475 ; indirectly addressable internal ram data
+                            476 ;--------------------------------------------------------
+                            477 	.area ISEG    (DATA)
+                            478 ;--------------------------------------------------------
+                            479 ; absolute internal ram data
+                            480 ;--------------------------------------------------------
+                            481 	.area IABS    (ABS,DATA)
+                            482 	.area IABS    (ABS,DATA)
+                            483 ;--------------------------------------------------------
+                            484 ; bit data
+                            485 ;--------------------------------------------------------
+                            486 	.area BSEG    (BIT)
+                            487 ;--------------------------------------------------------
+                            488 ; paged external ram data
+                            489 ;--------------------------------------------------------
+                            490 	.area PSEG    (PAG,XDATA)
+                            491 ;--------------------------------------------------------
+                            492 ; external ram data
+                            493 ;--------------------------------------------------------
+                            494 	.area XSEG    (XDATA)
+                    DF02    495 _MDMCTRL0H	=	0xdf02
+                    DF03    496 _MDMCTRL0L	=	0xdf03
+                    DF04    497 _MDMCTRL1H	=	0xdf04
+                    DF05    498 _MDMCTRL1L	=	0xdf05
+                    DF06    499 _RSSIH	=	0xdf06
+                    DF07    500 _RSSIL	=	0xdf07
+                    DF08    501 _SYNCWORDH	=	0xdf08
+                    DF09    502 _SYNCWORDL	=	0xdf09
+                    DF0A    503 _TXCTRLH	=	0xdf0a
+                    DF0B    504 _TXCTRLL	=	0xdf0b
+                    DF0C    505 _RXCTRL0H	=	0xdf0c
+                    DF0D    506 _RXCTRL0L	=	0xdf0d
+                    DF0E    507 _RXCTRL1H	=	0xdf0e
+                    DF0F    508 _RXCTRL1L	=	0xdf0f
+                    DF10    509 _FSCTRLH	=	0xdf10
+                    DF11    510 _FSCTRLL	=	0xdf11
+                    DF12    511 _CSPX	=	0xdf12
+                    DF13    512 _CSPY	=	0xdf13
+                    DF14    513 _CSPZ	=	0xdf14
+                    DF15    514 _CSPCTRL	=	0xdf15
+                    DF16    515 _CSPT	=	0xdf16
+                    DF17    516 _RFPWR	=	0xdf17
+                    DF20    517 _FSMTCH	=	0xdf20
+                    DF21    518 _FSMTCL	=	0xdf21
+                    DF22    519 _MANANDH	=	0xdf22
+                    DF23    520 _MANANDL	=	0xdf23
+                    DF24    521 _MANORH	=	0xdf24
+                    DF25    522 _MANORL	=	0xdf25
+                    DF26    523 _AGCCTRLH	=	0xdf26
+                    DF27    524 _AGCCTRLL	=	0xdf27
+                    DF39    525 _FSMSTATE	=	0xdf39
+                    DF3A    526 _ADCTSTH	=	0xdf3a
+                    DF3B    527 _ADCTSTL	=	0xdf3b
+                    DF3C    528 _DACTSTH	=	0xdf3c
+                    DF3D    529 _DACTSTL	=	0xdf3d
+                    DF43    530 _IEEE_ADDR0	=	0xdf43
+                    DF44    531 _IEEE_ADDR1	=	0xdf44
+                    DF45    532 _IEEE_ADDR2	=	0xdf45
+                    DF46    533 _IEEE_ADDR3	=	0xdf46
+                    DF47    534 _IEEE_ADDR4	=	0xdf47
+                    DF48    535 _IEEE_ADDR5	=	0xdf48
+                    DF49    536 _IEEE_ADDR6	=	0xdf49
+                    DF4A    537 _IEEE_ADDR7	=	0xdf4a
+                    DF4B    538 _PANIDH	=	0xdf4b
+                    DF4C    539 _PANIDL	=	0xdf4c
+                    DF4D    540 _SHORTADDRH	=	0xdf4d
+                    DF4E    541 _SHORTADDRL	=	0xdf4e
+                    DF4F    542 _IOCFG0	=	0xdf4f
+                    DF50    543 _IOCFG1	=	0xdf50
+                    DF51    544 _IOCFG2	=	0xdf51
+                    DF52    545 _IOCFG3	=	0xdf52
+                    DF53    546 _RXFIFOCNT	=	0xdf53
+                    DF54    547 _FSMTC1	=	0xdf54
+                    DF60    548 _CHVER	=	0xdf60
+                    DF61    549 _CHIPID	=	0xdf61
+                    DF62    550 _RFSTATUS	=	0xdf62
+                    DFC1    551 _U0BUF_SHADOW	=	0xdfc1
+                    DFD9    552 _RFD_SHADOW	=	0xdfd9
+                    DFF9    553 _U1BUF_SHADOW	=	0xdff9
+                    DFBA    554 _ADC_SHADOW	=	0xdfba
+                            555 ;--------------------------------------------------------
+                            556 ; absolute external ram data
+                            557 ;--------------------------------------------------------
+                            558 	.area XABS    (ABS,XDATA)
+                            559 ;--------------------------------------------------------
+                            560 ; external initialized ram data
+                            561 ;--------------------------------------------------------
+                            562 	.area XISEG   (XDATA)
+                            563 	.area HOME    (CODE)
+                            564 	.area GSINIT0 (CODE)
+                            565 	.area GSINIT1 (CODE)
+                            566 	.area GSINIT2 (CODE)
+                            567 	.area GSINIT3 (CODE)
+                            568 	.area GSINIT4 (CODE)
+                            569 	.area GSINIT5 (CODE)
+                            570 	.area GSINIT  (CODE)
+                            571 	.area GSFINAL (CODE)
+                            572 	.area CSEG    (CODE)
+                            573 ;--------------------------------------------------------
+                            574 ; global & static initialisations
+                            575 ;--------------------------------------------------------
+                            576 	.area HOME    (CODE)
+                            577 	.area GSINIT  (CODE)
+                            578 	.area GSFINAL (CODE)
+                            579 	.area GSINIT  (CODE)
+                            580 ;--------------------------------------------------------
+                            581 ; Home
+                            582 ;--------------------------------------------------------
+                            583 	.area HOME    (CODE)
+                            584 	.area HOME    (CODE)
+                            585 ;--------------------------------------------------------
+                            586 ; code
+                            587 ;--------------------------------------------------------
+                            588 	.area CSEG    (CODE)
+                            589 ;------------------------------------------------------------
+                            590 ;Allocation info for local variables in function 'uip_split_output'
+                            591 ;------------------------------------------------------------
+                            592 ;tcplen                    Allocated to registers r2 r3 
+                            593 ;len1                      Allocated to stack - offset 1
+                            594 ;len2                      Allocated to stack - offset 3
+                            595 ;------------------------------------------------------------
+                            596 ;	../../../core/net/uip-split.c:49: uip_split_output(void)
+                            597 ;	-----------------------------------------
+                            598 ;	 function uip_split_output
+                            599 ;	-----------------------------------------
+   0000                     600 _uip_split_output:
+                    0002    601 	ar2 = 0x02
+                    0003    602 	ar3 = 0x03
+                    0004    603 	ar4 = 0x04
+                    0005    604 	ar5 = 0x05
+                    0006    605 	ar6 = 0x06
+                    0007    606 	ar7 = 0x07
+                    0000    607 	ar0 = 0x00
+                    0001    608 	ar1 = 0x01
+   0000 C0*00               609 	push	_bp
+   0002 E5 81               610 	mov	a,sp
+   0004 F5*00               611 	mov	_bp,a
+   0006 24 04               612 	add	a,#0x04
+   0008 F5 81               613 	mov	sp,a
+                            614 ;	../../../core/net/uip-split.c:55: if(BUF->proto == UIP_PROTO_TCP &&
+   000A 90s00r17            615 	mov	dptr,#(_uip_aligned_buf + 0x0017)
+   000D E0                  616 	movx	a,@dptr
+   000E FA                  617 	mov	r2,a
+   000F BA 06 02            618 	cjne	r2,#0x06,00111$
+   0012 80 03               619 	sjmp	00112$
+   0014                     620 00111$:
+   0014 02s01r91            621 	ljmp	00104$
+   0017                     622 00112$:
+                            623 ;	../../../core/net/uip-split.c:56: uip_len == UIP_TCP_MSS + UIP_TCPIP_HLEN) {
+   0017 90s00r00            624 	mov	dptr,#_uip_len
+   001A E0                  625 	movx	a,@dptr
+   001B FA                  626 	mov	r2,a
+   001C A3                  627 	inc	dptr
+   001D E0                  628 	movx	a,@dptr
+   001E FB                  629 	mov	r3,a
+   001F BA 5E 05            630 	cjne	r2,#0x5E,00113$
+   0022 BB 00 02            631 	cjne	r3,#0x00,00113$
+   0025 80 03               632 	sjmp	00114$
+   0027                     633 00113$:
+   0027 02s01r91            634 	ljmp	00104$
+   002A                     635 00114$:
+                            636 ;	../../../core/net/uip-split.c:58: tcplen = uip_len - UIP_TCPIP_HLEN;
+   002A EA                  637 	mov	a,r2
+   002B 24 D8               638 	add	a,#0xd8
+   002D FA                  639 	mov	r2,a
+   002E EB                  640 	mov	a,r3
+   002F 34 FF               641 	addc	a,#0xff
+                            642 ;	../../../core/net/uip-split.c:61: len1 = len2 = tcplen / 2;
+   0031 FB                  643 	mov	r3,a
+   0032 8A 04               644 	mov	ar4,r2
+   0034 C3                  645 	clr	c
+   0035 13                  646 	rrc	a
+   0036 CC                  647 	xch	a,r4
+   0037 13                  648 	rrc	a
+   0038 CC                  649 	xch	a,r4
+   0039 FD                  650 	mov	r5,a
+   003A E5*00               651 	mov	a,_bp
+   003C 24 03               652 	add	a,#0x03
+   003E F8                  653 	mov	r0,a
+   003F A6 04               654 	mov	@r0,ar4
+   0041 08                  655 	inc	r0
+   0042 A6 05               656 	mov	@r0,ar5
+   0044 A8*00               657 	mov	r0,_bp
+   0046 08                  658 	inc	r0
+   0047 A6 04               659 	mov	@r0,ar4
+   0049 08                  660 	inc	r0
+   004A A6 05               661 	mov	@r0,ar5
+                            662 ;	../../../core/net/uip-split.c:62: if(len1 + len2 < tcplen) {
+   004C E5*00               663 	mov	a,_bp
+   004E 24 03               664 	add	a,#0x03
+   0050 F8                  665 	mov	r0,a
+   0051 E6                  666 	mov	a,@r0
+   0052 2C                  667 	add	a,r4
+   0053 FC                  668 	mov	r4,a
+   0054 08                  669 	inc	r0
+   0055 E6                  670 	mov	a,@r0
+   0056 3D                  671 	addc	a,r5
+   0057 FD                  672 	mov	r5,a
+   0058 C3                  673 	clr	c
+   0059 EC                  674 	mov	a,r4
+   005A 9A                  675 	subb	a,r2
+   005B ED                  676 	mov	a,r5
+   005C 9B                  677 	subb	a,r3
+   005D 50 0B               678 	jnc	00102$
+                            679 ;	../../../core/net/uip-split.c:63: ++len2;
+   005F E5*00               680 	mov	a,_bp
+   0061 24 03               681 	add	a,#0x03
+   0063 F8                  682 	mov	r0,a
+   0064 06                  683 	inc	@r0
+   0065 B6 00 02            684 	cjne	@r0,#0x00,00116$
+   0068 08                  685 	inc	r0
+   0069 06                  686 	inc	@r0
+   006A                     687 00116$:
+   006A                     688 00102$:
+                            689 ;	../../../core/net/uip-split.c:68: uip_len = len1 + UIP_TCPIP_HLEN;
+   006A A8*00               690 	mov	r0,_bp
+   006C 08                  691 	inc	r0
+   006D 74 28               692 	mov	a,#0x28
+   006F 26                  693 	add	a,@r0
+   0070 FC                  694 	mov	r4,a
+   0071 E4                  695 	clr	a
+   0072 08                  696 	inc	r0
+   0073 36                  697 	addc	a,@r0
+   0074 FD                  698 	mov	r5,a
+   0075 90s00r00            699 	mov	dptr,#_uip_len
+   0078 EC                  700 	mov	a,r4
+   0079 F0                  701 	movx	@dptr,a
+   007A A3                  702 	inc	dptr
+   007B ED                  703 	mov	a,r5
+   007C F0                  704 	movx	@dptr,a
+                            705 ;	../../../core/net/uip-split.c:75: BUF->len[0] = uip_len >> 8;
+   007D 8D 02               706 	mov	ar2,r5
+   007F 90s00r10            707 	mov	dptr,#(_uip_aligned_buf + 0x0010)
+   0082 EA                  708 	mov	a,r2
+   0083 F0                  709 	movx	@dptr,a
+                            710 ;	../../../core/net/uip-split.c:76: BUF->len[1] = uip_len & 0xff;
+   0084 90s00r11            711 	mov	dptr,#(_uip_aligned_buf + 0x0011)
+   0087 EC                  712 	mov	a,r4
+   0088 F0                  713 	movx	@dptr,a
+                            714 ;	../../../core/net/uip-split.c:80: BUF->tcpchksum = 0;
+   0089 90s00r32            715 	mov	dptr,#(_uip_aligned_buf + 0x0032)
+   008C E4                  716 	clr	a
+   008D F0                  717 	movx	@dptr,a
+   008E A3                  718 	inc	dptr
+   008F F0                  719 	movx	@dptr,a
+                            720 ;	../../../core/net/uip-split.c:81: BUF->tcpchksum = ~(uip_tcpchksum());
+   0090 12s00r00            721 	lcall	_uip_tcpchksum
+   0093 AA 82               722 	mov	r2,dpl
+   0095 AB 83               723 	mov	r3,dph
+   0097 EA                  724 	mov	a,r2
+   0098 F4                  725 	cpl	a
+   0099 FA                  726 	mov	r2,a
+   009A EB                  727 	mov	a,r3
+   009B F4                  728 	cpl	a
+   009C FB                  729 	mov	r3,a
+   009D 90s00r32            730 	mov	dptr,#(_uip_aligned_buf + 0x0032)
+   00A0 EA                  731 	mov	a,r2
+   00A1 F0                  732 	movx	@dptr,a
+   00A2 A3                  733 	inc	dptr
+   00A3 EB                  734 	mov	a,r3
+   00A4 F0                  735 	movx	@dptr,a
+                            736 ;	../../../core/net/uip-split.c:85: BUF->ipchksum = 0;
+   00A5 90s00r18            737 	mov	dptr,#(_uip_aligned_buf + 0x0018)
+   00A8 E4                  738 	clr	a
+   00A9 F0                  739 	movx	@dptr,a
+   00AA A3                  740 	inc	dptr
+   00AB F0                  741 	movx	@dptr,a
+                            742 ;	../../../core/net/uip-split.c:86: BUF->ipchksum = ~(uip_ipchksum());
+   00AC 12s00r00            743 	lcall	_uip_ipchksum
+   00AF AA 82               744 	mov	r2,dpl
+   00B1 AB 83               745 	mov	r3,dph
+   00B3 EA                  746 	mov	a,r2
+   00B4 F4                  747 	cpl	a
+   00B5 FA                  748 	mov	r2,a
+   00B6 EB                  749 	mov	a,r3
+   00B7 F4                  750 	cpl	a
+   00B8 FB                  751 	mov	r3,a
+   00B9 90s00r18            752 	mov	dptr,#(_uip_aligned_buf + 0x0018)
+   00BC EA                  753 	mov	a,r2
+   00BD F0                  754 	movx	@dptr,a
+   00BE A3                  755 	inc	dptr
+   00BF EB                  756 	mov	a,r3
+   00C0 F0                  757 	movx	@dptr,a
+                            758 ;	../../../core/net/uip-split.c:94: tcpip_output();
+   00C1 12s00r00            759 	lcall	_tcpip_output
+                            760 ;	../../../core/net/uip-split.c:102: uip_len = len2 + UIP_TCPIP_HLEN;
+   00C4 E5*00               761 	mov	a,_bp
+   00C6 24 03               762 	add	a,#0x03
+   00C8 F8                  763 	mov	r0,a
+   00C9 74 28               764 	mov	a,#0x28
+   00CB 26                  765 	add	a,@r0
+   00CC FA                  766 	mov	r2,a
+   00CD E4                  767 	clr	a
+   00CE 08                  768 	inc	r0
+   00CF 36                  769 	addc	a,@r0
+   00D0 FB                  770 	mov	r3,a
+   00D1 90s00r00            771 	mov	dptr,#_uip_len
+   00D4 EA                  772 	mov	a,r2
+   00D5 F0                  773 	movx	@dptr,a
+   00D6 A3                  774 	inc	dptr
+   00D7 EB                  775 	mov	a,r3
+   00D8 F0                  776 	movx	@dptr,a
+                            777 ;	../../../core/net/uip-split.c:109: BUF->len[0] = uip_len >> 8;
+   00D9 8B 04               778 	mov	ar4,r3
+   00DB 90s00r10            779 	mov	dptr,#(_uip_aligned_buf + 0x0010)
+   00DE EC                  780 	mov	a,r4
+   00DF F0                  781 	movx	@dptr,a
+                            782 ;	../../../core/net/uip-split.c:110: BUF->len[1] = uip_len & 0xff;
+   00E0 90s00r11            783 	mov	dptr,#(_uip_aligned_buf + 0x0011)
+   00E3 EA                  784 	mov	a,r2
+   00E4 F0                  785 	movx	@dptr,a
+                            786 ;	../../../core/net/uip-split.c:114: memcpy(uip_appdata, (u8_t *)uip_appdata + len1, len2);
+   00E5 90s00r00            787 	mov	dptr,#_uip_appdata
+   00E8 E0                  788 	movx	a,@dptr
+   00E9 FA                  789 	mov	r2,a
+   00EA A3                  790 	inc	dptr
+   00EB E0                  791 	movx	a,@dptr
+   00EC FB                  792 	mov	r3,a
+   00ED A3                  793 	inc	dptr
+   00EE E0                  794 	movx	a,@dptr
+   00EF FC                  795 	mov	r4,a
+   00F0 A8*00               796 	mov	r0,_bp
+   00F2 08                  797 	inc	r0
+   00F3 E6                  798 	mov	a,@r0
+   00F4 2A                  799 	add	a,r2
+   00F5 FD                  800 	mov	r5,a
+   00F6 08                  801 	inc	r0
+   00F7 E6                  802 	mov	a,@r0
+   00F8 3B                  803 	addc	a,r3
+   00F9 FE                  804 	mov	r6,a
+   00FA 8C 07               805 	mov	ar7,r4
+   00FC E5*00               806 	mov	a,_bp
+   00FE 24 03               807 	add	a,#0x03
+   0100 F8                  808 	mov	r0,a
+   0101 E6                  809 	mov	a,@r0
+   0102 C0 E0               810 	push	acc
+   0104 08                  811 	inc	r0
+   0105 E6                  812 	mov	a,@r0
+   0106 C0 E0               813 	push	acc
+   0108 C0 05               814 	push	ar5
+   010A C0 06               815 	push	ar6
+   010C C0 07               816 	push	ar7
+   010E 8A 82               817 	mov	dpl,r2
+   0110 8B 83               818 	mov	dph,r3
+   0112 8C F0               819 	mov	b,r4
+   0114 12s00r00            820 	lcall	_memcpy
+   0117 E5 81               821 	mov	a,sp
+   0119 24 FB               822 	add	a,#0xfb
+   011B F5 81               823 	mov	sp,a
+                            824 ;	../../../core/net/uip-split.c:116: uip_add32(BUF->seqno, len1);
+   011D A8*00               825 	mov	r0,_bp
+   011F 08                  826 	inc	r0
+   0120 E6                  827 	mov	a,@r0
+   0121 C0 E0               828 	push	acc
+   0123 08                  829 	inc	r0
+   0124 E6                  830 	mov	a,@r0
+   0125 C0 E0               831 	push	acc
+   0127 90s00r26            832 	mov	dptr,#(_uip_aligned_buf + 0x0026)
+   012A 75 F0 00            833 	mov	b,#0x00
+   012D 12s00r00            834 	lcall	_uip_add32
+   0130 15 81               835 	dec	sp
+   0132 15 81               836 	dec	sp
+                            837 ;	../../../core/net/uip-split.c:117: BUF->seqno[0] = uip_acc32[0];
+   0134 90s00r00            838 	mov	dptr,#_uip_acc32
+   0137 E0                  839 	movx	a,@dptr
+   0138 90s00r26            840 	mov	dptr,#(_uip_aligned_buf + 0x0026)
+   013B F0                  841 	movx	@dptr,a
+                            842 ;	../../../core/net/uip-split.c:118: BUF->seqno[1] = uip_acc32[1];
+   013C 90s00r01            843 	mov	dptr,#(_uip_acc32 + 0x0001)
+   013F E0                  844 	movx	a,@dptr
+   0140 90s00r27            845 	mov	dptr,#(_uip_aligned_buf + 0x0027)
+   0143 F0                  846 	movx	@dptr,a
+                            847 ;	../../../core/net/uip-split.c:119: BUF->seqno[2] = uip_acc32[2];
+   0144 90s00r02            848 	mov	dptr,#(_uip_acc32 + 0x0002)
+   0147 E0                  849 	movx	a,@dptr
+   0148 90s00r28            850 	mov	dptr,#(_uip_aligned_buf + 0x0028)
+   014B F0                  851 	movx	@dptr,a
+                            852 ;	../../../core/net/uip-split.c:120: BUF->seqno[3] = uip_acc32[3];
+   014C 90s00r03            853 	mov	dptr,#(_uip_acc32 + 0x0003)
+   014F E0                  854 	movx	a,@dptr
+   0150 90s00r29            855 	mov	dptr,#(_uip_aligned_buf + 0x0029)
+   0153 F0                  856 	movx	@dptr,a
+                            857 ;	../../../core/net/uip-split.c:123: BUF->tcpchksum = 0;
+   0154 90s00r32            858 	mov	dptr,#(_uip_aligned_buf + 0x0032)
+   0157 E4                  859 	clr	a
+   0158 F0                  860 	movx	@dptr,a
+   0159 A3                  861 	inc	dptr
+   015A F0                  862 	movx	@dptr,a
+                            863 ;	../../../core/net/uip-split.c:124: BUF->tcpchksum = ~(uip_tcpchksum());
+   015B 12s00r00            864 	lcall	_uip_tcpchksum
+   015E AA 82               865 	mov	r2,dpl
+   0160 AB 83               866 	mov	r3,dph
+   0162 EA                  867 	mov	a,r2
+   0163 F4                  868 	cpl	a
+   0164 FA                  869 	mov	r2,a
+   0165 EB                  870 	mov	a,r3
+   0166 F4                  871 	cpl	a
+   0167 FB                  872 	mov	r3,a
+   0168 90s00r32            873 	mov	dptr,#(_uip_aligned_buf + 0x0032)
+   016B EA                  874 	mov	a,r2
+   016C F0                  875 	movx	@dptr,a
+   016D A3                  876 	inc	dptr
+   016E EB                  877 	mov	a,r3
+   016F F0                  878 	movx	@dptr,a
+                            879 ;	../../../core/net/uip-split.c:128: BUF->ipchksum = 0;
+   0170 90s00r18            880 	mov	dptr,#(_uip_aligned_buf + 0x0018)
+   0173 E4                  881 	clr	a
+   0174 F0                  882 	movx	@dptr,a
+   0175 A3                  883 	inc	dptr
+   0176 F0                  884 	movx	@dptr,a
+                            885 ;	../../../core/net/uip-split.c:129: BUF->ipchksum = ~(uip_ipchksum());
+   0177 12s00r00            886 	lcall	_uip_ipchksum
+   017A AA 82               887 	mov	r2,dpl
+   017C AB 83               888 	mov	r3,dph
+   017E EA                  889 	mov	a,r2
+   017F F4                  890 	cpl	a
+   0180 FA                  891 	mov	r2,a
+   0181 EB                  892 	mov	a,r3
+   0182 F4                  893 	cpl	a
+   0183 FB                  894 	mov	r3,a
+   0184 90s00r18            895 	mov	dptr,#(_uip_aligned_buf + 0x0018)
+   0187 EA                  896 	mov	a,r2
+   0188 F0                  897 	movx	@dptr,a
+   0189 A3                  898 	inc	dptr
+   018A EB                  899 	mov	a,r3
+   018B F0                  900 	movx	@dptr,a
+                            901 ;	../../../core/net/uip-split.c:137: tcpip_output();
+   018C 12s00r00            902 	lcall	_tcpip_output
+                            903 ;	../../../core/net/uip-split.c:139: return;
+   018F 80 03               904 	sjmp	00106$
+   0191                     905 00104$:
+                            906 ;	../../../core/net/uip-split.c:147: tcpip_output();
+   0191 12s00r00            907 	lcall	_tcpip_output
+   0194                     908 00106$:
+   0194 85*00 81            909 	mov	sp,_bp
+   0197 D0*00               910 	pop	_bp
+   0199 22                  911 	ret
+                            912 	.area CSEG    (CODE)
+                            913 	.area CONST   (CODE)
+                            914 	.area XINIT   (CODE)
+                            915 	.area CABS    (ABS,CODE)

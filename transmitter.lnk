@@ -1,0 +1,22 @@
+-myux
+-i transmitter.ihx
+-Y
+-v 0x1f00
+-w 0xffdc
+-b HOME = 0x0000
+-b XSEG = 0xe000
+-b PSEG = 0xe000
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-k /usr/local/share/sdcc/lib/large-stack-auto
+-l libsdcc.lib
+-l contiki-sensinode.lib
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+obj_sensinode/contiki-sensinode-main.rel
+transmitter.rel
+
+-e
