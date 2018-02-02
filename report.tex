@@ -213,13 +213,241 @@ BrdcstID: to identify the broadcast message (8 bit) \\
 From: the source device from which the route request is obtained (16 bit) \\
 Dest: the address of the destination for which a route is required (16 bit) \\
 
-
 Routing Table: \\
 Dest: the address of the destination (16 bit) \\
 NextHop: The next hop required to reach the destination (16 bit)  \\
 Battery: Battery level of the nodes (16 bit) \\
 RSSI: The received signal strength indication (16 bit) \\
 
+\section{Test Procedure and Evaluation}
+
+\subsection{Description}
+
+There are mainly two kinds of testing. In the first testing, four sensor nodes are used, one sender, two routers and one receiver respectively. Figure 7 shows the topology of the first test. And this test prove that this wireless system implement the fundamental functions.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.5]{testtopology1}
+	\begin{center}
+	   \caption{Topology in fundamental test}
+	\end{center}	   
+    \label{fig:testtopology1}
+\end{figure}
+
+Totally, there are three conditions. The first condition is both of router1 and router2 are switched on. The second one is router1 is switched off and router2 is switched on. The last condition is that router2 is switched off and router1 is switched on. In each condition three functions, namely broadcast(RREQ), unicast(RREP) and the send data are tested. 
+Except for the fundamental functions test, more sensor nodes are joined to the system to prove that this system implement some extra functions. The figure shows the topology of the extra test. 
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.5]{testtopology2}
+	\begin{center}
+	   \caption{Topology in extra test}
+	\end{center}	   
+    \label{fig:testtopology2}
+\end{figure}
+
+It is clear that there are three routers. There are two conditions to be tested. The first one is that all routers are switched on. The second condition is that the router1 is switched off. Similar to the fundamental test, three functions, broadcast(RREQ), unicast(RREP) and the send data are tested. To make the test easier to understand, all the packet information is displayed by all sensor node including sending packet out and receiving packet and will be shown as screenshots.
+
+\subsection{Fundamental Test}
+As shown in the figure 7, there are four sensor nodes. MAC address of all sensor nodes are modified.  It is shown in the table 1.
+
+\begin{table}[!htb]
+ \centering
+ \begin{tabular}{|c|c|}
+ \hline
+  Sensor node & MAC address \\
+  \hline
+  Sender & 00::00:AA:AA \\
+  \hline 
+  Router1 & 00::00:BB:BB \\
+  \hline
+  Router2 & 00::00:CC:CC \\
+  \hline
+  Receiver &00::00:DD:DD \\
+  \hline
+ \end{tabular}
+ \textbf{\caption{Table showing the sensor node and corresponding MAC address}}
+\end{table}
+
+\subsubsection{Broadcast Test (RREQ)}
+
+When all sensor nodes are switched on, the broadcast(RREQ) should be sent out by the sender which address is AA:AA. Then the broadcast will be received by two routers and two routers rebroadcast.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.7]{test1}
+	\begin{center}
+	   \caption{Sender transmits broadcast}
+	\end{center}	   
+    \label{fig:test1}
+\end{figure}
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.7]{test2}
+	\begin{center}
+	   \caption{Router received the broadcast}
+	\end{center}	   
+    \label{fig:test2}
+\end{figure}
+
+As the figure 9 shown, two broadcast is sent out and broadcast ID is 1 and 2. In figure 10, it is clear that routers receive the broadcast and the packet is from AA:AA which is the address of sender. When the routers receive the broadcast from sender it need to rebroadcast. And the broadcast ID is unchanged. Therefore, it is proved that the broadcast function is implemented by the sender and routers. What is needed to be explained is the broadcast ID which is used to avoid the broadcast storm. When the routers receive broadcast, it need to rebroadcast to find the next node. Rebroadcast causes that the routers receive the same broadcast from other routers and rebroadcast again. Obviously it will be an infinite loop. To solve this problem. The broadcast ID is used. When the routers receive the broadcast, it will check the broadcast ID firstly. If it is equal to the old one, routers will update the tables but not broadcast it again.
+When routers receive the broadcast and rebroadcast. The receiver should receive broadcast. The figure 11 shows that the receiver receives the broadcast from routers.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test3}
+	\begin{center}
+	   \caption{Receiver getting broadcast}
+	\end{center}	   
+    \label{fig:test3}
+\end{figure}
+
+There is a problem that the receiver only can receive one broadcast from router2(CC:CC). The reason is that the router2 is closer to the receiver and the receiver get the broadcast from router2 first. And the receiver will handle the broadcast which causes receiver cannot receiver other broadcast like the broadcast from router1(BB:BB).
+
+\subsubsection{Unicast(RREP) test}
+
+When the receiver get the unicast, it should be able to solve the broadcast and choose a better router according to hop counts battery and RSSI. In this case the hop counts are the same in the two path. Therefore only battery and RSSI need to be considered.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test4}
+	\begin{center}
+	   \caption{Unicast to router}
+	\end{center}	   
+    \label{fig:test4}
+\end{figure}
+
+From figure 12 it is clear that the receiver chooses the router2(CC:CC) and send unicast to it. What is needed to be declared is that the hop-counts has the best priority. Battery has the second priority and the RSSI is the last. In this case the hop-counts are the same and the battery need to be compared. The router2 has higher battery so it is chosen.
+After that the router2 need to receive the unicast and send another unicast to the sender.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test5}
+	\begin{center}
+	   \caption{Unicast to router}
+	\end{center}	   
+    \label{fig:test5}
+\end{figure}
+
+From figure 13 it is clear that the router2 receive the RREP from the router (DD:DD) and send it to the last hop which is the receiver (AA:AA). After the router send the RREP to the sender, the path from sender and receiver is established which means the routing process is finished.
+
+\subsubsection{Data transfer test}
+
+After the path is established, it is supposed that the sender can send to the router using the path. In this test, sender sent data packet continuously to the receiver by push the button2. 
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test6}
+	\begin{center}
+	   \caption{Data packet from sender}
+	\end{center}	   
+    \label{fig:test6}
+\end{figure}
+
+\newpage
+From figure 14 it is clear that the data is sent to router2(CC:CC) first. Because it was chosen in the routing process.
+
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test7}
+	\begin{center}
+	   \caption{Receiver receives data}
+	\end{center}	   
+    \label{fig:test7}
+\end{figure}
+
+
+From figure 15, it is clear that the content of the data is the same as what is sent out from the sender. In this test, only the temperature is chosen as the testing feature. And the data is from the router2(CC:CC). It proves that there is only one path in the topology which means the path is established successfully.
+
+\subsection{Extra Tests}
+
+In the extra test, there are five routers in the topology. From figure 8, it can be seen that there are three routers, one receiver and one sender. In this part, two conditions will be tested. The first one is all router are switched on and second one is that the router1 is switched off. This test aims to prove that router can choose shorter path and when the path is broken it can establish new path. Details in the test will not be discussed and some main parts will be introduced. Address of each sensor node is displayed in the table2.
+
+\begin{table}[!htb]
+ \centering
+ \begin{tabular}{|c|c|}
+ \hline
+  Sensor node & MAC address \\
+  \hline
+  Sender & 00::00:AA:AA \\
+  \hline 
+  Router1 & 00::00:BB:BB \\
+  \hline
+  Router2 & 00::00:CC:CC \\
+  \hline
+  Router3 & 00::00:FF:FF \\
+  \hline
+  Receiver &00::00:DD:DD \\
+  \hline
+ \end{tabular}
+ \textbf{\caption{Address of each sensor node in the test}}
+\end{table}
+
+\subsubsection{All Routers Switched On}
+
+In this test, when the path is established, the sender need to send data to router1 first.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test8}
+	\begin{center}
+	   \caption{router1 receive the data}
+	\end{center}	   
+    \label{fig:test8}
+\end{figure}
+
+\subsubsection{Router1 switched off}
+
+If the router1 is switched off, when sender send data to receiver, it need to use router2 and router3. So router 2 and router3 are all supposed to receive the data and finally the receiver receive data from router3. The topology is as shown in figure 17.
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{chart4}
+	\begin{center}
+	   \caption{Topology of two routers in one path}
+	\end{center}	   
+    \label{fig:chart4}
+\end{figure}
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test9}
+	\begin{center}
+	   \caption{Sender sent the data}
+	\end{center}	   
+    \label{fig:test9}
+\end{figure}
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test10}
+	\begin{center}
+	   \caption{Router received the data}
+	\end{center}	   
+    \label{fig:test10}
+\end{figure}
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test11}
+	\begin{center}
+	   \caption{Router receive the data and sent it to another router}
+	\end{center}	   
+    \label{fig:test11}
+\end{figure}
+
+\begin{figure}[!htb]
+   \centering
+   \includegraphics[scale=0.8]{test12}
+	\begin{center}
+	   \caption{Receiver received the data}
+	\end{center}	   
+    \label{fig:test12}
+\end{figure}
+
+From the images, the sender sends out the data out. And router2 receive the data and transfer it to router3. Finally, router3 send data to receiver.
 
 \newpage
 \section{Reference List}
