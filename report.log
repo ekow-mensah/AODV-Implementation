@@ -1,0 +1,1187 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.1.20)  2 FEB 2018 14:42
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**report.tex
+(./report.tex
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip43
+\f@ncyO@elh=\skip44
+\f@ncyO@erh=\skip45
+\f@ncyO@olh=\skip46
+\f@ncyO@orh=\skip47
+\f@ncyO@elf=\skip48
+\f@ncyO@erf=\skip49
+\f@ncyO@olf=\skip50
+\f@ncyO@orf=\skip51
+)
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2001/04/09 non-zero parskip adjustments
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen103
+\Hy@linkcounter=\count87
+\Hy@pagecounter=\count88
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count89
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count90
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen104
+\Fld@menulength=\count91
+\Field@Width=\dimen105
+\Fld@charsize=\dimen106
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count92
+\c@Item=\count93
+\c@Hfootnote=\count94
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count95
+\c@bookmark@seq@number=\count96
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip52
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 95.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+\Gread@gobject=\count97
+))
+\Gin@req@height=\dimen107
+\Gin@req@width=\dimen108
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count98
+\Gm@cntv=\count99
+\c@Gm@tempcnt=\count100
+\Gm@bindingoffset=\dimen109
+\Gm@wd@mp=\dimen110
+\Gm@odd@mp=\dimen111
+\Gm@even@mp=\dimen112
+\Gm@layoutwidth=\dimen113
+\Gm@layoutheight=\dimen114
+\Gm@layouthoffset=\dimen115
+\Gm@layoutvoffset=\dimen116
+\Gm@dimlist=\toks15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count101
+\lst@gtempboxa=\box26
+\lst@token=\toks16
+\lst@length=\count102
+\lst@currlwidth=\dimen117
+\lst@column=\count103
+\lst@pos=\count104
+\lst@lostspace=\dimen118
+\lst@width=\dimen119
+\lst@newlines=\count105
+\lst@lineno=\count106
+\lst@maxwidth=\dimen120
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count107
+\lst@skipnumbers=\count108
+\lst@framebox=\box27
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2016/03/03 v3.3 programmable bibliographies (PK/JW/AB)
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex_.sty
+Package: biblatex_ 2016/03/03 v3.3 programmable bibliographies (biber) (PK/JW/A
+B)
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count109
+)
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count110
+
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count111
+\c@listtotal=\count112
+\c@listcount=\count113
+\c@liststart=\count114
+\c@liststop=\count115
+\c@citecount=\count116
+\c@citetotal=\count117
+\c@multicitecount=\count118
+\c@multicitetotal=\count119
+\c@instcount=\count120
+\c@maxnames=\count121
+\c@minnames=\count122
+\c@maxitems=\count123
+\c@minitems=\count124
+\c@citecounter=\count125
+\c@savedcitecounter=\count126
+\c@uniquelist=\count127
+\c@uniquename=\count128
+\c@refsection=\count129
+\c@refsegment=\count130
+\c@maxextratitle=\count131
+\c@maxextratitleyear=\count132
+\c@maxextrayear=\count133
+\c@maxextraalpha=\count134
+\c@abbrvpenalty=\count135
+\c@highnamepenalty=\count136
+\c@lownamepenalty=\count137
+\c@maxparens=\count138
+\c@parenlevel=\count139
+\blx@tempcnta=\count140
+\blx@tempcntb=\count141
+\blx@tempcntc=\count142
+\blx@maxsection=\count143
+\blx@maxsegment@0=\count144
+\blx@notetype=\count145
+\blx@parenlevel@text=\count146
+\blx@parenlevel@foot=\count147
+\blx@sectionciteorder@0=\count148
+\labelnumberwidth=\skip53
+\labelalphawidth=\skip54
+\biblabelsep=\skip55
+\bibitemsep=\skip56
+\bibnamesep=\skip57
+\bibinitsep=\skip58
+\bibparsep=\skip59
+\bibhang=\skip60
+\blx@bcfin=\read1
+\blx@bcfout=\write3
+\c@mincomprange=\count149
+\c@maxcomprange=\count150
+\c@mincompwidth=\count151
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'authoryear-icomp.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count152
+\c@savedafterword=\count153
+\c@annotator=\count154
+\c@savedannotator=\count155
+\c@author=\count156
+\c@savedauthor=\count157
+\c@bookauthor=\count158
+\c@savedbookauthor=\count159
+\c@commentator=\count160
+\c@savedcommentator=\count161
+\c@editor=\count162
+\c@savededitor=\count163
+\c@editora=\count164
+\c@savededitora=\count165
+\c@editorb=\count166
+\c@savededitorb=\count167
+\c@editorc=\count168
+\c@savededitorc=\count169
+\c@foreword=\count170
+\c@savedforeword=\count171
+\c@holder=\count172
+\c@savedholder=\count173
+\c@introduction=\count174
+\c@savedintroduction=\count175
+\c@namea=\count176
+\c@savednamea=\count177
+\c@nameb=\count178
+\c@savednameb=\count179
+\c@namec=\count180
+\c@savednamec=\count181
+\c@translator=\count182
+\c@savedtranslator=\count183
+\c@shortauthor=\count184
+\c@savedshortauthor=\count185
+\c@shorteditor=\count186
+\c@savedshorteditor=\count187
+\c@labelname=\count188
+\c@savedlabelname=\count189
+\c@institution=\count190
+\c@savedinstitution=\count191
+\c@lista=\count192
+\c@savedlista=\count193
+\c@listb=\count194
+\c@savedlistb=\count195
+\c@listc=\count196
+\c@savedlistc=\count197
+\c@listd=\count198
+\c@savedlistd=\count199
+\c@liste=\count266
+\c@savedliste=\count267
+\c@listf=\count268
+\c@savedlistf=\count269
+\c@location=\count270
+\c@savedlocation=\count271
+\c@organization=\count272
+\c@savedorganization=\count273
+\c@origlocation=\count274
+\c@savedoriglocation=\count275
+\c@origpublisher=\count276
+\c@savedorigpublisher=\count277
+\c@publisher=\count278
+\c@savedpublisher=\count279
+\c@language=\count280
+\c@savedlanguage=\count281
+\c@pageref=\count282
+\c@savedpageref=\count283
+\shorthandwidth=\skip61
+\shortjournalwidth=\skip62
+\shortserieswidth=\skip63
+\shorttitlewidth=\skip64
+\shortauthorwidth=\skip65
+\shorteditorwidth=\skip66
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2016/03/03 v3.3 biblatex compatibility (PK/JW/AB)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex_.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex_.def
+File: biblatex_.def 
+\c@textcitecount=\count284
+\c@textcitetotal=\count285
+\c@textcitemaxnames=\count286
+\c@biburlnumpenalty=\count287
+\c@biburlucpenalty=\count288
+\c@biburllcpenalty=\count289
+\c@smartand=\count290
+)
+Package biblatex Info: Trying to load natbib compatibility...
+Package biblatex Info: ... file 'blx-natbib.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-natbib.def
+File: blx-natbib.def 2016/03/03 v3.3 biblatex compatibility (PK/JW/AB)
+)
+Package biblatex Info: Trying to load bibliography style 'authoryear-icomp'...
+Package biblatex Info: ... file 'authoryear-icomp.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/authoryear-icomp.bbx
+File: authoryear-icomp.bbx 2016/03/03 v3.3 biblatex bibliography style (PK/JW/A
+B)
+Package biblatex Info: Trying to load bibliography style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
+File: authoryear.bbx 2016/03/03 v3.3 biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2016/03/03 v3.3 biblatex bibliography style (PK/JW/AB)
+\c@bbx:relatedcount=\count291
+\c@bbx:relatedtotal=\count292
+)))
+Package biblatex Info: Trying to load citation style 'authoryear-icomp'...
+Package biblatex Info: ... file 'authoryear-icomp.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/authoryear-icomp.cbx
+File: authoryear-icomp.cbx 2016/03/03 v3.3 biblatex citation style (PK/JW/AB)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\footcites'.
+Package biblatex Info: Redefining '\footcitetexts'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)))
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2016/03/03 v3.3 biblatex localization (PK/JW/AB)
+)
+\@quotelevel=\count293
+\@quotereset=\count294
+
+(./report.aux)
+\openout1 = `report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+\AtBeginShipoutBox=\box28
+Package hyperref Info: Link coloring OFF on input line 23.
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count295
+)
+LaTeX Info: Redefining \ref on input line 23.
+LaTeX Info: Redefining \pageref on input line 23.
+LaTeX Info: Redefining \nameref on input line 23.
+
+(./report.out) (./report.out)
+\@outlinefile=\write4
+\openout4 = `report.out'.
+
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count296
+\scratchdimen=\dimen121
+\scratchbox=\box29
+\nofMPsegments=\count297
+\nofMParguments=\count298
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count299
+\MPscratchDim=\dimen122
+\MPnumerator=\count300
+\makeMPintoPDFobject=\count301
+\everyMPtoPDFconversion=\toks18
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 700.50687pt, 72.26999pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=452.9679pt
+* \textheight=700.50687pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=57.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count302
+Package biblatex Info: No input encoding detected.
+(biblatex)             Assuming 'ascii'.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'ascii'.
+\openout3 = `report.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'report.bbl' found.
+(./report.bbl)
+Package biblatex Info: Reference section=0 on input line 23.
+Package biblatex Info: Reference segment=0 on input line 23.
+ <images/logo.png, id=100, 401.5pt x 140.525pt>
+File: images/logo.png Graphic file (type png)
+
+<use images/logo.png>
+Package pdftex.def Info: images/logo.png used on input line 28.
+(pdftex.def)             Requested size: 401.49901pt x 140.52464pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <20.74> on input line 53.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 53.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 53.
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/logo.png>] (./rep
+ort.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 5.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 5.
+)
+\tf@toc=\write5
+\openout5 = `report.toc'.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.64 \newpage
+              [1] <images/protocolstack.jpg, id=143, 194.7275pt x 170.6375pt>
+File: images/protocolstack.jpg Graphic file (type jpg)
+
+<use images/protocolstack.jpg>
+Package pdftex.def Info: images/protocolstack.jpg used on input line 84.
+(pdftex.def)             Requested size: 116.83739pt x 102.38327pt.
+ [2 <./images/protocolstack.jpg>] [3] [4]
+<images/protocolstack2.jpg, id=164, 683.55376pt x 241.90375pt>
+File: images/protocolstack2.jpg Graphic file (type jpg)
+
+<use images/protocolstack2.jpg>
+Package pdftex.def Info: images/protocolstack2.jpg used on input line 130.
+(pdftex.def)             Requested size: 410.13542pt x 145.14336pt.
+ [5 <./images/protocolstack2.jpg>]
+<images/routingdiagram.jpg, id=171, 497.86pt x 422.57875pt>
+File: images/routingdiagram.jpg Graphic file (type jpg)
+
+<use images/routingdiagram.jpg>
+Package pdftex.def Info: images/routingdiagram.jpg used on input line 145.
+(pdftex.def)             Requested size: 298.71829pt x 253.5492pt.
+ [6 <./images/routingdiagram.jpg>]
+<images/flowchart1.jpg, id=178, 480.79625pt x 817.0525pt>
+File: images/flowchart1.jpg Graphic file (type jpg)
+
+<use images/flowchart1.jpg>
+Package pdftex.def Info: images/flowchart1.jpg used on input line 167.
+(pdftex.def)             Requested size: 192.31508pt x 326.81522pt.
+
+<images/flowchart2.jpg, id=179, 509.905pt x 472.76625pt>
+File: images/flowchart2.jpg Graphic file (type jpg)
+
+<use images/flowchart2.jpg>
+Package pdftex.def Info: images/flowchart2.jpg used on input line 178.
+(pdftex.def)             Requested size: 305.94536pt x 283.66193pt.
+
+<images/flowchart3.jpg, id=180, 359.3425pt x 422.57875pt>
+File: images/flowchart3.jpg Graphic file (type jpg)
+
+<use images/flowchart3.jpg>
+Package pdftex.def Info: images/flowchart3.jpg used on input line 190.
+(pdftex.def)             Requested size: 179.6708pt x 211.28885pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 198--204
+
+ []
+
+[7 <./images/flowchart1.jpg>] [8 <./images/flowchart2.jpg> <./images/flowchart3
+.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 205--210
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--218
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 219--223
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--229
+
+ []
+
+<images/testtopology1.png, id=193, 546.04pt x 304.13625pt>
+File: images/testtopology1.png Graphic file (type png)
+
+<use images/testtopology1.png>
+Package pdftex.def Info: images/testtopology1.png used on input line 238.
+(pdftex.def)             Requested size: 273.01933pt x 152.06775pt.
+ [9]
+<images/testtopology2.png, id=198, 760.8425pt x 303.1325pt>
+File: images/testtopology2.png Graphic file (type png)
+
+<use images/testtopology2.png>
+Package pdftex.def Info: images/testtopology2.png used on input line 250.
+(pdftex.def)             Requested size: 380.42032pt x 151.56587pt.
+
+<images/test1.png, id=199, 325.96782pt x 259.7203pt>
+File: images/test1.png Graphic file (type png)
+ <use images/test1.png>
+Package pdftex.def Info: images/test1.png used on input line 286.
+(pdftex.def)             Requested size: 228.1759pt x 181.80296pt.
+
+[10 <./images/testtopology1.png> <./images/testtopology2.png>]
+<images/test2.png, id=208, 325.96782pt x 260.47313pt>
+File: images/test2.png Graphic file (type png)
+ <use images/test2.png>
+Package pdftex.def Info: images/test2.png used on input line 295.
+(pdftex.def)             Requested size: 228.1759pt x 182.32994pt.
+
+[11 <./images/test1.png> <./images/test2.png>]
+<images/test3.png, id=218, 328.22626pt x 140.02313pt>
+File: images/test3.png Graphic file (type png)
+ <use images/test3.png>
+Package pdftex.def Info: images/test3.png used on input line 307.
+(pdftex.def)             Requested size: 262.58136pt x 112.01865pt.
+
+<images/test4.png, id=219, 316.93407pt x 209.28188pt>
+File: images/test4.png Graphic file (type png)
+ <use images/test4.png>
+Package pdftex.def Info: images/test4.png used on input line 322.
+(pdftex.def)             Requested size: 253.54759pt x 167.4257pt.
+
+[12 <./images/test3.png> <./images/test4.png>]
+<images/test5.png, id=229, 322.95656pt x 204.765pt>
+File: images/test5.png Graphic file (type png)
+ <use images/test5.png>
+Package pdftex.def Info: images/test5.png used on input line 334.
+(pdftex.def)             Requested size: 258.36559pt x 163.8122pt.
+
+<images/test6.png, id=230, 325.215pt x 260.47313pt>
+File: images/test6.png Graphic file (type png)
+ <use images/test6.png>
+Package pdftex.def Info: images/test6.png used on input line 349.
+(pdftex.def)             Requested size: 260.17235pt x 208.37878pt.
+
+[13 <./images/test5.png> <./images/test6.png>]
+<images/test7.png, id=239, 326.72063pt x 263.48438pt>
+File: images/test7.png Graphic file (type png)
+ <use images/test7.png>
+Package pdftex.def Info: images/test7.png used on input line 362.
+(pdftex.def)             Requested size: 261.37685pt x 210.78777pt.
+
+<images/test8.png, id=240, 328.97906pt x 258.9675pt>
+File: images/test8.png Graphic file (type png)
+ <use images/test8.png>
+Package pdftex.def Info: images/test8.png used on input line 402.
+(pdftex.def)             Requested size: 263.1836pt x 207.17426pt.
+
+[14 <./images/test7.png>]
+<images/chart4.png, id=248, 555.07375pt x 158.5925pt>
+File: images/chart4.png Graphic file (type png)
+ <use images/chart4.png>
+Package pdftex.def Info: images/chart4.png used on input line 415.
+(pdftex.def)             Requested size: 444.05959pt x 126.87415pt.
+
+<images/test9.png, id=249, 303.38344pt x 115.93312pt>
+File: images/test9.png Graphic file (type png)
+ <use images/test9.png>
+Package pdftex.def Info: images/test9.png used on input line 424.
+(pdftex.def)             Requested size: 242.70708pt x 92.74661pt.
+
+<images/test10.png, id=250, 322.20375pt x 57.21375pt>
+File: images/test10.png Graphic file (type png)
+ <use images/test10.png>
+Package pdftex.def Info: images/test10.png used on input line 433.
+(pdftex.def)             Requested size: 257.76334pt x 45.77104pt.
+
+<images/test11.png, id=251, 322.20375pt x 55.70813pt>
+File: images/test11.png Graphic file (type png)
+ <use images/test11.png>
+Package pdftex.def Info: images/test11.png used on input line 442.
+(pdftex.def)             Requested size: 257.76334pt x 44.56654pt.
+
+<images/test12.png, id=252, 324.46219pt x 54.2025pt>
+File: images/test12.png Graphic file (type png)
+ <use images/test12.png>
+Package pdftex.def Info: images/test12.png used on input line 451.
+(pdftex.def)             Requested size: 259.57008pt x 43.36205pt.
+
+[15 <./images/test8.png> <./images/chart4.png> <./images/test9.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
+
+ []
+
+[16 <./images/test10.png> <./images/test11.png> <./images/test12.png>] [17]
+[18]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 493.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 493.
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 504--505
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 507.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 507.
+
+Overfull \hbox (111.03784pt too wide) in paragraph at lines 509--510
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[19]
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 536--537
+[][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 539--541
+[][][][] 
+ []
+
+[20]
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 587--588
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 589--590
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (57.0373pt too wide) in paragraph at lines 602--604
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+[21]
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 628--629
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (81.03754pt too wide) in paragraph at lines 629--630
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 630--631
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (9.0368pt too wide) in paragraph at lines 649--650
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 663--664
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (261.03937pt too wide) in paragraph at lines 664--665
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][] 
+ []
+
+
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 666--667
+[][][][][][][][][][] 
+ []
+
+[22]
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 694--695
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (111.03784pt too wide) in paragraph at lines 701--702
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (111.03784pt too wide) in paragraph at lines 707--708
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[23]
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 742--743
+[][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 745--749
+[][][][] 
+ []
+
+[24]
+Overfull \hbox (27.03699pt too wide) in paragraph at lines 779--780
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (69.03741pt too wide) in paragraph at lines 786--787
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (147.03821pt too wide) in paragraph at lines 787--788
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (69.03741pt too wide) in paragraph at lines 788--789
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (75.03748pt too wide) in paragraph at lines 795--796
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (39.03711pt too wide) in paragraph at lines 800--801
+[][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (15.03687pt too wide) in paragraph at lines 804--805
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (15.03687pt too wide) in paragraph at lines 805--806
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (87.0376pt too wide) in paragraph at lines 807--808
+[][][][][][][][][][][][][][][][][] 
+ []
+
+[25]
+Overfull \hbox (15.03687pt too wide) in paragraph at lines 821--822
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (39.03711pt too wide) in paragraph at lines 825--826
+[][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 850--851
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (33.03705pt too wide) in paragraph at lines 851--852
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 852--853
+[][][][][][][][][][] 
+ []
+
+[26]
+Overfull \hbox (69.03741pt too wide) in paragraph at lines 874--875
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (9.0368pt too wide) in paragraph at lines 887--888
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (3.03674pt too wide) in paragraph at lines 888--889
+[][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (33.03705pt too wide) in paragraph at lines 889--890
+[][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (75.03748pt too wide) in paragraph at lines 895--896
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 896--897
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (15.03687pt too wide) in paragraph at lines 900--901
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (9.0368pt too wide) in paragraph at lines 907--908
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (3.03674pt too wide) in paragraph at lines 908--909
+[][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (33.03705pt too wide) in paragraph at lines 909--910
+[][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[27]
+Overfull \hbox (129.03802pt too wide) in paragraph at lines 913--914
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 914--915
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (69.03741pt too wide) in paragraph at lines 920--921
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (57.0373pt too wide) in paragraph at lines 930--931
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (165.03839pt too wide) in paragraph at lines 931--932
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 939--940
+[][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 945--946
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 947--949
+[][][][][][][][][][] 
+ []
+
+[28]
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 997--998
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (111.03784pt too wide) in paragraph at lines 1006--1007
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[29]
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 1039--1040
+[][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 1042--1046
+[][][][] 
+ []
+
+[30]
+Overfull \hbox (69.03741pt too wide) in paragraph at lines 1078--1079
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (141.03815pt too wide) in paragraph at lines 1079--1080
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 1080--1081
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (69.03741pt too wide) in paragraph at lines 1081--1082
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (75.03748pt too wide) in paragraph at lines 1095--1096
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (39.03711pt too wide) in paragraph at lines 1100--1101
+[][][][][][][][][][][][][][][][][] 
+ []
+
+[31]
+Overfull \hbox (15.03687pt too wide) in paragraph at lines 1104--1105
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (15.03687pt too wide) in paragraph at lines 1105--1106
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (87.0376pt too wide) in paragraph at lines 1107--1108
+[][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (15.03687pt too wide) in paragraph at lines 1122--1123
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (39.03711pt too wide) in paragraph at lines 1126--1127
+[][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 1143--1144
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (3.03674pt too wide) in paragraph at lines 1144--1145
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (117.0379pt too wide) in paragraph at lines 1145--1146
+[][][][][][][][][][] 
+ []
+
+[32]
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 1165--1166
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (69.03741pt too wide) in paragraph at lines 1171--1172
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 1176--1177
+[][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 1184--1185
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (21.03693pt too wide) in paragraph at lines 1186--1188
+[][][][][][][][][][] 
+ []
+
+[33]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1214.
+ [34]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1214.
+ (./report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1214.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1214.
+
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: C6444BEF8DAADF784135725899E9E274;1594.
+Package logreq Info: Writing requests to 'report.run.xml'.
+\openout1 = `report.run.xml'.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1214.
+ ) 
+Here is how much of TeX's memory you used:
+ 13289 strings out of 493029
+ 214992 string characters out of 6136234
+ 662440 words of memory out of 5000000
+ 15900 multiletter control sequences out of 15000+600000
+ 8898 words of font info for 31 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 36i,7n,43p,1819b,1611s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmti12.pfb>
+Output written on report.pdf (35 pages, 750129 bytes).
+PDF statistics:
+ 1270 PDF objects out of 1440 (max. 8388607)
+ 1172 compressed objects within 12 object streams
+ 799 named destinations out of 1000 (max. 500000)
+ 303 words of extra memory for PDF output out of 10000 (max. 10000000)
+

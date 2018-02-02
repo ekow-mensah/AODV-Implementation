@@ -686,296 +686,260 @@ PROCESS_THREAD(routenode_process, ev, data) {
 #include "dev/leds.h"
 
 #include <stdio.h>
-#define TABLELENGTH        10
+#define TABLELENGTH 1
 
+#define COMMAND_ROUTREQUEST 0x20   //Command for requesting route
+#define COMMAND_ROUTERESPONSE 0x21 //Command for route response
+#define COMMAND_DTATTX 0x22        //Command for sending data through unicast
 
-#define COMMAND_ROUTREQUEST   0x20   //Command for requesting route
-#define COMMAND_ROUTERESPONSE 0x21   //Command for route response
-#define COMMAND_DTATTX        0x22   //Command for sending data through unicast
-#define COMMAND_ROUTREQUESTS   0x23   //Command for requesting route
-#define BATTERY_AVERGE_LVL    3000
-
-struct
+#define BATTERY_AVERGE_LVL 2500
+// define the struct for routing table
+typedef struct
 {
-	uint16_t destination;                   //The destation address 
-	uint16_t nextHop;                //The next hop which point to the destination address
-} fwdTable[TABLELENGTH];
-
-struct
+    uint16_t u16Dest;    //The destation address
+    uint16_t u16NextHop; //The next hop which point to the destination address
+    uint16_t u16Battery;
+    uint16_t u16Rssi;
+} tsRouteTable;
+//define the reverse table
+typedef struct
 {
-	uint16_t destination;                   //The destation address 
-	uint16_t nextHop;                //The next hop which point to the destination address
-	uint16_t battery;
-	uint16_t rssi;
-	uint8_t hopCounts;
+    uint8_t BrdcstID;
+    uint16_t From;
+    uint16_t Dest;
+} tsBwdTable;
 
-} rvsTable[TABLELENGTH];
-
-static rimeaddr_t address;
-static uint16_t destination;
-static struct unicast_conn uc;
-static struct broadcast_conn bc;
-static uint8_t dataBuffer[50];
-static uint16_t nextHop = 0;
-static uint16_t rssi = 0;
-static uint8_t brdcstIDLH = 0;
-static uint8_t i = 0;
-static uint8_t found = 0;
-
-static const struct broadcast_callbacks broadcast_callbacks = { recv_bc };
-static const struct unicast_callbacks unicast_callbacks = { recv_uc };
-
-
+static tsRouteTable sRouteTable[TABLELENGTH];//one entry for routing rable
+static tsBwdTable sBwdTabel[TABLELENGTH];//one entry for reverse table
+static rimeaddr_t addr;//address varible used for unicast
+static uint16_t srcaddr = 0x0909;// the source node address
+static uint16_t routeraddr = 0x0404; //the intermediate node address
+static struct unicast_conn uc;// the unicast struct
+static struct broadcast_conn bc;// the broadcast struct
+static uint8_t u8DataBuffer[10];// a buffer to store RREQ or RREP or Data
+static unsigned int bforward = 0;//flag for whether to rebroadcast
+static unsigned int brep = 0;//flag for whether to re-unicast
+static unsigned int bdata = 0;//flag for whether to re-unicast data
+static uint16_t rtdest = 0;//router table destination
+static uint16_t repdest = 0;// REP destination
+static uint16_t databuffer1 = 0;
+static uint16_t databuffer2 = 0;
+static uint16_t databuffer3 = 0;
+static uint16_t databuffer4 = 0;
+static uint16_t databuffer5 = 0;
+static const struct broadcast_callbacks broadcast_callbacks = {recv_bc};//broadcast callback function
+static const struct unicast_callbacks unicast_callbacks = {recv_uc};//unicast callback function
+//variables for reading from the sensor
 static int rv;
-static struct sensors_sensor * sensor;
+static struct sensors_sensor *sensor;
 static float sane = 0;
-
-static uint16_t battery = 0;
-
-/*static uint8_t temperature1 = 0;
-static uint8_t temperature2 = 0;*/
-
-static uint8_t brdcstCounter = 0;
-static uint8_t brdcstLimit = 4;
-static uint8_t brdcstID = 0;
-
+static uint16_t battery;
+static uint8_t temperature1 = 0;
+static uint8_t temperature2 = 0;
+//variables for store RREQ or RREP or DATA values
+static uint8_t brdcstCounter = 1;
+static uint8_t brdcstLimit = 3;
+static uint8_t brdcstID = 1;
+static uint8_t dataID = 1;
+static uint8_t nomessage = 1;
 /*---------------------------------------------------------------------------*/
 PROCESS(routenode_process, "Example unicast");
 AUTOSTART_PROCESSES(&routenode_process);
 /*---------------------------------------------------------------------------*/
+//what to do when received a unicast
+static void
+recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
+{
 
+    uint8_t *data;
+    uint16_t dest = 0;
+    uint16_t src = 0;
+	uint16_t battery = 0;
+    uint16_t rssi = 0;
+    unsigned int bSuccess = 0;
 
+    data = packetbuf_dataptr();
 
-static void recv_bc(struct broadcast_conn *c, rimeaddr_t *from) {
-	uint8_t * data;
-	data = packetbuf_dataptr();
+    switch (data[0])
+    {
+    case COMMAND_ROUTERESPONSE://what to do when received a RREP
+        bSuccess = 0;
+        dest = data[1];
+        dest = dest << 8;
+        dest = dest | data[2];
+		repdest = dest;
+        src = from->u8[1];
+        src = src << 8;
+        src = src | from->u8[0];
+		battery = data[4];
+        battery = battery << 8;
+        battery = battery | data[3];
+		nomessage = data[5];
+        printf("Received REP from:%x\r\n\r\n",src);
+		rssi = packetbuf_attr(PACKETBUF_ATTR_RSSI);
+		brep = 1;
+		//update the routing table
+		if (sRouteTable[0].u16Dest == dest)
+		{
+			bSuccess = 1;
+			sRouteTable[0].u16NextHop = src;
+			sRouteTable[0].u16Rssi = rssi;
+			sRouteTable[0].u16Battery = battery;
 
-	found = 0;
-
-	//get the address of last hop
-	nextHop = from->u8[1];
-	nextHop = nextHop << 8;
-	nextHop = nextHop | from->u8[0];
-
-	//get the destination of the packet
-	destination = data[1];
-	destination = destination << 8;
-	destination = destination | data[2];
-
-	//get hop count of the packet
-	brdcstCounter = data[3];
-	
-	//get the battery of the last hop
-	battery = data[4];
-	battery = battery << 8;
-	battery = battery | data[5];
-	
-	//get rssi of last hop
-	rssi = packetbuf_attr(PACKETBUF_ATTR_RSSI);
-	
-	//get broadcast id of last hop
-	brdcstIDLH = data[6];
-
-	if (data[0] == COMMAND_ROUTREQUEST || data[0] == COMMAND_ROUTREQUESTS) {
-		for (i = 0; i < TABLELENGTH; i++) {
-			if (rvsTable[i].destination == destination) {
-				found = 1;
-				break;
-			}
-		}
-		printf("********************************************************\n\r");
-		printf("recieve broadcast from %02x, \n\r brdcstID is %d\n\r", nextHop, brdcstIDLH);
-		printf("********************************************************\n\r");
-		//the destination is in the routing table
-		if (found) {
-			if (rvsTable[i].hopCounts < brdcstCounter) {
-				//if no shorter path found, do nothing
-			}
-			else if (rvsTable[i].hopCounts == brdcstCounter) {
-				//if length of path is the same, compare battey and rssi
-				if (rvsTable[i].battery < battery) {
-					rvsTable[i].nextHop = nextHop;
-					rvsTable[i].battery = battery;
-					rvsTable[i].rssi = rssi;
-					rvsTable[i].hopCounts = brdcstCounter + 1;
-				}
-				else {
-					if (rvsTable[i].rssi < rssi) {
-						rvsTable[i].nextHop = nextHop;
-						rvsTable[i].battery = battery;
-						rvsTable[i].rssi = rssi;
-						rvsTable[i].hopCounts = brdcstCounter + 1;
-					}
-				}
-			}
-			else {
-				rvsTable[i].nextHop = nextHop;
-				rvsTable[i].battery = battery;
-				rvsTable[i].rssi = rssi;
-				rvsTable[i].hopCounts = brdcstCounter + 1;
-			}
-		}
-		else {
-			for (i = 0; i < TABLELENGTH; i++) {
-				if (rvsTable[i].destination == 0x000) {
-					rvsTable[i].destination = destination;
-					rvsTable[i].nextHop = nextHop;
-					rvsTable[i].rssi = rssi;
-					rvsTable[i].battery = battery;
-					rvsTable[i].hopCounts = brdcstCounter + 1;
-				}
-			}
-		}
-
-		//if it is not the same broadcast, rebroadcast
-		if (brdcstID != brdcstIDLH) {
-			dataBuffer[0] = COMMAND_ROUTREQUEST;
-			dataBuffer[1] = destination >> 8;
-			dataBuffer[2] = destination;
-			dataBuffer[3] = brdcstCounter + 1;
-
-			//calculate the battery
-			sensor = sensors_find(ADC_SENSOR);
-			rv = sensor->value(ADC_SENSOR_TYPE_VDD);
-			sane = rv * 3.75 / 2047;
-			battery = sane * 1000;
-
-			dataBuffer[4] = battery >> 8;
-			dataBuffer[5] = battery;
-			dataBuffer[6] = brdcstIDLH;
-
-			packetbuf_copyfrom(dataBuffer, 7);
-			broadcast_send(&bc);
-			brdcstID = brdcstIDLH;
-			printf("********************************************************\n\r");
-			printf("send broadcast, brdcstID is %d\n\r", brdcstIDLH);
-			printf("********************************************************\n\r");
-		}
-	}
-
-	packetbuf_clear();
-}
-
-static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from) {
-	uint8_t * data;
-	data = packetbuf_dataptr();
-	found = 0;
-	//get the address of next node
-	nextHop = from->u8[1];
-	nextHop = nextHop << 8;
-	nextHop = nextHop | from->u8[0];
-
-	//get the destination of packet
-	destination = data[1];
-	destination = destination << 8;
-	destination = destination | data[2];
-
-	if (data[0] == COMMAND_ROUTERESPONSE) {
-		printf("********************************************************\n\r");
-		printf("recive router response from %02x\n\r", nextHop);
-		for (i = 0; i < TABLELENGTH; i++) {
-			if (fwdTable[i].destination == destination) {
-				found = 1;
-				break;
-			}
-		}
-
-		if (found) {
-			fwdTable[i].nextHop = nextHop;
-
-			for (i = 0; i < TABLELENGTH; i++) {
-				if (rvsTable[i].destination == destination) {
-					address.u8[0] = rvsTable[i].nextHop;
-					address.u8[1] = rvsTable[i].nextHop >> 8;
-					break;
-				}
-			}
-			packetbuf_copyfrom(data, 3);
-			unicast_send(&uc, &address);
-			printf("send router repsonse to %02x\n\r", rvsTable[i].nextHop);
-			printf("********************************************************\n\r");
-		} else {
-			for (i = 0; i < TABLELENGTH; i++) {
-				if (fwdTable[i].destination == 0x000) {
-					fwdTable[i].destination = destination;
-					fwdTable[i].nextHop = nextHop;
-					break;
-					
-				}
-			}
-			for (i = 0; i < TABLELENGTH; i++) {
-				if (rvsTable[i].destination == destination) {
-					address.u8[0] = rvsTable[i].nextHop;
-					address.u8[1] = rvsTable[i].nextHop >> 8;
-					break;
-				}
-			}
-			printf("send router repsonse to a new router %02x", rvsTable[i].nextHop);
-			printf("********************************************************\n\r");
-			packetbuf_copyfrom(data, 3);
-			unicast_send(&uc, &address);
-		}
-
-	} else if (data[0] == COMMAND_DTATTX) {
-		printf("********************************************************\n\r");
-		printf("recieve data from %02x\n\r", nextHop);
-		
-		for (i = 0; i < TABLELENGTH; i++) {
-			if (fwdTable[i].destination == destination) {
-				packetbuf_copyfrom(data, 5);
-				address.u8[0] = fwdTable[i].nextHop;
-				address.u8[1] = fwdTable[i].nextHop >> 8;
-				unicast_send(&uc, &address);
 			
-				printf("send data to %02x\n\r", fwdTable[i].nextHop);
-				printf("********************************************************\n\r");
-				break;
-			}
 		}
+		//the first time to update the routing table
+        if (!bSuccess)
+        {
+			if (sRouteTable[0].u16Dest == 0x0000)
+			{
+				sRouteTable[0].u16Dest = dest;
+				sRouteTable[0].u16NextHop = src;
+				sRouteTable[0].u16Rssi = rssi;
+				sRouteTable[0].u16Battery = battery;
+			}
+        }
+        printf("RoutingTable:\r\n  Dest = %x\r\n  NextHop = %x\r\n  Rssi = %d\r\n  Battery = %d\r\n\r\n",sRouteTable[0].u16Dest,sRouteTable[0].u16NextHop,sRouteTable[0].u16Rssi,sRouteTable[0].u16Battery);
+        break;
+	case COMMAND_DTATTX://what to do when received a RREQ
+		bdata = 1;
+		databuffer1 = data[1];
+		databuffer1 = databuffer1 << 8;
+		databuffer1 = databuffer1 | data[2];
+		databuffer2 = data[3];
+		databuffer2 = databuffer2 << 8;
+		databuffer2 = databuffer2 | data[4];
+		databuffer3 = data[5];
+		databuffer4 = data[6];
+		databuffer5 = data[7];
+		databuffer5 = databuffer5 << 8;
+		databuffer5 = databuffer5 | data[8];
+		dataID = data[9];
+    default:
+        break;
+    }
+    packetbuf_clear();
+}
+//what to do when received a broadcast
+static void
+recv_bc(struct broadcast_conn *c, rimeaddr_t *from)
+{
+	uint8_t *data;
+    uint16_t dest = 0;
+	uint16_t src = 0;
+
+    data = packetbuf_dataptr();
+	switch (data[0])
+    {
+    case COMMAND_ROUTREQUEST://what to do when received a RREQ
+	
+        dest = data[1];
+        dest = dest << 8;
+        dest = dest | data[2];
+		rtdest = dest;
+		src = from->u8[1];
+		src = src << 8;
+		src = src | from->u8[0];
+		brdcstCounter = ++data[3];
+		brdcstLimit = data[4];
+		brdcstID = data[5];
+		if (brdcstCounter<brdcstLimit){
+		bforward = 1;
+		printf("Received broadcastID:%d\r\n from:%x\r\n\r\n",brdcstID,src);
+		}
+		break;
+	default:
+		break;	
 	}
 	packetbuf_clear();
 }
 
 /*---------------------------------------------------------------------------*/
-PROCESS_THREAD(routenode_process, ev, data) {
-	static struct etimer et;
+PROCESS_THREAD(routenode_process, ev, data)
+{
+    static struct etimer et;
+    static int dec;
+    static float frac;
+	//initialize the routing table
+    PROCESS_EXITHANDLER(unicast_close(&uc);)
+    PROCESS_BEGIN();
+	sRouteTable[0].u16Dest = 0x0000;
+	sRouteTable[0].u16NextHop = 0xffff;
+	sRouteTable[0].u16Battery = 0;
+	sRouteTable[0].u16Rssi = 0;
 
-	PROCESS_EXITHANDLER(unicast_close(&uc);)
-	PROCESS_BEGIN();
-	printf("********************************************************\n\r");
-	printf("Router Start, address is CC:CC\n\r");
-	printf("********************************************************\n\r");
+    puts("start");
+    broadcast_open(&bc, 131, &broadcast_callbacks);//open the broadcast channel
+    unicast_open(&uc, 132, &unicast_callbacks);//open the unicast channel
 
-	for (i = 0; i<TABLELENGTH; i++)
-	{
-		rvsTable[i].destination = 0x0000;
-		rvsTable[i].nextHop = 0xffff;
-		rvsTable[i].battery = 0;
-		rvsTable[i].rssi = 0;
-	}
+    etimer_set(&et, CLOCK_SECOND * 2);
+    while (1)
+    {
 
-	for (i = 0; i<TABLELENGTH; i++)
-	{
-		fwdTable[i].destination = 0x0000;
-		fwdTable[i].nextHop = 0xffff;
-	}
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+		if (bforward == 1){//rebroadcast
+			sBwdTabel[0].BrdcstID = brdcstID;//store the reverse table
+			sBwdTabel[0].From = srcaddr;
+			sBwdTabel[0].Dest = srcaddr;
+			printf("BwdTable:\r\n BrdcstID:%d\r\n From:%x\r\n Dest:%x\r\n\r\n",brdcstID,srcaddr,srcaddr);
+			u8DataBuffer[0] = COMMAND_ROUTREQUEST;
+			u8DataBuffer[1] = rtdest >> 8;
+			u8DataBuffer[2] = rtdest;
+			u8DataBuffer[3] = brdcstCounter;
+			u8DataBuffer[4] = brdcstLimit;
+			u8DataBuffer[5] = brdcstID;
+			packetbuf_copyfrom(u8DataBuffer,6);
+			broadcast_send(&bc);
+			printf("Rebroadcast, brdcstCounter:%d\r\n\r\n",brdcstCounter);
+			bforward = 0;
+		}
+		if (brep == 1){//re-unicast RREP
+			sensor = sensors_find(ADC_SENSOR);
+			rv = sensor->value(ADC_SENSOR_TYPE_VDD);
 
-	broadcast_open(&bc, 128, &broadcast_callbacks);
-	unicast_open(&uc, 129, &unicast_callbacks);
+			if (rv != -1)
+			{
+				sane = rv * 3.75 / 2047;
+				battery = sane * 1000;
+				u8DataBuffer[0] = COMMAND_ROUTERESPONSE;
+				u8DataBuffer[1] = repdest >> 8;
+				u8DataBuffer[2] = repdest;
+				u8DataBuffer[3] = battery >> 8;
+				u8DataBuffer[4] = battery;
+				u8DataBuffer[5] = nomessage;
+				addr.u8[0] = sBwdTabel[0].From;
+				addr.u8[1] = sBwdTabel[0].From >> 8;
+				packetbuf_copyfrom(u8DataBuffer, 6);
+				unicast_send(&uc, &addr);
+			}
+			brep = 0;
+		}
+		if (bdata == 1){//re-unicast data
+			
+			printf("Received data:\r\n  Dest:%x\r\n  Src:%x\r\n  Temp:%d.%d C\r\n  Battery:%d\r\n",databuffer1,databuffer2,databuffer3,databuffer4,databuffer5);
+			u8DataBuffer[0] = COMMAND_DTATTX;
+			u8DataBuffer[1] = databuffer1 >> 8;
+			u8DataBuffer[2] = databuffer1;
+			u8DataBuffer[3] = databuffer2 >> 8;
+			u8DataBuffer[4] = databuffer2;
+			u8DataBuffer[5] = databuffer3;
+			u8DataBuffer[6] = databuffer3;
+			u8DataBuffer[7] = databuffer4 >> 8;
+			u8DataBuffer[8] = databuffer4;
+			u8DataBuffer[9] = dataID;
+			packetbuf_copyfrom(u8DataBuffer, 10);
+			addr.u8[0] = sRouteTable[0].u16NextHop;
+			addr.u8[1] = sRouteTable[0].u16NextHop >> 8;
+			printf("Forward data\r\n\r\n");
+			unicast_send(&uc, &addr);
+			
+			bdata = 0;
+		}
+		etimer_set(&et, CLOCK_SECOND * 1);//time delay 1 second
+    }
 
-	etimer_set(&et, CLOCK_SECOND * 2);
-
-	while (1)
-	{
-		PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
-
-		etimer_reset(&et);	
-	}
-
-	PROCESS_END();
+    PROCESS_END();
 }
-
-
 \end{lstlisting}
 
 \subsection{Code for receiver}
@@ -989,186 +953,111 @@ PROCESS_THREAD(routenode_process, ev, data) {
 #include "dev/leds.h"
 
 #include <stdio.h>
-#define TABLELENGTH        10
+#define TABLELENGTH 1
 
+#define COMMAND_ROUTREQUEST 0x20   //Command for requesting route
+#define COMMAND_ROUTERESPONSE 0x21 //Command for route response
+#define COMMAND_DTATTX 0x22        //Command for sending data through unicast
 
-#define COMMAND_ROUTREQUEST   0x20   //Command for requesting route
-#define COMMAND_ROUTERESPONSE 0x21   //Command for route response
-#define COMMAND_DTATTX        0x22   //Command for sending data through unicast
-#define COMMAND_ROUTREQUESTS   0x23   //Command for requesting route
+#define BATTERY_AVERGE_LVL 2500
 
-#define BATTERY_AVERGE_LVL    3000
-
-
-struct
-{
-	uint16_t destination;                   //The destation address 
-	uint16_t nextHop;                //The next hop which point to the destination address
-	uint16_t battery;
-	uint16_t rssi;
-	uint8_t hopCounts;
-
-} rvsTable[TABLELENGTH];
-
-static rimeaddr_t address;
-static uint16_t destination;
-static struct unicast_conn uc;
-static struct broadcast_conn bc;
-static uint8_t dataBuffer[50];
-static uint8_t found = 0;
-
-static const struct broadcast_callbacks broadcast_callbacks = { recv_bc };
-static const struct unicast_callbacks unicast_callbacks = { recv_uc };
-
-
+static rimeaddr_t addr;//unicast address
+static uint16_t receaddr = 0x0303;//receiver address
+static struct unicast_conn uc;//unicast struct
+static struct broadcast_conn bc;//broadcast struct
+static uint8_t u8DataBuffer[10];//buffer to store the RREQ or RREP 
+static unsigned int breceiver = 0;//flag for this is the receiver
+static unsigned int bdata = 0;//flag for show the data
+static uint16_t rtsrc = 0;//route table source address
+static uint16_t databuffer1 = 0;
+static uint16_t databuffer2 = 0;
+static uint16_t databuffer3 = 0;
+static uint16_t databuffer4 = 0;
+static uint16_t databuffer5 = 0;
+static uint16_t datafrom = 0;
+static const struct broadcast_callbacks broadcast_callbacks = {recv_bc};//broadcast callback function
+static const struct unicast_callbacks unicast_callbacks = {recv_uc};//unicast callback function
+//variables for read values from the sensor
 static int rv;
-static uint16_t nextHop = 0;
-static uint16_t rssi = 0;
+static struct sensors_sensor *sensor;
 static float sane = 0;
-
-static uint16_t battery = 0;
-
-/*static uint8_t temperature1 = 0;
-static uint8_t temperature2 = 0;*/
-
-static uint8_t brdcstCounter = 0;
-static uint8_t brdcstLimit = 4;
-static uint8_t brdcstID = 0;
-static uint8_t brdcstIDLH = 0;
-static uint8_t i = 0;
+static uint16_t battery;
+static uint8_t temperature1 = 0;
+static uint8_t temperature2 = 0;
+//variables for RREQ message storing
+static uint8_t brdcstCounter = 1;
+static uint8_t brdcstLimit = 3;
+static uint8_t brdcstID = 1;
+static uint8_t dataID = 1;
 /*---------------------------------------------------------------------------*/
 PROCESS(routenode_process, "Example unicast");
 AUTOSTART_PROCESSES(&routenode_process);
 /*---------------------------------------------------------------------------*/
+// what to do when received a unicast
+static void
+recv_uc(struct unicast_conn *c, const rimeaddr_t *from)
+{
+    uint8_t *data;
+    uint16_t src = 0;
 
+    data = packetbuf_dataptr();//store the data from the buffer to data variable
 
-
-static void recv_bc(struct broadcast_conn *c, rimeaddr_t *from) {
-	uint8_t * data;
-	data = packetbuf_dataptr();
-
-
-	found = 0;
-
-	//get the address of last hop
-	nextHop = from->u8[1];
-	nextHop = nextHop << 8;
-	nextHop = nextHop | from->u8[0];
-
-	//get the destination of the packet
-	destination = data[1];
-	destination = destination << 8;
-	destination = destination | data[2];
-
-	//get hop count of the packet
-	brdcstCounter = data[3];
-
-	//get the battery of the last hop
-	battery = data[4];
-	battery = battery << 8;
-	battery = battery | data[5];
-
-	//get rssi of last hop
-	rssi = packetbuf_attr(PACKETBUF_ATTR_RSSI);
-
-	//get broadcast id of last hop
-	brdcstIDLH = data[6];
-
-	if (data[0] == COMMAND_ROUTREQUEST) {
-		printf("********************************************************\n\r");
-		printf("recieve broadcast from %02x\n\r, brdcstID is %d\n\r", nextHop, brdcstIDLH);
-		printf("the battery is %d, the rssi is %d\n\r", battery, rssi);
-		printf("********************************************************\n\r");
-		for (i = 0; i < TABLELENGTH; i++) {
-			if (rvsTable[i].destination == destination) {
-				found = 1;
-				break;
-			}
-		}
-
-		//the destination is in the routing table
-		if (found) {
-			if (rvsTable[i].hopCounts < brdcstCounter) {
-				//if no shorter path found, do nothing
-			}
-			else if (rvsTable[i].hopCounts == brdcstCounter) {
-				//if length of path is the same, compare battey and rssi
-				if (rvsTable[i].battery < battery) {
-					rvsTable[i].nextHop = nextHop;
-					rvsTable[i].battery = battery;
-					rvsTable[i].rssi = rssi;
-					rvsTable[i].hopCounts = brdcstCounter + 1;
-				}
-				else {
-					if (rvsTable[i].rssi < rssi) {
-						rvsTable[i].nextHop = nextHop;
-						rvsTable[i].battery = battery;
-						rvsTable[i].rssi = rssi;
-						rvsTable[i].hopCounts = brdcstCounter + 1;
-					}
-				}
-			}
-			else {
-				rvsTable[i].nextHop = nextHop;
-				rvsTable[i].battery = battery;
-				rvsTable[i].rssi = rssi;
-				rvsTable[i].hopCounts = brdcstCounter + 1;
-			}
-		}
-		else {
-			for (i = 0; i < TABLELENGTH; i++) {
-				if (rvsTable[i].destination == 0x000) {
-					//create new table 
-					rvsTable[i].destination = destination;
-					rvsTable[i].nextHop = nextHop;
-					rvsTable[i].rssi = rssi;
-					rvsTable[i].battery = battery;
-					rvsTable[i].hopCounts = brdcstCounter + 1;
-					break;
-				}
-			}
-		}
-
-		if (brdcstID != brdcstIDLH) {
-			dataBuffer[0] = COMMAND_ROUTERESPONSE;
-			dataBuffer[1] = destination >> 8;
-			dataBuffer[2] = destination;
-
-			address.u8[0] = nextHop;
-			address.u8[1] = nextHop >> 8;
-
-			packetbuf_copyfrom(dataBuffer, 3);
-			unicast_send(&uc, &address);
-
-			printf("********************************************************\n\r");
-			printf("send router response to %02x\n\r", nextHop);
-			printf("********************************************************\n\r");
-			brdcstID = brdcstIDLH;
-		}
-	}
-	packetbuf_clear();
+    switch (data[0])
+    {
+	case COMMAND_DTATTX://what to do when received a data packet
+		bdata = 1;
+		src = from->u8[1];
+        src = src << 8;
+        src = src | from->u8[0];
+		datafrom = src;
+		databuffer1 = data[1];
+		databuffer1 = databuffer1 << 8;
+		databuffer1 = databuffer1 | data[2];
+		databuffer2 = data[3];
+		databuffer2 = databuffer2 << 8;
+		databuffer2 = databuffer2 | data[4];
+		databuffer3 = data[5];
+		databuffer4 = data[6];
+		databuffer5 = data[7];
+		databuffer5 = databuffer5 << 8;
+		databuffer5 = databuffer5 | data[8];
+		dataID = data[9];
+    default:
+        break;
+    }
+    packetbuf_clear();//clear the buffer
 }
+//what to do when received a broadcast
+static void
+recv_bc(struct broadcast_conn *c, rimeaddr_t *from)
+{
+	uint8_t *data;
+    uint16_t dest = 0;
+	uint16_t src = 0;
+    src = from->u8[1];
+	src = src << 8;
+	src = src | from->u8[0];
 
-static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from) {
-	uint8_t * data;
-	data = packetbuf_dataptr();
-
-	//get the address of next node
-	nextHop = from->u8[1];
-	nextHop = nextHop << 8;
-	nextHop = nextHop | from->u8[0];
-
-	//get the destination of packet
-	destination = data[1];
-	destination = destination << 8;
-	destination = destination | data[2];
-	printf("********************************************************\n\r");
-	printf("recive the data from: %02x\n\r", nextHop);
-	if (data[0] == COMMAND_DTATTX) {
-	
-		printf("temperature1 is: %d\n\r", data[3]);
-		printf("temperature2 is: %d\n\r", data[4]);
-		printf("********************************************************\n\r");
+    data = packetbuf_dataptr();//store the data to data variable from the buffer
+	switch (data[0])
+    {
+    case COMMAND_ROUTREQUEST:// what to do when received a RREQ
+        dest = data[1];
+        dest = dest << 8;
+        dest = dest | data[2];
+		rtsrc = from->u8[1];
+		rtsrc = src << 8;
+		rtsrc = src | from->u8[0];
+		brdcstCounter = ++data[3];
+		brdcstLimit = data[4];
+		brdcstID = data[5];
+		if(dest == receaddr && brdcstCounter>2){
+			breceiver = 1;
+			printf("Received broadcastID:%d from:%x\r\n\r\n",brdcstID,rtsrc);
+		}
+		break;
+	default:
+		break;	
 	}
 	packetbuf_clear();
 }
@@ -1176,37 +1065,53 @@ static void recv_uc(struct unicast_conn *c, const rimeaddr_t *from) {
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(routenode_process, ev, data)
 {
-	static struct etimer et;
+    static struct etimer et;
 
-	PROCESS_EXITHANDLER(unicast_close(&uc);)
-	PROCESS_BEGIN();
+    PROCESS_EXITHANDLER(unicast_close(&uc);)
+    PROCESS_BEGIN();
+    puts("start");
+    broadcast_open(&bc, 131, &broadcast_callbacks);//open the channel for broadcast
+    unicast_open(&uc, 132, &unicast_callbacks);// opend the channel for unicast
 
-	printf("********************************************************\n\r");
-	printf("Receiver Start, address is DD:DD\n\r");
-	printf("********************************************************\n\r");
+    etimer_set(&et, CLOCK_SECOND * 2);//time delay for 2 seconds
+    while (1)
+    {
 
-	for (i = 0; i<TABLELENGTH; i++)
-	{
-		rvsTable[i].destination = 0x0000;
-		rvsTable[i].nextHop = 0xffff;
-		rvsTable[i].battery = 0;
-		rvsTable[i].rssi = 0;
-	}
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+        
+        
+		if (breceiver == 1){//send the RREP
+			
+			sensor = sensors_find(ADC_SENSOR);
+			rv = sensor->value(ADC_SENSOR_TYPE_VDD);
 
-	broadcast_open(&bc, 128, &broadcast_callbacks);
-	unicast_open(&uc, 129, &unicast_callbacks);
+			if (rv != -1)
+			{
+				sane = rv * 3.75 / 2047;
+				battery = sane * 1000;
+				u8DataBuffer[0] = COMMAND_ROUTERESPONSE;
+				u8DataBuffer[1] = receaddr >> 8;
+				u8DataBuffer[2] = receaddr;
+				u8DataBuffer[3] = battery >> 8;
+				u8DataBuffer[4] = battery;
+				u8DataBuffer[5] = dataID;
+				addr.u8[0] = rtsrc;
+				addr.u8[1] = rtsrc >> 8;
+				packetbuf_copyfrom(u8DataBuffer, 6);
+				unicast_send(&uc, &addr);
+				printf("Send REP to %x\r\n\r\n",rtsrc);
+			}
+			breceiver = 0;
+		}
+		if (bdata == 1){//show the data
+			printf("Received data from %x:\r\n  Dest:%x\r\n  Src:%x\r\n  Temp:%d.%d C\r\n  Battery:%d\r\n\r\n",datafrom,databuffer1,databuffer2,databuffer3,databuffer4,databuffer5);
+			bdata = 0;
+		}
+		etimer_set(&et, CLOCK_SECOND * 2);//time delay for 2 seconds
+    }
 
-	etimer_set(&et, CLOCK_SECOND * 2);
-
-	while (1)
-	{
-		PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
-		etimer_reset(&et);
-	}
-
-	PROCESS_END();
+    PROCESS_END();
 }
-
 \end{lstlisting}
 
 
